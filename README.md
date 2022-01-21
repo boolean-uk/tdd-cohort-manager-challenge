@@ -7,7 +7,37 @@ ___|       |                |     \  |                                   ___ \  
 \____|\___/ _| |_|\___/ _|   \__| _|  _|\__,_|_|  _|\__,_|\__, |\___|_|    _____|\___/_____|_____|
                                                         |___/                                    
 ```
+DOMAIN MODEL
 
+CLASSES                 PROPERTIES                      METHODS                             OUTPUT
+CohortManager()         this.Cohorts=[]                                                     [object string]
+                        this.Capacity=24             
+                                                        CreateCohort(name)                  -new Cohort(cohortname) this.Cohorts.push(Cohort)
+                                                        
+                                                        SearchCohort(name)                  -this.Cohort.include(name)
+
+                                                        addStudents(cohortname)             -adding student object from student class
+                                                                                            to the instance of particular cohort.
+
+                                                        removeStudent(cohortName)           -remove students from specific cohort by looking up
+                                                                                            this.cohortName in Cohort class        
+
+                                                        RemoveCohort(cohortName)            -remove the instance of cohort by cohortname
+                                                        
+                                                        returnError(name)                   - looks through this.cohortName + this.students to find 
+                                                                                                any match, if not throw error
+
+Cohort()                 
+                        constructor(cohortname )
+                        this.CohortName = cohortname                                            [object string]
+                        this.students =[]                          
+                                                                                    
+Students()              {id:                                                                 -object list of students 
+                        FirstName:
+                        LastName:
+                        Github:
+                        Email:
+                        }
 ### Setup
 
 1. Fork this repository to your GitHub account
@@ -84,4 +114,5 @@ You can also run the tests manually whenever you want
 npx jasmine # run all the tests
 # or
 npx jasmine spec/path/to/specfile # run a set of tests in a spec file
-```
+
+
