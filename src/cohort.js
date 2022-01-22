@@ -1,8 +1,8 @@
 class Corhort {
 
-    constructor(){
-        this.cohortList = []
-        this.capacity = number
+    constructor(cName){
+        this.studentList = []
+        this.cName = cName
     }
 
 }
