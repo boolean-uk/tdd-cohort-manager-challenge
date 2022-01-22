@@ -9,12 +9,17 @@ class CohortManager {
     
     createNewCohort(name) {
         this.cohorts.push(new Cohort(name))
+        console.log(this.cohorts)
         return this.cohorts
     }
     
     createNewStudent(id, firstName, lastName, githubUsername, email) {
         const newStudent = new Student(id, firstName, lastName, githubUsername, email)
         return newStudent
+    }
+
+    addStudentToCohort(studentID, cohortName) {
+        
     }
 
     searchCohortByName(name) {

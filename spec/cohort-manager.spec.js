@@ -45,8 +45,17 @@ describe('CohortManager', () => {
     })
 
     it('CohortManager: can create a student', () => {
+        cohortManager.createNewCohort('CohortOne')
         const expected = new Student(1, 'Nico', 'Picchio', '@nicopicchio', 'nicolapicchio@gmail.com')
         const result = cohortManager.createNewStudent(1, 'Nico', 'Picchio', '@nicopicchio', 'nicolapicchio@gmail.com')
+        expect(result).toEqual(expected)
+    })
+
+    it('CohortManager: can add a student to a cohort', () => {
+        cohortManager.createNewCohort('CohortOne')
+        cohortManager.createNewStudent(1, 'Nico', 'Picchio', '@nicopicchio', 'nicolapicchio@gmail.com')
+        const expected = cohortManager.getAllCohorts()
+        const result = cohortManager.addStudentToCohort(1, 'CohortOne')
         expect(result).toEqual(expected)
     })
 
