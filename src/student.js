@@ -11,13 +11,13 @@ class Student {
     return this.id === id
   }
 
-  checkFirstname (first) {
-    return this.firstname === first
-  }
+  // checkFirstname (first) {
+  //   return this.firstname === first
+  // }
 
-  checkLastname (last) {
-    return this.lastname === last
-  }
+  // checkLastname (last) {
+  //   return this.lastname === last
+  // }
 }
 
 module.exports = Student

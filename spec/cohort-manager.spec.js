@@ -62,6 +62,14 @@ describe("CohortManager", () => {
     expect(test).toEqual(expected)
   })
 
+  it("Add student to cohort, student already exists in database", () => {
+    const expected = "This student already part of a cohort"
+    cohortManager.addCohort("Cohort 1")
+    cohortManager.addStudent("Cohort 1","Jane", "Doe", "jdoe", "jdoe@gmail.com")
+    const test = cohortManager.addStudent("Cohort 1","Jane", "Doe", "jdoe", "jdoe@gmail.com")
+    expect(test).toEqual(expected)
+  })
+
   it("remove student from cohort", () => {
     const expected = []
     cohortManager.addCohort("Cohort 1")

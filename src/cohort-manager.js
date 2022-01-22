@@ -26,11 +26,21 @@ class CohortManager {
     return 'Cohort does not exist'
   }
 
-  addStudent (cohortName, first, last, github, email) {
-    // need to check all students to see if exist in data base. if so return error message nd do not add
+  studentFinder(github, email) {
+    if(this.searchByProperty('github', github).length > 0
+    || this.searchByProperty('email', email).length > 0) {
+      return true
+    }
+    return false
+  }
 
+  addStudent (cohortName, first, last, github, email) {
     const cohort = this.cohortFinder(cohortName)
     const cohortInstance = cohort[0]
+
+    if(this.studentFinder(github, email)) {
+      return "This student already part of a cohort"
+    }
 
     if (cohort.length === 0) {
       return 'Cohort does not exist'
@@ -43,7 +53,6 @@ class CohortManager {
     cohortInstance.addStudentToCohort(this.studentID, first, last, github, email)
     this.studentID++
     return 'Student Added'
-
   }
 
   removeStudent (cohortName, id) {
@@ -51,16 +60,15 @@ class CohortManager {
     const cohortInstance = cohort[0]
 
     if (cohort.length === 0) {
-    return 'Cohort does not exist'
+      return 'Cohort does not exist'
     }
 
-    if(this.searchByProperty("id", id).length === 0) {
-    return 'Student ID not found'
-      }
+    if (this.searchByProperty('id', id).length === 0) {
+      return 'Student ID not found'
+    }
 
     cohortInstance.removeStudentFromCohort(id)
     return 'Student Removed'
-
   }
 
   cohortFinder (cohortName) {

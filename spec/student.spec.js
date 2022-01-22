@@ -21,16 +21,16 @@ describe("Student", () => {
     expect(test).toEqual(expected)
   })
 
-  it("check first name - not correct", () => {
-    const expected = false
-    const test = student.checkFirstname("John")
-    expect(test).toEqual(expected)
-  })
+  // it("check first name - not correct", () => {
+  //   const expected = false
+  //   const test = student.checkFirstname("John")
+  //   expect(test).toEqual(expected)
+  // })
 
-  it("check last name - correct", () => {
-    const expected = true
-    const test = student.checkLastname("Doe")
-    expect(test).toEqual(expected)
-  })
+  // it("check last name - correct", () => {
+  //   const expected = true
+  //   const test = student.checkLastname("Doe")
+  //   expect(test).toEqual(expected)
+  // })
 
 })
