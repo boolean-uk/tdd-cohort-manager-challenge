@@ -44,12 +44,9 @@ describe('CohortManager', () => {
         expect(result).toEqual(expected)
     })
 
-    it('CohortManager: can create a student and add it to a cohort', () => {
-        // create a new cohort and add it to the cohort array
-        // create a new instance of a student and add it to the student list array of the cohort created
-        // at the end I need to have an array with one cohort inside that has an array with one object
-        cohortManager.createNewCohort('CohortOne')
-        const expected = cohortManager.createNewStudent(1, 'Nico', 'Picchio', '@nicopicchio', 'nicolapicchio@gmail.com')
+    it('CohortManager: can create a student', () => {
+        const expected = new Student(1, 'Nico', 'Picchio', '@nicopicchio', 'nicolapicchio@gmail.com')
+        const result = cohortManager.createNewStudent(1, 'Nico', 'Picchio', '@nicopicchio', 'nicolapicchio@gmail.com')
         expect(result).toEqual(expected)
     })
 

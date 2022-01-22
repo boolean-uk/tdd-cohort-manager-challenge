@@ -1,4 +1,5 @@
 const Cohort = require('../src/cohort.js')
+const Student = require('../src/student.js')
 
 class CohortManager {
 
@@ -11,8 +12,9 @@ class CohortManager {
         return this.cohorts
     }
     
-    createNewStudent(student) {
-        
+    createNewStudent(id, firstName, lastName, githubUsername, email) {
+        const newStudent = new Student(id, firstName, lastName, githubUsername, email)
+        return newStudent
     }
 
     searchCohortByName(name) {
