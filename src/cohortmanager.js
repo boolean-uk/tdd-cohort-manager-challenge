@@ -23,7 +23,12 @@ class CohortManager {
   removeCohortByName() {}
 
   //Search for cohort by cohort name
-  findCohortByName() {}
+  findCohortByName(cohortName) {
+    const findCohort = this.COHORTS.find(
+      (searchCohortName) => searchCohortName.name === cohortName
+    );
+    return findCohort;
+  }
 
   //Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit. - EXT
   checkCohortCapacity() {}
@@ -32,16 +37,15 @@ class CohortManager {
   checkCohortName() {}
 }
 
-// let cohortmanagement = new CohortManager();
-// cohort1 = cohortmanagement.createCohort('cohort1');
+let cohortmanagement = new CohortManager();
 
-// cohort1.name;
-// console.log(test);
+cohort1 = cohortmanagement.createCohort('cohort1');
+
+cohortmanagement.findCohortByName('cohort1').name;
+cohortmanagement.findCohortByName('cohort2');
+
+cohort1.name;
 
 module.exports = CohortManager;
 
-//  //helper method - insert final cohort into COHORTS
-//  insertCohort(cohort) {
-//   // const cohort
-//   return COHORTS.push(cohort);
-// }
+//test comment to make file push
