@@ -66,7 +66,7 @@ class CohortManager {
         return
       }
     }
-    return "student not found!"
+    return 'student not found!'
     // throw error if cohort not found.
   }
 }
