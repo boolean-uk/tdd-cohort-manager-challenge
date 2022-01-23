@@ -4,30 +4,34 @@ const Student = require('../src/student.js')
 class CohortManager {
 
     constructor() {
+        this.studentWaitingList = [];
         this.cohorts = [];
     }
     
     createNewCohort(name) {
         this.cohorts.push(new Cohort(name))
-        console.log(this.cohorts)
         return this.cohorts
     }
     
-    createNewStudent(id, firstName, lastName, githubUsername, email) {
-        const newStudent = new Student(id, firstName, lastName, githubUsername, email)
-        return newStudent
+    createStudent(id, firstName, lastName, githubUsername, email) {
+        this.studentWaitingList.push(new Student(id, firstName, lastName, githubUsername, email))
+        return this.studentWaitingList
     }
 
     addStudentToCohort(studentID, cohortName) {
-        
+        const cohort = this.searchCohortByName(cohortName)
+        for (let i = 0; i < this.studentWaitingList.length; i++) {
+            if (this.studentWaitingList[i].studentID === studentID) {
+                cohort.studentList.push(this.studentWaitingList[i])
+                return cohort.studentList
+            }
+            return 'Student not found!'
+        }
     }
 
-    searchCohortByName(name) {
-        for (const cohort of this.cohorts) {
-            if (cohort.cohortName === name) {
-                return cohort
-            }
-        }
+    searchCohortByName(cohortName) {
+        const cohortFound = this.cohorts.find((cohort) => cohort.cohortName === cohortName)
+        if (cohortFound) return cohortFound
         return 'Cohort not found!'
     }
 

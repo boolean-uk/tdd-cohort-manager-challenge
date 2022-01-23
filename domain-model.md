@@ -7,11 +7,11 @@ The Cohort Manager should be able to support the following interactions
 
 1. Create a cohort with a cohort name -> DONE
 2. Search for a cohort by cohort name -> DONE
-3. Add student to a specific cohort
+3. Add student to a specific cohort -> DONE
 4. Remove a cohort by cohort name -> DONE
 5. Remove student from a specific cohort
 6. Return errors if cohort not found -> DONE
-7. Return errors if student not found
+7. Return errors if student not found -> DONE
 
 A cohort should have a list of students. Each student should have a studentID, first name, last name, github username, email.
 ```

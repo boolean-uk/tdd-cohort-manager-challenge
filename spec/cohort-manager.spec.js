@@ -9,20 +9,20 @@ describe('CohortManager', () => {
         cohortManager = new CohortManager()
     })
 
-    it('CohortManager: can create a cohort with a cohort name and add it to the cohort list', () => {
+    it('CohortManager can create a cohort with a cohort name and add it to the cohort list', () => {
         const expected = new Cohort('CohortOne')
         const result = cohortManager.createNewCohort('CohortOne')
         expect(result).toEqual([expected])
     })
 
-    it('CohortManager: can search for a cohort by its name', () => {
+    it('CohortManager can search for a cohort by its name', () => {
         const expected = new Cohort('CohortOne')
         cohortManager.createNewCohort('CohortOne')
         const result = cohortManager.searchCohortByName('CohortOne')
         expect(result).toEqual(expected)
     })
 
-    it('CohortManager: can remove a cohort by its name', () => {
+    it('CohortManager can remove a cohort by its name', () => {
         cohortManager.createNewCohort('CohortOne')
         const expected = []
         cohortManager.removeCohortByName('CohortOne')
@@ -30,32 +30,40 @@ describe('CohortManager', () => {
         expect(result).toEqual(expected)
     })
 
-    it('CohortManager: throw error if cohort searched is not found', () => {
+    it('CohortManager throw error if cohort searched is not found', () => {
         cohortManager.createNewCohort('CohortOne')
         const expected = 'Cohort not found!'
         const result = cohortManager.searchCohortByName('CohortTwo')
         expect(result).toEqual(expected)
     })
 
-    it('CohortManager: throw error if cohort to remove is not found', () => {
+    it('CohortManager throw error if cohort to remove is not found', () => {
         cohortManager.createNewCohort('CohortOne')
         const expected = 'Cohort not found!'
         const result = cohortManager.removeCohortByName('CohortTwo')
         expect(result).toEqual(expected)
     })
 
-    it('CohortManager: can create a student', () => {
+    it('CohortManager can create a student', () => {
         cohortManager.createNewCohort('CohortOne')
-        const expected = new Student(1, 'Nico', 'Picchio', '@nicopicchio', 'nicolapicchio@gmail.com')
-        const result = cohortManager.createNewStudent(1, 'Nico', 'Picchio', '@nicopicchio', 'nicolapicchio@gmail.com')
+        const expected = new Student(1, 'Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com')
+        const result = cohortManager.createStudent(1, 'Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com')
+        expect(result).toEqual([expected])
+    })
+
+    it('CohortManager can add a student to a cohort', () => {
+        cohortManager.createNewCohort('CohortOne')
+        cohortManager.createStudent(1, 'Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com')
+        const expected = [ new Student(1, 'Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com') ]
+        const result = cohortManager.addStudentToCohort(1, 'CohortOne')
         expect(result).toEqual(expected)
     })
 
-    it('CohortManager: can add a student to a cohort', () => {
+    it('CohortManager thorws an error when trying to add to a cohort a student that does not exist', () => {
         cohortManager.createNewCohort('CohortOne')
-        cohortManager.createNewStudent(1, 'Nico', 'Picchio', '@nicopicchio', 'nicolapicchio@gmail.com')
-        const expected = cohortManager.getAllCohorts()
-        const result = cohortManager.addStudentToCohort(1, 'CohortOne')
+        cohortManager.createStudent(1, 'Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com')
+        const expected = 'Student not found!'
+        const result = cohortManager.addStudentToCohort(2, 'CohortOne')
         expect(result).toEqual(expected)
     })
 
