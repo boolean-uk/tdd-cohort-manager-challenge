@@ -1,14 +1,18 @@
-const STUDENTS = require("../students.json")
-const 
+//const STUDENTS = require("./students.json")
+const Cohort = require("./cohort")
+
 class CohortManager {
     constructor() {
-    this.cohorts = []
+    this.cohorts = [] 
     this.capacity = 24
 }
 
 createCohort(name){
-    //create new instance of cohort with the name parameter passed
+    const createCohort = new Cohort(name)
+     this.cohorts.push(createCohort.cohortname)
+     //console.log(this.cohorts)
 }
+
 /*
 searchCohort(name)
     //search for the parameter passed in this.cohort if it exists if not returnError(?)
@@ -25,3 +29,4 @@ returnError(name)
 
 */
 }
+ module.exports = CohortManager

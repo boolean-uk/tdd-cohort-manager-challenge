@@ -1,118 +1,62 @@
 {
     "students": [
-        {
-
-            "id" : 1,
-            "firstName" : "Kiran",
-            "lastName" : "Gurung",
-            "github" : "KinTale",
-            "email" : "email1@email.com"
-        },
-        {
-
-            "id" : 2,
-            "firstName" : "Kiran",
-            "lastName" : "Gurung",
-            "github" : "KinTale",
-            "email" : "email1@email.com"
-        },
-        {
-
-            "id" : 3,
-            "firstName" : "Kiran",
-            "lastName" : "Gurung",
-            "github" : "KinTale",
-            "email" : "email1@email.com"
-        },
-        {
-
-            "id" : 4,
-            "firstName" : "Kiran",
-            "lastName" : "Gurung",
-            "github" : "KinTale",
-            "email" : "email1@email.com"
-        },
-        {
-
-            "id" : 5,
-            "firstName" : "Kiran",
-            "lastName" : "Gurung",
-            "github" : "KinTale",
-            "email" : "email1@email.com"
-        },
-        {
-
-            "id" : 6,
-            "firstName" : "Kiran",
-            "lastName" : "Gurung",
-            "github" : "KinTale",
-            "email" : "email1@email.com"
-        },
-        {
-
-            "id" : 7,
-            "firstName" : "Kiran",
-            "lastName" : "Gurung",
-            "github" : "KinTale",
-            "email" : "email1@email.com"
-        },
-        {
-
-            "id" : 8,
-            "firstName" : "Kiran",
-            "lastName" : "Gurung",
-            "github" : "KinTale",
-            "email" : "email1@email.com"
-        },
-        {
-
-            "id" : 9,
-            "firstName" : "Kiran",
-            "lastName" : "Gurung",
-            "github" : "KinTale",
-            "email" : "email1@email.com"
-        },
-        {
-
-            "id" : 10,
-            "firstName" : "Kiran",
-            "lastName" : "Gurung",
-            "github" : "KinTale",
-            "email" : "email1@email.com"
-        },
-        {
-
-            "id" : 11,
-            "firstName" : "Kiran",
-            "lastName" : "Gurung",
-            "github" : "KinTale",
-            "email" : "email1@email.com"
-        },
-        {
-
-            "id" : 12,
-            "firstName" : "Kiran",
-            "lastName" : "Gurung",
-            "github" : "KinTale",
-            "email" : "email1@email.com"
-        },
-
-
-
-
+        { "id" : 1, "firstName" : "Kiran", "lastName" : "Gurung","github" : "KinTale", "email" : "email1@email.com" },
+        { "id" : 2, "firstName" : "Juliette", "lastName" : "Meza","github" : "gitUser1", "email" : "email2@email.com" },
+        { "id" : 3, "firstName" : "Steve", "lastName" : "Lam","github" : "gitUser2", "email" : "email3@email.com" },
+        { "id" : 4, "firstName" : "Damari", "lastName" : "Singleton","github" : "gitUser3", "email" : "email4@email.com" },
+        { "id" : 5, "firstName" : "Kaitlyn", "lastName" : "Alvarado","github" : "gitUser4", "email" : "email5@email.com" },
+        { "id" : 6, "firstName" : "June", "lastName" : "Mccan","github" : "gitUser5", "email" : "email6@email.com" },
+        { "id" : 7, "firstName" : "Coby", "lastName" : "Scott","github" : "gitUser6", "email" : "email7@email.com" },
+        { "id" : 8, "firstName" : "Ryder", "lastName" : "Carter","github" : "gitUser7", "email" : "email8@email.com" },
+        { "id" : 9, "firstName" : "Logan", "lastName" : "Merritt","github" : "gitUser8", "email" : "email9@email.com" },
+        { "id" : 10, "firstName" : "Sherlyn", "lastName" : "Lucero","github" : "gitUser9", "email" : "emai10@email.com" },
+        { "id" : 11, "firstName" : "Javier", "lastName" : "Odonnell","github" : "gitUser10", "email" : "email11@email.com" },
+        { "id" : 12, "firstName" : "Kenya", "lastName" : "Whitehead","github" : "gitUser11", "email" : "email12@email.com" },
+        { "id" : 13, "firstName" : "Michael", "lastName" : "Hayden","github" : "gitUser12", "email" : "email13@email.com" },
+        { "id" : 14, "firstName" : "Frankie", "lastName" : "Carter","github" : "gitUser13", "email" : "email14@email.com" },
+        { "id" : 15, "firstName" : "Josh", "lastName" : "Bowman","github" : "gitUser14", "email" : "email15@email.com" },
+        { "id" : 16, "firstName" : "", "lastName" : "Gurung","github" : "gitUser15", "email" : "email16@email.com" },
+        { "id" : 17, "firstName" : "", "lastName" : "Gurung","github" : "gitUser16", "email" : "email17@email.com" },
+        { "id" : 18, "firstName" : "", "lastName" : "Gurung","github" : "gitUser17", "email" : "email18@email.com" },
+        { "id" : 19, "firstName" : "", "lastName" : "Gurung","github" : "gitUser18", "email" : "email19@email.com" },
+        { "id" : 20, "firstName" : "", "lastName" : "Gurung","github" : "gitUser19", "email" : "email20@email.com" },
+        { "id" : 21, "firstName" : "", "lastName" : "Gurung","github" : "gitUser20", "email" : "email21@email.com" },
+        { "id" : 22, "firstName" : "", "lastName" : "Gurung","github" : "gitUser21", "email" : "email22@email.com" },
+        { "id" : 23, "firstName" : "", "lastName" : "Gurung","github" : "gitUser22", "email" : "email23@email.com" },
+        { "id" : 24, "firstName" : "", "lastName" : "Gurung","github" : "gitUser23", "email" : "email24@email.com" },
+        { "id" : 25, "firstName" : "", "lastName" : "Gurung","github" : "gitUser24", "email" : "email25@email.com" },
+        { "id" : 26, "firstName" : "", "lastName" : "Gurung","github" : "gitUser25", "email" : "email26@email.com" },
+        { "id" : 27, "firstName" : "", "lastName" : "Gurung","github" : "gitUser26", "email" : "email27@email.com" },
+        { "id" : 28, "firstName" : "", "lastName" : "Gurung","github" : "gitUser27", "email" : "email28@email.com" },
+        { "id" : 29, "firstName" : "", "lastName" : "Gurung","github" : "gitUser28", "email" : "email29@email.com" },
+        { "id" : 30, "firstName" : "", "lastName" : "Gurung","github" : "gitUser29", "email" : "email30@email.com" },
+        { "id" : 31, "firstName" : "", "lastName" : "Gurung","github" : "gitUser30", "email" : "email31@email.com" },
+        { "id" : 32, "firstName" : "", "lastName" : "Gurung","github" : "gitUser31", "email" : "email32@email.com" }
     ]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
+/*
+Issac House
+Angelique George
+Keenan Ford
+Camille Castaneda
+Eduardo Haney
+Kamari Christian
+Liam Mccall
+Jamarion Cordova
+Sabrina Oneill
+Melvin Robles
+Lucian Prince
+Everett Fitzpatrick
+Lexie Williamson
+Francesca Black
+Kiley Blackwell
+Colt Stephens
+Arianna Stephens
+Javion Lewis
+Desiree Hardin
+Harold Waters
+Gwendolyn Faulkner
+Dominique Doyle
+*/

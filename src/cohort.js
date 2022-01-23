@@ -11,3 +11,5 @@ this.students = []
 
 
 }
+
+module.exports = Cohort
