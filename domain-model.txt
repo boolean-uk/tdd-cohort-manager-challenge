@@ -1,44 +1,57 @@
+***CORE***
+
+DONE - Create a cohort with a cohort name
+DONE - Search for a cohort by cohort name
+DONE - Add student to a specific cohort
+DONE - Remove a cohort by cohort name
+DONE - Remove student from a specific cohort
+DONE - Return errors if student or cohort not found
+
+***EXTENSION***
+
+- Search for student by student ID
+- Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit.
+- Cohorts can't have the same name, and can't exist without a name
+- The same student can't exist in multiple cohorts.
+- A student can't be removed from a cohort if it wasn't present in the first place.
+- Search for students by name (first and last) and return all matching results
+
+Your program should be composed of at least two classes
+
 ***DOMAIN MODEL***
 
 
 class Cohort Manager {
 
 Properties:
-- Track multiple cohorts (one cohort being an array of objects, each object being a student). 
-constructor() {
-this.cohort = [{student1}{student2}...]
-this.academyCohorts = [
-{
-  name: 'Cohort 1',
-  students: [Student, Student, Student]
-  cohortcapacity: 24
-},
-{
-  name: 'Cohort 2',
-  students: [Student, Student, Student]
-  cohortcapacity: 24
-}
+- Track multiple cohorts (one cohort being an array of objects, each object being a student).
+- Track students on database
+constructor () {
+    this.studentList = []
+    this.schoolCohorts = []
+    this.cohortCapacity = 24
+  }
 ]
-
 
 Methods:
 
-createCohort(cohortname)
-searchCohort(cohortname) // throw error if cohort not found.
+createStudent (student)
+createCohort (cohortname)
+searchCohort (cohortname) // throw error if cohort not found.
 addStudentToCohort(studentid, cohort)
-removeCohort(cohortname)
+removeCohort (cohortname)
 removeStudentFromCohort(studentid, cohort) // throw error if cohort not found.
-
-}
+getAllCohorts () 
+getStudentList ()
 
 
 class Student {
 
-constructor(firstname, lastname, github, email) {
-this.studentid = firstname.subtring(0,1)+lastname
-this.studentFirstName = firstname
-this.studentLastName = lastname
-this.studentGithub = github
-this.studentEmail = email
-}
+constructor (id, firstname, lastname, github, email) {
+    this.studentID = id
+    this.studentFirstName = firstname
+    this.studentLastName = lastname
+    this.studentGithub = github
+    this.studentEmail = email
+  }
 }

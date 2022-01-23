@@ -178,27 +178,35 @@ describe("cohortManager", () => {
     //verify
     expect(result).toEqual(expected)
   });
-  // it("Removing a student from a specific cohort", () => {
-  //   //setup
-  //   const expected = [
-  //     {
-  //       name: "CohortOne",
-  //       students: [student1, student3],
-  //       cohortCapacity: 24
-  //     }
-  //   ]
-  //   cohortManager.createStudent(student1)
-  //   cohortManager.createStudent(student2)
-  //   cohortManager.createStudent(student3)
-  //   cohortManager.createCohort("CohortOne")
-  //   cohortManager.addStudentToCohort("Jimmy", "CohortOne")
-  //   cohortManager.addStudentToCohort("Steve", "CohortOne")
-  //   cohortManager.addStudentToCohort("Brian", "CohortOne")
-  //   //execute
-  //   cohortManager.removeStudentFromCohort(2, "CohortOne")
-  //   const result = cohortManager.getAllCohorts()
-  //   //verify
-  //   expect(result).toEqual(expected)
-  // });
-
+  it("Removing a student from a specific cohort", () => {
+    //setup
+    const expected = [
+      {
+        name: "CohortOne",
+        students: [student1, student3],
+        cohortCapacity: 24
+      }
+    ]
+    cohortManager.createStudent(student1)
+    cohortManager.createStudent(student2)
+    cohortManager.createStudent(student3)
+    cohortManager.createCohort("CohortOne")
+    cohortManager.addStudentToCohort("Jimmy", "CohortOne")
+    cohortManager.addStudentToCohort("Steve", "CohortOne")
+    cohortManager.addStudentToCohort("Brian", "CohortOne")
+    //execute
+    cohortManager.removeStudentFromCohort(2, "CohortOne")
+    const result = cohortManager.getAllCohorts()
+    //verify
+    expect(result).toEqual(expected)
+  });
+  it("Removing a student that doesn't exist", () => {
+    //setup
+    const expected = "student not found!"
+    cohortManager.createCohort("CohortOne")
+    //execute
+    const result = cohortManager.removeStudentFromCohort(2, "CohortOne")
+    //verify
+    expect(result).toEqual(expected)
+  });
 });

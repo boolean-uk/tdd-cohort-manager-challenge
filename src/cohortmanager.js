@@ -60,13 +60,13 @@ class CohortManager {
 
   removeStudentFromCohort (studentid, cohortname) {
     const cohort = this.searchCohort(cohortname)
-    console.log(cohort)
     for (let i = 0; i < cohort.students.length; i++) {
-      if (cohort.students.studentID === studentid) {
-        cohort.students[i].splice(i, 1)
+      if (cohort.students[i].studentID === studentid) {
+        cohort.students.splice(i, 1)
+        return
       }
     }
-    console.log(cohort.students.studentID)
+    return "student not found!"
     // throw error if cohort not found.
   }
 }
