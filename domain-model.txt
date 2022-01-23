@@ -1,0 +1,44 @@
+***DOMAIN MODEL***
+
+
+class Cohort Manager {
+
+Properties:
+- Track multiple cohorts (one cohort being an array of objects, each object being a student). 
+constructor() {
+this.cohort = [{student1}{student2}...]
+this.academyCohorts = [
+{
+  name: 'Cohort 1',
+  students: [Student, Student, Student]
+  cohortcapacity: 24
+},
+{
+  name: 'Cohort 2',
+  students: [Student, Student, Student]
+  cohortcapacity: 24
+}
+]
+
+
+Methods:
+
+createCohort(cohortname)
+searchCohort(cohortname) // throw error if cohort not found.
+addStudentToCohort(studentid, cohort)
+removeCohort(cohortname)
+removeStudentFromCohort(studentid, cohort) // throw error if cohort not found.
+
+}
+
+
+class Student {
+
+constructor(firstname, lastname, github, email) {
+this.studentid = firstname.subtring(0,1)+lastname
+this.studentFirstName = firstname
+this.studentLastName = lastname
+this.studentGithub = github
+this.studentEmail = email
+}
+}
