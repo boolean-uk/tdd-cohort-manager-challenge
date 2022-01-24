@@ -12,7 +12,7 @@ class CohortManager {
   }
 
   addCohort (cohortName) {
-    if (this.cohortFinder(cohortName) !== undefined) {
+    if (this.cohortFinder(cohortName)) {
       throw new Error('There is already a cohort with the same name')
     }
 
@@ -46,7 +46,7 @@ class CohortManager {
       throw new Error('This student already part of a cohort')
     }
 
-    if (cohort === undefined) {
+    if (!cohort) {
       throw new Error('Cohort does not exist')
     }
 
@@ -73,7 +73,7 @@ class CohortManager {
   removeStudent (cohortName, id) {
     const cohort = this.cohortFinder(cohortName)
 
-    if (cohort === undefined) {
+    if (!cohort) {
       throw new Error('Cohort does not exist')
     }
 
@@ -90,7 +90,7 @@ class CohortManager {
   }
 
   searchByCohort (cohortName) {
-    return this.cohortFinder(cohortName) !== undefined
+    return this.cohortFinder(cohortName)
       ? this.cohortFinder(cohortName)
       : 'Cohort does not exist'
   }
