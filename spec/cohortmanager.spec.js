@@ -1,5 +1,5 @@
-const CohortManager = require("../src/cohortmanager.js");
-const Student = require("../src/student.js");
+const CohortManager = require("../src/cohortmanager.js")
+const Student = require("../src/student.js")
 
 describe("cohortManager", () => {
   let cohortManager
@@ -72,7 +72,7 @@ describe("cohortManager", () => {
       name: "CohortOne",
       students: [],
       cohortCapacity: 24,
-    };
+    }
     //execute
     const result = cohortManager.createCohort("CohortOne");
     //verify
@@ -116,7 +116,7 @@ describe("cohortManager", () => {
   });
   it("Search for a cohort that doesn't exist!", () => {
     //setup
-    const expected = 'This Cohort does not exist!'
+    const expected = 'this cohort does not exist!'
     cohortManager.createCohort("CohortOne")
     //execute
     const result = cohortManager.searchCohort('CohortThree')
@@ -206,6 +206,53 @@ describe("cohortManager", () => {
     cohortManager.createCohort("CohortOne")
     //execute
     const result = cohortManager.removeStudentFromCohort(2, "CohortOne")
+    //verify
+    expect(result).toEqual(expected)
+  });
+  it("Adding a student to a cohort when the cohort doesn't exist", () => {
+    //setup
+    const expected = "cohort not found!"
+    cohortManager.createCohort("CohortOne")
+    cohortManager.createStudent(student1)
+    //execute
+    const result = cohortManager.addStudentToCohort("Jimmy", "CohortTwo")
+    //verify
+    expect(result).toEqual(expected)
+  });
+  it("Adding a student to a cohort when the student doesn't exist", () => {
+    //setup
+    const expected = "this student does not exist!"
+    cohortManager.createCohort("CohortOne")
+    cohortManager.createStudent(student1)
+    //execute
+    const result = cohortManager.addStudentToCohort("Brian", "CohortOne")
+    //verify
+    expect(result).toEqual(expected)
+  });
+  it("EXT: Searching for a student by their ID", () => {
+    //setup
+    const expected = student1
+    cohortManager.createStudent(student1)
+    //execute
+    const result = cohortManager.searchStudent(1)
+    //verify
+    expect(result).toEqual(expected)
+  });
+  it("EXT: Searching for a student by their ID although they don't exist", () => {
+    //setup
+    const expected = "student not found by this id!"
+    cohortManager.createStudent(student1)
+    //execute
+    const result = cohortManager.searchStudent(2)
+    //verify
+    expect(result).toEqual(expected)
+  });
+  it("EXT: cohort cannot exist without a name", () => {
+    //setup
+    const expected = 'cohort cannot exist without a name!'
+    
+    //execute
+    const result = cohortManager.createCohort()
     //verify
     expect(result).toEqual(expected)
   });
