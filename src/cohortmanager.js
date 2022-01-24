@@ -19,6 +19,7 @@ class StudentDataProcessor {
 class StudentSelector {
   constructor() {
     this.studentData = new StudentDataProcessor(this);
+    this.sutdentException = new Exception(this);
   }
   getStudentbyIndex(indexPos) {
     let selectedStudent = this.studentData.allStudents[indexPos];
@@ -30,7 +31,7 @@ class StudentSelector {
     const foundStudent = this.studentData.allStudents.find(
       (student) => student.studentid === ID
     );
-    if (!foundStudent) return 'no student with this id';
+    if (!foundStudent) return this.sutdentException.alertStudentNotFound();
     return foundStudent;
   }
 
@@ -48,6 +49,7 @@ class CohortManager {
     this.COHORTS = [];
     this.cohortID = 1;
     this.StudentSelectors = new StudentSelector(this);
+    this.cohortException = new Exception(this);
   }
 
   createCohort(cohortName) {
@@ -78,6 +80,9 @@ class CohortManager {
     const findCohort = this.COHORTS.find(
       (searchCohortName) => searchCohortName.name === cohortName
     );
+    if (!findCohort) {
+      return this.cohortException.alertCohortNotFound();
+    }
     return findCohort;
   }
 
@@ -115,6 +120,21 @@ class CohortManager {
 }
 ///////////////////////////////////////////
 
+class Exception {
+  constructor() {}
+  //Return error if student not found
+  alertStudentNotFound() {
+    const message = 'student not found';
+    return message;
+  }
+
+  //Return error if cohort not found
+  alertCohortNotFound() {
+    const message = 'cohort not found';
+    return message;
+  }
+}
+
 //Notes
 
 // write here
@@ -125,7 +145,9 @@ let studenttest = new StudentSelector();
 console.log(studenttest.findStudentByID(2));
 // cohorot management instances-----
 
-// let cohortmanagement = new CohortManager();
+let cohortmanagement = new CohortManager();
+cohortmanagement.findCohort('cohort1');
+
 // console.log('Adding First \n');
 // console.log(cohortmanagement.createCohort('cohort1'));
 // console.log('Adding Second \n');
@@ -144,4 +166,4 @@ console.log(studenttest.findStudentByID(2));
 
 // console.log(cohortmanagement.addStudentToCohort(2, 'cohort1'));
 
-module.exports = { CohortManager, StudentSelector };
+module.exports = { CohortManager, StudentSelector, Exception };
