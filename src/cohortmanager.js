@@ -16,7 +16,7 @@ class StudentDataProcessor {
 }
 ///////////////////////////////////////////
 
-class StudentAction {
+class StudentSelector {
   constructor() {
     this.studentData = new StudentDataProcessor(this);
   }
@@ -24,14 +24,30 @@ class StudentAction {
     let selectedStudent = this.studentData.allStudents[indexPos];
     return selectedStudent;
   }
+
+  //Search for student by student ID - EXT
+  findStudentByID(ID) {
+    const foundStudent = this.studentData.allStudents.find(
+      (student) => student.studentid === ID
+    );
+    if (!foundStudent) return 'no student with this id';
+    return foundStudent;
+  }
+
+  // "students": [
+  //   {
+  //     "studentid": 1,
+
+  //   },
 }
+
 ///////////////////////////////////////////
 
 class CohortManager {
   constructor() {
     this.COHORTS = [];
     this.cohortID = 1;
-    this.studentActions = new StudentAction(this);
+    this.StudentSelectors = new StudentSelector(this);
   }
 
   createCohort(cohortName) {
@@ -68,7 +84,7 @@ class CohortManager {
   // Add student to a specific cohort
   addStudentToCohort(selectedStudentIndex, cohortName) {
     let studentToAdd =
-      this.studentActions.getStudentbyIndex(selectedStudentIndex);
+      this.StudentSelectors.getStudentbyIndex(selectedStudentIndex);
     for (let i = 0; i < this.COHORTS.length; i++) {
       if (this.COHORTS[i].name == cohortName)
         this.COHORTS[i].cohortStudents.push(studentToAdd);
@@ -88,9 +104,6 @@ class CohortManager {
   //Remove student from a specific cohort
   RemoveStudentFromCohort() {}
 
-  //Search for student by student ID
-  findStudentByID() {}
-
   //The same student can't exist in multiple cohorts. - EXT
   checkStudentAcrossCohorts() {}
 
@@ -106,17 +119,23 @@ class CohortManager {
 
 // write here
 
-let cohortmanagement = new CohortManager();
-console.log('Adding First \n');
-console.log(cohortmanagement.createCohort('cohort1'));
-console.log('Adding Second \n');
-console.log(cohortmanagement.createCohort('cohort2'));
+// student selector instances-----
+let studenttest = new StudentSelector();
 
-console.log('now deleting');
-let out = cohortmanagement.removeCohort('cohort1');
-console.log('after deleting');
+console.log(studenttest.findStudentByID(2));
+// cohorot management instances-----
 
-console.log(out);
+// let cohortmanagement = new CohortManager();
+// console.log('Adding First \n');
+// console.log(cohortmanagement.createCohort('cohort1'));
+// console.log('Adding Second \n');
+// console.log(cohortmanagement.createCohort('cohort2'));
+
+// console.log('now deleting');
+// let out = cohortmanagement.removeCohort('cohort1');
+// console.log('after deleting');
+
+// console.log(out);
 
 // cohortmanagement.findCohortByName('cohort1').name;
 // cohortmanagement.findCohortByName('cohort2');
@@ -125,6 +144,4 @@ console.log(out);
 
 // console.log(cohortmanagement.addStudentToCohort(2, 'cohort1'));
 
-module.exports = CohortManager;
-
-//test comment to make file push
+module.exports = { CohortManager, StudentSelector };

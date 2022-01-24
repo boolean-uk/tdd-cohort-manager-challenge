@@ -1,16 +1,20 @@
-const CohortManager = require('../src/cohortmanager');
+const { CohortManager, StudentSelector } = require('../src/cohortmanager');
+// const StudentSelector = require('../src/cohortmanager');
 
-describe('CohortManager', () => {
-  let test;
+// const { cm, ss } = require('../src/cohortmanager');
+
+describe('CohortManager, StudentSelector', () => {
+  let testCM, testSS;
 
   beforeEach(() => {
-    test = new CohortManager();
+    testCM = new CohortManager();
+    testSS = new StudentSelector();
   });
   // ---TEST 1-???: test requirement: Create a cohort with a cohort name ---
   // ---TEST 1: Create one cohort called cohort1 ---
   it('creates a new cohort: cohort 1', () => {
     let expected = 'cohort1';
-    let result = test.createCohort('cohort1');
+    let result = testCM.createCohort('cohort1');
     let resultName = result.name;
     expect(resultName).toEqual(expected);
   });
@@ -18,8 +22,8 @@ describe('CohortManager', () => {
   // ---TEST 2: search for a cohort by name which does exist ---
   it('search for cohort1 which does exist by name', () => {
     let expected = 'cohort1';
-    test.createCohort('cohort1');
-    let result = test.findCohort('cohort1').name;
+    testCM.createCohort('cohort1');
+    let result = testCM.findCohort('cohort1').name;
     expect(result).toEqual(expected);
   });
   // ---TEST 3-???: test requirement: Add student to a specific cohort ---
@@ -42,20 +46,20 @@ describe('CohortManager', () => {
         ],
       },
     ];
-    test.createCohort('cohort1');
-    let result = test.addStudentToCohort(2, 'cohort1');
+    testCM.createCohort('cohort1');
+    let result = testCM.addStudentToCohort(2, 'cohort1');
     expect(result).toEqual(expected);
   });
   // ---TEST 4-???: test requirement: Remove a cohort by cohort name ---
   // ---TEST 4: remove cohort1 after creating it ---
   it('remove cohort1 after creating cohort1', () => {
     let expected = [];
-    test.createCohort('cohort1');
-    let result = test.removeCohort('cohort1');
+    testCM.createCohort('cohort1');
+    let result = testCM.removeCohort('cohort1');
     expect(result).toEqual(expected);
   });
-  // ---TEST 4: remove cohort1 after creating cohort1 and cohort2 ---
-  fit('remove cohort1 after creating cohort1 & cohort2', () => {
+  // ---TEST 5: remove cohort1 after creating cohort1 and cohort2 ---
+  it('remove cohort1 after creating cohort1 & cohort2', () => {
     let expected = [
       {
         ID: 2,
@@ -64,11 +68,22 @@ describe('CohortManager', () => {
         cohortStudents: [],
       },
     ];
-    test.createCohort('cohort1');
-    test.createCohort('cohort2');
-    let result = test.removeCohort('cohort1');
+    testCM.createCohort('cohort1');
+    testCM.createCohort('cohort2');
+    let result = testCM.removeCohort('cohort1');
+    expect(result).toEqual(expected);
+  });
+  // ---TEST 6:  ---
+  it('selects student with student ID = 2', () => {
+    let expected = {
+      studentid: 2,
+      firstname: 'Oumar',
+      'last name': 'Nibhanupudi',
+      github: 'oumarnibhanupudi',
+      username: 'Oumar',
+      email: 'oumarnibhanupudi@gmail.com',
+    };
+    let result = testSS.findStudentByID(2);
     expect(result).toEqual(expected);
   });
 });
-
-//test comment to make file push
