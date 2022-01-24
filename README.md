@@ -38,6 +38,8 @@ Students()              {id:                                                    
                         Github:
                         Email:
                         }
+
+// Cohort names : CohortOtter, CohotPenguin, CohortWolf, CohortDeer, CohortKoala
 ### Setup
 
 1. Fork this repository to your GitHub account
@@ -61,9 +63,9 @@ You should be able to run this in your JS console (using your node REPL, or brow
 ```
 The Cohort Manager should be able to support the following interactions
 
-- Create a cohort with a cohort name
-- Search for a cohort by cohort name
-- Add student to a specific cohort
+- Create a cohort with a cohort name - Done
+- Search for a cohort by cohort name - Done
+- Add student to a specific cohort -
 - Remove a cohort by cohort name
 - Remove student from a specific cohort
 - Return errors if student or cohort not found
