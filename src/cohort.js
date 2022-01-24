@@ -7,6 +7,9 @@ this.students = []
 this.capacity = 24
 }
 
+getCohort(cohortname){
+   return this.cohortname === cohortname
+    }
 
 
 
