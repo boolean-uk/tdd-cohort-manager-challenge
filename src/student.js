@@ -10,7 +10,6 @@ class Student {
   checkID (id) {
     return this.id === id
   }
-
 }
 
 module.exports = Student
