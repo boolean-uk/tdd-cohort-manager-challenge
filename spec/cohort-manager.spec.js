@@ -51,7 +51,7 @@ describe('CohortManager', () => {
         expect(result).toEqual([expected])
     })
 
-    it('CohortManager can add a student to a cohort', () => {
+    it('CohortManager can add a student to a specific cohort', () => {
         cohortManager.createNewCohort('CohortOne')
         cohortManager.createStudent(1, 'Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com')
         const expected = [ new Student(1, 'Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com') ]
@@ -59,11 +59,29 @@ describe('CohortManager', () => {
         expect(result).toEqual(expected)
     })
 
-    it('CohortManager thorws an error when trying to add to a cohort a student that does not exist', () => {
+    it('CohortManager throws an error when trying to add to a cohort a student that does not exist', () => {
         cohortManager.createNewCohort('CohortOne')
         cohortManager.createStudent(1, 'Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com')
         const expected = 'Student not found!'
         const result = cohortManager.addStudentToCohort(2, 'CohortOne')
+        expect(result).toEqual(expected)
+    })
+
+    it('CohortManager can remove a student from a specific cohort', () => {
+        cohortManager.createNewCohort('CohortOne')
+        cohortManager.createStudent(1, 'Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com')
+        cohortManager.addStudentToCohort(1, 'CohortOne')
+        const expected = new Cohort('CohortOne')
+        const result = cohortManager.removeStudentFromCohort(1, 'CohortOne')
+        expect(result).toEqual(expected)
+    })
+
+    it('CohortManager throws an error when trying to remove from a cohort a student that does not exist', () => {
+        cohortManager.createNewCohort('CohortOne')
+        cohortManager.createStudent(1, 'Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com')
+        cohortManager.addStudentToCohort(1, 'CohortOne')
+        const expected = 'Student not found!'
+        const result = cohortManager.removeStudentFromCohort(2, 'CohortOne')
         expect(result).toEqual(expected)
     })
 
