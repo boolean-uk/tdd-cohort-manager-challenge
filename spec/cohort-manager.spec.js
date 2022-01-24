@@ -25,10 +25,9 @@ describe("CohortManager", () => {
   })
 
   it("Add cohort with same name - error message", () => {
-    const expected = "There is already a cohort with the same name"
+    const expected = 'There is already a cohort with the same name'
     cohortManager.addCohort("Same Name")
-    const test = cohortManager.addCohort("Same Name")
-    expect(test).toEqual(expected)
+    expect(function() {cohortManager.addCohort("Same Name")}).toThrowError(expected)
   })
 
   it("Remove cohort from manager", () => {
@@ -43,8 +42,7 @@ describe("CohortManager", () => {
 
   it("Try and remove cohort that doesn't exist", () => {
     const expected = "Cohort does not exist"
-    const test = cohortManager.removeCohort("Cohort 1")
-    expect(test).toEqual(expected)
+    expect(function() {cohortManager.removeCohort("Cohort 1")}).toThrowError(expected)
   })
 
   it("Add student to cohort", () => {
@@ -58,16 +56,23 @@ describe("CohortManager", () => {
   it("Add student to cohort, but cohort does not exist", () => {
     const expected = "Cohort does not exist"
     cohortManager.addCohort("Cohort 1")
-    const test = cohortManager.addStudent("Cohort 4","Jane", "Doe", "jdoe", "jdoe@gmail.com")
-    expect(test).toEqual(expected)
+    expect(function() {cohortManager.addStudent("Cohort 4","Jane", "Doe", "jdoe", "jdoe@gmail.com")}).toThrowError(expected)
   })
 
   it("Add student to cohort, student already exists in database", () => {
     const expected = "This student already part of a cohort"
     cohortManager.addCohort("Cohort 1")
     cohortManager.addStudent("Cohort 1","Jane", "Doe", "jdoe", "jdoe@gmail.com")
-    const test = cohortManager.addStudent("Cohort 1","Jane", "Doe", "jdoe", "jdoe@gmail.com")
-    expect(test).toEqual(expected)
+    expect(function() {cohortManager.addStudent("Cohort 1","Jane", "Doe", "jdoe", "jdoe@gmail.com")}).toThrowError(expected)
+  })
+
+  it("if cohort is full, do not add any more", () => {
+    const expected = "Cohort is full"
+    cohortManager.addCohort("Cohort 1")
+    for(let i = 1; i < 25; i++) {
+      cohortManager.addStudent("Cohort 1","firstname", "lastname", i, i + "@gmail.com")
+    }
+    expect(function() {cohortManager.addStudent("Cohort 1","Y", "Doe", "y", "y@gmail.com")}).toThrowError(expected)
   })
 
   it("remove student from cohort", () => {
@@ -83,16 +88,14 @@ describe("CohortManager", () => {
     const expected = "Student ID not found"
     cohortManager.addCohort("Cohort 1")
     cohortManager.addStudent("Cohort 1","Jane", "Doe", "jdoe", "jdoe@gmail.com")
-    const test = cohortManager.removeStudent("Cohort 1", 2)
-    expect(test).toEqual(expected)
+    expect(function() {cohortManager.removeStudent("Cohort 1", 2)}).toThrowError(expected)
   })
 
   it("remove student from cohort, cohort not found", () => {
     const expected = "Cohort does not exist"
     cohortManager.addCohort("Cohort 1")
     cohortManager.addStudent("Cohort 1","Jane", "Doe", "jdoe", "jdoe@gmail.com")
-    const test = cohortManager.removeStudent("cohblort", 1)
-    expect(test).toEqual(expected)
+    expect(function() {cohortManager.removeStudent("cohblort", 1)}).toThrowError(expected)
   })
 
   it("search for cohort, return cohort", () => {
@@ -129,36 +132,6 @@ describe("CohortManager", () => {
     expect(test).toEqual(expected)
   })
 
-it("if cohort is full, do not add any more", () => {
-    const expected = "Cohort is full"
-    cohortManager.addCohort("Cohort 1")
-    cohortManager.addStudent("Cohort 1","A", "Doe", "a", "a@gmail.com")
-    cohortManager.addStudent("Cohort 1","B", "Doe", "b", "b@gmail.com")
-    cohortManager.addStudent("Cohort 1","C", "Doe", "c", "c@gmail.com")
-    cohortManager.addStudent("Cohort 1","D", "Doe", "d", "d@gmail.com")
-    cohortManager.addStudent("Cohort 1","E", "Doe", "e", "e@gmail.com")
-    cohortManager.addStudent("Cohort 1","F", "Doe", "f", "f@gmail.com")
-    cohortManager.addStudent("Cohort 1","G", "Doe", "g", "g@gmail.com")
-    cohortManager.addStudent("Cohort 1","H", "Doe", "h", "h@gmail.com")
-    cohortManager.addStudent("Cohort 1","I", "Doe", "i", "i@gmail.com")
-    cohortManager.addStudent("Cohort 1","J", "Doe", "j", "j@gmail.com")
-    cohortManager.addStudent("Cohort 1","K", "Doe", "k", "k@gmail.com")
-    cohortManager.addStudent("Cohort 1","L", "Doe", "l", "l@gmail.com")
-    cohortManager.addStudent("Cohort 1","M", "Doe", "m", "m@gmail.com")
-    cohortManager.addStudent("Cohort 1","N", "Doe", "n", "n@gmail.com")
-    cohortManager.addStudent("Cohort 1","O", "Doe", "o", "o@gmail.com")
-    cohortManager.addStudent("Cohort 1","P", "Doe", "p", "p@gmail.com")
-    cohortManager.addStudent("Cohort 1","Q", "Doe", "q", "q@gmail.com")
-    cohortManager.addStudent("Cohort 1","R", "Doe", "r", "r@gmail.com")
-    cohortManager.addStudent("Cohort 1","S", "Doe", "s", "s@gmail.com")
-    cohortManager.addStudent("Cohort 1","T", "Doe", "t", "t@gmail.com")
-    cohortManager.addStudent("Cohort 1","U", "Doe", "u", "u@gmail.com")
-    cohortManager.addStudent("Cohort 1","V", "Doe", "v", "v@gmail.com")
-    cohortManager.addStudent("Cohort 1","W", "Doe", "w", "w@gmail.com")
-    cohortManager.addStudent("Cohort 1","X", "Doe", "x", "x@gmail.com")
-    const test = cohortManager.addStudent("Cohort 1","Y", "Doe", "y", "y@gmail.com")
-    expect(test).toEqual(expected)
-  })
 
   it("search student by first name  - one result", () => {
     const expected = [new Student(1,"Jane", "Doe", "jdoe", "jdoe@gmail.com")]
