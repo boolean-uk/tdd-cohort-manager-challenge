@@ -1,4 +1,4 @@
-const student = require("./student.js")
+// const studentc = require("./student.js")
 
 class CohortManager {
   constructor () {
@@ -11,17 +11,12 @@ class CohortManager {
     this.studentList.push(student)
   }
 
-  createNStudents(num) {
-    for(let i = 0; i < num; i++) {
-      const student = new student(1, "firstname", "lastname", "github", "email")
-      this.studentList.push(student)
-    }
-    console.log(this.studentList.studentFirstName)
-  }
-
   createCohort (cohortname) {
+    const exists = this.checkIfCohortExists(cohortname)
     if (cohortname === undefined) {
       return 'cohort cannot exist without a name!'
+    } else if (exists) {
+      return 'This cohort already exists!'
     }
     const cohort = {
       name: cohortname,
@@ -32,6 +27,15 @@ class CohortManager {
     return cohort
   }
 
+  checkIfCohortExists (cohortname) {
+    for (let i = 0; i < this.schoolCohorts.length; i++) {
+      if (this.schoolCohorts[i].name === cohortname) {
+        return true
+      }
+    }
+    return false
+  }
+
   removeCohort (cohortname) {
     for (let i = 0; i < this.schoolCohorts.length; i++) {
       const cohort = this.schoolCohorts[i]
@@ -39,9 +43,18 @@ class CohortManager {
         this.schoolCohorts.splice(i, 1)
         return
       }
-
     }
     return 'cohort not found!'
+  }
+
+  checkIfStudentAlreadyInCohort (studentname) {
+    for (let i = 0; i < this.schoolCohorts.length; i++) {
+      const student = this.schoolCohorts[i].students
+      if (student.studentFirstName === studentname) {
+        return true
+      }
+    }
+    return false
   }
 
   addStudentToCohort (student, cohortname) {
@@ -59,6 +72,7 @@ class CohortManager {
     }
     return 'this student does not exist!'
   }
+
   removeStudentFromCohort (studentid, cohortname) {
     const cohort = this.searchCohort(cohortname)
     if (typeof cohort === 'string') {
@@ -73,10 +87,10 @@ class CohortManager {
     return 'student not found!'
   }
 
-  searchStudent(id) {
-    for(let i = 0; i < this.studentList.length; i++){
+  searchStudent (id) {
+    for (let i = 0; i < this.studentList.length; i++) {
       const student = this.studentList[i]
-      if(student.studentID === id) {
+      if (student.studentID === id) {
         return student
       }
     }
@@ -97,7 +111,6 @@ class CohortManager {
   getStudentList () {
     return this.studentList
   }
-  
 }
 
 module.exports = CohortManager

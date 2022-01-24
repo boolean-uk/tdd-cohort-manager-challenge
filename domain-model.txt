@@ -11,7 +11,7 @@ DONE - Return errors if student or cohort not found
 
 DONE - Search for student by student ID
 - Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit.
-- Cohorts can't have the same name, and can't exist without a name
+DONE - Cohorts can't have the same name, and can't exist without a name
 - The same student can't exist in multiple cohorts.
 - A student can't be removed from a cohort if it wasn't present in the first place.
 - Search for students by name (first and last) and return all matching results
@@ -25,7 +25,8 @@ class Cohort Manager {
 
 Properties:
 - Track multiple cohorts (one cohort being an array of objects, each object being a student).
-- Track students on database
+- Track students on database (this.studentList)
+
 constructor () {
     this.studentList = []
     this.schoolCohorts = []
@@ -43,6 +44,9 @@ removeCohort (cohortname)
 removeStudentFromCohort(studentid, cohort) // throw error if cohort not found.
 getAllCohorts () 
 getStudentList ()
+searchStudent (id)
+checkIfStudentAlreadyInCohort (studentname)
+checkIfCohortExists(cohortname)
 
 
 class Student {

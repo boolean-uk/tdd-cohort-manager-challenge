@@ -250,10 +250,30 @@ describe("cohortManager", () => {
   it("EXT: cohort cannot exist without a name", () => {
     //setup
     const expected = 'cohort cannot exist without a name!'
-    
     //execute
     const result = cohortManager.createCohort()
     //verify
     expect(result).toEqual(expected)
   });
+  it("EXT: cohorts cannot have the same name", () => {
+    //setup
+    const expected = 'This cohort already exists!'
+    cohortManager.createCohort("CohortOne")
+    //execute
+    const result = cohortManager.createCohort("CohortOne")
+    //verify
+    expect(result).toEqual(expected)
+  });
+  // it("EXT: The same student can't exist in multiple cohorts.", () => {
+  //   //setup
+  //   const expected = 'This student is already in another cohort!'
+  //   cohortManager.createStudent(student1)
+  //   cohortManager.createCohort("CohortOne")
+  //   cohortManager.createCohort("CohortTwo")
+  //   cohortManager.addStudentToCohort("Jimmy", "CohortOne")
+  //   //execute
+  //   const result = cohortManager.checkIfStudentAlreadyInCohort("Will")
+  //   //verify
+  //   expect(result).toEqual(expected)
+  // });
 });
