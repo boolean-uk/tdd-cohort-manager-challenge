@@ -1,4 +1,3 @@
-// Note: you shouldn't need to change anything in this file.
 const CohortManager = require('../src/cohortmanager');
 
 describe('CohortManager', () => {
@@ -23,11 +22,28 @@ describe('CohortManager', () => {
     let result = test.findCohortByName('cohort1').name;
     expect(result).toEqual(expected);
   });
-  // ---TEST 3: search for a cohort by name which does not exist ---
-  fit('search for cohort2 which does not exist by name', () => {
-    let expected = undefined;
-    test.createCohort('cohort1').name;
-    let result = test.findCohortByName('cohort2').name;
+  // ---TEST 2-???: test requirement: Add student to a specific cohort ---
+  // ---TEST 2: get student by index and add to cohort1 ---
+  it('search for student ??? and adds to cohort1', () => {
+    let expected = [
+      {
+        ID: 1,
+        name: 'cohort1',
+        status: 'space available',
+        cohortStudents: [
+          {
+            studentid: 3,
+            firstname: 'Marjan',
+            'last name': 'Agostini',
+            github: 'MarjanAgostini',
+            username: 'Marjan',
+            email: 'marjanagostini@gmail.com',
+          },
+        ],
+      },
+    ];
+    test.createCohort('cohort1');
+    let result = test.addStudentToCohort(2, 'cohort1');
     expect(result).toEqual(expected);
   });
 });
