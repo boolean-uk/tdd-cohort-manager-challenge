@@ -1,31 +1,49 @@
+const Cohort = require('./cohort.js')
+
 class Manager {
 
     constructor() {
         this.cohortList = []
-        this.counter = 0
     }
 
-    create(string) {
-        this.counter++
-        const cohort = { classNo: this.counter, name: string }
-        this.cohortList.push(cohort)
-        return string
-    }
-    showList() {
+    create() {
         return this.cohortList
     }
-    addCohort() {
-        let cohortName = 'Cohort 4'
+
+    addCohort(cName) {
+        let cohortName = new Cohort(cName)
         this.cohortList.push(cohortName)
-        return this.cohortList
+        return cohortName
     }
-    searchCohort(string) {
-        for (let i = 0; i < cohortList.length; i++) {
-            if (string.toLowerCase() === cohortList[i]) {
-                return string
+
+    searchCohort(name) {
+        for (let i = 0; i < this.cohortList.length; i++) {
+            if (name === this.cohortList[i].cName) {
+                return this.cohortList[i]
             }
         }
-    }
+        return 'ERROR: Cohort not found'
+    } 
+
+    removeCohort(cName){
+            for (let i = 0; i < this.cohortList.length; i++) {
+                if (this.cohortList[i].cName === cName) {
+                    this.cohortList.splice(i, 1)
+                }
+            }
+            return this.cohortList
+        }
+    
+    
+    
+
+    
+    
+    
+
+
+    
+
 }
 
 module.exports = Manager
