@@ -1,8 +1,7 @@
-const twilio = require('twilio')
-const TWILIO_ACCOUNT_SI = 'AC3efa86e83e2b14d6a212a3032c0743e2'
-const TWILIO_AUTH_TOKEN = '1a351ff8179888ad2134b8db6c5a2eae'
-const client = new twilio(TWILIO_ACCOUNT_SI, TWILIO_AUTH_TOKEN)
-
+const Twilio = require('twilio')
+const twilioSid = 'AC3efa86e83e2b14d6a212a3032c0743e2'
+const twilioAuth = '1a351ff8179888ad2134b8db6c5a2eae'
+const client = new Twilio(twilioSid, twilioAuth)
 
 const Cohort = require('./cohort.js')
 
@@ -52,7 +51,7 @@ class CohortManager {
       throw new Error('Cohort does not exist')
     }
 
-    if (cohortInstance.students.length >= 24) {
+    if (cohortInstance.cohortIsFull()) {
       throw new Error('Cohort is full')
     }
 
@@ -62,14 +61,14 @@ class CohortManager {
     return 'Student Added'
   }
 
-  twilioSMS(first, cohort, id) {
+  twilioSMS (first, cohort, id) {
     client.messages
-  .create({
-     body: `Welcome to Boolean UK, ${first}. You have been added to ${cohort} and your student ID is ${id}`,
-     from: '+19377613612',
-     to: '+447879490048'
-   })
-  .then(message => console.log(message.sid));
+      .create({
+        body: `Welcome to Boolean UK, ${first}. You have been added to ${cohort} and your student ID is ${id}`,
+        from: '+19377613612',
+        to: '+447879490048'
+      })
+      .then(message => console.log(message.sid))
   }
 
   removeStudent (cohortName, id) {
@@ -130,6 +129,6 @@ class CohortManager {
 
 module.exports = CohortManager
 
-let cohortmanager = new CohortManager()
-cohortmanager.addCohort("Cohort 4")
-cohortmanager.addStudent("Cohort 4", "Marian", "Phillips", "marianphillips", "maz@gmail.com")
+const cohortmanager = new CohortManager()
+cohortmanager.addCohort('Cohort 4')
+cohortmanager.addStudent('Cohort 4', 'Marian', 'Phillips', 'marianphillips', 'maz@gmail.com')
