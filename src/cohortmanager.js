@@ -47,10 +47,18 @@ class CohortManager {
   }
 
   //Remove a Cohort by cohort name
-  removeCohortByName() {}
+  removeCohort(cohortName) {
+    for (let i = 0; i < this.COHORTS.length; i++) {
+      if (this.COHORTS[i].name === cohortName) {
+        // delete this.COHORTS[i];
+        this.COHORTS.splice(i, 1);
+      }
+    }
+    return this.COHORTS;
+  }
 
   //Search for cohort by cohort name
-  findCohortByName(cohortName) {
+  findCohort(cohortName) {
     const findCohort = this.COHORTS.find(
       (searchCohortName) => searchCohortName.name === cohortName
     );
@@ -98,9 +106,17 @@ class CohortManager {
 
 // write here
 
-// let cohortmanagement = new CohortManager();
+let cohortmanagement = new CohortManager();
+console.log('Adding First \n');
+console.log(cohortmanagement.createCohort('cohort1'));
+console.log('Adding Second \n');
+console.log(cohortmanagement.createCohort('cohort2'));
 
-// cohort1 = cohortmanagement.createCohort('cohort1');
+console.log('now deleting');
+let out = cohortmanagement.removeCohort('cohort1');
+console.log('after deleting');
+
+console.log(out);
 
 // cohortmanagement.findCohortByName('cohort1').name;
 // cohortmanagement.findCohortByName('cohort2');

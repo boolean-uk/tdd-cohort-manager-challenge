@@ -19,11 +19,11 @@ describe('CohortManager', () => {
   it('search for cohort1 which does exist by name', () => {
     let expected = 'cohort1';
     test.createCohort('cohort1');
-    let result = test.findCohortByName('cohort1').name;
+    let result = test.findCohort('cohort1').name;
     expect(result).toEqual(expected);
   });
-  // ---TEST 2-???: test requirement: Add student to a specific cohort ---
-  // ---TEST 2: get student by index and add to cohort1 ---
+  // ---TEST 3-???: test requirement: Add student to a specific cohort ---
+  // ---TEST 3: get student by index and add to cohort1 ---
   it('search for student ??? and adds to cohort1', () => {
     let expected = [
       {
@@ -44,6 +44,29 @@ describe('CohortManager', () => {
     ];
     test.createCohort('cohort1');
     let result = test.addStudentToCohort(2, 'cohort1');
+    expect(result).toEqual(expected);
+  });
+  // ---TEST 4-???: test requirement: Remove a cohort by cohort name ---
+  // ---TEST 4: remove cohort1 after creating it ---
+  it('remove cohort1 after creating cohort1', () => {
+    let expected = [];
+    test.createCohort('cohort1');
+    let result = test.removeCohort('cohort1');
+    expect(result).toEqual(expected);
+  });
+  // ---TEST 4: remove cohort1 after creating cohort1 and cohort2 ---
+  fit('remove cohort1 after creating cohort1 & cohort2', () => {
+    let expected = [
+      {
+        ID: 2,
+        name: 'cohort2',
+        status: 'space available',
+        cohortStudents: [],
+      },
+    ];
+    test.createCohort('cohort1');
+    test.createCohort('cohort2');
+    let result = test.removeCohort('cohort1');
     expect(result).toEqual(expected);
   });
 });
