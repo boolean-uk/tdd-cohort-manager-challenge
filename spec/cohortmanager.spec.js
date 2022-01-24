@@ -3,9 +3,6 @@ const {
   StudentSelector,
   Exception,
 } = require('../src/cohortmanager');
-// const StudentSelector = require('../src/cohortmanager');
-
-// const { cm, ss } = require('../src/cohortmanager');
 
 describe('CohortManager, StudentSelector, Exception', () => {
   let testCM, testSS;
@@ -43,7 +40,7 @@ describe('CohortManager, StudentSelector, Exception', () => {
           {
             studentid: 3,
             firstname: 'Marjan',
-            'last name': 'Agostini',
+            lastname: 'Agostini',
             github: 'MarjanAgostini',
             username: 'Marjan',
             email: 'marjanagostini@gmail.com',
@@ -52,7 +49,7 @@ describe('CohortManager, StudentSelector, Exception', () => {
       },
     ];
     testCM.createCohort('cohort1');
-    let result = testCM.addStudentToCohort(2, 'cohort1');
+    let result = testCM.addStudentToCohort(3, 'cohort1');
     expect(result).toEqual(expected);
   });
   // ---TEST 4-???: test requirement: Remove a cohort by cohort name ---
@@ -84,7 +81,7 @@ describe('CohortManager, StudentSelector, Exception', () => {
     let expected = {
       studentid: 2,
       firstname: 'Oumar',
-      'last name': 'Nibhanupudi',
+      lastname: 'Nibhanupudi',
       github: 'oumarnibhanupudi',
       username: 'Oumar',
       email: 'oumarnibhanupudi@gmail.com',
@@ -116,16 +113,49 @@ describe('CohortManager, StudentSelector, Exception', () => {
     expect(result).toEqual(expected);
   });
   // ---TEST 10: return no error when finding student that does exist ---
-  fit('returns no error when finding student that does exist', () => {
+  it('returns no error when finding student that does exist', () => {
     let expected = {
       studentid: 14,
       firstname: 'Kirke',
-      'last name': 'Domhnaill',
+      lastname: 'Domhnaill',
       github: 'kirkedomhnaill',
       username: 'Kirke',
       email: 'kirkedomhnaill@gmail.com',
     };
     let result = testSS.findStudentByID(14);
     expect(result).toEqual(expected);
+  });
+  // ---TEST 11-???: test requirement -  Remove student from a specific cohort ---
+  // ---TEST 11: remove student with ID 1 from cohort1 ---
+  it('removes student with ID 1 from cohort1', () => {
+    let expected = {
+      ID: 1,
+      name: 'cohort1',
+      status: 'space available',
+      cohortStudents: [],
+    };
+
+    testCM.createCohort('cohort1');
+    testCM.addStudentToCohort(1, 'cohort1');
+    let result = testCM.removeStudentFromCohort(1, 'cohort1');
+    expect(result[0]).toEqual(expected);
+  });
+  // ---TEST 12: remove student with ID 1 from cohort1 which also has student with ID 2 ---
+  it('removes student with ID1 from cohort1 but student with ID2 is still there', () => {
+    let expected = [
+      {
+        studentid: 2,
+        firstname: 'Oumar',
+        lastname: 'Nibhanupudi',
+        github: 'oumarnibhanupudi',
+        username: 'Oumar',
+        email: 'oumarnibhanupudi@gmail.com',
+      },
+    ];
+    testCM.createCohort('cohort1');
+    testCM.addStudentToCohort(1, 'cohort1');
+    testCM.addStudentToCohort(2, 'cohort1');
+    let result = testCM.removeStudentFromCohort(1, 'cohort1');
+    expect(result[0].cohortStudents).toEqual(expected);
   });
 });
