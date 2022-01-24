@@ -12,7 +12,7 @@ class CohortManager {
   }
 
   addCohort (cohortName) {
-    if (this.cohortFinder(cohortName).length > 0) {
+    if (this.cohortFinder(cohortName) !== undefined) {
       throw new Error('There is already a cohort with the same name')
     }
 
@@ -41,21 +41,20 @@ class CohortManager {
 
   addStudent (cohortName, first, last, github, email) {
     const cohort = this.cohortFinder(cohortName)
-    const cohortInstance = cohort[0]
 
     if (this.studentFinder(github, email)) {
       throw new Error('This student already part of a cohort')
     }
 
-    if (cohort.length === 0) {
+    if (cohort === undefined) {
       throw new Error('Cohort does not exist')
     }
 
-    if (cohortInstance.cohortIsFull()) {
+    if (cohort.cohortIsFull()) {
       throw new Error('Cohort is full')
     }
 
-    cohortInstance.addStudentToCohort(this.studentID, first, last, github, email)
+    cohort.addStudentToCohort(this.studentID, first, last, github, email)
     this.twilioSMS(first, cohortName, this.studentID)
     this.studentID++
     return 'Student Added'
@@ -73,9 +72,8 @@ class CohortManager {
 
   removeStudent (cohortName, id) {
     const cohort = this.cohortFinder(cohortName)
-    const cohortInstance = cohort[0]
 
-    if (cohort.length === 0) {
+    if (cohort === undefined) {
       throw new Error('Cohort does not exist')
     }
 
@@ -83,17 +81,17 @@ class CohortManager {
       throw new Error('Student ID not found')
     }
 
-    cohortInstance.removeStudentFromCohort(id)
+    cohort.removeStudentFromCohort(id)
     return 'Student Removed'
   }
 
   cohortFinder (cohortName) {
-    return this.cohorts.filter(cohort => cohort.checkCohortName(cohortName))
+    return this.cohorts.find(cohort => cohort.checkCohortName(cohortName))
   }
 
   searchByCohort (cohortName) {
-    return this.cohortFinder(cohortName).length > 0
-      ? this.cohortFinder(cohortName)[0]
+    return this.cohortFinder(cohortName) !== undefined
+      ? this.cohortFinder(cohortName)
       : 'Cohort does not exist'
   }
 
@@ -128,7 +126,3 @@ class CohortManager {
 }
 
 module.exports = CohortManager
-
-const cohortmanager = new CohortManager()
-cohortmanager.addCohort('Cohort 4')
-cohortmanager.addStudent('Cohort 4', 'Marian', 'Phillips', 'marianphillips', 'maz@gmail.com')
