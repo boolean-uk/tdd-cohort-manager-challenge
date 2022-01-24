@@ -4,8 +4,19 @@ const Student = require('../src/student.js')
 class CohortManager {
 
     constructor() {
-        this.studentWaitingList = [];
+        this.cohortCounter = 0;
+        this.studentIDCounter = 0;
+        this.students = [];
         this.cohorts = [];
+    }
+
+    studentIDGenerator() {
+        this.studentIDCounter++;
+    }
+
+    cohortNameGenerator() {
+        this.cohortCounter++
+        return `Cohort${this.cohortCounter}`
     }
     
     createNewCohort(name) {
@@ -13,16 +24,17 @@ class CohortManager {
         return this.cohorts
     }
     
-    createStudent(id, firstName, lastName, githubUsername, email) {
-        this.studentWaitingList.push(new Student(id, firstName, lastName, githubUsername, email))
-        return this.studentWaitingList
+    createStudent(firstName, lastName, githubUsername, email) {
+        this.studentIDGenerator()
+        this.students.push(new Student(this.studentIDCounter, firstName, lastName, githubUsername, email))
+        return this.students
     }
 
     addStudentToCohort(studentID, cohortName) {
         const cohort = this.searchCohortByName(cohortName)
-        for (let i = 0; i < this.studentWaitingList.length; i++) {
-            if (this.studentWaitingList[i].studentID === studentID) {
-                cohort.studentList.push(this.studentWaitingList[i])
+        for (let i = 0; i < this.students.length; i++) {
+            if (this.students[i].studentID === studentID) {
+                cohort.studentList.push(this.students[i])
                 return cohort.studentList
             }
             return 'Student not found!'
@@ -38,7 +50,6 @@ class CohortManager {
             }
             return 'Student not found!'
         }
-        
     }
 
     searchCohortByName(cohortName) {
@@ -56,8 +67,22 @@ class CohortManager {
         }
     }
 
+    searchStudentbyID(studentID) {
+        for (let i = 0; i < this.cohorts.length; i++) {
+            for (let j = 0; j < this.cohorts[i].studentList; j++) {
+                if (this.cohorts[i].studentList[j].studentID === studentID) {
+                    return this.cohorts[i].studentList[j]
+                }
+            }
+        }
+    }
+
     getAllCohorts() {
         return this.cohorts
+    }
+
+    getAllStudents() {
+        return this.students
     }
 
 }
