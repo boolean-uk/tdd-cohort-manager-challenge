@@ -16,11 +16,11 @@ class CohortManager {
 
     cohortNameGenerator() {
         this.cohortCounter++
-        return `Cohort${this.cohortCounter}`
+        return `Cohort #${this.cohortCounter}`
     }
     
-    createNewCohort(name) {
-        this.cohorts.push(new Cohort(name))
+    createNewCohort() {
+        this.cohorts.push(new Cohort(this.cohortNameGenerator()))
         return this.cohorts
     }
     
@@ -68,13 +68,7 @@ class CohortManager {
     }
 
     searchStudentbyID(studentID) {
-        for (let i = 0; i < this.cohorts.length; i++) {
-            for (let j = 0; j < this.cohorts[i].studentList; j++) {
-                if (this.cohorts[i].studentList[j].studentID === studentID) {
-                    return this.cohorts[i].studentList[j]
-                }
-            }
-        }
+        
     }
 
     getAllCohorts() {
