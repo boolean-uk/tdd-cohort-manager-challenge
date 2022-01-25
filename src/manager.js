@@ -10,10 +10,10 @@ class Manager {
         return this.cohortList
     }
 
-    addCohort(cName) {
-        let cohortName = new Cohort(cName)
+    addCohort(name) {
+        let cohortName = new Cohort(name)
         for (let i = 0; i < this.cohortList.length; i++) {
-            if (this.cohortList[i].cName === cName || this.cohortList[i].cName === '')
+            if (this.cohortList[i].cName === name || this.cohortList[i].cName === '')
                 return 'Name already exists / Cannot exist without a name'
         }
         this.cohortList.push(cohortName)

@@ -32,6 +32,6 @@ Extended
 - Cohorts can't have the same name, and c an't exist without a name / compare two of the same name and return a string 
 - The same student can't exist in multiple cohorts. / compare two of the same ID's and return a string 
 - A student can't be removed from a cohort if it wasn't present in the first place. / try to remove a non-existing student: return a string
-- Search for students by name (first and last) and return all matching results
+- Search for students by name (first and last) and return all matching results / may need an && input in there. 
 
 Your program should be composed of at least two classes
