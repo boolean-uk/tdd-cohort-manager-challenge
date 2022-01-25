@@ -1,10 +1,7 @@
 class CohortManager {
   constructor(name) {
     this.cohorts = [];
-    // property of the class
     this.name = name;
-    // include the attributes that you would want every instance of the class
-    // CohortManager to have
   }
 
   createCohort(name) {
@@ -46,29 +43,20 @@ class CohortManager {
         this.cohorts.splice(i, 1);
         return this.cohorts;
       }
-      
     }
     return name + " not found";
   }
 
-  // find cohort (function) find student in student array then remove student
-  // going through list of students
   removeStudent(ID, cohortName) {
     const cohort = this.searchCohorts(cohortName);
 
     for (let i = 0; i < cohort.students.length; i++) {
       if (cohort.students[i].id === ID) {
         cohort.students.splice(i, 1);
+        return cohort;
       }
     }
-    return cohort;
-
-    // const cohort = this.searchCohorts(cohortName)
-    //   for (let i = 0; i < cohort.cohortName.students.length; i++){
-    //     if ((this.cohorts.students.id) === ID)
-    //     this.cohorts.splice(id, 1)
-    // }
-    // return this.cohorts.cohortName.students
+    return "Student " + ID + " not found";
   }
 }
 
