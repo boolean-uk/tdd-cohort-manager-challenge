@@ -1,7 +1,6 @@
 const studentData = require("./students.json")
 const STUDENTS = studentData['students']
 const Cohort = require("./cohort")
-//const cohort = new Cohort()
 
 class CohortManager {
     constructor() {
@@ -13,19 +12,19 @@ class CohortManager {
         this.cohorts.push(createCohort)
     }
 
-    searchCohort(name) {
-        for (const cohort of this.cohorts)
-            if (cohort === name) {
-                return this.cohorts
-            }
-            else 'Cohort not found'
+    searchCohort(cohortName) {
+        const getCohort = this.cohorts.filter((x) => x.cohortname === cohortName)
+        if (getCohort) {
+            return getCohort
+        }
+        else 'Cohort not found'
     }
 
     getStudentById(id) {
-        const getId = STUDENTS.filter((x) => x.id === id)
-        if (getId) {
-            return getId
-        } else 'Student not found.'
+        for (const students of STUDENTS)
+            if (students.id === id) {
+                return students
+            } else return 'Student not found.'
     }
 
     addStudent(cohortname, id) {
@@ -46,20 +45,15 @@ class CohortManager {
         }
     }
 
-    removeStudent(id) {
+    removeStudent(cohortName, id) {
+        let cohortCheck = this.searchCohort(cohortName)
         let getStudent = this.getStudentById(id)
-        for (const cohort of this.cohorts) {
+        for (let cohort of cohortCheck) {
             if (cohort.id === getStudent.id) {
                 cohort.students.splice(cohort.students.indexOf(cohort), 1)
                 return this.cohorts
             }
-            else if (id !== cohort.id) {
-                return 'Student not found.'
-            }
         }
     }
-
-
-
 }
 module.exports = CohortManager
