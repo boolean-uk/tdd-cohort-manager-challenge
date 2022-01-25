@@ -14,7 +14,7 @@ DONE - Cohorts have fixed capacity at 24 students. Adding students is not possib
 DONE - Cohorts can't have the same name, and can't exist without a name
 DONE - The same student can't exist in multiple cohorts.
 DONE - A student can't be removed from a cohort if it wasn't present in the first place.
-- Search for students by name (first and last) and return all matching results
+DONE - Search for students by name (first and last) and return all matching results
 
 Your program should be composed of at least two classes
 
@@ -45,6 +45,7 @@ removeStudentFromCohort(studentid, cohort) // throw error if cohort not found.
 getAllCohorts () 
 getStudentList ()
 searchStudent (id)
+searchStudentByName (firstname, lastname)
 checkIfStudentAlreadyInCohort (studenfirstname, studentlastname)
 checkIfCohortExists(cohortname)
 

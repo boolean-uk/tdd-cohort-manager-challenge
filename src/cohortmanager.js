@@ -1,5 +1,3 @@
-const studentc = require("./student.js")
-
 class CohortManager {
   constructor () {
     this.studentList = []
@@ -67,7 +65,7 @@ class CohortManager {
   addStudentToCohort (studentfirstname, studentlastname, cohortname) {
     const cohort = this.searchCohort(cohortname)
     const studentAlreadyInCohort = this.checkIfStudentAlreadyInCohort(studentfirstname, studentlastname)
-    if (studentAlreadyInCohort){
+    if (studentAlreadyInCohort) {
       return 'This student is already in another cohort!'
     }
     if (typeof cohort === 'string') {
