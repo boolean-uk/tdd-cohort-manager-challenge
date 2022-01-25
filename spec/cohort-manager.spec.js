@@ -97,4 +97,18 @@ describe('CohortManager', () => {
         expect(result).toEqual(expected)
     })
 
+    it('CohortManager can search for a student by their ID', () => {
+        cohortManager.createStudent('Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com')
+        const expected = new Student(1, 'Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com')
+        const result = cohortManager.searchStudentbyID(1)
+        expect(result).toEqual(expected)
+    })
+
+    it('CohortManager can search for a student by their first and last names', () => {
+        cohortManager.createStudent('Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com')
+        const expected = new Student(1, 'Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com')
+        const result = cohortManager.searchStudentbyName('Nico', 'Picchio')
+        expect(result).toEqual(expected)
+    })
+
 })

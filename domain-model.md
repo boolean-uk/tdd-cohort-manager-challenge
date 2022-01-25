@@ -38,9 +38,9 @@ Class CohortManager
 
 ```
 1. Search for student by student ID -> DONE
-2. Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit. 
+2. Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit. -> DONE
 3. Cohorts can't have the same name, and can't exist without a name -> DONE
-4. The same student can't exist in multiple cohorts.
+4. The same student can't exist in multiple cohorts. -> DONE
 5. A student can't be removed from a cohort if it wasn't present in the first place. -> DONE
 6. Search for students by name (first and last) and return all matching results
 

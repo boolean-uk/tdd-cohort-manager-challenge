@@ -79,6 +79,10 @@ class CohortManager {
         return this.students.find(student => student.studentID === studentID)
     }
 
+    searchStudentbyName(firstName, lastName) {
+        return this.students.find(student => student.firstName === firstName && student.lastName === lastName)
+    }
+
     getAllCohorts() {
         return this.cohorts
     }
