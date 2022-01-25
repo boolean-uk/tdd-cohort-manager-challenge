@@ -4,6 +4,7 @@ class Cohort {
     constructor(name) {
         this.cohortName = name
         this.studentList = []
+        this.capacity = 24
     }
 
     addStudent(id, firstName, lastName, githubUser, email) {
@@ -29,6 +30,12 @@ class Cohort {
             }
         }
         return 'error'
+    }
+
+    fixedCapacity() {
+        if (this.studentList.length > this.capacity) {
+            return 'maximum capacity reached'
+        }
     }
 
 

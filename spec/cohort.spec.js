@@ -51,5 +51,41 @@ describe('CohortManager', () => {
         expect(result).toEqual(expected)
     })
 
+    it('fixed capacity at 24', () => {
+        //set up
+        //create student
+        const expected = 'maximum capacity reached'
+            //execute
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        cohort.addStudent('id', 'elvis', 'ono', 'elvisonob', 'elvisonob@yahoo.com')
+        const result = cohort.fixedCapacity()
+
+        //verify
+        expect(result).toEqual(expected)
+    })
+
 
 })
