@@ -41,6 +41,28 @@ The Cohort Manager should be able to support the following interactions
 A cohort should have a list of students. Each student should have a studentID, first name, last name, github username, email.
 ```
 
+Domain Model 
+
+Class
+- Cohort Manager
+
+sub-class 
+- Cohort 
+- Student 
+
+Properties 
+- Students - studentID, first name, last name, github username, email.
+- Cohort - list of students 
+
+Methods 
+- CreateCohort
+- SearchCohort
+- AddStudent
+- RemoveCohort
+- RemoveStudent
+
+
+
 #### Extended
 ```
 - Search for student by student ID
