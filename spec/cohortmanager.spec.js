@@ -152,7 +152,7 @@ describe("cohortManager", () => {
     cohortManager.createStudent(student1)
     cohortManager.createCohort("CohortOne")
     //execute
-    cohortManager.addStudentToCohort("Jimmy", "CohortOne")
+    cohortManager.addStudentToCohort("Jimmy", "Smith", "CohortOne")
     const result = cohortManager.getAllCohorts()
     //verify
     expect(result).toEqual(expected)
@@ -171,9 +171,9 @@ describe("cohortManager", () => {
     cohortManager.createStudent(student3)
     cohortManager.createCohort("CohortOne")
     //execute
-    cohortManager.addStudentToCohort("Jimmy", "CohortOne")
-    cohortManager.addStudentToCohort("Steve", "CohortOne")
-    cohortManager.addStudentToCohort("Brian", "CohortOne")
+    cohortManager.addStudentToCohort("Jimmy", "Smith", "CohortOne")
+    cohortManager.addStudentToCohort("Steve", "Bruce", "CohortOne")
+    cohortManager.addStudentToCohort("Brian", "Turing", "CohortOne")
     const result = cohortManager.getAllCohorts()
     //verify
     expect(result).toEqual(expected)
@@ -191,9 +191,9 @@ describe("cohortManager", () => {
     cohortManager.createStudent(student2)
     cohortManager.createStudent(student3)
     cohortManager.createCohort("CohortOne")
-    cohortManager.addStudentToCohort("Jimmy", "CohortOne")
-    cohortManager.addStudentToCohort("Steve", "CohortOne")
-    cohortManager.addStudentToCohort("Brian", "CohortOne")
+    cohortManager.addStudentToCohort("Jimmy", "Smith", "CohortOne")
+    cohortManager.addStudentToCohort("Steve", "Bruce", "CohortOne")
+    cohortManager.addStudentToCohort("Brian", "Turing", "CohortOne")
     //execute
     cohortManager.removeStudentFromCohort(2, "CohortOne")
     const result = cohortManager.getAllCohorts()
@@ -215,7 +215,7 @@ describe("cohortManager", () => {
     cohortManager.createCohort("CohortOne")
     cohortManager.createStudent(student1)
     //execute
-    const result = cohortManager.addStudentToCohort("Jimmy", "CohortTwo")
+    const result = cohortManager.addStudentToCohort("Jimmy", "Smith", "CohortTwo")
     //verify
     expect(result).toEqual(expected)
   });
@@ -225,7 +225,7 @@ describe("cohortManager", () => {
     cohortManager.createCohort("CohortOne")
     cohortManager.createStudent(student1)
     //execute
-    const result = cohortManager.addStudentToCohort("Brian", "CohortOne")
+    const result = cohortManager.addStudentToCohort("Brian", "Turing", "CohortOne")
     //verify
     expect(result).toEqual(expected)
   });
@@ -264,16 +264,46 @@ describe("cohortManager", () => {
     //verify
     expect(result).toEqual(expected)
   });
-  // it("EXT: The same student can't exist in multiple cohorts.", () => {
-  //   //setup
-  //   const expected = 'This student is already in another cohort!'
-  //   cohortManager.createStudent(student1)
-  //   cohortManager.createCohort("CohortOne")
-  //   cohortManager.createCohort("CohortTwo")
-  //   cohortManager.addStudentToCohort("Jimmy", "CohortOne")
-  //   //execute
-  //   const result = cohortManager.checkIfStudentAlreadyInCohort("Will")
-  //   //verify
-  //   expect(result).toEqual(expected)
-  // });
+  it("EXT: Adding students is not possible beyond the 24 limit.", () => {
+    //setup
+    const expected = 'This cohort is full'
+    cohortManager.createNStudents(25, student1)
+    cohortManager.createCohort("CohortOne")
+    //execute
+    const result = cohortManager.addStudentToCohort("Jimmy", "Smith", "CohortOne")
+    //verify
+    expect(result).toEqual(expected)
+  });
+  it("EXT: The same student can't exist in multiple cohorts.", () => {
+    //setup
+    const expected = 'This student is already in another cohort!'
+    cohortManager.createStudent(student1)
+    cohortManager.createCohort("CohortOne")
+    cohortManager.createCohort("CohortTwo")
+    cohortManager.addStudentToCohort("Jimmy", "Smith", "CohortOne")
+    //execute
+    const result = cohortManager.addStudentToCohort("Jimmy", "Smith", "CohortTwo")
+    //verify
+    expect(result).toEqual(expected)
+  });
+  it("EXT: Search for students by name (first and last) and return all matching results", () => {
+    //setup
+    const expected = [student1]
+    //execute
+    cohortManager.createStudent(student1)
+    cohortManager.createStudent(student2)
+    const result = cohortManager.searchStudentByName("Jimmy", "Smith")
+    //verify
+    expect(result).toEqual(expected)
+  });
+  it("EXT: Search for students by name (first and last) and return all matching results", () => {
+    //setup
+    const expected = [student2]
+    //execute
+    cohortManager.createStudent(student1)
+    cohortManager.createStudent(student2)
+    const result = cohortManager.searchStudentByName("Steve", "Bruce")
+    //verify
+    expect(result).toEqual(expected)
+  });
 });

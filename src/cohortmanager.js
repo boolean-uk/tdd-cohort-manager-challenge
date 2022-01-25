@@ -1,4 +1,4 @@
-// const studentc = require("./student.js")
+const studentc = require("./student.js")
 
 class CohortManager {
   constructor () {
@@ -9,6 +9,12 @@ class CohortManager {
 
   createStudent (student) {
     this.studentList.push(student)
+  }
+
+  createNStudents (num, student) {
+    for (let i = 0; i < num; i++) {
+      this.studentList.push(student)
+    }
   }
 
   createCohort (cohortname) {
@@ -47,27 +53,33 @@ class CohortManager {
     return 'cohort not found!'
   }
 
-  checkIfStudentAlreadyInCohort (studentname) {
+  checkIfStudentAlreadyInCohort (studentfirstname, studentlastname) {
     for (let i = 0; i < this.schoolCohorts.length; i++) {
-      const student = this.schoolCohorts[i].students
-      if (student.studentFirstName === studentname) {
-        return true
+      for (const element of this.schoolCohorts[i].students) {
+        if (element.studentFirstName === studentfirstname && element.studentLastName === studentlastname) {
+          return true
+        }
       }
     }
     return false
   }
 
-  addStudentToCohort (student, cohortname) {
+  addStudentToCohort (studentfirstname, studentlastname, cohortname) {
     const cohort = this.searchCohort(cohortname)
+    const studentAlreadyInCohort = this.checkIfStudentAlreadyInCohort(studentfirstname, studentlastname)
+    if (studentAlreadyInCohort){
+      return 'This student is already in another cohort!'
+    }
     if (typeof cohort === 'string') {
       return 'cohort not found!'
     }
     for (let i = 0; i < this.studentList.length; i++) {
       const cohortStudent = this.studentList[i]
       if (
-        cohortStudent.studentFirstName === student && cohort.students.length < this.cohortCapacity
+        cohortStudent.studentFirstName === studentfirstname && cohort.students.length < this.cohortCapacity
       ) {
         cohort.students.push(cohortStudent)
+        return 'This cohort is full'
       }
     }
     return 'this student does not exist!'
@@ -95,6 +107,17 @@ class CohortManager {
       }
     }
     return 'student not found by this id!'
+  }
+
+  searchStudentByName (firstname, lastname) {
+    const studentArray = []
+    for (let i = 0; i < this.studentList.length; i++) {
+      const student = this.studentList[i]
+      if (student.studentFirstName === firstname && student.studentLastName === lastname) {
+        studentArray.push(student)
+      }
+    }
+    return studentArray
   }
 
   searchCohort (cohortname) {
