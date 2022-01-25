@@ -31,12 +31,12 @@ You should be able to run this in your JS console (using your node REPL, or brow
 ```
 The Cohort Manager should be able to support the following interactions
 
-DONE - Create a cohort with a cohort name
-DONE - Search for a cohort by cohort name
-DONE - Add student to a specific cohort
-DONE - Remove a cohort by cohort name
-DONE - Remove student from a specific cohort
-DONE - Return errors if student or cohort not found
+Create a cohort with a cohort name
+Search for a cohort by cohort name
+Add student to a specific cohort
+Remove a cohort by cohort name
+Remove student from a specific cohort
+Return errors if student or cohort not found
 
 A cohort should have a list of students. Each student should have a studentID, first name, last name, github username, email.
 ```
