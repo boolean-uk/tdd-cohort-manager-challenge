@@ -30,23 +30,16 @@ class CohortManager {
         return this.students
     }
 
-    createNStudents(num, firstName, lastName, githubUsername, email) {
-        for (let i = 0; i < num; i++) {
-            this.studentIDGenerator()
-            this.students.push(new Student(this.studentIDCounter, firstName, lastName, githubUsername, email))
-        }
-    }
-
     addStudentToCohort(studentID, cohortName) {
         const cohort = this.searchCohortByName(cohortName)
         const student = this.searchStudentbyID(studentID)
         if (student === undefined) { return 'Student not found!' }
-        if (cohort.studentList.length < cohort.cohortCapacity) {
+        if (cohort.isFull() === false) {
+            console.log(student)
             cohort.studentList.push(student)
             return cohort.studentList
-        } else {
-            return 'This cohort is already full!'
         }
+            return 'This cohort is already full!'
     }
 
     removeStudentFromCohort(studentID, cohortName) {
@@ -91,6 +84,13 @@ class CohortManager {
         return this.students
     }
 
+    // Method created just for easier test case creation
+    createNStudents(num, firstName, lastName, githubUsername, email) {
+        for (let i = 0; i < num; i++) {
+            this.studentIDGenerator()
+            this.students.push(new Student(this.studentIDCounter, firstName, lastName, githubUsername, email))
+        }
+    }
 }
 
 module.exports = CohortManager;
