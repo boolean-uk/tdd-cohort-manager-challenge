@@ -74,13 +74,12 @@ class CohortManager {
     return "Cohort not found!";
   }
 
-  removeCohortByName(name) {
-    for (let i = 0; i < this.cohorts.length; i++) {
-      if (this.cohorts[i].cohortName === name) {
-        this.cohorts.splice(i, 1);
-      }
-      return "Cohort not found!";
+  removeCohortByName(cohortName) {
+    const cohort = this.searchCohortByName(cohortName);
+    if (cohort) {
+      this.cohorts.splice(this.cohorts.indexOf(cohort), 1);
     }
+    return "Cohort not found!";
   }
 
   searchStudentbyID(studentID) {
