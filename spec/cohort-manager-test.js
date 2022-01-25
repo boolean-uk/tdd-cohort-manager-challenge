@@ -134,7 +134,7 @@ describe("Cohort Manager", () => {
     cohortManager.removeStudent(1000, "Cohort Four");
   });
 
-  it("Return error if student not found", () => {
+  it("Return error if cohort not found (searchCohorts)", () => {
     const expected = "Cohort Fifteen not found";
 
     cohortManager.createCohort("Cohort One");
@@ -144,14 +144,14 @@ describe("Cohort Manager", () => {
     expect(cohortManager.searchCohorts("Cohort Fifteen")).toEqual(expected);
   });
 
-  it("Return error if student not found", () => {
+  it("Return error if cohort not found (removeCohort)", () => {
     const expected = "Cohort Fifteen not found";
 
     cohortManager.createCohort("Cohort One");
     cohortManager.createCohort("Cohort Two");
     cohortManager.createCohort("Cohort Three");
 
-    expect(cohortManager.searchCohorts("Cohort Fifteen")).toEqual(expected);
+    expect(cohortManager.removeCohort("Cohort Fifteen")).toEqual(expected);
   });
 });
 

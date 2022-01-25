@@ -44,8 +44,9 @@ class CohortManager {
     for (let i = 0; i < this.cohorts.length; i++) {
       if (this.cohorts[i].cohortName === name) {
         this.cohorts.splice(i, 1);
+        return this.cohorts;
       }
-      return this.cohorts;
+      
     }
     return name + " not found";
   }
