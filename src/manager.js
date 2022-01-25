@@ -12,6 +12,10 @@ class Manager {
 
     addCohort(cName) {
         let cohortName = new Cohort(cName)
+        for (let i = 0; i < this.cohortList.length; i++) {
+            if (this.cohortList[i].cName === cName || this.cohortList[i].cName === '')
+                return 'Name already exists / Cannot exist without a name'
+        }
         this.cohortList.push(cohortName)
         return cohortName
     }
@@ -23,26 +27,16 @@ class Manager {
             }
         }
         return 'ERROR: Cohort not found'
-    } 
+    }
 
-    removeCohort(cName){
-            for (let i = 0; i < this.cohortList.length; i++) {
-                if (this.cohortList[i].cName === cName) {
-                    this.cohortList.splice(i, 1)
-                }
+    removeCohort(cName) {
+        for (let i = 0; i < this.cohortList.length; i++) {
+            if (this.cohortList[i].cName === cName) {
+                this.cohortList.splice(i, 1)
             }
-            return this.cohortList
         }
-    
-    
-    
-
-    
-    
-    
-
-
-    
+        return this.cohortList
+    }
 
 }
 

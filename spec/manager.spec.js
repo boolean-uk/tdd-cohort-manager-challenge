@@ -76,4 +76,18 @@ describe('Cohort tests', () => {
         // verify
         expect(result).toEqual(expected)
     })
+    //Q9
+    it('Cohorts cannot have the same name, and cannot exist without a name', () => {
+        // set up
+        const expected = 'Name already exists / Cannot exist without a name'
+        // execute
+        manager.addCohort('Cohort 1')
+        manager.addCohort('Cohort 2')
+        manager.addCohort('Cohort 3')
+        manager.addCohort('Cohort 4')
+        const result = manager.addCohort('Cohort 2' || '' )
+        // verify
+        expect(result).toEqual(expected)
+    })
+
 })
