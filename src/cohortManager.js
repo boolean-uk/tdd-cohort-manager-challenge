@@ -1,24 +1,25 @@
 const Cohort = require("../src/cohort.js")
 
 class CohortManager {
-    constructor(cohortName) {
-        this.cohortName = cohortName
+    constructor() {
         this.cohorts = []
     }
 
-    addCohort(cohortName) {
-        const newCohort = {
-            name: cohortName,
-            students: []
+    addCohort(name) {
+        const newCohort = new Cohort(name)
+        for (let i = 0; i < this.cohorts.length; i++) {
+            if (this.cohorts[i].cohortName === name) {
+                return 'cohort cant have same name'
+            }
         }
         this.cohorts.push(newCohort)
-        return this.cohorts
+        return newCohort
     }
 
-    searchCohort(cohortName) {
+    searchCohort(name) {
         //search for cohort 4
         for (let i = 0; i < this.cohorts.length; i++) {
-            if (this.cohorts[i].name === cohortName) {
+            if (this.cohorts[i].cohortName === name) {
                 return this.cohorts[i]
             }
         }
@@ -26,13 +27,12 @@ class CohortManager {
 
     removeCohort(name) {
         for (let i = 0; i < this.cohorts.length; i++) {
-            if (this.cohorts[i].name === name) {
+            if (this.cohorts[i].cohortName === name) {
                 this.cohorts.splice(i, 1)
             }
         }
         return this.cohorts
     }
-
 
 
 

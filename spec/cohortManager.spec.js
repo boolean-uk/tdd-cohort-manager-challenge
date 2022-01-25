@@ -9,16 +9,16 @@ describe('CohortManager', () => {
     })
 
     it('add a cohort to the list', () => {
-        const expected = 1
+        const expected = new Cohort('Cohort 4')
 
-        cohortmanager.addCohort('Cohort 4')
+        const result = cohortmanager.addCohort('Cohort 4')
 
-        expect(cohortmanager.cohorts.length).toEqual(expected)
+        expect(result).toEqual(expected)
 
     })
 
     it('search for a cohort by cohort name', () => {
-        const expected = { name: 'Cohort 4', students: [] }
+        const expected = new Cohort('Cohort 4')
         cohortmanager.addCohort('Cohort 4')
         const result = cohortmanager.searchCohort('Cohort 4')
 
@@ -35,6 +35,19 @@ describe('CohortManager', () => {
             //verify
         expect(result).toEqual(expected)
 
+    })
+
+    it('cohorts cant have same name', () => {
+        //set up
+        //create student
+        const expected = 'cohort cant have same name'
+            //execute
+        cohortmanager.addCohort('Cohort 1')
+        cohortmanager.addCohort('Cohort 4')
+        const result = cohortmanager.addCohort('Cohort 4')
+
+        //verify
+        expect(result).toEqual(expected)
     })
 
 
