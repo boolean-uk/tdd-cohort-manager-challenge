@@ -45,7 +45,7 @@ describe("Cohort tests", () => {
   
   it("Return errors if cohort not found", () => {
     // set up
-    const expected = "ERROR: Cohort not found";
+    const expected = "ERROR: cohort not found";
     // execute
     manager.addCohort("Cohort 1");
     manager.addCohort("Cohort 2");
@@ -60,7 +60,7 @@ describe("Cohort tests", () => {
   it("Remove a cohort by cohort name", () => {
     // set up
     const expected = [
-      new Cohort("Cohort 2"),
+      new Cohort("Cohort 1"),
       new Cohort("Cohort 3"),
       new Cohort("Cohort 4"),
     ];
@@ -69,7 +69,7 @@ describe("Cohort tests", () => {
     manager.addCohort("Cohort 2");
     manager.addCohort("Cohort 3");
     manager.addCohort("Cohort 4");
-    const result = manager.removeCohort("Cohort 1");
+    const result = manager.removeCohort("Cohort 2");
     // verify
     expect(result).toEqual(expected);
   });

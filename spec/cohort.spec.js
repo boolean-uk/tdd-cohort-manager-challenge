@@ -123,7 +123,7 @@ describe("Student tests", () => {
   });
   it("Return errors if student not found", () => {
     // set up
-    const expected = "ERROR: Student not found";
+    const expected = "ERROR: student not found";
     // execute
     cohort.addStudent(
       "ID1",

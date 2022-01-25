@@ -30,7 +30,7 @@ class Cohort {
         return this.studentList[i];
       }
     }
-    return "ERROR: Student not found";
+    return "ERROR: student not found";
   }
 }
 

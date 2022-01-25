@@ -21,7 +21,7 @@ class Manager {
         return this.cohortList[i];
       }
     }
-    return "ERROR: Cohort not found";
+    return "ERROR: cohort not found";
   }
 
   removeCohort(coName) {
@@ -32,6 +32,8 @@ class Manager {
     }
     return this.cohortList;
   }
+
+  
 }
 
 module.exports = Manager;
