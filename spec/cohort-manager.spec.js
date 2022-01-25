@@ -62,6 +62,7 @@ describe('CohortManager', () => {
     it('CohortManager throws an error when trying to add to a cohort a student that does not exist', () => {
         cohortManager.createNewCohort('Cohort #1')
         cohortManager.createStudent('Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com')
+        cohortManager.addStudentToCohort(70, 'Cohort #1')
         const expected = 'Student not found!'
         const result = cohortManager.addStudentToCohort(2, 'Cohort #1')
         expect(result).toEqual(expected)
@@ -85,17 +86,14 @@ describe('CohortManager', () => {
         expect(result).toEqual(expected)
     })
 
-    it('CohortManager can search a student by their ID', () => {
+    it('CohortManager: it should not be possible to add more than 24 students to a cohort', () => {
         cohortManager.createNewCohort('Cohort #1')
-        cohortManager.createStudent(1, 'Nico', 'Picchio', 'nicopicchio', 'nicolapicchio@gmail.com')
-        const expected = {
-            studentID: 1,
-            firstName: 'Nico',
-            lastName: 'Picchio',
-            githubAccount: 'nicopicchio',
-            emailAddress: 'nicolapicchio@gmail.com'
+        cohortManager.createNStudents(25)
+        for (let i = 1; i < 25; i++) {
+            cohortManager.addStudentToCohort(i, 'Cohort #1')
         }
-        const result = cohortManager.searchStudentbyID(1)
+        const expected = 'This cohort is already full!'
+        const result = cohortManager.addStudentToCohort(25, 'Cohort #1')
         expect(result).toEqual(expected)
     })
 

@@ -30,14 +30,22 @@ class CohortManager {
         return this.students
     }
 
+    createNStudents(num, firstName, lastName, githubUsername, email) {
+        for (let i = 0; i < num; i++) {
+            this.studentIDGenerator()
+            this.students.push(new Student(this.studentIDCounter, firstName, lastName, githubUsername, email))
+        }
+    }
+
     addStudentToCohort(studentID, cohortName) {
         const cohort = this.searchCohortByName(cohortName)
-        for (let i = 0; i < this.students.length; i++) {
-            if (this.students[i].studentID === studentID) {
-                cohort.studentList.push(this.students[i])
-                return cohort.studentList
-            }
-            return 'Student not found!'
+        const student = this.searchStudentbyID(studentID)
+        if (student === undefined) { return 'Student not found!' }
+        if (cohort.studentList.length < cohort.cohortCapacity) {
+            cohort.studentList.push(student)
+            return cohort.studentList
+        } else {
+            return 'This cohort is already full!'
         }
     }
 
@@ -68,7 +76,7 @@ class CohortManager {
     }
 
     searchStudentbyID(studentID) {
-        
+        return this.students.find(student => student.studentID === studentID)
     }
 
     getAllCohorts() {
