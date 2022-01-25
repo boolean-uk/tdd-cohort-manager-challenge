@@ -3,7 +3,7 @@
     {
       "studentid": 1,
       "firstname": "Baldovin",
-      "last name": "Bouwmeester",
+      "lastname": "Bouwmeester",
       "github": "baldovinbouwmeester",
       "username": "Baldovin",
       "email": "baldovinbouwmeester@gmail.com"
@@ -11,7 +11,7 @@
     {
       "studentid": 2,
       "firstname": "Oumar",
-      "last name": "Nibhanupudi",
+      "lastname": "Nibhanupudi",
       "github": "oumarnibhanupudi",
       "username": "Oumar",
       "email": "oumarnibhanupudi@gmail.com"
@@ -19,7 +19,7 @@
     {
       "studentid": 3,
       "firstname": "Marjan",
-      "last name": "Agostini",
+      "lastname": "Agostini",
       "github": "MarjanAgostini",
       "username": "Marjan",
       "email": "marjanagostini@gmail.com"
@@ -27,7 +27,7 @@
     {
       "studentid": 4,
       "firstname": "Jovka",
-      "last name": "Stefanidis",
+      "lastname": "Stefanidis",
       "github": "jovkastefanidis",
       "username": "Jovka",
       "email": "jovkastefanidis@gmail.com"
@@ -35,7 +35,7 @@
     {
       "studentid": 5,
       "firstname": "Hector",
-      "last name": "Watt",
+      "lastname": "Watt",
       "github": "hectorwatt",
       "username": "Hector",
       "email": "hectorwatt@gmail.com"
@@ -43,7 +43,7 @@
     {
       "studentid": 6,
       "firstname": "Cyprianus",
-      "last name": "Ruff",
+      "lastname": "Ruff",
       "github": "cyprianusruff",
       "username": "Cyprianus",
       "email": "cyprianusruff@gmail.com"
@@ -51,7 +51,7 @@
     {
       "studentid": 7,
       "firstname": "Suzana",
-      "last name": "Broz",
+      "lastname": "Broz",
       "github": "suzanabroz",
       "username": "Suzana",
       "email": "suzanabroz@gmail.com"
@@ -59,7 +59,7 @@
     {
       "studentid": 8,
       "firstname": "Hayri",
-      "last name": "Head",
+      "lastname": "Head",
       "github": "hayrihead",
       "username": "Hayri",
       "email": "hayrihead@gmail.com"
@@ -67,7 +67,7 @@
     {
       "studentid": 9,
       "firstname": "Marju",
-      "last name": "Norton",
+      "lastname": "Norton",
       "github": "marjunorton",
       "username": "Marju",
       "email": "marjunorton@gmail.com"
@@ -75,7 +75,7 @@
     {
       "studentid": 10,
       "firstname": "Septimius",
-      "last name": "Armannsson",
+      "lastname": "Armannsson",
       "github": "septimiusarmannsson",
       "username": "Septimius",
       "email": "septimiusarmannsson@gmail.com"
@@ -83,7 +83,7 @@
     {
       "studentid": 11,
       "firstname": "Vanja",
-      "last name": "Lind",
+      "lastname": "Lind",
       "github": "vinjalind",
       "username": "Vinja",
       "email": "vinjalind@gmail.com"
@@ -91,7 +91,7 @@
     {
       "studentid": 12,
       "firstname": "Jean",
-      "last name": "Leon",
+      "lastname": "Leon",
       "github": "jeanleon",
       "username": "Jean",
       "email": "jeanleon@gmail.com"
@@ -99,7 +99,7 @@
     {
       "studentid": 13,
       "firstname": "Asclepius",
-      "last name": "Thomas",
+      "lastname": "Thomas",
       "github": "asclepiusthomas",
       "username": "Asclepius",
       "email": "asclepiusthomas@gmail.com"
@@ -107,7 +107,7 @@
     {
       "studentid": 14,
       "firstname": "Kirke",
-      "last name": "Domhnaill",
+      "lastname": "Domhnaill",
       "github": "kirkedomhnaill",
       "username": "Kirke",
       "email": "kirkedomhnaill@gmail.com"
@@ -115,7 +115,7 @@
     {
       "studentid": 15,
       "firstname": "Daphne",
-      "last name": "MacClellan",
+      "lastname": "MacClellan",
       "github": "daphnemacclellan",
       "username": "Daphne",
       "email": "daphnemacclellan@gmail.com"
@@ -123,7 +123,7 @@
     {
       "studentid": 16,
       "firstname": "Katia",
-      "last name": "Banik",
+      "lastname": "Banik",
       "github": "katiabanik",
       "username": "Katia",
       "email": "katiabanik@gmail.com"
@@ -131,7 +131,7 @@
     {
       "studentid": 17,
       "firstname": "Kantuta",
-      "last name": "Dickson",
+      "lastname": "Dickson",
       "github": "kantutadickson",
       "username": "Kantuta",
       "email": "kantutadickson@gmail.com"
@@ -139,7 +139,7 @@
     {
       "studentid": 18,
       "firstname": "Tearlag",
-      "last name": "Patrickson",
+      "lastname": "Patrickson",
       "github": "tearlagpatrickson",
       "username": "Tearlag",
       "email": "tearlagpatrickson@gmail.com"
@@ -147,7 +147,7 @@
     {
       "studentid": 19,
       "firstname": "Shemaiah",
-      "last name": "Feigenbaum",
+      "lastname": "Feigenbaum",
       "github": "shemaiahfeigenbaum",
       "username": "Shemaiah",
       "email": "shemaiahfeigenbaum@gmail.com"
@@ -155,7 +155,7 @@
     {
       "studentid": 20,
       "firstname": "Phyllis",
-      "last name": "Chaudhary",
+      "lastname": "Chaudhary",
       "github": "phyllischaudhary",
       "username": "Phyllis",
       "email": "phyllischaudhary@gmail.com"
@@ -163,7 +163,7 @@
     {
       "studentid": 21,
       "firstname": "Jane",
-      "last name": "Picasso",
+      "lastname": "Picasso",
       "github": "janepicasso",
       "username": "Jane",
       "email": "janepicasso@gmail.com"
@@ -171,7 +171,7 @@
     {
       "studentid": 22,
       "firstname": "Anett",
-      "last name": "Spijker",
+      "lastname": "Spijker",
       "github": "anettspijker",
       "username": "Anett",
       "email": "anettspijker@gmail.com"
@@ -179,7 +179,7 @@
     {
       "studentid": 23,
       "firstname": "Hanna",
-      "last name": "Heijman",
+      "lastname": "Heijman",
       "github": "hannahheijman",
       "username": "hannah",
       "email": "hannahheijman@gmail.com"
@@ -187,7 +187,7 @@
     {
       "studentid": 24,
       "firstname": "Mahesh",
-      "last name": "Sinagra",
+      "lastname": "Sinagra",
       "github": "maheshsinagra",
       "username": "Mahesh",
       "email": "maheshsinagra@gmail.com"
@@ -195,7 +195,7 @@
     {
       "studentid": 25,
       "firstname": "Rama",
-      "last name": "Brambilla",
+      "lastname": "Brambilla",
       "github": "ramabrambilla",
       "username": "Rama",
       "email": "ramabrambilla@gmail.com"
@@ -203,7 +203,7 @@
     {
       "studentid": 26,
       "firstname": "Lucina",
-      "last name": "Nespoli",
+      "lastname": "Nespoli",
       "github": "lucinanespoli",
       "username": "Lucina",
       "email": "LucinaNespoli@gmail.com"
@@ -211,7 +211,7 @@
     {
       "studentid": 27,
       "firstname": "Mikhail",
-      "last name": "Iordanou",
+      "lastname": "Iordanou",
       "github": "mikhailiordanou",
       "username": "Mikhail",
       "email": "mikhailiordanou@gmail.com"
@@ -219,7 +219,7 @@
     {
       "studentid": 28,
       "firstname": "Jan",
-      "last name": "Shakespeare",
+      "lastname": "Shakespeare",
       "github": "janshakespeare",
       "username": "Jan",
       "email": "janshakespeare@gmail.com"
@@ -227,7 +227,7 @@
     {
       "studentid": 29,
       "firstname": "Kasia",
-      "last name": "Bakhuizen",
+      "lastname": "Bakhuizen",
       "github": "kasiabakhuizen",
       "username": "Kasia",
       "email": "kasiabakhuizen@gmail.com"
@@ -235,7 +235,7 @@
     {
       "studentid": 30,
       "firstname": "Silvia",
-      "last name": "Kristensen",
+      "lastname": "Kristensen",
       "github": "silviakristensen",
       "username": "Silvia",
       "email": "silviakristensen@gmail.com"
@@ -243,7 +243,7 @@
     {
       "studentid": 31,
       "firstname": "Meera",
-      "last name": "Ziegler",
+      "lastname": "Ziegler",
       "github": "meeraziegler",
       "username": "Meera",
       "email": "meeraziegler@gmail.com"
@@ -251,7 +251,7 @@
     {
       "studentid": 32,
       "firstname": "Flora",
-      "last name": "Dunkel",
+      "lastname": "Dunkel",
       "github": "floradunkel",
       "username": "Flora",
       "email": "floradunkel@gmail.com"
@@ -259,7 +259,7 @@
     {
       "studentid": 33,
       "firstname": "Kuno",
-      "last name": "Schenk",
+      "lastname": "Schenk",
       "github": "kunoschenk",
       "username": "Kuno",
       "email": "kunoschenk@gmail.com"
@@ -267,7 +267,7 @@
     {
       "studentid": 34,
       "firstname": "Jovan",
-      "last name": "Sauvage",
+      "lastname": "Sauvage",
       "github": "jovansauvage",
       "username": "Jovan",
       "email": "jovansauvage@gmail.com"
@@ -275,7 +275,7 @@
     {
       "studentid": 35,
       "firstname": "Yash",
-      "last name": "Lebrun",
+      "lastname": "Lebrun",
       "github": "yashlebrun",
       "username": "Yash",
       "email": "yashlebrun@gmail.com"
@@ -283,7 +283,7 @@
     {
       "studentid": 36,
       "firstname": "Sanjeev",
-      "last name": "Kaluza",
+      "lastname": "Kaluza",
       "github": "sanjeevkaluza",
       "username": "Sanjeev",
       "email": "sanjeevkaluza@gmail.com"
@@ -291,7 +291,7 @@
     {
       "studentid": 37,
       "firstname": "Lavi",
-      "last name": "Dobbs",
+      "lastname": "Dobbs",
       "github": "lavidobbs",
       "username": "Lavi",
       "email": "lavidobbs@gmail.com"
@@ -299,7 +299,7 @@
     {
       "studentid": 38,
       "firstname": "Tovia",
-      "last name": "Croft",
+      "lastname": "Croft",
       "github": "toviacroft",
       "username": "Tovia",
       "email": "toviacroft@gmail.com"
@@ -307,7 +307,7 @@
     {
       "studentid": 39,
       "firstname": "Joi",
-      "last name": "Engel",
+      "lastname": "Engel",
       "github": "joiengel",
       "username": "Joi",
       "email": "joiengel@gmail.com"
@@ -315,7 +315,7 @@
     {
       "studentid": 40,
       "firstname": "Traceey",
-      "last name": "Baldovini",
+      "lastname": "Baldovini",
       "github": "traceeybaldovini",
       "username": "Traceey",
       "email": "traceeybaldovini@gmail.com"
@@ -323,7 +323,7 @@
     {
       "studentid": 41,
       "firstname": "Vlastimir",
-      "last name": "Runa",
+      "lastname": "Runa",
       "github": "vlastimirruna",
       "username": "Vlastimir",
       "email": "vlastimirruna@gmail.com"
@@ -331,7 +331,7 @@
     {
       "studentid": 42,
       "firstname": "Lucia",
-      "last name": "Divya",
+      "lastname": "Divya",
       "github": "luciadivya",
       "username": "Lucia",
       "email": "luciadivya@gmail.com"
@@ -339,7 +339,7 @@
     {
       "studentid": 43,
       "firstname": "Juma",
-      "last name": "Nevan",
+      "lastname": "Nevan",
       "github": "jumanevan",
       "username": "Juma",
       "email": "jumanevan@gmail.com"
@@ -347,7 +347,7 @@
     {
       "studentid": 44,
       "firstname": "Marat",
-      "last name": "Deepti",
+      "lastname": "Deepti",
       "github": "maratdeepti",
       "username": "Marat",
       "email": "maratdeepti@gmail.com"
@@ -355,7 +355,7 @@
     {
       "studentid": 45,
       "firstname": "Ankur",
-      "last name": "Gerhard",
+      "lastname": "Gerhard",
       "github": "ankurgerhard",
       "username": "Ankur",
       "email": "ankurgerhard@gmail.com"
@@ -363,7 +363,7 @@
     {
       "studentid": 46,
       "firstname": "Aize",
-      "last name": "Eustaquio",
+      "lastname": "Eustaquio",
       "github": "aizeeustaquio",
       "username": "Aize",
       "email": "aizeeustaquio@gmail.com"
@@ -371,7 +371,7 @@
     {
       "studentid": 47,
       "firstname": "Hakon",
-      "last name": "Martine",
+      "lastname": "Martine",
       "github": "hakonmartine",
       "username": "Hakon",
       "email": "hakonmartine@gmail.com"
@@ -379,7 +379,7 @@
     {
       "studentid": 48,
       "firstname": "Iwan",
-      "last name": "Zsanett",
+      "lastname": "Zsanett",
       "github": "iwanzsanett",
       "username": "Iwan",
       "email": "iwanzsanett@gmail.com"
@@ -387,10 +387,42 @@
     {
       "studentid": 49,
       "firstname": "Solene",
-      "last name": "Deror",
+      "lastname": "Deror",
       "github": "solenederor",
       "username": "Solene",
       "email": "iwanzsanett@gmail.com"
+    },
+    {
+      "studentid": 50,
+      "firstname": "Zidane",
+      "lastname": "Tribal",
+      "github": "zidanetribal",
+      "username": "Zidane",
+      "email": "zidanetribal@gmail.com"
+    },
+    {
+      "studentid": 51,
+      "firstname": "Zidane",
+      "lastname": "Tribal",
+      "github": "zidanetribal",
+      "username": "Zidane",
+      "email": "zidanetribal@gmail.com"
+    },
+    {
+      "studentid": 52,
+      "firstname": "Squall",
+      "lastname": "Leonhart",
+      "github": "squallleonhart",
+      "username": "Squall",
+      "email": "squallleonhart@gmail.com"
+    },
+    {
+      "studentid": 53,
+      "firstname": "Squall",
+      "lastname": "Leonhart",
+      "github": "squallleonhart",
+      "username": "Squall",
+      "email": "squallleonhart@gmail.com"
     }
   ]
 }

@@ -1,19 +1,24 @@
-///////////////// Global Scope ////////////
+/* eslint-disable indent */
+/* eslint-disable comma-dangle */
+/* eslint-disable space-before-function-paren */
+/* eslint-disable semi */
+/// ////////////// Global Scope ////////////
 const DATA = require('./students.json');
-const STUDENTS = DATA.students;
+// const STUDENTS = DATA.students;
 
-///////////////////////////////////////////
+/// ////////////////////////////////////////
 
-///////////////////////////////////////////
+/// ////////////////////////////////////////
 class StudentDataProcessor {
   constructor() {
     this.allStudents = DATA.students;
   }
+
   getAllStudents() {
     return this.allStudents;
   }
 }
-///////////////////////////////////////////
+/// ////////////////////////////////////////
 
 class StudentSelector {
   constructor() {
@@ -21,7 +26,7 @@ class StudentSelector {
     this.studentException = new Exception(this);
   }
 
-  //Search for student by student ID - EXT
+  // Search for student by student ID - EXT
   findStudentByID(ID) {
     const foundStudent = this.studentData.allStudents.find(
       (student) => student.studentid === ID
@@ -31,11 +36,11 @@ class StudentSelector {
   }
 }
 
-///////////////////////////////////////////
+/// ////////////////////////////////////////
 
 class CohortManager {
   constructor() {
-    this.COHORTS = [];
+    this.cohorts = [];
     this.cohortID = 1;
     this.StudentSelectors = new StudentSelector(this);
     this.cohortException = new Exception(this);
@@ -43,31 +48,45 @@ class CohortManager {
 
   // Create a cohort with a cohort name
   createCohort(cohortName) {
-    let cohortObject = {
+    const cohortObject = {
       ID: this.cohortID,
       name: cohortName,
       status: 'space available',
+      capacity: 0,
       cohortStudents: [],
     };
-    this.COHORTS.push(cohortObject);
+    // Cohorts can't have the same name
+    for (let i = 0; i < this.cohorts.length; i++) {
+      if (cohortName === this.cohorts[i].name) {
+        return this.cohortException.alertCohortSameName();
+      }
+    }
+    // Cohorts can't exist without a name
+    if (
+      cohortName == null ||
+      cohortName.length < 1 ||
+      cohortName.trim() === ''
+    ) {
+      return this.cohortException.alertCohortNoName();
+    }
+    this.cohorts.push(cohortObject);
     this.cohortID = this.cohortID + 1;
     return cohortObject;
   }
 
-  //Remove a Cohort by cohort name
+  // Remove a Cohort by cohort name
   removeCohort(cohortName) {
-    for (let i = 0; i < this.COHORTS.length; i++) {
-      if (this.COHORTS[i].name === cohortName) {
-        // delete this.COHORTS[i];
-        this.COHORTS.splice(i, 1);
+    for (let i = 0; i < this.cohorts.length; i++) {
+      if (this.cohorts[i].name === cohortName) {
+        this.cohorts.splice(i, 1);
       }
     }
-    return this.COHORTS;
+    return this.cohorts;
   }
 
-  //Search for cohort by cohort name
+  // Search for cohort by cohort name
   findCohort(cohortName) {
-    const findCohort = this.COHORTS.find(
+    const findCohort = this.cohorts.find(
       (searchCohortName) => searchCohortName.name === cohortName
     );
     if (!findCohort) {
@@ -78,54 +97,106 @@ class CohortManager {
 
   // Add student to a specific cohort
   addStudentToCohort(ID, cohortName) {
-    let studentToAdd = this.StudentSelectors.findStudentByID(ID);
-    for (let i = 0; i < this.COHORTS.length; i++) {
-      if (this.COHORTS[i].name == cohortName)
-        this.COHORTS[i].cohortStudents.push(studentToAdd);
+    let cohortExists = false;
+    let capacityAvailable = false;
+    const studentToAdd = this.StudentSelectors.findStudentByID(ID);
+    for (let i = 0; i < this.cohorts.length; i++) {
+      if (this.cohorts[i].name === cohortName) {
+        cohortExists = true;
+        if (this.cohorts[i].capacity < 24) {
+          this.cohorts[i].cohortStudents.push(studentToAdd);
+          this.cohorts[i].capacity += 1;
+          this.cohorts[i].status = 'space available';
+          capacityAvailable = true;
+        } else this.cohorts[i].status = 'space is not available';
+      }
     }
-    return this.COHORTS;
+    return cohortExists === false
+      ? this.cohortException.alertCohortDoesNotExist()
+      : capacityAvailable === false
+      ? this.cohortException.alertCapacityExceeded()
+      : this.cohorts;
   }
 
-  //Remove student from a specific cohort
+  // Remove student from a specific cohort
   removeStudentFromCohort(ID, cohortName) {
-    for (let i = 0; i < this.COHORTS.length; i++) {
-      if (this.COHORTS[i].name == cohortName)
-        this.COHORTS[i].cohortStudents = this.COHORTS[i].cohortStudents.filter(
+    for (let i = 0; i < this.cohorts.length; i++) {
+      if (this.cohorts[i].name === cohortName) {
+        this.cohorts[i].cohortStudents = this.cohorts[i].cohortStudents.filter(
           (student) => student.studentid !== ID
         );
+      }
+      this.cohorts[i].capacity -= 1;
     }
-    return this.COHORTS;
+    return this.cohorts;
   }
 
-  //Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit. - EXT
-  checkCohortCapacity() {}
-
-  //Cohorts can't have the same name, and can't exist without a name - EXT
-  checkCohortName() {}
-
-  //The same student can't exist in multiple cohorts. - EXT
+  // The same student can't exist in multiple cohorts. - EXT
   checkStudentAcrossCohorts() {}
 
-  //A student can't be removed from a cohort if it wasn't present in the first place. - EXT
-
-  //Search for students by name (first and last) and return all matching results - EXT
-  findStudentsMatchingFullname() {}
+  // Search for students by name (first and last) and return all matching results - EXT
+  studentsMatchName(cohortName) {
+    let extractStudents = [];
+    for (let i = 0; i < this.cohorts.length; i++) {
+      if (this.cohorts[i].name === cohortName) {
+        extractStudents = this.cohorts[i].cohortStudents.filter(
+          (students) => students.firstname && students.lastname
+        );
+      }
+    }
+    const getStudentNames = extractStudents.map(
+      (getName) => getName.firstname + ' ' + getName.lastname
+    );
+    const duplicateNames = getStudentNames.filter(
+      (e, i, a) => a.indexOf(e) !== i
+    );
+    return duplicateNames;
+  }
 }
-///////////////////////////////////////////
+
+/// ////////////////////////////////////////
 
 class Exception {
-  constructor() {}
-  //Return error if student not found
+  // Return error if student not found
   alertStudentNotFound() {
     const message = 'student not found';
     return message;
   }
 
-  //Return error if cohort not found
+  // Return error if cohort not found
   alertCohortNotFound() {
     const message = 'cohort not found';
     return message;
   }
+
+  // Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit. - EXT
+  alertCapacityExceeded() {
+    const message = 'capacity is 24 students only';
+    return message;
+  }
+
+  alertCohortDoesNotExist() {
+    const message = 'this cohort does not exist';
+    return message;
+  }
+
+  // Cohorts can't exist without a name
+  alertCohortNoName() {
+    const message = 'all cohorts must have a name';
+    return message;
+  }
+
+  // Cohorts can't have the same name
+  alertCohortSameName() {
+    const message = 'this name is already taken by another cohort';
+    return message;
+  }
+
+  // A student can't be removed from a cohort if it wasn't present in the first place. - EXT
 }
+
+const testCM = new CohortManager();
+
+testCM.createCohort('cohort1');
 
 module.exports = { CohortManager, StudentSelector, Exception };
