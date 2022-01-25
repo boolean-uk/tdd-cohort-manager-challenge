@@ -6,7 +6,6 @@ const Cohort = require("./cohort")
 class CohortManager {
     constructor() {
         this.cohorts = []
-
     }
 
     createCohort(name) {
@@ -15,27 +14,25 @@ class CohortManager {
     }
 
     searchCohort(name) {
-        this.cohorts.forEach((c) => {
-            if (c === name) {
+        for (const cohort of this.cohorts)
+            if (cohort === name) {
                 return this.cohorts
             }
             else 'Cohort not found'
-        })
     }
 
     getStudentById(id) {
         const getId = STUDENTS.filter((x) => x.id === id)
-        return getId
-
+        if (getId) {
+            return getId
+        } else 'Student not found.'
     }
 
     addStudent(cohortname, id) {
         let getStudent = this.getStudentById(id)
-        let pos = this.cohorts
-
-        for (let i = 0; i < pos.length; i++)
-            if (pos[i].cohortname === cohortname) {
-                pos[i].students.push(getStudent)
+        for (const cohort of this.cohorts)
+            if (cohort.cohortname === cohortname) {
+                cohort.students.push(getStudent)
             } return `Student successfully added to ${cohortname}`
     }
 
@@ -51,13 +48,14 @@ class CohortManager {
 
     removeStudent(id) {
         let getStudent = this.getStudentById(id)
-        console.log('src', getStudent)
         for (const cohort of this.cohorts) {
             if (cohort.id === getStudent.id) {
                 cohort.students.splice(cohort.students.indexOf(cohort), 1)
                 return this.cohorts
             }
-            else return 'ERROR: Student not found'
+            else if (id !== cohort.id) {
+                return 'Student not found.'
+            }
         }
     }
 

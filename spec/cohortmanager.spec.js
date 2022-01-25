@@ -74,14 +74,13 @@ describe('cohortManager', () => {
 
     // Test 6
     it('remove cohort by name', () => {
-        const expected = []
-
+        const expected =[] 
 
         manager.createCohort('CohortDeer')
         let removeCohort = manager.removeCohort('CohortDeer')
         expect(removeCohort).toEqual(expected)
 
-        //console.log('test4', manager.cohorts)
+       // console.log('test4', manager.cohorts)
     })
 
     //Test 7
@@ -121,7 +120,7 @@ describe('cohortManager', () => {
 
         manager.createCohort('CohortKoala')
         manager.addStudent('CohortKoala', 1)
-        let removeCohort = manager.getStudentById(22)
+        let removeCohort = manager.getStudentById(40)
         expect(removeCohort).toEqual(expected)
     })
 })
