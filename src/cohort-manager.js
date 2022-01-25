@@ -123,6 +123,13 @@ class CohortManager {
   searchStudentsByLastname (last) {
     return this.searchByProperty('lastname', last)
   }
+
+  searchStudentsByBothNames (first, last) {
+    const firstname = this.searchStudentsByFirstname(first)
+    const lastname = this.searchStudentsByLastname(last)
+
+    return firstname.filter(element => lastname.includes(element))
+  }
 }
 
 module.exports = CohortManager

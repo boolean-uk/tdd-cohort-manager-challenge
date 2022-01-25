@@ -187,5 +187,14 @@ describe("CohortManager", () => {
     expect(test).toEqual(expected)
   })
 
+  it("search student by first AND Last name  - one results", () => {
+    const expected = [new Student(1,"Jane", "Doe", "jdoe", "jdoe@gmail.com")]
+    cohortManager.addCohort("Cohort 1")
+    cohortManager.addStudent("Cohort 1","Jane", "Doe", "jdoe", "jdoe@gmail.com")
+    cohortManager.addStudent("Cohort 1","Janet", "Day", "jday", "jday@gmail.com")
+    const test = cohortManager.searchStudentsByBothNames("Jane", "Doe")
+    expect(test).toEqual(expected)
+  })
+
 
 })

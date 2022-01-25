@@ -26,7 +26,6 @@ class Cohort {
   cohortIsFull () {
     return this.students.length >= 24
   }
-
 }
 
 module.exports = Cohort
