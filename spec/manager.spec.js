@@ -24,7 +24,7 @@ describe('Cohort tests', () => {
 
     it('add cohort to cohort list', () => {
         //setup
-        const expected = new Cohort('Cohort 4')
+        const expected = [new Cohort('Cohort 4')]
         //execute
         const result = manager.addCohort('Cohort 4')
         //verfity 

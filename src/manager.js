@@ -19,7 +19,7 @@ class Manager {
                 return AlreadyExists
         }
         this.cohortList.push(cohortName)
-        return cohortName
+        return this.cohortList
     }
 
     searchCohort(name) {
