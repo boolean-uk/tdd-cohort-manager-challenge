@@ -65,7 +65,7 @@ class CohortManager {
       .create({
         body: `Welcome to Boolean UK, ${first}. You have been added to ${cohort} and your student ID is ${id}`,
         from: '+19377613612',
-        to: '+447879490048'
+        to: '+447777077700'
       })
       .then(message => console.log(message.sid))
   }
