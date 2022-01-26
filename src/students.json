@@ -1,0 +1,428 @@
+{
+  "students": [
+    {
+      "studentid": 1,
+      "firstname": "Baldovin",
+      "lastname": "Bouwmeester",
+      "github": "baldovinbouwmeester",
+      "username": "Baldovin",
+      "email": "baldovinbouwmeester@gmail.com"
+    },
+    {
+      "studentid": 2,
+      "firstname": "Oumar",
+      "lastname": "Nibhanupudi",
+      "github": "oumarnibhanupudi",
+      "username": "Oumar",
+      "email": "oumarnibhanupudi@gmail.com"
+    },
+    {
+      "studentid": 3,
+      "firstname": "Marjan",
+      "lastname": "Agostini",
+      "github": "MarjanAgostini",
+      "username": "Marjan",
+      "email": "marjanagostini@gmail.com"
+    },
+    {
+      "studentid": 4,
+      "firstname": "Jovka",
+      "lastname": "Stefanidis",
+      "github": "jovkastefanidis",
+      "username": "Jovka",
+      "email": "jovkastefanidis@gmail.com"
+    },
+    {
+      "studentid": 5,
+      "firstname": "Hector",
+      "lastname": "Watt",
+      "github": "hectorwatt",
+      "username": "Hector",
+      "email": "hectorwatt@gmail.com"
+    },
+    {
+      "studentid": 6,
+      "firstname": "Cyprianus",
+      "lastname": "Ruff",
+      "github": "cyprianusruff",
+      "username": "Cyprianus",
+      "email": "cyprianusruff@gmail.com"
+    },
+    {
+      "studentid": 7,
+      "firstname": "Suzana",
+      "lastname": "Broz",
+      "github": "suzanabroz",
+      "username": "Suzana",
+      "email": "suzanabroz@gmail.com"
+    },
+    {
+      "studentid": 8,
+      "firstname": "Hayri",
+      "lastname": "Head",
+      "github": "hayrihead",
+      "username": "Hayri",
+      "email": "hayrihead@gmail.com"
+    },
+    {
+      "studentid": 9,
+      "firstname": "Marju",
+      "lastname": "Norton",
+      "github": "marjunorton",
+      "username": "Marju",
+      "email": "marjunorton@gmail.com"
+    },
+    {
+      "studentid": 10,
+      "firstname": "Septimius",
+      "lastname": "Armannsson",
+      "github": "septimiusarmannsson",
+      "username": "Septimius",
+      "email": "septimiusarmannsson@gmail.com"
+    },
+    {
+      "studentid": 11,
+      "firstname": "Vanja",
+      "lastname": "Lind",
+      "github": "vinjalind",
+      "username": "Vinja",
+      "email": "vinjalind@gmail.com"
+    },
+    {
+      "studentid": 12,
+      "firstname": "Jean",
+      "lastname": "Leon",
+      "github": "jeanleon",
+      "username": "Jean",
+      "email": "jeanleon@gmail.com"
+    },
+    {
+      "studentid": 13,
+      "firstname": "Asclepius",
+      "lastname": "Thomas",
+      "github": "asclepiusthomas",
+      "username": "Asclepius",
+      "email": "asclepiusthomas@gmail.com"
+    },
+    {
+      "studentid": 14,
+      "firstname": "Kirke",
+      "lastname": "Domhnaill",
+      "github": "kirkedomhnaill",
+      "username": "Kirke",
+      "email": "kirkedomhnaill@gmail.com"
+    },
+    {
+      "studentid": 15,
+      "firstname": "Daphne",
+      "lastname": "MacClellan",
+      "github": "daphnemacclellan",
+      "username": "Daphne",
+      "email": "daphnemacclellan@gmail.com"
+    },
+    {
+      "studentid": 16,
+      "firstname": "Katia",
+      "lastname": "Banik",
+      "github": "katiabanik",
+      "username": "Katia",
+      "email": "katiabanik@gmail.com"
+    },
+    {
+      "studentid": 17,
+      "firstname": "Kantuta",
+      "lastname": "Dickson",
+      "github": "kantutadickson",
+      "username": "Kantuta",
+      "email": "kantutadickson@gmail.com"
+    },
+    {
+      "studentid": 18,
+      "firstname": "Tearlag",
+      "lastname": "Patrickson",
+      "github": "tearlagpatrickson",
+      "username": "Tearlag",
+      "email": "tearlagpatrickson@gmail.com"
+    },
+    {
+      "studentid": 19,
+      "firstname": "Shemaiah",
+      "lastname": "Feigenbaum",
+      "github": "shemaiahfeigenbaum",
+      "username": "Shemaiah",
+      "email": "shemaiahfeigenbaum@gmail.com"
+    },
+    {
+      "studentid": 20,
+      "firstname": "Phyllis",
+      "lastname": "Chaudhary",
+      "github": "phyllischaudhary",
+      "username": "Phyllis",
+      "email": "phyllischaudhary@gmail.com"
+    },
+    {
+      "studentid": 21,
+      "firstname": "Jane",
+      "lastname": "Picasso",
+      "github": "janepicasso",
+      "username": "Jane",
+      "email": "janepicasso@gmail.com"
+    },
+    {
+      "studentid": 22,
+      "firstname": "Anett",
+      "lastname": "Spijker",
+      "github": "anettspijker",
+      "username": "Anett",
+      "email": "anettspijker@gmail.com"
+    },
+    {
+      "studentid": 23,
+      "firstname": "Hanna",
+      "lastname": "Heijman",
+      "github": "hannahheijman",
+      "username": "hannah",
+      "email": "hannahheijman@gmail.com"
+    },
+    {
+      "studentid": 24,
+      "firstname": "Mahesh",
+      "lastname": "Sinagra",
+      "github": "maheshsinagra",
+      "username": "Mahesh",
+      "email": "maheshsinagra@gmail.com"
+    },
+    {
+      "studentid": 25,
+      "firstname": "Rama",
+      "lastname": "Brambilla",
+      "github": "ramabrambilla",
+      "username": "Rama",
+      "email": "ramabrambilla@gmail.com"
+    },
+    {
+      "studentid": 26,
+      "firstname": "Lucina",
+      "lastname": "Nespoli",
+      "github": "lucinanespoli",
+      "username": "Lucina",
+      "email": "LucinaNespoli@gmail.com"
+    },
+    {
+      "studentid": 27,
+      "firstname": "Mikhail",
+      "lastname": "Iordanou",
+      "github": "mikhailiordanou",
+      "username": "Mikhail",
+      "email": "mikhailiordanou@gmail.com"
+    },
+    {
+      "studentid": 28,
+      "firstname": "Jan",
+      "lastname": "Shakespeare",
+      "github": "janshakespeare",
+      "username": "Jan",
+      "email": "janshakespeare@gmail.com"
+    },
+    {
+      "studentid": 29,
+      "firstname": "Kasia",
+      "lastname": "Bakhuizen",
+      "github": "kasiabakhuizen",
+      "username": "Kasia",
+      "email": "kasiabakhuizen@gmail.com"
+    },
+    {
+      "studentid": 30,
+      "firstname": "Silvia",
+      "lastname": "Kristensen",
+      "github": "silviakristensen",
+      "username": "Silvia",
+      "email": "silviakristensen@gmail.com"
+    },
+    {
+      "studentid": 31,
+      "firstname": "Meera",
+      "lastname": "Ziegler",
+      "github": "meeraziegler",
+      "username": "Meera",
+      "email": "meeraziegler@gmail.com"
+    },
+    {
+      "studentid": 32,
+      "firstname": "Flora",
+      "lastname": "Dunkel",
+      "github": "floradunkel",
+      "username": "Flora",
+      "email": "floradunkel@gmail.com"
+    },
+    {
+      "studentid": 33,
+      "firstname": "Kuno",
+      "lastname": "Schenk",
+      "github": "kunoschenk",
+      "username": "Kuno",
+      "email": "kunoschenk@gmail.com"
+    },
+    {
+      "studentid": 34,
+      "firstname": "Jovan",
+      "lastname": "Sauvage",
+      "github": "jovansauvage",
+      "username": "Jovan",
+      "email": "jovansauvage@gmail.com"
+    },
+    {
+      "studentid": 35,
+      "firstname": "Yash",
+      "lastname": "Lebrun",
+      "github": "yashlebrun",
+      "username": "Yash",
+      "email": "yashlebrun@gmail.com"
+    },
+    {
+      "studentid": 36,
+      "firstname": "Sanjeev",
+      "lastname": "Kaluza",
+      "github": "sanjeevkaluza",
+      "username": "Sanjeev",
+      "email": "sanjeevkaluza@gmail.com"
+    },
+    {
+      "studentid": 37,
+      "firstname": "Lavi",
+      "lastname": "Dobbs",
+      "github": "lavidobbs",
+      "username": "Lavi",
+      "email": "lavidobbs@gmail.com"
+    },
+    {
+      "studentid": 38,
+      "firstname": "Tovia",
+      "lastname": "Croft",
+      "github": "toviacroft",
+      "username": "Tovia",
+      "email": "toviacroft@gmail.com"
+    },
+    {
+      "studentid": 39,
+      "firstname": "Joi",
+      "lastname": "Engel",
+      "github": "joiengel",
+      "username": "Joi",
+      "email": "joiengel@gmail.com"
+    },
+    {
+      "studentid": 40,
+      "firstname": "Traceey",
+      "lastname": "Baldovini",
+      "github": "traceeybaldovini",
+      "username": "Traceey",
+      "email": "traceeybaldovini@gmail.com"
+    },
+    {
+      "studentid": 41,
+      "firstname": "Vlastimir",
+      "lastname": "Runa",
+      "github": "vlastimirruna",
+      "username": "Vlastimir",
+      "email": "vlastimirruna@gmail.com"
+    },
+    {
+      "studentid": 42,
+      "firstname": "Lucia",
+      "lastname": "Divya",
+      "github": "luciadivya",
+      "username": "Lucia",
+      "email": "luciadivya@gmail.com"
+    },
+    {
+      "studentid": 43,
+      "firstname": "Juma",
+      "lastname": "Nevan",
+      "github": "jumanevan",
+      "username": "Juma",
+      "email": "jumanevan@gmail.com"
+    },
+    {
+      "studentid": 44,
+      "firstname": "Marat",
+      "lastname": "Deepti",
+      "github": "maratdeepti",
+      "username": "Marat",
+      "email": "maratdeepti@gmail.com"
+    },
+    {
+      "studentid": 45,
+      "firstname": "Ankur",
+      "lastname": "Gerhard",
+      "github": "ankurgerhard",
+      "username": "Ankur",
+      "email": "ankurgerhard@gmail.com"
+    },
+    {
+      "studentid": 46,
+      "firstname": "Aize",
+      "lastname": "Eustaquio",
+      "github": "aizeeustaquio",
+      "username": "Aize",
+      "email": "aizeeustaquio@gmail.com"
+    },
+    {
+      "studentid": 47,
+      "firstname": "Hakon",
+      "lastname": "Martine",
+      "github": "hakonmartine",
+      "username": "Hakon",
+      "email": "hakonmartine@gmail.com"
+    },
+    {
+      "studentid": 48,
+      "firstname": "Iwan",
+      "lastname": "Zsanett",
+      "github": "iwanzsanett",
+      "username": "Iwan",
+      "email": "iwanzsanett@gmail.com"
+    },
+    {
+      "studentid": 49,
+      "firstname": "Solene",
+      "lastname": "Deror",
+      "github": "solenederor",
+      "username": "Solene",
+      "email": "iwanzsanett@gmail.com"
+    },
+    {
+      "studentid": 50,
+      "firstname": "Zidane",
+      "lastname": "Tribal",
+      "github": "zidanetribal",
+      "username": "Zidane",
+      "email": "zidanetribal@gmail.com"
+    },
+    {
+      "studentid": 51,
+      "firstname": "Zidane",
+      "lastname": "Tribal",
+      "github": "zidanetribal",
+      "username": "Zidane",
+      "email": "zidanetribal@gmail.com"
+    },
+    {
+      "studentid": 52,
+      "firstname": "Squall",
+      "lastname": "Leonhart",
+      "github": "squallleonhart",
+      "username": "Squall",
+      "email": "squallleonhart@gmail.com"
+    },
+    {
+      "studentid": 53,
+      "firstname": "Squall",
+      "lastname": "Leonhart",
+      "github": "squallleonhart",
+      "username": "Squall",
+      "email": "squallleonhart@gmail.com"
+    }
+  ]
+}
