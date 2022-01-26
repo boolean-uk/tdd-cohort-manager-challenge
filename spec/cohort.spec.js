@@ -1,15 +1,16 @@
+/* eslint-disable no-undef */
 const Student = require('../src/student.js')
 const Cohort = require('../src/cohort.js')
 
 describe('Student tests', () => {
-  let cohort;
+  let cohort
 
   beforeEach(() => {
     cohort = new Cohort()
   })
 
   it('create a student list', () => {
-    // set up 
+    // set up
     const expected = []
     // execute
     const result = cohort.createList()

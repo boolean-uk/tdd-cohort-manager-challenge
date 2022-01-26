@@ -7,16 +7,16 @@ const authToken = '5b3ca822bee364e794b68067c850c5fd'
 const client = require('twilio')(accountSid, authToken)
 
 const sendMessage = (message) => {
-    client.messages
+  client.messages
     // Twilio phone number +16067555533
     .create({
-     body: message,
-     from: '+16067555533',
-     to: '+447963196783'
-   })
-  .then((message) => console.log(message.sid))
+      body: message,
+      from: '+16067555533',
+      to: '+447963196783'
+    })
+    .then((message) => console.log(message.sid))
 }
 
-//sendMessage('Welcome to Boolean')
+// sendMessage('Welcome to Boolean')
 
 module.exports = sendMessage
