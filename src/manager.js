@@ -41,3 +41,12 @@ class Manager {
 }
 
 module.exports = Manager
+
+
+const manager = new Manager()
+
+const cohort = manager.addCohort('Cohort 4')
+const student = manager.cohortList[0].addStudent('ID2', 'Michael', 'Blackson', '@Blackson1', 'MichaelLaughs@gmail.com')
+
+console.log("hello", student)
+console.log("bye", cohort)
