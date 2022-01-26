@@ -116,7 +116,7 @@ describe("cohortManager", () => {
   });
   it("Search for a cohort that doesn't exist!", () => {
     //setup
-    const expected = 'this cohort does not exist!'
+    const expected = 'cohort not found!'
     cohortManager.createCohort("CohortOne")
     //execute
     const result = cohortManager.searchCohort('CohortThree')
@@ -221,7 +221,7 @@ describe("cohortManager", () => {
   });
   it("Adding a student to a cohort when the student doesn't exist", () => {
     //setup
-    const expected = "this student does not exist!"
+    const expected = "student not found!"
     cohortManager.createCohort("CohortOne")
     cohortManager.createStudent(student1)
     //execute
@@ -240,7 +240,7 @@ describe("cohortManager", () => {
   });
   it("EXT: Searching for a student by their ID although they don't exist", () => {
     //setup
-    const expected = "student not found by this id!"
+    const expected = "student not found!"
     cohortManager.createStudent(student1)
     //execute
     const result = cohortManager.searchStudent(2)
