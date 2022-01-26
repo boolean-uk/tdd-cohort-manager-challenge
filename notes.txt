@@ -1,0 +1,33 @@
+nouns (objects/class)  |  verbs (message/method)]
+ cohortManager         |      createCohort   
+                       |      searchCohort
+                       |      removeCohort
+                       |
+
+cohort                 |  addStudent
+                       | removeStudent
+                       | findStudent
+                       | 
+Student                |                  
+
+
+@string - (cohortName)
+
+objects        | properties         | method                    | result
+CohortManager  | cohort[@array]     | createCohort(cohortName)  | ['cohort1','cohort2','cohort3']
+               |                    | searchCohort(cohortName)  | 'cohort2'
+               |                    | removeCohort (cohortName) | 'cohort2'
+
+
+objects        | properties         | method                             | result
+Cohort         | studentName[@array]| addStudent(student, cohortName)    | ['student1','student2','student3']
+               |                    | findStudent (studentName)          | 'student2'
+                                    | removeStudent (studentName)        | 'student2'
+
+objects        | properties         | 
+Student        | ID[@number]        |                      
+               | firstName [@string]|              
+               | lastName [@string] |
+               | githubUserName [@string] |
+               | email [@email] |
+
