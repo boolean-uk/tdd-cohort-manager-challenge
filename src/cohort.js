@@ -27,7 +27,7 @@ class Cohort {
     return this.students.length >= 24
   }
 
-  studentChecker (property, value) {
+  studentCheckerByProperty (property, value) {
     return this.students.filter(student => student[property] === value)
   }
 }

@@ -3,6 +3,13 @@ const twilioSid = 'AC3efa86e83e2b14d6a212a3032c0743e2'
 const twilioAuth = '1a351ff8179888ad2134b8db6c5a2eae'
 const client = new Twilio(twilioSid, twilioAuth)
 
+// Errors
+const COHORT_DOES_NOT_EXIST = 'Cohort does not exist'
+const NO_STUDENT_ID = 'Student ID not found'
+const COHORT_SAME_NAME = 'There is already a cohort with the same name'
+const STUDENT_ALREADY_EXISTS = 'This student already part of a cohort'
+const FULL_COHORT = 'Cohort is full'
+
 const Cohort = require('./cohort.js')
 
 class CohortManager {
@@ -13,7 +20,7 @@ class CohortManager {
 
   addCohort (cohortName) {
     if (this.cohortFinder(cohortName)) {
-      throw new Error('There is already a cohort with the same name')
+      throw new Error(COHORT_SAME_NAME)
     }
 
     const cohort = new Cohort(cohortName)
@@ -25,10 +32,10 @@ class CohortManager {
       const cohort = this.cohorts[i]
       if (cohort.checkCohortName(cohortName)) {
         this.cohorts.splice(i, 1)
-        return 'Removed'
+        return
       }
     }
-    throw new Error('Cohort does not exist')
+    throw new Error(COHORT_DOES_NOT_EXIST)
   }
 
   studentFinder (github, email) {
@@ -43,21 +50,20 @@ class CohortManager {
     const cohort = this.cohortFinder(cohortName)
 
     if (this.studentFinder(github, email)) {
-      throw new Error('This student already part of a cohort')
+      throw new Error(STUDENT_ALREADY_EXISTS)
     }
 
     if (!cohort) {
-      throw new Error('Cohort does not exist')
+      throw new Error(COHORT_DOES_NOT_EXIST)
     }
 
     if (cohort.cohortIsFull()) {
-      throw new Error('Cohort is full')
+      throw new Error(FULL_COHORT)
     }
 
     cohort.addStudentToCohort(this.studentID, first, last, github, email)
     this.twilioSMS(first, cohortName, this.studentID)
     this.studentID++
-    return 'Student Added'
   }
 
   twilioSMS (first, cohort, id) {
@@ -74,15 +80,14 @@ class CohortManager {
     const cohort = this.cohortFinder(cohortName)
 
     if (!cohort) {
-      throw new Error('Cohort does not exist')
+      throw new Error(COHORT_DOES_NOT_EXIST)
     }
 
     if (this.searchByProperty('id', id).length === 0) {
-      throw new Error('Student ID not found')
+      throw new Error(NO_STUDENT_ID)
     }
 
     cohort.removeStudentFromCohort(id)
-    return 'Student Removed'
   }
 
   cohortFinder (cohortName) {
@@ -92,23 +97,26 @@ class CohortManager {
   searchByCohort (cohortName) {
     return this.cohortFinder(cohortName)
       ? this.cohortFinder(cohortName)
-      : 'Cohort does not exist'
+      : COHORT_DOES_NOT_EXIST
   }
 
   searchByProperty (property, value) {
     const studentsWithThisProperty = []
 
-    for (let i = 0; i < this.cohorts.length; i++) {
-      const cohort = this.cohorts[i]
-      studentsWithThisProperty.push(cohort.studentChecker(property, value))
+    for (const cohort of this.cohorts) {
+      const studentCheck = cohort.studentCheckerByProperty(property, value)
+      if (studentCheck.length > 0) {
+        studentsWithThisProperty.push(studentCheck)
+      }
     }
+
     return studentsWithThisProperty.flat()
   }
 
   searchByID (id) {
     return this.searchByProperty('id', id).length > 0
       ? this.searchByProperty('id', id)[0]
-      : 'Student ID not found'
+      : NO_STUDENT_ID
   }
 
   searchStudentsByFirstname (first) {
