@@ -3,26 +3,25 @@ const CohortNotFoundERROR = 'ERROR: Cohort not found'
 const AlreadyExists = 'Name already exists / Cannot exist without a name'
 
 class Manager {
-
-    constructor() {
+    constructor () {
         this.cohortList = []
     }
 
-    create() {
+    create () {
         return this.cohortList
     }
 
-    addCohort(name) {
-        let cohortName = new Cohort(name)
+    addCohort (name) {
+        const cohortName = new Cohort(name)
         for (let i = 0; i < this.cohortList.length; i++) {
             if (this.cohortList[i].cName === name || this.cohortList[i].cName === '')
-                return AlreadyExists
+                {return AlreadyExists }
         }
         this.cohortList.push(cohortName)
         return this.cohortList
     }
 
-    searchCohort(name) {
+    searchCohort (name) {
         for (let i = 0; i < this.cohortList.length; i++) {
             if (name === this.cohortList[i].cName) {
                 return this.cohortList[i]
@@ -31,7 +30,7 @@ class Manager {
         return CohortNotFoundERROR
     }
 
-    removeCohort(cName) {
+    removeCohort (cName) {
         for (let i = 0; i < this.cohortList.length; i++) {
             if (this.cohortList[i].cName === cName) {
                 this.cohortList.splice(i, 1)
@@ -39,7 +38,6 @@ class Manager {
         }
         return this.cohortList
     }
-
 }
 
 module.exports = Manager

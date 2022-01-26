@@ -1,7 +1,6 @@
 const Student = require('../src/student.js')
 const Cohort = require('../src/cohort.js')
 
-
 describe('Student tests', () => {
   let cohort;
 
@@ -17,7 +16,7 @@ describe('Student tests', () => {
     // verify
     expect(result).toEqual(expected)
   })
-  //Q3
+  // Q3
   it('Add student to a specific cohort', () => {
     // set up
     const expected = new Student('ID1', 'Michael', 'Jordan', '@Micky1', 'MichaelDunks@gmail.com')
@@ -26,7 +25,7 @@ describe('Student tests', () => {
     // verify
     expect(result).toEqual(expected)
   })
-  //Q5
+  // Q5
   it('Remove student from a specific cohort', () => {
     // set up
     const expected = [
@@ -44,19 +43,19 @@ describe('Student tests', () => {
     expect(result[0].studentID).toEqual(expected[0].studentID)
     expect(result[1].studentID).toEqual(expected[1].studentID)
   })
-  //Q7 (EXTENDED)
+  // Q7 (EXTENDED)
   it('Search for a student by ID', () => {
-    //setup
+    // setup
     const expected = new Student('ID3', 'Michael', 'Buble', '@Buble1', 'MichaelSings@gmail.com')
-    //execute
+    // execute
     cohort.addStudent('ID1', 'Michael', 'Jordan', '@Micky1', 'MichaelDunks@gmail.com')
     cohort.addStudent('ID2', 'Michael', 'Blackson', '@Blackson1', 'MichaelLaughs@gmail.com')
     cohort.addStudent('ID3', 'Michael', 'Buble', '@Buble1', 'MichaelSings@gmail.com')
     const result = cohort.searchStudent('ID3')
-    //verfity 
+    // verfity
     expect(result).toEqual(expected)
   })
-  //Q6
+  // Q6
   it('Return errors if student not found', () => {
     // set up
     const expected = 'ERROR: Student not found'
@@ -68,9 +67,9 @@ describe('Student tests', () => {
     // verify
     expect(result).toEqual(expected)
   })
-  //Q8
+  // Q8
   it('Cohorts have fixed capacity at 24 students', () => {
-    // set up 
+    // set up
     const expected = 'Limit exceeded at 24'
     // execute
     cohort.addStudent('ID1')
@@ -101,7 +100,7 @@ describe('Student tests', () => {
     // verify
     expect(result.length).toEqual(expected.length)
   })
-  //Q10
+  // Q10
   it('The same student cannot exist in multiple cohorts', () => {
     // set up
     const expected = 'Student cannot exist in multiple cohorts'
@@ -113,7 +112,7 @@ describe('Student tests', () => {
     // verify
     expect(result).toEqual(expected)
   })
-  //Q11
+  // Q11
   it('A student cannot be removed from a cohort if it was not present in the first place', () => {
     // set up
     const expected = 'Non-existent: Student Cannot be removed'
@@ -125,16 +124,16 @@ describe('Student tests', () => {
     // verify
     expect(result).toEqual(expected)
   })
-  //Q12
+  // Q12
   it('Search for a student by first name, or ,last name', () => {
-    //setup
+    // setup
     const expected = [new Student('ID3', 'Michael', 'Buble', '@Buble1', 'MichaelSings@gmail.com')]
-    //execute
+    // execute
     cohort.addStudent('ID1', 'Michael', 'Jordan', '@Micky1', 'MichaelDunks@gmail.com')
     cohort.addStudent('ID2', 'Michael', 'Blackson', '@Blackson1', 'MichaelLaughs@gmail.com')
     cohort.addStudent('ID3', 'Michael', 'Buble', '@Buble1', 'MichaelSings@gmail.com')
     const result = cohort.searchStudentby('Michael', 'Buble')
-    //verfity 
+    // verfity
     expect(result).toEqual(expected)
   })
 })

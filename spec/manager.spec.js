@@ -4,7 +4,7 @@ const Cohort = require('../src/cohort.js')
 
 
 describe('Cohort tests', () => {
-    let manager;
+    let manager
 
 
 
@@ -12,9 +12,9 @@ describe('Cohort tests', () => {
         manager = new Manager()
     })
 
-    //Q1
+    // Q1
     it('create a cohort list', () => {
-        // set up 
+        // set up
         const expected = []
         // execute
         const result = manager.create()
@@ -23,29 +23,29 @@ describe('Cohort tests', () => {
     })
 
     it('add cohort to cohort list', () => {
-        //setup
+        // setup
         const expected = [new Cohort('Cohort 4')]
-        //execute
+        // execute
         const result = manager.addCohort('Cohort 4')
-        //verfity 
+        // verfity
         expect(result).toEqual(expected)
     })
 
-    //Q2
+    // Q2
     it('Search for a cohort by cohort name', () => {
-        //setup
+        // setup
         const expected = new Cohort('Cohort 3')
-        //execute
+        // execute
         manager.addCohort('Cohort 1')
         manager.addCohort('Cohort 2')
         manager.addCohort('Cohort 3')
         manager.addCohort('Cohort 4')
         const result = manager.searchCohort('Cohort 3')
-        //verfity 
+        // verfity
         expect(result).toEqual(expected)
     })
 
-    //Q6
+    // Q6
     it('Return errors if cohort not found', () => {
         // set up
         const expected = 'ERROR: Cohort not found'
@@ -59,7 +59,7 @@ describe('Cohort tests', () => {
         expect(result).toEqual(expected)
     })
 
-    //Q4
+    // Q4
     it('Remove a cohort by cohort name', () => {
         // set up
         const expected = [
@@ -76,7 +76,7 @@ describe('Cohort tests', () => {
         // verify
         expect(result).toEqual(expected)
     })
-    //Q9
+    // Q9
     it('Cohorts cannot have the same name, and cannot exist without a name', () => {
         // set up
         const expected = 'Name already exists / Cannot exist without a name'
@@ -85,9 +85,8 @@ describe('Cohort tests', () => {
         manager.addCohort('Cohort 2')
         manager.addCohort('Cohort 3')
         manager.addCohort('Cohort 4')
-        const result = manager.addCohort('Cohort 2' || '' )
+        const result = manager.addCohort('Cohort 2' || '')
         // verify
         expect(result).toEqual(expected)
     })
-
 })
