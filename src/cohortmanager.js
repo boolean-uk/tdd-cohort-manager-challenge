@@ -39,10 +39,8 @@ class CohortManager {
   }
 
   checkIfCohortExists (cohortname) {
-    for (let i = 0; i < this.schoolCohorts.length; i++) {
-      if (this.schoolCohorts[i].name === cohortname) {
-        return true
-      }
+    if (this.searchCohort(cohortname) !== cohortNotFoundError) {
+      return true
     }
     return false
   }
