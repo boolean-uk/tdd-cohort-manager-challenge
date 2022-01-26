@@ -100,14 +100,9 @@ class CohortManager {
 
     for (let i = 0; i < this.cohorts.length; i++) {
       const cohort = this.cohorts[i]
-      for (let j = 0; j < cohort.students.length; j++) {
-        const student = cohort.students[j]
-        if (student[property] === value) {
-          studentsWithThisProperty.push(student)
-        }
-      }
+      studentsWithThisProperty.push(cohort.studentChecker(property, value))
     }
-    return studentsWithThisProperty
+    return studentsWithThisProperty.flat()
   }
 
   searchByID (id) {

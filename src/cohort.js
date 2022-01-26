@@ -26,6 +26,10 @@ class Cohort {
   cohortIsFull () {
     return this.students.length >= 24
   }
+
+  studentChecker (property, value) {
+    return this.students.filter(student => student[property] === value)
+  }
 }
 
 module.exports = Cohort
