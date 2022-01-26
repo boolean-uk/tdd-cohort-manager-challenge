@@ -12,7 +12,7 @@ describe('CohortManager:', () => {
 
   it('creates a cohort', () => {
     // set up
-    const expected = {cohortName: 'Cohort 1', students: []}
+    const expected = { cohortName: 'Cohort 1', students: [] }
     // execute
     const result = cohortmanager.createCohort('Cohort 1')
     // verify
@@ -21,8 +21,8 @@ describe('CohortManager:', () => {
 
   it('search for a cohort', () => {
     // set up
-    const expected = {cohortName: 'Cohort 1', students: []}
-    //execute
+    const expected = { cohortName: 'Cohort 1', students: [] }
+    // execute
     cohortmanager.createCohort('Cohort 1')
     cohortmanager.createCohort('Cohort 2')
     cohortmanager.createCohort('Cohort 3')
@@ -35,7 +35,7 @@ describe('CohortManager:', () => {
   it('remove a cohort', () => {
     // set up
     const expected = 'This cohort has been removed: Cohort 1'
-    //execute
+    // execute
     cohortmanager.createCohort('Cohort 1')
     cohortmanager.createCohort('Cohort 2')
     cohortmanager.createCohort('Cohort 3')
@@ -47,7 +47,7 @@ describe('CohortManager:', () => {
 
   it('add student to a specific cohort', () => {
     // set up
-    //Create student variable so that we can add it to the cohort 
+    // Create student variable so that we can add it to the cohort
     const student = {
       studentID: 1,
       firstName: 'Tom',
@@ -56,21 +56,21 @@ describe('CohortManager:', () => {
       email: 'tomsparrow123@gmail.com'
 
     }
-    //Create cohort 1 
+    // Create cohort 1
     cohortmanager.createCohort('Cohort 1')
-    //Create cohort 2
+    // Create cohort 2
     cohortmanager.createCohort('Cohort 2')
-    //execute
-    //call the method: addStudentToCohort 
+    // execute
+    // call the method: addStudentToCohort
     cohortmanager.addStudentToCohort('Cohort 1', student)
     // verify
-    //Get cohort 1 using the method: search cohort
+    // Get cohort 1 using the method: search cohort
     const cohort1 = cohortmanager.searchCohort('Cohort 1')
-    //Get cohort 2 using the method: search cohort
+    // Get cohort 2 using the method: search cohort
     const cohort2 = cohortmanager.searchCohort('Cohort 2')
-    //Cohort 1 student's array should have 1 element
+    // Cohort 1 student's array should have 1 element
     expect(cohort1.students.length).toEqual(1)
-    //Cohort 2 student's ar/ray should have 0 element
+    // Cohort 2 student's ar/ray should have 0 element
     expect(cohort2.students.length).toEqual(0)
   })
 
@@ -85,7 +85,7 @@ describe('CohortManager:', () => {
     }
     cohortmanager.createCohort('Cohort 1')
     cohortmanager.addStudentToCohort('Cohort 1', student)
-    //execute
+    // execute
     const result = cohortmanager.findStudent('Cohort 1', 1)
     // verify
     expect(result).toEqual(student)
@@ -93,7 +93,7 @@ describe('CohortManager:', () => {
 
   it('remove a student from a cohort', () => {
     // set up
-    const expected = `Student removed 1`
+    const expected = 'Student removed 1'
     const student = {
       studentID: 1,
       firstName: 'Tom',
@@ -103,10 +103,9 @@ describe('CohortManager:', () => {
     }
     cohortmanager.createCohort('Cohort 1')
     cohortmanager.addStudentToCohort('Cohort 1', student)
-    //execute
+    // execute
     const result = cohortmanager.removeStudent('Cohort 1', 1)
     // verify
     expect(result).toEqual(expected)
   })
-
 })

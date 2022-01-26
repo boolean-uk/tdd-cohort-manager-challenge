@@ -1,27 +1,19 @@
 class Cohort {
-    constructor () {
-        this.student = []
+  constructor () {
+    this.student = []
+  }
+
+  addStudent (ID, firstName, lastName, githubUserName, email) {
+    const studentObject = {
+      studentID: ID,
+      firstName: firstName,
+      lastName: lastName,
+      githubUserName: githubUserName,
+      email: email
     }
 
-    addStudent (student, _cohortName) {
-        const studentObject = {
-            studentName: student
-        }
-
-        this.student.push(studentObject)
-    }
-
-    addStudent (ID, firstName, lastName, githubUserName, email) {
-        const studentObject = {
-            studentID: ID,
-            firstName: firstName,
-            lastName: lastName,
-            githubUserName: githubUserName,
-            email: email
-        }
-
-        this.student.push(studentObject)
-    }
+    this.student.push(studentObject)
+  }
 }
 
 module.exports = Cohort

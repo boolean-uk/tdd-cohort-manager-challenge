@@ -10,23 +10,23 @@ class CohortManager {
     }
 
     this.cohort.push(cohortObject)
-    return cohortObject 
+    return cohortObject
   }
 
   searchCohort (_cohortName) {
     for (let i = 0; i < this.cohort.length; i++) {
       if (this.cohort[i].cohortName === _cohortName) {
         return this.cohort[i]
-      } 
+      }
     }
-      return 'Error cohort not found'
+    return 'Error cohort not found'
   }
 
   removeCohort (_cohortName) {
     for (let i = 0; i < this.cohort.length; i++) {
       if (this.cohort[i].cohortName === _cohortName) {
-        this.cohort.splice(i,1)
-        return 'This cohort has been removed: ' + _cohortName 
+        this.cohort.splice(i, 1)
+        return 'This cohort has been removed: ' + _cohortName
       }
     }
   }
@@ -46,7 +46,7 @@ class CohortManager {
   }
 
   removeStudent (_cohortName, studentID) {
-    const cohort = this.searchCohort(_cohortName) 
+    const cohort = this.searchCohort(_cohortName)
     const student = this.findStudent(_cohortName, studentID)
     cohort.students.splice(cohort.students.indexOf(student), 1)
     return `Student removed ${studentID}`
