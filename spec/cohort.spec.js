@@ -19,7 +19,7 @@ describe('Student tests', () => {
   // Q3
   it('Add student to a specific cohort', () => {
     // set up
-    const expected = new Student('ID1', 'Michael', 'Jordan', '@Micky1', 'MichaelDunks@gmail.com')
+    const expected = [new Student('ID1', 'Michael', 'Jordan', '@Micky1', 'MichaelDunks@gmail.com')]
     // execute
     const result = cohort.addStudent('ID1', 'Michael', 'Jordan', '@Micky1', 'MichaelDunks@gmail.com')
     // verify

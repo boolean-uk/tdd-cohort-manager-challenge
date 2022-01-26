@@ -23,7 +23,7 @@ class Cohort {
             }
         }
         this.studentList.push(newStudent)
-        return newStudent
+        return this.studentList
     }
 
     removeStudent (id) {
