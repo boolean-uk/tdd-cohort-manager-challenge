@@ -1,31 +1,31 @@
-const Cohort = require("../src/cohort.js");
-const Student = require("../src/student.js");
-const twilio = require("../src/send_sms.js");
+const Cohort = require('../src/cohort.js')
+const Student = require('../src/student.js')
+const twilio = require('../src/send_sms.js')
 
 class CohortManager {
-  constructor() {
-    this.cohortCounter = 0;
-    this.studentIDCounter = 0;
-    this.students = [];
-    this.cohorts = [];
+  constructor () {
+    this.cohortCounter = 0
+    this.studentIDCounter = 0
+    this.students = []
+    this.cohorts = []
   }
 
-  studentIDGenerator() {
-    this.studentIDCounter++;
+  studentIDGenerator () {
+    this.studentIDCounter++
   }
 
-  cohortNameGenerator() {
-    this.cohortCounter++;
-    return `Cohort #${this.cohortCounter}`;
+  cohortNameGenerator () {
+    this.cohortCounter++
+    return `Cohort #${this.cohortCounter}`
   }
 
-  createNewCohort() {
-    this.cohorts.push(new Cohort(this.cohortNameGenerator()));
-    return this.cohorts;
+  createNewCohort () {
+    this.cohorts.push(new Cohort(this.cohortNameGenerator()))
+    return this.cohorts
   }
 
-  createStudent(firstName, lastName, githubUsername, email) {
-    this.studentIDGenerator();
+  createStudent (firstName, lastName, githubUsername, email) {
+    this.studentIDGenerator()
     this.students.push(
       new Student(
         this.studentIDCounter,
@@ -34,77 +34,77 @@ class CohortManager {
         githubUsername,
         email
       )
-    );
-    return this.students;
+    )
+    return this.students
   }
 
-  addStudentToCohort(studentID, cohortName) {
-    const cohort = this.searchCohortByName(cohortName);
-    const student = this.searchStudentbyID(studentID);
+  addStudentToCohort (studentID, cohortName) {
+    const cohort = this.searchCohortByName(cohortName)
+    const student = this.searchStudentbyID(studentID)
     if (student === undefined) {
-      return "Student not found!";
+      return 'Student not found!'
     }
     if (cohort.isFull() === false) {
-      cohort.studentList.push(student);
+      cohort.studentList.push(student)
       twilio(
         `Welcome to Boolean ${student.firstName} ${student.lastName}, you have been added to ${cohort.cohortName}`
-      );
-      return cohort.studentList;
+      )
+      return cohort.studentList
     }
-    return "This cohort is already full!";
+    return 'This cohort is already full!'
   }
 
-  removeStudentFromCohort(studentID, cohortName) {
-    const cohort = this.searchCohortByName(cohortName);
-    const student = this.searchStudentbyID(studentID);
+  removeStudentFromCohort (studentID, cohortName) {
+    const cohort = this.searchCohortByName(cohortName)
+    const student = this.searchStudentbyID(studentID)
     if (!student) {
-      return "Student not found!";
+      return 'Student not found!'
     }
-    cohort.studentList.splice(cohort.studentList.indexOf(student), 1);
-    return cohort;
+    cohort.studentList.splice(cohort.studentList.indexOf(student), 1)
+    return cohort
   }
 
-  searchCohortByName(cohortName) {
+  searchCohortByName (cohortName) {
     const cohortFound = this.cohorts.find(
       (cohort) => cohort.cohortName === cohortName
-    );
+    )
     if (cohortFound) {
-      return cohortFound;
+      return cohortFound
     }
-    return "Cohort not found!";
+    return 'Cohort not found!'
   }
 
-  removeCohortByName(cohortName) {
-    const cohort = this.searchCohortByName(cohortName);
+  removeCohortByName (cohortName) {
+    const cohort = this.searchCohortByName(cohortName)
     if (cohort) {
-      this.cohorts.splice(this.cohorts.indexOf(cohort), 1);
+      this.cohorts.splice(this.cohorts.indexOf(cohort), 1)
     }
-    return "Cohort not found!";
+    return 'Cohort not found!'
   }
 
-  searchStudentbyID(studentID) {
-    return this.students.find((student) => student.studentID === studentID);
+  searchStudentbyID (studentID) {
+    return this.students.find((student) => student.studentID === studentID)
   }
 
-  searchStudentbyName(firstName, lastName) {
+  searchStudentbyName (firstName, lastName) {
     return this.students.find(
       (student) =>
         student.firstName === firstName && student.lastName === lastName
-    );
+    )
   }
 
-  getAllCohorts() {
-    return this.cohorts;
+  getAllCohorts () {
+    return this.cohorts
   }
 
-  getAllStudents() {
-    return this.students;
+  getAllStudents () {
+    return this.students
   }
 
   // Method created just for easier test case creation
-  createNStudents(num, firstName, lastName, githubUsername, email) {
+  createNStudents (num, firstName, lastName, githubUsername, email) {
     for (let i = 0; i < num; i++) {
-      this.studentIDGenerator();
+      this.studentIDGenerator()
       this.students.push(
         new Student(
           this.studentIDCounter,
@@ -113,9 +113,9 @@ class CohortManager {
           githubUsername,
           email
         )
-      );
+      )
     }
   }
 }
 
-module.exports = CohortManager;
+module.exports = CohortManager
