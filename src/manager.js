@@ -1,4 +1,6 @@
 const Cohort = require('./cohort.js')
+const CohortNotFoundERROR = 'ERROR: Cohort not found'
+const AlreadyExists = 'Name already exists / Cannot exist without a name'
 
 class Manager {
 
@@ -14,7 +16,7 @@ class Manager {
         let cohortName = new Cohort(name)
         for (let i = 0; i < this.cohortList.length; i++) {
             if (this.cohortList[i].cName === name || this.cohortList[i].cName === '')
-                return 'Name already exists / Cannot exist without a name'
+                return AlreadyExists
         }
         this.cohortList.push(cohortName)
         return cohortName
@@ -26,7 +28,7 @@ class Manager {
                 return this.cohortList[i]
             }
         }
-        return 'ERROR: Cohort not found'
+        return CohortNotFoundERROR
     }
 
     removeCohort(cName) {

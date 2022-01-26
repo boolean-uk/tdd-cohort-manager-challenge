@@ -1,4 +1,9 @@
 const Student = require('./student.js')
+const StudentNotFoundError = 'ERROR: Student not found'
+const StudentCantBeRemoved = 'Non-existent: Student Cannot be removed'
+const MaxCapacity = 'Limit exceeded at 24'
+const CantExistInMultiple = 'Student cannot exist in multiple cohorts'
+
 
 
 class Cohort {
@@ -16,7 +21,7 @@ class Cohort {
         let newStudent = new Student(id, firstName, lastName, githubUser, email)
         for (let i = 0; i < this.studentList.length; i++) {
             if (this.studentList[i].studentID === id) {
-                return 'Student cannot exist in multiple cohorts'
+                return CantExistInMultiple
             }
         }
         this.studentList.push(newStudent)
@@ -30,7 +35,7 @@ class Cohort {
                 return this.studentList
             }
         }
-        return 'Non-existent: Student Cannot be removed'
+        return StudentCantBeRemoved
     }
 
     searchStudent(id) {
@@ -39,12 +44,12 @@ class Cohort {
                 return this.studentList[i]
             }
         }
-        return 'ERROR: Student not found'
+        return StudentNotFoundError
     }
 
     fixedCapacity() {
         if (this.studentList.length === this.capacity) {
-            return 'Limit exceeded at 24'
+            return MaxCapacity
         }
     }
 

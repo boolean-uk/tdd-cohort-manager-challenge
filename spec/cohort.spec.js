@@ -97,7 +97,7 @@ describe('Student tests', () => {
     cohort.addStudent('ID22')
     cohort.addStudent('ID23')
     cohort.addStudent('ID24')
-    let result = cohort.fixedCapacity()
+    const result = cohort.fixedCapacity()
     // verify
     expect(result.length).toEqual(expected.length)
   })
