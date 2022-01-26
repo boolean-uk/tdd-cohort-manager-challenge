@@ -51,7 +51,7 @@ class CohortManager {
         for (let cohort of cohortCheck) {
             if (cohort.id === getStudent.id) {
                 cohort.students.splice(cohort.students.indexOf(cohort), 1)
-                return this.cohorts
+                return cohort.students
             }
         }
     }

@@ -2,10 +2,8 @@ const CohortManager = require('../src/cohortmanager')
 const Cohort = require('../src/cohort')
 describe('cohortManager', () => {
     let manager
-    let cohort
     beforeEach(() => {
         manager = new CohortManager();
-        cohort = new Cohort();
     });
 
     //TEST 1
@@ -69,7 +67,7 @@ describe('cohortManager', () => {
 
     //TEST 6
     it('remove cohort by name', () => {
-        const expected =[] 
+        const expected = []
         // SET UP
         manager.createCohort('CohortDeer')
         let removeCohort = manager.removeCohort('CohortDeer')
@@ -78,20 +76,13 @@ describe('cohortManager', () => {
 
     //TEST 7
     it('remove student from specific cohort', () => {
-        const expected = manager.cohorts 
-        /*
-        - in my set up i have added 2 students,
-        the code below is what my test prints out after deleting the student according to the ID.
-        i was not able to add what was printed into expected as it expects me to put 'New'
-        in front of Cohort.
-        i have left the console.log below this test if you would like to check.
+        const expected = [({
+            id: 1, firstname: 'Kiran',
+            lastname: 'Gurung',
+            github: 'KinTale',
+            email: 'email1@email.com'
+        })]
 
-        [
-        Cohort {
-        cohortname: 'CohortKoala',
-        students: [ [Array] ],
-        capacity: 24 }]
-        */
         // SET UP
         manager.createCohort('CohortKoala')
         manager.addStudent('CohortKoala', 1)
@@ -108,7 +99,7 @@ describe('cohortManager', () => {
         manager.createCohort('CohortDeer')
         let removeCohort = manager.removeCohort('CohortDog')
         expect(removeCohort).toEqual(expected)
-    }) 
+    })
 
     //TEST 9
     it('return error if student doesnt exist', () => {
