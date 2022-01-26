@@ -1,38 +1,32 @@
-const studentData = require("./students.json")
-const STUDENTS = studentData['students']
 const Cohort = require("./cohort")
+
 
 class CohortManager {
     constructor() {
         this.cohorts = []
     }
 
-    createCohort(name) {
-        const createCohort = new Cohort(name)
+    createCohort(cohortName) {
+        const createCohort = new Cohort(cohortName)
         this.cohorts.push(createCohort)
     }
 
     searchCohort(cohortName) {
-        const getCohort = this.cohorts.filter((x) => x.cohortname === cohortName)
-        if (getCohort) {
-            return getCohort
+        for (const cohort of this.cohorts) {
+            if (cohort.cohortname === cohortName) {
+                return cohort
+            }
         }
-        else 'Cohort not found'
-    }
-
-    getStudentById(id) {
-        for (const students of STUDENTS)
-            if (students.id === id) {
-                return students
-            } else return 'Student not found.'
+        return 'Cohort not found'
     }
 
     addStudent(cohortname, id) {
-        let getStudent = this.getStudentById(id)
-        for (const cohort of this.cohorts)
-            if (cohort.cohortname === cohortname) {
-                cohort.students.push(getStudent)
-            } return `Student successfully added to ${cohortname}`
+        const cohort = this.searchCohort(cohortname)
+        const studentId = cohort.getStudentById(id)
+
+        if (studentId.id === id) {
+            cohort.students.push(studentId)
+        } return `Student successfully added to ${cohortname}`
     }
 
     removeCohort(cohortname) {
@@ -46,14 +40,16 @@ class CohortManager {
     }
 
     removeStudent(cohortName, id) {
-        let cohortCheck = this.searchCohort(cohortName)
-        let getStudent = this.getStudentById(id)
-        for (let cohort of cohortCheck) {
-            if (cohort.id === getStudent.id) {
-                cohort.students.splice(cohort.students.indexOf(cohort), 1)
-                return cohort.students
-            }
-        }
+        const cohortCheck = this.searchCohort(cohortName)
+        console.log('src',cohortCheck)
+        const removeId = cohortCheck.removeStudent(id)
+        console.log(removeId)
+        if (cohortCheck === 'Cohort not found') {
+            return 'Cohort not found'
+        } return cohortCheck.removeStudent(id)
+
     }
+
+
 }
 module.exports = CohortManager

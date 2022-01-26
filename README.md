@@ -75,7 +75,7 @@ A cohort should have a list of students. Each student should have a studentID, f
 
 #### Extended
 ```
-- Search for student by student ID
+- Search for student by student ID - Done
 - Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit.
 - Cohorts can't have the same name, and can't exist without a name
 - The same student can't exist in multiple cohorts.

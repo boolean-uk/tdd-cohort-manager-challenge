@@ -2,8 +2,10 @@ const CohortManager = require('../src/cohortmanager')
 const Cohort = require('../src/cohort')
 describe('cohortManager', () => {
     let manager
+    let cohort
     beforeEach(() => {
         manager = new CohortManager();
+        cohort = new Cohort();
     });
 
     //TEST 1
@@ -35,7 +37,7 @@ describe('cohortManager', () => {
 
     //TEST 3
     it('search for cohort with cohort name', () => {
-        const expected = [new Cohort('CohortPenguin')]
+        const expected = new Cohort('CohortPenguin')
         // SET UP
         manager.createCohort('CohortPenguin')
         let create = manager.searchCohort('CohortPenguin')
@@ -43,20 +45,6 @@ describe('cohortManager', () => {
     })
 
     //TEST 4
-    it('student by ID', () => {
-        const expected = {
-            "id": 1,
-            "firstname": "Kiran",
-            "lastname": "Gurung",
-            "github": "KinTale",
-            "email": "email1@email.com"
-        }
-        // SET UP
-        let getStudent = manager.getStudentById(1)
-        expect(getStudent).toEqual(expected)
-    })
-
-    //TEST 5
     it('add student to specific cohort', () => {
         const expected = 'Student successfully added to CohortKoala'
         // SET UP
@@ -65,7 +53,22 @@ describe('cohortManager', () => {
         expect(addStudent).toEqual(expected)
     })
 
-    //TEST 6
+//TEST 4
+fit('add mukltiple student to specific cohort', () => {
+    const expected = 'Student successfully added to CohortKoala'
+    // SET UP
+    manager.createCohort('CohortKoala')
+    manager.addStudent('CohortKoala', 16)
+    manager.addStudent('CohortKoala', 13)
+    manager.addStudent('CohortKoala', 21)
+    manager.addStudent('CohortKoala', 11)
+    let addStudent = manager.addStudent('CohortKoala', 1)
+    expect(addStudent).toEqual(expected)
+    console.log(manager.cohorts)
+})
+
+
+    //TEST 5
     it('remove cohort by name', () => {
         const expected = []
         // SET UP
@@ -74,7 +77,7 @@ describe('cohortManager', () => {
         expect(removeCohort).toEqual(expected)
     })
 
-    //TEST 7
+    //TEST 6
     it('remove student from specific cohort', () => {
         const expected = [({
             id: 1, firstname: 'Kiran',
@@ -89,10 +92,11 @@ describe('cohortManager', () => {
         manager.addStudent('CohortKoala', 2)
         let removeStudent = manager.removeStudent('CohortKoala', 2)
         expect(removeStudent).toEqual(expected)
-        //console.log('test7', manager.cohorts)
+        console.log(manager.cohorts)
+        console.log('stu', cohort.students)
     })
 
-    //TEST 8
+    //TEST 7
     it('return error if cohort doesnt exist', () => {
         const expected = 'ERROR : Cohort not found.'
         // SET UP
@@ -101,13 +105,4 @@ describe('cohortManager', () => {
         expect(removeCohort).toEqual(expected)
     })
 
-    //TEST 9
-    it('return error if student doesnt exist', () => {
-        const expected = 'Student not found.'
-        // SET UP
-        manager.createCohort('CohortKoala')
-        manager.addStudent('CohortKoala', 1)
-        let removeCohort = manager.getStudentById(45)
-        expect(removeCohort).toEqual(expected)
-    })
 })
