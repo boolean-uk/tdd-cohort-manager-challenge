@@ -1,5 +1,9 @@
-const cohortNotFound = 'cohort not found!'
-const studentNotFound = 'student not found!'
+const cohortNotFoundError = 'cohort not found!'
+const cohortFullError = 'This cohort is full'
+const cohortCannotExistWithoutNameError = 'cohort cannot exist without a name!'
+const cohortAlreadyExistsError = 'This cohort already exists!'
+const studentNotFoundError = 'student not found!'
+const studentInAnotherCohortError = 'This student is already in another cohort!'
 
 class CohortManager {
   constructor () {
@@ -21,9 +25,9 @@ class CohortManager {
   createCohort (cohortname) {
     const exists = this.checkIfCohortExists(cohortname)
     if (cohortname === undefined) {
-      return 'cohort cannot exist without a name!'
+      return cohortCannotExistWithoutNameError
     } else if (exists) {
-      return 'This cohort already exists!'
+      return cohortAlreadyExistsError
     }
     const cohort = {
       name: cohortname,
@@ -51,7 +55,7 @@ class CohortManager {
         return
       }
     }
-    return cohortNotFound
+    return cohortNotFoundError
   }
 
   checkIfStudentAlreadyInCohort (studentfirstname, studentlastname) {
@@ -69,10 +73,10 @@ class CohortManager {
     const cohort = this.searchCohort(cohortname)
     const studentAlreadyInCohort = this.checkIfStudentAlreadyInCohort(studentfirstname, studentlastname)
     if (studentAlreadyInCohort) {
-      return 'This student is already in another cohort!'
+      return studentInAnotherCohortError
     }
     if (typeof cohort === 'string') {
-      return cohortNotFound
+      return cohortNotFoundError
     }
     for (let i = 0; i < this.studentList.length; i++) {
       const cohortStudent = this.studentList[i]
@@ -80,16 +84,16 @@ class CohortManager {
         cohortStudent.studentFirstName === studentfirstname && cohort.students.length < this.cohortCapacity
       ) {
         cohort.students.push(cohortStudent)
-        return 'This cohort is full'
+        return cohortFullError
       }
     }
-    return studentNotFound
+    return studentNotFoundError
   }
 
   removeStudentFromCohort (studentid, cohortname) {
     const cohort = this.searchCohort(cohortname)
     if (typeof cohort === 'string') {
-      return cohortNotFound
+      return cohortNotFoundError
     }
     for (let i = 0; i < cohort.students.length; i++) {
       if (cohort.students[i].studentID === studentid) {
@@ -97,7 +101,7 @@ class CohortManager {
         return
       }
     }
-    return studentNotFound
+    return studentNotFoundError
   }
 
   searchStudent (id) {
@@ -107,7 +111,7 @@ class CohortManager {
         return student
       }
     }
-    return studentNotFound
+    return studentNotFoundError
   }
 
   searchStudentByName (firstname, lastname) {
@@ -125,7 +129,7 @@ class CohortManager {
     const found = this.schoolCohorts.find((c) => c.name === cohortname)
     if (found) {
       return found
-    } return cohortNotFound
+    } return cohortNotFoundError
   }
 
   getAllCohorts () {
