@@ -1,0 +1,17 @@
+Domain Model 
+
+Objects (nouns)                                            Messages  (verbs)
+
+cohortManager                                                  -
+
+
+Cohort                                                      createCohort()
+" "                                                        SearchForCohort()
+" "                                                         removeCohort()
+" "                                                        returnError(Cohort)
+
+Student                                                         
+" "                                                          addStudent()
+" "                                                         removeStudent()
+" "                                                       returnError(Student)
+
