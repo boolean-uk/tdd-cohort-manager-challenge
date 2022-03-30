@@ -21,6 +21,10 @@ describe('Student', () => {
         expect(student.email).toBe('jdoe@mail.com');
     })
 
+    it('cannot create a cohort without a name', () =>{
+        expect(() => manager.addCohort('')).toThrow();
+    } )
+
     it('finds student by options object', () => {
         expect(ManagerUtils.findStudent({id: 0})).toEqual(student);
         expect(ManagerUtils.findStudent({firstName: 'Jane'})).toEqual(student);

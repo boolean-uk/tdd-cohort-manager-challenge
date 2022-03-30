@@ -27,6 +27,7 @@ export default class Manager {
   addCohort(name: string): Cohort {
     if (ManagerUtils.findCohort({ name }))
       throw new Error("Cohort with the same name already exists");
+    if(!name || name.length === 0) throw new Error("Cohort name cannot be empty");
     const cohort = new Cohort(name);
     this.cohorts.push(cohort);
     return cohort;
