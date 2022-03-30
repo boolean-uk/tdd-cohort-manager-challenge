@@ -1,10 +1,11 @@
 export default class Student {
-    firstName: String;
-    lastName: String;
-    githubUsername: String;
-    email: String;
 
-    constructor(firstName : String, lastName: String, githubUsername: String, email: String) {
+    firstName: string;
+    lastName: string;
+    githubUsername: string;
+    email: string;
+
+    constructor(firstName : string, lastName: string, githubUsername: string, email: string) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.githubUsername = githubUsername;
