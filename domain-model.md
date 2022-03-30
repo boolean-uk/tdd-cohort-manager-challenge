@@ -13,7 +13,7 @@ The Cohort Manager should be able to support the following interactions
 
 ### Extended criteria
 
-- Search for student by student ID
+- (DONE) Search for student by student ID
 - Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit.
 - Cohorts can't have the same name, and can't exist without a name
 - The same student can't exist in multiple cohorts.
@@ -58,7 +58,8 @@ A cohort should have a list of students. Each student should have a studentID, f
 | Cohort |                           |                   |                  |                                                                                                        |
 |        | name @String              |                   |                  | via constructor                                                                                        |
 |        | students @Array[@student] |                   |                  |                                                                                                        |
-|        |                           | add(@student)     | no output        | students.push(@student), maybe return a message "you've added: @student"                               |
+|        | capacity @Num             |
+|        |                           | add(@student)     | no output        | students.push(@student) \*make sure that @Array[@student].length <= capacity or else "ERROR"           |
 |        |                           | remove(@fullName) | @Array[@student] | students.includes(@fullName) ? {students.filter(student => student.fullName !=== @fullName)} : "ERROR" |
 |        |                           | search(@id)       | @student         | same logic as search(@cohortName) in CohortManager class                                               |
 

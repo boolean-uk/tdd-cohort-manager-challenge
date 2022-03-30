@@ -2,10 +2,12 @@ class Cohort {
   constructor(num) {
     this.name = `Cohort ${num}`;
     this.students = [];
+    this.capacity = 24;
   }
 
   add(newStudent) {
-    this.students.push(newStudent);
+    if (this.students.length <= this.capacity) this.students.push(newStudent);
+    return "ERROR – this cohort hit the capacity";
   }
 
   remove(studentName) {
