@@ -1,5 +1,6 @@
 import Student from "../student/Student";
 import StudentSearchOptions from "../student/StudentSearchOptions";
+import ManagerUtils from "../utils/ManagerUtils";
 
 export default class Cohort {
   name: string;
@@ -11,6 +12,7 @@ export default class Cohort {
   }
 
   addStudent(student: Student) : boolean {
+    if(ManagerUtils.findStudent({id: student.id}) === undefined) throw new Error("Student doesn't exist");
     if (this.students.includes(student.id))
       throw new Error("Student already exists in cohort");
     else this.students.push(student.id);
@@ -18,6 +20,14 @@ export default class Cohort {
   }
 
   removeStudent(options: StudentSearchOptions) : boolean {
-    return true;
+    const student = ManagerUtils.findStudent(options);
+    if(student) {
+      if(this.students.includes(student.id))
+        {
+          this.students.splice(this.students.indexOf(student.id), 1);
+          return true;
+        }
+      else throw new Error("Student not found in cohort");
+    } else throw new Error("Student not found");
   }
 }

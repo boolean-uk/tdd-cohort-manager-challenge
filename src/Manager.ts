@@ -2,12 +2,16 @@ import Cohort from "./cohort/Cohort";
 import Student from "./student/Student";
 
 export default class Manager {
+ 
     private studentId = 0;
 
     cohorts : Cohort[];
     students : Student[];
 
     static instance : Manager;
+    static getInstance() {
+        return Manager.instance ?? new Manager(); 
+    }
 
     constructor() {
         if(Manager.instance) {
