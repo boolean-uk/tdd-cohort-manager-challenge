@@ -2,11 +2,11 @@
 
 The Cohort Manager should be able to support the following interactions
 
-- Create a cohort with a cohort name
+- (DONE) Create a cohort with a cohort name
 - Search for a cohort by cohort name
-- Add student to a specific cohort
+- (DONE) Add student to a specific cohort
 - Remove a cohort by cohort name
-- Remove student from a specific cohort
+- (DONE) Remove student from a specific cohort
 - Return errors if student or cohort not found
 
 A cohort should have a list of students. Each student should have a studentID, first name, last name, github username, email.
@@ -52,3 +52,5 @@ A cohort should have a list of students. Each student should have a studentID, f
 |               |                           | add(@cohort)        | no output                     | cohortList.push(@cohort)                                                                                     |
 |               |                           | search(@cohortName) | @cohort / "ERROR"             | cohortList.find(cohort => cohort.name === @cohortName ? @cohort : "ERROR")                                   |
 |               |                           | remove(@cohortName) | list Array[@cohort] / "ERROR" | cohortList.includes(@cohortName) ? {cohortList.filter(cohort => cohortList.name !=== @cohortName)} : "ERROR" |
+
+–––

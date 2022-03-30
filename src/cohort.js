@@ -1,12 +1,11 @@
 class Cohort {
   constructor(num) {
-    this.num = num;
+    this.name = `${num}`;
     this.students = [];
   }
 
   add(newStudent) {
     this.students.push(newStudent);
-    return `You've added ${newStudent.fullName} to Cohort ${this.num}`;
   }
 
   remove(name) {

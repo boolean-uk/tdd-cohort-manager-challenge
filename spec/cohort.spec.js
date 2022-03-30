@@ -2,24 +2,6 @@ const Cohort = require("../src/cohort.js");
 const Student = require("../src/student.js");
 
 describe("Cohort", () => {
-  it("adds a student to a specific cohort", () => {
-    //   setup
-    const cohort5 = new Cohort(5);
-    const arisaSigrist = new Student(
-      0,
-      "Arisa",
-      "Sigrist",
-      "sigristarisa",
-      "arisasigrist.ch@gmail.com"
-    );
-
-    const expected = cohort5.add(arisaSigrist);
-    // evaluate
-    const result = `You've added Arisa Sigrist to Cohort 5`;
-    // verify
-    expect(result).toEqual(expected);
-  });
-
   it("checks if the student is added to the student lists", () => {
     //   setup
     const cohort5 = new Cohort(5);
@@ -64,7 +46,7 @@ describe("Cohort", () => {
     expect(result).toEqual(expected);
   });
 
-  fit("returns an error for trying to remove a non-existing student", () => {
+  it("returns an error for trying to remove a non-existing student", () => {
     //   setup
     const cohort5 = new Cohort(5);
     const arisaSigrist = new Student(
