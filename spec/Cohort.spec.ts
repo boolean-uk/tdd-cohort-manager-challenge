@@ -29,4 +29,11 @@ describe("Cohort", () => {
     cohort.addStudent(student);
     expect(cohort.removeStudent({ id: student.id })).toBeTrue();
   });
+
+  it('returns students as instances', () => {
+    const student = new Student(0, "Jane", "Doe", "jdoe", "jdoe@mail.com");
+    manager.registerStudent("Jane", "Doe", "jdoe", "jdoe@mail.com");
+    cohort.addStudent(student);
+    expect(cohort.getStudents()).toEqual([student]);
+  })
 });
