@@ -44,4 +44,14 @@ describe("Cohort", () => {
     cohort.addStudent(student);
     expect(cohort.getStudents()).toEqual([student]);
   })
+
+  it('cohort has capacity', () => {
+    const student = new Student(0, "Jane", "Doe", "jdoe", "jdoe@mail.com");
+    manager.registerStudent("Jane", "Doe", "jdoe", "jdoe@mail.com");
+    cohort.addStudent(student);
+    cohort.capacity = 1;
+    const student2 = manager.registerStudent('Jade', 'Doe', 'jadeo', 'jadeo@mail.com')
+    expect(() => {cohort.addStudent(student2)}).toThrow();
+   
+  })
 });

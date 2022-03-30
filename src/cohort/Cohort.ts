@@ -13,6 +13,7 @@ export default class Cohort {
   }
 
   addStudent(options: StudentSearchOptions) : boolean {
+    if(this.students.length >= this.capacity) throw new Error("Cohort is full");
     const student = ManagerUtils.findStudent(options) ;
     if(student === undefined) throw new Error("Student doesn't exist");
     if(ManagerUtils.findStudentCohort(options) !== undefined) throw new Error("Student already in another cohort");
