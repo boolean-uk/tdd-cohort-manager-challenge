@@ -4,14 +4,16 @@
 | cohorts = [] | createCohort (cohortName @String) | @Cohort | adds new cohort to cohorts array
 |              |search (cohortName @String) | @Cohort **OR** error (not found) | looks for cohort in cohorts array
 |              | removeCohort (cohortName @String) | @Cohort **OR** error (not found) | deletes a specific cohort
+|              | addStudent (@Student, cohortName @String) | @Student | adds a student to a specific cohort
+|              | removeStudent (studentID, cohortName @String) | @Student **OR** error (not found) | deletes a student from a specific cohort
 
 ---
 
 ### Cohort class
 | Properties    | Methods | Output | Comments
 |---------------|---------|--------|---------
-| name @String  | addStudent (@Student, cohortName @String) | @Student | adds a student to a specific cohort
-| students = [] | removeStudent (studentID, cohortName @String) | @Student **OR** error (not found) | deletes a student from a specific cohort
+| name @String  | addStudent (@Student) | @Student | adds a student to the students list
+| students = [] | removeStudent (studentID) | @Student **OR** error (not found) | removes student from students list
 
 ---
 
