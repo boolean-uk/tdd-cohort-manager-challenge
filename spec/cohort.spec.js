@@ -17,4 +17,10 @@ describe('Cohort class', () => {
         expect(cohort.addStudent(student)).toEqual(student)
         expect(cohort.students.length).toEqual(2)
     })
+
+    it('removes student from students list', () => {
+        cohort.addStudent(student)
+        expect(cohort.removeStudent(1)).toEqual(student)
+        expect(cohort.students.length).toEqual(0)
+    })
 })
