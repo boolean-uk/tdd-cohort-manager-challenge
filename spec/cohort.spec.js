@@ -69,4 +69,35 @@ describe("Cohort", () => {
     // verify
     expect(result).toEqual(expected);
   });
+
+  fit("searchs a student by id", () => {
+    const cohort5 = new Cohort(5);
+    const arisaSigrist = new Student(
+      0,
+      "Arisa",
+      "Sigrist",
+      "sigristarisa",
+      "arisasigrist.ch@gmail.com"
+    );
+
+    const bobRoss = new Student(1, "Bob", "Ross", "bobross", "hi@bobross.com");
+    const michelleObama = new Student(
+      2,
+      "Michelle",
+      "Obama",
+      "mrsobama",
+      "michelle@usa.com"
+    );
+
+    cohort5.add(arisaSigrist);
+    cohort5.add(bobRoss);
+    cohort5.add(michelleObama);
+
+    const expected = arisaSigrist;
+    // evaluate
+    const result = cohort5.search(0);
+
+    // verify
+    expect(result).toEqual(expected);
+  });
 });

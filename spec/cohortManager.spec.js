@@ -51,7 +51,7 @@ describe("cohortManager", () => {
     expect(result).toEqual(expected);
   });
 
-  fit("removes specific cohort and returns the cohort list", () => {
+  it("removes specific cohort and returns the cohort list", () => {
     //   setup
     const cohortManager = new CohortManager();
     const cohort3 = new Cohort(3);

@@ -8,12 +8,21 @@ class Cohort {
     this.students.push(newStudent);
   }
 
-  remove(name) {
+  remove(studentName) {
     for (const studentProfile of this.students) {
-      if (studentProfile.fullName === name)
-        return this.students.filter((student) => student.fullName !== name);
+      if (studentProfile.fullName === studentName)
+        return this.students.filter(
+          (student) => student.fullName !== studentName
+        );
     }
     return "ERROR – this student do not exist";
+  }
+
+  search(studentId) {
+    for (const studentProfile of this.students) {
+      if (studentProfile.id === studentId) return studentProfile;
+    }
+    return "ERROR – this cohort do not exist";
   }
 }
 
