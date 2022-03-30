@@ -1,5 +1,6 @@
 import Cohort from "./cohort/Cohort";
 import Student from "./student/Student";
+import StudentSearchOptions from "./student/StudentSearchOptions";
 import ManagerUtils from "./utils/ManagerUtils";
 
 export default class Manager {
@@ -22,8 +23,9 @@ export default class Manager {
     this.students = [];
   }
 
-  addCohort(name: string) : Cohort {
-    if(ManagerUtils.findCohort({ name })) throw new Error("Cohort with the same name already exists");
+  addCohort(name: string): Cohort {
+    if (ManagerUtils.findCohort({ name }))
+      throw new Error("Cohort with the same name already exists");
     const cohort = new Cohort(name);
     this.cohorts.push(cohort);
     return cohort;
@@ -53,8 +55,18 @@ export default class Manager {
     return student;
   }
 
+  removeStudent(options: StudentSearchOptions): boolean {
+    const student = ManagerUtils.findStudent(options);
+    if (!student) throw new Error("Student not found");
+    // TODO : Remove student from cohort
+    const index = this.students.findIndex((s) => s.id === student.id);
+    this.students.splice(index, 1);
+    return true;
+  }
+
   reset() {
     this.cohorts = [];
     this.students = [];
+    this.studentId = 0;
   }
 }
