@@ -7,9 +7,8 @@ describe("Cohort", () => {
   const manager = Manager.getInstance();
 
   beforeEach(() => {
-    cohort = new Cohort("Cohort 1");
     manager.reset();
-    manager.addCohort(cohort)
+    cohort = manager.addCohort('Cohort 1')
   });
 
   it("stores all variables from constructor", () => {

@@ -20,4 +20,4 @@ export function findCohort(options: CohortSearchOptions) : Cohort | undefined {
     });
 }
 
-export default { findStudent }
+export default { findStudent, findCohort }

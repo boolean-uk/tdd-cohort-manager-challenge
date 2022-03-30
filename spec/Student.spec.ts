@@ -29,4 +29,6 @@ describe('Student', () => {
         expect(ManagerUtils.findStudent({email: 'jdoe@mail.com'})).toEqual(student);
     })
 
+
+
 })

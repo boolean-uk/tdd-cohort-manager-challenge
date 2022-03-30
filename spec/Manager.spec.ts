@@ -23,10 +23,17 @@ describe('Manager', () => {
     })
 
     it('adds a new cohort', () => {
-        const cohort = new Cohort('Cohort 1');
-        manager.addCohort(cohort);
+        manager.addCohort('Cohort 1');
 
-        expect(manager.cohorts.includes(cohort)).toBeTrue();
+        expect(manager.cohorts.length).toBe(1)
+    })
+
+    it('cannot create a cohort with the same name', () => {
+
+        manager.addCohort('Cohort 1');
+        expect(() => {
+            manager.addCohort('Cohort 1');
+        }).toThrow();
     })
 
     it('adds new student', () => {
@@ -35,6 +42,16 @@ describe('Manager', () => {
         const student = manager.registerStudent('Jane', 'Doe', 'jdoe', 'jdoe@mail.com');
 
         expect(student).toEqual(studentExpected)
+    })
+
+    it('cannot create a student with the same github username / email', () => {
+        manager.registerStudent('Jane', 'Doe', 'jdoe', 'jdoe@mail.com')
+        expect(() => {
+            manager.registerStudent('Jane', 'Doe', 'jdoe', 'different@mail.com');
+        }).toThrow();
+        expect(() => {
+            manager.registerStudent('Jane', 'Doe', 'differentName', 'jdoe@mail.com');
+        }).toThrow();
     })
 
     it('finds a student with the options object', () => {
