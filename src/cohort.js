@@ -4,13 +4,21 @@ class Cohort {
     this.students = [];
   }
 
-  add(student) {
-    this.students.push(student);
-    return `You've added ${student.fullName} to Cohort ${this.num}`;
+  add(newStudent) {
+    this.students.push(newStudent);
+    return `You've added ${newStudent.fullName} to Cohort ${this.num}`;
   }
 
-  remove(a) {
-    return this.students.filter((student) => student.fullName !== a);
+  remove(name) {
+    for (let i = 0; i < this.students.length; i++) {
+      const studentName = this.students[i].fullName;
+      if (studentName === name) {
+        return this.students.filter(
+          (studentProfile) => studentProfile.fullName !== name
+        );
+      }
+    }
+    return "ERROR – this student do not exist";
   }
 }
 
