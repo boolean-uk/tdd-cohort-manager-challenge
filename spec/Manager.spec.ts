@@ -1,4 +1,3 @@
-import Cohort from "../src/cohort/Cohort";
 import Manager from "../src/Manager";
 import Student from "../src/student/Student";
 import ManagerUtils from "../src/utils/ManagerUtils";
