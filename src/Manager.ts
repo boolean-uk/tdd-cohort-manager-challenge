@@ -1,4 +1,5 @@
 import Cohort from "./cohort/Cohort";
+import CohortSearchOptions from "./cohort/CohortSearchOptions";
 import Student from "./student/Student";
 import StudentSearchOptions from "./student/StudentSearchOptions";
 import ManagerUtils from "./utils/ManagerUtils";
@@ -58,12 +59,21 @@ export default class Manager {
   removeStudent(options: StudentSearchOptions): boolean {
     const student = ManagerUtils.findStudent(options);
     if (!student) throw new Error("Student not found");
-    
-    const cohort = ManagerUtils.findStudentCohort(options)
-    if (cohort) cohort.removeStudent(options)
+
+    const cohort = ManagerUtils.findStudentCohort(options);
+    if (cohort) cohort.removeStudent(options);
 
     const index = this.students.findIndex((s) => s.id === student.id);
     this.students.splice(index, 1);
+    return true;
+  }
+
+  removeCohort(options: CohortSearchOptions): boolean {
+    const cohort = ManagerUtils.findCohort(options);
+    if (!cohort) throw new Error("Cohort not found");
+
+    const index = this.cohorts.findIndex((c) => c.name === cohort.name);
+    this.cohorts.splice(index, 1);
     return true;
   }
 

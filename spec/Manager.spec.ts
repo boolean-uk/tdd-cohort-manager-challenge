@@ -105,4 +105,10 @@ describe("Manager", () => {
     expect(cohort.students.length).toBe(0); // Cohort should be empty
    
   });
+
+  it('removes cohort', () => {
+    const newCohort = manager.addCohort('Cohort 1')
+    manager.removeCohort({ name: newCohort.name })
+    expect(manager.cohorts.length).toBe(0);
+  })
 });
