@@ -90,4 +90,19 @@ describe("Manager", () => {
     expect(manager.removeStudent({ id: newStudent.id })).toBeTrue(); // Removes student
     expect(() => manager.removeStudent({ id: newStudent.id })).toThrow(); // Student doesn't exist anymore
   });
+
+  it("removes students from cohort before removing from manager", () => {
+    const newStudent = manager.registerStudent(
+      "Jane",
+      "Doe",
+      "jdoe",
+      "jdoe@mail.com"
+    );
+    const cohort = manager.addCohort('Cohort 1')
+    cohort.addStudent(newStudent); // Adding to cohort
+    manager.removeStudent({ id: newStudent.id }) // Removing from manager
+ 
+    expect(cohort.students.length).toBe(0); // Cohort should be empty
+   
+  });
 });

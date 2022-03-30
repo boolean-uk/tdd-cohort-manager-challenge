@@ -58,7 +58,10 @@ export default class Manager {
   removeStudent(options: StudentSearchOptions): boolean {
     const student = ManagerUtils.findStudent(options);
     if (!student) throw new Error("Student not found");
-    // TODO : Remove student from cohort
+    
+    const cohort = ManagerUtils.findStudentCohort(options)
+    if (cohort) cohort.removeStudent(options)
+
     const index = this.students.findIndex((s) => s.id === student.id);
     this.students.splice(index, 1);
     return true;

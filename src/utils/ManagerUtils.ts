@@ -51,5 +51,13 @@ export function findCohort(options: CohortSearchOptions) : Cohort | undefined {
 }
 
 
+export function findStudentCohort(options: StudentSearchOptions) : Cohort | undefined {
+    const student = findStudent(options);
+    if(!student) return undefined
+    return Manager.instance.cohorts.find(cohort => {
+        return cohort.students.includes(student.id);
+    });
+}
 
-export default { findStudent, findStudents, findCohort }
+
+export default { findStudent, findStudents, findCohort, findStudentCohort }
