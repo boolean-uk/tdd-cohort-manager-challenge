@@ -28,23 +28,22 @@ A cohort should have a list of students. Each student should have a studentID, f
 
 #### Domain Model
 
-| Class   | Properties         | Methods | Output | Memo                                  |
-| ------- | ------------------ | ------- | ------ | ------------------------------------- |
-| Student |                    |         |        |                                       |
-|         | studentID @ Number |         |        |                                       |
-|         | firstName @String  |         |        |                                       |
-|         | lastName @String   |         |        |                                       |
-|         | githubName @String |         |        |                                       |
-|         | email @String      |         |        |                                       |
-|         |                    |         |        | \*All of the data are via constructor |
+| Class   | Properties                                    | Methods | Output | Memo                                  |
+| ------- | --------------------------------------------- | ------- | ------ | ------------------------------------- |
+| Student |                                               |         |        |                                       |
+|         | studentID @ Number                            |         |        |                                       |
+|         | fullName firstName @String + lastName @String |         |        |                                       |
+|         | githubName @String                            |         |        |                                       |
+|         | email @String                                 |         |        |                                       |
+|         |                                               |         |        | \*All of the data are via constructor |
 
-| Class  | Properties                | Methods                        | Output           | Memo                                                                                                                         |
-| ------ | ------------------------- | ------------------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| Cohort |                           |                                |                  |                                                                                                                              |
-|        | name @String              |                                |                  | via constructor                                                                                                              |
-|        | students @Array[@student] |                                |                  |                                                                                                                              |
-|        |                           | add(@student)                  | no output        | students.push(@student), maybe return a message "you've added: @student"                                                     |
-|        |                           | remove(@firstName + @lastName) | @Array[@student] | students.includes(@firstName + @lastName) ? {students.filter(student => student.name !=== @firstName + @lastName)} : "ERROR" |
+| Class  | Properties                | Methods           | Output           | Memo                                                                                                   |
+| ------ | ------------------------- | ----------------- | ---------------- | ------------------------------------------------------------------------------------------------------ |
+| Cohort |                           |                   |                  |                                                                                                        |
+|        | name @String              |                   |                  | via constructor                                                                                        |
+|        | students @Array[@student] |                   |                  |                                                                                                        |
+|        |                           | add(@student)     | no output        | students.push(@student), maybe return a message "you've added: @student"                               |
+|        |                           | remove(@fullName) | @Array[@student] | students.includes(@fullName) ? {students.filter(student => student.fullName !=== @fullName)} : "ERROR" |
 
 | Class   | Properties          | Methods             | Output                        | Memo                                                                                         |
 | ------- | ------------------- | ------------------- | ----------------------------- | -------------------------------------------------------------------------------------------- |
