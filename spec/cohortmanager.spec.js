@@ -78,4 +78,27 @@ describe('Cohort Tests', () => {
     // verify
     expect(result).toEqual(expected)
   })
+
+  it('Removing a student from a specific cohort', () => {
+    // setup
+    const expected = [
+      {
+        name: 'CohortFive',
+        students: [student1, student3],
+        cohortCapacity: 24
+      }
+    ]
+    cohortManager.createStudent(student1)
+    cohortManager.createStudent(student2)
+    cohortManager.createStudent(student3)
+    cohortManager.createCohort('CohortFive')
+    cohortManager.addStudentToCohort('Toby', 'Carlo', 'CohortFive')
+    cohortManager.addStudentToCohort('User2', 'Name2', 'CohortFive')
+    cohortManager.addStudentToCohort('User3', 'Name3', 'CohortFive')
+    // execute
+    cohortManager.removeStudentFromCohort(2, 'CohortFive')
+    const result = cohortManager.getAllCohorts()
+    // verify
+    expect(result).toEqual(expected)
+  })
 })
