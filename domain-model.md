@@ -3,9 +3,9 @@
 The Cohort Manager should be able to support the following interactions
 
 - (DONE) Create a cohort with a cohort name
-- Search for a cohort by cohort name
+- (DONE) Search for a cohort by cohort name
 - (DONE) Add student to a specific cohort
-- Remove a cohort by cohort name
+- (DONE) **Remove** a cohort by cohort name
 - (DONE) Remove student from a specific cohort
 - (DONE) Return errors if student or cohort not found
 
