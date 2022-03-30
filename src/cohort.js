@@ -8,6 +8,10 @@ class Cohort {
     this.students.push(student);
     return `You've added ${student.fullName} to Cohort ${this.num}`;
   }
+
+  remove(a) {
+    return this.students.filter((student) => student.fullName !== a);
+  }
 }
 
 module.exports = Cohort;

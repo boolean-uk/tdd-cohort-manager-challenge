@@ -45,10 +45,10 @@ A cohort should have a list of students. Each student should have a studentID, f
 |        |                           | add(@student)     | no output        | students.push(@student), maybe return a message "you've added: @student"                               |
 |        |                           | remove(@fullName) | @Array[@student] | students.includes(@fullName) ? {students.filter(student => student.fullName !=== @fullName)} : "ERROR" |
 
-| Class   | Properties          | Methods             | Output                        | Memo                                                                                         |
-| ------- | ------------------- | ------------------- | ----------------------------- | -------------------------------------------------------------------------------------------- |
-| Cohorts |                     |                     |                               |                                                                                              |
-|         | list Array[@cohort] |                     |                               |                                                                                              |
-|         |                     | add(@cohort)        | no output                     | list.push(@cohort)                                                                           |
-|         |                     | search(@cohortName) | @cohort / "ERROR"             | list.find(cohort => cohort.name === @cohortName ? @cohort : "ERROR")                         |
-|         |                     | remove(@cohortName) | list Array[@cohort] / "ERROR" | list.includes(@cohortName) ? {list.filter(cohort => cohort.name !=== @cohortName)} : "ERROR" |
+| Class         | Properties                | Methods             | Output                        | Memo                                                                                                         |
+| ------------- | ------------------------- | ------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| CohortManager |                           |                     |                               |                                                                                                              |
+|               | cohortList Array[@cohort] |                     |                               |                                                                                                              |
+|               |                           | add(@cohort)        | no output                     | cohortList.push(@cohort)                                                                                     |
+|               |                           | search(@cohortName) | @cohort / "ERROR"             | cohortList.find(cohort => cohort.name === @cohortName ? @cohort : "ERROR")                                   |
+|               |                           | remove(@cohortName) | list Array[@cohort] / "ERROR" | cohortList.includes(@cohortName) ? {cohortList.filter(cohort => cohortList.name !=== @cohortName)} : "ERROR" |

@@ -20,7 +20,7 @@ describe("Cohort", () => {
     expect(result).toEqual(expected);
   });
 
-  fit("checkes if the student is added to the student lists", () => {
+  it("checkes if the student is added to the student lists", () => {
     //   setup
     const cohort5 = new Cohort(5);
     const arisaSigrist = new Student(
