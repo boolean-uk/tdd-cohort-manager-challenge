@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx tsc && npx jasmine",
-    "lint": "npx eslint src/**/**",
+    "lint": "npx eslint src/**/** --fix && npx eslint spec/**/** --fix",
     "prepare": "husky install"
   },
   "author": "dearshrewdwit",
