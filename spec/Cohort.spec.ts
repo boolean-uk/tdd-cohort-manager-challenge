@@ -23,6 +23,14 @@ describe("Cohort", () => {
     expect(cohort.students.includes(student.id)).toBeTrue();
   });
 
+  it('cannot add a student that is already inside a cohort', () => {
+    const student = new Student(0, "Jane", "Doe", "jdoe", "jdoe@mail.com");
+    manager.registerStudent("Jane", "Doe", "jdoe", "jdoe@mail.com");
+    cohort.addStudent(student);
+
+    const cohort2 = manager.addCohort('Cohort 2');
+    expect(() => {cohort2.addStudent(student)}).toThrow();
+  })
   it("removes a student", () => {
     const student = new Student(0, "Jane", "Doe", "jdoe", "jdoe@mail.com");
     manager.registerStudent("Jane", "Doe", "jdoe", "jdoe@mail.com");

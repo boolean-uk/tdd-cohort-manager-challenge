@@ -15,6 +15,7 @@ export default class Cohort {
   addStudent(options: StudentSearchOptions) : boolean {
     const student = ManagerUtils.findStudent(options) ;
     if(student === undefined) throw new Error("Student doesn't exist");
+    if(ManagerUtils.findStudentCohort(options) !== undefined) throw new Error("Student already in another cohort");
     if (this.students.includes(student.id))
       throw new Error("Student already exists in cohort");
     else this.students.push(student.id);
