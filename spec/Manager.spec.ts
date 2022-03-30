@@ -6,7 +6,7 @@ import ManagerUtils from '../src/utils/ManagerUtils';
 describe('Manager', () => { 
     const manager = Manager.getInstance();
 
-    afterEach(() => {
+    beforeEach(() => {
         manager.reset();
     })
 

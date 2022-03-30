@@ -9,6 +9,7 @@ describe("Cohort", () => {
   beforeEach(() => {
     cohort = new Cohort("Cohort 1");
     manager.reset();
+    manager.addCohort(cohort)
   });
 
   it("stores all variables from constructor", () => {
