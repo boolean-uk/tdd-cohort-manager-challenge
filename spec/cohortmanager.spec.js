@@ -60,9 +60,21 @@ describe('Cohort Tests', () => {
 
   it('Creates a new cohort', () => {
     // setup
-    const expected = ['Cohort x']
+    const expected = ['Cohort 5']
     // execute
-    const result = cohortManager.createCohort('Cohort x')
+    const result = cohortManager.createCohort('Cohort 5')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('Adding multiple students', () => {
+    // setup
+    const expected = [student1, student2, student3]
+    // execute
+    cohortManager.createStudent(student1)
+    cohortManager.createStudent(student2)
+    cohortManager.createStudent(student3)
+    const result = cohortManager.getStudentList()
     // verify
     expect(result).toEqual(expected)
   })
