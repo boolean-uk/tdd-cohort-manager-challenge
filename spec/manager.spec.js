@@ -45,9 +45,38 @@ describe('Manager class', () => {
     expect(manager.cohorts[0].students.length).toEqual(1)
   })
 
+  it('updates studentID each time a new student is added', () => {
+    manager.createCohort('Cohort 5')
+    const expected = manager.studentID + 1
+    manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 5')
+    expect(manager.studentID).toEqual(expected)
+  })
+
   it('returns error message if student is added to unexisting cohort', () => {
     manager.createCohort('Cohort 5')
     const expected = 'Error: Cohort not found.'
     expect(manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 1')).toEqual(expected)
+    expect(manager.studentID).toEqual(1)
+  })
+
+  it('removes a student from a cohort', () => {
+    manager.createCohort('Cohort 5')
+    const expected = manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 5')
+    expect(manager.removeStudent(1, 'Cohort 5')).toEqual(expected)
+    expect(manager.cohorts[0].students.length).toEqual(0)
+  })
+
+  it('returns error message if student does not exist in cohort', () => {
+    manager.createCohort('Cohort 5')
+    manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 5')
+    expect(manager.removeStudent(2, 'Cohort 5')).toEqual('Error: Student or Cohort not found')
+    expect(manager.cohorts[0].students.length).toEqual(1)
+  })
+
+  it('returns error message if cohort does not exist', () => {
+    manager.createCohort('Cohort 5')
+    manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 5')
+    expect(manager.removeStudent(1, 'Cohort 1')).toEqual('Error: Student or Cohort not found')
+    expect(manager.cohorts[0].students.length).toEqual(1)
   })
 })

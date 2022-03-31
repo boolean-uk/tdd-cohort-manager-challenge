@@ -41,6 +41,16 @@ class Manager {
 
     return 'Error: Cohort not found.'
   }
+
+  removeStudent (studentID, cohortName) {
+    const cohort = this.getCohort(cohortName)
+    try {
+      return cohort.removeStudent(studentID)
+    }
+    catch {
+      return 'Error: Student or Cohort not found'
+    }
+  }
 }
 
 module.exports = Manager
