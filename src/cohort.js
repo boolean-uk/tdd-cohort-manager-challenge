@@ -7,21 +7,22 @@ class Cohort {
 
   add (newStudent) {
     if (this.students.length <= this.capacity) this.students.push(newStudent)
-    return 'ERROR – this cohort hit the capacity'
+    return Error('this cohort hit the capacity')
   }
 
   remove (studentName) {
     for (const studentProfile of this.students) {
-      if (studentProfile.fullName === studentName) return this.students.filter((student) => student.fullName !== studentName)
+      const targetIndex = this.students.indexOf(studentProfile)
+      if (studentProfile.fullName === studentName) return this.students.splice(targetIndex, 1)
     }
-    return 'ERROR – this student do not exist'
+    return Error('this student do not exist')
   }
 
   search (studentId) {
     for (const studentProfile of this.students) {
       if (studentProfile.id === studentId) return studentProfile
     }
-    return 'ERROR – this cohort do not exist'
+    return Error('this student do not exist')
   }
 }
 

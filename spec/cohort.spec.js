@@ -41,10 +41,11 @@ describe('Cohort', () => {
     //   setup
     cohort5.add(arisaSigrist)
     cohort5.add(bobRoss)
+    cohort5.remove('Bob Ross')
 
     const expected = [arisaSigrist]
     // evaluate
-    const result = cohort5.remove('Bob Ross')
+    const result = cohort5.students
     // verify
     expect(result).toEqual(expected)
   })
@@ -54,7 +55,7 @@ describe('Cohort', () => {
     cohort5.add(arisaSigrist)
     cohort5.add(bobRoss)
 
-    const expected = 'ERROR – this student do not exist'
+    const expected = Error('this student do not exist')
     // evaluate
     const result = cohort5.remove('Michele Obama')
     // verify
@@ -93,7 +94,7 @@ describe('Cohort', () => {
 
     const expected = cohort5.add(michelleObama)
     // evaluate
-    const result = 'ERROR – this cohort hit the capacity'
+    const result = Error('this cohort hit the capacity')
 
     // verify
     expect(result).toEqual(expected)
