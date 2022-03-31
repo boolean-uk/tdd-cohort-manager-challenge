@@ -5,6 +5,7 @@ class Manager {
   constructor () {
     this.cohorts = []
     this.studentID = 1
+    this.maxCapacity = 24
   }
 
   createCohort (cohortName) {
@@ -25,7 +26,6 @@ class Manager {
       const student = cohort.students.find(el => el.id === studentID)
       if (student) return student
     }
-
   }
 
   removeCohort (cohortName) {
@@ -40,14 +40,13 @@ class Manager {
 
   addStudent (firstName, lastName, gitHub, email, cohortName) {
     const cohort = this.getCohort(cohortName)
-    if (cohort) {
-      const student = new Student(this.studentID, firstName, lastName, gitHub, email)
-      cohort.addStudent(student)
-      this.studentID++
-      return student
-    }
-
-    return 'Error: Cohort not found.'
+    if (!cohort) return 'Error: Cohort not found.'
+    if (cohort.students.length >= this.maxCapacity) return 'Cohort at max capacity already.'
+    
+    const student = new Student(this.studentID, firstName, lastName, gitHub, email)
+    cohort.addStudent(student)
+    this.studentID++
+    return student
   }
 
   removeStudent (studentID, cohortName) {

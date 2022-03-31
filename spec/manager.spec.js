@@ -87,4 +87,13 @@ describe('Manager class', () => {
     expected = manager.addStudent('Jane', 'Doe', 'janenycode', 'janedoe@email.com', 'Cohort 6')
     expect(manager.getStudent(2)).toEqual(expected)
   })
+
+  it('does not add students beyond the cohorts max capacity', () => {
+    manager.createCohort('Cohort 5')
+    for (let i = 0; i < 24; i++) {
+      manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 5')
+    }
+    expect(manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 5'))
+    .toEqual('Cohort at max capacity already.')
+  })
 })
