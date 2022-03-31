@@ -1,33 +1,36 @@
+const Cohort = require('./cohort.js')
+
 class CohortManager {
   constructor () {
     this.cohortList = []
   }
 
-  add (newCohort) {
+  add (cohortNum) {
+    const existingCohort = this.cohortList.find(cohort => cohort.name === cohortNum)
+    if (!cohortNum || existingCohort) return Error('Empty name or name already exist')
+
+    const newCohort = new Cohort(cohortNum)
     this.cohortList.push(newCohort)
+
+    return `You have added Cohort ${cohortNum}`
   }
 
-  search (cohortName) {
+  search (cohortNum) {
     for (const cohort of this.cohortList) {
-      if (cohort.name === cohortName) return cohort
+      if (cohort.name === cohortNum) return cohort
     }
     return Error('this cohort do not exist')
   }
 
-  remove (cohortName) {
+  remove (cohortNum) {
     for (const cohort of this.cohortList) {
       const targetIndex = this.cohortList.indexOf(cohort)
-      if (cohort.name === cohortName) return this.cohortList.splice(targetIndex, 1)
+      if (cohort.name === cohortNum) {
+        this.cohortList.splice(targetIndex, 1)
+        return this.cohortList
+      }
     }
     return Error('this cohort do not exist')
-  }
-
-  eligible () {
-    const modifiedCohortList = []
-    for (const cohort of this.cohortList) {
-      if (cohort.name && !modifiedCohortList.includes(cohort)) modifiedCohortList.push(cohort)
-    }
-    return modifiedCohortList
   }
 }
 

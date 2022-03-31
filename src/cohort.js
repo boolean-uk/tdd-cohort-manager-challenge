@@ -13,7 +13,10 @@ class Cohort {
   remove (studentName) {
     for (const studentProfile of this.students) {
       const targetIndex = this.students.indexOf(studentProfile)
-      if (studentProfile.fullName === studentName) return this.students.splice(targetIndex, 1)
+      if (studentProfile.fullName === studentName) {
+        this.students.splice(targetIndex, 1)
+        return this.students
+      }
     }
     return Error('this student do not exist')
   }

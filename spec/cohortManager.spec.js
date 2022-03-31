@@ -7,7 +7,6 @@ describe ('cohortManager', () => {
   let cohort3
   let cohort4
   let cohort5
-  let cohortX
   let arisaSigrist
   let bobRoss
   let michelleObama
@@ -17,7 +16,6 @@ describe ('cohortManager', () => {
     cohort3 = new Cohort(3)
     cohort4 = new Cohort(4)
     cohort5 = new Cohort(5)
-    cohortX = new Cohort()
     arisaSigrist = new Student(
       'Arisa',
       'Sigrist',
@@ -33,26 +31,23 @@ describe ('cohortManager', () => {
     )
   })
 
-
-  it('adds a new cohort is added to the cohort list', () => {
+it('adds a new cohort is added to the cohort list', () => {
     //   setup
-    cohortManager.add(cohort5)
 
-    const expected = [cohort5]
+    const expected = 'You have added Cohort 5'
     // evaluate
-    const result = cohortManager.cohortList
+    const result = cohortManager.add(5)
     // verify
     expect(result).toEqual(expected)
   })
 
   it('searches a specific cohort', () => {
     //   setup
+    cohortManager.add(3)
+    cohortManager.add(4)
+    cohortManager.add(5)
 
-    cohortManager.add(cohort3)
-    cohortManager.add(cohort4)
-    cohortManager.add(cohort5)
-
-    const expected = cohort5
+    const expected = cohortManager.cohortList[2]
     // evaluate
     const result = cohortManager.search(5)
     // verify
@@ -61,19 +56,18 @@ describe ('cohortManager', () => {
 
   it('returns a error for searching a non-existant cohort', () => {
     //   setup
-    cohortManager.add(cohort3)
-    cohortManager.add(cohort4)
-    cohortManager.add(cohort5)
+    cohortManager.add(3)
+    cohortManager.add(4)
+    cohortManager.add(5)
 
     const expected = Error('this cohort do not exist')
     // evaluate
-    const result = cohortManager.search('Cohort 6')
+    const result = cohortManager.search(6)
     // verify
     expect(result).toEqual(expected)
   })
 
   it('returns a error since it is more than capacity', () => {
-    cohortManager.add(cohort5)
     cohort5.students = ['studentA', 'studentB', 'studentC']
     cohort5.add(arisaSigrist)
     cohort5.add(bobRoss)
@@ -87,15 +81,13 @@ describe ('cohortManager', () => {
 
   it('removes specific cohort and returns the cohort list', () => {
     //   setup
-    cohortManager.add(cohort3)
-    cohortManager.add(cohort4)
-    cohortManager.add(cohort5)
+    cohortManager.add(3)
+    cohortManager.add(4)
+    cohortManager.add(5)
 
-    cohortManager.remove(4)
-
-    const expected = [cohort3, cohort5]
+    const expected = cohortManager.cohortList
     // evaluate
-    const result = cohortManager.cohortList
+    const result = cohortManager.remove(4)
     // verify
     expect(result).toEqual(expected)
   })
@@ -115,88 +107,23 @@ describe ('cohortManager', () => {
 
   it('returns cohort list with names and no duplicates', () => {
     //   setup
-    cohortManager.add(cohort3)
-    cohortManager.add(cohort4)
-    cohortManager.add(cohort5)
-    cohortManager.add(cohort5)
-    cohortManager.add(cohort5)
-    cohortManager.add(cohortX)
+    cohortManager.add(3)
+    cohortManager.add(4)
+    cohortManager.add(5)
 
-    const expected = [cohort3, cohort4, cohort5]
+    const expected = Error('Empty name or name already exist')
     // evaluate
-    const result = cohortManager.eligible()
+    const result = cohortManager.add(5)
     // verify
     expect(result).toEqual(expected)
   })
 
-
-
-  /* --------- TESTS FOR COHORT.SPEC.JS BY USING COHORTMANAGER CLASS --------- */
-  it('checks if the student is added to the student lists', () => {
+  it('returns an error for adding cohort without name', () => {
     //   setup
-    cohortManager.add(cohort5)
-    cohort5.add(arisaSigrist)
-
-    const expected = cohortManager.cohortList[0].students[0]
+    const expected = Error('Empty name or name already exist')
     // evaluate
-    const result = arisaSigrist
+    const result = cohortManager.add('')
     // verify
     expect(result).toEqual(expected)
   })
-
-  it('removes a specific student from the cohort', () => {
-    //   setup
-    cohortManager.add(cohort5)
-    cohort5.add(arisaSigrist)
-    cohort5.add(bobRoss)
-    cohort5.remove('Bob Ross')
-
-    const expected = [arisaSigrist]
-    // evaluate
-    const result = cohortManager.cohortList[0].students
-    // verify
-    expect(result).toEqual(expected)
-  })
-
-  it('returns an error for trying to remove a non-existing student', () => {
-    //   setup
-    cohortManager.add(cohort5)
-    cohort5.add(arisaSigrist)
-    cohort5.add(bobRoss)
-
-    const expected = Error('this student do not exist')
-    // evaluate
-    const result = cohort5.remove('Michele Obama')
-    // verify
-    expect(result).toEqual(expected)
-  })
-
-  it('searchs a student by id', () => {
-    cohortManager.add(cohort5)
-    cohort5.add(arisaSigrist)
-    cohort5.add(bobRoss)
-    cohort5.add(michelleObama)
-
-    cohort5.students[0].id = 0
-    const expected = arisaSigrist
-    // evaluate
-    const result = cohort5.search(0)
-    // verify
-    expect(result).toEqual(expected)
-  })
-
-  it('keeps adding students since is less than capacity', () => {
-    cohortManager.add(cohort5)
-    cohort5.add(arisaSigrist)
-    cohort5.add(bobRoss)
-    cohort5.add(michelleObama)
-
-    const expected = [arisaSigrist, bobRoss, michelleObama]
-    // evaluate
-    const result = cohortManager.cohortList[0].students
-
-    // verify
-    expect(result).toEqual(expected)
-  })
-
 })

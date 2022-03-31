@@ -79,6 +79,7 @@ describe('Cohort', () => {
     cohort5.add(bobRoss)
     cohort5.add(michelleObama)
     const expected = [arisaSigrist, bobRoss, michelleObama]
+
     // evaluate
     const result = cohort5.students
 
@@ -90,7 +91,6 @@ describe('Cohort', () => {
     cohort5.students = ['studentA', 'studentB', 'studentC']
     cohort5.add(arisaSigrist)
     cohort5.add(bobRoss)
-
     const expected = cohort5.add(michelleObama)
     // evaluate
     const result = Error('this cohort hit the capacity')
