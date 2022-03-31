@@ -2,9 +2,9 @@
 | Properties   | Methods | Output | Comments
 |--------------|---------|--------|---------
 | cohorts = [] | createCohort (cohortName @String) | @Cohort | adds new cohort to cohorts array
-|              | getCohort (cohortName @String) | @Cohort **OR** false (not found) | looks for cohort in cohorts array
+| studentID @Number | getCohort (cohortName @String) | @Cohort **OR** false (not found) | looks for cohort in cohorts array
 |              | removeCohort (cohortName @String) | @Cohort **OR** error (not found) | deletes a specific cohort
-|              | addStudent (@Student, cohortName @String) | @Student | adds a student to a specific cohort
+|              | addStudent (firstName @String, lastName @String, gitHub @String, email @String, cohortName @String) | @Student | adds a student to a specific cohort
 |              | removeStudent (studentID, cohortName @String) | @Student **OR** error (not found) | deletes a student from a specific cohort
 
 ---
