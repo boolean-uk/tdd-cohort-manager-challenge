@@ -1,16 +1,15 @@
-// const Student = require("./student.js");
-
 class CohortManager {
     constructor() {
-       this.cohortClasses = [] 
+       this.cohortClasses = [cohort1, cohort2]
     }
-
+    
     add(cohortN) {
+        console.log('here:',cohortN)
         this.cohortClasses.push(cohortN)
+        return this.cohortClasses
     }
-
-    errorMessage = 'cohort not found!'
-
+    
+    
     foundCohort(cohortN) {
         for ( let i=0 ; i < this.cohortClasses.length; i++) {
             if (cohortN === this.cohortClasses[i].cohortN) {    
@@ -19,14 +18,16 @@ class CohortManager {
         }
         return this.errorMessage
     }
-
+    
     remove(cohortN) {
+        const errorMessage = 'cohort not found!'
         for ( let i=0 ; i < this.cohortClasses.length; i++) {
-            if (cohortN === this.cohortClasses[i].cohortN) {
-                this.cohortClasses.splice(i, 1)
+            if (cohortN === this.cohortClasses[i].cohortName) {
+                return this.cohortClasses.splice(i, 1)[0]
+                // return this.cohortClasses[i]
             }
         }
-        return this.errorMessage
+        return errorMessage
     }
 }
 

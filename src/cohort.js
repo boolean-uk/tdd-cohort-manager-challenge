@@ -1,24 +1,26 @@
-// const Student = require("./student.js");
-
 class Cohort {
     constructor(cohortName) {
         this.cohortName = cohortName
         this.students = []
-        this.existError = 'Student is not in the register'
     }
-
+    
     add(student) {
-       this.students.push(student)
-       return this.students
+        this.students.push(student)
+        return this.students
     }
-
+    
+    // isn't [i] and this.students[i] targeting the same thing
     remove (studentID) {
+        const existError = 'Student is not in the register'
+
         for ( let i = 0; i < this.students.length; i++ ) {
             if (this.students[i].studentId === studentID) {
-                this.students.splice(this.students[i],1)
+                this.students.splice(i, 1)
+                return this.students
             }
         }
-        return this.existError
+
+        return existError
     }
 
 }

@@ -11,6 +11,7 @@ describe("Cohort", () => {
         const addedStudent = cohort.add(student)
         // verify
         expect(addedStudent).toEqual(cohort.students)
+        // expect(cohort).toEqual(cohort.cohortName)
     })
 
     it("remove student", () => {
@@ -19,11 +20,11 @@ describe("Cohort", () => {
         const student = new Student(1,'Student One', 'email@email.com')
         // execute
         cohort.add(student)
-        studentIDx = student.studentId
-        cohort.remove(studentIDx)
-        emptyArray = 0
+        const studentIDx = student.studentId
+        const result = cohort.remove(studentIDx)
+        const emptyArray = []
         // verify
-        expect(cohort.students.length).toEqual(emptyArray)
+        expect(result).toEqual(emptyArray)
     })
 
     it("remove specific student", () => {
@@ -34,11 +35,13 @@ describe("Cohort", () => {
         // execute
         cohort.add(student)
         cohort.add(student2)
-        studentIDx = student2.studentId
-        cohort.remove(studentIDx)
-        emptyArray = 1
+
+        const studentIDx = student2.studentId
+        result = cohort.remove(studentIDx)
+        emptyArray = [student]
+        
         // verify
-        expect(cohort.students.length).toEqual(emptyArray)
+        expect(result).toEqual(emptyArray)
     })
 
     it("error message when trying to remove student", () => {
@@ -47,13 +50,13 @@ describe("Cohort", () => {
         const student = new Student(1,'Student One', 'email@email.com')
         const student2 =new Student(2, 'Student Two', 'email2@email.com')
         // execute
-        cohort.add(student)
+        result = cohort.add(student)
         // cohort.add(student2)
-        studentIDx = student2.studentId
+        const studentIDx = student2.studentId
         const removeStudent = cohort.remove(studentIDx)
-        emptyArray = 1
+        emptyArray = [student]
         // verify
         expect(removeStudent).toEqual('Student is not in the register')
-        expect(cohort.students.length).toEqual(emptyArray)
+        expect(result).toEqual(emptyArray)
     })
 })
