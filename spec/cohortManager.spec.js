@@ -7,5 +7,7 @@ describe("Cohort Manager", () => {
         const cohortManager = new CohortManager()
         // execute
         cohortManager.add(cohort1)
+        // verify
+        expect().toEqual()
     })
 })

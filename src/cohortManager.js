@@ -5,12 +5,28 @@ class CohortManager {
        this.cohortClasses = [] 
     }
 
-    add(cohort) {
-        this.cohortClasses.push(cohort)
+    add(cohortN) {
+        this.cohortClasses.push(cohortN)
     }
 
-    remove() {
-        
+    errorMessage = 'cohort not found!'
+
+    foundCohort(cohortN) {
+        for ( let i=0 ; i < this.cohortClasses.length; i++) {
+            if (cohortN === this.cohortClasses[i].cohortN) {    
+                return this.cohortClasses[i]
+            }
+        }
+        return this.errorMessage
+    }
+
+    remove(cohortN) {
+        for ( let i=0 ; i < this.cohortClasses.length; i++) {
+            if (cohortN === this.cohortClasses[i].cohortN) {
+                this.cohortClasses.splice(i, 1)
+            }
+        }
+        return this.errorMessage
     }
 }
 
