@@ -1,6 +1,6 @@
 class Cohort {
   constructor() {
-    this.cohortName = cohortName;
+    this.cohortName = [];
     this.studentList = [];
   }
 }
