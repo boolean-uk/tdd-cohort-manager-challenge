@@ -101,6 +101,46 @@ class CohortManager {
     }
     return studentNotFoundError
   }
+
+  searchStudent(id) {
+    for (let i = 0; i < this.studentList.length; i++) {
+      const student = this.studentList[i]
+      if (student.studentID === id) {
+        return student
+      }
+    }
+    return studentNotFoundError
+  }
+
+  searchStudentByName(firstName, lastName) {
+    const studentArray = []
+    for (let i = 0; i < this.studentList.length; i++) {
+      const student = this.studentList[i]
+      if (
+        student.studentFirstName === firstName &&
+        student.studentLastName === lastName
+      ) {
+        studentArray.push(student)
+      }
+    }
+    return studentArray
+  }
+
+  searchCohort(cohortName) {
+    const found = this.schoolCohorts.find((c) => c.name === cohortName)
+    if (found) {
+      return found
+    }
+    return cohortNotFoundError
+  }
+
+  getAllCohorts() {
+    return this.schoolCohorts
+  }
+
+  getStudentList() {
+    return this.studentList
+  }
 }
 
 module.exports = CohortManager
