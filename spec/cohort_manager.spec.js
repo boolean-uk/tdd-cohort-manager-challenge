@@ -138,21 +138,30 @@ describe("cohort manager", () => {
     expect(result.students[1].firstName).toEqual("James");
   });
 
-  //TEST 9
-  // it("remove a student from a specific cohort - COHORT OR STUDENT NOT FOUND", () => {
-  //   // setup
-  //   const manager = new CohortManager()
-  //   const errorMessage = "COHORT NOT FOUND"
-  //   // execute
-  //   manager.createCohort("Cohort1")
-  //   manager.createCohort("Cohort2")
-  //   manager.createCohort("Cohort3")
-  //   manager.addStudent("Cohort3", "Mike Wazowski", "mike_GH", "mike@monster.inc")
-  //   manager.addStudent("Cohort3", "James Sullivan", "sullyGH", "sully@sully.inc")
-  //   manager.addStudent("Cohort3", "Randall Boggs", "boggsGH", "boggs@inc.com")
-  //   result = manager.removeStudent("Cohort5", "Duck")
-  //   // verify
-  //   expect(result).toEqual(errorMessage)
-
-  // })
+  // TEST 9
+  it("remove a student from a specific cohort - COHORT OR STUDENT NOT FOUND", () => {
+    // setup
+    const manager = new CohortManager();
+    const errorMessage = "COHORT NOT FOUND";
+    // execute
+    manager.createCohort("Cohort1");
+    manager.createCohort("Cohort2");
+    manager.createCohort("Cohort3");
+    manager.addStudent(
+      "Cohort3",
+      "Mike Wazowski",
+      "mike_GH",
+      "mike@monster.inc"
+    );
+    manager.addStudent(
+      "Cohort3",
+      "James Sullivan",
+      "sullyGH",
+      "sully@sully.inc"
+    );
+    manager.addStudent("Cohort3", "Randall Boggs", "boggsGH", "boggs@inc.com");
+    result = manager.removeStudent("Cohort5", "Duck");
+    // verify
+    expect(result).toEqual(errorMessage);
+  });
 });
