@@ -8,9 +8,13 @@ class CohortManager {
   }
 
   addCohort(name, maxCapacity) {
-    if (name.length === 0) {return false}
+    if (name.length === 0) {
+      return false;
+    }
     for (let i = 0; i < this.cohortArray.length; i++) {
-      if (name === this.cohortArray[i].name) {return false}
+      if (name === this.cohortArray[i].name) {
+        return false;
+      }
     }
     const cohort = new Cohort(name, maxCapacity);
     this.cohortArray.push(cohort);
@@ -59,10 +63,25 @@ class CohortManager {
   }
 
   addStudentToCohort(cohortName, firstName, surname, githubUser, email) {
-    if (this.searchByStudentEmail(email) !== "There are no students with the entered email"){return false}
-    const student = new Student(cohortName,firstName,surname,githubUser,email);
+    if (
+      this.searchByStudentEmail(email) !==
+      "There are no students with the entered email"
+    ) {
+      return false;
+    }
+    const student = new Student(
+      cohortName,
+      firstName,
+      surname,
+      githubUser,
+      email
+    );
     for (let i = 0; i < this.cohortArray.length; i++) {
-      if (cohortName === this.cohortArray[i].name && this.cohortArray[i].studentsArray.length < this.cohortArray[i].maxCapacity) {
+      if (
+        cohortName === this.cohortArray[i].name &&
+        this.cohortArray[i].studentsArray.length <
+          this.cohortArray[i].maxCapacity
+      ) {
         student.studentID = this.studentID;
         this.studentID++;
         this.cohortArray[i].studentsArray.push(student);
@@ -86,43 +105,52 @@ class CohortManager {
     return false;
   }
 
-  searchStudentByFirstName(firstName){
-    let matchedFirstNameArray = []
+  searchStudentByFirstName(firstName) {
+    const matchedFirstNameArray = [];
     for (let i = 0; i < this.cohortArray.length; i++) {
       for (let j = 0; j < this.cohortArray[i].studentsArray.length; j++) {
-        if(this.cohortArray[i].studentsArray[j].firstName === firstName) {
-          matchedFirstNameArray.push(this.cohortArray[i].studentsArray[j])
+        if (this.cohortArray[i].studentsArray[j].firstName === firstName) {
+          matchedFirstNameArray.push(this.cohortArray[i].studentsArray[j]);
         }
       }
     }
-    if (matchedFirstNameArray.length === 0){return false}
-    return matchedFirstNameArray
+    if (matchedFirstNameArray.length === 0) {
+      return false;
+    }
+    return matchedFirstNameArray;
   }
 
-  searchStudentBySurname(surname){
-    let matchedSurnameArray = []
+  searchStudentBySurname(surname) {
+    const matchedSurnameArray = [];
     for (let i = 0; i < this.cohortArray.length; i++) {
       for (let j = 0; j < this.cohortArray[i].studentsArray.length; j++) {
-        if(this.cohortArray[i].studentsArray[j].surname === surname) {
-          matchedSurnameArray.push(this.cohortArray[i].studentsArray[j])
+        if (this.cohortArray[i].studentsArray[j].surname === surname) {
+          matchedSurnameArray.push(this.cohortArray[i].studentsArray[j]);
         }
       }
     }
-    if (matchedSurnameArray.length === 0){return false}
-    return matchedSurnameArray
+    if (matchedSurnameArray.length === 0) {
+      return false;
+    }
+    return matchedSurnameArray;
   }
 
-  searchStudentByFullName(firstName, surname){
-    let matchedFullNameArray = []
+  searchStudentByFullName(firstName, surname) {
+    const matchedFullNameArray = [];
     for (let i = 0; i < this.cohortArray.length; i++) {
       for (let j = 0; j < this.cohortArray[i].studentsArray.length; j++) {
-        if(this.cohortArray[i].studentsArray[j].surname === surname && this.cohortArray[i].studentsArray[j].firstName === firstName){
-          {matchedFullNameArray.push(this.cohortArray[i].studentsArray[j])}
+        if (
+          this.cohortArray[i].studentsArray[j].surname === surname &&
+          this.cohortArray[i].studentsArray[j].firstName === firstName
+        ) {
+          matchedFullNameArray.push(this.cohortArray[i].studentsArray[j]);
         }
       }
     }
-    if (matchedFullNameArray.length === 0){return false}
-    return matchedFullNameArray
+    if (matchedFullNameArray.length === 0) {
+      return false;
+    }
+    return matchedFullNameArray;
   }
 }
 
