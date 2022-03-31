@@ -20,6 +20,14 @@ class Manager {
     return false
   }
 
+  getStudent (studentID) {
+    for (const cohort of this.cohorts) {
+      const student = cohort.students.find(el => el.id === studentID)
+      if (student) return student
+    }
+
+  }
+
   removeCohort (cohortName) {
     const cohortToRemove = this.getCohort(cohortName)
     if (cohortToRemove) {
@@ -46,8 +54,7 @@ class Manager {
     const cohort = this.getCohort(cohortName)
     try {
       return cohort.removeStudent(studentID)
-    }
-    catch {
+    } catch {
       return 'Error: Student or Cohort not found'
     }
   }

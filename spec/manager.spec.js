@@ -79,4 +79,12 @@ describe('Manager class', () => {
     expect(manager.removeStudent(1, 'Cohort 1')).toEqual('Error: Student or Cohort not found')
     expect(manager.cohorts[0].students.length).toEqual(1)
   })
+
+  it('gets a student from any cohort', () => {
+    manager.createCohort('Cohort 5')
+    manager.createCohort('Cohort 6')
+    manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 5')
+    expected = manager.addStudent('Jane', 'Doe', 'janenycode', 'janedoe@email.com', 'Cohort 6')
+    expect(manager.getStudent(2)).toEqual(expected)
+  })
 })
