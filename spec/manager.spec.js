@@ -95,5 +95,16 @@ describe('Manager class', () => {
     }
     expect(manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 5'))
     .toEqual('Cohort at max capacity already.')
+    expect(manager.cohorts[0].students.length).toEqual(24)
+  })
+  
+  it('should not create cohorts with the same name', () => {
+    manager.createCohort('Cohort 5')
+    expect(manager.createCohort('Cohort 5')).toEqual('Cannot create cohorts with the same name.')
+  })
+
+  it('should not create cohorts without a name', () => {
+    expect(manager.createCohort()).toEqual('Cannot create a cohort without a name.')
+    expect(manager.createCohort('')).toEqual('Cannot create a cohort without a name.')
   })
 })

@@ -9,6 +9,10 @@ class Manager {
   }
 
   createCohort (cohortName) {
+    if (!cohortName) return 'Cannot create a cohort without a name.'
+    const cohortExists = this.cohorts.find(el => el.name === cohortName)
+    if (cohortExists) return 'Cannot create cohorts with the same name.'
+
     const cohortToCreate = new Cohort(cohortName)
     this.cohorts.push(cohortToCreate)
 
