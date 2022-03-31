@@ -17,4 +17,9 @@ describe('Manager class', () => {
     const expected = manager.cohorts[0]
     expect(manager.getCohort('Cohort 5')).toEqual(expected)
   })
+
+  it('returns falsy if cohort does not exist in cohorts array', () => {
+    manager.createCohort('Cohort 5')
+    expect(manager.getCohort('Cohort 1')).toEqual(false)
+  })
 })

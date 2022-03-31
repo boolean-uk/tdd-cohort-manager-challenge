@@ -13,7 +13,9 @@ class Manager {
   }
 
   getCohort (cohortName) {
-    return this.cohorts.find(cohort => cohort.name === cohortName)
+    const cohort = this.cohorts.find(cohort => cohort.name === cohortName)
+    if (cohort) return cohort
+    return false
   }
 }
 
