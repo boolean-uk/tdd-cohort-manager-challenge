@@ -40,6 +40,7 @@ A cohort should have a list of students. Each student should have a studentID, f
 - search
 - add
 - remove
+- cant' exist
 - return error
 
 #### Domain Model
@@ -53,20 +54,21 @@ A cohort should have a list of students. Each student should have a studentID, f
 |         | email @String                                 |         |        |                                       |
 |         |                                               |         |        | \*All of the data are via constructor |
 
-| Class  | Properties                | Methods           | Output           | Memo                                                                                                   |
-| ------ | ------------------------- | ----------------- | ---------------- | ------------------------------------------------------------------------------------------------------ |
-| Cohort |                           |                   |                  |                                                                                                        |
-|        | name @String              |                   |                  | via constructor                                                                                        |
-|        | students @Array[@student] |                   |                  |                                                                                                        |
-|        | capacity @Num             |
-|        |                           | add(@student)     | no output        | students.push(@student) \*make sure that @Array[@student].length <= capacity or else "ERROR"           |
-|        |                           | remove(@fullName) | @Array[@student] | students.includes(@fullName) ? {students.filter(student => student.fullName !=== @fullName)} : "ERROR" |
-|        |                           | search(@id)       | @student         | same logic as search(@cohortName) in CohortManager class                                               |
+| Class  | Properties                | Methods           | Output           | Memo                                                                                         |
+| ------ | ------------------------- | ----------------- | ---------------- | ---------------------------------------------------------------------------------------------|
+| Cohort |                           |                   |                  |                                                                                              |
+|        | name @String              |                   |                  | via constructor                                                                              |
+|        | students @Array[@student] |                   |                  |                                                                                              |
+|        | capacity @Num             |                   |                  |                                                                                              |
+|        |                           | add(@student)     | no output        | students.push(@student) \*make sure that @Array[@student].length <= capacity or else "ERROR" |
+|        |                           | remove(@fullName) | @Array[@student] | students.filter(student => student.fullName !=== @fullName): "ERROR"                         |
+|        |                           | search(@id)       | @student         | same logic as search(@cohortName) in CohortManager class                                     |
 
-| Class         | Properties                | Methods             | Output                        | Memo                                                                                                         |
-| ------------- | ------------------------- | ------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| CohortManager |                           |                     |                               |                                                                                                              |
-|               | cohortList Array[@cohort] |                     |                               |                                                                                                              |
-|               |                           | add(@cohort)        | no output                     | cohortList.push(@cohort)                                                                                     |
-|               |                           | search(@cohortName) | @cohort / "ERROR"             | cohortList.find(cohort => cohort.name === @cohortName ? @cohort : "ERROR")                                   |
-|               |                           | remove(@cohortName) | list Array[@cohort] / "ERROR" | cohortList.includes(@cohortName) ? {cohortList.filter(cohort => cohortList.name !=== @cohortName)} : "ERROR" |
+| Class         | Properties                | Methods             | Output                        | Memo                                                                    |
+| ------------- | ------------------------- | ------------------- | ----------------------------- | ----------------------------------------------------------------------- |
+| CohortManager |                           |                     |                               |                                                                         |
+|               | cohortList Array[@cohort] |                     |                               |                                                                         |
+|               |                           | add(@cohort)        | no output                     | cohortList.push(@cohort)                                                |
+|               |                           | search(@cohortName) | @cohort / "ERROR"             | cohort.name === @cohortName ?  @cohort : "ERROR"                        |
+|               |                           | remove(@cohortName) | list Array[@cohort] / "ERROR" | cohortList.filter(cohort => cohortList.name !=== @cohortName) : "ERROR" |
+|               |                           | eligible()          | list Array[@cohort]           | loop through, and return only cohorts with names and no duplicates      |

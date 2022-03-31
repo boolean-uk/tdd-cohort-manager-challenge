@@ -1,6 +1,6 @@
 class Cohort {
   constructor (num) {
-    this.name = `Cohort ${num}`
+    this.name = num
     this.students = []
     this.capacity = 24
   }

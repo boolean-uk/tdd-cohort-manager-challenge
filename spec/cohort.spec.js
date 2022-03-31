@@ -10,15 +10,13 @@ describe('Cohort', () => {
   beforeEach(() => {
     cohort5 = new Cohort(5)
     arisaSigrist = new Student(
-      0,
       'Arisa',
       'Sigrist',
       'sigristarisa',
       'arisasigrist.ch@gmail.com'
     )
-    bobRoss = new Student(1, 'Bob', 'Ross', 'bobross', 'hi@bobross.com')
+    bobRoss = new Student('Bob', 'Ross', 'bobross', 'hi@bobross.com')
     michelleObama = new Student(
-      2,
       'Michelle',
       'Obama',
       'mrsobama',
@@ -67,6 +65,8 @@ describe('Cohort', () => {
     cohort5.add(bobRoss)
     cohort5.add(michelleObama)
 
+    cohort5.students[0].id = 0
+
     const expected = arisaSigrist
     // evaluate
     const result = cohort5.search(0)
@@ -78,7 +78,6 @@ describe('Cohort', () => {
     cohort5.add(arisaSigrist)
     cohort5.add(bobRoss)
     cohort5.add(michelleObama)
-
     const expected = [arisaSigrist, bobRoss, michelleObama]
     // evaluate
     const result = cohort5.students
