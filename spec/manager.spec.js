@@ -118,4 +118,17 @@ describe('Manager class', () => {
     expect(manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 6'))
     .toEqual('Student already exists.')
   })
+
+  it('returns an array with all students with matching names', () => {
+    manager.createCohort('Cohort 5')
+    manager.createCohort('Cohort 6')
+    manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 6')
+    manager.addStudent('Jane', 'Doe', 'janenycode', 'janedoe@email.com', 'Cohort 6')
+    manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 5')
+    manager.addStudent('Rick', 'Sanchez', 'pickleRick', 'rs@email.com', 'Cohort 5')
+    manager.addStudent('Rick', 'Sanchez', 'rickGH', 'sanchez@email.com', 'Cohort 5')
+    expect(manager.getStudentByName('Rick', 'Sanchez').length).toEqual(2)
+    expect(manager.getStudentByName('John', 'Doe').length).toEqual(2)
+    expect(manager.getStudentByName('Jane', 'Doe').length).toEqual(1)
+  })
 })

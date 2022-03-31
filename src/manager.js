@@ -32,6 +32,19 @@ class Manager {
     }
   }
 
+  getStudentByName (firstName, lastName) {
+    const filteredList = []
+    for (const cohort of this.cohorts) {
+      const students = cohort.students.reduce((acc, cur) => {
+        if (cur.firstName === firstName) acc.push(cur)
+        
+        return acc
+      }, [])
+      filteredList.push(...students)
+    }
+    return filteredList
+  }
+
   removeCohort (cohortName) {
     const cohortToRemove = this.getCohort(cohortName)
     if (cohortToRemove) {
