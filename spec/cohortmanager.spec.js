@@ -34,7 +34,7 @@ describe("Cohort manager", () => {
     const cohort1 = new Cohort("Cohort 1");
     const cohort2 = new Cohort("Cohort 2");
     const newStudent = new Student(
-      1,
+      "1",
       "John",
       "Smith",
       "johnsmith001",
@@ -56,14 +56,14 @@ describe("Cohort manager", () => {
     const cohortManager = new CohortManager();
     const cohort1 = new Cohort("Cohort 1");
     const student1 = new Student(
-      1,
+      "1",
       "John",
       "Smith",
       "johnsmith001",
       "johnsmith@gmail.com"
     );
     const student2 = new Student(
-      2,
+      "2",
       "Kevin",
       "Smith",
       "kevinsmith001",
@@ -99,14 +99,14 @@ describe("Cohort manager", () => {
     const cohortManager = new CohortManager();
     const cohort1 = new Cohort("Cohort 1");
     const student1 = new Student(
-      1,
+      "1",
       "John",
       "Smith",
       "johnsmith001",
       "johnsmith@gmail.com"
     );
     const student2 = new Student(
-      2,
+      "2",
       "Kevin",
       "Smith",
       "kevinsmith001",
