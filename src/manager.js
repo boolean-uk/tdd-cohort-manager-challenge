@@ -1,5 +1,5 @@
-const Cohort = require('../src/cohort.js')
-const Student = require('./student.js')
+const Cohort = require('../src/cohort')
+const Student = require('../src/student')
 
 class Manager {
   constructor () {
