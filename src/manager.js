@@ -1,7 +1,6 @@
-const Cohort = require('../src/cohort')
-const Student = require('../src/student')
-
-class Manager {
+import Cohort from './cohort.js'
+import { localeIncludes } from 'locale-includes'
+export default class Manager {
   constructor() {
     this.cohorts = []
     this.cohortId = 0
@@ -9,16 +8,15 @@ class Manager {
   }
 
   addCohort(name) {
+    if (name.length === 0) return 'Cohort needs to have name'
     if (this.cohorts.some((cohort) => cohort.name === name))
       return 'This cohort already exist'
     this.cohortId++
-    this.cohorts.push({ ...new Cohort(name, this.cohortId) })
+    this.cohorts.push(new Cohort(name, this.cohortId))
   }
 
   searchCohort(name) {
-    return (
-      this.cohorts.find((cohort) => cohort.name === name) || 'Cohort not found'
-    )
+    return this.cohorts.find((cohort) => cohort.name === name) || false
   }
 
   searchStudent(studentId) {
@@ -32,17 +30,12 @@ class Manager {
   }
 
   addStudent(cohortName, studentName, github, email) {
-    if (!this.searchCohort(cohortName)) return 'Cohort Not Found'
     const currCohort = this.searchCohort(cohortName)
-    if (currCohort.students.length >= currCohort.maxCapacity)
-      return 'Cohort is full'
-    console.log(currCohort.students.length, currCohort.maxCapacity)
-    this.studentId++
+    if (!currCohort) return 'Cohort Not Found'
     if (this.studentChecker(studentName, github, email))
       return 'Student already exists'
-    currCohort.students.push({
-      ...new Student(studentName, this.studentId, github, email)
-    })
+    this.studentId++
+    return currCohort.addStudent(studentName, this.studentId, github, email)
   }
 
   studentChecker(name, github, email) {
@@ -75,31 +68,33 @@ class Manager {
 
   removeStudent(cohortName, studentId) {
     if (!this.searchCohort(cohortName)) return 'Cohort Not Found'
-    const originalLength = this.searchCohort(cohortName).students.length
-    this.searchCohort(cohortName).students = this.searchCohort(
-      cohortName
-    ).students.filter((student) => student.id !== studentId)
-    if (originalLength !== this.searchCohort(cohortName).students.length) {
-      return this.searchCohort(cohortName).students
-    } else console.error('Student not found')
+    this.searchCohort(cohortName).removeStudent(studentId)
+  }
+
+  searchForStudents(name) {
+    const [firstName, lastName] = name.split(' ')
+    const everyMatch = []
+    this.cohorts.forEach((cohort) => {
+      cohort.students.forEach((student) => {
+        for (let [key, value] of Object.entries(student)) {
+          if (typeof value !== 'string') break
+
+          if (
+            localeIncludes(value, firstName, {
+              usage: 'search',
+              sensitivity: 'base'
+            }) ||
+            localeIncludes(value, lastName, {
+              usage: 'search',
+              sensitivity: 'base'
+            })
+          ) {
+            everyMatch.push(student)
+          }
+        }
+      })
+    })
+    const unique = Array.from(new Set(everyMatch))
+    return unique
   }
 }
-
-const manager = new Manager()
-manager.addCohort('Cohort 5')
-manager.addCohort('Cohort 8')
-manager.addStudent('Cohort 5', 'Tibor Toth', 'Tibor22', 'tibor@gmail.com')
-manager.addStudent('Cohort 5', 'Bob Bagel', 'Bob10', 'bob@gmail.com')
-manager.addStudent('Cohort 5', 'Jenefer Gerola', 'Jen10', 'jenjen@gmail.com')
-
-console.log(
-  manager.addStudent('Cohort 8', 'Jenefer Gerola', 'Jen10', 'jenjen@gmail.com')
-)
-
-// manager.removeStudent('Cohort 5', 3)
-// console.log(manager.searchStudent(1))
-
-console.log(manager.searchCohort('Cohort 5').students)
-console.log(manager.searchCohort('Cohort 8').students)
-
-module.exports = Manager

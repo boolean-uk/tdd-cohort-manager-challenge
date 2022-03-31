@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "npx eslint src && npx jasmine",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "babel src -d lib"
   },
   "author": "dearshrewdwit",
   "license": "ISC",
   "prettier": "@boolean-uk/boolean-prettier-config",
   "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.8",
     "@boolean-uk/boolean-prettier-config": "^1.0.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
@@ -20,6 +23,10 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^5.1.1",
     "husky": "^7.0.4",
-    "jasmine": "^3.10.0"
-  }
+    "jasmine": "^4.0.2"
+  },
+  "dependencies": {
+    "locale-includes": "^1.0.3"
+  },
+  "type": "module"
 }

@@ -1,6 +1,4 @@
-// const Cohort = require('../src/cohort')
-
-class Student {
+export default class Student {
   constructor(name, id, githubUsername, email) {
     ;[this.firstName, this.lastName] = name.split(' ')
     this.githubUsername = githubUsername
@@ -8,5 +6,3 @@ class Student {
     this.id = id
   }
 }
-
-module.exports = Student
