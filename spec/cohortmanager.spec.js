@@ -94,16 +94,46 @@ describe("Cohort manager", () => {
     expect(cohortManager.cohortList.length).toEqual(1);
   });
 
-  // it("checks a student exists", () => {
-  //   // setup
-  //   const cohortManager = new CohortManager();
-  //   const cohort1 = new Cohort("Cohort 1");
-  //   // execute
-  //   cohortManager.addNewCohort(cohort1);
-  //   cohortManager.addNewCohort(cohort2);
-  //   cohortManager.removeCohort(cohort1);
-  //   // verify
-  //   expect(cohortManager.cohortList).toEqual([cohort2]);
-  //   expect(cohortManager.cohortList.length).toEqual(1);
-  // });
+  it("Checks a student exists - returns false when searching for student2", () => {
+    // setup
+    const cohortManager = new CohortManager();
+    const cohort1 = new Cohort("Cohort 1");
+    const student1 = new Student(
+      "1",
+      "John",
+      "Smith",
+      "johnsmith001",
+      "johnsmith@gmail.com"
+    );
+    const student2 = new Student(
+      "2",
+      "Kevin",
+      "Smith",
+      "kevinsmith001",
+      "kevinsmith@gmail.com"
+    );
+    // execute
+    cohortManager.addNewCohort(cohort1);
+    cohortManager.addStudentToCohort(student1, "Cohort 1");
+
+    // verify
+    const result = cohortManager.studentExists(student2, cohort1.studentList);
+
+    expect(result).toEqual(false);
+  });
+
+  it("Checks a cohort exists - returns false when searching for cohort2", () => {
+    // setup
+    const cohortManager = new CohortManager();
+    const cohort1 = new Cohort("Cohort 1");
+    const cohort2 = new Cohort("Cohort 2");
+
+    // execute
+    cohortManager.addNewCohort(cohort1);
+
+    // verify
+    const result = cohortManager.cohortExists(cohort2);
+
+    expect(result).toEqual(false);
+  });
 });

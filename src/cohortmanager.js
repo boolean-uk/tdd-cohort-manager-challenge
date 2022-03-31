@@ -24,6 +24,7 @@ class CohortManager {
 
     return cohort;
   }
+
   removeStudentFromCohort(removedStudent, cohortName) {
     const cohort = this.searchByCohortName(cohortName);
     const indexOfStudent = cohort.studentList.indexOf(removedStudent);
@@ -32,18 +33,17 @@ class CohortManager {
     return cohort;
   }
 
-  // studentExists(searchedStudent, studentListArray) {
-  //   console.log(
-  //     studentListArray.find((student) => student === searchedStudent)
-  //   );
-  // }
+  studentExists(searchedStudent, studentListArray) {
+    return studentListArray.find((student) => student === searchedStudent)
+      ? true
+      : false;
+  }
 
-  cohortExists() {}
+  cohortExists(searchedCohort) {
+    return this.cohortList.find((cohort) => cohort === searchedCohort)
+      ? true
+      : false;
+  }
 }
 
 module.exports = CohortManager;
-
-// if (indexOfCohort === -1) return "Cohort doesnt exist";
-// const indexOfCohort2 = this.cohortList.findIndex(
-//   (cohort) => cohort.name === cohortName
-// );
