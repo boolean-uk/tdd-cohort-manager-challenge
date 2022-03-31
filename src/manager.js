@@ -46,8 +46,11 @@ class Manager {
     const cohort = this.getCohort(cohortName)
     if (!cohort) return 'Error: Cohort not found.'
     if (cohort.students.length >= this.maxCapacity) return 'Cohort at max capacity already.'
-    
+
     const student = new Student(this.studentID, firstName, lastName, gitHub, email)
+    const studentExists = this.getStudent(student.id)
+    if (studentExists) return 'Student already exists.'
+
     cohort.addStudent(student)
     this.studentID++
     return student

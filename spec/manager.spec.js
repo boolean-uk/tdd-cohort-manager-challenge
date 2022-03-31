@@ -107,4 +107,15 @@ describe('Manager class', () => {
     expect(manager.createCohort()).toEqual('Cannot create a cohort without a name.')
     expect(manager.createCohort('')).toEqual('Cannot create a cohort without a name.')
   })
+
+  it('does not add a student that already exists', () => {
+    manager.createCohort('Cohort 5')
+    manager.createCohort('Cohort 6')
+    manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 5')
+    manager.studentID--
+    expect(manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 5'))
+    .toEqual('Student already exists.')
+    expect(manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 6'))
+    .toEqual('Student already exists.')
+  })
 })
