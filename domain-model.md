@@ -3,7 +3,7 @@
 |--------------|---------|--------|---------
 | cohorts = [] | createCohort (cohortName @String) | @Cohort | adds new cohort to cohorts array
 | studentID @Number | getCohort (cohortName @String) | @Cohort **OR** false (not found) | looks for cohort in cohorts array
-| maxCapacity = 24 | removeCohort (cohortName @String) | @Cohort **OR** error (not found) | deletes a specific cohort
+|              | removeCohort (cohortName @String) | @Cohort **OR** error (not found) | deletes a specific cohort
 |              | addStudent (firstName @String, lastName @String, gitHub @String, email @String, cohortName @String) | @Student **OR** @String| adds a student to a specific cohort if there is still room
 |              | removeStudent (studentID @Number, cohortName @String) | @Student **OR** error (not found) | deletes a student from a specific cohort
 |              | getStudent (studentID @Number) | @Student | looks for a student in all cohorts
@@ -16,6 +16,7 @@
 |---------------|---------|--------|---------
 | name @String  | addStudent (@Student) | @Student | adds a student to the students list
 | students = [] | removeStudent (studentID) | @Student **OR** error (not found) | removes student from students list
+| maxCapacity = 24 |
 
 ---
 

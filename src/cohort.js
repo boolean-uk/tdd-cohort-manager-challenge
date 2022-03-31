@@ -2,6 +2,7 @@ class Cohort {
   constructor (name) {
     this.name = name
     this.students = []
+    this.maxCapacity = 24
   }
 
   addStudent (student) {
@@ -10,7 +11,7 @@ class Cohort {
   }
 
   removeStudent (id) {
-    const studentToRemove = this.students.findIndex(student => student.id === id)
+    const studentToRemove = this.students.findIndex((student) => student.id === id)
     if (studentToRemove === -1) throw new Error('Student not found')
 
     return this.students.splice(studentToRemove, 1)[0]

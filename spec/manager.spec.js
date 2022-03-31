@@ -127,6 +127,7 @@ describe('Manager class', () => {
     manager.addStudent('John', 'Doe', 'johnnycode', 'johndoe@email.com', 'Cohort 5')
     manager.addStudent('Rick', 'Sanchez', 'pickleRick', 'rs@email.com', 'Cohort 5')
     manager.addStudent('Rick', 'Sanchez', 'rickGH', 'sanchez@email.com', 'Cohort 5')
+    manager.addStudent('Rick', 'Baltasar', '12345', 'user@email.com', 'Cohort 5')
     expect(manager.getStudentByName('Rick', 'Sanchez').length).toEqual(2)
     expect(manager.getStudentByName('John', 'Doe').length).toEqual(2)
     expect(manager.getStudentByName('Jane', 'Doe').length).toEqual(1)
