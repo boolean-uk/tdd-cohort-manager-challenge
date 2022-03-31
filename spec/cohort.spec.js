@@ -24,7 +24,7 @@ describe('Cohort class', () => {
     expect(cohort.students.length).toEqual(0)
   })
 
-  fit('throws an error if student does not exist in students array', () => {
+  it('throws an error if student does not exist in students array', () => {
     cohort.addStudent(student)
     expect(() => { cohort.removeStudent(2) })
       .toThrowError(Error, 'Student not found')

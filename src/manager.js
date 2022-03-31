@@ -11,6 +11,10 @@ class Manager {
 
     return `${cohortToCreate.name} was created.`
   }
+
+  getCohort (cohortName) {
+    return this.cohorts.find(cohort => cohort.name === cohortName)
+  }
 }
 
 module.exports = Manager
