@@ -36,30 +36,44 @@ describe('Cohort', () => {
     expect(cohortNotFound).toEqual(false)
   })
 
-  // it("Remove Cohort name", () => {
+  it('Remove Cohort name', () => {
+    const cohortManager = new CohortManager()
+    const cohort = new Cohort('Cohort 1')
+    const expected = [cohort]
 
-  //     const cohortManager = new CohortManager
-  //     const cohort = new Cohort('Cohort 1')
-  //     const expected = [cohort]
+    cohortManager.createCohorts(cohort)
+    // execute
+    //vefity
+    const removedCohort = cohortManager.removeCohort('Cohort 1')
+    expect(removedCohort).toEqual(expected)
+  })
 
-  //     cohortManager.createCohorts(cohort)
-  //     // execute
-  //     //vefity
-  //     const removedCohort = cohortManager.removeCohort('Cohort 1')
-  //     expect(removedCohort).toEqual(expected)
-  // })
+  it("Remove Cohort that doesn't exist", () => {
+    const cohortManager = new CohortManager()
+    const cohort = new Cohort('Cohort 1')
+    const expected = []
 
-  // it("Remove Cohort that doesn't exist", () => {
+    cohortManager.createCohorts(cohort)
+    // execute
+    //vefity
+    console.log(cohort)
+    const removedCohort = cohortManager.removeCohort('Cohort 2')
+    expect(removedCohort).toEqual(expected)
+  })
 
-  //     const cohortManager = new CohortManager
-  //     const cohort = new Cohort('Cohort 1')
-  //     const expected = []
+  it('Add a Student to a Cohort with name & Student details', () => {
+    // set up
+    const cohortManager = new CohortManager()
 
-  //     cohortManager.createCohorts(cohort)
-  //     // execute
-  //     //vefity
-  //     console.log(cohort)
-  //     const removedCohort = cohortManager.removeCohort('Cohort 2')
-  //     expect(removedCohort).toEqual(expected)
-  // })
+    const cohort = new Cohort('Cohort 1')
+    cohortManager.createCohorts(cohort)
+    const student = {
+      name: 'Billy Potts',
+      email: 'billypotts@gmail.com'
+    }
+    // execute
+    // verify
+    const result = cohortManager.addStudent('Cohort 1', student)
+    expect(result).toEqual(student)
+  })
 })

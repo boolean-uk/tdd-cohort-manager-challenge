@@ -3,6 +3,8 @@
 class CohortManager {
   constructor() {
     this.cohorts = []
+    this.student = []
+
     // this.removedCohort = []
   }
 
@@ -30,7 +32,7 @@ class CohortManager {
   removeCohort(cohortName) {
     let removedCohort = []
     // Go to cohort list & loop through to find the correct cohort(s)
-    for (let i = 0; this.cohorts.length; i++) {
+    for (let i = 0; i < this.cohorts.length; i++) {
       console.log(
         i,
         cohortName,
@@ -51,6 +53,15 @@ class CohortManager {
       }
     }
     return removedCohort
+  }
+
+  addStudent(cohortName, student) {
+    const cohort = this.searchForCohort(cohortName)
+    if (cohort) {
+      cohort.students.push(student)
+      return student
+    }
+    return false
   }
 }
 
