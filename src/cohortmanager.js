@@ -6,10 +6,9 @@ class CohortManager {
   }
 
   createNewCohort(cohortName, cohortCapacity) {
-    const cohort = this.searchByCohortName(cohortName);
-    if (this.cohortExists(cohort)) return `cohort already exists`;
+    if (!cohortName) return "Err: please provide cohort name";
 
-    if (!cohortName) return "please provide cohort name";
+    if (this.cohortExists(cohortName)) return `Err: cohort already exists`;
 
     const newCohort = new Cohort(cohortName, cohortCapacity);
     this.cohortList.push(newCohort);
@@ -18,12 +17,14 @@ class CohortManager {
   }
 
   removeCohort(cohortName) {
-    const cohort = this.searchByCohortName(cohortName);
-    if (!this.cohortExists(cohort)) return `cant remove - cohort doesnt exist`;
+    if (!this.cohortExists(cohortName)) return `Err: cohort doesnt exist`;
 
-    const indexOfCohort = this.cohortList.indexOf(cohort);
+    const indexOfCohort = this.cohortList.findIndex(
+      (cohort) => cohort.name === cohortName
+    );
 
     this.cohortList.splice(indexOfCohort, 1);
+
     return this.cohortList;
   }
 
@@ -32,24 +33,19 @@ class CohortManager {
   }
 
   addStudentToCohort(studentObj, cohortName) {
-    const cohort = this.searchByCohortName(cohortName);
-    if (!this.cohortExists(cohort)) return `cohort doesnt exist`;
+    if (!this.cohortExists(cohortName)) return `Err: cohort doesnt exist`;
 
-    if (cohort.hasStudent(studentObj.email)) return `Student already exists`;
+    const cohort = this.searchByCohortName(cohortName);
 
     return cohort.addStudent(studentObj);
-
-    // return cohort;
   }
 
   removeStudentFromCohort(studentEmail, cohortName) {
+    if (!this.cohortExists(cohortName)) return `Err: cohort doesnt exist`;
+
     const cohort = this.searchByCohortName(cohortName);
-    if (!this.cohortExists(cohort)) return `cohort doesnt exist`;
 
-    if (!cohort.hasStudent(studentEmail)) return `Student doesnt exist`;
-
-    cohort.removeStudent(studentEmail);
-    return cohort;
+    return cohort.removeStudent(studentEmail);
   }
 
   searchByStudentEmail(email) {
@@ -59,13 +55,11 @@ class CohortManager {
         return cohort.getStudent(email);
       }
     }
-    return `student not found`;
+    return `Err: student not found`;
   }
 
-  cohortExists(searchedCohort) {
-    return this.cohortList.find((cohort) => cohort === searchedCohort)
-      ? true
-      : false;
+  cohortExists(cohortName) {
+    return this.searchByCohortName(cohortName) !== undefined;
   }
 }
 

@@ -6,32 +6,30 @@ class Cohort {
   }
 
   addStudent(studentObj) {
-    // check email of studentobj doesnt already exist with  has student ()
-    // has capacity mehtod
+    if (this.hasStudent(studentObj.email)) return `Err: Student already exists`;
+
     if (this.studentList.length < this.cohortCapacity) {
       this.studentList.push(studentObj);
       return this.studentList;
     }
 
-    return `cant add anymore students`;
+    return `Err: cant add anymore students`;
   }
 
   removeStudent(studentEmail) {
-    // if (this.hasStudent(studentEmail)) {
+    if (!this.hasStudent(studentEmail)) return `Err: Student doesnt exist`;
+
     const studentIndex = this.studentList.findIndex(
       (student) => student.email === studentEmail
     );
 
     this.studentList.splice(studentIndex, 1);
-    return this.studentList;
-    // }
-    // return false;
+
+    return studentEmail;
   }
 
   hasStudent(studentEmail) {
-    return this.studentList.find((student) => student.email === studentEmail)
-      ? true
-      : false;
+    return this.getStudent(studentEmail) !== undefined;
   }
 
   getStudent(studentEmail) {

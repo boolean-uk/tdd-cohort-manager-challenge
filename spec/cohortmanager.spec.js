@@ -39,7 +39,7 @@ describe("Cohort manager", () => {
     expect(cohortManager.cohortList[0].name).toEqual("Cohort 2");
     expect(cohortManager.cohortList.length).toEqual(1);
 
-    expect(errorTest).toEqual("cant remove - cohort doesnt exist");
+    expect(errorTest).toEqual("Err: cohort doesnt exist");
   });
 
   // returns error if cohort doesnt exist, retruns error if student already exists
@@ -62,11 +62,11 @@ describe("Cohort manager", () => {
     const errorTest2 = cohortManager.addStudentToCohort(morty, "Cohort 2");
 
     expect(result).toEqual([morty]);
-    expect(errorTest1).toEqual(`Student already exists`);
-    expect(errorTest2).toEqual(`cohort doesnt exist`);
+    expect(errorTest1).toEqual(`Err: Student already exists`);
+    expect(errorTest2).toEqual(`Err: cohort doesnt exist`);
   });
 
-  it("removes a student from cohort 1 and returns the cohort", () => {
+  it("removes a student from cohort 1 and returns the email of the removed student", () => {
     // setup
     const cohortManager = new CohortManager();
     const morty = new Student(
@@ -99,8 +99,8 @@ describe("Cohort manager", () => {
       "Cohort 3"
     );
     // verify
-    expect(result.studentList).toEqual([rick]);
-    expect(errorTest1).toEqual(`Student doesnt exist`);
-    expect(errorTest2).toEqual(`cohort doesnt exist`);
+    expect(result).toEqual("mortysmith@gmail.com");
+    expect(errorTest1).toEqual(`Err: Student doesnt exist`);
+    expect(errorTest2).toEqual(`Err: cohort doesnt exist`);
   });
 });

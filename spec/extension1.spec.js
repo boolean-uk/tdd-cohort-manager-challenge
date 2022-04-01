@@ -22,7 +22,7 @@ describe("Cohort manager", () => {
     const errorTest = cohortManager.searchByStudentEmail("bethsmith@gmail.com");
     // verify
     expect(result1).toEqual(morty);
-    expect(errorTest).toEqual(`student not found`);
+    expect(errorTest).toEqual(`Err: student not found`);
   });
 
   it("returns error message when you try to add students beyond max capacity (max capacity = 1 in this case)", () => {
@@ -46,7 +46,7 @@ describe("Cohort manager", () => {
     // execute
     const result = cohortManager.addStudentToCohort(rick, "Cohort 1");
     // verify
-    expect(result).toEqual(`cant add anymore students`);
+    expect(result).toEqual(`Err: cant add anymore students`);
   });
 
   it("returns error message when you try to create a cohort without a name or a cohort that already exists", () => {
@@ -56,10 +56,29 @@ describe("Cohort manager", () => {
     cohortManager.createNewCohort("Cohort 1");
 
     // execute
-    // const result1 = cohortManager.createNewCohort("Cohort 1");
+    const result1 = cohortManager.createNewCohort("Cohort 1");
     const result2 = cohortManager.createNewCohort();
     // verify
-    // expect(result1).toEqual(`cohort already exists`);
-    expect(result2).toEqual("please provide cohort name");
+    expect(result1).toEqual(`Err: cohort already exists`);
+    expect(result2).toEqual("Err: please provide cohort name");
   });
+
+  // it("returns error message when you try to add student that is already present in another cohort", () => {
+  //   // setup
+  //   const cohortManager = new CohortManager();
+  //   const morty = new Student(
+  //     "Morty",
+  //     "Smith",
+  //     "mortysmith001",
+  //     "mortysmith@gmail.com"
+  //   );
+
+  //   cohortManager.createNewCohort("Cohort 1");
+  //   cohortManager.createNewCohort("Cohort 2");
+  //   cohortManager.addStudentToCohort(morty, "Cohort 1");
+  //   // execute
+  //   const result = cohortManager.addStudentToCohort(morty, "Cohort 2");
+  //   // verify
+  //   expect(result).toEqual(`test`);
+  // });
 });
