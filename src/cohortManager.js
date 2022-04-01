@@ -5,8 +5,12 @@ class CohortManager {
     this.cohortList = []
   }
 
+  get (cohortNum) {
+    return this.cohortList.find(cohort => cohort.name === cohortNum)
+  }
+
   add (cohortNum) {
-    const existingCohort = this.cohortList.find(cohort => cohort.name === cohortNum)
+    const existingCohort = this.get(cohortNum)
     if (!cohortNum || existingCohort) return Error('Empty name or name already exist')
 
     const newCohort = new Cohort(cohortNum)
@@ -16,13 +20,13 @@ class CohortManager {
   }
 
   search (cohortNum) {
-    const targetCohort = this.cohortList.find(cohort => cohort.name === cohortNum)
+    const targetCohort = this.get(cohortNum)
     if (!targetCohort) return Error('this cohort do not exist')
     return targetCohort
   }
 
   remove (cohortNum) {
-    const targetCohort = this.cohortList.find(cohort => cohort.name === cohortNum)
+    const targetCohort = this.get(cohortNum)
     const targetIndex = this.cohortList.indexOf(targetCohort)
     if (!targetCohort) return Error('this cohort do not exist')
     this.cohortList.splice(targetIndex, 1)
