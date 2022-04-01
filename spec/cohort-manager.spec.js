@@ -76,4 +76,46 @@ describe('Cohort', () => {
     const result = cohortManager.addStudent('Cohort 1', student)
     expect(result).toEqual(student)
   })
+
+  it('Remove Student from a cohort', () => {
+    const cohortManager = new CohortManager()
+    const cohort = new Cohort('Cohort 1')
+    cohortManager.createCohorts(cohort)
+    const student = {
+      name: 'Billy Potts',
+      email: 'billypotts@gmail.com'
+    }
+    const expected = [student]
+
+    cohortManager.addStudent(cohort.name, student)
+    // execute
+    //vefity
+    const removedStudent = cohortManager.removeStudent(cohort.name, student)
+    expect(removedStudent).toEqual(expected)
+  })
+
+  it('Remove Student that does not exist', () => {
+    const cohortManager = new CohortManager()
+    const cohort = new Cohort('Cohort 1')
+    cohortManager.createCohorts(cohort)
+    const student = {
+      name: 'Billy Potts',
+      email: 'billypotts@gmail.com'
+    }
+    const nonExistingStudent = {
+      name: 'Guy Moore',
+      email: 'guymoore@gmail.com'
+    }
+
+    const expected = []
+
+    cohortManager.addStudent(cohort.name, student)
+    // execute
+    //vefity
+    const removedStudent = cohortManager.removeStudent(
+      cohort.name,
+      nonExistingStudent
+    )
+    expect(removedStudent).toEqual(expected)
+  })
 })
