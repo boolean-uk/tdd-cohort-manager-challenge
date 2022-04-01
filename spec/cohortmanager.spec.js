@@ -278,52 +278,10 @@ it("remove student that exists from a cohort that they are not in", ()  => {
     expect(result).toEqual(expected)
     })
 
-it("Search for students by first name and return all matching results", ()  => {
-    // set up
-    const cohortManager = new CohortManager()
-    const expected = [new Student("cohortOne", "Ngolo", "Kante", "kantecodes", "kantecodes@gmail.com", 1), new Student("cohortTwo", "Ngolo", "Smith", "nscodes", "nscodes@gmail.com", 8)]
-    // execute
-    cohortManager.addCohort("cohortOne", 5)
-    cohortManager.addCohort("cohortTwo", 5)
-    cohortManager.addStudentToCohort("cohortOne", "Ngolo", "Kante", "kantecodes", "kantecodes@gmail.com")
-    cohortManager.addStudentToCohort("cohortOne", "Reece", "James", "reececodes", "reececodes@gmail.com")
-    cohortManager.addStudentToCohort("cohortOne", "Dan", "James", "jamescodes", "jamescodes@gmail.com")
-    cohortManager.addStudentToCohort("cohortOne", "Dan", "Kante", "dankcodes", "dankcodes@gmail.com")
-    cohortManager.addStudentToCohort("cohortOne", "Reece", "Kante", "rkcodes", "rkcodes@gmail.com")
-    cohortManager.addStudentToCohort("cohortTwo", "Adam", "Smith", "adamscodes", "adamscodes@gmail.com")
-    cohortManager.addStudentToCohort("cohortTwo", "Adam", "Jones", "adamjcodes", "adamjcodes@gmail.com")
-    cohortManager.addStudentToCohort("cohortTwo", "Ngolo", "Smith", "nscodes", "nscodes@gmail.com")
-    const result = cohortManager.searchStudentByFirstName("Ngolo")
-
-    // verify
-    expect(result).toEqual(expected)
-    })
-
-it("Search for students by surname and return all matching results", ()  => {
-    // set up
-    const cohortManager = new CohortManager()
-    const expected = [new Student("cohortOne", "Reece", "Jones", "reececodes", "reececodes@gmail.com", 2), new Student("cohortOne", "Dan", "Jones", "jonescodes", "jamescodes@gmail.com", 3), new Student("cohortTwo", "Adam", "Jones", "adamjcodes", "adamjcodes@gmail.com", 7)]
-    // execute
-    cohortManager.addCohort("cohortOne", 5)
-    cohortManager.addCohort("cohortTwo", 5)
-    cohortManager.addStudentToCohort("cohortOne", "Ngolo", "Kante", "kantecodes", "kantecodes@gmail.com")
-    cohortManager.addStudentToCohort("cohortOne", "Reece", "Jones", "reececodes", "reececodes@gmail.com")
-    cohortManager.addStudentToCohort("cohortOne", "Dan", "Jones", "jonescodes", "jamescodes@gmail.com")
-    cohortManager.addStudentToCohort("cohortOne", "Dan", "Kante", "dankcodes", "dankcodes@gmail.com")
-    cohortManager.addStudentToCohort("cohortOne", "Reece", "Kante", "rkcodes", "rkcodes@gmail.com")
-    cohortManager.addStudentToCohort("cohortTwo", "Adam", "Smith", "adamscodes", "adamscodes@gmail.com")
-    cohortManager.addStudentToCohort("cohortTwo", "Adam", "Jones", "adamjcodes", "adamjcodes@gmail.com")
-    cohortManager.addStudentToCohort("cohortTwo", "Ngolo", "Smith", "nscodes", "nscodes@gmail.com")
-    const result = cohortManager.searchStudentBySurname("Jones")
-
-    // verify
-    expect(result).toEqual(expected)
-    })
-
 it("Search for students by first name and surname and return all matching results", ()  => {
     // set up
     const cohortManager = new CohortManager()
-    const expected = [new Student("cohortOne", "Ngolo", "Kante", "kantecodes", "kantecodes@gmail.com", 1)]
+    const expected = [new Student("cohortOne", "Ngolo", "Kante", "kantecodes", "kantecodes@gmail.com", 1), new Student("cohortOne", "Dan", "Kante", "dankcodes", "dankcodes@gmail.com", 4), new Student("cohortOne", "Reece", "Kante", "rkcodes", "rkcodes@gmail.com", 5), new Student("cohortTwo", "Ngolo", "Smith", "nscodes", "nscodes@gmail.com", 8)]
     // execute
     cohortManager.addCohort("cohortOne", 5)
     cohortManager.addCohort("cohortTwo", 5)
@@ -335,7 +293,7 @@ it("Search for students by first name and surname and return all matching result
     cohortManager.addStudentToCohort("cohortTwo", "Adam", "Smith", "adamscodes", "adamscodes@gmail.com")
     cohortManager.addStudentToCohort("cohortTwo", "Adam", "Jones", "adamjcodes", "adamjcodes@gmail.com")
     cohortManager.addStudentToCohort("cohortTwo", "Ngolo", "Smith", "nscodes", "nscodes@gmail.com")
-    const result = cohortManager.searchStudentByFullName("Ngolo", "Kante")
+    const result = cohortManager.searchStudentByName("Ngolo", "Kante")
 
     // verify
     expect(result).toEqual(expected)
@@ -350,7 +308,7 @@ it("Search for students by first name that does not exist return all matching re
     cohortManager.addCohort("cohortTwo", 5)
     cohortManager.addStudentToCohort("cohortOne", "Ngolo", "Kante", "kantecodes", "kantecodes@gmail.com")
     cohortManager.addStudentToCohort("cohortTwo", "Ngolo", "Smith", "nscodes", "nscodes@gmail.com")
-    const result = cohortManager.searchStudentByFirstName("Alex")
+    const result = cohortManager.searchStudentByName("Alex", "Jennings")
 
     // verify
     expect(result).toEqual(expected)
