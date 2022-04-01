@@ -16,8 +16,8 @@ The Cohort Manager should be able to support the following interactions
 - (DONE) Search for student by student ID
 - (DONE) Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit.
 - (DONE) Cohorts can't have the same name, and can't exist without a name
-- The same student can't exist in multiple cohorts.
-- A student can't be removed from a cohort if it wasn't present in the first place.
+- (DONE) The same student can't exist in multiple cohorts.
+- (DONE) A student can't be removed from a cohort if it wasn't present in the first place.
 - Search for students by name (first and last) and return all matching results
 
 Your program should be composed of at least two classes
