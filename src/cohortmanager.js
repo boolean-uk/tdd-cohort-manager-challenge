@@ -6,6 +6,11 @@ class CohortManager {
   }
 
   createNewCohort(cohortName, cohortCapacity) {
+    const cohort = this.searchByCohortName(cohortName);
+    if (this.cohortExists(cohort)) return `cohort already exists`;
+
+    if (!cohortName) return "please provide cohort name";
+
     const newCohort = new Cohort(cohortName, cohortCapacity);
     this.cohortList.push(newCohort);
 
@@ -65,14 +70,3 @@ class CohortManager {
 }
 
 module.exports = CohortManager;
-
-// searchByStudentID(id) {
-//   for (let i = 0; i < this.cohortList.length; i++) {
-//     const studentList = this.cohortList[i].studentList;
-
-//     for (let k = 0; k < studentList.length; k++) {
-//       if (studentList[k].id === id) return studentList[k];
-//     }
-//   }
-//   return `student not found`;
-// }

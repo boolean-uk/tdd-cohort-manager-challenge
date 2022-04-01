@@ -48,4 +48,18 @@ describe("Cohort manager", () => {
     // verify
     expect(result).toEqual(`cant add anymore students`);
   });
+
+  it("returns error message when you try to create a cohort without a name or a cohort that already exists", () => {
+    // setup
+    const cohortManager = new CohortManager();
+
+    cohortManager.createNewCohort("Cohort 1");
+
+    // execute
+    // const result1 = cohortManager.createNewCohort("Cohort 1");
+    const result2 = cohortManager.createNewCohort();
+    // verify
+    // expect(result1).toEqual(`cohort already exists`);
+    expect(result2).toEqual("please provide cohort name");
+  });
 });
