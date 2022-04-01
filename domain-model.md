@@ -18,7 +18,7 @@ The Cohort Manager should be able to support the following interactions
 - (DONE) Cohorts can't have the same name, and can't exist without a name
 - (DONE) The same student can't exist in multiple cohorts.
 - (DONE) A student can't be removed from a cohort if it wasn't present in the first place.
-- Search for students by name (first and last) and return all matching results
+- (DONE)Search for students by name (first and last) and return all matching results
 
 Your program should be composed of at least two classes
 
@@ -71,5 +71,5 @@ A cohort should have a list of students. Each student should have a studentID, f
 |               |                           | add(@cohort)                                           | no output / "ERROR"                    | conditional: if new cohort has a name and not in the list, cohortList.push(@cohort) |
 |               |                           | search(@cohortName)                                    | @cohort / "ERROR"             | cohort.name === @cohortName ?  @cohort : "ERROR"                                    |
 |               |                           | remove(@cohortName)                                    | list Array[@cohort] / "ERROR" | cohortList.filter(cohort => cohortList.name !=== @cohortName) : "ERROR"             |
-|               |                           | checkOverlapStudent(@id, @firstName, @lastName, @githubName, @email) | no output / "ERROR" | conditional: new student is in the list of cohort or not (loop through) |
+|               |                           | checkOverlapStudent() | no output / "ERROR" | iterate through the cohorts and check if there are overlapping students |
 |               |                           | searchStudent(@firstName, @lastName)  | @student / "ERROR" | loop through and find the student, if not "Error" |

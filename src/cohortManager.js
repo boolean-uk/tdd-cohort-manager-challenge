@@ -30,14 +30,21 @@ class CohortManager {
     return this.cohortList
   }
 
-  checkOverlapStudents (id, firstName, lastName, githubName, email) {
-    const fullName = `${firstName} ${lastName}`
+  createNameList () {
+    return this.cohortList.map(cohort => cohort.students.map(student => student.fullName)).flat()
+  }
 
-    for (const cohort of this.cohortList) {
-      const targetStudent = cohort.students.find(student => student.id === id && student.fullName === fullName && student.githubName === githubName && student.email === email)
-      if (targetStudent) return Error(`${fullName} already exists in Cohort ${cohort.name} – please remove`)
+  checkOverlapStudents () {
+    const nonOverlapStudents = []
+    const overlapStudents = []
+    const nameArr = this.createNameList()
+
+    for (const student of nameArr) {
+      if (!nonOverlapStudents.includes(student)) nonOverlapStudents.push(student)
+      overlapStudents.push(student)
     }
-    return `${fullName} do not exist – please add to appropriate Cohort`
+    console.log("line 46............. overlapStudents: ", overlapStudents)
+    return overlapStudents
   }
 
   searchStudent (firstName, lastName) {

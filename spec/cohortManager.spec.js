@@ -176,7 +176,7 @@ it('adds a new cohort is added to the cohort list', () => {
     expect(result).toEqual(expected)
   })
 
-  fit('returns error for searching a non-existing student', () => {
+  it('returns error for searching a non-existing student', () => {
     //   setup
     cohortManager.add(cohort5)
     cohortManager.add(cohort4)
@@ -189,6 +189,23 @@ it('adds a new cohort is added to the cohort list', () => {
     const expected = Error('Ed Sheeran do not exist')
     // evaluate
     const result = cohortManager.searchStudent('Ed', 'Sheeran')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  fit('trial', () => {
+    //   setup
+    cohortManager.add(cohort5)
+    cohortManager.add(cohort4)
+    cohortManager.add(cohort3)
+
+    cohort5.add(arisaSigrist)
+    cohort5.add(bobRoss)
+    cohort5.add(michelleObama)
+
+    const expected = []
+    // evaluate
+    const result = cohortManager.checkOverlapStudents()
     // verify
     expect(result).toEqual(expected)
   })
