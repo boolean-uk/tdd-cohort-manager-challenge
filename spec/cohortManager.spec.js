@@ -63,7 +63,7 @@ it('adds a new cohort is added to the cohort list', () => {
     cohortManager.add(4)
     cohortManager.add(5)
 
-    const expected = Error('Empty name or name already exist')
+    const expected = Error('this cohort do not exist')
     // evaluate
     const result = cohortManager.search(6)
     // verify
@@ -130,35 +130,6 @@ it('adds a new cohort is added to the cohort list', () => {
     expect(result).toEqual(expected)
   })
 
-  it('checks if the student exists in other cohort', () => {
-    //   setup
-    cohort5.add(arisaSigrist)
-    cohort4.add(bobRoss)
-
-    const expected = 'Michelle Obama do not exist – please add to appropriate Cohort'
-    // evaluate
-    const result = cohortManager.checkOverlapStudents(2, 'Michelle', 'Obama', 'mrsobama', 'michelle@usa.com')
-    // verify
-    expect(result).toEqual(expected)
-  })
-
-  it('returns an error since the student exists in other Cohort', () => {
-    //   setup
-    cohortManager.add(cohort5)
-    cohortManager.add(cohort4)
-    cohortManager.add(cohort3)
-
-    cohort5.add(arisaSigrist)
-    cohort4.add(bobRoss)
-    cohort3.add(michelleObama)
-
-    const expected = Error('Michelle Obama already exists in Cohort 3 – please remove')
-    // evaluate
-    const result = cohortManager.checkOverlapStudents(2, 'Michelle', 'Obama', 'mrsobama', 'michelle@usa.com')
-    // verify
-    expect(result).toEqual(expected)
-  })
-
   it('search a student by name', () => {
     //   setup
     cohortManager.add(cohort5)
@@ -193,7 +164,7 @@ it('adds a new cohort is added to the cohort list', () => {
     expect(result).toEqual(expected)
   })
 
-  fit('returns no overlapping students', () => {
+  it('returns no overlapping students', () => {
     //   setup
     cohortManager.add(cohort5)
     cohortManager.add(cohort4)
@@ -210,7 +181,7 @@ it('adds a new cohort is added to the cohort list', () => {
     expect(result).toEqual(expected)
   })
 
-  fit('returns overlapping students', () => {
+  it('returns overlapping students', () => {
     //   setup
     cohortManager.add(cohort5)
     cohortManager.add(cohort4)
