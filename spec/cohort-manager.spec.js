@@ -46,6 +46,7 @@ describe('Cohort', () => {
     //vefity
     const removedCohort = cohortManager.removeCohort('Cohort 1')
     expect(removedCohort).toEqual(expected)
+    expect(cohortManager.cohorts).toEqual([])
   })
 
   it("Remove Cohort that doesn't exist", () => {
@@ -75,6 +76,7 @@ describe('Cohort', () => {
     // verify
     const result = cohortManager.addStudent('Cohort 1', student)
     expect(result).toEqual(student)
+    expect(cohort.students).toEqual([student])
   })
 
   it('Remove Student from a cohort', () => {
@@ -92,6 +94,7 @@ describe('Cohort', () => {
     //vefity
     const removedStudent = cohortManager.removeStudent(cohort.name, student)
     expect(removedStudent).toEqual(expected)
+    expect(cohort.students).toEqual([])
   })
 
   it('Remove Student that does not exist', () => {
