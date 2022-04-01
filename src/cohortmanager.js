@@ -35,8 +35,8 @@ class CohortManager {
   addStudentToCohort(studentObj, cohortName) {
     if (!this.cohortExists(cohortName)) return `Err: cohort doesnt exist`
 
-    // if (this.studentExistsInOtherCohort(studentObj))
-    //   return `Err: student exists in other cohort.`
+    if (this.studentExistsInOtherCohort(studentObj, cohortName))
+      return `Err: student exists in other cohort.`
 
     const cohort = this.searchByCohortName(cohortName)
 
@@ -65,14 +65,14 @@ class CohortManager {
     return this.searchByCohortName(cohortName) !== undefined
   }
 
-  // studentExistsInOtherCohort(studentObj) {
-  //   for (let i = 0; i < this.cohortList.length; i++) {
-  //     console.log(this.cohortList[i])
-  //     if (this.cohortList[i].hasStudent(studentObj.email)) return true
-  //   }
+  studentExistsInOtherCohort(studentObj, cohortName) {
+    for (let i = 0; i < this.cohortList.length; i++) {
+      if (this.cohortList[i].name === cohortName) continue
+      if (this.cohortList[i].hasStudent(studentObj.email)) return true
+    }
 
-  //   return false
-  // }
+    return false
+  }
 }
 
 module.exports = CohortManager
