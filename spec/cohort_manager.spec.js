@@ -164,4 +164,86 @@ describe("cohort manager", () => {
     // verify
     expect(result).toEqual(errorMessage);
   });
+
+  // TEST 10
+  it("find cohorts with students", () => {
+    // setup
+    const manager = new CohortManager();
+    // execute
+    manager.createCohort("Cohort1");
+    manager.createCohort("Cohort2");
+    manager.createCohort("Cohort3");
+    manager.addStudent(
+      "Cohort3",
+      "Mike Wazowski",
+      "mike_GH",
+      "mike@monster.inc"
+    );
+    manager.addStudent(
+      "Cohort3",
+      "James Sullivan",
+      "sullyGH",
+      "sully@sully.inc"
+    );
+    manager.addStudent("Cohort3", "Randall Boggs", "boggsGH", "boggs@inc.com");
+    result = manager.findCohortsWithStudents();
+    // verify
+    expect(result.length).toEqual(1);
+    expect(result[0].name).toEqual("Cohort3");
+    expect(result[0].students.length).toEqual(3);
+  });
+
+  //TEST 11
+  it("search for a student by ID", () => {
+    // setup
+    const manager = new CohortManager();
+    // execute
+    manager.createCohort("Cohort1");
+    manager.createCohort("Cohort2");
+    manager.createCohort("Cohort3");
+    manager.addStudent(
+      "Cohort3",
+      "Mike Wazowski",
+      "mike_GH",
+      "mike@monster.inc"
+    );
+    manager.addStudent(
+      "Cohort3",
+      "James Sullivan",
+      "sullyGH",
+      "sully@sully.inc"
+    );
+    manager.addStudent("Cohort3", "Randall Boggs", "boggsGH", "boggs@inc.com");
+    result = manager.searchByID("2_J_S");
+    // verify
+    expect(result.firstName).toEqual("James");
+    expect(result.email).toEqual("sully@sully.inc");
+  });
+
+  //TEST 12
+  it("search for a student by ID - when id DOES NOT EXIST", () => {
+    // setup
+    const manager = new CohortManager();
+    const errorMessage = "NO STUDENT FOUND";
+    // execute
+    manager.createCohort("Cohort1");
+    manager.createCohort("Cohort2");
+    manager.createCohort("Cohort3");
+    manager.addStudent(
+      "Cohort3",
+      "Mike Wazowski",
+      "mike_GH",
+      "mike@monster.inc"
+    );
+    manager.addStudent(
+      "Cohort3",
+      "James Sullivan",
+      "sullyGH",
+      "sully@sully.inc"
+    );
+    manager.addStudent("Cohort3", "Randall Boggs", "boggsGH", "boggs@inc.com");
+    result = manager.searchByID("ABC123");
+    // verify
+    expect(result).toEqual(errorMessage);
+  });
 });

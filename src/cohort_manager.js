@@ -4,6 +4,8 @@ const Student = require('./student.js')
 class CohortManager {
   constructor () {
     this.cohortList = []
+    this.studentId = 1
+    this.cohortsWithStudents = []
   }
 
   createCohort (cohortName) {
@@ -29,11 +31,12 @@ class CohortManager {
   }
 
   addStudent (cohortName, studentName, gitHub, email) {
-    const newStudent = new Student(studentName, gitHub, email)
+    const newStudent = new Student(this.studentId, studentName, gitHub, email)
     let updatedCohort
     for (let i = 0; i < this.cohortList.length; i++) {
       if (this.cohortList[i].name === cohortName) {
         this.cohortList[i].students.push(newStudent)
+        this.studentId++
         updatedCohort = this.cohortList[i]
       }
     }
@@ -76,6 +79,30 @@ class CohortManager {
         }
       }
     }
+  }
+
+  findCohortsWithStudents () {
+    for (let i = 0; i < this.cohortList.length; i++) {
+      if (this.cohortList[i].students.length === 0) {
+        continue
+      }
+      if (this.cohortList[i].students.length !== 0) {
+        this.cohortsWithStudents.push(this.cohortList[i])
+      }
+    }
+    return this.cohortsWithStudents
+  }
+
+  searchByID (id) {
+    for (let i = 0; i < this.cohortList.length; i++) {
+      for (let d = 0; d < this.cohortList[i].students.length; d++) {
+        const student = this.cohortList[i].students[d]
+        if (student.id === id) {
+          return student
+        }
+      }
+    }
+    return 'NO STUDENT FOUND'
   }
 }
 
