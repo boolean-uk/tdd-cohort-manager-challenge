@@ -1,20 +1,18 @@
 const Cohorts = require('./cohorts.js')
-const Student = require('./student.js')
 
 class CohortManager {
-  constructor () {
+  constructor() {
     this.cohortList = []
     this.studentId = 1
-    this.cohortsWithStudents = []
   }
 
-  createCohort (cohortName) {
+  createCohort(cohortName) {
     const cohortToAdd = new Cohorts(cohortName)
     this.cohortList.push(cohortToAdd)
     return this.cohortList
   }
 
-  searchByCohortName (cohortName) {
+  searchByCohortName(cohortName) {
     let cohortFound = false
     let cohort
     for (let i = 0; i < this.cohortList.length; i++) {
@@ -30,20 +28,24 @@ class CohortManager {
     return cohort
   }
 
-  addStudent (cohortName, studentName, gitHub, email) {
-    const newStudent = new Student(this.studentId, studentName, gitHub, email)
-    let updatedCohort
+  addStudent(cohortName, studentName, gitHub, email) {
     for (let i = 0; i < this.cohortList.length; i++) {
       if (this.cohortList[i].name === cohortName) {
-        this.cohortList[i].students.push(newStudent)
+        const currentCohort = this.cohortList[i]
+        currentCohort.addStudentToStudentList(
+          this.studentId,
+          studentName,
+          gitHub,
+          email
+        )
         this.studentId++
-        updatedCohort = this.cohortList[i]
+        return currentCohort
       }
     }
-    return updatedCohort
+    return 'COHORT NOT FOUND'
   }
 
-  removeCohort (cohortName) {
+  removeCohort(cohortName) {
     let cohortFound = false
     for (let i = 0; i < this.cohortList.length; i++) {
       if (this.cohortList[i].name === cohortName) {
@@ -57,7 +59,7 @@ class CohortManager {
     }
   }
 
-  findCohort (cohort) {
+  findCohort(cohort) {
     let foundCohort = null
     for (let i = 0; i < this.cohortList.length; i++) {
       if (this.cohortList[i].name === cohort) {
@@ -67,7 +69,7 @@ class CohortManager {
     return foundCohort
   }
 
-  removeStudent (cohort, student) {
+  removeStudent(cohort, student) {
     const theCohort = this.findCohort(cohort)
     if (theCohort === null) {
       return 'COHORT NOT FOUND'
@@ -81,22 +83,23 @@ class CohortManager {
     }
   }
 
-  findCohortsWithStudents () {
+  findCohortsWithStudents() {
+    const cohortsWithStudents = []
     for (let i = 0; i < this.cohortList.length; i++) {
       if (this.cohortList[i].students.length === 0) {
         continue
       }
       if (this.cohortList[i].students.length !== 0) {
-        this.cohortsWithStudents.push(this.cohortList[i])
+        cohortsWithStudents.push(this.cohortList[i])
       }
     }
-    return this.cohortsWithStudents
+    return cohortsWithStudents
   }
 
-  searchByID (id) {
-    for (let i = 0; i < this.cohortList.length; i++) {
-      for (let d = 0; d < this.cohortList[i].students.length; d++) {
-        const student = this.cohortList[i].students[d]
+  searchByID(id) {
+    for (let c = 0; c < this.cohortList.length; c++) {
+      for (let s = 0; s < this.cohortList[c].students.length; s++) {
+        const student = this.cohortList[c].students[s]
         if (student.id === id) {
           return student
         }
