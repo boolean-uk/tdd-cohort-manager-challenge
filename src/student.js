@@ -1,8 +1,7 @@
-const { v4: uuidv4 } = require('uuid')
 
 class Student {
-  constructor (firstName, lastName, githubName, email) {
-    this.id = uuidv4()
+  constructor (id, firstName, lastName, githubName, email) {
+    this.id = id
     this.fullName = `${firstName} ${lastName}`
     this.githubName = githubName
     this.email = email

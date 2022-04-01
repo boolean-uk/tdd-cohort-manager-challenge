@@ -7,6 +7,7 @@ describe ('cohortManager', () => {
   let cohort3
   let cohort4
   let cohort5
+  let cohortX
   let arisaSigrist
   let bobRoss
   let michelleObama
@@ -16,14 +17,17 @@ describe ('cohortManager', () => {
     cohort3 = new Cohort(3)
     cohort4 = new Cohort(4)
     cohort5 = new Cohort(5)
+    cohortX = new Cohort()
     arisaSigrist = new Student(
+      0,
       'Arisa',
       'Sigrist',
       'sigristarisa',
       'arisasigrist.ch@gmail.com'
     )
-    bobRoss = new Student('Bob', 'Ross', 'bobross', 'hi@bobross.com')
+    bobRoss = new Student(1, 'Bob', 'Ross', 'bobross', 'hi@bobross.com')
     michelleObama = new Student(
+      2,
       'Michelle',
       'Obama',
       'mrsobama',
@@ -33,21 +37,20 @@ describe ('cohortManager', () => {
 
 it('adds a new cohort is added to the cohort list', () => {
     //   setup
-
     const expected = 'You have added Cohort 5'
     // evaluate
-    const result = cohortManager.add(5)
+    const result = cohortManager.add(cohort5)
     // verify
     expect(result).toEqual(expected)
   })
 
   it('searches a specific cohort', () => {
     //   setup
-    cohortManager.add(3)
-    cohortManager.add(4)
-    cohortManager.add(5)
+    cohortManager.add(cohort3)
+    cohortManager.add(cohort4)
+    cohortManager.add(cohort5)
 
-    const expected = cohortManager.cohortList[2]
+    const expected = cohort5
     // evaluate
     const result = cohortManager.search(5)
     // verify
@@ -60,7 +63,7 @@ it('adds a new cohort is added to the cohort list', () => {
     cohortManager.add(4)
     cohortManager.add(5)
 
-    const expected = Error('this cohort do not exist')
+    const expected = Error('Empty name or name already exist')
     // evaluate
     const result = cohortManager.search(6)
     // verify
@@ -81,11 +84,11 @@ it('adds a new cohort is added to the cohort list', () => {
 
   it('removes specific cohort and returns the cohort list', () => {
     //   setup
-    cohortManager.add(3)
-    cohortManager.add(4)
-    cohortManager.add(5)
+    cohortManager.add(cohort3)
+    cohortManager.add(cohort4)
+    cohortManager.add(cohort5)
 
-    const expected = cohortManager.cohortList
+    const expected = [cohort3, cohort5]
     // evaluate
     const result = cohortManager.remove(4)
     // verify
@@ -100,20 +103,20 @@ it('adds a new cohort is added to the cohort list', () => {
 
     const expected = Error('this cohort do not exist')
     // evaluate
-    const result = cohortManager.remove('Cohort 6')
+    const result = cohortManager.remove(6)
     // verify
     expect(result).toEqual(expected)
   })
 
-  it('returns cohort list with names and no duplicates', () => {
+  it('returns error because of duplicate cohort', () => {
     //   setup
-    cohortManager.add(3)
-    cohortManager.add(4)
-    cohortManager.add(5)
+    cohortManager.add(cohort3)
+    cohortManager.add(cohort4)
+    cohortManager.add(cohort5)
 
     const expected = Error('Empty name or name already exist')
     // evaluate
-    const result = cohortManager.add(5)
+    const result = cohortManager.add(cohort5)
     // verify
     expect(result).toEqual(expected)
   })
@@ -122,7 +125,36 @@ it('adds a new cohort is added to the cohort list', () => {
     //   setup
     const expected = Error('Empty name or name already exist')
     // evaluate
-    const result = cohortManager.add('')
+    const result = cohortManager.add(cohortX)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('checks if the student exists in other cohort', () => {
+    //   setup
+    cohort5.add(arisaSigrist)
+    cohort4.add(bobRoss)
+
+    const expected = 'Michelle Obama do not exist – please add to appropriate Cohort'
+    // evaluate
+    const result = cohortManager.checkOverlapStudents(2, 'Michelle', 'Obama', 'mrsobama', 'michelle@usa.com')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('returns an error since the student exists in other Cohort', () => {
+    //   setup
+    cohortManager.add(cohort5)
+    cohortManager.add(cohort4)
+    cohortManager.add(cohort3)
+
+    cohort5.add(arisaSigrist)
+    cohort4.add(bobRoss)
+    cohort3.add(michelleObama)
+
+    const expected = Error('Michelle Obama already exists in Cohort 3 – please remove')
+    // evaluate
+    const result = cohortManager.checkOverlapStudents(2, 'Michelle', 'Obama', 'mrsobama', 'michelle@usa.com')
     // verify
     expect(result).toEqual(expected)
   })

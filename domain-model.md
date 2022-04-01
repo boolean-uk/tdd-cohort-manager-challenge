@@ -64,11 +64,11 @@ A cohort should have a list of students. Each student should have a studentID, f
 |        |                           | remove(@fullName) | @Array[@student] | students.filter(student => student.fullName !=== @fullName): "ERROR"                         |
 |        |                           | search(@id)       | @student         | same logic as search(@cohortName) in CohortManager class                                     |
 
-| Class         | Properties                | Methods                     | Output                        | Memo                                                                                |
-| ------------- | ------------------------- | --------------------------- | ----------------------------- | ----------------------------------------------------------------------------------- |
-| CohortManager |                           |                             |                               |                                                                                     |
-|               | cohortList Array[@cohort] |                             |                               |                                                                                     |
-|               |                           | add(@cohort)                | no output                     | conditional: if new cohort has a name and not in the list, cohortList.push(@cohort) |
-|               |                           | search(@cohortName)         | @cohort / "ERROR"             | cohort.name === @cohortName ?  @cohort : "ERROR"                                    |
-|               |                           | remove(@cohortName)         | list Array[@cohort] / "ERROR" | cohortList.filter(cohort => cohortList.name !=== @cohortName) : "ERROR"             |
-|               |                           | 
+| Class         | Properties                | Methods                                                | Output                        | Memo                                                                                |
+| ------------- | ------------------------- | ------------------------------------------------------ | ----------------------------- | ----------------------------------------------------------------------------------- |
+| CohortManager |                           |                                                        |                               |                                                                                     |
+|               | cohortList Array[@cohort] |                                                        |                               |                                                                                     |
+|               |                           | add(@cohort)                                           | no output / "ERROR"                    | conditional: if new cohort has a name and not in the list, cohortList.push(@cohort) |
+|               |                           | search(@cohortName)                                    | @cohort / "ERROR"             | cohort.name === @cohortName ?  @cohort : "ERROR"                                    |
+|               |                           | remove(@cohortName)                                    | list Array[@cohort] / "ERROR" | cohortList.filter(cohort => cohortList.name !=== @cohortName) : "ERROR"             |
+|               |                           | checkOverlapStudent(@id, @firstName, @lastName, @githubName, @email) | no output / "ERROR" | conditional: new student is in the list of cohort or not (loop through)

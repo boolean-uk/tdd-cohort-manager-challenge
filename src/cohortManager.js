@@ -1,22 +1,19 @@
-const Cohort = require('./cohort.js')
 
 class CohortManager {
   constructor () {
     this.cohortList = []
+    this.studentId = 1
   }
 
   get (cohortNum) {
     return this.cohortList.find(cohort => cohort.name === cohortNum)
   }
 
-  add (cohortNum) {
-    const existingCohort = this.get(cohortNum)
-    if (!cohortNum || existingCohort) return Error('Empty name or name already exist')
-
-    const newCohort = new Cohort(cohortNum)
+  add (newCohort) {
+    const existingCohort = this.get(newCohort.name)
+    if (!newCohort.name || existingCohort) return Error('Empty name or name already exist')
     this.cohortList.push(newCohort)
-
-    return `You have added Cohort ${cohortNum}`
+    return 'You have added Cohort ' + newCohort.name
   }
 
   search (cohortNum) {
@@ -32,6 +29,15 @@ class CohortManager {
     this.cohortList.splice(targetIndex, 1)
     return this.cohortList
   }
-}
 
+  checkOverlapStudents (id, firstName, lastName, githubName, email) {
+    const fullName = `${firstName} ${lastName}`
+
+    for (const cohort of this.cohortList) {
+      const targetStudent = cohort.students.find(student => student.id === id && student.fullName === fullName && student.githubName === githubName && student.email === email)
+      if (targetStudent) return Error(`${fullName} already exists in Cohort ${cohort.name} – please remove`)
+    }
+    return `${fullName} do not exist – please add to appropriate Cohort`
+  }
+}
 module.exports = CohortManager
