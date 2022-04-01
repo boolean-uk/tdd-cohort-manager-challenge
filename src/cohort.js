@@ -1,8 +1,8 @@
 class Cohort {
   constructor() {
-    this.cohortName = [];
-    this.studentList = [];
+    this.cohortName = ['']
+    this.studentList = []
   }
 }
 
-module.exports = Cohort;
+module.exports = Cohort

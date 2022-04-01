@@ -1,40 +1,40 @@
 class Manager {
   constructor() {
-    this.cohortList = [];
+    this.cohortList = []
   }
 
   createCohortName(cohortName) {
     const cohort = {
       name: cohortName,
-      studentList: [],
-    };
-    this.cohortList.push(cohort);
-    return this.cohortList;
+      studentList: []
+    }
+    this.cohortList.push(cohort)
+    return this.cohortList
   }
 
   searchCohortName(cohortName) {
-    const newArray = [];
+    const newArray = []
     for (let i = 0; i < this.cohortList.length; i++) {
-      const cohortObject = this.cohortList[i];
+      const cohortObject = this.cohortList[i]
       if (cohortObject.name === cohortName) {
-        newArray.push(cohortObject);
+        newArray.push(cohortObject)
       }
     }
-    return newArray;
+    return newArray
   }
 
   removeCohortName(cohortName) {
     if (this.searchCohortName(cohortName)) {
       for (let i = 0; i < this.cohortList.length; i++) {
         if (this.cohortList[i].name === cohortName) {
-          this.cohortList.splice(i, 0);
-          console.log(this.cohortList);
-          break;
+          this.cohortList.splice(i, 0)
+          console.log(this.cohortList)
+          break
         }
       }
-      return this.cohortList;
+      return this.cohortList
     }
   }
 }
 
-module.exports = Manager;
+module.exports = Manager
