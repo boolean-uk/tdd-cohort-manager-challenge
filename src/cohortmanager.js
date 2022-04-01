@@ -5,8 +5,8 @@ class CohortManager {
     this.cohortList = [];
   }
 
-  createNewCohort(cohortName) {
-    const newCohort = new Cohort(cohortName);
+  createNewCohort(cohortName, cohortCapacity) {
+    const newCohort = new Cohort(cohortName, cohortCapacity);
     this.cohortList.push(newCohort);
 
     return `New Cohort (${cohortName}) created.`;
@@ -32,9 +32,9 @@ class CohortManager {
 
     if (cohort.hasStudent(studentObj.email)) return `Student already exists`;
 
-    cohort.addStudent(studentObj);
+    return cohort.addStudent(studentObj);
 
-    return cohort;
+    // return cohort;
   }
 
   removeStudentFromCohort(studentEmail, cohortName) {
@@ -45,6 +45,16 @@ class CohortManager {
 
     cohort.removeStudent(studentEmail);
     return cohort;
+  }
+
+  searchByStudentEmail(email) {
+    for (let i = 0; i < this.cohortList.length; i++) {
+      const cohort = this.cohortList[i];
+      if (cohort.hasStudent(email)) {
+        return cohort.getStudent(email);
+      }
+    }
+    return `student not found`;
   }
 
   cohortExists(searchedCohort) {
@@ -65,27 +75,4 @@ module.exports = CohortManager;
 //     }
 //   }
 //   return `student not found`;
-// }
-
-// searchByStudentEmail(email) {
-//   for (let i = 0; i < this.cohortList.length; i++) {
-//     const cohort = this.cohortList[i];
-//     if (cohort.hasStudent(email)) {
-//       return cohort.getStudent(email);
-//     }
-//   }
-//   return `student not found`;
-// }
-
-// addStudentToCohort(studentObj, cohortName) {
-//   if (this.cohortExists(cohortName)) {
-//     if (!this.studentExists(studentObj.email)) {
-//       const cohort = this.searchByCohortName(cohortName);
-//       cohort.addStudent(studentObj);
-
-//       return cohort;
-//     }
-//     return `Student already exists`;
-//   }
-//   return `cohort doesnt exist`;
 // }

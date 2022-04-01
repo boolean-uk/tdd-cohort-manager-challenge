@@ -4,54 +4,48 @@ const student = require("../src/student.js");
 const Student = require("../src/student.js");
 
 describe("Cohort manager", () => {
-  // it("searches by student id and returns error message if not found ", () => {
-  //   // setup
-  //   const cohortManager = new CohortManager();
-  //   const cohort1 = new Cohort("Cohort 1");
-  //   const cohort2 = new Cohort("Cohort 2");
-  //   const student1 = new Student(
-  //     1,
-  //     "John",
-  //     "Smith",
-  //     "johnsmith001",
-  //     "johnsmith@gmail.com"
-  //   );
-  //   const student2 = new Student(
-  //     2,
-  //     "Kevin",
-  //     "Smith",
-  //     "kevinsmith001",
-  //     "kevinsmith@gmail.com"
-  //   );
-  //   // execute
-  //   cohortManager.addNewCohort(cohort1);
-  //   cohortManager.addNewCohort(cohort2);
-  //   cohortManager.addStudentToCohort(student1, "Cohort 1");
-  //   cohortManager.addStudentToCohort(student2, "Cohort 2");
-  //   // verify
-  //   const result1 = cohortManager.searchByStudentID(2);
-  //   const result2 = cohortManager.searchByStudentID(3);
-  //   expect(result1).toEqual(student2);
-  //   expect(result2).toEqual(`student not found`);
-  // });
-  // it("can't exceed student capacity ", () => {
-  //   // setup
-  //   const cohortManager = new CohortManager();
-  //   const cohort1 = new Cohort("Cohort 1");
-  //   const student = new Student(
-  //     1,
-  //     "John",
-  //     "Smith",
-  //     "johnsmith001",
-  //     "johnsmith@gmail.com"
-  //   );
-  //   // execute
-  //   cohortManager.addNewCohort(cohort1);
-  //   for (let i = 0; i < 10; i++) {
-  //     cohortManager.addStudentToCohort(student, "Cohort 1");
-  //   }
-  //   // verify
-  //   const result = cohortManager.addStudentToCohort(student, "Cohort 1");
-  //   expect(result).toEqual(`can't add anymore students`);
-  // });
+  it("searches by student email - returns student or error message", () => {
+    // setup
+    const cohortManager = new CohortManager();
+    const morty = new Student(
+      "Morty",
+      "Smith",
+      "mortysmith001",
+      "mortysmith@gmail.com"
+    );
+
+    cohortManager.createNewCohort("Cohort 1");
+    cohortManager.addStudentToCohort(morty, "Cohort 1");
+
+    // execute
+    const result1 = cohortManager.searchByStudentEmail("mortysmith@gmail.com");
+    const errorTest = cohortManager.searchByStudentEmail("bethsmith@gmail.com");
+    // verify
+    expect(result1).toEqual(morty);
+    expect(errorTest).toEqual(`student not found`);
+  });
+
+  it("returns error message when you try to add students beyond max capacity (max capacity = 1 in this case)", () => {
+    // setup
+    const cohortManager = new CohortManager();
+    const morty = new Student(
+      "Morty",
+      "Smith",
+      "mortysmith001",
+      "mortysmith@gmail.com"
+    );
+    const rick = new Student(
+      "Rick",
+      "Sanchez",
+      "ricksanchez001",
+      "ricksanchezgmail.com"
+    );
+
+    cohortManager.createNewCohort("Cohort 1", 1);
+    cohortManager.addStudentToCohort(morty, "Cohort 1");
+    // execute
+    const result = cohortManager.addStudentToCohort(rick, "Cohort 1");
+    // verify
+    expect(result).toEqual(`cant add anymore students`);
+  });
 });

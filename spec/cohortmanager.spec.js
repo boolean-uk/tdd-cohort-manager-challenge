@@ -43,7 +43,7 @@ describe("Cohort manager", () => {
   });
 
   // returns error if cohort doesnt exist, retruns error if student already exists
-  it("adds a student to cohort 1 and returns the cohort they were added to", () => {
+  it("adds a student to cohort 1 and returns the studentlist of the cohort they were added to", () => {
     // setup
     const cohortManager = new CohortManager();
     const morty = new Student(
@@ -61,12 +61,12 @@ describe("Cohort manager", () => {
     const errorTest1 = cohortManager.addStudentToCohort(morty, "Cohort 1");
     const errorTest2 = cohortManager.addStudentToCohort(morty, "Cohort 2");
 
-    expect(result.studentList).toEqual([morty]);
+    expect(result).toEqual([morty]);
     expect(errorTest1).toEqual(`Student already exists`);
     expect(errorTest2).toEqual(`cohort doesnt exist`);
   });
 
-  it("removes a student from cohort 1 and returns ", () => {
+  it("removes a student from cohort 1 and returns the cohort", () => {
     // setup
     const cohortManager = new CohortManager();
     const morty = new Student(
@@ -103,87 +103,4 @@ describe("Cohort manager", () => {
     expect(errorTest1).toEqual(`Student doesnt exist`);
     expect(errorTest2).toEqual(`cohort doesnt exist`);
   });
-
-  // it("can add a cohort", () => {
-  //   // setup
-  //   const cohortManager = new CohortManager();
-  //   const cohort = new Cohort("Cohort 1");
-  //   // execute
-  //   cohortManager.addNewCohort(cohort);
-  //   // verify
-  //   expect(cohortManager.cohortList).toEqual([cohort]);
-  //   expect(cohortManager.cohortList.length).toEqual(1);
-  // });
-
-  // it("removes  student2 from cohort 1", () => {
-  //   // setup
-  //   const cohortManager = new CohortManager();
-  //   const cohort1 = new Cohort("Cohort 1");
-  //   const student1 = new Student(
-  //     "1",
-  //     "John",
-  //     "Smith",
-  //     "johnsmith001",
-  //     "johnsmith@gmail.com"
-  //   );
-  //   const student2 = new Student(
-  //     "2",
-  //     "Kevin",
-  //     "Smith",
-  //     "kevinsmith001",
-  //     "kevinsmith@gmail.com"
-  //   );
-  //   // execute
-  //   cohortManager.addNewCohort(cohort1);
-  //   cohortManager.addStudentToCohort(student1, "Cohort 1");
-  //   cohortManager.addStudentToCohort(student2, "Cohort 1");
-
-  //   // verify
-  //   const result = cohortManager.removeStudentFromCohort(student2, "Cohort 1");
-
-  //   expect(result.studentList).toEqual([student1]);
-  // });
-
-  // it("Checks a student exists - returns false when searching for student2", () => {
-  //   // setup
-  //   const cohortManager = new CohortManager();
-  //   const cohort1 = new Cohort("Cohort 1");
-  //   const student1 = new Student(
-  //     "1",
-  //     "John",
-  //     "Smith",
-  //     "johnsmith001",
-  //     "johnsmith@gmail.com"
-  //   );
-  //   const student2 = new Student(
-  //     "2",
-  //     "Kevin",
-  //     "Smith",
-  //     "kevinsmith001",
-  //     "kevinsmith@gmail.com"
-  //   );
-  //   // execute
-  //   cohortManager.addNewCohort(cohort1);
-  //   cohortManager.addStudentToCohort(student1, "Cohort 1");
-
-  //   // verify
-  //   const result = cohortManager.studentExists(student2, cohort1.studentList);
-
-  //   expect(result).toEqual(false);
-  // });
-
-  // it("Checks a cohort exists - returns false when searching for cohort2", () => {
-  //   // setup
-  //   const cohortManager = new CohortManager();
-  //   const cohort1 = new Cohort("Cohort 1");
-  //   const cohort2 = new Cohort("Cohort 2");
-
-  //   // execute
-  //   cohortManager.addNewCohort(cohort1);
-
-  //   // verify
-  //   const result = cohortManager.cohortExists(cohort2);
-
-  //   expect(result).toEqual(false);
-  // });
 });
