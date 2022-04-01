@@ -22,6 +22,19 @@ class Manager {
     }
     return newArray;
   }
+
+  removeCohortName(cohortName) {
+    if (this.searchCohortName(cohortName)) {
+      for (let i = 0; i < this.cohortList.length; i++) {
+        if (this.cohortList[i].name === cohortName) {
+          this.cohortList.splice(i, 0);
+          console.log(this.cohortList);
+          break;
+        }
+      }
+      return this.cohortList;
+    }
+  }
 }
 
 module.exports = Manager;

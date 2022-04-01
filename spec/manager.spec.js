@@ -34,4 +34,26 @@ describe("Manager", () => {
     //verify
     expect(result).toEqual(expected);
   });
+
+  it("remove a cohort name", () => {
+    //set up
+    const manager = new Manager();
+    manager.createCohortName("Cohort 1");
+    manager.createCohortName("Cohort 2");
+    manager.searchCohortName("Cohort 1");
+    //execute
+    const expected = [
+      {
+        name: "Cohort 1",
+        studentList: [],
+      },
+      {
+        name: "Cohort 2",
+        studentList: [],
+      },
+    ];
+    const result = manager.removeCohortName("Cohort 1");
+    //verify
+    expect(result).toEqual(expected);
+  });
 });
