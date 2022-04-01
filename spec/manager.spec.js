@@ -69,6 +69,27 @@ describe("Manager", () => {
         expect(result).toEqual(expected);
     });
 
+    it("removes from specific cohort by name", () => {
+        // set up
+        const cohorts = new Manager();
+
+        const expected = 3;
+
+        // execute
+        cohorts.addCohort("AlphaXYZ");
+        cohorts.addCohort("AlphaABC");
+        cohorts.addCohort("AlphaDEF");
+        cohorts.addCohort("AlphaQVW");
+
+        cohorts.removeCohort("AlphaXYZ");
+
+        // console.log(cohorts.cohorts[0]);
+
+        const result = cohorts.cohorts.length;
+
+        expect(result).toEqual(expected);
+    });
+
     it("returns string if student does not exist", () => {
         // set up
         const cohorts = new Manager();

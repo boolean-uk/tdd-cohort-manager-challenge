@@ -11,6 +11,15 @@ class Manager {
     this.cohorts.push(cohort)
   }
 
+  removeCohort (cohortName) {
+    function nameFunction (name) {
+      return name === cohortName
+    }
+    const index = this.cohorts.findIndex(nameFunction)
+    this.cohorts.splice(index, 1)
+    return this.cohorts
+  }
+
   addStudent (firstName, lastName, gitHub, cohortName) {
     const student = new Student(firstName, lastName, gitHub)
     this.cohorts.forEach((cohort, i) => {
