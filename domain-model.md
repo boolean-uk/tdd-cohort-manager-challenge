@@ -71,4 +71,5 @@ A cohort should have a list of students. Each student should have a studentID, f
 |               |                           | add(@cohort)                                           | no output / "ERROR"                    | conditional: if new cohort has a name and not in the list, cohortList.push(@cohort) |
 |               |                           | search(@cohortName)                                    | @cohort / "ERROR"             | cohort.name === @cohortName ?  @cohort : "ERROR"                                    |
 |               |                           | remove(@cohortName)                                    | list Array[@cohort] / "ERROR" | cohortList.filter(cohort => cohortList.name !=== @cohortName) : "ERROR"             |
-|               |                           | checkOverlapStudent(@id, @firstName, @lastName, @githubName, @email) | no output / "ERROR" | conditional: new student is in the list of cohort or not (loop through)
+|               |                           | checkOverlapStudent(@id, @firstName, @lastName, @githubName, @email) | no output / "ERROR" | conditional: new student is in the list of cohort or not (loop through) |
+|               |                           | searchStudent(@firstName, @lastName)  | @student / "ERROR" | loop through and find the student, if not "Error" |
