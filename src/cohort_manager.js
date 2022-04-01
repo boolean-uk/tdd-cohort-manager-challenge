@@ -4,6 +4,7 @@ class CohortManager {
   constructor() {
     this.cohortList = []
     this.studentId = 1
+    this.max_capacity = 5
   }
 
   createCohort(cohortName) {
@@ -32,14 +33,18 @@ class CohortManager {
     for (let i = 0; i < this.cohortList.length; i++) {
       if (this.cohortList[i].name === cohortName) {
         const currentCohort = this.cohortList[i]
-        currentCohort.addStudentToStudentList(
-          this.studentId,
-          studentName,
-          gitHub,
-          email
-        )
-        this.studentId++
-        return currentCohort
+        if (currentCohort.students.length < this.max_capacity) {
+          currentCohort.addStudentToStudentList(
+            this.studentId,
+            studentName,
+            gitHub,
+            email
+          )
+          this.studentId++
+          return currentCohort
+        } else {
+          return 'THE COHORT IS FULL'
+        }
       }
     }
     return 'COHORT NOT FOUND'

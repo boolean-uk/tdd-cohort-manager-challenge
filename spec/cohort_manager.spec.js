@@ -42,7 +42,6 @@ describe('cohort manager', () => {
     manager.createCohort('Cohort3')
     result = manager.searchByCohortName('Cohort2')
     // verify
-    //console.log("RESULT: ",result)
     expect(result.name).toEqual('Cohort2')
   })
 
@@ -263,5 +262,29 @@ describe('cohort manager', () => {
     result = manager.searchByID('ABC123')
     // verify
     expect(result).toEqual(errorMessage)
+  })
+
+  //TEST 14
+  it('add student to a specific cohort - over MAX COHORT CAPACITY of 5', () => {
+    // setup
+    const manager = new CohortManager()
+    //execute
+    manager.createCohort('Cohort1')
+    manager.createCohort('Cohort2')
+    manager.createCohort('Cohort3')
+    manager.addStudent('Cohort3', 'Randall Boggs', 'boggsGH', 'boggs@inc.com')
+    manager.addStudent('Cohort3', 'Randall Boggs', 'boggsGH', 'boggs@inc.com')
+    manager.addStudent('Cohort3', 'Randall Boggs', 'boggsGH', 'boggs@inc.com')
+    manager.addStudent('Cohort3', 'Randall Boggs', 'boggsGH', 'boggs@inc.com')
+    manager.addStudent('Cohort3', 'Randall Boggs', 'boggsGH', 'boggs@inc.com')
+    result = manager.addStudent(
+      'Cohort3',
+      'David Czuczor',
+      'd-username',
+      'czdavid93@gmail.com'
+    )
+    // verify
+    console.log('RESULT IN TEST: ', result)
+    expect(result).toEqual('THE COHORT IS FULL')
   })
 })
