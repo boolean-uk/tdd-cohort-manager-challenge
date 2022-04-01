@@ -14,6 +14,30 @@ describe("Cohort", () => {
         // expect(cohort).toEqual(cohort.cohortName)
     })
 
+    it("Max capacity reached when trying to add students", () => {
+        // setup
+        const cohort = new Cohort()
+        const student1 = new Student(1,'Student One', 'email@email.com')
+        const student2 = new Student(2,'Student Two', 'email2@email.com')
+        const student3 = new Student(3,'Student Three', 'email3@email.com')
+        const student4 = new Student(4,'Student Four', 'email4@email.com')
+
+
+        // execute
+        cohort.add(student1)
+        cohort.add(student2)
+        cohort.add(student3)
+        studentsInCohort = [student1, student2, student3]
+
+        const canNotAddStudent = cohort.add(student4)
+        const maxMessage = 'Cohort at full capacity'
+        // verify
+        expect(studentsInCohort).toEqual(cohort.students)
+        expect(canNotAddStudent).toEqual(maxMessage)
+        // expect(cohort).toEqual(cohort.cohortName)
+    })
+
+
     it("remove student", () => {
         // setup
         const cohort = new Cohort()

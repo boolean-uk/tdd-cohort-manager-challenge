@@ -2,11 +2,15 @@ class Cohort {
     constructor(cohortName) {
         this.cohortName = cohortName
         this.students = []
+        this.cohortMax = 3
     }
     
     add(student) {
+        console.log()
+        if (this.cohortMax > this.students.length) {
         this.students.push(student)
         return this.students
+        } else return 'Cohort at full capacity'
     }
     
     // isn't [i] and this.students[i] targeting the same thing
@@ -22,7 +26,6 @@ class Cohort {
 
         return existError
     }
-
 }
 
 module.exports = Cohort

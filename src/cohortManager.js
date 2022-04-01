@@ -1,6 +1,6 @@
 class CohortManager {
     constructor() {
-       this.cohortClasses = [cohort1, cohort2]
+       this.cohortClasses = []
     }
     
     add(cohortN) {
@@ -8,8 +8,7 @@ class CohortManager {
         this.cohortClasses.push(cohortN)
         return this.cohortClasses
     }
-    
-    
+        
     foundCohort(cohortN) {
         for ( let i=0 ; i < this.cohortClasses.length; i++) {
             if (cohortN === this.cohortClasses[i].cohortN) {    
