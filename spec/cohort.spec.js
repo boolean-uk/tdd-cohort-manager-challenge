@@ -39,6 +39,29 @@ describe("Cohort", () => {
         expect(result).toEqual(expected);
     });
 
+    it("return string if try to add student beyond capacity", () => {
+        // set up
+
+        const cohort = new Cohort("AlphaZ");
+
+        // const student = new Student();
+        // student.setCapacity(3);
+        // console.log(student.capacity);
+        cohort.setCapacity(3);
+        const expected = "Cohort full";
+
+        cohort.addStudentToCohort("Alice", "Jones", "XXX");
+        cohort.addStudentToCohort("Alex", "Jones", "XXX");
+        cohort.addStudentToCohort("Alice", "Jones", "XXX");
+        cohort.addStudentToCohort("Alex", "Jones", "XXX");
+
+        // execute
+        const result = cohort.addStudentToCohort("Alex", "Jones", "XXX");
+
+        // verify
+        expect(result).toEqual(expected);
+    });
+
     it("remove student by gitHub ID", () => {
         // set up
 

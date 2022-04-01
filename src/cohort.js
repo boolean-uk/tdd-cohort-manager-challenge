@@ -1,18 +1,32 @@
 const Student = require('./student.js')
 
 class Cohort {
-  constructor (cohortName) {
+  constructor(cohortName, capacity = 10) {
     this.cohortName = cohortName
     this.students = []
+    this.capacity = capacity
   }
 
-  addStudentToCohort (firstName, lastName, gitHub) {
-    const student = new Student(firstName, lastName, gitHub)
-    this.students.push(student)
-    return this.students
+  searchById(id) {
+    this.students.find((student) => {
+      return student.id === id
+    })
   }
 
-  removeStudentFromCohort (gitHub) {
+  setCapacity(number) {
+    return (this.capacity = number)
+  }
+
+  addStudentToCohort(firstName, lastName, gitHub, id) {
+    const student = new Student(firstName, lastName, gitHub, id)
+    if (this.students.length < this.capacity) {
+      this.students.push(student)
+      return this.students
+    }
+    return 'Cohort full'
+  }
+
+  removeStudentFromCohort(gitHub) {
     this.students.forEach((item, i) => {
       if (item.gitHub === gitHub) {
         this.students.splice(i, 1)

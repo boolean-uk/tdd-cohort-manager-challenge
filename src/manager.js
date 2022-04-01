@@ -1,18 +1,28 @@
 const Cohort = require('./cohort')
-const Student = require('./student.js')
 
 class Manager {
-  constructor () {
+  constructor() {
     this.cohorts = []
   }
 
-  addCohort (cohortName) {
+  findStudentById(id) {
+    let student = false
+    this.cohorts.forEach((cohort) => {
+      const result = cohort.findStudentById(id)
+      if (result) {
+        student = result
+      }
+    })
+    return student
+  }
+
+  addCohort(cohortName) {
     const cohort = new Cohort(cohortName)
     this.cohorts.push(cohort)
   }
 
-  removeCohort (cohortName) {
-    function nameFunction (name) {
+  removeCohort(cohortName) {
+    function nameFunction(name) {
       return name === cohortName
     }
     const index = this.cohorts.findIndex(nameFunction)
@@ -20,16 +30,31 @@ class Manager {
     return this.cohorts
   }
 
-  addStudent (firstName, lastName, gitHub, cohortName) {
-    const student = new Student(firstName, lastName, gitHub)
+  //   addStudent(firstName, lastName, gitHub, cohortName) {
+  //     const student = new Student(firstName, lastName, gitHub)
+  //     this.cohorts.forEach((cohort, i) => {
+  //       if (cohortName === cohort.cohortName) {
+  //         cohort.students.push(student)
+  //       }
+  //     })
+  //   }
+
+  addStudent(firstName, lastName, gitHub, cohortName) {
+    let addedCohorts = null
     this.cohorts.forEach((cohort, i) => {
       if (cohortName === cohort.cohortName) {
-        cohort.students.push(student)
+        // found the cohort we want to put student in
+        cohort.addStudentToCohort(firstName, lastName, gitHub)
+        addedCohorts = cohort
       }
     })
+    if (addedCohorts === null) {
+      return 'Not found'
+    }
+    return addedCohorts
   }
 
-  removeStudent (gitHub, cohortName) {
+  removeStudent(gitHub, cohortName) {
     this.cohorts.forEach((cohort) => {
       if (cohortName === cohort.cohortName) {
         cohort.students.forEach((student, i) => {
