@@ -6,26 +6,22 @@ class Cohort {
   }
 
   add (newStudent) {
-    if (this.students.length <= this.capacity) this.students.push(newStudent)
+    if (this.students.length <= this.capacity && !this.students.includes(newStudent)) this.students.push(newStudent)
     return Error('this cohort hit the capacity')
   }
 
   remove (studentName) {
-    for (const studentProfile of this.students) {
-      const targetIndex = this.students.indexOf(studentProfile)
-      if (studentProfile.fullName === studentName) {
-        this.students.splice(targetIndex, 1)
-        return this.students
-      }
-    }
-    return Error('this student do not exist')
+    const targetStudent = this.students.find(student => student.fullName === studentName)
+    const targetIndex = this.students.indexOf(targetStudent)
+    if (!targetStudent) return Error('this student do not exist')
+    this.students.splice(targetIndex, 1)
+    return this.students
   }
 
   search (studentId) {
-    for (const studentProfile of this.students) {
-      if (studentProfile.id === studentId) return studentProfile
-    }
-    return Error('this student do not exist')
+    const targetStudent = this.students.find(student => student.id === studentId)
+    if (!targetStudent) return Error('this student do not exist')
+    return targetStudent
   }
 }
 

@@ -16,21 +16,17 @@ class CohortManager {
   }
 
   search (cohortNum) {
-    for (const cohort of this.cohortList) {
-      if (cohort.name === cohortNum) return cohort
-    }
-    return Error('this cohort do not exist')
+    const targetCohort = this.cohortList.find(cohort => cohort.name === cohortNum)
+    if (!targetCohort) return Error('this cohort do not exist')
+    return targetCohort
   }
 
   remove (cohortNum) {
-    for (const cohort of this.cohortList) {
-      const targetIndex = this.cohortList.indexOf(cohort)
-      if (cohort.name === cohortNum) {
-        this.cohortList.splice(targetIndex, 1)
-        return this.cohortList
-      }
-    }
-    return Error('this cohort do not exist')
+    const targetCohort = this.cohortList.find(cohort => cohort.name === cohortNum)
+    const targetIndex = this.cohortList.indexOf(targetCohort)
+    if (!targetCohort) return Error('this cohort do not exist')
+    this.cohortList.splice(targetIndex, 1)
+    return this.cohortList
   }
 }
 
