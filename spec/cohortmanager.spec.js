@@ -240,4 +240,6 @@ describe('Cohort Tests', () => {
     // verify
     expect(result).toEqual(expected)
   })
+
+  // ---------------> Extension 2
 })

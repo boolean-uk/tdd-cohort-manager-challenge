@@ -1,3 +1,11 @@
+const cohortNotFoundError = 'Cohort not found.'
+const cohortFullError = 'This cohort is full.'
+const cohortCannotExistWithoutNameError =
+  'Please name the cohort before initialising.'
+const cohortAlreadyExistsError = 'This cohort already exists.'
+const studentNotFoundError = 'Student not found.'
+const studentInAnotherCohortError = 'This student is already in another cohort.'
+
 class CohortManager {
   constructor() {
     this.studentList = []
@@ -141,6 +149,8 @@ class CohortManager {
   getStudentList() {
     return this.studentList
   }
+
+  //
 }
 
 module.exports = CohortManager
