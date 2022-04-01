@@ -20,11 +20,14 @@ describe("Manager", () => {
 
   it("search a cohort name", () => {
     //set up
-    const manager = new Manager("Cohort 1");
+    const manager = new Manager();
+    manager.createCohortName("Cohort 1");
+    manager.createCohortName("Cohort 2");
     //execute
     const expected = [
       {
         name: "Cohort 1",
+        studentList: [],
       },
     ];
     const result = manager.searchCohortName("Cohort 1");

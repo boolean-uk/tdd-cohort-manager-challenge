@@ -13,9 +13,14 @@ class Manager {
   }
 
   searchCohortName(cohortName) {
+    const newArray = [];
     for (let i = 0; i < this.cohortList.length; i++) {
-      return this.cohortList[i];
+      const cohortObject = this.cohortList[i];
+      if (cohortObject.name === cohortName) {
+        newArray.push(cohortObject);
+      }
     }
+    return newArray;
   }
 }
 
