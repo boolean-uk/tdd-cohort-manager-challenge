@@ -1,6 +1,4 @@
 const CohortManager = require("../src/cohortmanager.js");
-const Cohort = require("../src/cohort.js");
-const student = require("../src/student.js");
 const Student = require("../src/student.js");
 
 describe("Cohort manager", () => {
@@ -62,23 +60,4 @@ describe("Cohort manager", () => {
     expect(result1).toEqual(`Err: cohort already exists`);
     expect(result2).toEqual("Err: please provide cohort name");
   });
-
-  // it("returns error message when you try to add student that is already present in another cohort", () => {
-  //   // setup
-  //   const cohortManager = new CohortManager();
-  //   const morty = new Student(
-  //     "Morty",
-  //     "Smith",
-  //     "mortysmith001",
-  //     "mortysmith@gmail.com"
-  //   );
-
-  //   cohortManager.createNewCohort("Cohort 1");
-  //   cohortManager.createNewCohort("Cohort 2");
-  //   cohortManager.addStudentToCohort(morty, "Cohort 1");
-  //   // execute
-  //   const result = cohortManager.addStudentToCohort(morty, "Cohort 2");
-  //   // verify
-  //   expect(result).toEqual(`test`);
-  // });
 });

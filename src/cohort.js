@@ -8,12 +8,11 @@ class Cohort {
   addStudent(studentObj) {
     if (this.hasStudent(studentObj.email)) return `Err: Student already exists`;
 
-    if (this.studentList.length < this.cohortCapacity) {
-      this.studentList.push(studentObj);
-      return this.studentList;
-    }
+    if (this.studentList.length >= this.cohortCapacity)
+      return `Err: cant add anymore students`;
 
-    return `Err: cant add anymore students`;
+    this.studentList.push(studentObj);
+    return this.studentList;
   }
 
   removeStudent(studentEmail) {

@@ -1,6 +1,4 @@
 const CohortManager = require("../src/cohortmanager.js");
-const Cohort = require("../src/cohort.js");
-const student = require("../src/student.js");
 const Student = require("../src/student.js");
 
 describe("Cohort manager", () => {
