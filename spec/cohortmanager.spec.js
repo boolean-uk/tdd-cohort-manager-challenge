@@ -41,7 +41,7 @@ describe("Cohort manager", () => {
   });
 
   // returns error if cohort doesnt exist, retruns error if student already exists
-  it("adds a student to cohort 1 and returns the studentlist of the cohort they were added to", () => {
+  fit("adds a student to cohort 1 and returns the studentlist of the cohort they were added to", () => {
     // setup
     const cohortManager = new CohortManager();
     const morty = new Student(
