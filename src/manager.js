@@ -2,18 +2,18 @@ const Cohort = require('../src/cohort')
 const Student = require('../src/student')
 
 class Manager {
-  constructor () {
+  constructor() {
     this.cohorts = []
     this.studentID = 1
   }
 
-  getCohort (cohortName) {
+  getCohort(cohortName) {
     const cohort = this.cohorts.find((cohort) => cohort.name === cohortName)
     if (cohort) return cohort
     return false
   }
 
-  createCohort (cohortName) {
+  createCohort(cohortName) {
     if (!cohortName) return 'Cannot create a cohort without a name.'
     const cohortExists = this.cohorts.find((el) => el.name === cohortName)
     if (cohortExists) return 'Cannot create cohorts with the same name.'
@@ -24,28 +24,31 @@ class Manager {
     return `${cohortToCreate.name} was created.`
   }
 
-  removeCohort (cohortName) {
+  removeCohort(cohortName) {
     const cohortToRemove = this.getCohort(cohortName)
     if (cohortToRemove) {
-      this.cohorts = this.cohorts.filter((cohort) => cohort.name !== cohortToRemove.name)
+      this.cohorts = this.cohorts.filter(
+        (cohort) => cohort.name !== cohortToRemove.name
+      )
       return cohortToRemove
     }
 
     return 'Error: Cohort not found.'
   }
 
-  getStudent (studentID) {
+  getStudent(studentID) {
     for (const cohort of this.cohorts) {
       const student = cohort.students.find((el) => el.id === studentID)
       if (student) return student
     }
   }
 
-  getStudentByName (firstName, lastName) {
+  getStudentByName(firstName, lastName) {
     const filteredList = []
     for (const cohort of this.cohorts) {
       const students = cohort.students.reduce((acc, cur) => {
-        if (cur.firstName === firstName && cur.lastName === lastName) acc.push(cur)
+        if (cur.firstName === firstName && cur.lastName === lastName)
+          acc.push(cur)
 
         return acc
       }, [])
@@ -54,12 +57,19 @@ class Manager {
     return filteredList
   }
 
-  addStudent (firstName, lastName, gitHub, email, cohortName) {
+  addStudent(firstName, lastName, gitHub, email, cohortName) {
     const cohort = this.getCohort(cohortName)
     if (!cohort) return 'Error: Cohort not found.'
-    if (cohort.students.length >= cohort.maxCapacity) return 'Cohort at max capacity already.'
+    if (cohort.students.length >= cohort.maxCapacity)
+      return 'Cohort at max capacity already.'
 
-    const student = new Student(this.studentID, firstName, lastName, gitHub, email)
+    const student = new Student(
+      this.studentID,
+      firstName,
+      lastName,
+      gitHub,
+      email
+    )
     const studentExists = this.getStudent(student.id)
     if (studentExists) return 'Student already exists.'
 
@@ -68,7 +78,7 @@ class Manager {
     return student
   }
 
-  removeStudent (studentID, cohortName) {
+  removeStudent(studentID, cohortName) {
     const cohort = this.getCohort(cohortName)
     try {
       return cohort.removeStudent(studentID)
