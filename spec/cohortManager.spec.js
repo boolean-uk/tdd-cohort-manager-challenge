@@ -193,7 +193,7 @@ it('adds a new cohort is added to the cohort list', () => {
     expect(result).toEqual(expected)
   })
 
-  fit('trial', () => {
+  fit('returns no overlapping students', () => {
     //   setup
     cohortManager.add(cohort5)
     cohortManager.add(cohort4)
@@ -204,6 +204,24 @@ it('adds a new cohort is added to the cohort list', () => {
     cohort5.add(michelleObama)
 
     const expected = []
+    // evaluate
+    const result = cohortManager.checkOverlapStudents()
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  fit('returns overlapping students', () => {
+    //   setup
+    cohortManager.add(cohort5)
+    cohortManager.add(cohort4)
+    cohortManager.add(cohort3)
+
+    cohort3.add(arisaSigrist)
+    cohort5.add(arisaSigrist)
+    cohort5.add(bobRoss)
+    cohort5.add(michelleObama)
+
+    const expected = [arisaSigrist]
     // evaluate
     const result = cohortManager.checkOverlapStudents()
     // verify
