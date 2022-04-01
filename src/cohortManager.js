@@ -39,5 +39,15 @@ class CohortManager {
     }
     return `${fullName} do not exist – please add to appropriate Cohort`
   }
+
+  searchStudent (firstName, lastName) {
+    const fullName = `${firstName} ${lastName}`
+
+    for (const cohort of this.cohortList) {
+      const targetStudent = cohort.students.find(student => student.fullName === fullName)
+      if (targetStudent) return `${targetStudent.fullName} is in Cohort ${cohort.name}`
+    }
+    return Error(`${fullName} do not exist`)
+  }
 }
 module.exports = CohortManager

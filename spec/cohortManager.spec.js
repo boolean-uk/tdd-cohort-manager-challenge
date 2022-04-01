@@ -158,4 +158,39 @@ it('adds a new cohort is added to the cohort list', () => {
     // verify
     expect(result).toEqual(expected)
   })
+
+  it('search a student by name', () => {
+    //   setup
+    cohortManager.add(cohort5)
+    cohortManager.add(cohort4)
+    cohortManager.add(cohort3)
+
+    cohort5.add(arisaSigrist)
+    cohort4.add(bobRoss)
+    cohort3.add(michelleObama)
+
+    const expected = 'Arisa Sigrist is in Cohort 5'
+    // evaluate
+    const result = cohortManager.searchStudent('Arisa', 'Sigrist')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  fit('returns error for searching a non-existing student', () => {
+    //   setup
+    cohortManager.add(cohort5)
+    cohortManager.add(cohort4)
+    cohortManager.add(cohort3)
+
+    cohort5.add(arisaSigrist)
+    cohort5.add(bobRoss)
+    cohort5.add(michelleObama)
+
+    const expected = Error('Ed Sheeran do not exist')
+    // evaluate
+    const result = cohortManager.searchStudent('Ed', 'Sheeran')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
 })
