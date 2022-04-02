@@ -16,7 +16,7 @@ export default class Cohort {
   }
 
   removeStudent(studentId) {
-    let index = this.students.findIndex((student) => student.id === studentId)
+    const index = this.students.findIndex((student) => student.id === studentId)
     if (index === -1) return console.error('Student not found')
     this.students.splice(index, 1)
   }

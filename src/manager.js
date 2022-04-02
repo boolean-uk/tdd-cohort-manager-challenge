@@ -76,7 +76,7 @@ export default class Manager {
     const everyMatch = []
     this.cohorts.forEach((cohort) => {
       cohort.students.forEach((student) => {
-        for (let [key, value] of Object.entries(student)) {
+        for (const value of Object.values(student)) {
           if (typeof value !== 'string') break
 
           if (
