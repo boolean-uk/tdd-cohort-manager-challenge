@@ -73,6 +73,25 @@ class CohortManager {
 
     return false
   }
+
+  searchByStudentFirstAndLastName(firstName, lastName) {
+    const firstNameArray = []
+    // let lastNameArray = []
+
+    for (let i = 0; i < this.cohortList.length; i++) {
+      const firstNameArrayFromEachCohort =
+        this.cohortList[i].filterByStudentFirstName(firstName)
+
+      firstNameArray.push(firstNameArrayFromEachCohort)
+
+      // let lastNameArrayFromEachCohort =
+      //   this.cohortList[i].filterByStudentLastName(firstName)
+
+      // lastNameArray.push(lastNameArrayFromEachCohort)
+    }
+
+    return firstNameArray.flat()
+  }
 }
 
 module.exports = CohortManager
