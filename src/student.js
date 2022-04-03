@@ -1,8 +1,8 @@
 class Student {
-  constructor(firstName, lastName, gitHub, id) {
+  constructor(firstName, lastName, gitHub, uniqueId) {
     this.fullName = `${firstName} ${lastName}`
     this.gitHub = gitHub
-    this.id = id
+    this.uniqueId = uniqueId
   }
 }
 

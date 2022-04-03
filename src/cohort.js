@@ -7,18 +7,12 @@ class Cohort {
     this.capacity = capacity
   }
 
-  searchById(id) {
-    this.students.find((student) => {
-      return student.id === id
-    })
-  }
-
   setCapacity(number) {
     return (this.capacity = number)
   }
 
-  addStudentToCohort(firstName, lastName, gitHub, id) {
-    const student = new Student(firstName, lastName, gitHub, id)
+  addStudentToCohort(firstName, lastName, gitHub, uniqueId) {
+    const student = new Student(firstName, lastName, gitHub, uniqueId)
     if (this.students.length < this.capacity) {
       this.students.push(student)
       return this.students

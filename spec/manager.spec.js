@@ -1,130 +1,197 @@
-const Cohort = require("../src/cohort.js");
-const Manager = require("../src/manager.js");
-const Student = require("../src/student.js");
+const Cohort = require('../src/cohort.js')
+const Manager = require('../src/manager.js')
+const Student = require('../src/student.js')
 
-describe("Manager", () => {
-    let manager;
+describe('Manager', () => {
+    let manager
 
     beforeEach(() => {
-        manager = new Manager();
-    });
+        manager = new Manager()
+    })
 
-    it("creates cohort and adds to cohorts", () => {
+    it('creates cohort and adds to cohorts', () => {
         // set up
-        const manager = new Manager();
+        const manager = new Manager()
 
-        const expected = 2;
+        const expected = 2
 
         // execute
-        manager.addCohort("AlphaXYZ");
-        manager.addCohort("AlphaABC");
+        manager.addCohort('AlphaXYZ')
+        manager.addCohort('AlphaABC')
 
-        const result = manager.cohorts.length;
+        const result = manager.cohorts.length
 
-        console.log(manager);
+        expect(result).toEqual(expected)
+    })
 
-        expect(result).toEqual(expected);
-    });
-
-    it("adds student to specific cohort", () => {
+    it('removes cohort by name', () => {
         // set up
-        const cohorts = new Manager();
+        const cohorts = new Manager()
 
-        const expected = "Joe Petri";
+        const expected = 4
 
         // execute
-        cohorts.addCohort("AlphaXYZ");
-        cohorts.addCohort("AlphaABC");
+        cohorts.addCohort('AlphaXYZ')
+        cohorts.addCohort('AlphaABC')
+        cohorts.addCohort('AlphaDEF')
+        cohorts.addCohort('AlphaQVW')
+        cohorts.addCohort('AlphaQVW')
 
-        cohorts.addStudent("Alice", "Bas", "YYY", "AlphaXYZ");
-        cohorts.addStudent("Joe", "Petri", "LLB", "AlphaXYZ");
+        cohorts.removeCohortByName('AlphaABC')
 
-        console.log(cohorts.cohorts[0].cohortName);
-        console.log(cohorts.cohorts[0].students[1].fullName);
+        const result = cohorts.cohorts.length
 
-        const result = cohorts.cohorts[0].students[1].fullName;
+        expect(result).toEqual(expected)
+    })
 
-        expect(result).toEqual(expected);
-    });
-
-    it("removes from specific cohort by gitHub", () => {
+    it('removes cohort by name', () => {
         // set up
-        const cohorts = new Manager();
+        const cohorts = new Manager()
 
-        const expected = 1;
+        const expected = 'No such cohort'
 
         // execute
-        cohorts.addCohort("AlphaXYZ");
-        cohorts.addCohort("AlphaABC");
+        cohorts.addCohort('AlphaXYZ')
+        cohorts.addCohort('AlphaABC')
+        cohorts.addCohort('AlphaDEF')
+        cohorts.addCohort('AlphaQVW')
+        cohorts.addCohort('AlphaQVW')
 
-        cohorts.addStudent("Alice", "Bas", "YYY", "AlphaXYZ");
-        cohorts.addStudent("Joe", "Petri", "LLB", "AlphaXYZ");
-        // console.log(cohorts.cohorts[0]);
-        cohorts.removeStudent("YYY", "AlphaXYZ");
+        const result = cohorts.removeCohortByName('AlphaABC_no_such_cohort')
 
-        // console.log(cohorts.cohorts[0]);
+        expect(result).toEqual(expected)
+    })
 
-        const result = cohorts.cohorts[0].students.length;
-
-        expect(result).toEqual(expected);
-    });
-
-    it("removes from specific cohort by name", () => {
+    it('adds student to specific cohort', () => {
         // set up
-        const cohorts = new Manager();
+        const cohorts = new Manager()
 
-        const expected = 3;
+        const expected = 'Joe Petri'
 
         // execute
-        cohorts.addCohort("AlphaXYZ");
-        cohorts.addCohort("AlphaABC");
-        cohorts.addCohort("AlphaDEF");
-        cohorts.addCohort("AlphaQVW");
+        cohorts.addCohort('AlphaXYZ')
+        cohorts.addCohort('AlphaABC')
 
-        cohorts.removeCohort("AlphaXYZ");
+        cohorts.addStudentCohortUniqueId('Alice', 'Bas', 'YYY', 'AlphaXYZ')
+        cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaXYZ')
 
-        // console.log(cohorts.cohorts[0]);
+        // console.log(cohorts.cohorts[0].cohortName)
+        // console.log(cohorts.cohorts[0].students[1].fullName)
+        // console.log(cohorts.cohorts[0].students[1].uniqueId)
 
-        const result = cohorts.cohorts.length;
+        const result = cohorts.cohorts[0].students[1].fullName
 
-        expect(result).toEqual(expected);
-    });
+        expect(result).toEqual(expected)
+    })
 
-    it("returns string if student does not exist", () => {
+    it('returns all students in all cohorts', () => {
         // set up
-        const cohorts = new Manager();
+        const cohorts = new Manager()
 
-        const expected = "Enter valid cohort and student data";
+        const expected = ['Alice Bas', 'Joe Petri', 'Joe Petri']
 
         // execute
-        cohorts.addCohort("AlphaXYZ");
-        cohorts.addCohort("AlphaABC");
+        cohorts.addCohort('AlphaXYZ')
+        cohorts.addCohort('AlphaABC')
 
-        cohorts.addStudent("Alice", "Bas", "YYY", "AlphaXYZ");
-        cohorts.addStudent("Joe", "Petri", "LLB", "AlphaXYZ");
+        cohorts.addStudentCohortUniqueId('Alice', 'Bas', 'YYY', 'AlphaXYZ')
+        cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaXYZ')
 
-        cohorts.removeStudent("YYY", "AlphaXYZ_DOES_NOT_EXIST");
+        cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaABC')
 
-        const result = cohorts.removeStudent("YYY", "AlphaXYZ_DOES_NOT_EXIST");
+        const result = cohorts.allStudentsInAllCohorts()
 
-        expect(result).toEqual(expected);
-    });
+        expect(result).toEqual(expected)
+    })
 
-    it("returns string if cohort does not exist", () => {
+    it('returns unique id for students in all cohorts', () => {
         // set up
-        const cohorts = new Manager();
+        const cohorts = new Manager()
 
-        const expected = "Enter valid cohort and student data";
+        const expected = ['YYY_haXYZ', 'LLB_haXYZ', 'LLX_haABC']
 
         // execute
-        cohorts.addCohort("AlphaXYZ");
-        cohorts.addCohort("AlphaABC");
+        cohorts.addCohort('AlphaXYZ')
+        cohorts.addCohort('AlphaABC')
 
-        cohorts.addStudent("Alice", "Bas", "YYY", "AlphaXYZ");
-        cohorts.addStudent("Joe", "Petri", "LLB", "AlphaXYZ");
+        cohorts.addStudentCohortUniqueId('Alice', 'Bas', 'YYY', 'AlphaXYZ')
+        cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaXYZ')
+        cohorts.addStudentCohortUniqueId('Joseph', 'Petri', 'LLX', 'AlphaABC')
 
-        const result = cohorts.removeStudent("Student_NON-EXISTENT", "AlphaXYZ");
+        const result = cohorts.getUniqueIdsOfEveryStudentInAllCohorts()
 
-        expect(result).toEqual(expected);
-    });
-});
+        expect(result).toEqual(expected)
+    })
+
+    it('remove student with uniqueId and check with allStudentsInAllCohorts()', () => {
+        // set up
+        const cohorts = new Manager()
+
+        const expected = ['Joe Petri', 'Joe Petri']
+
+        // execute
+        cohorts.addCohort('AlphaXYZ')
+        cohorts.addCohort('AlphaABC')
+
+        cohorts.addStudentCohortUniqueId('Alice', 'Bas', 'YYY', 'AlphaXYZ')
+        cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaABC')
+        cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaABC')
+
+        cohorts.removeStudentByUniqueId('YYY_haXYZ', 'AlphaXYZ')
+
+        const result = cohorts.allStudentsInAllCohorts()
+
+        expect(result).toEqual(expected)
+    })
+
+    it('find student by ID', () => {
+        // set up
+        const cohorts = new Manager()
+
+        const expected = 'Alice Bas'
+
+        // execute
+        cohorts.addCohort('AlphaXYZ')
+        cohorts.addCohort('AlphaABC')
+
+        cohorts.addStudentCohortUniqueId('Alice', 'Bas', 'YYY', 'AlphaXYZ')
+        cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaABC')
+        cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaABC')
+
+        const result = cohorts.findStudentById('YYY_haXYZ')
+
+        expect(result).toEqual(expected)
+    })
+
+    it('student not found, incorrect ID', () => {
+        // set up
+        const cohorts = new Manager()
+
+        const expected = false
+
+        // execute
+        cohorts.addCohort('AlphaXYZ')
+        cohorts.addCohort('AlphaABC')
+
+        cohorts.addStudentCohortUniqueId('Alice', 'Bas', 'YYY', 'AlphaXYZ')
+        cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaABC')
+        cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaABC')
+
+        const result = cohorts.findStudentById('YYY_haXYZ__')
+
+        expect(result).toEqual(expected)
+    })
+})
+
+// thisCohorts = [{
+//     cohortName: 'AlphaXYZ',
+//     students: [
+//         { fullName: 'Alice Bas', gitHub: 'YYY' },
+//         { fullName: 'Alice Bas', gitHub: 'YYY' }
+//     ]
+// },
+// {
+//     cohortName: 'AlphaXYZ',
+//     students: [{ fullName: 'Alice Bas', gitHub: 'YYY' }]
+// }
+// ]
