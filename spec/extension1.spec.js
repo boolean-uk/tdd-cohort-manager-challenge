@@ -80,7 +80,7 @@ describe('Cohort manager', () => {
     expect(result).toEqual(`Err: student exists in other cohort.`)
   })
 
-  fit('returns all students with matching first and last names ', () => {
+  it('returns all students with matching first and last names ', () => {
     // setup
     const cohortManager = new CohortManager()
     const morty = new Student(
@@ -112,12 +112,17 @@ describe('Cohort manager', () => {
     cohortManager.addStudentToCohort(morty, 'Cohort 1')
     cohortManager.addStudentToCohort(darkMorty, 'Cohort 1')
     cohortManager.addStudentToCohort(copMorty, 'Cohort 2')
-    // cohortManager.addStudentToCohort(beth, 'Cohort 2')
-    // // execute
+    cohortManager.addStudentToCohort(beth, 'Cohort 2')
+    // execute
     const result1 = cohortManager.searchByStudentFirstAndLastName('Morty')
-    // const result2 = cohortManager.searchByStudentFirstAndLastName('Morty')
+    const result2 = cohortManager.searchByStudentFirstAndLastName('Smith')
+    const result3 = cohortManager.searchByStudentFirstAndLastName(
+      'Morty',
+      'Smith'
+    )
     // // verify
     expect(result1).toEqual([morty, darkMorty, copMorty])
-    // // expect(result2).toEqual([beth, morty])
+    expect(result2).toEqual([morty, beth])
+    expect(result3).toEqual([morty])
   })
 })

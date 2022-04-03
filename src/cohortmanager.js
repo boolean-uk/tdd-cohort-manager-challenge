@@ -74,23 +74,23 @@ class CohortManager {
     return false
   }
 
-  searchByStudentFirstAndLastName(firstName, lastName) {
-    const firstNameArray = []
-    // let lastNameArray = []
+  searchByStudentFirstAndLastName(name, lastName) {
+    const nameArray = []
 
-    for (let i = 0; i < this.cohortList.length; i++) {
-      const firstNameArrayFromEachCohort =
-        this.cohortList[i].filterByStudentFirstName(firstName)
+    this.cohortList.forEach((cohort) => {
+      const nameArrayFromEachCohort =
+        cohort.filterByStudentFirstOrLastName(name)
 
-      firstNameArray.push(firstNameArrayFromEachCohort)
+      nameArray.push(nameArrayFromEachCohort)
+    })
 
-      // let lastNameArrayFromEachCohort =
-      //   this.cohortList[i].filterByStudentLastName(firstName)
+    const nameArrayMerged = nameArray.flat()
 
-      // lastNameArray.push(lastNameArrayFromEachCohort)
+    if (lastName) {
+      return nameArrayMerged.filter((student) => student.lastName === lastName)
     }
 
-    return firstNameArray.flat()
+    return nameArrayMerged
   }
 }
 

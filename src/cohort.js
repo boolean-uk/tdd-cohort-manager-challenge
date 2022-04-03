@@ -35,17 +35,14 @@ class Cohort {
     return this.studentList.find((student) => student.email === studentEmail)
   }
 
-  filterByStudentFirstName(studentFirstName) {
+  filterByStudentFirstOrLastName(firstOrLastName) {
     return this.studentList.filter((student) => {
-      return student.firstName === studentFirstName
+      return (
+        student.firstName === firstOrLastName ||
+        student.lastName === firstOrLastName
+      )
     })
   }
-
-  // filterByStudentLastName(studentLastName) {
-  //   return this.studentList.filter((student) => {
-  //     return student.lastName === studentLastName
-  //   })
-  // }
 }
 
 module.exports = Cohort
