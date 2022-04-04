@@ -25,7 +25,7 @@ class Manager {
             return this.cohorts
         }
         if (!cohortsByName.includes(cohortName)) {
-            return `No such cohort`
+            throw new Error(`No such cohort`)
         }
     }
 
@@ -44,7 +44,7 @@ class Manager {
             }
         })
         if (addedCohorts === null) {
-            return 'Not found'
+            throw new Error(`Not found`)
         }
 
         return addedCohorts

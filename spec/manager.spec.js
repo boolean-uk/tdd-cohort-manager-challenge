@@ -44,11 +44,9 @@ describe('Manager', () => {
         expect(result).toEqual(expected)
     })
 
-    it('removes cohort by name', () => {
+    it('throws error if cohort not there', () => {
         // set up
         const cohorts = new Manager()
-
-        const expected = 'No such cohort'
 
         // execute
         cohorts.addCohort('AlphaXYZ')
@@ -57,9 +55,11 @@ describe('Manager', () => {
         cohorts.addCohort('AlphaQVW')
         cohorts.addCohort('AlphaQVW')
 
-        const result = cohorts.removeCohortByName('AlphaABC_no_such_cohort')
-
-        expect(result).toEqual(expected)
+        expect(() =>
+            cohorts
+            .removeCohortByName('AlphaABC_no_such_cohort')
+            .toThrowError('No such cohort')
+        )
     })
 
     it('adds student to specific cohort', () => {
@@ -82,6 +82,28 @@ describe('Manager', () => {
         const result = cohorts.cohorts[0].students[1].fullName
 
         expect(result).toEqual(expected)
+    })
+
+    it('adds student to specific cohort', () => {
+        // set up
+        const cohorts = new Manager()
+
+        // execute
+        cohorts.addCohort('AlphaXYZ')
+        cohorts.addCohort('AlphaABC')
+
+        cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaXYZ')
+
+        expect(() =>
+            cohorts
+            .addStudentCohortUniqueId(
+                'Alice',
+                'Bas',
+                'YYY',
+                'AlphaXYZ-NO_SUCH_COHORT'
+            )
+            .toThrowError('Not found')
+        )
     })
 
     it('returns all students in all cohorts', () => {
