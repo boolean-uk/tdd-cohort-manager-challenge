@@ -8,6 +8,9 @@ class CohortManager {
   }
 
   createCohort(cohortName) {
+    if (this.findCohort(cohortName) !== null) {
+      return 'COHORT NAME ALREADY EXISTS'
+    }
     const cohortToAdd = new Cohorts(cohortName)
     this.cohortList.push(cohortToAdd)
     return this.cohortList
@@ -79,13 +82,9 @@ class CohortManager {
     if (theCohort === null) {
       return 'COHORT NOT FOUND'
     } else {
-      for (let i = 0; i < theCohort.students.length; i++) {
-        if (theCohort.students[i].firstName === student) {
-          theCohort.students.splice(i, 1)
-          return theCohort
-        }
-      }
+      theCohort.removeStudentFromCohort(student)
     }
+    return theCohort
   }
 
   findCohortsWithStudents() {

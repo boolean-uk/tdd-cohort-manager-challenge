@@ -284,7 +284,21 @@ describe('cohort manager', () => {
       'czdavid93@gmail.com'
     )
     // verify
-    console.log('RESULT IN TEST: ', result)
     expect(result).toEqual('THE COHORT IS FULL')
   })
+
+  // TEST 15
+  it('cohorts cannot have the same name', () => {
+    // setup
+    const manager = new CohortManager()
+    const errorMessage = 'COHORT NAME ALREADY EXISTS'
+    // execute
+    manager.createCohort('Cohort1')
+    const result = manager.createCohort('Cohort1')
+    // verify
+    expect(result).toEqual(errorMessage)
+  })
+
+
+
 })

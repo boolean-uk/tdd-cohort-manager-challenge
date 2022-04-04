@@ -11,6 +11,15 @@ class Cohorts {
     this.students.push(newStudent)
     return this.students
   }
+
+  removeStudentFromCohort(studentName) {
+    for (let i = 0; i < this.students.length; i++) {
+      if (this.students[i].firstName === studentName) {
+        this.students.splice(i, 1)
+      }
+    }
+    return this
+  }
 }
 
 module.exports = Cohorts
