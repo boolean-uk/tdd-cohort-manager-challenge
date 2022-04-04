@@ -4,9 +4,9 @@ class Cohort {
     this.studentList = []
   }
 
-  addStudent() {}
+  /* addStudent() {}
 
   removeStudent() {}
+  */
 }
-
 module.exports = Cohort

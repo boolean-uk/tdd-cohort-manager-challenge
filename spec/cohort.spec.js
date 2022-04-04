@@ -1,6 +1,6 @@
 const Cohort = require('../src/cohort.js')
 
-describe('Manager', () => {
+/* describe('Cohort', () => {
   it('add a student', () => {
     //set up
     const cohort = new Cohort()
@@ -24,4 +24,4 @@ describe('Manager', () => {
     //verify
     expect(result).toEqual(expected)
   })
-})
+}) */
