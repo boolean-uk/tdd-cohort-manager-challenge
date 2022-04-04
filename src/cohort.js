@@ -13,6 +13,16 @@ class Cohort {
     } else return "Cohort at full capacity";
   }
 
+  studentExists (student) {
+    // loop through the students array and see if the student is present
+    for ( let i = 0; i > this.students.length; i++) {
+      if ( student.fullName === this.students[i].fullName ) {
+        return true
+      }
+    } 
+    return false
+  }
+
   // isn't [i] and this.students[i] targeting the same thing
   remove(studentID) {
     const existError = "Student is not in the register";

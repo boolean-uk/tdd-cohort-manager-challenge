@@ -107,4 +107,26 @@ describe("Cohort Manager", () => {
     // expect(addedStudent1).toEqual()
   });
 
+  it("add students into different cohort", () => {
+    // setup
+    const cohort = new Cohort();
+    const cohortManager = new CohortManager();
+
+    const student = new Student(1, "Student Infinite", "email@email.com");
+    const student1 = new Student(1, "Student Infinite", "email@email.com");
+
+    // execute
+    const addedCohort1 = cohortManager.add('Cohort1')
+    cohortManager.addStudentToCohort('Cohort1',student);
+    cohortManager.addStudentToCohort('Cohort1',student1);
+    const emptyArray = cohortManager.cohortClasses
+    const studentListArray = 1
+
+    // verify
+    expect(addedCohort1).toEqual(emptyArray)
+    expect(cohort.students.length).toEqual(studentListArray)
+    // expect(addStudentToCohort1).toEqual(cohortManager.addStudentToCohort)
+    // expect(addedStudent1).toEqual()
+  });
+
 });
