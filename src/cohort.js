@@ -6,6 +6,9 @@ class Cohort {
   }
 
   addStudent(student) {
+    if (this.students.length >= this.maxCapacity)
+      throw new Error('Cohort at max capacity already.')
+
     this.students.push(student)
     return student
   }
