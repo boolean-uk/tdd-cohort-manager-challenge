@@ -4,15 +4,9 @@ const Student = require('../src/student.js')
 describe('Cohort', () => {
   it('add a student', () => {
     //set up
-    const cohort = new Cohort()
-    const student = new Student()
-    const expected = {
-      id: '1',
-      fullName: 'Asia',
-      lastName: 'Rahman',
-      githubUsername: 'Asiaaa',
-      email: 'asia@gmail.com'
-    }
+    const cohort = new Cohort('Cohort 1')
+    const student = new Student(1, 'Asia', 'Rahman', 'Asiaaa', 'asia@gmail.com')
+    const expected = [student]
     //execute
     const result = cohort.addStudent(student)
     //verify
