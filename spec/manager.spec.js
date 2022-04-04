@@ -62,6 +62,24 @@ describe('Manager', () => {
         )
     })
 
+    it('throws an error if cohort name not passed to function', () => {
+        // set up
+        const cohorts = new Manager()
+
+        // execute
+        cohorts.addCohort('AlphaXYZ')
+        cohorts.addCohort('AlphaABC')
+        cohorts.addCohort('AlphaDEF')
+        cohorts.addCohort('AlphaQVW')
+        cohorts.addCohort('AlphaQVW')
+
+        expect(() =>
+            cohorts
+            .removeCohortByName()
+            .toThrowError('Must pass a cohortName to function')
+        )
+    })
+
     it('adds student to specific cohort', () => {
         // set up
         const cohorts = new Manager()
@@ -158,12 +176,30 @@ describe('Manager', () => {
         cohorts.addStudentCohortUniqueId('Alice', 'Bas', 'YYY', 'AlphaXYZ')
         cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaABC')
         cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaABC')
-
         cohorts.removeStudentByUniqueId('YYY_haXYZ', 'AlphaXYZ')
 
         const result = cohorts.allStudentsInAllCohorts()
 
         expect(result).toEqual(expected)
+    })
+
+    it('throw newError() if invalid data passed to removeStudentByUniqueId()', () => {
+        // set up
+        const cohorts = new Manager()
+
+        // execute
+        cohorts.addCohort('AlphaXYZ')
+        cohorts.addCohort('AlphaABC')
+
+        cohorts.addStudentCohortUniqueId('Alice', 'Bas', 'YYY', 'AlphaXYZ')
+        cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaABC')
+        cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaABC')
+
+        expect(() =>
+            cohorts
+            .removeStudentByUniqueId('YYY_haXYZ____', 'AlphaXYZ')
+            .toThrowError('Enter valid data')
+        )
     })
 
     it('find student by ID', () => {
@@ -185,11 +221,9 @@ describe('Manager', () => {
         expect(result).toEqual(expected)
     })
 
-    it('student not found, incorrect ID', () => {
+    it('student not found, throw new Error()', () => {
         // set up
         const cohorts = new Manager()
-
-        const expected = false
 
         // execute
         cohorts.addCohort('AlphaXYZ')
@@ -199,9 +233,11 @@ describe('Manager', () => {
         cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaABC')
         cohorts.addStudentCohortUniqueId('Joe', 'Petri', 'LLB', 'AlphaABC')
 
-        const result = cohorts.findStudentById('YYY_haXYZ__')
-
-        expect(result).toEqual(expected)
+        expect(() =>
+            cohorts
+            .findStudentById('YYY_haXYZ__')
+            .toThrowError(`Enter valid cohort and student data`)
+        )
     })
 })
 
