@@ -1,7 +1,6 @@
 const cohortNotFoundError = 'Cohort not found.'
 const cohortFullError = 'This cohort is full.'
-const cohortCannotExistWithoutNameError =
-  'Please name the cohort before initialising.'
+const cohortCannotExistWithoutNameError = 'Cohort cannot exist without a name!'
 const cohortAlreadyExistsError = 'This cohort already exists.'
 const studentNotFoundError = 'Student not found.'
 const studentInAnotherCohortError = 'This student is already in another cohort.'

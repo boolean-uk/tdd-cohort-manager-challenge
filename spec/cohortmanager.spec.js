@@ -69,11 +69,13 @@ describe('Cohort Tests', () => {
 
   it('Adding multiple students', () => {
     // setup
-    const expected = [student1, student2, student3]
+    const expected = [student1, student2, student3, student4, student5]
     // execute
     cohortManager.createStudent(student1)
     cohortManager.createStudent(student2)
     cohortManager.createStudent(student3)
+    cohortManager.createStudent(student4)
+    cohortManager.createStudent(student5)
     const result = cohortManager.getStudentList()
     // verify
     expect(result).toEqual(expected)
@@ -131,7 +133,7 @@ describe('Cohort Tests', () => {
 
   it("Search for a cohort that doesn't exist", () => {
     // setup
-    const expected = 'Cohort not found!'
+    const expected = 'Cohort not found.'
     cohortManager.createCohort('CohortFive')
     // execute
     const result = cohortManager.searchCohort('CohortSeven')
@@ -222,7 +224,7 @@ describe('Cohort Tests', () => {
 
   it("Removing a student that doesn't exist", () => {
     // setup
-    const expected = 'Student not found!'
+    const expected = 'Student not found.'
     cohortManager.createCohort('CohortFive')
     // execute
     const result = cohortManager.removeStudentFromCohort(2, 'CohortFive')
@@ -242,4 +244,64 @@ describe('Cohort Tests', () => {
   })
 
   // ---------------> Extension 2
+  it("Searching for a student by their ID although they don't exist", () => {
+    // setup
+    const expected = 'Student not found.'
+    cohortManager.createStudent(student1)
+    // execute
+    const result = cohortManager.searchStudent(2)
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  // ---------------> Extension 3
+  it('Cohort cannot exist without a name', () => {
+    // setup
+    const expected = 'Cohort cannot exist without a name!'
+    // execute
+    const result = cohortManager.createCohort()
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  // ---------------> Extension 4
+  it('Cohorts cannot have the same name.', () => {
+    // setup
+    const expected = 'This cohort already exists.'
+    cohortManager.createCohort('CohortFive')
+    // execute
+    const result = cohortManager.createCohort('CohortFive')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  // ---------------> Extension 5
+  it('You cannot add any more students once the 24 student limit is reached.', () => {
+    // setup
+    const expected = 'Student not found.'
+    cohortManager.createNStudents(25, student1)
+    cohortManager.createCohort('CohortFive')
+    // execute
+    const result = cohortManager.addStudentToCohort(
+      'User',
+      'Name',
+      'CohortFive'
+    )
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  // ---------------> Extension 6
+  it("The same student can't exist in multiple cohorts.", () => {
+    // setup
+    const expected = 'Student not found.'
+    cohortManager.createStudent(student1)
+    cohortManager.createCohort('CohortFive')
+    cohortManager.createCohort('CohortSix')
+    cohortManager.addStudentToCohort('User', 'Name', 'CohortFive')
+    // execute
+    const result = cohortManager.addStudentToCohort('User', 'Name', 'CohortSix')
+    // verify
+    expect(result).toEqual(expected)
+  })
 })
