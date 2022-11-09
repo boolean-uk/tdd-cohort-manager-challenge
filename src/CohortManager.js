@@ -21,16 +21,34 @@ class CohortManager {
         `${searchQuery} is not a string, must search for a string`
       )
     }
-    const searchResult = this.cohortList.find((cohort) =>
-      cohort.name.includes(searchQuery)
-    )
+    const searchResult = this.#findCohort(searchQuery.toLowerCase())
+
     if (searchResult) {
       return searchResult
     }
     throw new Error('no match found')
   }
+
+  removeCohort(cohortName) {
+    if (typeof cohortName !== 'string') {
+      throw new TypeError(`must be a string`)
+    }
+    const cohortToRemove = this.#findCohort(cohortName.toLowerCase())
+    if (cohortToRemove === undefined) {
+      throw new Error('no match found')
+    }
+    const indexOfCohortToRemove = this.cohortList.indexOf(cohortToRemove)
+    this.cohortList.splice(indexOfCohortToRemove, 1)
+    return 'Removed successfully'
+  }
+
+  #findCohort(searchQuery) {
+    return this.cohortList.find((cohort) =>
+      cohort.name.toLowerCase().includes(searchQuery)
+    )
+  }
 }
 
-console.log(new TypeError('must be a string'))
+testManager = new CohortManager()
 
 module.exports = CohortManager
