@@ -1,6 +1,6 @@
 const Student = require('../src/Student')
 
-describe('Cohort', () => {
+describe('Student', () => {
   let student
   beforeEach(() => {
     student = new Student('Patrik', 'Ellini', 'random link', 'random email')
@@ -8,6 +8,6 @@ describe('Cohort', () => {
 
   it('should return a cohort with the given name', () => {
     expect(student).toBeInstanceOf(Student)
-    expect(student.firstN).toEqual('Patrik')
+    expect(student.name).toEqual('Patrik')
   })
 })
