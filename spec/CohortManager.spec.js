@@ -93,3 +93,57 @@ describe('assignStudentToCohort', () => {
     )
   })
 })
+describe('searchById', () => {
+  let cohortM
+  beforeEach(() => {
+    cohortM = new CohortManager()
+  })
+  it('should return the selected student', () => {
+    cohortM.students = [{ name: 'test 1', lastN: 'prova', id: 1 }]
+    const result = { name: 'test 1', lastN: 'prova', id: 1 }
+    expect(cohortM).toBeInstanceOf(CohortManager)
+    expect(cohortM.searchById(1)).toEqual(result)
+  })
+  it('should return error if the student is not found', () => {
+    expect(cohortM).toBeInstanceOf(CohortManager)
+    expect(cohortM.searchById(1)).toEqual('student not found')
+  })
+})
+
+describe('removeCohort', () => {
+  let cohortM
+  beforeEach(() => {
+    cohortM = new CohortManager()
+  })
+  it('should return the updated list of cohorts', () => {
+    cohortM.cohorts = [{ name: 'cohort 7', capacity: 24, students: [] }]
+
+    expect(cohortM).toBeInstanceOf(CohortManager)
+    expect(cohortM.removeCohort('cohort 7')).toEqual([])
+  })
+  it("should return an error if the cohort doesn't exist", () => {
+    const result = cohortM.removeCohort('test 1')
+
+    expect(cohortM).toBeInstanceOf(CohortManager)
+    expect(result).toEqual('cohort not found')
+  })
+})
+
+describe('removeStudent', () => {
+  let cohortM
+  beforeEach(() => {
+    cohortM = new CohortManager()
+  })
+  it('should return the updated list of students', () => {
+    cohortM.students = [{ name: 'test 1', lastN: 'prova', id: 1 }]
+
+    expect(cohortM).toBeInstanceOf(CohortManager)
+    expect(cohortM.removeStudent('test 1')).toEqual([])
+  })
+  it("should return an error if the cohort doesn't exist", () => {
+    const result = cohortM.removeStudent('test 1')
+
+    expect(cohortM).toBeInstanceOf(CohortManager)
+    expect(result).toEqual('student not found')
+  })
+})
