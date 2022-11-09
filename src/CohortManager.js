@@ -5,7 +5,7 @@ class CohortManager {
 
   createCohort(name) {
     if (typeof name !== 'string') {
-      return new TypeError(`${name} must be a string`)
+      throw new TypeError(`${name} must be a string`)
     }
     const newCohort = {
       name: name,
@@ -13,6 +13,21 @@ class CohortManager {
     }
     this.cohortList.push(newCohort)
     return this.cohortList
+  }
+
+  searchForCohort(searchQuery) {
+    if (typeof searchQuery !== 'string') {
+      throw new TypeError(
+        `${searchQuery} is not a string, must search for a string`
+      )
+    }
+    const searchResult = this.cohortList.find((cohort) =>
+      cohort.name.includes(searchQuery)
+    )
+    if (searchResult) {
+      return searchResult
+    }
+    throw new Error('no match found')
   }
 }
 
