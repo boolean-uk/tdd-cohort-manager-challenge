@@ -1,8 +1,13 @@
+const defaultMaxCohortCapacity = 24
 class Cohort {
-  constructor(name, capacity = 15) {
+  constructor(name, capacity = defaultMaxCohortCapacity) {
     this.name = name
     this.cohortCapacity = capacity
     this.studentList = []
+  }
+
+  seeStudentList() {
+    console.log(this.studentList)
   }
 }
 

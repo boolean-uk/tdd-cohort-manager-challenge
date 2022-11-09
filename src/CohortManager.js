@@ -8,20 +8,16 @@ class CohortManager {
   }
 
   createCohort(name) {
-    if (typeof name !== 'string') {
-      throw new TypeError(`${name} must be a string`)
-    }
+    this.#checkType(name, 'string', 'must search for a string')
+
     const { ...newCohort } = new Cohort(name)
     this.cohortList.push(newCohort)
     return this.cohortList
   }
 
   searchForCohort(searchQuery) {
-    if (typeof searchQuery !== 'string') {
-      throw new TypeError(
-        `${searchQuery} is not a string, must search for a string`
-      )
-    }
+    this.#checkType(searchQuery, 'string', 'must search for a string')
+
     const searchResult = this.#findCohort(searchQuery.toLowerCase())
 
     if (searchResult) {
@@ -31,13 +27,11 @@ class CohortManager {
   }
 
   removeCohort(cohortName) {
-    if (typeof cohortName !== 'string') {
-      throw new TypeError(`must be a string`)
-    }
+    this.#checkType(cohortName, 'string', 'must be a string')
+
     const cohortToRemove = this.#findCohort(cohortName.toLowerCase())
-    if (cohortToRemove === undefined) {
-      throw new Error('no match found')
-    }
+    this.#throwErrorIfUndefined(cohortToRemove)
+
     const indexOfCohortToRemove = this.cohortList.indexOf(cohortToRemove)
     this.cohortList.splice(indexOfCohortToRemove, 1)
     return 'Removed successfully'
@@ -56,17 +50,12 @@ class CohortManager {
   }
 
   addStudentToCohort(student, cohortName) {
-    if (typeof student !== 'object') {
-      throw new TypeError(`student must be an object`)
-    }
-    if (typeof cohortName !== 'string') {
-      throw new TypeError(`must be a string`)
-    }
+    this.#checkType(student, 'object', `student must be an object`)
+    this.#checkType(cohortName, 'string', `must be a string`)
 
     const cohortToAddStudentTo = this.#findCohort(cohortName.toLowerCase())
-    if (cohortToAddStudentTo === undefined) {
-      throw new Error('Cohort not found')
-    }
+    this.#throwErrorIfUndefined(cohortToAddStudentTo)
+
     const indexOfCohortToAddStudentTo =
       this.cohortList.indexOf(cohortToAddStudentTo)
     this.cohortList[indexOfCohortToAddStudentTo].studentList.push(student)
@@ -74,26 +63,18 @@ class CohortManager {
   }
 
   removeStudentFromCohort(student, cohortName) {
-    if (typeof student !== 'object') {
-      throw new TypeError(`student must be an object`)
-    }
-    if (typeof cohortName !== 'string') {
-      throw new TypeError(`must be a string`)
-    }
+    this.#checkType(student, 'object', `student must be an object`)
+    this.#checkType(cohortName, 'string', `must be a string`)
 
     const cohortToRemoveStudentFrom = this.#findCohort(cohortName.toLowerCase())
-    if (cohortToRemoveStudentFrom === undefined) {
-      throw new Error('Cohort not found')
-    }
+    this.#throwErrorIfUndefined(cohortToRemoveStudentFrom)
 
     const indexOfCohortToRemoveStudentFrom = this.cohortList.indexOf(
       cohortToRemoveStudentFrom
     )
 
     const studentToRemoveFromCohort = this.#findStudent(cohortName, student)
-    if (studentToRemoveFromCohort === undefined) {
-      throw new Error('student does not exist')
-    }
+    this.#throwErrorIfUndefined(studentToRemoveFromCohort)
 
     const indexOfStudent = this.cohortList[
       indexOfCohortToRemoveStudentFrom
@@ -111,6 +92,19 @@ class CohortManager {
     return this.cohortList.find((cohort) =>
       cohort.name.toLowerCase().includes(searchQuery)
     )
+  }
+
+  #throwErrorIfUndefined(searchResult) {
+    if (searchResult === undefined) {
+      throw new Error('no match found')
+    }
+  }
+
+  #checkType(input, type, errorMsg) {
+    // eslint-disable-next-line valid-typeof
+    if (typeof input !== type) {
+      throw new TypeError(errorMsg)
+    }
   }
 
   #findStudent(cohortName, student) {

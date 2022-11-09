@@ -13,4 +13,4 @@
 |                         |                                 | user adds Patrik to non defined cohort                                                      | error (cohort not found)                            |
 |                         |                                 | user adds 'Patrik' as a string to Cohort 7                                                  | error (student must be a object)                    |
 | removeStudentFromCohort | (student(obj), cohortName(str)) | user removes Patrik from Cohort 7                                                           | Patrik removed from Cohort 7 successfully removed'  |
-|                         |                                 | Patrik doesn't exist in Cohort 7                                                            | error (student does not exist)                      |
+|                         |                                 | Patrik doesn't exist in Cohort 7                                                            | error (no match found)                      |

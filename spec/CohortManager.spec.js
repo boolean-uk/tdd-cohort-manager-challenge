@@ -20,12 +20,12 @@ describe('CohortManager Class', () => {
     expect(result).toEqual([
       {
         name: 'Cohort 7',
-        cohortCapacity: 15,
+        cohortCapacity: 24,
         studentList: []
       }
     ])
     expect(() => Manager.createCohort(7)).toThrow(
-      new TypeError(`${7} must be a string`)
+      new TypeError('must search for a string')
     )
   })
 
@@ -35,16 +35,16 @@ describe('CohortManager Class', () => {
     const resultSubString = Manager.searchForCohort('7')
     expect(resultFullString).toEqual({
       name: 'Cohort 7',
-      cohortCapacity: 15,
+      cohortCapacity: 24,
       studentList: []
     })
     expect(resultSubString).toEqual({
       name: 'Cohort 7',
-      cohortCapacity: 15,
+      cohortCapacity: 24,
       studentList: []
     })
     expect(() => Manager.searchForCohort(7)).toThrow(
-      new TypeError(`${7} is not a string, must search for a string`)
+      new TypeError('must search for a string')
     )
     expect(() => Manager.searchForCohort('Cohort 8')).toThrow(
       new Error('no match found')
