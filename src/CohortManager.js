@@ -52,7 +52,6 @@ class CohortManager {
       email
     )
     this.studentId++
-    console.log(this.studentId)
     return newStudent
   }
 
@@ -74,29 +73,54 @@ class CohortManager {
     return `${student.firstName} added to ${cohortToAddStudentTo.name} successfully`
   }
 
+  removeStudentFromCohort(student, cohortName) {
+    if (typeof student !== 'object') {
+      throw new TypeError(`student must be an object`)
+    }
+    if (typeof cohortName !== 'string') {
+      throw new TypeError(`must be a string`)
+    }
+
+    const cohortToRemoveStudentFrom = this.#findCohort(cohortName.toLowerCase())
+    if (cohortToRemoveStudentFrom === undefined) {
+      throw new Error('Cohort not found')
+    }
+
+    const indexOfCohortToRemoveStudentFrom = this.cohortList.indexOf(
+      cohortToRemoveStudentFrom
+    )
+
+    const studentToRemoveFromCohort = this.#findStudent(cohortName, student)
+    if (studentToRemoveFromCohort === undefined) {
+      throw new Error('student does not exist')
+    }
+
+    const indexOfStudent = this.cohortList[
+      indexOfCohortToRemoveStudentFrom
+    ].studentList.indexOf(studentToRemoveFromCohort)
+
+    this.cohortList[indexOfCohortToRemoveStudentFrom].studentList.splice(
+      indexOfStudent,
+      1
+    )
+
+    return `${studentToRemoveFromCohort.firstName} removed from ${this.cohortList[indexOfCohortToRemoveStudentFrom].name} successfully`
+  }
+
   #findCohort(searchQuery) {
     return this.cohortList.find((cohort) =>
       cohort.name.toLowerCase().includes(searchQuery)
     )
   }
-}
 
-const testManager = new CohortManager()
-testManager.createCohort('Cohort 7')
-const newStudent = testManager.createStudent(
-  'Nathan',
-  'King',
-  'vherus',
-  'hello@gmail.com'
-)
-const newStudent2 = testManager.createStudent(
-  'Alex',
-  'Lind',
-  'vherus',
-  'hello@gmail.com'
-)
-console.log(testManager.addStudentToCohort(newStudent, 'Cohort 7'))
-console.log(testManager.addStudentToCohort(newStudent2, 'Cohort 7'))
-console.log(testManager.cohortList[0])
+  #findStudent(cohortName, student) {
+    const cohortIndex = this.cohortList.indexOf(
+      this.#findCohort(cohortName.toLowerCase())
+    )
+    return this.cohortList[cohortIndex].studentList.find(
+      (arrItem) => arrItem === student
+    )
+  }
+}
 
 module.exports = CohortManager
