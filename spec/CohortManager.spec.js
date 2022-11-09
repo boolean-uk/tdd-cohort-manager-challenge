@@ -20,7 +20,8 @@ describe('CohortManager Class', () => {
     expect(result).toEqual([
       {
         name: 'Cohort 7',
-        students: []
+        cohortCapacity: 15,
+        studentList: []
       }
     ])
     expect(() => Manager.createCohort(7)).toThrow(
@@ -34,11 +35,13 @@ describe('CohortManager Class', () => {
     const resultSubString = Manager.searchForCohort('7')
     expect(resultFullString).toEqual({
       name: 'Cohort 7',
-      students: []
+      cohortCapacity: 15,
+      studentList: []
     })
     expect(resultSubString).toEqual({
       name: 'Cohort 7',
-      students: []
+      cohortCapacity: 15,
+      studentList: []
     })
     expect(() => Manager.searchForCohort(7)).toThrow(
       new TypeError(`${7} is not a string, must search for a string`)
@@ -60,5 +63,18 @@ describe('CohortManager Class', () => {
     expect(() => console.log(Manager.removeCohort('Cohort 8'))).toThrow(
       new Error('no match found')
     )
+  })
+
+  it('Adds a student to a cohort', () => {
+    Manager.createCohort('Cohort 7')
+    const newStudent = Manager.createStudent(
+      'Nathan',
+      'King',
+      'vherus',
+      'GRRMfan123@gmail.com'
+    )
+    const result = Manager.addStudentToCohort(newStudent, 'Cohort 7')
+    expect(result).toBe('Nathan added to Cohort 7 successfully')
+    expect(Manager.cohortList[0].studentList.length).toBe(1)
   })
 })
