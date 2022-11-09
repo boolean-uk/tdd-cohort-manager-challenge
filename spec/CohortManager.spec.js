@@ -1,4 +1,4 @@
-const Cohortmanager = require("../Cohortmanager.js");
+const Cohortmanager = require("../src/Cohortmanager.js");
 
 describe("Cohortmanager", () => {
     let cohortmanager
