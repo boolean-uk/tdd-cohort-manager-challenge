@@ -9,14 +9,16 @@ class Cohortmanager {
   }
 
   createCohort(name) {
-    if (name != null) {
-      String(name)
-      const createdCohort = new Cohort(name)
+    if (name === null) {
+        return `A Cohort must have a name`
+    }
+    if (typeof name != "string") {
+        return `A Cohort must be a sequence of characters`
+    }
+      let stringName = name.toString()
+      const createdCohort = new Cohort(stringName)
       this.cohortList.push(createdCohort)
       return this.cohortList
-    } else {
-      throw new TypeError(`A Cohort must have a name`)
-    }
   }
 }
 
