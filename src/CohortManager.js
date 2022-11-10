@@ -58,6 +58,11 @@ class CohortManager {
 
     const indexOfCohortToAddStudentTo =
       this.cohortList.indexOf(cohortToAddStudentTo)
+    if (
+      this.cohortList[indexOfCohortToAddStudentTo].studentList.length === 24
+    ) {
+      throw new Error('cohort is full')
+    }
     this.cohortList[indexOfCohortToAddStudentTo].studentList.push(student)
     return `${student.firstName} added to ${cohortToAddStudentTo.name} successfully`
   }
@@ -88,6 +93,22 @@ class CohortManager {
     return `${studentToRemoveFromCohort.firstName} removed from ${this.cohortList[indexOfCohortToRemoveStudentFrom].name} successfully`
   }
 
+  searchForStudentId(id) {
+    this.#checkType(id, 'number', `must search for a student id`)
+    let foundStudent
+    for (let i = 0; i < this.cohortList.length; i++) {
+      for (let j = 0; j < this.cohortList[i].studentList.length; j++) {
+        if (this.cohortList[i].studentList[j].id === id) {
+          foundStudent = this.cohortList[i].studentList[j]
+        }
+      }
+    }
+    if (foundStudent) {
+      return foundStudent
+    }
+    throw new Error('no match found')
+  }
+
   #findCohort(searchQuery) {
     return this.cohortList.find((cohort) =>
       cohort.name.toLowerCase().includes(searchQuery)
@@ -116,5 +137,7 @@ class CohortManager {
     )
   }
 }
+
+const testManager = new CohortManager()
 
 module.exports = CohortManager
