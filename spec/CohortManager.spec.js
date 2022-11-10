@@ -1,4 +1,5 @@
 const Cohortmanager = require("../src/Cohortmanager.js");
+const Cohort = require("../src/Cohort.js");
 
 describe("Cohortmanager", () => {
     let cohortmanager
@@ -119,6 +120,18 @@ describe("Cohortmanager", () => {
         // set up
         cohortmanager.createCohort('silver')
         expect(() => cohortmanager.deleteCohort('go')).toThrow()
+    })
+
+    it("add student inside the cohort", () => {
+        // set up
+        let test = cohortmanager.createCohort("test")[0]
+        let bob = cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
+        test.addStudent(bob)
+        console.log(cohortmanager)
+        
+        expect(test.studentInside.length).toBe(1)
+        expect(test.studentInside[0].name).toBe("Bob")
+        expect(cohortmanager.cohortList[0].studentInside.length).toBe(1)
     })
 
 })
