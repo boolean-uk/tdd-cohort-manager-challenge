@@ -7,7 +7,12 @@ class Cohort {
 
   addStudent(student) {
     this.studentInside.push(student)
-    return `${student.firstName} is now inside Cohort ${this.cohortName}`
+    return `${student.name} is now inside Cohort ${this.cohortName}`
+  }
+
+  removeStudent(student) {
+    const cohortIndex = this.studentInside.indexOf(student)
+    this.studentInside.splice(cohortIndex, 1)
   }
 }
 

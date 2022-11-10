@@ -106,8 +106,18 @@ class Cohortmanager {
 
   deleteCohort(name) {
     const cohortToDelete = this.searchCohort(name)
-    const indexOfCohortToRemove = this.cohortList.indexOf(cohortToDelete)
-    this.cohortList.splice(indexOfCohortToRemove, 1)
+    const cohortIndex = this.cohortList.indexOf(cohortToDelete)
+    this.cohortList.splice(cohortIndex, 1)
+  }
+
+  addStudent(student, cohortName) {
+    const studentFound = this.searchStudent(student)
+    if (studentFound.length) {
+      throw new Error(`There are many ${student}, try to search by ID`)
+    }
+    const cohort = this.searchCohort(cohortName)
+    cohort.addStudent(studentFound)
+    return `${studentFound.name} is now inside Cohort ${cohort.cohortName}`
   }
 }
 

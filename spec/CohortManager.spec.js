@@ -122,16 +122,19 @@ describe("Cohortmanager", () => {
         expect(() => cohortmanager.deleteCohort('go')).toThrow()
     })
 
-    it("add student inside the cohort", () => {
+    it("add a student to a Cohort with a method of the Manager", () => {
         // set up
-        let test = cohortmanager.createCohort("test")[0]
-        let bob = cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
-        test.addStudent(bob)
-        console.log(cohortmanager)
-        
-        expect(test.studentInside.length).toBe(1)
-        expect(test.studentInside[0].name).toBe("Bob")
-        expect(cohortmanager.cohortList[0].studentInside.length).toBe(1)
+        cohortmanager.createCohort('silver')
+        cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
+        let result = cohortmanager.addStudent('Bob', 'silver')
+        expect(result).toBe(`Bob is now inside Cohort silver`)
     })
 
+        it("add student inside the cohort", () => {
+        // set up
+        cohortmanager.createCohort('silver')
+        cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
+        cohortmanager.createStudent('Bob', "sticher", "http", "bob@burger.com")
+        expect(() => cohortmanager.addStudent('Bob', 'silver')).toThrow()
+    })
 })
