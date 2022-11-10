@@ -9,7 +9,7 @@ class CohortManager {
 
   createCohort(name) {
     this.#checkType(name, 'string', 'must search for a string')
-
+    this.#checkForEmptyNameAndDuplicates(name)
     const { ...newCohort } = new Cohort(name)
     this.cohortList.push(newCohort)
     return this.cohortList
@@ -52,8 +52,9 @@ class CohortManager {
   addStudentToCohort(student, cohortName) {
     this.#checkType(student, 'object', `student must be an object`)
     this.#checkType(cohortName, 'string', `must be a string`)
+    this.#checkIfStudentIsInOtherCohort(student)
 
-    const cohortToAddStudentTo = this.#findCohort(cohortName.toLowerCase())
+    const cohortToAddStudentTo = this.#findCohort(cohortName)
     this.#throwErrorIfUndefined(cohortToAddStudentTo)
 
     const indexOfCohortToAddStudentTo =
@@ -109,9 +110,29 @@ class CohortManager {
     throw new Error('no match found')
   }
 
+  searchForStudentName(name) {
+    this.#checkType(name, 'string', `name must be a string`)
+    const foundStudents = []
+    for (let i = 0; i < this.cohortList.length; i++) {
+      for (let j = 0; j < this.cohortList[i].studentList.length; j++) {
+        const student = this.cohortList[i].studentList[j]
+        if (
+          student.firstName.includes(name) ||
+          student.lastName.includes(name)
+        ) {
+          foundStudents.push(student)
+        }
+      }
+    }
+    if (foundStudents.length > 0) {
+      return foundStudents
+    }
+    throw new Error('no match found')
+  }
+
   #findCohort(searchQuery) {
     return this.cohortList.find((cohort) =>
-      cohort.name.toLowerCase().includes(searchQuery)
+      cohort.name.toLowerCase().includes(searchQuery.toLowerCase())
     )
   }
 
@@ -125,6 +146,26 @@ class CohortManager {
     // eslint-disable-next-line valid-typeof
     if (typeof input !== type) {
       throw new TypeError(errorMsg)
+    }
+  }
+
+  #checkForEmptyNameAndDuplicates(name) {
+    if (name.length === 0) {
+      throw new Error('cohort must have a name')
+    }
+    const isDuplicate = !!this.#findCohort(name.toLowerCase())
+    if (isDuplicate) {
+      throw new Error('cohort already exists')
+    }
+  }
+
+  #checkIfStudentIsInOtherCohort(student) {
+    for (let i = 0; i < this.cohortList.length; i++) {
+      for (let j = 0; j < this.cohortList[i].studentList.length; j++) {
+        if (this.cohortList[i].studentList[j] === student) {
+          throw new Error('student already exists in a different cohort')
+        }
+      }
     }
   }
 
