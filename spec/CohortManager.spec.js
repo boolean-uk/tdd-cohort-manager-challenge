@@ -34,6 +34,12 @@ describe("Cohortmanager", () => {
         expect(() => cohortmanager.createCohort(123)).toThrow()
     })
 
+    it("create a cohort with an already used name", () => {
+        // set up
+        cohortmanager.createCohort('abc')
+        expect(() => cohortmanager.createCohort('abc')).toThrow()
+    })
+
     it("create 2 students", () => {
         // set up
         cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
