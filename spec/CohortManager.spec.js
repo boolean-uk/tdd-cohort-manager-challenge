@@ -38,10 +38,16 @@ describe("Cohortmanager", () => {
         // set up
         cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
         cohortmanager.createStudent('Tom', "Telmer", "http", "tom@soda.com")
-
         expect(cohortmanager.studentList.length).toBe(2)
         expect(cohortmanager.studentList[0].name).toBe('Bob')
-        expect(cohortmanager.studentList[1].name).toBe('Tom')
+        expect(cohortmanager.studentList[1].name).toBe("Tom")
+    })
+
+    it("create 2 invalid students", () => {
+        // set up
+        expect(() => cohortmanager.createStudent(123, "Belcher", "http", "bob@burger.com")).toThrow()
+        expect(() => cohortmanager.createStudent('Tom', 321, "http", "tom@soda.com")).toThrow()
+        expect(cohortmanager.studentList.length).toBe(0)
     })
 
     it("search for a cohort by name", () => {
@@ -82,7 +88,6 @@ describe("Cohortmanager", () => {
         const result1 = cohortmanager.searchStudent(1)
         const result2 = cohortmanager.searchStudent("Tom")
         const result3 = cohortmanager.searchStudent("Bob")
-        console.log(result2)
         expect(result1.id).toBe(1)
         expect(result2[0].id).toBe(2)
         expect(result3.id).toBe(1)

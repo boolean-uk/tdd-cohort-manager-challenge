@@ -21,6 +21,10 @@ class Cohortmanager {
     }
 
     createStudent(firstname, surname, gitHub, email) {
+        if (typeof firstname !== 'string' || typeof surname !== 'string' ) {
+            console.log("fullname error")
+            throw new Error('You have to use a string to search')
+        }
         const createdStudent = new Student(
             firstname,
             surname,
@@ -47,11 +51,11 @@ class Cohortmanager {
     }
 
     searchStudentId(id) {
-        if (typeof id !== "number") {
+        if (typeof id !== 'number') {
             return
         }
-        const searchedStudentId = this.studentList.find((student) => 
-            student.id === id
+        const searchedStudentId = this.studentList.find(
+            (student) => student.id === id
         )
         if (searchedStudentId) {
             return searchedStudentId
@@ -62,7 +66,7 @@ class Cohortmanager {
         if (typeof name !== 'string') {
             return
         }
-        let result= []
+        const result = []
         const searchedStudentName = this.studentList.filter((student) =>
             student.name.includes(name)
         )
@@ -73,7 +77,7 @@ class Cohortmanager {
             result.push(...searchedStudentName)
         }
         if (searchedStudentSurname !== undefined) {
-            result.push(... searchedStudentSurname)
+            result.push(...searchedStudentSurname)
         }
         if (searchedStudentName || searchedStudentSurname) {
             return result
@@ -87,14 +91,13 @@ class Cohortmanager {
             return searchedId
         }
         if (searchedName !== undefined) {
-            if (searchedName.length >1){
-            return searchedName
+            if (searchedName.length > 1) {
+                return searchedName
             }
             return searchedName[0]
         }
         throw new Error(`Student ${nameOrId} doesn't exist`)
     }
 }
-
 
 module.exports = Cohortmanager
