@@ -64,6 +64,15 @@ describe("Cohortmanager", () => {
         expect(result.cohortName).toBe("gold")
     })
 
+    it("search for a cohort by name", () => {
+        // set up
+        cohortmanager.createCohort('golden')
+        cohortmanager.createCohort('golde')
+        const result = cohortmanager.searchCohort('golden')
+
+        expect(result.cohortName).toBe("golden")
+    })
+
     it("search for invalid cohort name", () => {
         // set up
 

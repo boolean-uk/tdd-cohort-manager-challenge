@@ -15,8 +15,8 @@ class Cohortmanager {
     if (typeof name !== 'string') {
       throw new Error('A Cohort must be a sequence of characters')
     }
-    const searchedCohort = this.cohortList.find((cohort) =>
-      cohort.cohortName.includes(name)
+    const searchedCohort = this.cohortList.find(
+      (cohort) => cohort.cohortName === name
     )
     if (!searchedCohort) {
       const createdCohort = new Cohort(name)
@@ -28,7 +28,6 @@ class Cohortmanager {
 
   createStudent(firstname, surname, gitHub, email) {
     if (typeof firstname !== 'string' || typeof surname !== 'string') {
-      console.log('fullname error')
       throw new Error('You have to use a string to search')
     }
     const createdStudent = new Student(

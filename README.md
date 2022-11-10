@@ -10,8 +10,9 @@ The Cohort Manager should be able to support the following interactions
 A cohort should have a list of students. Each student should have a studentID, first name, last name, github username, email.
 
 <!-- - Search for student by student ID -->
-- Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit.
-- Cohorts can't have the same name,
+<!-- - Cohorts have fixed capacity at 24 students. -->
+Adding students is not possible beyond the 24 limit.
+<!-- - Cohorts can't have the same name, -->
 <!-- and can't exist without a name -->
 - The same student can't exist in multiple cohorts.
 - A student can't be removed from a cohort if it wasn't present in the first place.
