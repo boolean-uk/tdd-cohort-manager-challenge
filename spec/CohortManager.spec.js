@@ -108,4 +108,17 @@ describe("Cohortmanager", () => {
         expect(result3.id).toBe(1)
     })
 
+    it("delete a cohort", () => {
+        // set up
+        cohortmanager.createCohort('gold')
+        let result1 = cohortmanager.deleteCohort('gold')
+        expect(cohortmanager.cohortList).toEqual([])
+    })
+
+    it("delete a cohort using an invalid name", () => {
+        // set up
+        cohortmanager.createCohort('silver')
+        expect(() => cohortmanager.deleteCohort('go')).toThrow()
+    })
+
 })

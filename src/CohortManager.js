@@ -103,6 +103,12 @@ class Cohortmanager {
     }
     throw new Error(`Student ${nameOrId} doesn't exist`)
   }
+
+  deleteCohort(name) {
+    const cohortToDelete = this.searchCohort(name)
+    const indexOfCohortToRemove = this.cohortList.indexOf(cohortToDelete)
+    this.cohortList.splice(indexOfCohortToRemove, 1)
+  }
 }
 
 module.exports = Cohortmanager
