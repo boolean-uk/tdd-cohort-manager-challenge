@@ -179,6 +179,4 @@ class CohortManager {
   }
 }
 
-const testManager = new CohortManager()
-
 module.exports = CohortManager

@@ -115,12 +115,16 @@ describe('CohortManager Class - Extended', () => {
     )
     Manager.addStudentToCohort(newStudent, 'Cohort 7')
     Manager.addStudentToCohort(otherStudent, 'Cohort 8')
-    expect(Manager.searchForStudentName('Nathan')
-    ).toEqual([newStudent,otherStudent])
-    expect(Manager.searchForStudentName('King')
-    ).toEqual([newStudent,otherStudent])
-    expect(() =>
-      Manager.searchForStudentName('Python lover')
-    ).toThrow(new Error('no match found'))
+    expect(Manager.searchForStudentName('Nathan')).toEqual([
+      newStudent,
+      otherStudent
+    ])
+    expect(Manager.searchForStudentName('King')).toEqual([
+      newStudent,
+      otherStudent
+    ])
+    expect(() => Manager.searchForStudentName('Python lover')).toThrow(
+      new Error('no match found')
+    )
   })
 })
