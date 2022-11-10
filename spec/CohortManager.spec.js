@@ -31,8 +31,18 @@ describe("Cohortmanager", () => {
     it("create 2 invalid cohorts name", () => {
         // set up
 
-        expect(cohortmanager.createCohort(null)).toBe('A Cohort must have a name')
-        expect(cohortmanager.createCohort(123)).toBe('A Cohort must be a sequence of characters')
+        expect(() => cohortmanager.createCohort(null)).toThrow()
+        expect(() => cohortmanager.createCohort(123)).toThrow()
+    })
+
+    it("create 2 students", () => {
+        // set up
+        cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
+        cohortmanager.createStudent('Tom', "Telmer", "http", "tom@soda.com")
+
+        expect(cohortmanager.studentList.length).toBe(2)
+        expect(cohortmanager.studentList[0].name).toBe('Bob')
+        expect(cohortmanager.studentList[1].name).toBe('Tom')
     })
 
 })

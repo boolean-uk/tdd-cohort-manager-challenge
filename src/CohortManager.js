@@ -1,5 +1,5 @@
 const Cohort = require('./Cohort.js')
-// const Student = require('./Student.js')
+const Student = require('./Student.js')
 
 class Cohortmanager {
   constructor() {
@@ -10,15 +10,27 @@ class Cohortmanager {
 
   createCohort(name) {
     if (name === null) {
-        return `A Cohort must have a name`
+      throw new Error('A Cohort must have a name')
     }
-    if (typeof name != "string") {
-        return `A Cohort must be a sequence of characters`
+    if (typeof name !== 'string') {
+      throw new Error('A Cohort must be a sequence of characters')
     }
-      let stringName = name.toString()
-      const createdCohort = new Cohort(stringName)
-      this.cohortList.push(createdCohort)
-      return this.cohortList
+    const createdCohort = new Cohort(name)
+    this.cohortList.push(createdCohort)
+    return this.cohortList
+  }
+
+  createStudent(firstname, surname, gitHub, email) {
+    const createdStudent = new Student(
+      firstname,
+      surname,
+      this.studentId,
+      gitHub,
+      email
+    )
+    this.studentId++
+    this.studentList.push(createdStudent)
+    return createdStudent
   }
 }
 
