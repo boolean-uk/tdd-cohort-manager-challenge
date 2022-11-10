@@ -23,7 +23,6 @@ describe("Cohortmanager", () => {
         cohortmanager.createCohort('abc')
         cohortmanager.createCohort("0123")
 
-        console.log('cohortList is ', cohortmanager.cohortList)
         expect(cohortmanager.cohortList[0].cohortName).toBe('abc')
         expect(cohortmanager.cohortList[1].cohortName).toBe('0123')
     })
@@ -43,6 +42,14 @@ describe("Cohortmanager", () => {
         expect(cohortmanager.studentList.length).toBe(2)
         expect(cohortmanager.studentList[0].name).toBe('Bob')
         expect(cohortmanager.studentList[1].name).toBe('Tom')
+    })
+
+    it("search for a cohort by name", () => {
+        // set up
+        cohortmanager.createCohort('gold')
+        const result = cohortmanager.searchCohort('gold')
+
+        expect(result.cohortName).toBe("gold")
     })
 
 })

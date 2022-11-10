@@ -32,6 +32,19 @@ class Cohortmanager {
     this.studentList.push(createdStudent)
     return createdStudent
   }
+
+  searchCohort(name) {
+    if (typeof name !== 'string') {
+      throw new Error('You have to use a string to search')
+    }
+    const searchedCohort = this.cohortList.find((cohort) =>
+      cohort.cohortName.includes(name)
+    )
+    if (searchedCohort) {
+      return searchedCohort
+    }
+    throw new Error(`Cohort ${name} doesn't exist`)
+  }
 }
 
 module.exports = Cohortmanager
