@@ -158,6 +158,15 @@ describe("Cohortmanager", () => {
         expect(() => cohortmanager.removeStudent('Bob', 'silver')).toThrow()
     })
 
+    it("remove student inside cohort", () => {
+        // set up
+        cohortmanager.createCohort('silver')
+        const bob = cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
+        cohortmanager.addStudent('Bob', "silver")
+        const result = cohortmanager.removeStudent('Bob', 'silver')
+        expect(result).toEqual("Bob has been removed from Cohort silver")
+    })
+
     // it("remove student not inside cohort", () => {
     //     // set up
     //     let rob = cohortmanager.createStudent('Rob', "Belcher", "http", "bob@burger.com")
