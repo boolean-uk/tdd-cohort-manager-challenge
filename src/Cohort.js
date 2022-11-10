@@ -14,6 +14,17 @@ class Cohort {
     const cohortIndex = this.studentInside.indexOf(student)
     this.studentInside.splice(cohortIndex, 1)
   }
+
+  searchStudent(student) {
+    const foundStudent = this.studentInside.filter(
+      (eachStudent) => eachStudent === student
+    )
+
+    if (foundStudent.length === 1) {
+      return foundStudent
+    }
+    throw new Error(`Student ${student.name} isn't inside`)
+  }
 }
 
 module.exports = Cohort

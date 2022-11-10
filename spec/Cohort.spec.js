@@ -43,4 +43,21 @@ describe("Cohort", () => {
         expect(cohortmanager.cohortList[0].studentInside.length).toBe(0)
     })
 
+    it("remove student from the cohort", () => {
+        // set up
+        let bob = cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
+        test.addStudent(bob)
+        const result = test.searchStudent(bob)[0]
+        
+
+        expect(result).toBe(bob)
+    })
+
+    it("remove student not inside cohort", () => {
+        // set up
+        let rob = cohortmanager.createStudent('Rob', "Belcher", "http", "bob@burger.com")
+        
+        expect(() => test.searchStudent(rob)).toThrow()
+    })
+
 })

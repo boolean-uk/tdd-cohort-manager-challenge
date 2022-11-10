@@ -124,6 +124,22 @@ class Cohortmanager {
     cohort.addStudent(studentFound)
     return `${studentFound.name} is now inside Cohort ${cohort.cohortName}`
   }
+
+  removeStudent(student, cohortName) {
+    const studentFound = this.searchStudent(student)
+    if (studentFound.length) {
+      throw new Error(`There are many ${student}, try to search by ID`)
+    }
+    const cohort = this.searchCohort(cohortName)
+    if (cohort.studentInside.length >= 24) {
+      throw new Error(
+        `There are too many student inside the ${cohortName} cohort`
+      )
+    }
+    cohort.searchStudent(studentFound)
+    cohort.removeStudent(studentFound)
+    return `${studentFound.name} has been removed from Cohort ${cohort.cohortName}`
+  }
 }
 
 module.exports = Cohortmanager

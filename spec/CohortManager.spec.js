@@ -150,4 +150,18 @@ describe("Cohortmanager", () => {
 
         expect(() => createToMany()).toThrow()
     })
+
+    it("remove student not inside cohort", () => {
+        // set up
+        cohortmanager.createCohort('silver')
+        cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
+        expect(() => cohortmanager.removeStudent('Bob', 'silver')).toThrow()
+    })
+
+    // it("remove student not inside cohort", () => {
+    //     // set up
+    //     let rob = cohortmanager.createStudent('Rob', "Belcher", "http", "bob@burger.com")
+        
+    //     expect(() => test.searchStudent(rob)).toThrow()
+    // })
 })
