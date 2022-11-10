@@ -52,4 +52,40 @@ describe("Cohortmanager", () => {
         expect(result.cohortName).toBe("gold")
     })
 
+    it("search for invalid cohort name", () => {
+        // set up
+
+        expect(() => cohortmanager.searchCohort(null)).toThrow()
+        expect(() => cohortmanager.searchCohort(123)).toThrow()
+    })
+
+    it("search for a student by name", () => {
+        // set up
+        cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
+        const result = cohortmanager.searchStudentName('Bob')
+
+        expect(result[0].name).toBe("Bob")
+    })
+
+    it("search for a student by Id", () => {
+        // set up
+        cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
+        const result = cohortmanager.searchStudentId(1)
+        expect(result.id).toBe(1)
+    })
+
+    it("search for a student by Id or name", () => {
+        // set up
+        cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
+        cohortmanager.createStudent('Tom', "Telmer", "http", "tom@soda.com")
+        cohortmanager.createStudent('Tom', "Marino", "http", "tom@sale.com")
+        const result1 = cohortmanager.searchStudent(1)
+        const result2 = cohortmanager.searchStudent("Tom")
+        const result3 = cohortmanager.searchStudent("Bob")
+        console.log(result2)
+        expect(result1.id).toBe(1)
+        expect(result2[0].id).toBe(2)
+        expect(result3.id).toBe(1)
+    })
+
 })
