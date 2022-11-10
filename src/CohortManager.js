@@ -116,6 +116,11 @@ class Cohortmanager {
       throw new Error(`There are many ${student}, try to search by ID`)
     }
     const cohort = this.searchCohort(cohortName)
+    if (cohort.studentInside.length >= 24) {
+      throw new Error(
+        `There are too many student inside the ${cohortName} cohort`
+      )
+    }
     cohort.addStudent(studentFound)
     return `${studentFound.name} is now inside Cohort ${cohort.cohortName}`
   }

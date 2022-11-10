@@ -130,11 +130,24 @@ describe("Cohortmanager", () => {
         expect(result).toBe(`Bob is now inside Cohort silver`)
     })
 
-        it("add student inside the cohort", () => {
+    it("add student inside the cohort", () => {
         // set up
         cohortmanager.createCohort('silver')
         cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
         cohortmanager.createStudent('Bob', "sticher", "http", "bob@burger.com")
         expect(() => cohortmanager.addStudent('Bob', 'silver')).toThrow()
+    })
+
+    it("add too many student inside the cohort", () => {
+        // set up
+        cohortmanager.createCohort('silver')
+        function createToMany() {
+            for (let i = 0; i < 25; i++) {
+                cohortmanager.createStudent('Bob', "Belcher", "http", "bob@burger.com")
+                cohortmanager.addStudent(i + 1, "silver")
+            }
+        }
+
+        expect(() => createToMany()).toThrow()
     })
 })
