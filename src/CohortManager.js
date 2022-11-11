@@ -21,7 +21,8 @@ class Cohortmanager {
     if (!searchedCohort) {
       const createdCohort = new Cohort(name)
       this.cohortList.push(createdCohort)
-      return this.cohortList
+      return createdCohort
+
     }
     throw new Error(`${name} already used for another cohort`)
   }

@@ -7,7 +7,7 @@ describe("Cohort", () => {
     
     beforeEach(() => {
         cohortmanager = new Cohortmanager()
-        test = cohortmanager.createCohort("test")[0]
+        test = cohortmanager.createCohort("test")
 
     })
 
