@@ -1,9 +1,13 @@
 class Student {
-  constructor(firstName, lastName, githubUser, email) {
-    this.firstName = firstName
-    this.lastName = lastName
-    this.githubUser = githubUser
-    this.email = email
+  create(firstName, lastName, email, githubUser, uniqueID) {
+    const student = {
+      studentID: uniqueID,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      githubUser: githubUser
+    }
+    return student
   }
 }
 
