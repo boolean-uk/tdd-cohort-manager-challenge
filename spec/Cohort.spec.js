@@ -1,13 +1,13 @@
 const { Cohort } = require('../src/Cohort')
 
-describe('CohortManager class', () => {
+describe('Cohort class', () => {
   let CohortClass
   beforeEach(() => {
     CohortClass = new Cohort()
   })
 
-  // createCohort
-  it('expects the cohort to be created', () => {
+  // create
+  it('expects the cohort to be created and returned', () => {
     expect(CohortClass.create('Software', 2)).toEqual({
       cohortID: 2,
       name: 'Software',

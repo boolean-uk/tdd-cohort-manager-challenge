@@ -5,7 +5,8 @@ class Student {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      githubUser: githubUser
+      githubUser: githubUser,
+      cohortID: null
     }
     return student
   }

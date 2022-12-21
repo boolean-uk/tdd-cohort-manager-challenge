@@ -18,34 +18,44 @@ describe('CohortManager class', () => {
     expect(Manager.createStudent('Pot', 'Bru', 'X@e.com', 'got')).toBeFalse()
   })
 
-  // isCohortFull && isStudentEmailUnique
-  //   it('expects the cohort to not add any more students if at max capacity', () => {
-  //     expect(Manager.createStudent('Fir', 'Sec', 'a0@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'a1@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'a2@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'a3@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'a4@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'a5@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'a6@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'a7@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'a8@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'a9@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'b0@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'b1@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'b2@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'b3@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'b4@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'b5@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'b6@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'b7@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'b8@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'b9@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'c0@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'c1@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'c2@e.com', 'git')).toBeTrue()
-  //     expect(Manager.createStudent('Fir', 'Sec', 'c3@e.com', 'git')).toBeTrue() // 24
-  //     expect(Manager.createStudent('Fir', 'Sec', 'c4@e.com', 'git')).toBeFalse() // 25
-  //   })
+  //   isCohortFull && isStudentEmailUnique
+  it('expects the cohort to not add any more students if at max capacity', () => {
+    Manager.createCohort('Software')
+
+    for (let i = 1; i <= 24; i++) {
+      Manager.createStudent('Fir', 'Sec', `t${i}@e.com`, 'git')
+      Manager.updateStudent(i, 1)
+    }
+    Manager.createStudent('Fir', 'Sec', 'c4@e.com', 'git') // 25
+    expect(Manager.updateStudent(25, 1)).toBeFalse()
+  })
+
+  // searchCohortByID
+  it('expects to have the Cohort returned when searched', () => {
+    Manager.createCohort('Software')
+    Manager.createCohort('Hardware')
+    expect(Manager.searchCohortByID(2)).toEqual({
+      cohortID: 2,
+      name: 'Hardware',
+      students: []
+    })
+    expect(Manager.searchCohortByID(3)).toBeFalse()
+  })
+
+  // searchStudentByID
+  it('expects to have the student returned when searched', () => {
+    Manager.createStudent('Luc', 'Sim', 'X@e.com', 'git')
+    Manager.createStudent('Pot', 'Rob', 'Z@e.com', 'got')
+    expect(Manager.searchStudentByID(2)).toEqual({
+      studentID: 2,
+      firstName: 'Pot',
+      lastName: 'Rob',
+      email: 'Z@e.com',
+      githubUser: 'got',
+      cohortID: null
+    })
+    expect(Manager.searchStudentByID(3)).toBeFalse()
+  })
 
   // getUniqueCohortID
   it('expects to have a unique id everytime it creates new cohort', () => {
@@ -72,4 +82,6 @@ describe('CohortManager class', () => {
     expect(Manager.createStudent('Luc', 'Sim', 'l@e.com', 'git')).toBeTrue()
     expect(Manager.students).toHaveSize(1)
   })
+
+  // updateStudent
 })
