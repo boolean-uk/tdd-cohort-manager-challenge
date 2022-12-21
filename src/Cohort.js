@@ -1,11 +1,9 @@
-let counter = 0
-
 class Cohort {
-  constructor(name) {
+  constructor(name, id) {
     this.name = name
     this.cohortCapacity = 24
     this.students = []
-    this.id = counter++
+    this.id = id
   }
 }
 

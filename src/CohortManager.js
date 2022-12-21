@@ -8,7 +8,8 @@ class CohortManager {
   }
 
   createCohort(name) {
-    const cohort = new Cohort(name)
+    const id = this.cohortList.length + 1
+    const cohort = new Cohort(name, id)
     this.cohortList.push(cohort)
 
     return cohort
@@ -18,9 +19,6 @@ class CohortManager {
     const id = this.studentList.length + 1
     const student = new Student(firstName, lastName, githubUsername, email, id)
     this.studentList.push(student)
-
-    // const found = this.searchCohorts(cohort)
-    // if (found) found.students.push(student)
 
     return student
   }
@@ -32,9 +30,27 @@ class CohortManager {
 
     return found
   }
-}
 
-// const cohortManager = new CohortManager()
-// // cohortManager.createCohort('Cohort 1')
+  searchStudents(studentLastname) {
+    const found = this.studentList.find(
+      (student) => student.lastName === studentLastname
+    )
+
+    if (!found) throw new Error('No students found!')
+
+    return found
+  }
+
+  addStudentToCohort(studentLastName, cohortName) {
+    const foundStudent = this.searchStudents(studentLastName)
+    const foundCohort = this.searchCohorts(cohortName)
+
+    if (foundStudent && foundCohort) {
+      foundCohort.students.push(foundStudent)
+    }
+
+    return foundCohort
+  }
+}
 
 module.exports = { CohortManager }

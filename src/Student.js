@@ -5,6 +5,7 @@ class Student {
     this.githubUsername = githubUsername
     this.email = email
     this.id = id
+    this.cohort = 'unassigned'
   }
 }
 

@@ -85,4 +85,33 @@ describe('CohortManager', () => {
       jasmine.objectContaining(expected)
     )
   })
+
+  it('addStudentToCohort adds a student to the specificed cohort', () => {
+    cohortManager.createCohort('Super Cohort')
+
+    cohortManager.createStudent(
+      'chew',
+      'bacca',
+      'rawr',
+      'walkingcarpet@rebelalliance.net'
+    )
+
+    const updatedCohort = cohortManager.addStudentToCohort(
+      'bacca',
+      'Super Cohort'
+    )
+
+    const expected = {
+      firstName: 'chew',
+      lastName: 'bacca',
+      githubUsername: 'rawr',
+      email: 'walkingcarpet@rebelalliance.net',
+      id: 1,
+      cohort: 'unassigned'
+    }
+
+    expect(updatedCohort.students[0]).toEqual(
+      jasmine.objectContaining(expected)
+    )
+  })
 })
