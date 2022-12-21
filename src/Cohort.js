@@ -1,4 +1,4 @@
-let counter = 1
+let counter = 0
 
 class Cohort {
   constructor(name) {
