@@ -1,7 +1,7 @@
 class CohortManager {
   constructor() {
-    this.cohorts = []
+    this.cohortList = []
   }
 }
 
-module.exports = CohortManager
+module.exports = { CohortManager }
