@@ -214,7 +214,7 @@ describe('CohortManager', () => {
   it('checkCapacity throws an error if the cohort is over capacity', () => {
     cohortManager.createCohort('Cohort 1')
 
-    for (let i = 0; i <= 23; i++) {
+    for (let i = 1; i <= 24; i++) {
       cohortManager.createStudent(
         'chew',
         'bacca',
@@ -222,11 +222,37 @@ describe('CohortManager', () => {
         'walkingcarpet@rebelalliance.net'
       )
 
-      cohortManager.addStudentToCohort(1, 'Cohort 1')
+      cohortManager.addStudentToCohort(i, 'Cohort 1')
     }
 
     expect(() => cohortManager.checkCapacity('Cohort 1')).toThrowError(
       'This cohort is at capacity!'
+    )
+  })
+
+  it('validateCohortName throws an error if user tries to create a cohort that already has the same name', () => {
+    cohortManager.createCohort('Cohort 1')
+
+    expect(() => cohortManager.createCohort('Cohort 1')).toThrowError(
+      'A cohort already exists with that name'
+    )
+  })
+
+  it('validateStudent throws an error if user tries to add a student that already has a cohort to another one', () => {
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.createCohort('Cohort 2')
+
+    cohortManager.createStudent(
+      'chew',
+      'bacca',
+      'rawr',
+      'walkingcarpet@rebelalliance.net'
+    )
+
+    cohortManager.addStudentToCohort(1, 'Cohort 1')
+
+    expect(() => cohortManager.addStudentToCohort(1, 'Cohort 2')).toThrowError(
+      'This student already has a cohort! Please remove the student from their current cohort before reassigning'
     )
   })
 })

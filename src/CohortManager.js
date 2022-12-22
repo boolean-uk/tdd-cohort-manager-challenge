@@ -9,6 +9,7 @@ class CohortManager {
 
   createCohort(name) {
     const id = this.cohortList.length + 1
+    this.validateCohortName(name)
     const cohort = new Cohort(name, id)
     this.cohortList.push(cohort)
 
@@ -45,6 +46,7 @@ class CohortManager {
     const foundStudent = this.searchStudentById(studentID)
     const foundCohort = this.searchCohorts(cohortName)
     const spacesAvailable = this.checkCapacity(cohortName)
+    this.validateStudent(foundStudent.id)
 
     if (foundStudent && foundCohort && spacesAvailable) {
       foundCohort.students.push(foundStudent)
@@ -79,6 +81,8 @@ class CohortManager {
       (student) => student.id !== studentID
     )
 
+    foundStudent.cohort = 'unassigned'
+
     return foundCohort
   }
 
@@ -99,6 +103,23 @@ class CohortManager {
       return true
     } else {
       throw new Error('This cohort is at capacity!')
+    }
+  }
+
+  validateCohortName(cohortName) {
+    const found = this.cohortList.find((cohort) => cohort.name === cohortName)
+
+    if (found) {
+      throw new Error('A cohort already exists with that name')
+    }
+  }
+
+  validateStudent(studentID) {
+    const found = this.searchStudentById(studentID)
+    if (found.cohort !== 'unassigned') {
+      throw new Error(
+        'This student already has a cohort! Please remove the student from their current cohort before reassigning'
+      )
     }
   }
 }
