@@ -17,10 +17,28 @@ describe('CohortManager', () => {
       }
     ])
   })
+
   it('should throw an error if user makes a new cohort w/ an existing cohorts name', () => {
-    CM.createCohort('cohort1')
-    expect(() => CM.createCohort('cohort1')).toThrow(
+    CM.createCohort('cohort 1')
+    expect(() => CM.createCohort('cohort 1')).toThrow(
       new Error('A cohort with this name already exists')
+    )
+  })
+
+  it('should return the cohort obj w/matching name as the user inputs', () => {
+    CM.createCohort('cohort 8')
+    const result = CM.searchForCohortBy('cohort 8')
+    expect(result).toEqual({
+      name: 'cohort 8',
+      students: []
+    })
+  })
+
+  it('should throw error if a cohort w/ user input name does not exist', () => {
+    CM.createCohort('cohort 8')
+
+    expect(() => CM.searchForCohortBy('cohort 1')).toThrow(
+      new Error('A cohort with this name does NOT exist')
     )
   })
 })
