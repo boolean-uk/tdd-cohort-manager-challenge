@@ -74,4 +74,32 @@ describe('cohort manager', () => {
     expect(result[0]).toBeInstanceOf(Student)
     expect(result[0].id).toBe(2)
   })
+
+  it('throws error if student not found', () => {
+    cohortManager.createCohort('cohortOne')
+    cohortManager.addStudent(
+      'cohortOne',
+      'Tim',
+      'Timson',
+      'timsgit',
+      'tim@son.com'
+    )
+    expect(() => cohortManager.removeStudent('cohortOne', 2)).toThrowError(
+      'student not found'
+    )
+  })
+
+  it('throws error if cohort not found', () => {
+    cohortManager.createCohort('cohortOne')
+    cohortManager.addStudent(
+      'cohortOne',
+      'Tim',
+      'Timson',
+      'timsgit',
+      'tim@son.com'
+    )
+    expect(() => cohortManager.removeStudent('cohortTwo', 1)).toThrowError(
+      'cohort not found'
+    )
+  })
 })

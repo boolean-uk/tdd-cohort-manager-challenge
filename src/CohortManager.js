@@ -46,14 +46,4 @@ class CohortManager {
   }
 }
 
-const cohortManager = new CohortManager()
-cohortManager.createCohort('cohortOne')
-
-cohortManager.addStudent('cohortOne', 'Tim', 'Timson', 'timsgit', 'tim@son.com')
-cohortManager.addStudent('cohortOne', 'T', 'T', 'tims', 'tim@son.com')
-
-console.log(cohortManager.cohorts[0])
-// console.log(cohortManager)
-// console.log(cohortManager.searchCohorts('cohortOn'))
-
 module.exports = CohortManager
