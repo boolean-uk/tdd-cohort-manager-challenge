@@ -211,10 +211,10 @@ describe('CohortManager', () => {
     expect(capacity).toBe(true)
   })
 
-  it('checkCapacity returns false if the cohort is over capacity', () => {
+  it('checkCapacity throws an error if the cohort is over capacity', () => {
     cohortManager.createCohort('Cohort 1')
 
-    for (let i = 0; i <= 30; i++) {
+    for (let i = 0; i <= 23; i++) {
       cohortManager.createStudent(
         'chew',
         'bacca',
@@ -225,8 +225,8 @@ describe('CohortManager', () => {
       cohortManager.addStudentToCohort(1, 'Cohort 1')
     }
 
-    const capacity = cohortManager.checkCapacity('Cohort 1')
-
-    expect(capacity).toBe(false)
+    expect(() => cohortManager.checkCapacity('Cohort 1')).toThrowError(
+      'This cohort is at capacity!'
+    )
   })
 })

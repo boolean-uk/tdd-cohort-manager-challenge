@@ -98,7 +98,7 @@ class CohortManager {
     if (found.students.length < found.cohortCapacity) {
       return true
     } else {
-      return false
+      throw new Error('This cohort is at capacity!')
     }
   }
 }
