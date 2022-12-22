@@ -21,6 +21,5 @@ describe('Student', () => {
 
     // verify
     expect(result).toEqual(expected)
-    console.log(student)
   })
 })
