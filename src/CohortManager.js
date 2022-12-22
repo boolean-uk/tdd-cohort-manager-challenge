@@ -122,6 +122,28 @@ class CohortManager {
       )
     }
   }
+
+  searchStudentsByFullName(firstName, lastName) {
+    if (!firstName || !lastName)
+      throw new Error('Please enter both a first and lastName')
+
+    const firstNamesFiltered = this.studentList.filter((student) => {
+      return student.firstName.toLowerCase().includes(firstName.toLowerCase())
+    })
+
+    const lastNamesFiltered = this.studentList.filter((student) => {
+      return student.lastName.toLowerCase().includes(lastName.toLowerCase())
+    })
+
+    const fullList = [...firstNamesFiltered, ...lastNamesFiltered]
+
+    const filteredUnique = [...new Set(fullList)]
+
+    if (filteredUnique.length < 1)
+      throw new Error('Your search returned no results!')
+
+    return filteredUnique
+  }
 }
 
 module.exports = { CohortManager }

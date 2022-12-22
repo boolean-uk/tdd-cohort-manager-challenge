@@ -255,4 +255,44 @@ describe('CohortManager', () => {
       'This student already has a cohort! Please remove the student from their current cohort before reassigning'
     )
   })
+
+  it('searchStudentsByFullName returns a list of matching students', () => {
+    cohortManager.createStudent(
+      'chew',
+      'bacca',
+      'rawr',
+      'walkingcarpet@rebelalliance.net'
+    )
+    cohortManager.createStudent(
+      'moo',
+      'bacca',
+      'rawr',
+      'walkingcarpet@rebelalliance.net'
+    )
+    cohortManager.createStudent(
+      'roo',
+      'packa',
+      'rawr',
+      'walkingcarpet@rebelalliance.net'
+    )
+
+    const results = cohortManager.searchStudentsByFullName('chew', 'bacca')
+
+    const expected = {
+      firstName: 'moo',
+      lastName: 'bacca',
+      githubUsername: 'rawr',
+      email: 'walkingcarpet@rebelalliance.net',
+      id: 2,
+      cohort: 'unassigned'
+    }
+
+    expect(results[1]).toEqual(jasmine.objectContaining(expected))
+  })
+
+  it('searchStudentsByFullName throws an error if there are no matching results', () => {
+    expect(() =>
+      cohortManager.searchStudentsByFullName('james', 'bond')
+    ).toThrowError('Your search returned no results!')
+  })
 })
