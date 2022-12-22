@@ -44,8 +44,9 @@ class CohortManager {
   addStudentToCohort(studentID, cohortName) {
     const foundStudent = this.searchStudentById(studentID)
     const foundCohort = this.searchCohorts(cohortName)
+    const spacesAvailable = this.checkCapacity(cohortName)
 
-    if (foundStudent && foundCohort) {
+    if (foundStudent && foundCohort && spacesAvailable) {
       foundCohort.students.push(foundStudent)
       foundStudent.cohort = foundCohort.name
     }
@@ -87,6 +88,18 @@ class CohortManager {
     if (!found) throw new Error('No students found!')
 
     return found
+  }
+
+  checkCapacity(cohortName) {
+    const found = this.searchCohorts(cohortName)
+
+    if (!found) return
+
+    if (found.students.length < found.cohortCapacity) {
+      return true
+    } else {
+      return false
+    }
   }
 }
 

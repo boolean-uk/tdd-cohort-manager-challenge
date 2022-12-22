@@ -202,4 +202,31 @@ describe('CohortManager', () => {
       'No students found!'
     )
   })
+
+  it('checkCapacity functions checks if the cohort has spots avaialble- returns true if so', () => {
+    cohortManager.createCohort('Cohort 1')
+
+    const capacity = cohortManager.checkCapacity('Cohort 1')
+
+    expect(capacity).toBe(true)
+  })
+
+  it('checkCapacity returns false if the cohort is over capacity', () => {
+    cohortManager.createCohort('Cohort 1')
+
+    for (let i = 0; i <= 30; i++) {
+      cohortManager.createStudent(
+        'chew',
+        'bacca',
+        'rawr',
+        'walkingcarpet@rebelalliance.net'
+      )
+
+      cohortManager.addStudentToCohort(1, 'Cohort 1')
+    }
+
+    const capacity = cohortManager.checkCapacity('Cohort 1')
+
+    expect(capacity).toBe(false)
+  })
 })
