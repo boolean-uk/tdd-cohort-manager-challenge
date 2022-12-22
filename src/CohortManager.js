@@ -16,7 +16,7 @@ class CohortManager {
         return cohort
       }
     }
-    return 'Cohort not found!'
+    return 'Error : No cohort found!'
   }
 }
 module.exports = CohortManager

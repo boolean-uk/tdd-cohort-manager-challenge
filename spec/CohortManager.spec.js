@@ -1,6 +1,6 @@
 const CohortManager = require('../src/CohortManager.js')
 const Cohort = require('../src/Cohort.js')
-
+// const Student = require('../src/Student.js')
 // const Student = require('..src/Student.js')
 describe('Cohort Manager', () => {
   let cohortManager
@@ -17,6 +17,13 @@ describe('Cohort Manager', () => {
     cohortManager.createCohort('Cohort1')
     cohortManager.createCohort('Cohort2')
     const result = cohortManager.searchCohort('Cohort1')
+    expect(result).toEqual(expected)
+  })
+  it('Return error msg if the cohort does not exist', () => {
+    const expected = 'Error : No cohort found!'
+    cohortManager.createCohort('Cohort1')
+    cohortManager.createCohort('Cohort2')
+    const result = cohortManager.searchCohort('Cohort5')
     expect(result).toEqual(expected)
   })
 })
