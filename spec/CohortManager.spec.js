@@ -114,4 +114,60 @@ describe('CohortManager', () => {
       jasmine.objectContaining(expected)
     )
   })
+
+  it('removeCohort successfully removes a cohort from the cohortList', () => {
+    cohortManager.createCohort('Super Cohort')
+
+    cohortManager.removeCohort('Super Cohort')
+
+    expect(cohortManager.cohortList).toEqual([])
+  })
+
+  it('removeCohort returns the removed cohort', () => {
+    cohortManager.createCohort('Super Cohort')
+
+    const removedCohort = cohortManager.removeCohort('Super Cohort')
+
+    const expected = {
+      name: 'Super Cohort',
+      cohortCapacity: 24,
+      students: [],
+      id: 1
+    }
+
+    expect(removedCohort).toEqual(jasmine.objectContaining(expected))
+  })
+
+  it('removeStudent removes an existing student from the specified cohort', () => {
+    cohortManager.createCohort('Super Cohort')
+
+    cohortManager.createStudent(
+      'chew',
+      'bacca',
+      'rawr',
+      'walkingcarpet@rebelalliance.net'
+    )
+
+    cohortManager.addStudentToCohort('bacca', 'Super Cohort')
+    cohortManager.removeStudent('bacca', 'Super Cohort')
+
+    const cohortStudents = cohortManager.cohortList[0].students
+
+    expect(cohortStudents).toEqual([])
+  })
+
+  it('removeStudent throws an error if there is no student with the searched name in that cohort', () => {
+    cohortManager.createCohort('Super Cohort')
+
+    cohortManager.createStudent(
+      'chew',
+      'bacca',
+      'rawr',
+      'walkingcarpet@rebelalliance.net'
+    )
+
+    expect(() =>
+      cohortManager.removeStudent('bacca', 'Super Cohort')
+    ).toThrowError('There is no student with that name in this cohort')
+  })
 })

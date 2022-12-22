@@ -51,6 +51,34 @@ class CohortManager {
 
     return foundCohort
   }
+
+  removeCohort(cohortName) {
+    const cohortToRemove = this.searchCohorts(cohortName)
+
+    this.cohortList = this.cohortList.filter(
+      (cohort) => cohort.name !== cohortName
+    )
+
+    return cohortToRemove
+  }
+
+  removeStudent(studentLastName, cohortName) {
+    const foundStudent = this.searchStudents(studentLastName)
+    const foundCohort = this.searchCohorts(cohortName)
+
+    const found = foundCohort.students.find(
+      (student) => student.lastName === foundStudent.lastName
+    )
+
+    if (!found)
+      throw new Error('There is no student with that name in this cohort')
+
+    foundCohort.students = foundCohort.students.filter(
+      (student) => student.lastName !== studentLastName
+    )
+
+    return foundCohort
+  }
 }
 
 module.exports = { CohortManager }
