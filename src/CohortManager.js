@@ -41,8 +41,8 @@ class CohortManager {
     return found
   }
 
-  addStudentToCohort(studentLastName, cohortName) {
-    const foundStudent = this.searchStudents(studentLastName)
+  addStudentToCohort(studentID, cohortName) {
+    const foundStudent = this.searchStudentById(studentID)
     const foundCohort = this.searchCohorts(cohortName)
 
     if (foundStudent && foundCohort) {
@@ -63,8 +63,8 @@ class CohortManager {
     return cohortToRemove
   }
 
-  removeStudent(studentLastName, cohortName) {
-    const foundStudent = this.searchStudents(studentLastName)
+  removeStudent(studentID, cohortName) {
+    const foundStudent = this.searchStudentById(studentID)
     const foundCohort = this.searchCohorts(cohortName)
 
     const found = foundCohort.students.find(
@@ -75,20 +75,19 @@ class CohortManager {
       throw new Error('There is no student with that name in this cohort')
 
     foundCohort.students = foundCohort.students.filter(
-      (student) => student.lastName !== studentLastName
+      (student) => student.id !== studentID
     )
 
     return foundCohort
   }
-}
 
-// const cohortManager = new CohortManager()
-// cohortManager.createCohort('Super Cohort')
-// cohortManager.createStudent(
-//   'chew',
-//   'bacca',
-//   'rawr',
-//   'walkingcarpet@rebelalliance.net'
-// )
+  searchStudentById(id) {
+    const found = this.studentList.find((student) => student.id === id)
+
+    if (!found) throw new Error('No students found!')
+
+    return found
+  }
+}
 
 module.exports = { CohortManager }

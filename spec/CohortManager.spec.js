@@ -96,10 +96,7 @@ describe('CohortManager', () => {
       'walkingcarpet@rebelalliance.net'
     )
 
-    const updatedCohort = cohortManager.addStudentToCohort(
-      'bacca',
-      'Super Cohort'
-    )
+    const updatedCohort = cohortManager.addStudentToCohort(1, 'Super Cohort')
 
     const expected = {
       firstName: 'chew',
@@ -107,7 +104,7 @@ describe('CohortManager', () => {
       githubUsername: 'rawr',
       email: 'walkingcarpet@rebelalliance.net',
       id: 1,
-      cohort: 'unassigned'
+      cohort: 'Super Cohort'
     }
 
     expect(updatedCohort.students[0]).toEqual(
@@ -148,8 +145,8 @@ describe('CohortManager', () => {
       'walkingcarpet@rebelalliance.net'
     )
 
-    cohortManager.addStudentToCohort('bacca', 'Super Cohort')
-    cohortManager.removeStudent('bacca', 'Super Cohort')
+    cohortManager.addStudentToCohort(1, 'Super Cohort')
+    cohortManager.removeStudent(1, 'Super Cohort')
 
     const cohortStudents = cohortManager.cohortList[0].students
 
@@ -166,8 +163,43 @@ describe('CohortManager', () => {
       'walkingcarpet@rebelalliance.net'
     )
 
-    expect(() =>
-      cohortManager.removeStudent('bacca', 'Super Cohort')
-    ).toThrowError('There is no student with that name in this cohort')
+    expect(() => cohortManager.removeStudent(1, 'Super Cohort')).toThrowError(
+      'There is no student with that name in this cohort'
+    )
+  })
+
+  it('searchStudenstById should return the correct student if that student exists', () => {
+    cohortManager.createStudent(
+      'chew',
+      'bacca',
+      'rawr',
+      'walkingcarpet@rebelalliance.net'
+    )
+
+    cohortManager.createStudent(
+      'darth',
+      'vader',
+      'darthycodes',
+      'darkside@imperial.com'
+    )
+
+    const searchedStudent = cohortManager.searchStudentById(2)
+
+    const expected = {
+      firstName: 'darth',
+      lastName: 'vader',
+      githubUsername: 'darthycodes',
+      email: 'darkside@imperial.com',
+      id: 2,
+      cohort: 'unassigned'
+    }
+
+    expect(searchedStudent).toEqual(jasmine.objectContaining(expected))
+  })
+
+  it('searchStudentById throws an error if that student does not exist', () => {
+    expect(() => cohortManager.searchStudentById(2)).toThrowError(
+      'No students found!'
+    )
   })
 })
