@@ -47,6 +47,7 @@ class CohortManager {
 
     if (foundStudent && foundCohort) {
       foundCohort.students.push(foundStudent)
+      foundStudent.cohort = foundCohort.name
     }
 
     return foundCohort
@@ -80,5 +81,14 @@ class CohortManager {
     return foundCohort
   }
 }
+
+// const cohortManager = new CohortManager()
+// cohortManager.createCohort('Super Cohort')
+// cohortManager.createStudent(
+//   'chew',
+//   'bacca',
+//   'rawr',
+//   'walkingcarpet@rebelalliance.net'
+// )
 
 module.exports = { CohortManager }
