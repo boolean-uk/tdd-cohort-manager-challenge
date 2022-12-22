@@ -5,7 +5,4 @@ class Cohort {
   }
 }
 
-// const cohortOne = new Cohort('CohortOne')
-// console.log(cohortOne)
-
 module.exports = Cohort
