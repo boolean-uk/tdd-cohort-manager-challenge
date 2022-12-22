@@ -36,15 +36,43 @@ class CohortManager {
   removeCohort(name) {
     if (this.findCohortBy(name) === false)
       throw new Error('A cohort with this name does NOT exist')
-    //   else splice srray and remove cohort
     const foundCohort = this.cohorts.find((cohort) => cohort.name === name)
     const index = this.cohorts.indexOf(foundCohort)
     return this.cohorts.splice(index, 1)[0]
   }
+
+  addStudent(firstName, lastName, github, email) {
+    this.id++
+    const student = {
+      id: this.id,
+      firstName,
+      lastName,
+      github,
+      email
+    }
+    return student
+  }
 }
 
-// remove cohort by name
-// I want the function to return the deleted cohort
-// maybe even to push it into a deleted cohort array
+// push deleted cohort into a deleted cohort array
+// maybe add this in later ^
+
+// add student
+//  parameters (student info, cohort name)
+// pass all student info as params
+// throws Error if student already exists
+
+// students = {
+//     this.id++,
+//     firstName,
+//     lastName,
+//     github,
+//     email
+// }
+
+// remove student
+// use findStudentBy(id)
+// use splice to remove student from students array
+// throw Error if student does not exist
 
 module.exports = CohortManager

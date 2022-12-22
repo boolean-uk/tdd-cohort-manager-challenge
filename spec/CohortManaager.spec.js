@@ -54,11 +54,29 @@ describe('CohortManager', () => {
       }
     ])
   })
+
   it('should throw error if a cohort w/ user input name does not exist', () => {
     CM.createCohort('cohort 1')
     CM.createCohort('cohort 2')
     expect(() => CM.removeCohort('cohort 69')).toThrow(
       new Error('A cohort with this name does NOT exist')
     )
+  })
+
+  it('should create a student obj', () => {
+    CM.createCohort('cohort')
+    const result = CM.addStudent(
+      'Bob',
+      'The-Builder',
+      'bob-builds-stuff',
+      'bobthebuilder@gmail.com'
+    )
+    expect(result).toEqual({
+      id: 1,
+      firstName: 'Bob',
+      lastName: 'The-Builder',
+      github: 'bob-builds-stuff',
+      email: 'bobthebuilder@gmail.com'
+    })
   })
 })
