@@ -41,4 +41,24 @@ describe('CohortManager', () => {
       new Error('A cohort with this name does NOT exist')
     )
   })
+
+  it('should remove cohort with same name as user input', () => {
+    CM.createCohort('cohort 1')
+    CM.createCohort('cohort 2')
+    CM.removeCohort('cohort 2')
+    const result = CM.getAllCohorts()
+    expect(result).toEqual([
+      {
+        name: 'cohort 1',
+        students: []
+      }
+    ])
+  })
+  it('should throw error if a cohort w/ user input name does not exist', () => {
+    CM.createCohort('cohort 1')
+    CM.createCohort('cohort 2')
+    expect(() => CM.removeCohort('cohort 69')).toThrow(
+      new Error('A cohort with this name does NOT exist')
+    )
+  })
 })

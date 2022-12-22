@@ -32,8 +32,12 @@ class CohortManager {
     const foundCohort = this.cohorts.find((cohort) => cohort.name === name)
     return foundCohort
   }
+
+  removeCohort() {}
 }
 
 // remove cohort by name
+// I want the functionto return the deleted cohort
+// maybe even to push it into a deleted cohort array
 
 module.exports = CohortManager
