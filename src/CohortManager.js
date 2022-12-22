@@ -33,11 +33,18 @@ class CohortManager {
     return foundCohort
   }
 
-  removeCohort() {}
+  removeCohort(name) {
+    if (this.findCohortBy(name) === false)
+      throw new Error('A cohort with this name does NOT exist')
+    //   else splice srray and remove cohort
+    const foundCohort = this.cohorts.find((cohort) => cohort.name === name)
+    const index = this.cohorts.indexOf(foundCohort)
+    return this.cohorts.splice(index, 1)[0]
+  }
 }
 
 // remove cohort by name
-// I want the functionto return the deleted cohort
+// I want the function to return the deleted cohort
 // maybe even to push it into a deleted cohort array
 
 module.exports = CohortManager
