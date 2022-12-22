@@ -9,8 +9,17 @@ class CohortManager {
       name: str,
       students: []
     }
+    if (this.findCohortBy(str) === true) {
+      throw new Error('A cohort with this name already exists')
+    }
     this.cohorts.push(cohort)
     return cohort
+  }
+
+  findCohortBy(name) {
+    const cohort = this.cohorts.find((cohort) => cohort.name === name)
+    if (cohort === undefined) return false
+    return true
   }
 
   getAllCohorts() {
