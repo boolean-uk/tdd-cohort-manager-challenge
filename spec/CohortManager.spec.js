@@ -102,4 +102,17 @@ describe('cohort manager', () => {
       'cohort not found'
     )
   })
+
+  it('throws error if cohort name taken', () => {
+    cohortManager.createCohort('cohortOne')
+    expect(() => cohortManager.createCohort('cohortOne')).toThrowError(
+      'cohort name taken'
+    )
+  })
+
+  it('throws error if cohort not given name', () => {
+    expect(() => cohortManager.createCohort()).toThrowError(
+      'cohort requires a name'
+    )
+  })
 })

@@ -7,7 +7,14 @@ class CohortManager {
     this.cohorts = []
   }
 
+  checkCohortName(name) {
+    const cohort = this.cohorts.find((cohort) => cohort.name === name)
+    if (cohort !== undefined) throw new Error('cohort name taken')
+    if (name === undefined) throw new Error('cohort requires a name')
+  }
+
   createCohort(name) {
+    this.checkCohortName(name)
     const newCohort = new Cohort(name)
     this.cohorts.push(newCohort)
     return this.cohorts
@@ -45,5 +52,11 @@ class CohortManager {
     return cohort.students
   }
 }
+
+// const cohortManager = new CohortManager
+// cohortManager.createCohort('cohort1')
+// cohortManager.createCohort('cohort1')
+
+// console.log(cohortManager)
 
 module.exports = CohortManager
