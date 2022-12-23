@@ -63,20 +63,39 @@ describe('CohortManager', () => {
     )
   })
 
-  it('should create a student obj', () => {
+  it('should push student obj into cohort ', () => {
     CM.createCohort('cohort')
     const result = CM.addStudent(
       'Bob',
       'The-Builder',
       'bob-builds-stuff',
-      'bobthebuilder@gmail.com'
+      'bobthebuilder@gmail.com',
+      'cohort'
     )
     expect(result).toEqual({
-      id: 1,
-      firstName: 'Bob',
-      lastName: 'The-Builder',
-      github: 'bob-builds-stuff',
-      email: 'bobthebuilder@gmail.com'
+      name: 'cohort',
+      students: [
+        {
+          id: 1,
+          firstName: 'Bob',
+          lastName: 'The-Builder',
+          github: 'bob-builds-stuff',
+          email: 'bobthebuilder@gmail.com'
+        }
+      ]
     })
+  })
+
+  it('should throw error if cohort user inputs does not exist  ', () => {
+    CM.createCohort('cohort 1')
+    expect(() =>
+      CM.addStudent(
+        'Bob',
+        'The-Builder',
+        'bob-builds-stuff',
+        'bobthebuilder@gmail.com',
+        'cohort'
+      )
+    ).toThrow(new Error('A cohort with this name does NOT exist'))
   })
 })

@@ -41,7 +41,7 @@ class CohortManager {
     return this.cohorts.splice(index, 1)[0]
   }
 
-  addStudent(firstName, lastName, github, email) {
+  addStudent(firstName, lastName, github, email, name) {
     this.id++
     const student = {
       id: this.id,
@@ -50,25 +50,16 @@ class CohortManager {
       github,
       email
     }
-    return student
+
+    const foundCohort = this.cohorts.find((cohort) => cohort.name === name)
+    if (!foundCohort) throw new Error('A cohort with this name does NOT exist')
+    foundCohort.students.push(student)
+    return foundCohort
   }
 }
 
 // push deleted cohort into a deleted cohort array
 // maybe add this in later ^
-
-// add student
-//  parameters (student info, cohort name)
-// pass all student info as params
-// throws Error if student already exists
-
-// students = {
-//     this.id++,
-//     firstName,
-//     lastName,
-//     github,
-//     email
-// }
 
 // remove student
 // use findStudentBy(id)
