@@ -98,4 +98,41 @@ describe('CohortManager', () => {
       )
     ).toThrow(new Error('A cohort with this name does NOT exist'))
   })
+
+  it('should return student obj that was removed', () => {
+    CM.createCohort('cohort 69')
+    CM.addStudent(
+      'Matt',
+      'Smith',
+      'the-eleventh-doctor',
+      '11thdoctor@gmail.com',
+      'cohort 69'
+    )
+    const result = CM.removeStudent('cohort 69', 1)
+    expect(result).toEqual({
+      id: 1,
+      firstName: 'Matt',
+      lastName: 'Smith',
+      github: 'the-eleventh-doctor',
+      email: '11thdoctor@gmail.com'
+    })
+  })
+
+  it('should throw an error if cohort does not exist', () => {
+    CM.createCohort('cohort 69')
+    CM.addStudent(
+      'Matt',
+      'Smith',
+      'the-eleventh-doctor',
+      '11thdoctor@gmail.com',
+      'cohort 69'
+    )
+
+    expect(() => CM.removeStudent('cohort 1', 1)).toThrow(
+      new Error('A cohort with this name does NOT exist')
+    )
+  })
+
+  //   it('should return updated students array ')
+  //   it('should throw an error if student ID does not exist in student array')
 })

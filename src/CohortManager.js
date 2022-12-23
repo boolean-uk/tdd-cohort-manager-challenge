@@ -56,6 +56,24 @@ class CohortManager {
     foundCohort.students.push(student)
     return foundCohort
   }
+
+  //   findStudentBy(cohortname, id) {
+  //     const students = cohortname.students
+  //     const student = students.find((student) => student.id === id)
+  //     if (student === undefined)
+  //       throw new Error('A Student with this ID does NOT exist')
+  //     return student
+  //   }
+
+  removeStudent(cohortname, id) {
+    const foundCohort = this.cohorts.find(
+      (cohort) => cohort.name === cohortname
+    )
+    if (!foundCohort) throw new Error('A cohort with this name does NOT exist')
+    const students = foundCohort.students
+    const foundStudent = students.find((student) => student.id === id)
+    return foundStudent
+  }
 }
 
 // push deleted cohort into a deleted cohort array
@@ -75,8 +93,4 @@ class CohortManager {
 // once it is found save it + its index
 // splice it using its index + return the student obj that was removed
 
-// test for error on cohort not found
-// test for error on student id not found
-// test for function returning removed student
-// tests for updates cohort student array (make sure student was removed)
 module.exports = CohortManager
