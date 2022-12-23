@@ -1,27 +1,9 @@
 class Cohort {
-  constructor() {
-    this.id = 0
-    this.cohortList = []
-  }
-
-  newCohort() {
-    this.id++
-    const item = {
-      cohortName: '',
-      students: [],
-      id: 1
-    }
-    this.cohortList.push(item)
-    return item
+  constructor(name, id) {
+    this.name = name
+    this.students = []
+    this.id = id
   }
 }
 
 module.exports = Cohort
-
-// class Cohort {
-//   constructor(name, id) {
-//     this.name = name
-//     this.students = []
-//     this.id = id
-//   }
-// }
