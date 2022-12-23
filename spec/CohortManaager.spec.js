@@ -133,6 +133,50 @@ describe('CohortManager', () => {
     )
   })
 
-  //   it('should return updated students array ')
-  //   it('should throw an error if student ID does not exist in student array')
+  it('should throw an error if student ID does not exist in student array', () => {
+    CM.createCohort('cohort 69')
+    CM.addStudent(
+      'David',
+      'Tennant',
+      'the-tenth-doctor',
+      '10thdoctor@gmail.com',
+      'cohort 69'
+    )
+
+    expect(() => CM.removeStudent('cohort 69', 2)).toThrow(
+      new Error('A Student with this ID does NOT exist')
+    )
+  })
+
+  it('should return updated students array w/out removed student', () => {
+    CM.createCohort('cohort 1')
+    CM.addStudent(
+      'Matt',
+      'Smith',
+      'the-eleventh-doctor',
+      '11thdoctor@gmail.com',
+      'cohort 1'
+    )
+    CM.addStudent(
+      'David',
+      'Tennant',
+      'the-tenth-doctor',
+      '10thdoctor@gmail.com',
+      'cohort 1'
+    )
+    CM.removeStudent('cohort 1', 2)
+    const result = CM.searchForCohortBy('cohort 1')
+    expect(result).toEqual({
+      name: 'cohort 1',
+      students: [
+        {
+          id: 1,
+          firstName: 'Matt',
+          lastName: 'Smith',
+          github: 'the-eleventh-doctor',
+          email: '11thdoctor@gmail.com'
+        }
+      ]
+    })
+  })
 })
