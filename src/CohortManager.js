@@ -66,4 +66,17 @@ class CohortManager {
 // use splice to remove student from students array
 // throw Error if student does not exist
 
+// need to make a .find in a findStudentBy(ID) function
+
+// 2 parameters studentID , Cohort name
+// first loop through all cohorts + find a match
+// once the cohort is found save it in a const
+// the loop through found cohort + use student id to look for it
+// once it is found save it + its index
+// splice it using its index + return the student obj that was removed
+
+// test for error on cohort not found
+// test for error on student id not found
+// test for function returning removed student
+// tests for updates cohort student array (make sure student was removed)
 module.exports = CohortManager
