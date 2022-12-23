@@ -46,6 +46,27 @@ describe('cohort manager', () => {
     expect(result[0].email).toBe('tim@son.com')
   })
 
+  it('throws error if attempt to add student to multiple cohorts', () => {
+    cohortManager.createCohort('cohortOne')
+    cohortManager.createCohort('cohortTwo')
+    cohortManager.addStudent(
+      'cohortOne',
+      'Tim',
+      'Timson',
+      'timsgit',
+      'tim@son.com'
+    )
+    expect(() =>
+      cohortManager.addStudent(
+        'cohortTwo',
+        'Tim',
+        'Timson',
+        'timsgit',
+        'tim@son.com'
+      )
+    ).toThrowError('student cannot exist in multiple cohorts')
+  })
+
   it('removes cohort', () => {
     cohortManager.createCohort('cohortOne')
     cohortManager.createCohort('cohortTwo')
@@ -114,5 +135,19 @@ describe('cohort manager', () => {
     expect(() => cohortManager.createCohort()).toThrowError(
       'cohort requires a name'
     )
+  })
+
+  it('finds student by id', () => {
+    cohortManager.createCohort('cohortOne')
+    cohortManager.addStudent(
+      'cohortOne',
+      'Tim',
+      'Timson',
+      'timsgit',
+      'tim@son.com'
+    )
+    const result = cohortManager.findStudentById(1)
+    expect(result).toBeInstanceOf(Student)
+    expect(result.id).toBe(1)
   })
 })
