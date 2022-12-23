@@ -179,4 +179,37 @@ describe('CohortManager', () => {
       ]
     })
   })
+
+  it('should return student obj found by id', () => {
+    CM.createCohort('cohort 1')
+    CM.addStudent(
+      'Matt',
+      'Smith',
+      'the-eleventh-doctor',
+      '11thdoctor@gmail.com',
+      'cohort 1'
+    )
+    CM.addStudent(
+      'David',
+      'Tennant',
+      'the-tenth-doctor',
+      '10thdoctor@gmail.com',
+      'cohort 1'
+    )
+    CM.addStudent(
+      'Bob',
+      'The-Builder',
+      'bob-builds-stuff',
+      'bobthebuilder@gmail.com',
+      'cohort 1'
+    )
+    const result = CM.findStudentBy('cohort 1', 3)
+    expect(result).toEqual({
+      id: 3,
+      firstName: 'Bob',
+      lastName: 'The-Builder',
+      github: 'bob-builds-stuff',
+      email: 'bobthebuilder@gmail.com'
+    })
+  })
 })

@@ -57,15 +57,7 @@ class CohortManager {
     return foundCohort
   }
 
-  //   findStudentBy(cohortname, id) {
-  //     const students = cohortname.students
-  //     const student = students.find((student) => student.id === id)
-  //     if (student === undefined)
-  //       throw new Error('A Student with this ID does NOT exist')
-  //     return student
-  //   }
-
-  removeStudent(cohortname, id) {
+  findStudentBy(cohortname, id) {
     const foundCohort = this.cohorts.find(
       (cohort) => cohort.name === cohortname
     )
@@ -73,9 +65,27 @@ class CohortManager {
     const students = foundCohort.students
     const foundStudent = students.find((student) => student.id === id)
     if (!foundStudent) throw new Error('A Student with this ID does NOT exist')
+    return foundStudent
+  }
+
+  removeStudent(cohortname, id) {
+    const foundCohort = this.cohorts.find(
+      (cohort) => cohort.name === cohortname
+    )
+    if (!foundCohort) throw new Error('A cohort with this name does NOT exist')
+    const students = foundCohort.students
+    const foundStudent = this.findStudentBy(cohortname, id)
     const index = students.indexOf(foundStudent)
     return students.splice(index, 1)[0]
   }
 }
+
+// EXTENDED REQUIRMENTS:
+// - Search for student by student ID
+// - Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit.
+// - Cohorts can't have the same name, and can't exist without a name
+// - The same student can't exist in multiple cohorts.
+// - A student can't be removed from a cohort if it wasn't present in the first place.
+// - Search for students by name (first and last) and return all matching results
 
 module.exports = CohortManager
