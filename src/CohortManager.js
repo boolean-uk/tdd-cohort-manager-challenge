@@ -20,13 +20,22 @@ class CohortManager {
     return this.cohorts
   }
 
-  searchCohorts(name) {
+  findCohort(name) {
     const cohort = this.cohorts.find((cohort) => cohort.name === name)
+    return cohort
+  }
+
+  searchCohorts(name) {
+    const cohort = this.findCohort(name)
     if (cohort === undefined) throw new Error('cohort not found')
     return cohort
   }
 
   addStudent(name, firstName, lastName, github, email) {
+    const cohort = this.findCohort(name)
+    if (cohort !== undefined && cohort.students.length > 22) {
+      throw new Error('cohort full!')
+    }
     const studentFound = this.cohorts.find((cohort) =>
       cohort.students.find((stu) => stu.email === email)
     )
@@ -34,7 +43,6 @@ class CohortManager {
       throw new Error('student cannot exist in multiple cohorts')
     const student = new Student(firstName, lastName, github, email)
     student.id = this.id++
-    const cohort = this.searchCohorts(name)
     cohort.students.push(student)
     return cohort.students
   }
@@ -65,13 +73,27 @@ class CohortManager {
     const student = cohort.students.find((stu) => stu.id === id)
     return student
   }
+
+  findStudentsByName(name) {
+    const results = []
+    this.cohorts.find((cohort) =>
+      cohort.students.forEach((stu) => {
+        if (stu.firstName === name || stu.lastname === name) {
+          results.push(stu)
+        }
+      })
+    )
+    if (name === undefined) throw new Error('please give us something')
+    else {
+      if (results.length === 0) throw new Error('no matches found')
+    }
+    return results
+  }
+
+  findStudentByIdTwo(cohort, id) {
+    const student = cohort.find((stu) => stu.id === id)
+    return student
+  }
 }
-
-// const cohortManager = new CohortManager()
-// cohortManager.createCohort('cohortOne')
-// cohortManager.createCohort('cohortTwo')
-
-// cohortManager.addStudent('cohortOne', 'Tim', 'Timson', 'timsgit', 'tim@son.com')
-// console.log(cohortManager.findStudentById(1))
 
 module.exports = CohortManager

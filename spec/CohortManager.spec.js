@@ -150,4 +150,55 @@ describe('cohort manager', () => {
     expect(result).toBeInstanceOf(Student)
     expect(result.id).toBe(1)
   })
+
+  it('finds multiple students with the same name', () => {
+    cohortManager.createCohort('cohortOne')
+    cohortManager.createCohort('cohortTwo')
+    cohortManager.addStudent(
+      'cohortOne',
+      'Tim',
+      'Timson',
+      'timsgit',
+      'tim@son.com'
+    )
+    cohortManager.addStudent(
+      'cohortTwo',
+      'Tim',
+      'Mitson',
+      'timsgit',
+      'tsonny@mitson.com'
+    )
+    const result = cohortManager.findStudentsByName('Tim')
+    expect(result[0]).toBeInstanceOf(Student)
+    expect(result[0].lastName).toBe('Timson')
+    expect(result[1].lastName).toBe('Mitson')
+  })
+
+  it('throws error if no name matches found', () => {
+    cohortManager.createCohort('cohortOne')
+    cohortManager.createCohort('cohortTwo')
+    cohortManager.addStudent(
+      'cohortOne',
+      'Tim',
+      'Timson',
+      'timsgit',
+      'tim@son.com'
+    )
+    cohortManager.addStudent(
+      'cohortTwo',
+      'Tim',
+      'Mitson',
+      'timsgit',
+      'tsonny@mitson.com'
+    )
+    expect(() => cohortManager.findStudentsByName('who?')).toThrowError(
+      'no matches found'
+    )
+  })
+
+  it('throws error if no name input', () => {
+    expect(() => cohortManager.findStudentsByName()).toThrowError(
+      'please give us something'
+    )
+  })
 })
