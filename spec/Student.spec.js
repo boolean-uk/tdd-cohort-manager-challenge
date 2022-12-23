@@ -1,25 +1,13 @@
 const Student = require('../src/student')
 
-describe('Student', () => {
-  let student
-
-  beforeEach(() => {
-    student = new Student()
-  })
-
-  it('Should create a student with the required properties', () => {
-    // set up
-    const expected = {
-      id: 1,
-      firstName: 'name',
-      lastName: 'last name',
-      githubUsername: '',
-      email: ''
-    }
-    // exucute
-    const result = student.create('')
-
-    // verify
-    expect(result).toEqual(expected)
+describe('A new Student', () => {
+  it('should create a new student to be added to a cohort', () => {
+    const addStudent = new Student(
+      'First name',
+      'Last Name',
+      'GitHubUser',
+      'myEmail@myemails.com'
+    )
+    expect(addStudent).toBeInstanceOf(Student)
   })
 })
