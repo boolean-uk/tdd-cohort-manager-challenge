@@ -18,5 +18,15 @@ class CohortManager {
     }
     return 'Error : No cohort found!'
   }
+
+  removeCohort(name) {
+    for (let i = 0; i < this.cohortList.length; i++) {
+      if (this.cohortList[i].cohortName === name) {
+        this.cohortList.splice(i, 1)
+        return 'This cohort has been removed: ' + name
+      }
+    }
+    return 'Error : Cohort does not exist'
+  }
 }
 module.exports = CohortManager
