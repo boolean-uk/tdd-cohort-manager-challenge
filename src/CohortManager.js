@@ -28,5 +28,30 @@ class CohortManager {
     }
     return 'Error : Cohort does not exist'
   }
+
+  addStudentToCohort(name, student) {
+    const cohort = this.searchCohort(name)
+    cohort.studentList.push(student)
+  }
+
+  findStudent(name, id) {
+    const cohort = this.searchCohort(name)
+    for (let i = 0; i < cohort.studentList.length; i++) {
+      if (id === cohort.studentList[i].studentID) {
+        return cohort.studentList[i]
+      }
+    }
+  }
+
+  removeStudent(name, id) {
+    const cohort = this.searchCohort(name)
+    const student = this.findStudent(name, id)
+    if (student) {
+      cohort.studentList.splice(cohort.studentList.indexOf(student), 1)
+      return `Student ID ${id} has been removed from cohort`
+    }
+    return 'student not found'
+  }
 }
+
 module.exports = CohortManager
