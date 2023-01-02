@@ -4,8 +4,10 @@ const Cohort = require('../src/Cohort.js')
 // const Student = require('..src/Student.js')
 describe('Cohort Manager', () => {
   let cohortManager
+  let cohort
   beforeEach(() => {
     cohortManager = new CohortManager()
+    cohort = new Cohort()
   })
   it('can create a cohort with a cohort name', () => {
     const expected = new Cohort('Cohort1')
@@ -42,7 +44,7 @@ describe('Cohort Manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it(' adds a student to a specific cohort', () => {
+  it('add a student to a specific cohort', () => {
     const student = {
       studentID: 1,
       firstName: 'Abul',
@@ -85,6 +87,31 @@ describe('Cohort Manager', () => {
     cohortManager.createCohort('Cohort2')
     cohortManager.addStudentToCohort('Cohort2', student)
     const result = cohortManager.removeStudent('Cohort2', 2)
+    expect(result).toEqual(expected)
+  })
+
+  // extended criteria
+
+  it('find a student by its ID', () => {
+    const student = {
+      studentID: 1,
+      firstName: 'Abul',
+      lastName: 'Kibria',
+      githubUser: 'akibria',
+      email: 'ahkibria@hotmail.co.uk'
+    }
+    cohortManager.createCohort('Cohort1')
+    cohortManager.createCohort('Cohort2')
+    cohortManager.addStudentToCohort('Cohort1', student)
+    const result = cohortManager.findStudent('Cohort1', 1)
+    expect(result).toEqual(student)
+  })
+
+  it('can not add same student in multiple cohorts', () => {
+    const expected = 'Students alreday exist'
+    cohort.addStudent(1, 'Abul', 'Kibria', 'akibria', 'ahkibria@hotmail.co.uk')
+    cohort.addStudent(2, 'john', 'wick', 'jwick', 'jwick@hotmail.co.uk')
+    const result = cohort.addStudent(1)
     expect(result).toEqual(expected)
   })
 })

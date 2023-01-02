@@ -26,7 +26,7 @@ class CohortManager {
         return 'This cohort has been removed: ' + name
       }
     }
-    return 'Error : Cohort does not exist'
+    return 'Error: Cohort does not exist'
   }
 
   addStudentToCohort(name, student) {
