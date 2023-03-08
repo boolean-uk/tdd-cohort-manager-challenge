@@ -60,7 +60,7 @@ describe('The Cohort Manager should be able to', () => {
     cm.createCohort('test1')
     cm.createCohort('test2')
     cm.createCohort('test3')
-    const expected = 'Cohort not found'
+    const expected = 'Cohort does not exist'
     // execute
     const res = cm.searchCohort('test5')
     // verify

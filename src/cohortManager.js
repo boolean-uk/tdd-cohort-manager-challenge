@@ -21,7 +21,7 @@ class CohortManager {
 
   searchCohort(name) {
     const foundCohort = this.cohorts.find((cohort) => cohort.name === name)
-    if (foundCohort === undefined) return 'Cohort not found'
+    if (foundCohort === undefined) return 'Cohort does not exist'
     else return foundCohort
   }
 
@@ -37,16 +37,16 @@ class CohortManager {
   }
 
   addStudentToCohort(id, cohort) {
-    const studentToAdd = this.students.find((student) => student.id === id)
+    const studentToAdd = this.searchStudent(id)
     const targetCohort = this.searchCohort(cohort)
-    if (studentToAdd === undefined) return 'Student does not exist'
-    if (targetCohort === 'Cohort not found') return 'Cohort does not exist'
+    if (studentToAdd === 'Student does not exist') return studentToAdd
+    if (targetCohort === 'Cohort does not exist') return targetCohort
     targetCohort.addStudent(studentToAdd)
   }
 
   removeCohort(name) {
-    const targetCohort = this.cohorts.find((cohort) => cohort.name === name)
-    if (targetCohort === undefined) return 'Cohort does not exist'
+    const targetCohort = this.searchCohort(name)
+    if (targetCohort === 'Cohort does not exist') return targetCohort
     const removeIndex = this.cohorts.findIndex(
       (cohort) => cohort === targetCohort
     )
@@ -54,10 +54,10 @@ class CohortManager {
   }
 
   removeStudentFromCohort(id, cohort) {
-    const studentToRemove = this.students.find((student) => student.id === id)
+    const studentToRemove = this.searchStudent(id)
     const targetCohort = this.searchCohort(cohort)
-    if (studentToRemove === undefined) return 'Student does not exist'
-    if (targetCohort === 'Cohort not found') return 'Cohort does not exist'
+    if (studentToRemove === 'Student does not exist') return studentToRemove
+    if (targetCohort === 'Cohort does not exist') return targetCohort
     const res = targetCohort.removeStudent(studentToRemove)
     if (res) return res
   }
