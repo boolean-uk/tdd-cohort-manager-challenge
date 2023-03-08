@@ -29,7 +29,7 @@ METHODS:
    - if cohort exists: Cohort removed from @cohorts (void)
    - if cohort does not exist: alert "Cohort not found"
 
-4. assignStudentToCohort(string, number)
+4. reassignStudentCohort(string, number)
    INPUT: @StudentID of student to assign, cohortID of where to assign student to
    OUTPUT: student moved to appropriate cohort, @cohortID of @Student updates
 

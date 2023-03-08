@@ -12,11 +12,15 @@ class CohortManager {
     cohort.IDCohort = this.IDCount
     this.cohorts.push(cohort)
   }
+
+  searchCohort(nameCohort) {
+    return this.cohorts.filter((cohort) => cohort.nameCohort === nameCohort)
+  }
 }
 
 class Cohort {
   constructor(nameCohort) {
-    this.IDCohort = 0
+    this.IDCohort = CohortManager.IDCount
     this.nameCohort = nameCohort
     this.maxStudents = 24
     this.studentsInCohort = []
@@ -28,8 +32,9 @@ module.exports = {
   Cohort
 }
 
-// const cohortManager = new CohortManager()
-// cohortManager.createCohort('nameCohort')
-// cohortManager.createCohort('Frontend')
+const newCohortManager = new CohortManager()
+newCohortManager.createCohort('Frontend Cohort')
+newCohortManager.createCohort('Backend Cohort')
 
-// console.log(cohortManager.cohorts)
+newCohortManager.searchCohort('Backend Cohort')
+// console.log(newCohortManager.cohorts)
