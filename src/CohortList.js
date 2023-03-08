@@ -50,6 +50,12 @@ class CohortManager {
     this.cohorts.splice(index, 1)
     return this.cohorts
   }
+
+  removeStudentFromCohort(cohort, name) {
+    const foundCohort = this.findCohortByName(cohort)
+    const result = foundCohort.removeStudent(name)
+    return result
+  }
 }
 
 module.exports = CohortManager

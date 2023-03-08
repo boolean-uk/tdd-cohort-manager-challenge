@@ -81,5 +81,20 @@ describe('cohort', () => {
     const result = cohortManager.removeCohort('cohort1')
     expect(result).toEqual(expected)
   })
-
+  it('should remove student by name', () => {
+    const expected = []
+    cohortManager.createNewCohort('cohort1')
+    cohortManager.addNewStudent(
+      'Joe',
+      'Bloggs',
+      'joeBloggs',
+      'joeBloggs@test.com'
+    )
+    cohortManager.addStudentToCohort('Joe Bloggs', 'cohort1')
+    const result = cohortManager.removeStudentFromCohort(
+      'cohort1',
+      'Joe Bloggs'
+    )
+    expect(result).toEqual(expected)
+  })
 })
