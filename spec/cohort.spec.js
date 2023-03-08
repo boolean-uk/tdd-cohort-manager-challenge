@@ -75,6 +75,11 @@ describe('cohort', () => {
     const result = cohortManager.findCohortByName('cohort1')
     expect(result).toEqual(expected)
   })
-  it('should remove cohort by name', () => {})
+  it('should remove cohort by name', () => {
+    const expected = []
+    cohortManager.createNewCohort('cohort1')
+    const result = cohortManager.removeCohort('cohort1')
+    expect(result).toEqual(expected)
+  })
 
 })
