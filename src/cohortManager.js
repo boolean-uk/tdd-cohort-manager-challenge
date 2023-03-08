@@ -10,6 +10,11 @@ class CohortManager {
     this.cohorts.push(newCohort)
     return this.cohorts
   }
+
+  findCohort(name) {
+    const cohort = this.cohorts.find((cohort) => cohort.name === name)
+    return cohort === undefined ? `No cohort with this name` : cohort
+  }
 }
 
 class Cohort {

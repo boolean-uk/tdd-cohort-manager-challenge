@@ -6,7 +6,7 @@
 | :------------ | :-------------- | :----------------- | :------------------------------------------ | :---------------------------------------------------------------- |
 | CohortManager | cohorts ------- | createCohort ----- | name: @string ----------------------------- | new cohort ------------------------------------------------------ |
 | ------------- | students ------ | createStudent ---- | firstName, lastName, ghub, email: @strings  | new student, increment idCounter -------------------------------- |
-| ------------- | idCounter ----- | searchCohorts ---- | name: @string ----------------------------- | cohort object / error if not found ------------------------------ |
+| ------------- | idCounter ----- | findCohort ------- | name: @string ----------------------------- | cohort object / error if not found ------------------------------ |
 | ------------- | --------------- | addStudentToCohort | id, name: @integer, @ string -------------- | cohort with new student / error if not found -------------------- |
 | ------------- | --------------- | removeCohort ----- | name: @string ----------------------------- | cohorts with specific cohort removed / error if not found ------- |
 | :------------ | :-------------- | :----------------- | :------------------------------------------ | :---------------------------------------------------------------- |
@@ -42,7 +42,7 @@ METHODS
   - creates a new student, pushes to students array
   - output when any field is empty -> error
   - output when all fields are valid -> Student
-- searchCohorts(name: @string) -> Cohort
+- findCohort(name: @string) -> Cohort
   - searches cohorts for cohort by name
   - output when no cohort found -> error
   - output when cohort is valid -> Cohort

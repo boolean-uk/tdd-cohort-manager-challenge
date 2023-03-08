@@ -22,4 +22,27 @@ describe('Cohort Manager', () => {
     // verify
     expect(result).toEqual(expected)
   })
+
+  it('Should search for a cohort by name', () => {
+    // setup
+    const Cohort2 = new Cohort('Cohort 2')
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.createCohort('Cohort 2')
+    const expected = Cohort2
+    // execute
+    const result = cohortManager.findCohort('Cohort 2')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('Should search for a cohort by name, but return an error if no cohort found', () => {
+    // setup
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.createCohort('Cohort 2')
+    const expected = `No cohort with this name`
+    // execute
+    const result = cohortManager.findCohort('Cohort 3')
+    // verify
+    expect(result).toEqual(expected)
+  })
 })
