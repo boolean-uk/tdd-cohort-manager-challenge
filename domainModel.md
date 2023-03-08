@@ -1,8 +1,10 @@
 DOMAINE MODEL
 
-cohortList class
+cohortManager class
 properies:
  - cohorts: []
+ - students:[]
+ - idCounter: int
 
  methods:
 
@@ -16,6 +18,7 @@ cohort class:
 properites:
  - name: str
  - students: []
+
 
 methods:
 
