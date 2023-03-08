@@ -48,10 +48,15 @@ searchCohort(@str)
 - Input: Name of the cohort to search for
 - Output: found ? the searched cohort : error message
 
+searchStudentById(@int)
+
+- Input: Id of the student to search for
+- Output: found ? student : error message
+
 searchStudentByName(@str)
 
 - Input: The name you are searching for
-- Output: A list of matching students
+- Output: A list of matching students or error message
 
 newStudent(@str, @str, @str, @str)
 
@@ -89,3 +94,4 @@ removeStudentFromCohort(@int, @str)
 - lastname: @str
 - gitname: @str
 - email: @str
+- inCohort: @bool

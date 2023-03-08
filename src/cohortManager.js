@@ -1,5 +1,11 @@
 const Cohort = require('./cohort')
 const Student = require('./student')
+// Twilio requirements
+require('dotenv').config()
+const accountSid = process.env.TWILIO_ACCOUNT_SID
+const authToken = process.env.TWILIO_AUTH_TOKEN
+const client = require('twilio')(accountSid, authToken)
+const isTwilioEnabled = false
 
 class CohortManager {
   constructor() {
@@ -72,6 +78,11 @@ class CohortManager {
     if (targetCohort === 'Cohort does not exist') return targetCohort
     const res = targetCohort.addStudent(studentToAdd)
     if (res) return res
+    if (isTwilioEnabled) {
+      this.sendSMS(
+        `${studentToAdd.firstName} ${studentToAdd.lastName} just joined ${targetCohort.name} !`
+      )
+    }
   }
 
   removeCohort(name) {
@@ -90,7 +101,25 @@ class CohortManager {
     if (targetCohort === 'Cohort does not exist') return targetCohort
     const res = targetCohort.removeStudent(studentToRemove)
     if (res) return res
+    if (isTwilioEnabled) {
+      this.sendSMS(
+        `${studentToRemove.firstName} ${studentToRemove.lastName} just left ${targetCohort.name} !`
+      )
+    }
+  }
+
+  sendSMS(message) {
+    client.messages.create({
+      body: message,
+      from: '+447782568773',
+      to: '+4915771752969'
+    })
   }
 }
+
+const cm = new CohortManager()
+cm.createCohort('Test Cohort')
+cm.newStudent('Max', 'Mustermann')
+cm.addStudentToCohort(1, 'Test Cohort')
 
 module.exports = CohortManager
