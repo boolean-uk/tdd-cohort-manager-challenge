@@ -36,6 +36,15 @@ class CohortManager {
     }
   }
 
+  findStudentById(id) {
+    const student = this.students.find((obj) => obj.StudentID === id)
+    if (student === undefined) {
+      return 'Error: no student found'
+    } else {
+      return student
+    }
+  }
+
   findCohortByName(name) {
     const cohort = this.cohorts.find((obj) => obj.name === name)
     if (cohort === undefined) {

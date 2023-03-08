@@ -107,4 +107,21 @@ describe('cohort', () => {
     const result = cohortManager.findCohortByName('cohort1')
     expect(result).toEqual(expected)
   })
+  it('find student by id', () => {
+    const expected = new Student(
+      'Joe',
+      'Bloggs',
+      'joeBloggs',
+      'joeBloggs@test.com',
+      1
+    )
+    cohortManager.addNewStudent(
+      'Joe',
+      'Bloggs',
+      'joeBloggs',
+      'joeBloggs@test.com'
+    )
+    const result = cohortManager.findStudentById(1)
+    expect(result).toEqual(expected)
+  })
 })
