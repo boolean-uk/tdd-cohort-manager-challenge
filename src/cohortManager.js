@@ -52,6 +52,16 @@ class Cohort {
     this.students = []
     this.capacity = 24
   }
+
+  removeStudent(id) {
+    if (
+      this.students.find((student) => student.studentId === id) === undefined
+    ) {
+      return 'No student with this ID'
+    }
+    this.students = this.students.filter((student) => student.studentId !== id)
+    return this.students
+  }
 }
 
 class Student {
