@@ -6,7 +6,9 @@ class Cohort {
   }
 
   addStudent(student) {
+    if (student.inCohort) return 'Student is already in a Cohort'
     if (this.maxStudents > this.students.length) {
+      student.inCohort = true
       this.students.push(student)
     } else {
       return 'Cohort is full'
@@ -18,6 +20,7 @@ class Cohort {
       (student) => student === targetStudent
     )
     if (removeIndex === -1) return 'Student is not in this Cohort'
+    targetStudent.inCohort = false
     this.students.splice(removeIndex, 1)
   }
 }

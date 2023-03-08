@@ -94,7 +94,9 @@ describe('The Cohort Manager should be able to', () => {
   it('add a student to a cohort', () => {
     // set up
     const expected = new Cohort('test')
-    expected.students.push(new Student(1, 'Max', 'Mustermann'))
+    const expectedStudent = new Student(1, 'Max', 'Mustermann')
+    expectedStudent.inCohort = true
+    expected.students.push(expectedStudent)
     cm.createCohort('test')
     cm.newStudent('Max', 'Mustermann')
     // execute
@@ -106,7 +108,9 @@ describe('The Cohort Manager should be able to', () => {
   it('add a student to a cohort', () => {
     // set up
     const expected = new Cohort('test2')
-    expected.students.push(new Student(1, 'Max', 'Mustermann'))
+    const expectedStudent = new Student(1, 'Max', 'Mustermann')
+    expectedStudent.inCohort = true
+    expected.students.push(expectedStudent)
     cm.createCohort('test1')
     cm.createCohort('test2')
     cm.createCohort('test3')

@@ -11,6 +11,7 @@ class Student {
     this.lastName = lastname
     this.gitName = git
     this.email = email
+    this.inCohort = false
   }
 }
 

@@ -73,4 +73,17 @@ describe('Extension: The Cohort Manager should also be able to', () => {
     // verify
     expect(res).toEqual(expected)
   })
+
+  it('return an error when trying to add a student to a cohort when already in a cohort', () => {
+    // set up
+    const expected = 'Student is already in a Cohort'
+    cm.createCohort('test1')
+    cm.createCohort('test2')
+    cm.newStudent('Max', 'Mustermann')
+    cm.addStudentToCohort(1, 'test1')
+    // execute
+    const res = cm.addStudentToCohort(1, 'test2')
+    // verify
+    expect(res).toEqual(expected)
+  })
 })
