@@ -6,7 +6,11 @@ class Cohort {
   }
 
   addStudent(student) {
-    this.students.push(student)
+    if (this.maxStudents > this.students.length) {
+      this.students.push(student)
+    } else {
+      return 'Cohort is full'
+    }
   }
 
   removeStudent(targetStudent) {

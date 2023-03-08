@@ -39,4 +39,19 @@ describe('Extension: The Cohort Manager should also be able to', () => {
     // verify
     expect(res).toEqual(expected)
   })
+
+  it('to know when a cohort reached its max size', () => {
+    //set up
+    const expected = 'Cohort is full'
+    cm.createCohort('test')
+    for (let i = 0; i < 24; i++) {
+      cm.newStudent('test', 'student')
+      cm.addStudentToCohort(i + 1, 'test')
+    }
+    // execute
+    cm.newStudent('Dont', 'Add')
+    const res = cm.addStudentToCohort(25, 'test')
+    // verify
+    expect(res).toEqual(expected)
+  })
 })
