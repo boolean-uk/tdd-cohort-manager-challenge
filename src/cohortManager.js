@@ -22,6 +22,21 @@ class CohortManager {
 
     return [cohort]
   }
+
+  deleteCohort(nameCohort) {
+    const cohort = this.cohorts.find(
+      (cohort) => cohort.nameCohort === nameCohort
+    )
+    const removedCohort = (cohort) => cohort.nameCohort === nameCohort
+    const index = this.cohorts.findIndex(removedCohort)
+
+    if (index === -1) {
+      throw new Error('Cohort not found')
+    } else if (cohort.nameCohort === nameCohort) {
+      this.cohorts.splice(index, 1)
+      return this.cohorts
+    }
+  }
 }
 
 class Cohort {

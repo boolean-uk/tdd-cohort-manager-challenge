@@ -47,7 +47,6 @@ describe('Cohort manager', () => {
         students: []
       }
     ])
-
     const result = newCohortManager.searchCohort('Frontend Cohort')
 
     // verify
@@ -56,8 +55,27 @@ describe('Cohort manager', () => {
 
   it('(3) should return an error if searched cohort does not exist', () => {
     // setup
-
     const result = () => newCohortManager.searchCohort('French Cohort')
+
+    // verify
+    expect(result).toThrowError('Cohort not found')
+  })
+
+  it('(4) should delete a cohort from cohorts array', () => {
+    // setup
+    newCohortManager.createCohort('Backend Cohort')
+
+    const expected = []
+    const result = newCohortManager.deleteCohort('Backend Cohort')
+
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('(5) should return an error if attempting to delete non-existent cohort', () => {
+    // setup
+
+    const result = () => newCohortManager.deleteCohort('Backend Cohort')
 
     // verify
     expect(result).toThrowError('Cohort not found')
