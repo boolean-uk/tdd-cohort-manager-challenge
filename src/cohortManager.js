@@ -32,6 +32,9 @@ class CohortManager {
     if (student === undefined) {
       return 'No student with this ID'
     }
+    if (cohort.students.length === cohort.capacity) {
+      return `Unable to add more students to ${cohort.name}. It currently has ${cohort.students.length}/${cohort.capacity} students`
+    }
     cohort.students.push(student)
     return cohort
   }
