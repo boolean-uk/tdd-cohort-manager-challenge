@@ -114,7 +114,7 @@ describe('Cohort Manager', () => {
     // setup
     cohortManager.createCohort('Cohort 1')
     cohortManager.createStudent('Michael', 'Jordan')
-    // Making cohort1 have a .length of 24. To mimic a full cohort.
+    // Making Cohort 1 have a .length of 24. To mimic a full cohort.
     cohortManager.cohorts[0].students = Array.from(
       { length: 24 },
       (_, i) => i + 1
@@ -122,6 +122,25 @@ describe('Cohort Manager', () => {
     const expected = `Unable to add more students to Cohort 1. It currently has 24/24 students`
     // execute
     const result = cohortManager.addStudentToCohort(1, 'Cohort 1')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('Should not be able to create a cohort without a name', () => {
+    // setup
+    const expected = 'To create a cohort, it must have a name'
+    // execute
+    const result = cohortManager.createCohort('')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('Should not be able to create cohorts with the same name', () => {
+    // setup
+    cohortManager.createCohort('Cohort 1')
+    const expected = 'Cohorts can not have the same name'
+    // execute
+    const result = cohortManager.createCohort('Cohort 1')
     // verify
     expect(result).toEqual(expected)
   })

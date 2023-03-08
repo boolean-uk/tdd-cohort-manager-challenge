@@ -6,6 +6,12 @@ class CohortManager {
   }
 
   createCohort(name) {
+    if (name.length === 0) {
+      return 'To create a cohort, it must have a name'
+    }
+    if (this.findCohort(name) !== `No cohort with this name`) {
+      return 'Cohorts can not have the same name'
+    }
     const newCohort = new Cohort(name)
     this.cohorts.push(newCohort)
     return this.cohorts
