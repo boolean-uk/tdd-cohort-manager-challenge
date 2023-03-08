@@ -137,4 +137,35 @@ describe('The Cohort Manager should be able to', () => {
     //verify
     expect(res).toEqual(expected)
   })
+
+  it('remove a cohort by name', () => {
+    //set up
+    const expected = []
+    cm.createCohort('test')
+    //execute
+    cm.removeCohort('test')
+    //verfiy
+    expect(cm.cohorts).toEqual(expected)
+  })
+
+  it('remove a cohort by name', () => {
+    //set up
+    const expected = [new Cohort('test1'), new Cohort('test3')]
+    cm.createCohort('test1')
+    cm.createCohort('test2')
+    cm.createCohort('test3')
+    //execute
+    cm.removeCohort('test2')
+    //verfiy
+    expect(cm.cohorts).toEqual(expected)
+  })
+
+  it('return an error message if cohort does not exist', () => {
+    //set up
+    const expected = 'Cohort does not exist'
+    //execute
+    const res = cm.removeCohort('test1')
+    //verfiy
+    expect(res).toEqual(expected)
+  })
 })

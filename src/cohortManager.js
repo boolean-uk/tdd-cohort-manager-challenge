@@ -44,6 +44,15 @@ class CohortManager {
     if (targetCohort === 'Cohort not found') return 'Cohort does not exist'
     targetCohort.addStudent(studentToAdd)
   }
+
+  removeCohort(name) {
+    const targetCohort = this.cohorts.find((cohort) => cohort.name === name)
+    if (targetCohort === undefined) return 'Cohort does not exist'
+    const removeIndex = this.cohorts.findIndex(
+      (cohort) => cohort === targetCohort
+    )
+    this.cohorts.splice(removeIndex, 1)
+  }
 }
 
 module.exports = CohortManager
