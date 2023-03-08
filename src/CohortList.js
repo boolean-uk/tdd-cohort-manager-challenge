@@ -37,7 +37,7 @@ class CohortManager {
     return cohort
   }
 
-  addStudentToCort(student, cohort) {
+  addStudentToCohort(student, cohort) {
     const foundStudent = this.findStudentByName(student)
     const foundCohort = this.findCohortByName(cohort)
     foundCohort.students.push(foundStudent)

@@ -48,7 +48,7 @@ describe('cohort', () => {
       'joeBloggs',
       'joeBloggs@test.com'
     )
-    const result = cohortManager.addStudentToCort('Joe Bloggs', 'cohort1')
+    const result = cohortManager.addStudentToCohort('Joe Bloggs', 'cohort1')
     expect(result).toEqual(expected)
   })
   it('find student by name', () => {
@@ -69,4 +69,12 @@ describe('cohort', () => {
     const result = cohortManager.findStudentByName('Joe Bloggs')
     expect(result).toEqual(expected)
   })
+  it('find cohort by name', () => {
+    const expected = new Cohort('cohort1')
+    cohortManager.createNewCohort('cohort1')
+    const result = cohortManager.findCohortByName('cohort1')
+    expect(result).toEqual(expected)
+  })
+  it('should remove cohort by name', () => {})
+
 })
