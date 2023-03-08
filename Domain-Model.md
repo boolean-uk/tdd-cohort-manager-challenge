@@ -48,6 +48,11 @@ searchCohort(@str)
 - Input: Name of the cohort to search for
 - Output: found ? the searched cohort : error message
 
+searchStudentByName(@str)
+
+- Input: The name you are searching for
+- Output: A list of matching students
+
 newStudent(@str, @str, @str, @str)
 
 - Input: Firstname, Lastname, gitname and email

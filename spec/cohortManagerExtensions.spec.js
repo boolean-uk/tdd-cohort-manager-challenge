@@ -110,4 +110,13 @@ describe('Extension: The Cohort Manager should also be able to', () => {
     // verify
     expect(res).toEqual(expected)
   })
+
+  it('return a message if no match was found', () => {
+    // set up
+    const expected = 'No match found'
+    // execute
+    const res = cm.searchStudentByName('test')
+    // verify
+    expect(res).toEqual(expected)
+  })
 })

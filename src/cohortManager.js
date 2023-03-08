@@ -49,6 +49,7 @@ class CohortManager {
           ? res.push(student)
           : null
       )
+      if (res.length < 1) return 'No match found'
       return res
     }
   }
