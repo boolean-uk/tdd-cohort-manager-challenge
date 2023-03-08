@@ -8,11 +8,10 @@ class CohortManager {
   }
 
   createCohort(name) {
-    const cohortToAdd = new Cohort(name)
-    const doesNotExist =
-      this.cohorts.find((cohort) => cohort.name === cohortToAdd.name) ===
-      undefined
+    if (name === undefined || name === '') return 'Cohort must have a name'
+    const doesNotExist = this.searchCohort(name) === 'Cohort does not exist'
     if (doesNotExist) {
+      const cohortToAdd = new Cohort(name)
       this.cohorts.push(cohortToAdd)
     } else {
       return 'Cohort already exists'

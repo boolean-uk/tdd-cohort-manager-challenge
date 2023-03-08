@@ -12,7 +12,7 @@ describe('The Cohort Manager should be able to', () => {
   it('create a new cohort with a name', () => {
     // set up
     const expected = [new Cohort('test')]
-    //execute
+    // execute
     cm.createCohort('test')
     // verify
     expect(cm.cohorts).toEqual(expected)
@@ -29,7 +29,7 @@ describe('The Cohort Manager should be able to', () => {
     cm.createCohort('test1')
     cm.createCohort('test2')
     cm.createCohort('test3')
-    //verify
+    // verify
     expect(cm.cohorts).toEqual(expected)
   })
 

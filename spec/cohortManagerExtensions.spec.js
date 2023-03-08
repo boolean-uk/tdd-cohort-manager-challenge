@@ -40,8 +40,8 @@ describe('Extension: The Cohort Manager should also be able to', () => {
     expect(res).toEqual(expected)
   })
 
-  it('to know when a cohort reached its max size', () => {
-    //set up
+  it('know when a cohort reached its max size', () => {
+    // set up
     const expected = 'Cohort is full'
     cm.createCohort('test')
     for (let i = 0; i < 24; i++) {
@@ -51,6 +51,25 @@ describe('Extension: The Cohort Manager should also be able to', () => {
     // execute
     cm.newStudent('Dont', 'Add')
     const res = cm.addStudentToCohort(25, 'test')
+    // verify
+    expect(res).toEqual(expected)
+  })
+
+  it('return an error message when trying to create cohort without name', () => {
+    // set up
+    const expected = 'Cohort must have a name'
+    // execute
+    const res = cm.createCohort()
+    // verify
+    expect(res).toEqual(expected)
+  })
+
+  it('return an error message if cohort name is already taken', () => {
+    // set up
+    const expected = 'Cohort already exists'
+    cm.createCohort('test')
+    // execute
+    const res = cm.createCohort('test')
     // verify
     expect(res).toEqual(expected)
   })
