@@ -38,11 +38,6 @@ removeStudent(@int)
 
 **Methods:**
 
-newStudent(@str, @str, @str, @str)
-
-- Input: Firstname, Lastname, gitname and email
-- Output: successful ? void : error message
-
 createCohort(@str)
 
 - Input: Name of the cohort to create
@@ -52,6 +47,11 @@ searchCohort(@str)
 
 - Input: Name of the cohort to search for
 - Output: found ? the searched cohort : error message
+
+newStudent(@str, @str, @str, @str)
+
+- Input: Firstname, Lastname, gitname and email
+- Output: successful ? void : error message
 
 addStudentToCohort(@int, @str)
 
@@ -64,6 +64,14 @@ removeCohort(@str)
 
 - Input: The name of the cohort to remove
 - Output: found ? void : error message
+
+removeStudentFromCohort(@int, @str)
+
+- Input: Id of Student and cohort name to remove from
+- Output:
+  - cohort found ? void : error message
+  - student found ? void : error message
+  - student in cohort ? void : error message
 
 ## A cohort should have a list of students. Each student should have a studentID, first name, last name, github username, email
 

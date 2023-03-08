@@ -88,7 +88,6 @@ describe('The Cohort Manager should be able to', () => {
     cm.newStudent('Ryley', 'Suzanne')
     cm.newStudent('Ziya', 'Blagorodna')
     //verify
-    console.log(cm.students, expected)
     expect(cm.students).toEqual(expected)
   })
 
@@ -165,6 +164,49 @@ describe('The Cohort Manager should be able to', () => {
     const expected = 'Cohort does not exist'
     //execute
     const res = cm.removeCohort('test1')
+    //verfiy
+    expect(res).toEqual(expected)
+  })
+
+  it('remove a student from a cohort', () => {
+    //set up
+    const expected = new Cohort('test')
+    cm.createCohort('test')
+    cm.newStudent('Max', 'Mustermann')
+    cm.addStudentToCohort(1, 'test')
+    //execute
+    cm.removeStudentFromCohort(1, 'test')
+    //verfiy
+    expect(cm.cohorts[0]).toEqual(expected)
+  })
+
+  it('retrun an error if the student does not exist', () => {
+    //set up
+    const expected = 'Student does not exist'
+    cm.createCohort('test')
+    //execute
+    const res = cm.removeStudentFromCohort(1, 'test')
+    //execute
+    expect(res).toEqual(expected)
+  })
+
+  it('return an error message if cohort does not exist', () => {
+    //set up
+    const expected = 'Cohort does not exist'
+    cm.newStudent('Max', 'Mustermann')
+    //execute
+    const res = cm.removeStudentFromCohort(1, 'test')
+    //verfiy
+    expect(res).toEqual(expected)
+  })
+
+  it('return an error message if student is not in cohort', () => {
+    //set up
+    const expected = 'Student is not in this Cohort'
+    cm.newStudent('Max', 'Mustermann')
+    cm.createCohort('test')
+    //execute
+    const res = cm.removeStudentFromCohort(1, 'test')
     //verfiy
     expect(res).toEqual(expected)
   })

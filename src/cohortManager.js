@@ -53,6 +53,15 @@ class CohortManager {
     )
     this.cohorts.splice(removeIndex, 1)
   }
+
+  removeStudentFromCohort(id, cohort) {
+    const studentToRemove = this.students.find((student) => student.id === id)
+    const targetCohort = this.searchCohort(cohort)
+    if (studentToRemove === undefined) return 'Student does not exist'
+    if (targetCohort === 'Cohort not found') return 'Cohort does not exist'
+    const res = targetCohort.removeStudent(studentToRemove)
+    if (res) return res
+  }
 }
 
 module.exports = CohortManager
