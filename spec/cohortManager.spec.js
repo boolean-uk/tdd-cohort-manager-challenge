@@ -66,6 +66,7 @@ describe('Cohort Manager', () => {
     const cohort1 = new Cohort('Cohort 1')
     const student1 = new Student('John', 'Doe')
     student1.studentId = 1
+    student1.cohort = 'Cohort 1'
     cohort1.students.push(student1)
     const expected = cohort1
     cohortManager.createCohort('Cohort 1')
@@ -144,6 +145,37 @@ describe('Cohort Manager', () => {
     // verify
     expect(result).toEqual(expected)
   })
+
+  it('Should not be able to assign a student to more than 1 cohort', () => {
+    // setup
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.createCohort('Cohort 2')
+    cohortManager.createStudent('Tiger', 'The Great')
+    cohortManager.addStudentToCohort(1, 'Cohort 1')
+    const expected = "Student's can only be in 1 cohort"
+    // execute
+    const result = cohortManager.addStudentToCohort(1, 'Cohort 2')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('Should find all students matching a first or last name', () => {
+    // setup
+    const student1 = new Student('John', 'Deere')
+    const student2 = new Student('John', 'Doe')
+    const student3 = new Student('Tom', 'Johnson')
+    student1.studentId = 1
+    student2.studentId = 2
+    student3.studentId = 3
+    const expected = [student1, student2, student3]
+    cohortManager.createStudent('John', 'Deere')
+    cohortManager.createStudent('John', 'Doe')
+    cohortManager.createStudent('Tom', 'Johnson')
+    // execute
+    const result = cohortManager.findStudentByName('John')
+    // verify
+    expect(result).toEqual(expected)
+  })
 })
 
 describe('Cohort', () => {
@@ -158,6 +190,7 @@ describe('Cohort', () => {
     const cohort1 = new Cohort('Cohort 1')
     const student1 = new Student('John', 'Doe')
     student1.studentId = 1
+    student1.cohort = 'Cohort 1'
     cohort1.students.push(student1)
     const expected = cohort1
     cohortManager.createCohort('Cohort 1')

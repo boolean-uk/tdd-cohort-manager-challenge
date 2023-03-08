@@ -9,6 +9,8 @@
 | ------------- | idCounter ----- | findCohort ------- | name: @string ----------------------------- | cohort object / error if not found ------------------------------ |
 | ------------- | --------------- | addStudentToCohort | id, name: @integer, @ string -------------- | cohort with new student / error if not found -------------------- |
 | ------------- | --------------- | removeCohort ----- | name: @string ----------------------------- | cohorts with specific cohort removed / error if not found ------- |
+| ------------- | --------------- | findStudent ------ | id: @integer ------------------------------ | student object / error if not found ----------------------------- |
+| ------------- | --------------- | findStudentByName  | name: @string ----------------------------- | array of student objects / error if not found ------------------- |
 | :------------ | :-------------- | :----------------- | :------------------------------------------ | :---------------------------------------------------------------- |
 | Cohort ------ | name ---------- | removeStudent ---- | id: @integer ------------------------------ | cohort with specific student removed / error not found ---------  |
 | ------------- | students ------ | ------------------ | ------------------------------------------- | ----------------------------------------------------------------- |
@@ -50,10 +52,18 @@ METHODS
   - searches students by id, searches cohorts by name. Adds Student to Cohort
   - output when no cohort OR student found -> error
   - output when cohort and student are valid -> Cohort with Student added.
-- removeCohort(name: string) -> Cohorts
+- removeCohort(name: @string) -> Cohorts
   - searches cohorts by name, removes cohort from cohorts.
   - output when no cohort found -> error
   - output when cohort name is valid -> Cohorts with Cohort removed.
+- findStudent(id: @integer) -> Student
+  - searches students by id
+  - output when no student found -> error
+  - output when student id is valid -> Student
+- findStudentByName(name: @string) -> Array of Student
+  - searches students by firstName and lastName, and pushes to results array.
+  - output when no student found -> error
+  - output when student name is valid -> Array of Student
 
 ### Cohort
 

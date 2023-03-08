@@ -35,12 +35,19 @@ class CohortManager {
     if (cohort === undefined) {
       return 'No cohort with this name'
     }
-    if (student === undefined) {
-      return 'No student with this ID'
-    }
+
     if (cohort.students.length === cohort.capacity) {
       return `Unable to add more students to ${cohort.name}. It currently has ${cohort.students.length}/${cohort.capacity} students`
     }
+
+    if (student === undefined) {
+      return 'No student with this ID'
+    }
+
+    if (student.cohort !== 'none') {
+      return "Student's can only be in 1 cohort"
+    }
+    student.cohort = cohort.name
     cohort.students.push(student)
     return cohort
   }
@@ -61,6 +68,16 @@ class CohortManager {
     }
     return student
   }
+
+  findStudentByName(name) {
+    const searchInput = name.toLowerCase()
+    const results = this.students.filter((student) => {
+      const studentName =
+        `${student.firstName} ${student.lastName}`.toLowerCase()
+      return studentName.includes(searchInput)
+    })
+    return results
+  }
 }
 
 class Cohort {
@@ -71,11 +88,11 @@ class Cohort {
   }
 
   removeStudent(id) {
-    if (
-      this.students.find((student) => student.studentId === id) === undefined
-    ) {
+    const student = this.students.find((student) => student.studentId === id)
+    if (student === undefined) {
       return 'No student with this ID'
     }
+    student.cohort = 'none'
     this.students = this.students.filter((student) => student.studentId !== id)
     return this.students
   }
@@ -87,6 +104,7 @@ class Student {
     this.lastName = lName
     this.githubUsername = githubUsername
     this.email = email
+    this.cohort = 'none'
   }
 }
 
