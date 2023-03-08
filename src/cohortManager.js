@@ -14,7 +14,13 @@ class CohortManager {
   }
 
   searchCohort(nameCohort) {
-    return this.cohorts.filter((cohort) => cohort.nameCohort === nameCohort)
+    const cohort = this.cohorts.find(
+      (cohort) => cohort.nameCohort === nameCohort
+    )
+
+    if (cohort === undefined) throw new Error('Cohort not found')
+
+    return [cohort]
   }
 }
 
@@ -32,9 +38,7 @@ module.exports = {
   Cohort
 }
 
-const newCohortManager = new CohortManager()
-newCohortManager.createCohort('Frontend Cohort')
-newCohortManager.createCohort('Backend Cohort')
+// const manager = new CohortManager()
 
-newCohortManager.searchCohort('Backend Cohort')
-// console.log(newCohortManager.cohorts)
+// manager.createCohort('nameCohort')
+// manager.searchCohort('nameCohort')

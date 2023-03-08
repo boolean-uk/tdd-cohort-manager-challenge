@@ -37,6 +37,7 @@ describe('Cohort manager', () => {
     // setup
     newCohortManager.createCohort('Frontend Cohort')
     newCohortManager.createCohort('Backend Cohort')
+
     // execute
     const expected = (newCohortManager.cohorts = [
       {
@@ -51,5 +52,14 @@ describe('Cohort manager', () => {
 
     // verify
     expect(result).toEqual(expected)
+  })
+
+  it('(3) should return an error if searched cohort does not exist', () => {
+    // setup
+
+    const result = () => newCohortManager.searchCohort('French Cohort')
+
+    // verify
+    expect(result).toThrowError('Cohort not found')
   })
 })
