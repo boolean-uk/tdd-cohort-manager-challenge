@@ -1,6 +1,5 @@
 const Cohort = require('./cohort')
 const Student = require('./student')
-// const Student = require('./student')
 
 class CohortManager {
   constructor() {
@@ -61,6 +60,12 @@ class CohortManager {
     if (targetCohort === 'Cohort not found') return 'Cohort does not exist'
     const res = targetCohort.removeStudent(studentToRemove)
     if (res) return res
+  }
+
+  searchStudent(id) {
+    const foundStudent = this.students.find((student) => student.id === id)
+    if (foundStudent === undefined) return 'Student does not exist'
+    return foundStudent
   }
 }
 

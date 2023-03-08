@@ -10,22 +10,22 @@ describe('The Cohort Manager should be able to', () => {
   })
 
   it('create a new cohort with a name', () => {
-    //set up
+    // set up
     const expected = [new Cohort('test')]
     //execute
     cm.createCohort('test')
-    //verify
+    // verify
     expect(cm.cohorts).toEqual(expected)
   })
 
   it('create multiple cohorts', () => {
-    //set up
+    // set up
     const expected = [
       new Cohort('test1'),
       new Cohort('test2'),
       new Cohort('test3')
     ]
-    //execute
+    // execute
     cm.createCohort('test1')
     cm.createCohort('test2')
     cm.createCohort('test3')
@@ -34,180 +34,180 @@ describe('The Cohort Manager should be able to', () => {
   })
 
   it('should display an error message if a cohort was already created', () => {
-    //set up
+    // set up
     cm.createCohort('test1')
     const expected = 'Cohort already exists'
-    //execute
+    // execute
     const res = cm.createCohort('test1')
-    //verfiy
+    // verfiy
     expect(res).toEqual(expected)
   })
 
   it('find a cohort by name', () => {
-    //set up
+    // set up
     cm.createCohort('test1')
     cm.createCohort('test2')
     cm.createCohort('test3')
     const expected = new Cohort('test2')
-    //execute
+    // execute
     const res = cm.searchCohort('test2')
-    //verify
+    // verify
     expect(res).toEqual(expected)
   })
 
   it('return an error message if cohort is not found', () => {
-    //set up
+    // set up
     cm.createCohort('test1')
     cm.createCohort('test2')
     cm.createCohort('test3')
     const expected = 'Cohort not found'
-    //execute
+    // execute
     const res = cm.searchCohort('test5')
-    //verify
+    // verify
     expect(res).toEqual(expected)
   })
 
   it('create a new Student', () => {
-    //set up
+    // set up
     const expected = [new Student(1, 'Max', 'Mustermann')]
-    //execute
+    // execute
     cm.newStudent('Max', 'Mustermann')
-    //verfiy
+    // verfiy
     expect(cm.students).toEqual(expected)
   })
 
   it('create Multiple students', () => {
-    //set up
+    // set up
     const expected = [
       new Student(1, 'Max', 'Mustermann'),
       new Student(2, 'Ryley', 'Suzanne'),
       new Student(3, 'Ziya', 'Blagorodna')
     ]
-    //execute
+    // execute
     cm.newStudent('Max', 'Mustermann')
     cm.newStudent('Ryley', 'Suzanne')
     cm.newStudent('Ziya', 'Blagorodna')
-    //verify
+    // verify
     expect(cm.students).toEqual(expected)
   })
 
   it('add a student to a cohort', () => {
-    //set up
+    // set up
     const expected = new Cohort('test')
     expected.students.push(new Student(1, 'Max', 'Mustermann'))
     cm.createCohort('test')
     cm.newStudent('Max', 'Mustermann')
-    //execute
+    // execute
     cm.addStudentToCohort(1, 'test')
-    //verfiy
+    // verfiy
     expect(cm.cohorts[0]).toEqual(expected)
   })
 
   it('add a student to a cohort', () => {
-    //set up
+    // set up
     const expected = new Cohort('test2')
     expected.students.push(new Student(1, 'Max', 'Mustermann'))
     cm.createCohort('test1')
     cm.createCohort('test2')
     cm.createCohort('test3')
     cm.newStudent('Max', 'Mustermann')
-    //execute
+    // execute
     cm.addStudentToCohort(1, 'test2')
-    //verfiy
+    // verfiy
     expect(cm.cohorts[1]).toEqual(expected)
   })
 
   it('return an error message if student does not exist', () => {
-    //set up
+    // set up
     const expected = 'Student does not exist'
     cm.createCohort('test')
-    //execute
+    // execute
     const res = cm.addStudentToCohort(1, 'test')
-    //verfiy
+    // verfiy
     expect(res).toEqual(expected)
   })
 
   it('return an error message if cohort does not exist', () => {
-    //set up
+    // set up
     const expected = 'Cohort does not exist'
     cm.newStudent('Max', 'Mustermann')
-    //execute
+    // execute
     const res = cm.addStudentToCohort(1, 'test')
-    //verify
+    // verify
     expect(res).toEqual(expected)
   })
 
   it('remove a cohort by name', () => {
-    //set up
+    // set up
     const expected = []
     cm.createCohort('test')
-    //execute
+    // execute
     cm.removeCohort('test')
-    //verfiy
+    // verfiy
     expect(cm.cohorts).toEqual(expected)
   })
 
   it('remove a cohort by name', () => {
-    //set up
+    // set up
     const expected = [new Cohort('test1'), new Cohort('test3')]
     cm.createCohort('test1')
     cm.createCohort('test2')
     cm.createCohort('test3')
-    //execute
+    // execute
     cm.removeCohort('test2')
-    //verfiy
+    // verfiy
     expect(cm.cohorts).toEqual(expected)
   })
 
   it('return an error message if cohort does not exist', () => {
-    //set up
+    // set up
     const expected = 'Cohort does not exist'
-    //execute
+    // execute
     const res = cm.removeCohort('test1')
-    //verfiy
+    // verfiy
     expect(res).toEqual(expected)
   })
 
   it('remove a student from a cohort', () => {
-    //set up
+    // set up
     const expected = new Cohort('test')
     cm.createCohort('test')
     cm.newStudent('Max', 'Mustermann')
     cm.addStudentToCohort(1, 'test')
-    //execute
+    // execute
     cm.removeStudentFromCohort(1, 'test')
-    //verfiy
+    // verfiy
     expect(cm.cohorts[0]).toEqual(expected)
   })
 
   it('retrun an error if the student does not exist', () => {
-    //set up
+    // set up
     const expected = 'Student does not exist'
     cm.createCohort('test')
-    //execute
+    // execute
     const res = cm.removeStudentFromCohort(1, 'test')
-    //execute
+    // verfiy
     expect(res).toEqual(expected)
   })
 
   it('return an error message if cohort does not exist', () => {
-    //set up
+    // set up
     const expected = 'Cohort does not exist'
     cm.newStudent('Max', 'Mustermann')
-    //execute
+    // execute
     const res = cm.removeStudentFromCohort(1, 'test')
-    //verfiy
+    // verfiy
     expect(res).toEqual(expected)
   })
 
   it('return an error message if student is not in cohort', () => {
-    //set up
+    // set up
     const expected = 'Student is not in this Cohort'
     cm.newStudent('Max', 'Mustermann')
     cm.createCohort('test')
-    //execute
+    // execute
     const res = cm.removeStudentFromCohort(1, 'test')
-    //verfiy
+    // verfiy
     expect(res).toEqual(expected)
   })
 })
