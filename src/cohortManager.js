@@ -24,10 +24,33 @@ class CohortManager {
     else return foundCohort
   }
 
-  searchStudent(id) {
+  searchStudentById(id) {
     const foundStudent = this.students.find((student) => student.id === id)
     if (foundStudent === undefined) return 'Student does not exist'
     return foundStudent
+  }
+
+  searchStudentByName(query) {
+    if (query.split(' ').length > 1) {
+      const [firstName, lastName] = query.toLowerCase().split(' ')
+      const res = []
+      this.students.forEach((student) =>
+        student.firstName.toLowerCase() === firstName &&
+        student.lastName.toLowerCase() === lastName
+          ? res.push(student)
+          : null
+      )
+      return res
+    } else {
+      const res = []
+      this.students.forEach((student) =>
+        student.firstName.toLowerCase() === query.toLowerCase() ||
+        student.lastName.toLowerCase() === query.toLowerCase()
+          ? res.push(student)
+          : null
+      )
+      return res
+    }
   }
 
   newStudent(first, last, git, email) {
@@ -42,7 +65,7 @@ class CohortManager {
   }
 
   addStudentToCohort(id, cohort) {
-    const studentToAdd = this.searchStudent(id)
+    const studentToAdd = this.searchStudentById(id)
     const targetCohort = this.searchCohort(cohort)
     if (studentToAdd === 'Student does not exist') return studentToAdd
     if (targetCohort === 'Cohort does not exist') return targetCohort
@@ -60,7 +83,7 @@ class CohortManager {
   }
 
   removeStudentFromCohort(id, cohort) {
-    const studentToRemove = this.searchStudent(id)
+    const studentToRemove = this.searchStudentById(id)
     const targetCohort = this.searchCohort(cohort)
     if (studentToRemove === 'Student does not exist') return studentToRemove
     if (targetCohort === 'Cohort does not exist') return targetCohort

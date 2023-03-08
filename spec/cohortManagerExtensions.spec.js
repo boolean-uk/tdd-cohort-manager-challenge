@@ -14,7 +14,7 @@ describe('Extension: The Cohort Manager should also be able to', () => {
     const expected = new Student(1, 'Max', 'Mustermann')
     cm.newStudent('Max', 'Mustermann')
     // execute
-    const res = cm.searchStudent(1)
+    const res = cm.searchStudentById(1)
     // verify
     expect(res).toEqual(expected)
   })
@@ -26,7 +26,7 @@ describe('Extension: The Cohort Manager should also be able to', () => {
     cm.newStudent('Max', 'Mustermann')
     cm.newStudent('Ziya', 'Blagorodna')
     // execute
-    const res = cm.searchStudent(2)
+    const res = cm.searchStudentById(2)
     // verify
     expect(res).toEqual(expected)
   })
@@ -35,7 +35,7 @@ describe('Extension: The Cohort Manager should also be able to', () => {
     // set up
     const expected = 'Student does not exist'
     // execute
-    const res = cm.searchStudent(1)
+    const res = cm.searchStudentById(1)
     // verify
     expect(res).toEqual(expected)
   })
@@ -83,6 +83,30 @@ describe('Extension: The Cohort Manager should also be able to', () => {
     cm.addStudentToCohort(1, 'test1')
     // execute
     const res = cm.addStudentToCohort(1, 'test2')
+    // verify
+    expect(res).toEqual(expected)
+  })
+
+  it('search students by name and return a list of all results', () => {
+    // set up
+    const expected = [new Student(1, 'Max', 'Mustermann')]
+    cm.newStudent('Max', 'Mustermann')
+    // execute
+    const res = cm.searchStudentByName('Max Mustermann')
+    // verify
+    expect(res).toEqual(expected)
+  })
+
+  it('search student by name and return a list of all results', () => {
+    // set up
+    const expected = [
+      new Student(1, 'Max', 'last'),
+      new Student(2, 'First', 'max')
+    ]
+    cm.newStudent('Max', 'last')
+    cm.newStudent('First', 'max')
+    // execute
+    const res = cm.searchStudentByName('max')
     // verify
     expect(res).toEqual(expected)
   })
