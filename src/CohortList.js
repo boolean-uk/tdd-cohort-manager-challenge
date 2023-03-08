@@ -1,6 +1,5 @@
 const Student = require('../src/student')
-const cohort = require('../src/cohort')
-
+const Cohort = require('../src/cohort')
 class CohortManager {
   constructor() {
     this.cohorts = []
@@ -18,6 +17,31 @@ class CohortManager {
     const student = new Student(firstName, lastName, gitHub, email, ID)
     this.students.push(student)
     return this.students
+  }
+
+  createNewCohort(name) {
+    const newCohort = new Cohort(name)
+    this.cohorts.push(newCohort)
+    return this.cohorts
+  }
+
+  findStudentByName(name) {
+    const student = this.students.find(
+      (obj) => obj.firstName + ' ' + obj.lastName === name
+    )
+    return student
+  }
+
+  findCohortByName(name) {
+    const cohort = this.cohorts.find((obj) => obj.name === name)
+    return cohort
+  }
+
+  addStudentToCort(student, cohort) {
+    const foundStudent = this.findStudentByName(student)
+    const foundCohort = this.findCohortByName(cohort)
+    foundCohort.students.push(foundStudent)
+    return foundCohort
   }
 }
 
