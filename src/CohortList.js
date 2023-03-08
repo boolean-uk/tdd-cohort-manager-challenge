@@ -20,9 +20,14 @@ class CohortManager {
   }
 
   createNewCohort(name) {
-    const newCohort = new Cohort(name)
-    this.cohorts.push(newCohort)
-    return this.cohorts
+    const findcohort = this.findCohortByName(name)
+    if (name !== '' && findcohort.name !== name) {
+      const newCohort = new Cohort(name)
+      this.cohorts.push(newCohort)
+      return this.cohorts
+    } else {
+      return 'cohort name does not meet criteria for a cohort name'
+    }
   }
 
   findStudentByName(name) {
@@ -57,8 +62,12 @@ class CohortManager {
   addStudentToCohort(student, cohort) {
     const foundStudent = this.findStudentByName(student)
     const foundCohort = this.findCohortByName(cohort)
-    foundCohort.students.push(foundStudent)
-    return foundCohort
+    if (foundCohort.students.length < 24) {
+      foundCohort.students.push(foundStudent)
+      return foundCohort
+    } else {
+      return 'Cohort full!'
+    }
   }
 
   removeCohort(name) {
