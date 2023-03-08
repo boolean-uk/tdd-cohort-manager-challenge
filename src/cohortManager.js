@@ -35,6 +35,15 @@ class CohortManager {
     cohort.students.push(student)
     return cohort
   }
+
+  removeCohort(name) {
+    if (this.findCohort(name) === `No cohort with this name`) {
+      return 'No cohort with this name'
+    }
+
+    this.cohorts = this.cohorts.filter((cohort) => cohort.name !== name)
+    return this.cohorts
+  }
 }
 
 class Cohort {

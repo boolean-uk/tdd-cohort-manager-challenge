@@ -68,10 +68,32 @@ describe('Cohort Manager', () => {
     student1.studentId = 1
     cohort1.students.push(student1)
     const expected = cohort1
-    // execute
     cohortManager.createCohort('Cohort 1')
     cohortManager.createStudent('John', 'Doe')
+    // execute
     const result = cohortManager.addStudentToCohort(1, 'Cohort 1')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('Should remove a cohort by name', () => {
+    // setup
+    const cohort1 = new Cohort('Cohort 1')
+    const expected = [cohort1]
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.createCohort('Cothort 2')
+    // execute
+    cohortManager.removeCohort('Cothort 2')
+    const result = cohortManager.cohorts
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('Should remove a cohort by name, but return error if no cohort found', () => {
+    // setup
+    const expected = 'No cohort with this name'
+    // execute
+    const result = cohortManager.removeCohort('Cothort 2')
     // verify
     expect(result).toEqual(expected)
   })
