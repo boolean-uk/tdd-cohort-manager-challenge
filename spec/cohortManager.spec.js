@@ -3,6 +3,8 @@ const Cohort = require('../src/cohort.js')
 const Student = require('../src/student.js')
 
 describe('The Cohort Manager should be able to', () => {
+  let cm
+
   beforeEach(() => {
     cm = new CohortManager()
   })
@@ -63,5 +65,30 @@ describe('The Cohort Manager should be able to', () => {
     const res = cm.searchCohort('test5')
     //verify
     expect(res).toEqual(expected)
+  })
+
+  it('create a new Student', () => {
+    //set up
+    const expected = [new Student(1, 'Max', 'Mustermann')]
+    //execute
+    cm.newStudent('Max', 'Mustermann')
+    //verfiy
+    expect(cm.students).toEqual(expected)
+  })
+
+  it('should be able to create Multiple students', () => {
+    //set up
+    const expected = [
+      new Student(1, 'Max', 'Mustermann'),
+      new Student(2, 'Ryley', 'Suzanne'),
+      new Student(3, 'Ziya', 'Blagorodna')
+    ]
+    //execute
+    cm.newStudent('Max', 'Mustermann')
+    cm.newStudent('Ryley', 'Suzanne')
+    cm.newStudent('Ziya', 'Blagorodna')
+    //verify
+    console.log(cm.students, expected)
+    expect(cm.students).toEqual(expected)
   })
 })

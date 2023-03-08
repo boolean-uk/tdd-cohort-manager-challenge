@@ -1,4 +1,5 @@
 const Cohort = require('./cohort')
+const Student = require('./student')
 // const Student = require('./student')
 
 class CohortManager {
@@ -23,6 +24,17 @@ class CohortManager {
     const foundCohort = this.cohorts.find((cohort) => cohort.name === name)
     if (foundCohort === undefined) return 'Cohort not found'
     else return foundCohort
+  }
+
+  newStudent(first, last, git, email) {
+    let nextId
+    if (this.students.length > 0) {
+      nextId = this.students[this.students.length - 1].id + 1
+    } else {
+      nextId = 1
+    }
+    const studentToAdd = new Student(nextId, first, last)
+    this.students.push(studentToAdd)
   }
 }
 

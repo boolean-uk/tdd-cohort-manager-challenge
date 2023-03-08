@@ -1,5 +1,11 @@
 class Student {
-  constructor(id, firstname, lastname, git, email) {
+  constructor(
+    id,
+    firstname,
+    lastname,
+    git = 'not provided',
+    email = 'not provided'
+  ) {
     this.id = id
     this.firstName = firstname
     this.lastName = lastname
