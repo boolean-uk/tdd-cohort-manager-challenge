@@ -53,6 +53,13 @@ searchCohort(@str)
 - Input: Name of the cohort to search for
 - Output: found ? the searched cohort : error message
 
+addStudentToCohort(@int, @str)
+
+- Input: Id of the student and cohort name
+- Output:
+  - cohort found ? void : error message
+  - student added ? void : error message
+
 removeCohort(@str)
 
 - Input: The name of the cohort to remove

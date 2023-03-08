@@ -36,6 +36,14 @@ class CohortManager {
     const studentToAdd = new Student(nextId, first, last)
     this.students.push(studentToAdd)
   }
+
+  addStudentToCohort(id, cohort) {
+    const studentToAdd = this.students.find((student) => student.id === id)
+    const targetCohort = this.searchCohort(cohort)
+    if (studentToAdd === undefined) return 'Student does not exist'
+    if (targetCohort === 'Cohort not found') return 'Cohort does not exist'
+    targetCohort.addStudent(studentToAdd)
+  }
 }
 
 module.exports = CohortManager

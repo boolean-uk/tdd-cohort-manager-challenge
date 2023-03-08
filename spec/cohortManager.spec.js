@@ -76,7 +76,7 @@ describe('The Cohort Manager should be able to', () => {
     expect(cm.students).toEqual(expected)
   })
 
-  it('should be able to create Multiple students', () => {
+  it('create Multiple students', () => {
     //set up
     const expected = [
       new Student(1, 'Max', 'Mustermann'),
@@ -90,5 +90,51 @@ describe('The Cohort Manager should be able to', () => {
     //verify
     console.log(cm.students, expected)
     expect(cm.students).toEqual(expected)
+  })
+
+  it('add a student to a cohort', () => {
+    //set up
+    const expected = new Cohort('test')
+    expected.students.push(new Student(1, 'Max', 'Mustermann'))
+    cm.createCohort('test')
+    cm.newStudent('Max', 'Mustermann')
+    //execute
+    cm.addStudentToCohort(1, 'test')
+    //verfiy
+    expect(cm.cohorts[0]).toEqual(expected)
+  })
+
+  it('add a student to a cohort', () => {
+    //set up
+    const expected = new Cohort('test2')
+    expected.students.push(new Student(1, 'Max', 'Mustermann'))
+    cm.createCohort('test1')
+    cm.createCohort('test2')
+    cm.createCohort('test3')
+    cm.newStudent('Max', 'Mustermann')
+    //execute
+    cm.addStudentToCohort(1, 'test2')
+    //verfiy
+    expect(cm.cohorts[1]).toEqual(expected)
+  })
+
+  it('return an error message if student does not exist', () => {
+    //set up
+    const expected = 'Student does not exist'
+    cm.createCohort('test')
+    //execute
+    const res = cm.addStudentToCohort(1, 'test')
+    //verfiy
+    expect(res).toEqual(expected)
+  })
+
+  it('return an error message if cohort does not exist', () => {
+    //set up
+    const expected = 'Cohort does not exist'
+    cm.newStudent('Max', 'Mustermann')
+    //execute
+    const res = cm.addStudentToCohort(1, 'test')
+    //verify
+    expect(res).toEqual(expected)
   })
 })
