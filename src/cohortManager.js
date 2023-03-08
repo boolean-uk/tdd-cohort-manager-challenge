@@ -44,6 +44,14 @@ class CohortManager {
     this.cohorts = this.cohorts.filter((cohort) => cohort.name !== name)
     return this.cohorts
   }
+
+  findStudent(id) {
+    const student = this.students.find((student) => student.studentId === id)
+    if (student === undefined) {
+      return 'No student with this ID'
+    }
+    return student
+  }
 }
 
 class Cohort {

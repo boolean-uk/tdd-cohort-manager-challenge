@@ -97,6 +97,18 @@ describe('Cohort Manager', () => {
     // verify
     expect(result).toEqual(expected)
   })
+
+  it('Should search for a student by student ID', () => {
+    // setup
+    const student1 = new Student('Flint', 'Lockwood')
+    student1.studentId = 1
+    const expected = student1
+    cohortManager.createStudent('Flint', 'Lockwood')
+    // execute
+    const result = cohortManager.findStudent(1)
+    // verify
+    expect(result).toEqual(expected)
+  })
 })
 
 describe('Cohort', () => {
