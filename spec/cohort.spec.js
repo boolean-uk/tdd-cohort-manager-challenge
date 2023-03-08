@@ -102,4 +102,9 @@ describe('cohort', () => {
     const result = cohortManager.findStudentByName('Joe Bloggs')
     expect(result).toEqual(expected)
   })
+  it('shouold throw error if cohort not found', () => {
+    const expected = 'Error: no cohort found'
+    const result = cohortManager.findCohortByName('cohort1')
+    expect(result).toEqual(expected)
+  })
 })

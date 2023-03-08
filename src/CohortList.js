@@ -38,7 +38,11 @@ class CohortManager {
 
   findCohortByName(name) {
     const cohort = this.cohorts.find((obj) => obj.name === name)
-    return cohort
+    if (cohort === undefined) {
+      return 'Error: no cohort found'
+    } else {
+      return cohort
+    }
   }
 
   addStudentToCohort(student, cohort) {
