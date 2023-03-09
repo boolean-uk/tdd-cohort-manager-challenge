@@ -1,10 +1,10 @@
-const { CohortManager, Cohort } = require('../src/cohortManager.js')
+const { CohortManager, Cohort, Student } = require('../src/cohortManager.js')
 
 describe('Cohort manager', () => {
-  let newCohortManager
+  let cohortManager
 
   beforeEach(() => {
-    newCohortManager = new CohortManager()
+    cohortManager = new CohortManager()
   })
 
   it('(1) should create a new cohort', () => {
@@ -24,22 +24,22 @@ describe('Cohort manager', () => {
       }
     ]
     // execute
-    const expected = newCohortManager.cohorts.cohortsArray
+    const expected = cohortManager.cohorts.cohortsArray
 
     // verify
     expect(
-      newCohortManager.createCohort('Frontend Cohort'),
-      newCohortManager.createCohort('Backend Cohort')
+      cohortManager.createCohort('Frontend Cohort'),
+      cohortManager.createCohort('Backend Cohort')
     ).toEqual(expected)
   })
 
   it('(2) should return a cohort searched for by name', () => {
     // setup
-    newCohortManager.createCohort('Frontend Cohort')
-    newCohortManager.createCohort('Backend Cohort')
+    cohortManager.createCohort('Frontend Cohort')
+    cohortManager.createCohort('Backend Cohort')
 
     // execute
-    const expected = (newCohortManager.cohorts = [
+    const expected = (cohortManager.cohorts = [
       {
         IDCohort: 1,
         nameCohort: 'Frontend Cohort',
@@ -47,7 +47,7 @@ describe('Cohort manager', () => {
         students: []
       }
     ])
-    const result = newCohortManager.searchCohort('Frontend Cohort')
+    const result = cohortManager.searchCohort('Frontend Cohort')
 
     // verify
     expect(result).toEqual(expected)
@@ -55,7 +55,7 @@ describe('Cohort manager', () => {
 
   it('(3) should return an error if searched cohort does not exist', () => {
     // setup
-    const result = () => newCohortManager.searchCohort('French Cohort')
+    const result = () => cohortManager.searchCohort('French Cohort')
 
     // verify
     expect(result).toThrowError('Cohort not found')
@@ -63,10 +63,10 @@ describe('Cohort manager', () => {
 
   it('(4) should delete a cohort from cohorts array', () => {
     // setup
-    newCohortManager.createCohort('Backend Cohort')
+    cohortManager.createCohort('Backend Cohort')
 
     const expected = []
-    const result = newCohortManager.deleteCohort('Backend Cohort')
+    const result = cohortManager.deleteCohort('Backend Cohort')
 
     // verify
     expect(result).toEqual(expected)
@@ -75,9 +75,83 @@ describe('Cohort manager', () => {
   it('(5) should return an error if attempting to delete non-existent cohort', () => {
     // setup
 
-    const result = () => newCohortManager.deleteCohort('Backend Cohort')
+    const result = () => cohortManager.deleteCohort('Backend Cohort')
 
     // verify
     expect(result).toThrowError('Cohort not found')
+  })
+
+  it('(6) should create a new student and add to specific cohort', () => {
+    // setup
+    cohortManager.createCohort('Frontend')
+
+    const expected = {
+      studentID: 1,
+      cohortID: 'Frontend',
+      firstName: 'Bob',
+      lastName: 'Builder',
+      githubUser: 'builderB',
+      email: 'bob@bob.com'
+    }
+
+    // execute
+    const result = cohortManager.addNewStudent(
+      'Bob',
+      'Builder',
+      'builderB',
+      'bob@bob.com',
+      'Frontend'
+    )
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('(7) should delete a student from a specific cohort', () => {
+    // setup
+
+    cohortManager.createCohort('cohort1')
+
+    cohortManager.addNewStudent(
+      'Bob',
+      'Builder',
+      'builderB',
+      'bob@bob.com',
+      'cohort1'
+    )
+
+    cohortManager.addNewStudent(
+      'Bob',
+      'student2 LN',
+      '2nd',
+      '2@student.com',
+      'cohort1'
+    )
+
+    const expected = [
+      {
+        studentID: 2,
+        cohortID: 'cohort1',
+        firstName: 'Bob',
+        lastName: 'student2 LN',
+        githubUser: '2nd',
+        email: '2@student.com'
+      }
+    ]
+
+    const result = cohortManager.removeFromCohort('Bob', 'Builder', 'cohort1')
+
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('(8) should return an error if attempting to remove a student not found', () => {
+    // setup
+    cohortManager.createCohort('cohort1')
+
+    const result = () =>
+      cohortManager.removeFromCohort('Captain', 'America', 'cohort1')
+
+    // verify
+    expect(result).toThrowError('Student not found')
   })
 })

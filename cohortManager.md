@@ -22,7 +22,7 @@ METHODS:
    - if cohort exists: Cohort
    - if cohort does not exist: alert "Cohort not found"
 
-3. removeCohort(string)
+3. deleteCohort(string)
    INPUT: @nameCohort
    OUTPUT:
 
