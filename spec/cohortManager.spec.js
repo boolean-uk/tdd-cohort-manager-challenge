@@ -144,12 +144,60 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
+  // extended criteria
   it('(8) should return an error if attempting to remove a student not found', () => {
     // setup
     cohortManager.createCohort('cohort1')
 
     const result = () =>
       cohortManager.removeFromCohort('Captain', 'America', 'cohort1')
+
+    // verify
+    expect(result).toThrowError('Student not found')
+  })
+
+  it('(9) should find a student by their studentID', () => {
+    // setup
+    cohortManager.createCohort('cohort1')
+    cohortManager.createCohort('cohort2')
+
+    const student1 = cohortManager.addNewStudent(
+      'Captain',
+      'America',
+      'CapUSA',
+      'captaing@avengers.com',
+      'cohort1'
+    )
+
+    const student2 = cohortManager.addNewStudent(
+      'Bob',
+      'Builder',
+      'builderB',
+      'bob@bob.com',
+      'cohort1'
+    )
+
+    const student3 = cohortManager.addNewStudent(
+      'Bob',
+      'student2 LN',
+      '2nd',
+      '2@student.com',
+      'cohort2'
+    )
+
+    const expected = student3
+
+    const result = cohortManager.findStudentbyID(student3.studentID)
+
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('(10) should return an error if student is not found in ID search', () => {
+    // setup
+    cohortManager.createCohort('cohort1')
+
+    const result = () => cohortManager.findStudentbyID(12)
 
     // verify
     expect(result).toThrowError('Student not found')

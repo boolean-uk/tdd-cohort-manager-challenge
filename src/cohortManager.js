@@ -83,6 +83,13 @@ class CohortManager {
       return filteredCohort
     }
   }
+
+  findStudentbyID(id) {
+    const student = this.allStudents.find((student) => student.studentID === id)
+    if (student === undefined) throw new Error('Student not found')
+
+    return student
+  }
 }
 
 class Cohort {
@@ -94,17 +101,6 @@ class Cohort {
     this.studentCount = 0
   }
 }
-
-// class Student {
-//   constructor(name, surname, github, email, cohort) {
-//     this.studentID = 0
-//     this.cohortID = cohort
-//     this.firstName = name
-//     this.lastName = surname
-//     this.githubUser = github
-//     this.email = email
-//   }
-// }
 
 module.exports = {
   CohortManager,
