@@ -202,4 +202,61 @@ describe('Cohort manager', () => {
     // verify
     expect(result).toThrowError('Student not found')
   })
+
+  it('(11) should find a student by their studentID', () => {
+    // setup
+    cohortManager.createCohort('cohort1')
+    cohortManager.createCohort('cohort2')
+
+    const student1 = cohortManager.addNewStudent(
+      'Captain',
+      'America',
+      'CapUSA',
+      'captaing@avengers.com',
+      'cohort1'
+    )
+
+    const student2 = cohortManager.addNewStudent(
+      'Bob',
+      'Builder',
+      'builderB',
+      'bob@bob.com',
+      'cohort1'
+    )
+
+    const student3 = cohortManager.addNewStudent(
+      'Bob',
+      'student2 LN',
+      '2nd',
+      '2@student.com',
+      'cohort2'
+    )
+
+    const expected = student3
+
+    const result = cohortManager.findStudentbyID(student3.studentID)
+
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('(12) should return an error if trying to add a student to a full cohort', () => {
+    // setup
+    cohortManager.createCohort('cohort1')
+    cohortManager.cohorts[0].cohortStudentCount = 24
+
+    const result = () =>
+      cohortManager.addNewStudent(
+        'Bob',
+        'Builder',
+        'builderB',
+        'bob@bob.com',
+        'cohort1'
+      )
+
+    // verify
+    expect(result).toThrowError(
+      'Cohort is full. Please assign student to another cohort'
+    )
+  })
 })

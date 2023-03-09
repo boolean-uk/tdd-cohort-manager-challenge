@@ -3,7 +3,7 @@ class CohortManager {
     this.allStudents = []
     this.cohorts = []
     this.IDCount = 0
-    this.studentCount = 0
+    this.allStudentsCount = 0
   }
 
   createCohort(nameCohort) {
@@ -41,7 +41,7 @@ class CohortManager {
   }
 
   addNewStudent(name, surname, github, email, cohort) {
-    const studentCount = (this.studentCount += 1)
+    const studentCount = (this.allStudentsCount += 1)
     const student = {
       studentID: studentCount,
       cohortID: cohort,
@@ -56,8 +56,14 @@ class CohortManager {
 
     for (let i = 0; i < this.cohorts.length; i++) {
       if (student.cohortID === this.cohorts[i].nameCohort) {
-        this.cohorts[i].studentsInCohort.push(student)
-        this.cohorts[i].studentCount += 1
+        if (this.cohorts[i].cohortStudentCount >= 24) {
+          throw new Error(
+            'Cohort is full. Please assign student to another cohort'
+          )
+        } else {
+          this.cohorts[i].cohortStudentCount += 1
+          this.cohorts[i].studentsInCohort.push(student)
+        }
       }
     }
     return student
@@ -84,6 +90,7 @@ class CohortManager {
     }
   }
 
+  // Extensions
   findStudentbyID(id) {
     const student = this.allStudents.find((student) => student.studentID === id)
     if (student === undefined) throw new Error('Student not found')
@@ -98,7 +105,7 @@ class Cohort {
     this.nameCohort = nameCohort
     this.maxStudents = 24
     this.studentsInCohort = []
-    this.studentCount = 0
+    this.cohortStudentCount = 0
   }
 }
 
