@@ -52,10 +52,29 @@ class Manager {
   searchForCohortByID(ID) {
     return this.cohorts.find((cohort) => cohort.cohortID === ID)
   }
+
+  searchForStudentByID(ID) {
+    return this.students.find((student) => student.studentID === ID)
+  }
+
+  addStudentToCohort(StudentID, CohortID) {
+    const foundStudent = this.searchForStudentByID(StudentID)
+    const foundCohort = this.searchForCohortByID(CohortID)
+
+    foundStudent.cohortID = CohortID
+    foundCohort.students.push(foundStudent)
+    return foundCohort
+  }
 }
-const NewCohort = new Manager()
-NewCohort.createNewCohort('software dev')
-console.log(NewCohort.searchForCohortByName('software dev'))
-console.log(NewCohort.searchForCohortByID(1))
+// const NewCohort = new Manager()
+// NewCohort.createNewCohort('software dev')
+// NewCohort.createNewStudent(
+//   'Joe',
+//   'Bobby',
+//   'JoeBobbyGithub',
+//   'joebobs@gmail.com'
+// )
+// console.log(NewCohort.addStudentToCohort(1, 1))
+// console.log(NewCohort.students)
 
 module.exports = { Cohort, Manager, Student }
