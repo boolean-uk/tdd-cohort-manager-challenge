@@ -117,9 +117,4 @@ class CohortManager {
   }
 }
 
-const cm = new CohortManager()
-cm.createCohort('Test Cohort')
-cm.newStudent('Max', 'Mustermann')
-cm.addStudentToCohort(1, 'Test Cohort')
-
 module.exports = CohortManager
