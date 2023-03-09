@@ -65,6 +65,14 @@ class Manager {
     foundCohort.students.push(foundStudent)
     return foundCohort
   }
+
+  removeCohortByName(name) {
+    const index = this.cohorts.map((e) => e.name).indexOf(name)
+    if (index > -1) {
+      this.cohorts.splice(index, 1)
+      return this.cohorts
+    } else return false
+  }
 }
 // const NewCohort = new Manager()
 // NewCohort.createNewCohort('software dev')
@@ -74,7 +82,6 @@ class Manager {
 //   'JoeBobbyGithub',
 //   'joebobs@gmail.com'
 // )
-// console.log(NewCohort.addStudentToCohort(1, 1))
-// console.log(NewCohort.students)
+// NewCohort.removeCohortByName('software dev')
 
 module.exports = { Cohort, Manager, Student }

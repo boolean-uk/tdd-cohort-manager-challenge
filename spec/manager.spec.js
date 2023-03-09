@@ -88,4 +88,28 @@ describe('CohortManager', () => {
       }
     ])
   })
+
+  it('remove cohort by name', () => {
+    NewCohort.createNewCohort('software dev')
+    NewCohort.createNewStudent(
+      'Joe',
+      'Bobby',
+      'JoeBobbyGithub',
+      'joebobs@gmail.com'
+    )
+    NewCohort.removeCohortByName('software dev')
+    expect(NewCohort.cohorts.length).toEqual(0)
+  })
+
+  it('return error if cohort unavailable', () => {
+    NewCohort.createNewCohort('software dev')
+    NewCohort.createNewStudent(
+      'Joe',
+      'Bobby',
+      'JoeBobbyGithub',
+      'joebobs@gmail.com'
+    )
+
+    expect(NewCohort.removeCohortByName('softwa dev')).toBeFalse()
+  })
 })
