@@ -27,4 +27,20 @@ describe('CohortManager', () => {
     )
     expect(NewCohort.students.length).toEqual(2)
   })
+
+  it('find cohort by name', () => {
+    NewCohort.createNewCohort('software dev')
+    expect(NewCohort.searchForCohortByName('software dev')).toEqual([
+      { cohortID: 1, name: 'software dev', students: [] }
+    ])
+  })
+
+  it('find cohort by id', () => {
+    NewCohort.createNewCohort('software dev')
+    expect(NewCohort.searchForCohortByID(1)).toEqual({
+      cohortID: 1,
+      name: 'software dev',
+      students: []
+    })
+  })
 })

@@ -44,6 +44,18 @@ class Manager {
       )
     )
   }
+
+  searchForCohortByName(name) {
+    return this.cohorts.filter((cohort) => cohort.name === name)
+  }
+
+  searchForCohortByID(ID) {
+    return this.cohorts.find((cohort) => cohort.cohortID === ID)
+  }
 }
+const NewCohort = new Manager()
+NewCohort.createNewCohort('software dev')
+console.log(NewCohort.searchForCohortByName('software dev'))
+console.log(NewCohort.searchForCohortByID(1))
 
 module.exports = { Cohort, Manager, Student }
