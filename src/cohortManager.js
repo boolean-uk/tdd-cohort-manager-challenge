@@ -97,6 +97,18 @@ class CohortManager {
 
     return student
   }
+
+  findStudentbytName(name) {
+    const student = this.allStudents.filter(
+      (student) => student.firstName === name || student.lastName === name
+    )
+
+    if (student.length === 0) {
+      throw new Error('Student not found')
+    } else {
+      return student
+    }
+  }
 }
 
 class Cohort {

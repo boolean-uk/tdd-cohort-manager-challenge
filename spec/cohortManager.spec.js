@@ -1,4 +1,4 @@
-const { CohortManager, Cohort, Student } = require('../src/cohortManager.js')
+const { CohortManager, Cohort } = require('../src/cohortManager.js')
 
 describe('Cohort manager', () => {
   let cohortManager
@@ -72,7 +72,7 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('(5) should return an error if attempting to delete non-existent cohort', () => {
+  it('(5) should return an error if deleteing non-existent cohort', () => {
     // setup
 
     const result = () => cohortManager.deleteCohort('Backend Cohort')
@@ -144,7 +144,6 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  // extended criteria
   it('(8) should return an error if attempting to remove a student not found', () => {
     // setup
     cohortManager.createCohort('cohort1')
@@ -258,5 +257,81 @@ describe('Cohort manager', () => {
     expect(result).toThrowError(
       'Cohort is full. Please assign student to another cohort'
     )
+  })
+
+  it('(13) should find a student by their surname and return all that match', () => {
+    // setup
+    cohortManager.createCohort('cohort1')
+    cohortManager.createCohort('cohort2')
+
+    const student1 = cohortManager.addNewStudent(
+      'Captain',
+      'America',
+      'CapUSA',
+      'captaing@avengers.com',
+      'cohort1'
+    )
+
+    const student2 = cohortManager.addNewStudent(
+      'Bob',
+      'Builder',
+      'builderB',
+      'bob@bob.com',
+      'cohort1'
+    )
+
+    const expected = [student1]
+
+    const result = cohortManager.findStudentbytName(student1.lastName)
+
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('(14) should find a student by their first name and return all that match', () => {
+    // setup
+    cohortManager.createCohort('cohort1')
+    cohortManager.createCohort('cohort2')
+
+    const student1 = cohortManager.addNewStudent(
+      'Captain',
+      'America',
+      'CapUSA',
+      'captaing@avengers.com',
+      'cohort1'
+    )
+
+    const student2 = cohortManager.addNewStudent(
+      'Bob',
+      'Builder',
+      'builderB',
+      'bob@bob.com',
+      'cohort1'
+    )
+
+    const student3 = cohortManager.addNewStudent(
+      'Bob',
+      'student2 LN',
+      '2nd',
+      '2@student.com',
+      'cohort2'
+    )
+
+    const expected = [student2, student3]
+
+    const result = cohortManager.findStudentbytName('Bob')
+
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('(15) should return an error student is not found', () => {
+    // setup
+    cohortManager.createCohort('cohort1')
+
+    const result = () => cohortManager.findStudentbytName('Alice')
+
+    // verify
+    expect(result).toThrowError('Student not found')
   })
 })
