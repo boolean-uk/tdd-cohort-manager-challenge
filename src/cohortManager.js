@@ -1,3 +1,6 @@
+// Twilio
+const { smsNotification } = require('./twilio_sms')
+
 class CohortManager {
   constructor() {
     this.cohorts = []
@@ -49,6 +52,8 @@ class CohortManager {
     }
     student.cohort = cohort.name
     cohort.students.push(student)
+    const message = `${student.firstName} ${student.lastName} has been added to ${cohort.name}.`
+    smsNotification(message)
     return cohort
   }
 
@@ -94,6 +99,8 @@ class Cohort {
     }
     student.cohort = 'none'
     this.students = this.students.filter((student) => student.studentId !== id)
+    const message = `${student.firstName} ${student.lastName} has been removed from ${this.name}`
+    smsNotification(message)
     return this.students
   }
 }
