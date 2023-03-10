@@ -26,6 +26,7 @@ class CohortManager {
     const newStudent = new Student(fName, lName, githubUsername, email)
     newStudent.id = this.idCounter
     this.students.push(newStudent)
+    return newStudent
   }
 
   hasCohort(name) {
