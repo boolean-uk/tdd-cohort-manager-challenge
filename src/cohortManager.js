@@ -81,6 +81,8 @@ class CohortManager {
       (cohort) => cohort.nameCohort === nameCohort
     )
 
+    cohort.cohortStudentCount -= 1
+
     const student = cohort.studentsInCohort.find(
       (student) => student.firstName === name && student.lastName === surname
     )
@@ -88,12 +90,40 @@ class CohortManager {
     const filteredCohort = cohort.studentsInCohort.filter(
       (students) => students.studentID !== student.studentID
     )
+    const oldCohortIndex = (cohort) => cohort.nameCohort === nameCohort
+
+    const index = this.cohorts.findIndex(oldCohortIndex)
+    this.cohorts[index] = filteredCohort
 
     if (!student) {
       throw new Error('Student not found')
-    } else {
-      return filteredCohort
     }
+    // console.log((this.cohorts[index] = filteredCohort))
+    return filteredCohort
+  }
+
+  reassignStudentCohort(studentID, newCohort) {
+    // find student, extract current cohort name, student name + surname
+    const student = this.allStudents.find(
+      (student) => student.studentID === studentID
+    )
+
+    const firstName = student.firstName
+    const lastName = student.lastName
+    const cohortID = student.cohortID
+
+    // console.log('--------Pre this.removeFromCohort-----------')
+    this.removeFromCohort(firstName, lastName, cohortID)
+
+    // push student into different existing cohort's studentsInCohort
+    const studentNewCohort = this.cohorts.find(
+      (cohort) => cohort.nameCohort === newCohort
+    )
+    student.cohortID = newCohort
+    studentNewCohort.cohortStudentCount += 1
+    studentNewCohort.studentsInCohort.push(student)
+    // console.log('-------Post this.removeFromCohort-----------------')
+    // console.log('studentNewCohort:', studentNewCohort)
   }
 
   // Extensions

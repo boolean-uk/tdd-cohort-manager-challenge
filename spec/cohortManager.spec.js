@@ -354,4 +354,54 @@ describe('Cohort manager', () => {
     // verify
     expect(result).toThrowError('Cohort must be given a name')
   })
+
+  //   it('(18.1) should remove student from original cohort when moved', () => {
+  //     // setup
+  //     cohortManager.createCohort('cohort1')
+  //     cohortManager.createCohort('cohort2')
+
+  //     const student = cohortManager.addNewStudent(
+  //       'Fiona',
+  //       'Princess',
+  //       'PrincessFiona',
+  //       'fiona@faraway.com',
+  //       'cohort1'
+  //     )
+  //     // execute
+  //     cohortManager.reassignStudentCohort(student.studentID, 'cohort2')
+
+  //     const expected1 = []
+  //     // const expected2 = 0
+
+  //     const result1 = cohortManager.cohorts[0].studentsInCohort
+  //     // const result2 = cohortManager.cohort[0].cohortStudentCount
+  //     // verify
+  //     expect(result1).toEqual(expected1)
+  //     // expect(result2).toEqual(expected2)
+  //   })
+
+  it('(18.2) should move student to different cohort', () => {
+    // setup
+    cohortManager.createCohort('cohort1')
+    cohortManager.createCohort('cohort2')
+
+    const student = cohortManager.addNewStudent(
+      'Fiona',
+      'Princess',
+      'PrincessFiona',
+      'fiona@faraway.com',
+      'cohort1'
+    )
+    const cohort2 = cohortManager.cohorts[1]
+
+    cohortManager.reassignStudentCohort(student.studentID, 'cohort2')
+    // execute
+    const expected = [student]
+    const result = cohortManager.cohorts[1].studentsInCohort
+
+    // verify
+    expect(result).toEqual(expected)
+    expect(student.cohortID).toEqual('cohort2')
+    expect(cohort2.cohortStudentCount).toEqual(1)
+  })
 })
