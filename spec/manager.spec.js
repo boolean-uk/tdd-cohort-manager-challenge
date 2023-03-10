@@ -1,4 +1,4 @@
-const { Cohort, Manager, Student } = require('../src/index')
+const { Manager } = require('../src/index')
 
 describe('CohortManager', () => {
   let NewCohort

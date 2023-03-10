@@ -87,4 +87,4 @@ class Manager {
   }
 }
 
-module.exports = { Cohort, Manager, Student }
+module.exports = { Manager }
