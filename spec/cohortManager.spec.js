@@ -48,7 +48,7 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('(4) should delete a cohort from cohorts array', () => {
+  it('(3) should delete a cohort from cohorts array', () => {
     // setup
     cohortManager.createCohort('Backend Cohort')
 
@@ -59,34 +59,28 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('(6) should create a new student and add to specific cohort', () => {
+  it('(4) should create a new student and add to specific cohort', () => {
     // setup
-    cohortManager.createCohort('Frontend')
+    cohortManager.createCohort('cohort1')
+    const student = cohortManager.addNewStudent(
+      'Ginger',
+      'Breadman',
+      'Gingerbreadman',
+      'Gin@faraway.com',
+      'cohort1'
+    )
 
-    const expected = {
-      studentID: 1,
-      cohortID: 'Frontend',
-      firstName: 'Bob',
-      lastName: 'Builder',
-      githubUser: 'builderB',
-      email: 'bob@bob.com'
-    }
+    const expected = student
 
     // execute
-    const result = cohortManager.addNewStudent(
-      'Bob',
-      'Builder',
-      'builderB',
-      'bob@bob.com',
-      'Frontend'
-    )
+    const result = cohortManager.allStudents[0]
+
     // verify
     expect(result).toEqual(expected)
   })
 
-  it('(7) should delete a student from a specific cohort', () => {
+  it('(5) should delete a student from a specific cohort', () => {
     // setup
-
     cohortManager.createCohort('cohort1')
 
     cohortManager.addNewStudent(
@@ -97,7 +91,7 @@ describe('Cohort manager', () => {
       'cohort1'
     )
 
-    cohortManager.addNewStudent(
+    const bob2 = cohortManager.addNewStudent(
       'Bob',
       'student2 LN',
       '2nd',
@@ -105,16 +99,7 @@ describe('Cohort manager', () => {
       'cohort1'
     )
 
-    const expected = [
-      {
-        studentID: 2,
-        cohortID: 'cohort1',
-        firstName: 'Bob',
-        lastName: 'student2 LN',
-        githubUser: '2nd',
-        email: '2@student.com'
-      }
-    ]
+    const expected = [bob2]
 
     const result = cohortManager.removeFromCohort('Bob', 'Builder', 'cohort1')
 
@@ -122,7 +107,7 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('(9) should find a student by their studentID', () => {
+  it('(6) should find a student by their studentID', () => {
     // setup
     cohortManager.createCohort('cohort1')
     cohortManager.createCohort('cohort2')
@@ -144,10 +129,10 @@ describe('Cohort manager', () => {
     )
 
     const student3 = cohortManager.addNewStudent(
-      'Bob',
-      'student2 LN',
-      '2nd',
-      '2@student.com',
+      'Ginger',
+      'Breadman',
+      'Gingerbreadman',
+      'Gin@faraway.com',
       'cohort2'
     )
 
@@ -159,7 +144,7 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('(11) should find a student by their studentID', () => {
+  it('(7) should find a student by their studentID', () => {
     // setup
     cohortManager.createCohort('cohort1')
     cohortManager.createCohort('cohort2')
@@ -181,10 +166,10 @@ describe('Cohort manager', () => {
     )
 
     const student3 = cohortManager.addNewStudent(
-      'Bob',
-      'student2 LN',
-      '2nd',
-      '2@student.com',
+      'Ginger',
+      'Breadman',
+      'Gingerbreadman',
+      'Gin@faraway.com',
       'cohort2'
     )
 
@@ -196,7 +181,7 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('(13) should find a student by their surname and return all that match', () => {
+  it('(8) should find a student by their surname and return all that match', () => {
     // setup
     cohortManager.createCohort('cohort1')
     cohortManager.createCohort('cohort2')
@@ -225,7 +210,7 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('(14) should find a student by their first name and return all that match', () => {
+  it('(9) should find a student by their first name and return all that match', () => {
     // setup
     cohortManager.createCohort('cohort1')
     cohortManager.createCohort('cohort2')
@@ -248,7 +233,7 @@ describe('Cohort manager', () => {
 
     const student3 = cohortManager.addNewStudent(
       'Bob',
-      'student2 LN',
+      'Climber',
       '2nd',
       '2@student.com',
       'cohort2'
@@ -262,16 +247,7 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('(17) should check if a cohort name exists already', () => {
-    // setup
-
-    // execute
-    const result = () => cohortManager.createCohort()
-    // verify
-    expect(result).toThrowError('Cohort must be given a name')
-  })
-
-  it('(18) should remove student from original cohort when moved', () => {
+  it('(10) should move student to new cohort && remove student from original cohort', () => {
     // setup
     cohortManager.createCohort('cohort1')
     cohortManager.createCohort('cohort2')

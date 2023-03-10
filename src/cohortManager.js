@@ -1,4 +1,5 @@
 const { Cohort } = require('../src/cohort.js')
+const { Student } = require('../src/student.js')
 
 class CohortManager {
   constructor() {
@@ -29,8 +30,6 @@ class CohortManager {
 
     if (cohort === undefined) throw new Error('Cohort not found')
 
-    // array with cohort object inside. in case there are multiple cohorts with same name e.g. "frontend cohort"
-    console.log(cohort)
     return cohort
   }
 
@@ -38,6 +37,7 @@ class CohortManager {
     const cohort = this.cohorts.find(
       (cohort) => cohort.nameCohort === nameCohort
     )
+
     const removedCohort = (cohort) => cohort.nameCohort === nameCohort
     const index = this.cohorts.findIndex(removedCohort)
 
@@ -51,16 +51,9 @@ class CohortManager {
 
   addNewStudent(name, surname, github, email, cohort) {
     const studentCount = (this.allStudentsCount += 1)
-    const student = {
-      studentID: studentCount,
-      cohortID: cohort,
-      firstName: name,
-      lastName: surname,
-      githubUser: github,
-      email: email
-    }
-    // new Student(name, surname, github, email, cohort)
-    // student.studentID = studentCount
+    const student = new Student(name, surname, github, email, cohort)
+
+    student.studentID = studentCount
     this.allStudents.push(student)
 
     for (let i = 0; i < this.cohorts.length; i++) {
@@ -79,6 +72,8 @@ class CohortManager {
   }
 
   removeFromCohort(name, surname, nameCohort) {
+    const fullName = name + surname
+
     // find nameCohort
     const cohort = this.cohorts.find(
       (cohort) => cohort.nameCohort === nameCohort
@@ -87,15 +82,16 @@ class CohortManager {
     cohort.cohortStudentCount -= 1
 
     const student = cohort.studentsInCohort.find(
-      (student) => student.firstName === name && student.lastName === surname
+      (student) => student.firstName + student.lastName === fullName
     )
 
     const filteredCohort = cohort.studentsInCohort.filter(
-      (students) => students.studentID !== student.studentID
+      (students) => students.firstName + students.lastName !== fullName
     )
-    const oldCohortIndex = (cohort) => cohort.nameCohort === nameCohort
 
+    const oldCohortIndex = (cohort) => cohort.nameCohort === nameCohort
     const index = this.cohorts.findIndex(oldCohortIndex)
+
     this.cohorts[index] = filteredCohort
 
     if (!student) {
@@ -106,13 +102,12 @@ class CohortManager {
   }
 
   reassignStudentCohort(studentID, newCohort) {
-    // find student, extract current cohort name, student name + surname
+    // find student
     const student = this.findStudentbyID(studentID)
     const cohortID = student.cohortID
 
     const oldCohort = this.searchCohort(cohortID)
     oldCohort.cohortStudentCount -= 1
-    // console.log('--------Pre this.removeFromCohort-----------')
 
     oldCohort.studentsInCohort = oldCohort.studentsInCohort.filter(
       (students) => students.studentID !== studentID
@@ -124,9 +119,12 @@ class CohortManager {
     student.cohortID = newCohort
     studentNewCohort.cohortStudentCount += 1
     studentNewCohort.studentsInCohort.push(student)
-  }
 
-  // Extensions
+    // error will be thrown automatically from (findStudent() if !student)
+    if (!newCohort) {
+      throw new Error('Cohort not found')
+    }
+  }
 
   findStudentbyID(id) {
     const student = this.allStudents.find((student) => student.studentID === id)
@@ -151,21 +149,3 @@ class CohortManager {
 module.exports = {
   CohortManager
 }
-
-const manager = new CohortManager()
-
-manager.createCohort('cohort1')
-manager.createCohort('cohort2')
-// manager.searchCohort('cohort1')
-
-const ginger = manager.addNewStudent(
-  'Ginger',
-  'Breadman',
-  'Gingerbreadman',
-  'Gin@faraway.com',
-  'cohort1'
-)
-manager.reassignStudentCohort(ginger.studentID, 'cohort2')
-
-console.log('--------check reassign worked -----------')
-console.log(manager.cohorts)

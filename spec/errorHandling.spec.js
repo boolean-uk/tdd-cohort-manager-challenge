@@ -7,7 +7,7 @@ describe('Errors should be thrown if: ', () => {
     cohortManager = new CohortManager()
   })
 
-  it('(3) searched cohort does not exist', () => {
+  it('(1) searched cohort does not exist', () => {
     // setup
     const result = () => cohortManager.searchCohort('French Cohort')
 
@@ -15,7 +15,7 @@ describe('Errors should be thrown if: ', () => {
     expect(result).toThrowError('Cohort not found')
   })
 
-  it('(5) deleteing non-existent cohort', () => {
+  it('(2) deleteing non-existent cohort', () => {
     // setup
 
     const result = () => cohortManager.deleteCohort('Backend Cohort')
@@ -24,7 +24,7 @@ describe('Errors should be thrown if: ', () => {
     expect(result).toThrowError('Cohort not found')
   })
 
-  it('(8) attempting to remove a student not found', () => {
+  it('(3) attempting to remove a student not found', () => {
     // setup
     cohortManager.createCohort('cohort1')
 
@@ -35,7 +35,7 @@ describe('Errors should be thrown if: ', () => {
     expect(result).toThrowError('Student not found')
   })
 
-  it('(10) student is not found in ID search', () => {
+  it('(4) student is not found in ID search', () => {
     // setup
     cohortManager.createCohort('cohort1')
 
@@ -45,7 +45,7 @@ describe('Errors should be thrown if: ', () => {
     expect(result).toThrowError('Student not found')
   })
 
-  it('(12) trying to add a student to a full cohort', () => {
+  it('(5) trying to add a student to a full cohort', () => {
     // setup
     cohortManager.createCohort('cohort1')
     cohortManager.cohorts[0].cohortStudentCount = 24
@@ -65,7 +65,7 @@ describe('Errors should be thrown if: ', () => {
     )
   })
 
-  it('(15) student is not found', () => {
+  it('(6) student is not found', () => {
     // setup
     cohortManager.createCohort('cohort1')
 
@@ -75,7 +75,7 @@ describe('Errors should be thrown if: ', () => {
     expect(result).toThrowError('Student not found')
   })
 
-  it('(16) a cohort name exists already', () => {
+  it('(7) a cohort name exists already', () => {
     // setup
     cohortManager.createCohort('cohort1')
     cohortManager.createCohort('cohort2')
@@ -84,5 +84,28 @@ describe('Errors should be thrown if: ', () => {
     const result = () => cohortManager.createCohort('cohort1')
     // verify
     expect(result).toThrowError('This cohort already exists')
+  })
+
+  it('(8) cohort has not been given a name', () => {
+    // setup
+
+    // execute
+    const result = () => cohortManager.createCohort()
+    // verify
+    expect(result).toThrowError('Cohort must be given a name')
+  })
+
+  it('(9) student not found in original cohort', () => {
+    // setup
+    cohortManager.createCohort('cohort1')
+    cohortManager.addNewStudent('Prince', 'Charming', 'cohort1')
+    // execute
+    // verify
+    expect(() =>
+      cohortManager.reassignStudentCohort(0, 'cohort1')
+    ).toThrowError('Student not found')
+    expect(() =>
+      cohortManager.reassignStudentCohort(1, 'cohort3')
+    ).toThrowError('Cohort not found')
   })
 })
