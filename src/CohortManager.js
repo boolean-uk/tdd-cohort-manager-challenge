@@ -1,4 +1,4 @@
-const Cohort = require("./Cohort.js")
+const Cohort = require('./Cohort.js')
 
 class CohortManager {
   constructor() {
@@ -12,6 +12,17 @@ class CohortManager {
 
   getAllCohorts() {
     return this.cohortsList
+  }
+
+  searchCohort(name) {
+    let result;
+    this.cohortsList.forEach(element => {
+      if(element.getName() === name)
+      {
+        result = element
+      }
+    })
+    return result
   }
 }
 

@@ -21,4 +21,14 @@ describe('Model Manager Class', () => {
     // verify
     expect(cohortManager.getAllCohorts()).toEqual(expectedResult)
   })
+  it("should return the correct cohort", () => {
+    //setup
+    const expectedResult = cohort2
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.createCohort('Cohort 5')
+    //execute
+    const result = cohortManager.searchCohort('Cohort 5')
+    // verify
+    expect(result).toEqual(expectedResult)
+  })
 })
