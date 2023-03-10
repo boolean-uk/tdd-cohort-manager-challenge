@@ -64,4 +64,35 @@ describe('Model Manager Class', () => {
     // verify
     expect(cohortManager.getAllCohorts()).toEqual([cohort2])
   })
+
+  it('should remove the student from the cohort', () => {
+    // setup
+    cohortManager.createCohort('Cohort 9')
+    cohortManager.addStudentToCohort(
+      'Kevin',
+      'Goffin',
+      'Jenocke',
+      'Jenocke@gmail.com',
+      'Cohort 9'
+    )
+    cohortManager.addStudentToCohort(
+      'Ahmed',
+      'Missouri',
+      'Ahmedmissouri',
+      'ahmed@gmail.com',
+      'Cohort 9'
+    )
+    // execute
+    cohortManager.removeStudentFromCohort(1, 'Cohort 9')
+    // verify
+    expect(cohortManager.searchCohort('Cohort 9').getStudents()).toEqual([
+      {
+        firstName: 'Kevin',
+        lastName: 'Goffin',
+        id: 0,
+        username: 'Jenocke',
+        email: 'Jenocke@gmail.com'
+      }
+    ])
+  })
 })

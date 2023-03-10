@@ -14,7 +14,6 @@ class Cohort {
       email: email
     }
     this.studentsList.push(studentToAdd)
-    console.log(this.studentsList)
   }
 
   getName() {
@@ -23,6 +22,11 @@ class Cohort {
 
   getStudents() {
     return this.studentsList
+  }
+
+  removeStudent(studentID) {
+    const i = this.studentsList.findIndex((student) => student.id === studentID)
+    this.studentsList.splice(i, 1)
   }
 }
 
