@@ -334,4 +334,24 @@ describe('Cohort manager', () => {
     // verify
     expect(result).toThrowError('Student not found')
   })
+
+  it('(16) should check if a cohort name exists already', () => {
+    // setup
+    cohortManager.createCohort('cohort1')
+    cohortManager.createCohort('cohort2')
+
+    // execute
+    const result = () => cohortManager.createCohort('cohort1')
+    // verify
+    expect(result).toThrowError('This cohort already exists')
+  })
+
+  it('(17) should check if a cohort name exists already', () => {
+    // setup
+
+    // execute
+    const result = () => cohortManager.createCohort()
+    // verify
+    expect(result).toThrowError('Cohort must be given a name')
+  })
 })

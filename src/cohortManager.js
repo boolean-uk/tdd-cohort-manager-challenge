@@ -7,6 +7,12 @@ class CohortManager {
   }
 
   createCohort(nameCohort) {
+    const cohorts = this.cohorts
+    for (let i = 0; i < cohorts.length; i++) {
+      if (cohorts[i].nameCohort === nameCohort) {
+        throw new Error('This cohort already exists')
+      }
+    }
     const IDCount = (this.IDCount += 1)
     const cohort = new Cohort(nameCohort)
     cohort.IDCohort = IDCount
@@ -113,6 +119,9 @@ class CohortManager {
 
 class Cohort {
   constructor(nameCohort) {
+    if (nameCohort === undefined) {
+      throw new Error('Cohort must be given a name')
+    }
     this.IDCohort = 0
     this.nameCohort = nameCohort
     this.maxStudents = 24
