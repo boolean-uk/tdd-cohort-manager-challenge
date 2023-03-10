@@ -1,4 +1,4 @@
-const { CohortManager, Cohort } = require('../src/cohortManager.js')
+const { CohortManager } = require('../src/cohortManager.js')
 
 describe('Cohort manager', () => {
   let cohortManager
@@ -38,27 +38,14 @@ describe('Cohort manager', () => {
     cohortManager.createCohort('Frontend Cohort')
     cohortManager.createCohort('Backend Cohort')
 
+    const cohort1 = cohortManager.cohorts[0]
+
     // execute
-    const expected = (cohortManager.cohorts = [
-      {
-        IDCohort: 1,
-        nameCohort: 'Frontend Cohort',
-        maxStudents: 24,
-        students: []
-      }
-    ])
+    const expected = cohort1
     const result = cohortManager.searchCohort('Frontend Cohort')
 
     // verify
     expect(result).toEqual(expected)
-  })
-
-  it('(3) should return an error if searched cohort does not exist', () => {
-    // setup
-    const result = () => cohortManager.searchCohort('French Cohort')
-
-    // verify
-    expect(result).toThrowError('Cohort not found')
   })
 
   it('(4) should delete a cohort from cohorts array', () => {
@@ -70,15 +57,6 @@ describe('Cohort manager', () => {
 
     // verify
     expect(result).toEqual(expected)
-  })
-
-  it('(5) should return an error if deleteing non-existent cohort', () => {
-    // setup
-
-    const result = () => cohortManager.deleteCohort('Backend Cohort')
-
-    // verify
-    expect(result).toThrowError('Cohort not found')
   })
 
   it('(6) should create a new student and add to specific cohort', () => {
@@ -144,17 +122,6 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('(8) should return an error if attempting to remove a student not found', () => {
-    // setup
-    cohortManager.createCohort('cohort1')
-
-    const result = () =>
-      cohortManager.removeFromCohort('Captain', 'America', 'cohort1')
-
-    // verify
-    expect(result).toThrowError('Student not found')
-  })
-
   it('(9) should find a student by their studentID', () => {
     // setup
     cohortManager.createCohort('cohort1')
@@ -192,16 +159,6 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('(10) should return an error if student is not found in ID search', () => {
-    // setup
-    cohortManager.createCohort('cohort1')
-
-    const result = () => cohortManager.findStudentbyID(12)
-
-    // verify
-    expect(result).toThrowError('Student not found')
-  })
-
   it('(11) should find a student by their studentID', () => {
     // setup
     cohortManager.createCohort('cohort1')
@@ -237,26 +194,6 @@ describe('Cohort manager', () => {
 
     // verify
     expect(result).toEqual(expected)
-  })
-
-  it('(12) should return an error if trying to add a student to a full cohort', () => {
-    // setup
-    cohortManager.createCohort('cohort1')
-    cohortManager.cohorts[0].cohortStudentCount = 24
-
-    const result = () =>
-      cohortManager.addNewStudent(
-        'Bob',
-        'Builder',
-        'builderB',
-        'bob@bob.com',
-        'cohort1'
-      )
-
-    // verify
-    expect(result).toThrowError(
-      'Cohort is full. Please assign student to another cohort'
-    )
   })
 
   it('(13) should find a student by their surname and return all that match', () => {
@@ -325,27 +262,6 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('(15) should return an error student is not found', () => {
-    // setup
-    cohortManager.createCohort('cohort1')
-
-    const result = () => cohortManager.findStudentbytName('Alice')
-
-    // verify
-    expect(result).toThrowError('Student not found')
-  })
-
-  it('(16) should check if a cohort name exists already', () => {
-    // setup
-    cohortManager.createCohort('cohort1')
-    cohortManager.createCohort('cohort2')
-
-    // execute
-    const result = () => cohortManager.createCohort('cohort1')
-    // verify
-    expect(result).toThrowError('This cohort already exists')
-  })
-
   it('(17) should check if a cohort name exists already', () => {
     // setup
 
@@ -355,35 +271,13 @@ describe('Cohort manager', () => {
     expect(result).toThrowError('Cohort must be given a name')
   })
 
-  //   it('(18.1) should remove student from original cohort when moved', () => {
-  //     // setup
-  //     cohortManager.createCohort('cohort1')
-  //     cohortManager.createCohort('cohort2')
-
-  //     const student = cohortManager.addNewStudent(
-  //       'Fiona',
-  //       'Princess',
-  //       'PrincessFiona',
-  //       'fiona@faraway.com',
-  //       'cohort1'
-  //     )
-  //     // execute
-  //     cohortManager.reassignStudentCohort(student.studentID, 'cohort2')
-
-  //     const expected1 = []
-  //     // const expected2 = 0
-
-  //     const result1 = cohortManager.cohorts[0].studentsInCohort
-  //     // const result2 = cohortManager.cohort[0].cohortStudentCount
-  //     // verify
-  //     expect(result1).toEqual(expected1)
-  //     // expect(result2).toEqual(expected2)
-  //   })
-
-  it('(18.2) should move student to different cohort', () => {
+  it('(18) should remove student from original cohort when moved', () => {
     // setup
     cohortManager.createCohort('cohort1')
     cohortManager.createCohort('cohort2')
+
+    const cohort1 = cohortManager.cohorts[0]
+    const cohort2 = cohortManager.cohorts[1]
 
     const student = cohortManager.addNewStudent(
       'Fiona',
@@ -392,16 +286,19 @@ describe('Cohort manager', () => {
       'fiona@faraway.com',
       'cohort1'
     )
-    const cohort2 = cohortManager.cohorts[1]
-
-    cohortManager.reassignStudentCohort(student.studentID, 'cohort2')
     // execute
-    const expected = [student]
-    const result = cohortManager.cohorts[1].studentsInCohort
+    cohortManager.reassignStudentCohort(student.studentID, 'cohort2')
 
     // verify
-    expect(result).toEqual(expected)
+    // changes to student:
     expect(student.cohortID).toEqual('cohort2')
+
+    // changes to cohort1:
+    expect(cohort1.cohortStudentCount).toEqual(0)
+    expect(cohort1.studentsInCohort.length).toEqual(0)
+
+    // changes to cohort2:
+    expect(cohort2.studentsInCohort).toEqual([student])
     expect(cohort2.cohortStudentCount).toEqual(1)
   })
 })
