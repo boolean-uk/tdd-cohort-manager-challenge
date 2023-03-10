@@ -54,4 +54,14 @@ describe('Model Manager Class', () => {
       }
     ])
   })
+
+  it('should remove a cohort', () => {
+    // setup
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.createCohort('Cohort 5')
+    // execute
+    cohortManager.removeCohort('Cohort 1')
+    // verify
+    expect(cohortManager.getAllCohorts()).toEqual([cohort2])
+  })
 })

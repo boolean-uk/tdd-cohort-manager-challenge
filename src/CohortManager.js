@@ -32,6 +32,11 @@ class CohortManager {
       email
     )
   }
+
+  removeCohort(name) {
+    const i = this.cohortsList.findIndex((cohort) => cohort.name === name)
+    this.cohortsList.splice(i, 1)
+  }
 }
 
 module.exports = CohortManager
