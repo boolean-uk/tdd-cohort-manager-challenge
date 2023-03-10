@@ -14,6 +14,7 @@ class Cohort {
       email: email
     }
     this.studentsList.push(studentToAdd)
+    this.lastID++
   }
 
   getName() {
@@ -26,6 +27,9 @@ class Cohort {
 
   removeStudent(studentID) {
     const i = this.studentsList.findIndex((student) => student.id === studentID)
+    if (i === -1) {
+      throw new Error('Student not found')
+    }
     this.studentsList.splice(i, 1)
   }
 }

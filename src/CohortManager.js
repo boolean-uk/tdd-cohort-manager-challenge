@@ -21,6 +21,8 @@ class CohortManager {
         result = element
       }
     })
+    console.log(result)
+    if (result === undefined) throw new Error('Cohort not found')
     return result
   }
 
@@ -35,6 +37,9 @@ class CohortManager {
 
   removeCohort(name) {
     const i = this.cohortsList.findIndex((cohort) => cohort.name === name)
+    if (i === -1) {
+      throw new Error('Cohort not found')
+    }
     this.cohortsList.splice(i, 1)
   }
 

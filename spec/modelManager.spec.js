@@ -95,4 +95,18 @@ describe('Model Manager Class', () => {
       }
     ])
   })
+
+  it('should throw an error', () => {
+    // setup
+    cohortManager.createCohort('Cohort 1')
+    // execute
+
+    // verify
+    expect(() => {
+      cohortManager.searchCohort('Cohort 7')
+    }).toThrow(new Error('Cohort not found'))
+    expect(() => {
+      cohortManager.removeStudentFromCohort(0, 'Cohort 1')
+    }).toThrow(new Error('Student not found'))
+  })
 })
