@@ -1,11 +1,13 @@
 const Cohort = require('./cohort')
 const Student = require('./student')
+
 // Twilio requirements
 require('dotenv').config()
 const accountSid = process.env.TWILIO_ACCOUNT_SID
 const authToken = process.env.TWILIO_AUTH_TOKEN
+const toPhoneNum = process.env.TO_PHONE_NUM
 const client = require('twilio')(accountSid, authToken)
-const isTwilioEnabled = false
+const isTwilioEnabled = true
 
 class CohortManager {
   constructor() {
@@ -91,6 +93,7 @@ class CohortManager {
     const removeIndex = this.cohorts.findIndex(
       (cohort) => cohort === targetCohort
     )
+    targetCohort.removeAll()
     this.cohorts.splice(removeIndex, 1)
   }
 
@@ -112,7 +115,7 @@ class CohortManager {
     client.messages.create({
       body: message,
       from: '+447782568773',
-      to: '+4915771752969'
+      to: toPhoneNum
     })
   }
 }

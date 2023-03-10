@@ -23,6 +23,12 @@ class Cohort {
     targetStudent.inCohort = false
     this.students.splice(removeIndex, 1)
   }
+
+  removeAll() {
+    this.students.forEach((student) => {
+      student.inCohort = false
+    })
+  }
 }
 
 module.exports = Cohort
