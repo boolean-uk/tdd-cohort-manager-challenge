@@ -112,4 +112,43 @@ describe('CohortManager', () => {
 
     expect(NewCohort.removeCohortByName('softwa dev')).toBeFalse()
   })
+
+  it('remove student from array in cohort', () => {
+    NewCohort.createNewCohort('software dev')
+    NewCohort.createNewStudent(
+      'Joe',
+      'Bobby',
+      'JoeBobbyGithub',
+      'joebobs@gmail.com'
+    )
+    NewCohort.addStudentToCohort(1, 1)
+    NewCohort.removeStudentFromCohort(1)
+
+    expect(NewCohort.searchForCohortByID(1)).toEqual({
+      cohortID: 1,
+      name: 'software dev',
+      students: []
+    })
+  })
+
+  it('remove cohortID from student', () => {
+    NewCohort.createNewCohort('software dev')
+    NewCohort.createNewStudent(
+      'Joe',
+      'Bobby',
+      'JoeBobbyGithub',
+      'joebobs@gmail.com'
+    )
+    NewCohort.addStudentToCohort(1, 1)
+    NewCohort.removeStudentFromCohort(1)
+
+    expect(NewCohort.searchForStudentByID(1)).toEqual({
+      firstName: 'Joe',
+      lastName: 'Bobby',
+      email: 'joebobs@gmail.com',
+      githubName: 'JoeBobbyGithub',
+      studentID: 1,
+      cohortID: null
+    })
+  })
 })

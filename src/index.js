@@ -73,15 +73,28 @@ class Manager {
       return this.cohorts
     } else return false
   }
+
+  removeStudentFromCohort(StudentID) {
+    const student = this.searchForStudentByID(StudentID)
+    if (student.cohortID != null) {
+      const oldCohort = this.cohorts.indexOf(
+        this.searchForCohortByID(student.cohortID)
+      )
+      const oldStudent = this.cohorts[oldCohort].students.indexOf(student)
+      this.cohorts[oldCohort].students.splice(oldStudent, 1)
+    } else return false
+    student.cohortID = null
+    // currentCohort.students.map((e) => e.studentID).indexOf(StudentID)
+
+    // const index = this.cohorts.map((e) => e.cohortID).indexOf(currentCohort)
+    // console.log(index)
+    // const studentInCohortArray = this.cohorts[index].students
+    //   .map((i) => i.studentID)
+    //   .indexOf(StudentID)
+    // console.log(studentInCohortArray)
+    // this.searchForStudentByID(StudentID).cohortID = null
+    // console.log(this.cohorts, this.students)
+  }
 }
-// const NewCohort = new Manager()
-// NewCohort.createNewCohort('software dev')
-// NewCohort.createNewStudent(
-//   'Joe',
-//   'Bobby',
-//   'JoeBobbyGithub',
-//   'joebobs@gmail.com'
-// )
-// NewCohort.removeCohortByName('software dev')
 
 module.exports = { Cohort, Manager, Student }
