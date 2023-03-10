@@ -31,4 +31,27 @@ describe('Model Manager Class', () => {
     // verify
     expect(result).toEqual(expectedResult)
   })
+
+  it('should add a student to a cohort', () => {
+    // setup
+    cohortManager.createCohort('Cohort 9')
+    // execute
+    cohortManager.addStudentToCohort(
+      'Kevin',
+      'Goffin',
+      'Jenocke',
+      'Jenocke@gmail.com',
+      'Cohort 9'
+    )
+    // verify
+    expect(cohortManager.searchCohort('Cohort 9').getStudents()).toEqual([
+      {
+        firstName: 'Kevin',
+        lastName: 'Goffin',
+        id: 0,
+        username: 'Jenocke',
+        email: 'Jenocke@gmail.com'
+      }
+    ])
+  })
 })

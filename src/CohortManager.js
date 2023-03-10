@@ -23,6 +23,15 @@ class CohortManager {
     })
     return result
   }
+
+  addStudentToCohort(firstName, lastName, username, email, cohortName) {
+    this.searchCohort(cohortName).addStudent(
+      firstName,
+      lastName,
+      username,
+      email
+    )
+  }
 }
 
 module.exports = CohortManager
