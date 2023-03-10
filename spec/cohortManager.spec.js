@@ -54,11 +54,13 @@ describe('Cohort Manager', () => {
     // setup
     cohortManager.createCohort('Cohort 1')
     cohortManager.createCohort('Cohort 2')
-    const expected = `No cohort with this name`
+    // const expected = `No cohort with this name`
     // execute
-    const result = cohortManager.findCohort('Cohort 3')
+    // const result = cohortManager.findCohort('Cohort 3')
     // verify
-    expect(result).toEqual(expected)
+    expect(() => {
+      cohortManager.findCohort('Cohort 3')
+    }).toThrow(new Error(`No cohort with this name`))
   })
 
   it('Should add a student to a specific cohort', () => {
@@ -77,6 +79,16 @@ describe('Cohort Manager', () => {
     expect(result).toEqual(expected)
   })
 
+  it('Should throw an error when no student with that ID is added to a cohort', () => {
+    // setup
+    cohortManager.createCohort('Cohort 1')
+
+    // execut & verify
+    expect(() => {
+      cohortManager.addStudentToCohort(12, cohortManager.cohorts[0].name)
+    }).toThrow(new Error('No student with this ID'))
+  })
+
   it('Should remove a cohort by name', () => {
     // setup
     const cohort1 = new Cohort('cohort 1')
@@ -91,12 +103,10 @@ describe('Cohort Manager', () => {
   })
 
   it('Should remove a cohort by name, but return error if no cohort found', () => {
-    // setup
-    const expected = 'No cohort with this name'
-    // execute
-    const result = cohortManager.removeCohort('Cothort 2')
-    // verify
-    expect(result).toEqual(expected)
+    // setup, execute & verify
+    expect(() => {
+      cohortManager.removeCohort('Cothort 2')
+    }).toThrow(new Error('No cohort with this name'))
   })
 
   it('Should search for a student by student ID', () => {
@@ -111,6 +121,13 @@ describe('Cohort Manager', () => {
     expect(result).toEqual(expected)
   })
 
+  it('Should search for a student by student ID, throw error if no student found', () => {
+    // setup execute and verify
+    expect(() => {
+      cohortManager.findStudent(1)
+    }).toThrow(new Error('No student with this ID'))
+  })
+
   it('Should not be able to add students to a cohort that is at capacity', () => {
     // setup
     cohortManager.createCohort('Cohort 1')
@@ -120,30 +137,30 @@ describe('Cohort Manager', () => {
       { length: 24 },
       (_, i) => i + 1
     )
-    const expected = `Unable to add more students to cohort 1. It currently has 24/24 students`
-    // execute
-    const result = cohortManager.addStudentToCohort(1, 'cohort 1')
-    // verify
-    expect(result).toEqual(expected)
+    // execute & verify
+    expect(() => {
+      cohortManager.addStudentToCohort(1, 'cohort 1')
+    }).toThrow(
+      new Error(
+        `Unable to add more students to cohort 1. It currently has 24/24 students`
+      )
+    )
   })
 
   it('Should not be able to create a cohort without a name', () => {
-    // setup
-    const expected = 'To create a cohort, it must have a name'
-    // execute
-    const result = cohortManager.createCohort('')
-    // verify
-    expect(result).toEqual(expected)
+    // Setup, Execute AND Verify, all in one handy block.
+    expect(() => {
+      cohortManager.createCohort('')
+    }).toThrow(new Error('To create a cohort, it must have a name'))
   })
 
   it('Should not be able to create cohorts with the same name', () => {
     // setup
     cohortManager.createCohort('Cohort 1')
-    const expected = 'Cohorts can not have the same name'
-    // execute
-    const result = cohortManager.createCohort('Cohort 1')
-    // verify
-    expect(result).toEqual(expected)
+    // excute & verify
+    expect(() => {
+      cohortManager.createCohort('Cohort 1')
+    }).toThrow(new Error('Cohorts can not have the same name'))
   })
 
   it('Should not be able to assign a student to more than 1 cohort', () => {
@@ -152,11 +169,10 @@ describe('Cohort Manager', () => {
     cohortManager.createCohort('Cohort 2')
     cohortManager.createStudent('Tiger', 'The Great')
     cohortManager.addStudentToCohort(1, 'Cohort 1')
-    const expected = "Student's can only be in 1 cohort"
-    // execute
-    const result = cohortManager.addStudentToCohort(1, 'Cohort 2')
-    // verify
-    expect(result).toEqual(expected)
+    // execute & verify
+    expect(() => {
+      cohortManager.addStudentToCohort(1, 'Cohort 2')
+    }).toThrow(new Error("Student's can only be in 1 cohort"))
   })
 
   it('Should find all students matching a first or last name', () => {

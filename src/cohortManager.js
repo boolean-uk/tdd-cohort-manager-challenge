@@ -11,10 +11,10 @@ class CohortManager {
   createCohort(name) {
     const cohortName = name.toLowerCase()
     if (cohortName.length === 0) {
-      return 'To create a cohort, it must have a name'
+      throw new Error('To create a cohort, it must have a name')
     }
-    if (this.findCohort(cohortName) !== `No cohort with this name`) {
-      return 'Cohorts can not have the same name'
+    if (!this.hasCohort(cohortName)) {
+      throw new Error('Cohorts can not have the same name')
     }
     const newCohort = new Cohort(cohortName)
     this.cohorts.push(newCohort)
@@ -28,10 +28,18 @@ class CohortManager {
     this.students.push(newStudent)
   }
 
+  hasCohort(name) {
+    const cohort = this.cohorts.find((cohort) => cohort.name === name)
+    return cohort === undefined
+  }
+
   findCohort(name) {
     const cohortName = name.toLowerCase()
     const cohort = this.cohorts.find((cohort) => cohort.name === cohortName)
-    return cohort === undefined ? `No cohort with this name` : cohort
+    if (cohort === undefined) {
+      throw new Error(`No cohort with this name`)
+    }
+    return cohort
   }
 
   addStudentToCohort(id, name) {
@@ -39,19 +47,21 @@ class CohortManager {
     const cohortName = name.toLowerCase()
     const cohort = this.findCohort(cohortName)
     if (cohort === undefined) {
-      return 'No cohort with this name'
+      throw new Error('No cohort with this name')
     }
 
     if (cohort.students.length === cohort.capacity) {
-      return `Unable to add more students to ${cohort.name}. It currently has ${cohort.students.length}/${cohort.capacity} students`
+      throw new Error(
+        `Unable to add more students to ${cohort.name}. It currently has ${cohort.students.length}/${cohort.capacity} students`
+      )
     }
 
     if (student === undefined) {
-      return 'No student with this ID'
+      throw new Error('No student with this ID')
     }
 
     if (student.cohort !== 'none') {
-      return "Student's can only be in 1 cohort"
+      throw new Error("Student's can only be in 1 cohort")
     }
     student.cohort = cohort.name
     cohort.students.push(student)
@@ -62,9 +72,8 @@ class CohortManager {
 
   removeCohort(name) {
     const cohortName = name.toLowerCase()
-    if (this.findCohort(cohortName) === `No cohort with this name`) {
-      return 'No cohort with this name'
-    }
+    // If no cohort is found with that name, it will use the throw new error from .findCohort
+    this.findCohort(cohortName)
 
     this.cohorts = this.cohorts.filter((cohort) => cohort.name !== cohortName)
     return this.cohorts
@@ -73,7 +82,7 @@ class CohortManager {
   findStudent(id) {
     const student = this.students.find((student) => student.id === id)
     if (student === undefined) {
-      return 'No student with this ID'
+      throw new Error('No student with this ID')
     }
     return student
   }
@@ -99,7 +108,7 @@ class Cohort {
   removeStudent(id) {
     const student = this.students.find((student) => student.id === id)
     if (student === undefined) {
-      return 'No student with this ID'
+      throw new Error('No student with this ID')
     }
     student.cohort = 'none'
     this.students = this.students.filter((student) => student.id !== id)

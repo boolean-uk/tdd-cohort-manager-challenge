@@ -30,11 +30,10 @@ describe('Cohort', () => {
 
   it(' Should remove student by ID, but return error if no student found', () => {
     // setup
-    const expected = 'No student with this ID'
     cohortManager.createCohort('Cohort 1')
-    // execute
-    const result = cohortManager.cohorts[0].removeStudent(2)
-    // verify
-    expect(result).toEqual(expected)
+    // execute & verify
+    expect(() => {
+      cohortManager.cohorts[0].removeStudent(2)
+    }).toThrow(new Error('No student with this ID'))
   })
 })
