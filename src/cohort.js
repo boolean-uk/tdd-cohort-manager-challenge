@@ -1,7 +1,8 @@
 class Cohort {
-  constructor(name) {
+  constructor(name, maxCapacity = 24) {
     this.name = name
     this.students = []
+    this.maxCapacity = maxCapacity
   }
 
   removeStudent(name) {
@@ -10,6 +11,10 @@ class Cohort {
     )
     this.students.splice(student, 1)
     return this.students
+  }
+
+  setCapacity(maxCapacity) {
+    this.maxCapacity = maxCapacity
   }
 }
 

@@ -36,7 +36,8 @@ describe('cohort', () => {
       'Bloggs',
       'joeBloggs',
       'joeBloggs@test.com',
-      1
+      1,
+      true
     )
     const newCohort = new Cohort('cohort1')
     newCohort.students.push(testStudent)
@@ -124,19 +125,24 @@ describe('cohort', () => {
     const result = cohortManager.findStudentById(1)
     expect(result).toEqual(expected)
   })
-  it('cohorts cannot exccede 24 capacity', () => {
+  it('cohorts cannot exccede set capacity', () => {
     const expected = 'Cohort full!'
-    cohortManager.createNewCohort('cohort1')
+    cohortManager.createNewCohort('cohort1', 1)
     cohortManager.addNewStudent(
       'Joe',
-      'Bloggs',
+      `Bloggs`,
       'joeBloggs',
       'joeBloggs@test.com'
     )
-    for (let i = 0; i < 24; i++) {
-      cohortManager.addStudentToCohort('Joe Bloggs', 'cohort1')
-    }
-    const result = cohortManager.addStudentToCohort('Joe Bloggs', 'cohort1')
+    cohortManager.addNewStudent(
+      'James',
+      'Joyce',
+      'jamesJoyce',
+      'jamesjoyce@gmail.com'
+    )
+
+    cohortManager.addStudentToCohort(`Joe Bloggs`, 'cohort1')
+    const result = cohortManager.addStudentToCohort('James Joyce', 'cohort1')
     expect(result).toEqual(expected)
   })
   it('cohorts cannot be created with no name', () => {
@@ -148,6 +154,33 @@ describe('cohort', () => {
     const expected = 'cohort name does not meet criteria for a cohort name'
     cohortManager.createNewCohort('cohort1')
     const result = cohortManager.createNewCohort('cohort1')
+    expect(result).toEqual(expected)
+  })
+  it('student cannot be in more than one cohort', () => {
+    const expected = 'student is already in a cohort'
+    cohortManager.createNewCohort('cohort1')
+    cohortManager.createNewCohort('cohort2')
+    cohortManager.addNewStudent(
+      'Joe',
+      'Bloggs',
+      'joeBloggs',
+      'joeBloggs@test.com'
+    )
+    cohortManager.addStudentToCohort('Joe Bloggs', 'cohort1')
+    const result = cohortManager.addStudentToCohort('Joe Bloggs', 'cohort2')
+    expect(result).toEqual(expected)
+  })
+  it('search for students by name', () => {
+    cohortManager.addNewStudent('Joe', 'Bloggs')
+    cohortManager.addNewStudent('Joe', 'Hillingham')
+    cohortManager.addNewStudent('Jeremy', 'Smith')
+    cohortManager.addNewStudent('james', 'Bloggs')
+    const expected = [
+      new Student('Joe', 'Bloggs', undefined, undefined, 1),
+      new Student('Joe', 'Hillingham', undefined, undefined, 2),
+      new Student('james', 'Bloggs', undefined, undefined, 4)
+    ]
+    const result = cohortManager.searchStudents('Joe Bloggs')
     expect(result).toEqual(expected)
   })
 })

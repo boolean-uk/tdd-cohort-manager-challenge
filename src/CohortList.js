@@ -19,10 +19,10 @@ class CohortManager {
     return this.students
   }
 
-  createNewCohort(name) {
+  createNewCohort(name, capacity) {
     const findcohort = this.findCohortByName(name)
     if (name !== '' && findcohort.name !== name) {
-      const newCohort = new Cohort(name)
+      const newCohort = new Cohort(name, capacity)
       this.cohorts.push(newCohort)
       return this.cohorts
     } else {
@@ -62,11 +62,16 @@ class CohortManager {
   addStudentToCohort(student, cohort) {
     const foundStudent = this.findStudentByName(student)
     const foundCohort = this.findCohortByName(cohort)
-    if (foundCohort.students.length < 24) {
-      foundCohort.students.push(foundStudent)
-      return foundCohort
+    if (foundStudent.addedToCohort === false) {
+      if (foundCohort.students.length < foundCohort.maxCapacity) {
+        foundStudent.addedToCohort = true
+        foundCohort.students.push(foundStudent)
+        return foundCohort
+      } else {
+        return 'Cohort full!'
+      }
     } else {
-      return 'Cohort full!'
+      return 'student is already in a cohort'
     }
   }
 
@@ -81,6 +86,16 @@ class CohortManager {
     const foundCohort = this.findCohortByName(cohort)
     const result = foundCohort.removeStudent(name)
     return result
+  }
+
+  searchStudents(name) {
+    const nameArr = name.split(' ')
+    const firstName = nameArr[0]
+    const lastName = nameArr[1]
+    const foundStudents = this.students.filter(
+      (obj) => obj.firstName === firstName || obj.lastName === lastName
+    )
+    return foundStudents
   }
 }
 
