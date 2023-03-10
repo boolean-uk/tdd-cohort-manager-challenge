@@ -9,13 +9,14 @@ class CohortManager {
   }
 
   createCohort(name) {
-    if (name.length === 0) {
+    const cohortName = name.toLowerCase()
+    if (cohortName.length === 0) {
       return 'To create a cohort, it must have a name'
     }
-    if (this.findCohort(name) !== `No cohort with this name`) {
+    if (this.findCohort(cohortName) !== `No cohort with this name`) {
       return 'Cohorts can not have the same name'
     }
-    const newCohort = new Cohort(name)
+    const newCohort = new Cohort(cohortName)
     this.cohorts.push(newCohort)
     return this.cohorts
   }
@@ -23,18 +24,20 @@ class CohortManager {
   createStudent(fName, lName, githubUsername = '', email = '') {
     this.idCounter++
     const newStudent = new Student(fName, lName, githubUsername, email)
-    newStudent.studentId = this.idCounter
+    newStudent.id = this.idCounter
     this.students.push(newStudent)
   }
 
   findCohort(name) {
-    const cohort = this.cohorts.find((cohort) => cohort.name === name)
+    const cohortName = name.toLowerCase()
+    const cohort = this.cohorts.find((cohort) => cohort.name === cohortName)
     return cohort === undefined ? `No cohort with this name` : cohort
   }
 
   addStudentToCohort(id, name) {
-    const student = this.students.find((student) => student.studentId === id)
-    const cohort = this.findCohort(name)
+    const student = this.students.find((student) => student.id === id)
+    const cohortName = name.toLowerCase()
+    const cohort = this.findCohort(cohortName)
     if (cohort === undefined) {
       return 'No cohort with this name'
     }
@@ -58,16 +61,17 @@ class CohortManager {
   }
 
   removeCohort(name) {
-    if (this.findCohort(name) === `No cohort with this name`) {
+    const cohortName = name.toLowerCase()
+    if (this.findCohort(cohortName) === `No cohort with this name`) {
       return 'No cohort with this name'
     }
 
-    this.cohorts = this.cohorts.filter((cohort) => cohort.name !== name)
+    this.cohorts = this.cohorts.filter((cohort) => cohort.name !== cohortName)
     return this.cohorts
   }
 
   findStudent(id) {
-    const student = this.students.find((student) => student.studentId === id)
+    const student = this.students.find((student) => student.id === id)
     if (student === undefined) {
       return 'No student with this ID'
     }
@@ -93,12 +97,12 @@ class Cohort {
   }
 
   removeStudent(id) {
-    const student = this.students.find((student) => student.studentId === id)
+    const student = this.students.find((student) => student.id === id)
     if (student === undefined) {
       return 'No student with this ID'
     }
     student.cohort = 'none'
-    this.students = this.students.filter((student) => student.studentId !== id)
+    this.students = this.students.filter((student) => student.id !== id)
     const message = `${student.firstName} ${student.lastName} has been removed from ${this.name}`
     smsNotification(message)
     return this.students
