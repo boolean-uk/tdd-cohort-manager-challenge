@@ -15,10 +15,9 @@ class CohortManager {
   }
 
   searchCohort(name) {
-    let result;
-    this.cohortsList.forEach(element => {
-      if(element.getName() === name)
-      {
+    let result
+    this.cohortsList.forEach((element) => {
+      if (element.getName() === name) {
         result = element
       }
     })
