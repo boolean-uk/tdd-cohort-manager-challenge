@@ -12,7 +12,7 @@
 **Properties:**
 
 - students: Array
-- cohorts: Cohort
+- cohorts: Array [Cohort]
 
 **Methods:**
 
