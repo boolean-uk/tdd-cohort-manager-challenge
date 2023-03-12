@@ -35,4 +35,17 @@ describe('Cohort manager', () => {
     // VERIFY
     expect(result).toEqual(expected)
   })
+
+  it('Remove a cohort that does not exist', () => {
+    // SETUP
+    const expected = null
+
+    // EXECUTE
+    cohortManager.createCohort('Apple')
+    cohortManager.createCohort('Pear')
+    const result = cohortManager.removeCohort('Banana')
+
+    // VERIFY
+    expect(result).toEqual(expected)
+  })
 })
