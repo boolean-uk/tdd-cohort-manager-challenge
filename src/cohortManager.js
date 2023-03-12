@@ -12,6 +12,14 @@ class CohortManager {
     return true
   }
 
+  removeCohort(cohortName) {
+    const filteredCohorts = this.cohorts.filter(
+      (element) => element.cohortName !== cohortName
+    )
+    this.cohorts = filteredCohorts
+    return true
+  }
+
   getCohorts() {
     return this.cohorts
   }
