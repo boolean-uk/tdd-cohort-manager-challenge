@@ -48,4 +48,17 @@ describe('Cohort manager', () => {
     // VERIFY
     expect(result).toEqual(expected)
   })
+
+  it('Searches for a cohort', () => {
+    // SETUP
+    const expected = new Cohort('Pear')
+
+    // EXECUTE
+    cohortManager.createCohort('Apple')
+    cohortManager.createCohort('Pear')
+    const result = cohortManager.searchForCohort('Pear')
+
+    // VERIFY
+    expect(result).toEqual(expected)
+  })
 })
