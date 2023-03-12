@@ -61,4 +61,17 @@ describe('Cohort manager', () => {
     // VERIFY
     expect(result).toEqual(expected)
   })
+
+  it('Searches for a cohort that does not exist', () => {
+    // SETUP
+    const expected = null
+
+    // EXECUTE
+    cohortManager.createCohort('Apple')
+    cohortManager.createCohort('Pear')
+    const result = cohortManager.searchForCohort('Orange')
+
+    // VERIFY
+    expect(result).toEqual(expected)
+  })
 })

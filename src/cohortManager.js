@@ -28,7 +28,12 @@ class CohortManager {
 
   searchForCohort(cohortName) {
     const cohortObj = this.cohorts.find((obj) => obj.cohortName === cohortName)
-    return cohortObj
+
+    if (cohortObj === undefined) {
+      return null
+    } else {
+      return cohortObj
+    }
   }
 
   getCohorts() {
