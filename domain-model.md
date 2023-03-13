@@ -20,7 +20,6 @@ newCohort(String) -> Returns an object of the newly created cohort
 
 **Properties:**
 
-- students: Array
 - cohorts: Array
 
 **Methods:**

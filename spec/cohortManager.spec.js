@@ -78,35 +78,74 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  /*  it('Adds a student to a cohort', () => {
+  it('Adds a student to a cohort', () => {
     // SETUP
-    const studentId = students[1].id
-    const expected = [
-      {
-        cohortName: 'Pear',
-        students: [
-          {
-            studentID: 1,
-            firstName: 'Peter',
-            lastName: 'Smith',
-            gitHubUsername: 'P-Smith',
-            email: 'peter-smith@email.com'
-          }
-        ]
-      }
-    ]
+    const expected = {
+      cohortName: 'Pear',
+      students: [
+        {
+          studentID: 1,
+          firstName: 'Peter',
+          lastName: 'Smith',
+          gitHubUsername: 'P-Smith',
+          email: 'peter-smith@email.com'
+        }
+      ]
+    }
 
     // EXECUTE
     cohortManager.createCohort('Apple')
     cohortManager.createCohort('Pear')
     cohortManager.createCohort('Banana')
 
-    cohortManager.addStudentToCohort('Pear', studentId)
+    cohortManager.addStudentToCohort('Pear', 1)
     const result = cohortManager.searchForCohort('Pear')
-    console.log('OVER HERE ---->', result)
-    // const result = cohortManager.getStudents()
 
     // VERIFY
     expect(result).toEqual(expected)
-  }) */
+  })
+
+  it('Removes a student from a cohort', () => {
+    // SETUP
+    const expected = {
+      cohortName: 'Pear',
+      students: [
+        {
+          studentID: 1,
+          firstName: 'Peter',
+          lastName: 'Smith',
+          gitHubUsername: 'P-Smith',
+          email: 'peter-smith@email.com'
+        }
+      ]
+    }
+
+    // EXECUTE
+    cohortManager.createCohort('Apple')
+    cohortManager.createCohort('Pear')
+
+    cohortManager.addStudentToCohort('Pear', 1)
+    cohortManager.addStudentToCohort('Pear', 2)
+    cohortManager.removeStudentFromCohort('Pear', 2)
+    const result = cohortManager.searchForCohort('Pear')
+
+    // VERIFY
+    expect(result).toEqual(expected)
+  })
+
+  it('Adding non-existent student to cohort returns null', () => {
+    // SETUP
+    const expected = null
+
+    // EXECUTE
+    cohortManager.createCohort('Apple')
+    cohortManager.createCohort('Pear')
+    cohortManager.createCohort('Banana')
+
+    cohortManager.addStudentToCohort('Pear', 1)
+    const result = cohortManager.addStudentToCohort('Pear', 4)
+
+    // VERIFY
+    expect(result).toEqual(expected)
+  })
 })

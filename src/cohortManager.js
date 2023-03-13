@@ -1,8 +1,8 @@
 const Cohort = require('./cohort')
+const students = require('../src/students')
 
 class CohortManager {
-  constructor(students, cohorts) {
-    this.students = students
+  constructor(cohorts) {
     this.cohorts = cohorts
   }
 
@@ -36,26 +36,34 @@ class CohortManager {
   }
 
   addStudentToCohort(cohortName, studentId) {
-    let cohortIndex
-    for (let i = 0; i < this.cohorts.length; i++) {
-      if (this.cohorts[i].cohortName === cohortName) {
-        cohortIndex = i
-      }
-    }
-    console.log('OBJ --> ', cohortIndex)
+    const cohortObj = this.searchForCohort(cohortName)
+    const studentObj = students.find((obj) => obj.studentID === studentId)
 
-    console.log(
-      'I prefer book indexes --> ',
-      this.cohorts[cohortIndex].addStudent(studentId)
+    if (cohortObj && studentObj) {
+      cohortObj.students.push(studentObj)
+      return true
+    } else {
+      return null
+    }
+  }
+
+  removeStudentFromCohort(cohortName, studentId) {
+    const cohortObj = this.searchForCohort(cohortName)
+    const findStudent = cohortObj.students.find(
+      (obj) => obj.studentID === studentId
     )
+
+    if (cohortObj && findStudent) {
+      const index = cohortObj.students.indexOf(findStudent)
+      cohortObj.students.splice(index, 1)
+      return true
+    } else {
+      return null
+    }
   }
 
   getCohorts() {
     return this.cohorts
-  }
-
-  getStudents() {
-    return this.students
   }
 }
 
