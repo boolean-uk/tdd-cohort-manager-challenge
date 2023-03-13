@@ -7,12 +7,21 @@
 - cohortName: String
 - students: Array
 
+**Methods:**
+
+newCohort(String) -> Returns an object of the newly created cohort
+
+- INPUTS:  
+  cohortName: String
+- OUTPUTS:  
+  Cohort: Object
+
 ## class CohortManager
 
 **Properties:**
 
 - students: Array
-- cohorts: Array [Cohort]
+- cohorts: Array
 
 **Methods:**
 
@@ -36,7 +45,7 @@ searchForCohort(String) -> Searches for a cohort or returns null if cohort is no
 - INPUTS:
   cohortName: String
 - OUTPUTS:
-  Cohort: Object  
+  cohort: Object  
   Null -> Cohort not found
 
 addStudentToCohort(String, Number) -> Adds a student to cohort or returns null if student and/or cohort is not found

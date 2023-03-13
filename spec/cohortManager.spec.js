@@ -1,5 +1,6 @@
 const CohortManager = require('../src/cohortManager')
 const Cohort = require('../src/cohort')
+const students = require('../src/students')
 
 describe('Cohort manager', () => {
   let cohortManager
@@ -8,9 +9,12 @@ describe('Cohort manager', () => {
     cohortManager = new CohortManager([], [])
   })
 
-  it('Create a cohort with name', () => {
+  fit('Create a cohort with name', () => {
     // SETUP
-    const expected = [new Cohort('Apple'), new Cohort('Pear')]
+    const expected = [
+      { cohortName: 'Apple', students: [] },
+      { cohortName: 'Pear', students: [] }
+    ]
 
     // EXECUTE
     cohortManager.createCohort('Apple')
@@ -70,6 +74,33 @@ describe('Cohort manager', () => {
     cohortManager.createCohort('Apple')
     cohortManager.createCohort('Pear')
     const result = cohortManager.searchForCohort('Orange')
+
+    // VERIFY
+    expect(result).toEqual(expected)
+  })
+
+  it('Adds a student to a cohort', () => {
+    // SETUP
+    const studentId = students[1].id
+    const expected = new Cohort('Pear', [
+      {
+        studentID: 1,
+        firstName: 'Peter',
+        lastName: 'Smith',
+        gitHubUsername: 'P-Smith',
+        email: 'peter-smith@email.com'
+      }
+    ])
+
+    // EXECUTE
+    cohortManager.createCohort('Apple')
+    cohortManager.createCohort('Pear')
+    cohortManager.createCohort('Banana')
+
+    cohortManager.addStudentToCohort('Pear', studentId)
+    const result = cohortManager.searchForCohort('Pear')
+    console.log('OVER HERE ---->', result)
+    // const result = cohortManager.getStudents()
 
     // VERIFY
     expect(result).toEqual(expected)

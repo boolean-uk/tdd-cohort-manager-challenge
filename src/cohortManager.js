@@ -7,8 +7,8 @@ class CohortManager {
   }
 
   createCohort(cohortName) {
-    const newCohort = new Cohort(cohortName)
-    this.cohorts.push(newCohort)
+    const newCohortObj = new Cohort(cohortName).newCohort()
+    this.cohorts.push(newCohortObj)
     return true
   }
 
@@ -36,8 +36,27 @@ class CohortManager {
     }
   }
 
+  addStudentToCohort(cohortName, studentId) {
+    let cohortIndex
+    for (let i = 0; i < this.cohorts.length; i++) {
+      if (this.cohorts[i].cohortName === cohortName) {
+        cohortIndex = i
+      }
+    }
+    console.log('OBJ --> ', cohortIndex)
+
+    console.log(
+      'I prefer book indexes --> ',
+      this.cohorts[cohortIndex].addStudent(studentId)
+    )
+  }
+
   getCohorts() {
     return this.cohorts
+  }
+
+  getStudents() {
+    return this.students
   }
 }
 
