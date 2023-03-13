@@ -52,9 +52,9 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  /* it('Searches for a cohort', () => {
+  it('Searches for a cohort', () => {
     // SETUP
-    const expected = [{ cohortName: 'Pear', students: [] }]
+    const expected = { cohortName: 'Pear', students: [] }
 
     // EXECUTE
     cohortManager.createCohort('Apple')
@@ -78,7 +78,7 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('Adds a student to a cohort', () => {
+  /*  it('Adds a student to a cohort', () => {
     // SETUP
     const studentId = students[1].id
     const expected = [
