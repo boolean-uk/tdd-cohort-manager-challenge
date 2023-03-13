@@ -37,15 +37,14 @@ removeCohort(String) - Removes cohort or returns null if cohort is not found
   cohortName: String
 - OUTPUTS:
   true -> Successfull  
-  null -> Cohort not found
+  Throw Error -> Cohort not found
 
 searchForCohort(String) -> Searches for a cohort or returns null if cohort is not found
 
 - INPUTS:
   cohortName: String
 - OUTPUTS:
-  cohort: Object  
-  Null -> Cohort not found
+  cohort: Object
 
 addStudentToCohort(String, Number) -> Adds a student to cohort or returns null if student and/or cohort is not found
 
@@ -54,7 +53,7 @@ addStudentToCohort(String, Number) -> Adds a student to cohort or returns null i
   studentId: Number
 - OUTPUTS:
   True -> Successfull  
-  Null -> Student and/or cohort not found
+  Null -> Student not found
 
 removeStudentFromCohort(String, Number) -> Removes a student from a cohort or returns null if student and/or cohort is not found
 

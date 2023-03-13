@@ -1,5 +1,4 @@
 const CohortManager = require('../src/cohortManager')
-const students = require('../src/students')
 
 describe('Cohort manager', () => {
   let cohortManager
@@ -40,16 +39,15 @@ describe('Cohort manager', () => {
   })
 
   it('Remove a cohort that does not exist', () => {
-    // SETUP
-    const expected = null
-
     // EXECUTE
     cohortManager.createCohort('Apple')
     cohortManager.createCohort('Pear')
-    const result = cohortManager.removeCohort('Banana')
+
+    // This had to be made into a callback function for the error detection to work
+    const result = () => cohortManager.removeCohort('Banana')
 
     // VERIFY
-    expect(result).toEqual(expected)
+    expect(result).toThrowError('Cohort not found')
   })
 
   it('Searches for a cohort', () => {
@@ -66,16 +64,13 @@ describe('Cohort manager', () => {
   })
 
   it('Searches for a cohort that does not exist', () => {
-    // SETUP
-    const expected = null
-
     // EXECUTE
     cohortManager.createCohort('Apple')
     cohortManager.createCohort('Pear')
-    const result = cohortManager.searchForCohort('Orange')
+    const result = () => cohortManager.searchForCohort('Orange')
 
     // VERIFY
-    expect(result).toEqual(expected)
+    expect(result).toThrowError('Cohort not found')
   })
 
   it('Adds a student to a cohort', () => {
@@ -133,19 +128,16 @@ describe('Cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('Adding non-existent student to cohort returns null', () => {
-    // SETUP
-    const expected = null
-
+  it('Adding non-existent student to cohort', () => {
     // EXECUTE
     cohortManager.createCohort('Apple')
     cohortManager.createCohort('Pear')
     cohortManager.createCohort('Banana')
 
     cohortManager.addStudentToCohort('Pear', 1)
-    const result = cohortManager.addStudentToCohort('Pear', 4)
+    const result = () => cohortManager.addStudentToCohort('Pear', 4)
 
     // VERIFY
-    expect(result).toEqual(expected)
+    expect(result).toThrowError('Student not found')
   })
 })

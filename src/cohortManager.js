@@ -13,25 +13,26 @@ class CohortManager {
   }
 
   removeCohort(cohortName) {
-    if (this.cohorts.find((obj) => obj.cohortName === cohortName)) {
+    if (this.searchForCohort(cohortName)) {
       const filteredCohorts = this.cohorts.filter(
         (element) => element.cohortName !== cohortName
       )
       this.cohorts = filteredCohorts
       return true
-    } else {
-      // Return null if cohort cannot be found
-      return null
     }
+    // This is redundant because searchForCohort is handling this error message
+    /* else {
+      throw new Error('Cohort not found')
+    } */
   }
 
   searchForCohort(cohortName) {
     const cohortObj = this.cohorts.find((obj) => obj.cohortName === cohortName)
 
-    if (cohortObj === undefined) {
-      return null
-    } else {
+    if (cohortObj) {
       return cohortObj
+    } else {
+      throw new Error('Cohort not found')
     }
   }
 
@@ -39,11 +40,11 @@ class CohortManager {
     const cohortObj = this.searchForCohort(cohortName)
     const studentObj = students.find((obj) => obj.studentID === studentId)
 
-    if (cohortObj && studentObj) {
+    if (studentObj) {
       cohortObj.students.push(studentObj)
       return true
     } else {
-      return null
+      throw new Error('Student not found')
     }
   }
 
@@ -53,12 +54,12 @@ class CohortManager {
       (obj) => obj.studentID === studentId
     )
 
-    if (cohortObj && findStudent) {
+    if (findStudent) {
       const index = cohortObj.students.indexOf(findStudent)
       cohortObj.students.splice(index, 1)
       return true
     } else {
-      return null
+      throw new Error('Student not found')
     }
   }
 
