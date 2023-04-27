@@ -1,122 +1,143 @@
-const Cohort = require("../cohort.js");
+const CohortManager = require('../cohort')
 
-describe("Cohort", () => {
-    let cohort
+describe('Cohort manager', () => {
+  let cohortManager
 
-    beforeEach(() => {
-        cohort = new Cohort()
-    })
-    it("create a cohort", () => {
-        //set up
-        const expected = { id: 1, name: "Cohort-9" }
-        //execute
-        const result = cohort.createNewCohort("Cohort-9")
-        //verify
-        expect(result).toEqual(expected)
-    })
+  beforeEach(() => {
+    cohortManager = new CohortManager([], [])
+  })
 
-    it("Create new student", () => {
-        //set up
-        const expected = {
-            id: 1,
-            studentFirstName: "Asiye",
-            studentLastName: "Yurtkuran",
-            githubUserName: "Asiyeyurtkuran",
-            email: "asiyeyurtkuran@gmail.com",
-            cohort: "Cohort-1"
+  it('Create a cohort with name', () => {
+    // SETUP
+    const expected = [
+      { cohortName: 'FrontEnd', students: [] },
+      { cohortName: 'Backend', students: [] }
+    ]
+
+    // EXECUTE
+    cohortManager.createCohort('FrontEnd')
+    cohortManager.createCohort('Backend')
+    const result = cohortManager.getCohorts()
+
+    // VERIFY
+    expect(result).toEqual(expected)
+  })
+
+  it('Removes a cohort', () => {
+    // SETUP
+    const expected = [{ cohortName: 'Backend', students: [] }]
+
+    // EXECUTE
+    cohortManager.createCohort('FrontEnd')
+    cohortManager.createCohort('Backend')
+
+    cohortManager.removeCohort('FrontEnd')
+    const result = cohortManager.getCohorts()
+
+    // VERIFY
+    expect(result).toEqual(expected)
+  })
+
+  it('Remove a cohort that does not exist', () => {
+    // EXECUTE
+    cohortManager.createCohort('FrontEnd')
+    cohortManager.createCohort('Backend')
+
+    // This had to be made into a callback function for the error detection to work
+    const result = () => cohortManager.removeCohort('BFullStack')
+
+    // VERIFY
+    expect(result).toThrowError('Cohort not found')
+  })
+
+  it('Searches for a cohort', () => {
+    // SETUP
+    const expected = { cohortName: 'Backend', students: [] }
+
+    // EXECUTE
+    cohortManager.createCohort('FrontEnd')
+    cohortManager.createCohort('Backend')
+    const result = cohortManager.searchCohort('Backend')
+
+    // VERIFY
+    expect(result).toEqual(expected)
+  })
+
+  it('Searches for a cohort that does not exist', () => {
+    // EXECUTE
+    cohortManager.createCohort('FrontEnd')
+    cohortManager.createCohort('Backend')
+    const result = () => cohortManager.searchCohort('DataScience')
+
+    // VERIFY
+    expect(result).toThrowError('Cohort not found')
+  })
+
+  it('Adds a student to a cohort', () => {
+    // SETUP
+    const expected = {
+      cohortName: 'Backend',
+      students: [
+        {
+          studentID: 1,
+          firstName: 'Asiye',
+          lastName: 'Yurtkuran',
+          gitHubUsername: 'Asiyeyurtkuran',
+          email: 'asiyeyurtkuran@gmail.com'
         }
-        //execute
-        const result = cohort.createNewStudent()
-        //verify
-        expect(result).toEqual(expected)
-    })
+      ]
+    }
 
-    it("search for a cohort by cohort name", () => {
-        //set up
-        cohort.createNewCohort("Cohort-9")
-        cohort.createNewCohort("Cohort-10")
-        // const cohort3 = cohort.createNewCohort("Cohort-11")
-        const expected = (cohort.cohorts = [{ cohortName: "Cohort-9" }])
-        //execute
-        const result = cohort.searchCohort("Cohort-9")
-        //verify
-        expect(result).toEqual(expected)
-    })
+    // EXECUTE
+    cohortManager.createCohort('FrontEnd')
+    cohortManager.createCohort('Backend')
+    cohortManager.createCohort('FullStack')
 
-    it("return an error if searched cohort not found", () => {
-        //set up
-        cohort.createNewCohort("Cohort-9")
-        cohort.createNewCohort("Cohort-10")
-        //execute
+    cohortManager.addStudentToCohort('Backend', 1)
+    const result = cohortManager.searchCohort('Backend')
 
-        const result = cohort.searchCohort("Cohort-11")
-        //verify
-        expect(result).toEqual("Cohort not found")
-    })
+    // VERIFY
+    expect(result).toEqual(expected)
+  })
 
-    it("Remove cohort", () => {
-        //set up
-        cohort.createNewCohort("Cohort-1")
-        // const cohort2 = cohort.createNewCohort("Cohort-2")
-        // cohort.removeCohort("Cohort-1")
-        //execute
-        const expected = []
-        const result = cohort.removeCohort("Cohort-1")
-        //verify
-        expect(result).toEqual(expected)
-    })
+  it('Removes a student from a cohort', () => {
+    // SETUP
+    const expected = {
+      cohortName: 'Backend',
+      students: [
+        {
+          studentID: 1,
+          firstName: 'Asiye',
+          lastName: 'Yurtkuran',
+          gitHubUsername: 'Asiyeyurtkuran',
+          email: 'asiyeyurtkuran@gmail.com'
+        }
+      ]
+    }
 
-    it("Return an error if removed cohort not found", () => {
-        //set up
-        cohort.createNewCohort("Cohort-9")
-        cohort.createNewCohort("Cohort-10")
+    // EXECUTE
+    cohortManager.createCohort('FrontEnd')
+    cohortManager.createCohort('Backend')
 
-        const result = cohort.removeCohort("Cohort-1")
-        //verify
-        expect(result).toEqual("Cohort not found")
-    })
+    cohortManager.addStudentToCohort('Backend', 1)
+    cohortManager.addStudentToCohort('Backend', 2)
+    cohortManager.removeStudentFromCohort('Backend', 2)
+    const result = cohortManager.searchCohort('Backend')
 
-    it("Remove  a student from spesific cohort", () => {
-        //set up
-        cohort.createNewCohort("Cohort-1")
+    // VERIFY
+    expect(result).toEqual(expected)
+  })
 
-        cohort.createNewStudent(
-            {
-                id: 1,
-                studentFirstName: "Asiye",
-                studentLastName: "Yurtkuran",
-                githubUserName: "Asiyeyurtkuran",
-                email: "asiyeyurtkuran@gmail.com",
-                cohort: "Cohort-1"
-            },
-            {
-                id: 2,
-                studentFirstName: "Ceyda",
-                studentLastName: "gul",
-                githubUserName: "ceydagul",
-                email: "ceydagul@gmail.com",
-                cohort: "Cohort-1"
-            }
-        )
+  it('Adding non-existent student to cohort', () => {
+    // EXECUTE
+    cohortManager.createCohort('FrontEnd')
+    cohortManager.createCohort('Backend')
+    cohortManager.createCohort('FullStack')
 
+    cohortManager.addStudentToCohort('Backend', 1)
+    const result = () => cohortManager.addStudentToCohort('Backend', 4)
 
-
-        //execute
-        cohort.removeStudentFromCohort(1, 'Cohort-1')
-        expect(cohort.searchCohort('Cohort-1').getStudents()).toEqual([ {
-            id: 1,
-            studentFirstName: "Asiye",
-            studentLastName: "Yurtkuran",
-            githubUserName: "Asiyeyurtkuran",
-            email: "asiyeyurtkuran@gmail.com",
-            cohort: "Cohort-1"
-        }])
-        //verify
-        expect(result).toEqual(expected)
-    })
-
-
-
-
-
+    // VERIFY
+    expect(result).toThrowError('Student not found')
+  })
 })

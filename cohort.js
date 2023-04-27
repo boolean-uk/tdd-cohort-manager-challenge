@@ -1,97 +1,98 @@
 class Cohort {
-    constructor() {
-        this.cohortID = 0
-        this.students = []
-        this.cohorts = []
-        this.studentID = 0
-    }
+  constructor(cohortName, students = []) {
+    this.cohortName = cohortName
+    this.students = students
+  }
 
-    createNewCohort(cohortName) {
-        this.cohortID++
-        const newCohort = { id: this.cohortID, name: cohortName }
-        this.cohorts.push(newCohort)
-        return newCohort
-    }
-
-
-    createNewStudent() {
-        this.studentID++
-        const newStudent = {
-            id: this.studentID,
-            studentFirstName: "Asiye",
-            studentLastName: "Yurtkuran",
-            githubUserName: "Asiyeyurtkuran",
-            email: "asiyeyurtkuran@gmail.com",
-            cohort: "Cohort-1"
-        }
-        this.students.push(newStudent)
-        return newStudent
-    }
-
-    searchCohort(cohortName) {
-        const foundCohort = this.cohorts.find((cohort) => cohort.cohortName === cohortName)
-        if (foundCohort === undefined) {
-            return "Cohort not found"
-        } else
-            return [foundCohort]
-
-    }
-
-
-    removeCohort(name) {
-        if (this.findCohort(name) === `Cohort not found`) {
-            return 'Cohort not found'
-        }
-
-        this.cohorts = this.cohorts.filter((cohort) => cohort.name !== name)
-        return this.cohorts
-    }
-
-    findCohort(name) {
-        const cohort = this.cohorts.find((cohort) => cohort.name === name)
-        return cohort === undefined ? `Cohort not found` : cohort
-    }
-
-    searchStudentBy(studentID) {
-        return this.students.find((student) => student.studentID === studentID)
-    }
-    // removeStudentFromCohort(studentID) {
-    //     const student = this.searchStudentBy(studentID)
-
-    //     if (student.cohortID != null) {
-    //         const oldCohort = this.cohorts.indexOf(this.searchStudentBy(student.cohortID))
-    //         const oldStudent = this.students.indexOf(this[oldCohort].students.indexOf(student))
-    //         this.cohorts[oldCohort].students.splice(oldStudent, 1)
-    //     } else return false
-    //     student.cohortID = null
-    // }
-
-    addStudentToCohort(studentFirstName, studentLastName, githubUserName, email, cohort) {
-        this.searchCohort(cohortName).addStudent(
-            studentFirstName,
-            studentLastName,
-            githubUserName,
-            email,
-            cohort
-        )
-    }
-
-    removeStudent(studentID) {
-        const i = this.students.findIndex((student) => student.id === studentID)
-        if (i === -1) {
-            throw new Error('Student not found')
-        }
-        this.students.splice(i, 1)
-    }
-
-    removeStudentFromCohort(studentID, cohortName) {
-        const cohort = this.searchCohort(cohortName)
-        cohort.removeStudent(studentID)
-    }
-
-  getStudents() {
-    return this.students
+  newCohort() {
+    return { cohortName: this.cohortName, students: this.students }
   }
 }
 
-module.exports = Cohort
+class CohortManager {
+  constructor(cohorts) {
+    this.cohorts = cohorts
+  }
+
+  createCohort(cohortName) {
+    const newCohort = new Cohort(cohortName).newCohort()
+    this.cohorts.push(newCohort)
+    return true
+  }
+
+  removeCohort(cohortName) {
+    if (this.searchCohort(cohortName)) {
+      const filteredCohorts = this.cohorts.filter(
+        (element) => element.cohortName !== cohortName
+      )
+      this.cohorts = filteredCohorts
+      return true
+    }
+  }
+
+  searchCohort(cohortName) {
+    const cohorts = this.cohorts.find((obj) => obj.cohortName === cohortName)
+
+    if (cohorts) {
+      return cohorts
+    } else {
+      throw new Error('Cohort not found')
+    }
+  }
+
+  addStudentToCohort(cohortName, studentId) {
+    const cohorts = this.searchCohort(cohortName)
+    const student = students.find((obj) => obj.studentID === studentId)
+
+    if (student) {
+      cohorts.students.push(student)
+      return true
+    } else {
+      throw new Error('Student not found')
+    }
+  }
+
+  removeStudentFromCohort(cohortName, studentId) {
+    const cohorts = this.searchCohort(cohortName)
+    const findStudent = cohorts.students.find(
+      (obj) => obj.studentID === studentId
+    )
+
+    if (findStudent) {
+      const index = cohorts.students.indexOf(findStudent)
+      cohorts.students.splice(index, 1)
+      return true
+    } else {
+      throw new Error('Student not found')
+    }
+  }
+
+  getCohorts() {
+    return this.cohorts
+  }
+}
+const students = [
+  {
+    studentID: 1,
+    firstName: 'Asiye',
+    lastName: 'Yurtkuran',
+    gitHubUsername: 'Asiyeyurtkuran',
+    email: 'asiyeyurtkuran@gmail.com'
+  },
+  {
+    studentID: 2,
+    firstName: 'Joe',
+    lastName: 'Knock',
+    gitHubUsername: 'joeknock',
+    email: 'joeknock@gmail.com'
+  },
+  {
+    studentID: 3,
+    firstName: 'bob',
+    lastName: 'white',
+    gitHubUsername: 'bobwhite',
+    email: 'bobwhite@gmail.com'
+  }
+]
+
+;(module.exports = CohortManager), students, Cohort
