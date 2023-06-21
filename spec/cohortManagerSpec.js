@@ -91,3 +91,22 @@ describe('createCohort', () => {
         });
       });
     
+      describe('searchCohort', () => {
+        beforeEach(() => {
+          cohortManager.createCohort('Cohort B');
+          cohortManager.createCohort('Cohort C');
+        });
+    
+        it('should return the cohort matching the given name', () => {
+          const foundCohort = cohortManager.searchCohort('Cohort B');
+          expect(foundCohort).not.toBeNull();
+          expect(foundCohort.cohortName).toBe('Cohort B');
+        });
+    
+        it('should return null if no cohort matches the given name', () => {
+          const foundCohort = cohortManager.searchCohort('Nonexistent Cohort');
+          expect(foundCohort).toBeNull();
+        });
+      });
+    });
+    
