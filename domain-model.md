@@ -2,7 +2,7 @@
 |------------|---------|--------|----------|--------|
 | As a user, So I can create a cohort with a specific name when I want to, I'd like to add a cohort to my cohort manager app | `addCohort(cohort)` | cohort | If cohort is added to cohort manager | Updated cohort manager containing cohorts `@object[]` |
 |            |         |        | If cohort manager has no cohorts | Empty array |
-| As a user, So I can find a specific cohort, I want to search cohorts by name | `searchByCohortName(cohortName)` | cohortName | If searched cohort name exists | `@object[]` |
+| As a user, So I can find a specific cohort, I want to search cohorts by name | `searchByCohortName(cohortName)` | cohortName | If searched cohort name exists | searched cohort `@object[]` |
 |            |         |        | If searched cohort name does not exist | Throw Error |
 | As a user, So that I can add a new student, I'd like to add the same student to their corresponding cohort | `addStudent(cohortName, studentName)` | cohortName, studentName (first name, last name, GitHub username, email) | If cohort name exists | Updated cohort containing the student |
 |            |         |        | If cohort name does not exist | Throw Error |
