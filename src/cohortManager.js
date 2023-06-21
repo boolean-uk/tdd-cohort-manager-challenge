@@ -112,33 +112,35 @@ class CohortManager {
 
     return cohort
   }
+
+  // QUESTION 4 => DOMAIN MODEL
+  // Remove a cohort by cohort name
+  // USER STORY =>
+  // - As an admin at boolean
+  // - So I update the record
+  // - I'd like to remove a cohort by cohort name
+
+  // DOMAIN MODEL
+  // - Methods => removeChortByName(cohortName)
+  // - Inputs => cohortName
+  // - Data => cohortName(@String)
+  // - Scenario => If admin removes a cohort
+  // - Outputs => cohort(@object) is removed
+  removeCohortByName(cohortName) {
+    const result = this.cohorts.find(
+      (cohort) => cohort.cohortName === cohortName
+    )
+    const cohortIndex = this.cohorts.indexOf(result)
+    this.cohorts.splice(cohortIndex, 1)
+    return this.cohorts
+  }
+
+  getAllCohorts() {
+    const total = this.cohorts.length
+    return total
+  }
 }
 
 // export default CohortManager
 module.exports = CohortManager
 
-// const cohortMan = new CohortManager()
-// cohortMan.createNewCohort('Cohort 1')
-// cohortMan.createNewCohort('Cohort 2')
-
-// const net = cohortMan.addStudentToCohort(
-//   'Rasheed',
-//   'Adesokan',
-//   '@adesokan',
-//   'ade@gmail.com',
-//   'Cohort 1'
-// )
-
-// const net2 = cohortManager.addStudentToCohort(
-//   'Rasheed',
-//   'Adesokan',
-//   '@gitadesokan',
-//   'ade@gmail.com',
-//   'Cohort 1'
-// )
-
-// console.log(net)
-// console.log(cohortManager.cohorts[0])
-
-// const aa = cohortManager.searchChortByName('Cohort 1')
-// console.log(aa)
