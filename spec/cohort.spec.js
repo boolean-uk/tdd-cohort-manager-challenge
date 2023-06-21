@@ -72,4 +72,26 @@ describe('CohortManger', () => {
     // Then
     expect(res).toEqual(expected)
   })
+
+  it('Remove existing cohort', () => {
+    // Given
+    const name1 = 'Cohort 1'
+    const name2 = 'Cohort 2'
+
+    const expected = [
+      {
+        cohortName: 'Cohort 2',
+        students: []
+      }
+    ]
+
+    // When
+    cohortList.createCohort(name1)
+    cohortList.createCohort(name2)
+
+    const res = cohortList.removeCohort('Cohort 1')
+
+    // Then
+    expect(res).toEqual(expected)
+  })
 })
