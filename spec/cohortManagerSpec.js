@@ -26,3 +26,16 @@ describe('createCohort', () => {
         }).toThrowError('Cohort already exists');
       });
     });
+
+    describe('getCohortByName', () => {
+        it('should return the cohort with the given name', () => {
+          const foundCohort = cohortManager.getCohortByName('Cohort A');
+          expect(foundCohort).toBe(cohortA);
+        });
+    
+        it('should return undefined if the cohort is not found', () => {
+          const foundCohort = cohortManager.getCohortByName('Nonexistent Cohort');
+          expect(foundCohort).toBeUndefined();
+        });
+      });
+    
