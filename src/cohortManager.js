@@ -125,6 +125,23 @@ class CohortDetainment {
     })
     return theOne
   }
+
+  allStudentsNamed(name) {
+    const arrayWithSameNameStudents = []
+    this.cohortManager.forEach((team) => {
+      for (const key in team) {
+        for (let i = 0; i < team[key].length; i++) {
+          if (
+            team[key][i].firstName === name ||
+            team[key][i].lastName === name
+          ) {
+            arrayWithSameNameStudents.push(team[key][i])
+          }
+        }
+      }
+    })
+    return arrayWithSameNameStudents
+  }
 }
 
 // const cd = new CohortDetainment()

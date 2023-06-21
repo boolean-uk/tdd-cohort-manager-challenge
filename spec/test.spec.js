@@ -106,4 +106,29 @@ describe('CohortDetainment', () => {
       expect(cd.searchForStudent(1)).toEqual(expected)
     })
   })
+
+  describe('allStudentsNamed()', () => {
+    it("Expect an array with all students who's first and last name match the search", () => {
+      const expected = [
+        {
+          StudentID: 1,
+          firstName: 'Noro',
+          lastName: 'Jan',
+          githubUsername: 'NoroAxper',
+          email: 'classified'
+        },
+        {
+          StudentID: 2,
+          firstName: 'Bill',
+          lastName: 'Jan',
+          githubUsername: 'NoroAxper',
+          email: 'classified'
+        }
+      ]
+      cd.createCohort('team1')
+      cd.addStudent('team1', 'Noro', 'Jan')
+      cd.addStudent('team1', 'Bill', 'Jan')
+      expect(cd.allStudentsNamed('Jan')).toEqual(expected)
+    })
+  })
 })
