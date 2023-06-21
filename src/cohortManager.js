@@ -1,17 +1,4 @@
-// State varaible:
-// const cohortDataStore = [
-//     {
-//        cohortName: cohortName,
-//        students: {
-//         firstName: firstName,
-//         lastName: lastName,
-//         studentId: studentId,
-//         githubUsername: githubUsername,
-//         email: email
-//        }
-//     }
-// ]
-
+let id = 1
 class CohortManager {
   constructor() {
     this.cohortData = []
@@ -36,6 +23,17 @@ class CohortManager {
       return "The cohort doesn't exist"
     }
     return searchResult[0]
+  }
+
+  addStudent(firstName, lastName, githubUsername, email, cohort) {
+    this.searchCohort(cohort).students.push({
+      firstName,
+      lastName,
+      githubUsername,
+      email,
+      id: (`1` + `1` + `${id++}`) / '1'
+    })
+    return this.cohortData
   }
 }
 

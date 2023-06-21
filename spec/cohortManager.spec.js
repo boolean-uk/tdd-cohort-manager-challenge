@@ -61,4 +61,70 @@ describe('cohortManager', () => {
     // verify
     expect(result).toEqual(expected)
   })
+
+  // Test 4
+  it("Adds students to cohort's", () => {
+    // Set up
+    const expected = [
+      {
+        cohortName: 'Cohort 9',
+        students: [
+          {
+            firstName: 'Kyle',
+            lastName: 'Bridgewater',
+            githubUsername: 'kyleUnderwater',
+            email: 'kylebridge@yahoo.com',
+            id: 111
+          },
+          {
+            firstName: 'Billy',
+            lastName: 'Sanders',
+            githubUsername: 'billysanders101',
+            email: 'billysanders101@gmail.com',
+            id: 113
+          }
+        ]
+      },
+      {
+        cohortName: 'Cohort 10',
+        students: [
+          {
+            firstName: 'Alexandra',
+            lastName: "O'neil",
+            githubUsername: 'zandOneil4',
+            email: 'AlexOneil@gmail.com',
+            id: 112
+          }
+        ]
+      }
+    ]
+
+    // Execute
+    cohortManager.create('Cohort 9')
+    cohortManager.create('Cohort 10')
+    cohortManager.addStudent(
+      'Kyle',
+      'Bridgewater',
+      'kyleUnderwater',
+      'kylebridge@yahoo.com',
+      'Cohort 9'
+    )
+    cohortManager.addStudent(
+      'Alexandra',
+      "O'neil",
+      'zandOneil4',
+      'AlexOneil@gmail.com',
+      'Cohort 10'
+    )
+    const result = cohortManager.addStudent(
+      'Billy',
+      'Sanders',
+      'billysanders101',
+      'billysanders101@gmail.com',
+      'Cohort 9'
+    )
+
+    // Verify
+    expect(result).toEqual(expected)
+  })
 })
