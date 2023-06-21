@@ -74,6 +74,9 @@ class CohortManager {
         return el.cohortName === cohortName
       })
     }
+
+    if (!cohort) throw new Error('A cohort with this name does NOT exist')
+
     return cohort
   }
 
@@ -85,22 +88,57 @@ class CohortManager {
   // - I'd like to add a student to a specific cohort
 
   // DOMAIN MODEL
-  // - Methods => createNewStudent(student@Object), addStudentToCohort(student@Object, cohortName)
-  // - Inputs => student@Object, cohortName
-  // - Data => student@Object, Properties: studentID@Number, firstname@String, lastname@String, gitusername@String, email@String, conhortName@String
+  // - Methods => addStudentToCohort(studentData, cohortName)
+  // - Inputs => studentData@Strings, cohortName
+  // - Data => studentData@Strings, Properties: studentID@Number, firstname@String, lastname@String, gitusername@String, email@String, conhortName@String
   // - Scenario => If admin creates student and add to cohort
   // - Outputs => cohort(@object)
+  addStudentToCohort(firstname, lastname, gitusername, email, cohortName) {
+    this.studentID++
+    const student = {
+      studentID: this.studentID,
+      firstname,
+      lastname,
+      gitusername,
+      email
+    }
+
+    const cohort = this.cohorts.find(
+      (cohort) => cohort.cohortName === cohortName
+    )
+    if (!cohort) throw new Error('A cohort with this name does NOT exist')
+
+    cohort.students.push(student)
+
+    return cohort
+  }
 }
 
 // export default CohortManager
 module.exports = CohortManager
 
-const cohortManager = new CohortManager()
-cohortManager.createNewCohort('Cohort 1')
-cohortManager.createNewCohort('Cohort 2')
+// const cohortMan = new CohortManager()
+// cohortMan.createNewCohort('Cohort 1')
+// cohortMan.createNewCohort('Cohort 2')
 
-console.log(cohortManager.cohorts)
-// console.log(cohortManager.cohorts)
+// const net = cohortMan.addStudentToCohort(
+//   'Rasheed',
+//   'Adesokan',
+//   '@adesokan',
+//   'ade@gmail.com',
+//   'Cohort 1'
+// )
+
+// const net2 = cohortManager.addStudentToCohort(
+//   'Rasheed',
+//   'Adesokan',
+//   '@gitadesokan',
+//   'ade@gmail.com',
+//   'Cohort 1'
+// )
+
+// console.log(net)
+// console.log(cohortManager.cohorts[0])
 
 // const aa = cohortManager.searchChortByName('Cohort 1')
 // console.log(aa)
