@@ -94,4 +94,57 @@ describe('CohortManger', () => {
     // Then
     expect(res).toEqual(expected)
   })
+
+  it('Remove student from specific cohort', () => {
+    // Given
+    const name1 = 'Cohort 1'
+
+    const student1 = {
+      firstName: 'Chris',
+      lastName: 'Sach',
+      gitUserName: 'ChrisJS90',
+      email: 'christophersach90@gmail.com'
+    }
+
+    const student2 = {
+      firstName: 'Rei',
+      lastName: 'Ayanami',
+      gitUserName: 'EvaUnitZero',
+      email: 'deffoNotAClone@nerv.com'
+    }
+
+    const expected = {
+      cohortName: 'Cohort 1',
+      students: [
+        {
+          studentId: 2,
+          firstName: 'Rei',
+          lastName: 'Ayanami',
+          gitUserName: 'EvaUnitZero',
+          email: 'deffoNotAClone@nerv.com'
+        }
+      ]
+    }
+
+    // When
+    cohortList.createCohort(name1)
+    cohortList.createStudent(
+      'Cohort 1',
+      student1.firstName,
+      student1.lastName,
+      student1.gitUserName,
+      student1.email
+    )
+    cohortList.createStudent(
+      'Cohort 1',
+      student2.firstName,
+      student2.lastName,
+      student2.gitUserName,
+      student2.email
+    )
+    const res = cohortList.removeStudent('Cohort 1', 1)
+
+    // Then
+    expect(res).toEqual(expected)
+  })
 })
