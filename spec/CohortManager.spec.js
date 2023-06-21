@@ -90,4 +90,12 @@ describe('Cohort Manager', () => {
     // check
     expect(cohortManager.cohorts.length).toEqual(0)
   })
+
+  it('returns an error if the cohort doesnt exist', () => {
+    // setup
+    // execution
+    
+    // check
+    expect(() => cohortManager.removeCohortByName('Cohort 1')).toThrowError('Cohort doesnt exist')
+  })
 })

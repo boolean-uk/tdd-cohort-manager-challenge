@@ -36,7 +36,7 @@ class CohortManager {
   }
 
   removeCohortByName(cohortName) {
-    const cohortFound = this.cohorts.find((item) => item.name === cohortName)
+    const cohortFound = this.findCohortByName(cohortName)
     const cohortIndex = this.cohorts.indexOf(cohortFound)
     this.cohorts.splice(cohortIndex, 1)
   }
