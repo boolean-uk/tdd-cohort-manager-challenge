@@ -16,6 +16,10 @@ describe('CohortDetainment', () => {
       cd.createCohort('team1')
       expect(() => cd.createCohort('team1')).toThrowError(expected)
     })
+    it('Expect an error message to be throw if chosen name is an empty string', () => {
+      const expected = 'Empty string is not valid!'
+      expect(() => cd.createCohort('')).toThrowError(expected)
+    })
   })
 
   describe('searchForCohort()', () => {

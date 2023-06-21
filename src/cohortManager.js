@@ -5,6 +5,9 @@ class CohortDetainment {
   }
 
   createCohort(cohortName) {
+    if (cohortName.length < 1) {
+      throw new Error('Empty string is not valid!')
+    }
     this.cohortManager.forEach((teamName) => {
       for (const key in teamName) {
         if (key === cohortName) {
