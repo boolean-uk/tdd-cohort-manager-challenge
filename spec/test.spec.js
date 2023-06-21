@@ -30,7 +30,7 @@ describe('CohortDetainment', () => {
         email: 'classified'
       }
       cd.createCohort('team1')
-      expect(cd.addStudent('team1', 'Noro')).toEqual(expected)
+      expect(cd.addStudent('team1', 'Noro', 'Jan')).toEqual(expected)
     })
   })
 
@@ -56,13 +56,28 @@ describe('CohortDetainment', () => {
         email: 'classified'
       }
       cd.createCohort('team1')
-      cd.addStudent('team1', 'Noro')
-      expect(cd.removeStudent('team1', 'Noro')).toEqual(expected)
+      cd.addStudent('team1', 'Noro', 'Jan')
+      expect(cd.removeStudent('team1', 'Noro', 'Jan')).toEqual(expected)
     })
     it('Expects error to be thrown if cohort not found', () => {
       const expected = 'Student Not Found!'
       cd.createCohort('team1')
       expect(() => cd.removeStudent('team1')).toThrowError(expected)
+    })
+  })
+
+  describe('searchForStudent()', () => {
+    it('Expects student with matching ID to be found', () => {
+      const expected = {
+        StudentID: 1,
+        firstName: 'Noro',
+        lastName: 'Jan',
+        githubUsername: 'NoroAxper',
+        email: 'classified'
+      }
+      cd.createCohort('team1')
+      cd.addStudent('team1', 'Noro', 'Jan')
+      expect(cd.searchForStudent(1)).toEqual(expected)
     })
   })
 })

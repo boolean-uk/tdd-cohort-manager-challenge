@@ -17,14 +17,14 @@ class CohortDetainment {
     return resultOfFind
   }
 
-  addStudent(cohortName, newStudentName) {
+  addStudent(cohortName, newStudentFirstName, newStudentLastName) {
     const resultOfFind = this.cohortManager.find((obj) =>
       obj.hasOwnProperty(cohortName)
     )
     const newStudent = {
       StudentID: this.idCount++,
-      firstName: newStudentName,
-      lastName: 'Jan',
+      firstName: newStudentFirstName,
+      lastName: newStudentLastName,
       githubUsername: 'NoroAxper',
       email: 'classified'
     }
@@ -48,7 +48,7 @@ class CohortDetainment {
     }
   }
 
-  removeStudent(cohortName, studentName) {
+  removeStudent(cohortName, studentFirstName, studentLastName) {
     let idxOfStudent
     let idxOfCohort
     const resultOfCohortFind = this.cohortManager.find((obj, idx) => {
@@ -62,7 +62,10 @@ class CohortDetainment {
     } else {
       const resultOfStudentFind = resultOfCohortFind[cohortName].find(
         (obj, idx) => {
-          if (obj.firstName.toLowerCase() === studentName.toLowerCase()) {
+          if (
+            obj.firstName.toLowerCase() === studentFirstName.toLowerCase() &&
+            obj.lastName.toLowerCase() === studentLastName.toLowerCase()
+          ) {
             idxOfStudent = idx
             return obj
           } else return false
@@ -76,12 +79,33 @@ class CohortDetainment {
       }
     }
   }
+
+  searchForStudent(id) {
+    let theOne
+    this.cohortManager.forEach((obj) => {
+      for (const key in obj) {
+        // console.log('this is key: ', key)
+        // console.log('this is m :', obj)
+        // console.log('this is experiment :', obj[key])
+        for (let i = 0; i < obj[key].length; i++) {
+          if (obj[key][i].StudentID === id) {
+            // console.log(obj[key][i])
+            theOne = obj[key][i]
+          }
+        }
+      }
+    })
+    return theOne
+  }
 }
 
 const cd = new CohortDetainment()
 cd.createCohort('team1')
-cd.addStudent('team1', 'Noro')
-cd.addStudent('team1', 'Noro')
-const newstud = cd.addStudent('team1', 'Noro')
-console.log(newstud)
+cd.addStudent('team1', 'Noro', 'Jan')
+cd.addStudent('team1', 'Noro', 'Jan')
+cd.addStudent('team1', 'Noro', 'Jan')
+cd.createCohort('team2')
+cd.addStudent('team2', 'Noro2', 'Jan2')
+cd.searchForStudent(3)
+// console.log(cd.cohortManager[0])
 module.exports = CohortDetainment
