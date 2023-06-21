@@ -68,7 +68,7 @@ class CohortManager {
   // - Scenario => If admin searches for cohort by cohort name
   // - Outputs => cohort(@object) is returned
   searchChortByName(cohortName) {
-    let cohort = ''
+    let cohort
     for (let i = 0; i < this.cohorts.length; i++) {
       cohort = this.cohorts.find((el) => {
         return el.cohortName === cohortName
