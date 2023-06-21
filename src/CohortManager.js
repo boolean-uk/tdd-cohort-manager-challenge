@@ -5,9 +5,13 @@ class CohortManager {
   }
 
   createCohort(cohortName) {
-    this.newCohortID++
-    const newCohort = { id: this.newCohortID, name: cohortName, students: [] }
-    this.cohorts.push(newCohort)
+    if (this.cohorts.find((item) => item.name === cohortName)) {
+      throw new Error('Cohort already exists')
+    } else {
+      this.newCohortID++
+      const newCohort = { id: this.newCohortID, name: cohortName, students: [] }
+      this.cohorts.push(newCohort)
+    }
   }
 }
 
