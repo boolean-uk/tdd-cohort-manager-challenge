@@ -128,6 +128,48 @@ describe('Testing CohortManager', () => {
       cohortManager.removeCohort('Cohort 3').toThrowError('Cohort not found')
     )
   })
+
+  it('removeStudent was successful', () => {
+    // Setup
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.addStudent('first', 'last', 'git', 'email', 'Cohort 1')
+    cohortManager.addStudent('first2', 'last2', 'git2', 'email2', 'Cohort 1')
+    const expectedResult = new CohortManager()
+    expectedResult.createCohort('Cohort 1')
+    const testStudent = new Student(2, 'first2', 'last2', 'git2', 'email2')
+    expectedResult.cohortList[0].cohortStudents.push(testStudent)
+    // Execution
+    cohortManager.removeStudent('Cohort 1', 'first', 'last')
+    const result = cohortManager.cohortList
+    // Check
+    expect(result).toEqual(expectedResult.cohortList)
+  })
+
+  it('removeStudent cannot find cohort', () => {
+    // Setup
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.addStudent('first', 'last', 'git', 'email', 'Cohort 1')
+    // Execution
+    // Check
+    expect(() =>
+      cohortManager
+        .removeStudent('Cohort 2', 'first', 'last')
+        .toThrowError('Cohort not found')
+    )
+  })
+
+  it('removeStudent cannot find student', () => {
+    // Setup
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.addStudent('first', 'last', 'git', 'email', 'Cohort 1')
+    // Execution
+    // Check
+    expect(() =>
+      cohortManager
+        .removeStudent('Cohort 1', 'first2', 'last2')
+        .toThrowError('Student not found')
+    )
+  })
 })
 
 describe('Testing Student Constructor', () => {

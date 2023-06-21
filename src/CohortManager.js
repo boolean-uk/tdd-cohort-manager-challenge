@@ -69,6 +69,25 @@ class CohortManager {
       throw new Error('Cohort not found')
     }
   }
+
+  removeStudent(cohortName, studentFirstName, studentLastName) {
+    const cohortFound = this.cohortList.find(
+      (item) => item.cohortName === cohortName
+    )
+    if (!cohortFound) {
+      throw new Error('Cohort not found')
+    }
+    const studentFound = cohortFound.cohortStudents.find(
+      (item) =>
+        item.firstName === studentFirstName && item.lastName === studentLastName
+    )
+    if (studentFound) {
+      const deletionIndex = cohortFound.cohortStudents.indexOf(studentFound)
+      cohortFound.cohortStudents.splice(deletionIndex, 1)
+    } else {
+      throw new Error('Student not found')
+    }
+  }
 }
 
 module.exports = CohortManager
