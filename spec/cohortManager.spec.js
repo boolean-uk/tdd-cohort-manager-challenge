@@ -117,4 +117,62 @@ describe('Cohort Manager', () => {
     const result = () => app.removeCohort('cohort06')
     expect(result).toThrowError('Cohort was not found')
   })
+  it('delete a student', () => {
+    const expectedIdTwo = '9HW7B1Y'
+    spyOn(app, 'generateStudentId').and.returnValue(expectedIdTwo)
+    app.addCohort('cohort05')
+    app.addCohort('cohort06')
+    app.addStudent(
+      'cohort06',
+      'carolina',
+      'arruda',
+      'carolarruda',
+      'carolinacarruda@sapo.pt'
+    )
+    app.addStudent('cohort05', 'sara', 'jb', 'sarajb', 'sarajb@sapo.pt')
+    app.addStudent('cohort06', 'sara', 'jb', 'sarajb', 'sarajb@sapo.pt')
+
+    const expected = [
+      {
+        id: 1,
+        cohortName: 'cohort05',
+        students: [
+          {
+            firstName: 'sara',
+            lastName: 'jb',
+            githubUsername: 'sarajb',
+            email: 'sarajb@sapo.pt',
+            studentID: expectedIdTwo
+          }
+        ]
+      },
+      {
+        id: 2,
+        cohortName: 'cohort06',
+        students: [
+          {
+            firstName: 'sara',
+            lastName: 'jb',
+            githubUsername: 'sarajb',
+            email: 'sarajb@sapo.pt',
+            studentID: expectedIdTwo
+          }
+        ]
+      }
+    ]
+    const result = app.removeStudent('carolina arruda')
+    expect(result).toEqual(expected)
+  })
+  it('error message when student name does not exist', () => {
+    app.addCohort('cohort05')
+    app.addStudent(
+      'cohort05',
+      'carolina',
+      'arruda',
+      'carolarruda',
+      'carolinacarruda@sapo.pt'
+    )
+    const resultTwo = () => app.removeStudent('carolina')
+    expect(resultTwo).toThrowError('Student was not found')
+  })
 })

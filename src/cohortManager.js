@@ -52,6 +52,30 @@ class CohortManager {
         (item) => item.cohortName !== cohortToDelete
       )
     }
+    return this.cohorts
+  }
+
+  removeStudent(fullName) {
+    const [firstName, lastName] = fullName.split(' ')
+    let studentFound = false
+
+    for (let i = 0; i < this.cohorts.length; i++) {
+      const students = this.cohorts[i].students
+
+      const index = students.findIndex(
+        (student) =>
+          student.firstName === firstName && student.lastName === lastName
+      )
+
+      if (index !== -1) {
+        students.splice(index, 1)
+        studentFound = true
+        break
+      }
+    }
+    if (!studentFound) {
+      throw new Error('Student was not found')
+    }
 
     return this.cohorts
   }
