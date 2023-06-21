@@ -1,6 +1,7 @@
 class CohortDetainment {
   constructor() {
     this.cohortManager = []
+    this.idCount = 1
   }
 
   createCohort(cohortName) {
@@ -14,6 +15,21 @@ class CohortDetainment {
       obj.hasOwnProperty(cohortName)
     )
     return resultOfFind
+  }
+
+  addStudent(cohortName, newStudentName) {
+    const resultOfFind = this.cohortManager.find((obj) =>
+      obj.hasOwnProperty(cohortName)
+    )
+    const newStudent = {
+      StudentID: this.idCount++,
+      firstName: newStudentName,
+      lastName: 'Jan',
+      githubUsername: 'NoroAxper',
+      email: 'classified'
+    }
+    resultOfFind[cohortName].push(newStudent)
+    return newStudent
   }
 }
 

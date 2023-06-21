@@ -20,4 +20,17 @@ describe('CohortDetainment', () => {
       expect(cd.searchForCohort('team1')).toEqual(expected)
     })
   })
+  describe('addStudent(@String, @String)', () => {
+    it('Expects a student to be added to a specified cohort', () => {
+      const expected = {
+        StudentID: 1,
+        firstName: 'Noro',
+        lastName: 'Jan',
+        githubUsername: 'NoroAxper',
+        email: 'classified'
+      }
+      cd.createCohort('team1')
+      expect(cd.addStudent('team1', 'Noro')).toEqual(expected)
+    })
+  })
 })
