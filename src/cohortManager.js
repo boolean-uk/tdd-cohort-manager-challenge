@@ -1,7 +1,5 @@
-// This is some text
-
 // State varaible:
-// const cohortData = [
+// const cohortDataStore = [
 //     {
 //        cohortName: cohortName,
 //        students: {
@@ -13,3 +11,21 @@
 //        }
 //     }
 // ]
+
+class CohortManager {
+  constructor() {
+    this.cohortData = []
+  }
+
+  create(cohort) {
+    const obj = {
+      cohortName: cohort,
+      students: []
+    }
+
+    this.cohortData.push(obj)
+    return obj
+  }
+}
+
+module.exports = CohortManager

@@ -1,7 +1,21 @@
-// This is more comments
+const CohortManager = require('../src/cohortManager.js')
 
-describe('check 1+1 = 2', () => {
-  it('is a test', () => {
-    expect(1).toEqual(1)
+describe('cohortManager', () => {
+  let cohortManager
+
+  beforeEach(() => {
+    cohortManager = new CohortManager()
+  })
+
+  it('creates a cohort', () => {
+    // Set up
+    const expected = {
+      cohortName: 'Cohort 10',
+      students: []
+    }
+    // Execute
+    const result = cohortManager.create('Cohort 10')
+    // Verify
+    expect(result).toEqual(expected)
   })
 })
