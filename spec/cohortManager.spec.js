@@ -7,14 +7,41 @@ describe('cohortManager', () => {
     cohortManager = new CohortManager()
   })
 
+  // Test 1
   it('creates a cohort', () => {
     // Set up
+    const expected = [
+      {
+        cohortName: 'Cohort 9',
+        students: []
+      },
+      {
+        cohortName: 'Cohort 10',
+        students: []
+      }
+    ]
+    // Execute
+    cohortManager.create('Cohort 9')
+    const result = cohortManager.create('Cohort 10')
+    // Verify
+    expect(result).toEqual(expected)
+  })
+
+  // Test 2
+  it('retruns the cohort data, if it exists', () => {
+    // Set up
     const expected = {
-      cohortName: 'Cohort 10',
+      cohortName: 'Cohort 8',
       students: []
     }
+
     // Execute
-    const result = cohortManager.create('Cohort 10')
+    cohortManager.create('Cohort 7')
+    cohortManager.create('Cohort 8')
+    cohortManager.create('Cohort 9')
+    cohortManager.create('Cohort 10')
+    const result = cohortManager.searchCohort('Cohort 8')
+
     // Verify
     expect(result).toEqual(expected)
   })

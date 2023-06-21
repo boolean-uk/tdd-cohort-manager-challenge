@@ -24,7 +24,14 @@ class CohortManager {
     }
 
     this.cohortData.push(obj)
-    return obj
+    return this.cohortData
+  }
+
+  searchCohort(cohort) {
+    const searchResult = this.cohortData.filter((obj) => {
+      return obj.cohortName === cohort
+    })
+    return searchResult[0]
   }
 }
 
