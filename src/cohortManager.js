@@ -78,4 +78,10 @@ class CohortDetainment {
   }
 }
 
+const cd = new CohortDetainment()
+cd.createCohort('team1')
+cd.addStudent('team1', 'Noro')
+cd.addStudent('team1', 'Noro')
+const newstud = cd.addStudent('team1', 'Noro')
+console.log(newstud)
 module.exports = CohortDetainment
