@@ -45,4 +45,24 @@ describe('CohortDetainment', () => {
       expect(() => cd.removeCohort('team1')).toThrowError(expected)
     })
   })
+
+  describe('removeStudent()', () => {
+    it('Expects specified student to be removed from specified cohort', () => {
+      const expected = {
+        StudentID: 1,
+        firstName: 'Noro',
+        lastName: 'Jan',
+        githubUsername: 'NoroAxper',
+        email: 'classified'
+      }
+      cd.createCohort('team1')
+      cd.addStudent('team1', 'Noro')
+      expect(cd.removeStudent('team1', 'Noro')).toEqual(expected)
+    })
+    it('Expects error to be thrown if cohort not found', () => {
+      const expected = 'Student Not Found!'
+      cd.createCohort('team1')
+      expect(() => cd.removeStudent('team1')).toThrowError(expected)
+    })
+  })
 })

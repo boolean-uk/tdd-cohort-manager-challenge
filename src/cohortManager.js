@@ -5,7 +5,7 @@ class CohortDetainment {
   }
 
   createCohort(cohortName) {
-    const newCohort = { [cohortName]: [] }
+    const newCohort = { [cohortName.toLowerCase()]: [] }
     this.cohortManager.push(newCohort)
     return newCohort
   }
@@ -34,7 +34,6 @@ class CohortDetainment {
 
   removeCohort(cohortName) {
     let idxOfCohort
-    cohortName.toLowerCase()
     const resultOfFind = this.cohortManager.find((obj, idx) => {
       if (obj.hasOwnProperty(cohortName)) {
         idxOfCohort = idx
@@ -46,6 +45,35 @@ class CohortDetainment {
     } else {
       this.cohortManager.splice(idxOfCohort, 1)
       return resultOfFind
+    }
+  }
+
+  removeStudent(cohortName, studentName) {
+    let idxOfStudent
+    let idxOfCohort
+    const resultOfCohortFind = this.cohortManager.find((obj, idx) => {
+      if (obj.hasOwnProperty(cohortName)) {
+        idxOfCohort = idx
+        return obj
+      } else return false
+    })
+    if (!resultOfCohortFind) {
+      throw new Error('Cohort Not Found!')
+    } else {
+      const resultOfStudentFind = resultOfCohortFind[cohortName].find(
+        (obj, idx) => {
+          if (obj.firstName.toLowerCase() === studentName.toLowerCase()) {
+            idxOfStudent = idx
+            return obj
+          } else return false
+        }
+      )
+      if (!resultOfStudentFind) {
+        throw new Error('Student Not Found!')
+      } else {
+        this.cohortManager[idxOfCohort][cohortName].splice(idxOfStudent, 1)
+        return resultOfStudentFind
+      }
     }
   }
 }
