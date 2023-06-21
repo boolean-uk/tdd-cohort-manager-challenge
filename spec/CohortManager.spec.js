@@ -34,4 +34,14 @@ describe('Cohort Manager', () => {
     // check
     expect(cohortManager.findCohortByName('Cohort 1').id).toEqual(1)
   })
+
+  it('returns an error if the cohort does not exist', () => {
+    // setup
+    cohortManager.createCohort('Cohort 1')
+    // execution
+    // check
+    expect(() => cohortManager.findCohortByName('Cohort 2').id).toThrowError(
+      'Cohort doesnt exist'
+    )
+  })
 })
