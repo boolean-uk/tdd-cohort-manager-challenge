@@ -22,6 +22,20 @@ class CohortManager {
       throw new Error('Cohort doesnt exist')
     }
   }
+
+  addStudentToCohort(studentName, cohortName) {
+    const foundCohort = this.findCohortByName(cohortName)
+    foundCohort.students.push(new Student(studentName))
+    return true
+  }
 }
 
-module.exports = CohortManager
+class Student {
+  constructor(fullName, ghUsername = '', email = 'testEmail@email.com') {
+    const splitName = fullName.split(' ')
+    this.lastName = splitName.pop()
+    this.firstName = splitName.join(' ')
+  }
+}
+
+module.exports = { CohortManager }

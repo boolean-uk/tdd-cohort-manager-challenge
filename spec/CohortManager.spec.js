@@ -1,4 +1,4 @@
-const CohortManager = require('../src/CohortManager.js')
+const { CohortManager } = require('../src/CohortManager.js')
 
 describe('Cohort Manager', () => {
   let cohortManager
@@ -42,6 +42,17 @@ describe('Cohort Manager', () => {
     // check
     expect(() => cohortManager.findCohortByName('Cohort 2').id).toThrowError(
       'Cohort doesnt exist'
+    )
+  })
+
+  it('add a student to the cohort if it exists and the student is not already present', () => {
+    // setup
+    cohortManager.createCohort('Cohort 1')
+    // execution
+    cohortManager.addStudentToCohort('Bob Smith', 'Cohort 1')
+    // check
+    expect(cohortManager.findCohortByName('Cohort 1').students[0].firstName).toEqual(
+      'Bob'
     )
   })
 })
