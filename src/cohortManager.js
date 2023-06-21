@@ -8,6 +8,13 @@ class CohortDetainment {
     this.cohortManager.push(newCohort)
     return newCohort
   }
+
+  searchForCohort(cohortName) {
+    const resultOfFind = this.cohortManager.find((obj) =>
+      obj.hasOwnProperty(cohortName)
+    )
+    return resultOfFind
+  }
 }
 
 module.exports = CohortDetainment
