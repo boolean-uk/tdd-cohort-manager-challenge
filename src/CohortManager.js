@@ -43,12 +43,22 @@ class CohortManager {
 
   removeStudentFromCohort(studentName, cohortName) {
     const cohortFound = this.findCohortByName(cohortName)
-    cohortFound.students.splice(
-      cohortFound.students.indexOf(
-        cohortFound.students.find((student) => student.name === studentName)
-      ),
-      1
+    const studentFound = cohortFound.students.find(
+      (student) => `${student.firstName} ${student.lastName}` === studentName
     )
+    if (studentFound !== undefined) {
+      cohortFound.students.splice(
+        cohortFound.students.indexOf(
+          cohortFound.students.find(
+            (student) =>
+              `${student.firstName} ${student.lastName}` === studentName
+          )
+        ),
+        1
+      )
+    } else {
+      throw new Error('Student doesnt exist in the cohort')
+    }
   }
 }
 
