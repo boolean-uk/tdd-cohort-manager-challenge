@@ -1,17 +1,21 @@
 class CohortList {
   constructor() {
-    this.cohorts = []
+    this.cohortList = []
   }
 
-  createCohort(cohortName) {
+  createCohort(cohort) {
     const newCohort = {
-      cohortName: 'Cohort1',
+      cohortName: cohort.cohortName, // try create 2 cohort and check that they get called their right 'cohortName'
       students: []
     }
-    this.cohorts.push(cohortName)
-    console.log(newCohort)
-    return newCohort
+    this.cohortList.push(newCohort)
+    console.log('list', this.cohortList)
+    return this.cohortList
   }
+
+  // addNewStudent(studentID) {
+  //   if()
+  // }
 }
 
 module.exports = CohortList
