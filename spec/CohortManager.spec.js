@@ -6,16 +6,17 @@ describe('Testing CohortManager', () => {
     cohortManager = new CohortManager()
   })
 
-  it('Create a new cohort', () => {
+  it('createCohort creates a new cohort', () => {
     // Setup
     // Execution
     cohortManager.createCohort('Cohort 1')
+    cohortManager.createCohort('Cohort 2')
     const result = cohortManager.cohorts.length
     // Check
-    expect(result).toEqual(1)
+    expect(result).toEqual(2)
   })
 
-  it('Returns error if cohort name already exists', () => {
+  it('createCohort returns error if cohort name already exists', () => {
     // Setup
     cohortManager.createCohort('Cohort 1')
     // Execution
@@ -24,6 +25,28 @@ describe('Testing CohortManager', () => {
       cohortManager
         .createCohort('Cohort 1')
         .toThrowError('Cohort name is already in use')
+    )
+  })
+
+  it('findCohort returns cohort if it exists', () => {
+    // Setup
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.createCohort('Cohort 2')
+    cohortManager.createCohort('Cohort 3')
+    // Execution
+    const result = cohortManager.findCohort('Cohort 2')
+    // Check
+    expect(result.name).toBe('Cohort 2')
+    expect(result.id).toBe(2)
+  })
+
+  it('findCohort returns error if not found', () => {
+    // Setup
+    cohortManager.createCohort('Cohort 1')
+    // Execution
+    // Check
+    expect(() =>
+      cohortManager.findCohort('Cohort 2').toThrowError('Cohort not found')
     )
   })
 })
