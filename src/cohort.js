@@ -36,6 +36,15 @@ class CohortManager {
     this.cohorts.splice(tInd, 1)
     return this.cohorts
   }
+
+  removeStudent(coh, stuId) {
+    const tCohInd = this.cohorts.findIndex((c) => c.cohortName === coh)
+    const tStuInd = this.cohorts[tCohInd].students.findIndex(
+      (s) => s.studentId === stuId
+    )
+    this.cohorts[tCohInd].students.splice(tStuInd, 1)
+    return this.searchCohort(coh)
+  }
 }
 
 module.exports = CohortManager
