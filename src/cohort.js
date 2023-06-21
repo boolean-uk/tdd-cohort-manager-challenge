@@ -8,12 +8,17 @@ class Cohort {
     const cohort = this.cohortList.find(
       (cohort) => cohort.cohortName === cohortName
     )
+    if (!cohort) {
+      return 'cohort does not exist'
+    }
     return cohort
   }
 
   createCohort(cohortName) {
-    const existingcohort = this.findCohort(cohortName)
-    if (existingcohort) {
+    const existingCohort = this.cohortList.find(
+      (cohort) => cohort.cohortName === cohortName
+    )
+    if (existingCohort) {
       return 'cohort already exists'
     }
 

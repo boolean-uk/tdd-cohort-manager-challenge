@@ -51,4 +51,9 @@ describe('findCohort', () => {
     const res = cohort.findCohort('cohort_14')
     expect(res).toEqual(cohort14)
   })
+
+  it('if the cohort does not exist, return error message', () => {
+    const res = cohort.findCohort('cohort_XX')
+    expect(res).toEqual('cohort does not exist')
+  })
 })
