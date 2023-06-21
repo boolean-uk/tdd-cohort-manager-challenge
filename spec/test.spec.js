@@ -32,6 +32,16 @@ describe('CohortDetainment', () => {
       cd.createCohort('team1')
       expect(cd.addStudent('team1', 'Noro', 'Jan')).toEqual(expected)
     })
+    it('Expect an attempt to add 25th student in a cohort to throw an error', () => {
+      const expected = 'Cohort capacity of 24 reached!'
+      cd.createCohort('team1')
+      for (let i = 0; i < 24; i++) {
+        cd.addStudent('team1', `Noro${i}`, `Jan${i}`)
+      }
+      expect(() => cd.addStudent('team1', 'Noro25', 'Jan25')).toThrowError(
+        expected
+      )
+    })
   })
 
   describe('removeCohort()', () => {

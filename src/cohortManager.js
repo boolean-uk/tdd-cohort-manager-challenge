@@ -28,8 +28,12 @@ class CohortDetainment {
       githubUsername: 'NoroAxper',
       email: 'classified'
     }
-    resultOfFind[cohortName].push(newStudent)
-    return newStudent
+    if (resultOfFind[cohortName].length === 24) {
+      throw new Error('Cohort capacity of 24 reached!')
+    } else {
+      resultOfFind[cohortName].push(newStudent)
+      return newStudent
+    }
   }
 
   removeCohort(cohortName) {
@@ -104,8 +108,5 @@ cd.createCohort('team1')
 cd.addStudent('team1', 'Noro', 'Jan')
 cd.addStudent('team1', 'Noro', 'Jan')
 cd.addStudent('team1', 'Noro', 'Jan')
-cd.createCohort('team2')
-cd.addStudent('team2', 'Noro2', 'Jan2')
-cd.searchForStudent(3)
-// console.log(cd.cohortManager[0])
+console.log(cd.cohortManager[0].team1)
 module.exports = CohortDetainment
