@@ -8,11 +8,14 @@ class CohortList {
       cohortName: cohort.cohortName, // try create 2 cohort and check that they get called their right 'cohortName'
       students: []
     }
-    this.cohortList.push(newCohort)
-    console.log('list', this.cohortList)
-    return this.cohortList
+    if (this.cohortList.cohortName !== newCohort.cohortName) {
+      this.cohortList.push(newCohort)
+      console.log('list', this.cohortList)
+      return newCohort
+    } else {
+      return 'This cohort already exists!'
+    }
   }
-
   // addNewStudent(studentID) {
   //   if()
   // }

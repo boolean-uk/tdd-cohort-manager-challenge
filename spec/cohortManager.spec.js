@@ -1,6 +1,6 @@
 const CohortList = require('../src/cohortManager.js')
 
-describe('Contains all Cohorts', () => {
+describe('Cohort List: ', () => {
   let cohortList
   beforeEach(() => {
     cohortList = new CohortList()
@@ -9,20 +9,20 @@ describe('Contains all Cohorts', () => {
   it('Creates a new cohort with a name', () => {
     // GIVEN
     const cohort = {
-      cohortName: 'Cohort1',
-      students: []
-    }
-    const cohort2 = {
       cohortName: 'Cohort2',
       students: []
     }
+    // const cohort2 = {
+    //   cohortName: 'Cohort2',
+    //   students: []
+    // }
 
     // WHEN
-    cohortList.createCohort(cohort)
-    cohortList.createCohort(cohort2)
+    const newCohort = cohortList.createCohort(cohort)
+    // cohortList.createCohort(cohort2)
 
     // THEN
-    expect(cohortList).toEqual(cohort)
+    expect(newCohort).toEqual(cohort)
   })
   // it('Adds a student to a specific cohort', () => {
   //   const student = {
