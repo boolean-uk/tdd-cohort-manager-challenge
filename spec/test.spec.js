@@ -11,6 +11,11 @@ describe('CohortDetainment', () => {
       const expected = { team1: [] }
       expect(cd.createCohort('team1')).toEqual(expected)
     })
+    it('Expect an attempt to add a cohort where the name exists to return an error message', () => {
+      const expected = 'Cohort already Exists!'
+      cd.createCohort('team1')
+      expect(() => cd.createCohort('team1')).toThrowError(expected)
+    })
   })
 
   describe('searchForCohort()', () => {

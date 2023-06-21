@@ -5,6 +5,13 @@ class CohortDetainment {
   }
 
   createCohort(cohortName) {
+    this.cohortManager.forEach((teamName) => {
+      for (const key in teamName) {
+        if (key === cohortName) {
+          throw new Error('Cohort already Exists!')
+        }
+      }
+    })
     const newCohort = { [cohortName.toLowerCase()]: [] }
     this.cohortManager.push(newCohort)
     return newCohort
@@ -108,5 +115,5 @@ cd.createCohort('team1')
 cd.addStudent('team1', 'Noro', 'Jan')
 cd.addStudent('team1', 'Noro', 'Jan')
 cd.addStudent('team1', 'Noro', 'Jan')
-console.log(cd.cohortManager[0].team1)
+// console.log(cd.cohortManager[0].team1)
 module.exports = CohortDetainment
