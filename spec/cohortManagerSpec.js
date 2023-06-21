@@ -20,3 +20,9 @@ describe('createCohort', () => {
       expect(cohortManager.cohorts.length).toBe(1);
     });
 
+    it('should throw an error if the cohort already exists', () => {
+        expect(() => {
+          cohortManager.createCohort('Cohort A');
+        }).toThrowError('Cohort already exists');
+      });
+    });
