@@ -28,6 +28,20 @@ class CohortDetainment {
   }
 
   addStudent(cohortName, newStudentFirstName, newStudentLastName) {
+    this.cohortManager.forEach((team) => {
+      for (const key in team) {
+        for (let i = 0; i < team[key].length; i++) {
+          if (
+            team[key][i].firstName === newStudentFirstName &&
+            team[key][i].lastName === newStudentLastName
+          ) {
+            throw new Error(
+              'Student already Exists either in this or another cohort!'
+            )
+          }
+        }
+      }
+    })
     const resultOfFind = this.cohortManager.find((obj) =>
       obj.hasOwnProperty(cohortName)
     )
@@ -113,10 +127,10 @@ class CohortDetainment {
   }
 }
 
-const cd = new CohortDetainment()
-cd.createCohort('team1')
-cd.addStudent('team1', 'Noro', 'Jan')
-cd.addStudent('team1', 'Noro', 'Jan')
-cd.addStudent('team1', 'Noro', 'Jan')
+// const cd = new CohortDetainment()
+// cd.createCohort('team1')
+// cd.addStudent('team1', 'Noro', 'Jan')
+// cd.addStudent('team1', 'Noro', 'Jan')
+// cd.addStudent('team1', 'Noro', 'Jan')
 // console.log(cd.cohortManager[0].team1)
 module.exports = CohortDetainment

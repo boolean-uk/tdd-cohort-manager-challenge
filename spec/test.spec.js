@@ -51,6 +51,13 @@ describe('CohortDetainment', () => {
         expected
       )
     })
+    it('Expect error message to be throw if student already exists in any of the cohorts', () => {
+      const expected =
+        'Student already Exists either in this or another cohort!'
+      cd.createCohort('team1')
+      cd.addStudent('team1', 'Noro', 'Jan')
+      expect(() => cd.addStudent('team1', 'Noro', 'Jan')).toThrowError(expected)
+    })
   })
 
   describe('removeCohort()', () => {
