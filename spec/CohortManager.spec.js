@@ -5,7 +5,11 @@ describe('Cohort Manager', () => {
   beforeEach(() => {
     cohortManager = new CohortManager()
   })
-  it('creat a cohort if it does not exist', () => {
-
+  it('create a cohort if it does not exist', () => {
+    // setup
+    cohortManager.createCohort('Cohort 1')
+    // execution
+    // check
+    expect(cohortManager.cohorts.length).toEqual(1)
   })
 })
