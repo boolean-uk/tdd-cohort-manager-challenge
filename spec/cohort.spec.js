@@ -14,4 +14,20 @@ describe('createCohort', () => {
     // THEN
     expect(res).toEqual(cohortName)
   })
+
+  it('creates a different cohort', () => {
+    // GIVEN
+    const cohortName = 'cohort_12'
+    // WHEN
+    const res = cohort.createCohort('cohort_12')
+    // THEN
+    expect(res).toEqual(cohortName)
+  })
 })
+
+    // GIVEN
+
+    // WHEN
+
+    // THEN
+    
