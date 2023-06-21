@@ -35,6 +35,7 @@ class CohortManager {
   }
 
   // QUESTION 1 => DOMAIN MODEL
+  // Create a cohort with a cohort name
   // USER STORY =>
   // - As an admin at boolean
   // - So I can start a new batch of student
@@ -52,10 +53,39 @@ class CohortManager {
     this.cohorts.push(newCohort)
     return newCohort
   }
+
+  // QUESTION 2 => DOMAIN MODEL
+  // Search for a cohort by cohort name
+  // USER STORY =>
+  // - As an admin at boolean
+  // - So I check cohort details
+  // - I'd like to search cohort by cohort name
+
+  // DOMAIN MODEL
+  // - Methods => searchChortByName(cohortName)
+  // - Inputs => cohortName
+  // - Data => cohortName(@String)
+  // - Scenario => If admin searches for cohort by cohort name
+  // - Outputs => cohort(@object) is returned
+  searchChortByName(cohortName) {
+    let cohort = ''
+    for (let i = 0; i < this.cohorts.length; i++) {
+      cohort = this.cohorts.find((el) => {
+        return el.cohortName === cohortName
+      })
+    }
+    return cohort
+  }
 }
 
 export default CohortManager
 
-const cohortManager = new CohortManager()
-const cohort = cohortManager.createNewCohort('Cohort 1')
-console.log(cohort)
+// const cohortManager = new CohortManager()
+// cohortManager.createNewCohort('Cohort 1')
+// cohortManager.createNewCohort('Cohort 2')
+
+// console.log(cohortManager.cohorts)
+// console.log(cohortManager.cohorts)
+
+// const aa = cohortManager.searchChortByName('Cohort 1')
+// console.log(aa)
