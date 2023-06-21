@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx eslint src && npx jasmine",
+    "watch": "nodemon --exec jasmine",
     "prepare": "husky install"
   },
   "author": "dearshrewdwit",
@@ -22,5 +23,8 @@
     "husky": "^7.0.4",
     "jasmine": "^3.10.0",
     "prettier": "^2.6.1"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.22"
   }
 }
