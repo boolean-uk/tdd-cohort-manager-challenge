@@ -33,7 +33,6 @@ class CohortManager {
       throw new Error('Student is already in the cohort')
     }
     foundCohort.students.push(new Student(studentName))
-    return true
   }
 }
 
