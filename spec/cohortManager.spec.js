@@ -45,4 +45,20 @@ describe('cohortManager', () => {
     // Verify
     expect(result).toEqual(expected)
   })
+
+  // Test 3
+  it('Throws error message if the cohort being serached does not exist', () => {
+    // Set up
+    const expected = "The cohort doesn't exist"
+
+    // Execute
+    cohortManager.create('Cohort 7')
+    cohortManager.create('Cohort 8')
+    cohortManager.create('Cohort 9')
+    cohortManager.create('Cohort 10')
+    const result = cohortManager.searchCohort('Cohort 12')
+
+    // verify
+    expect(result).toEqual(expected)
+  })
 })

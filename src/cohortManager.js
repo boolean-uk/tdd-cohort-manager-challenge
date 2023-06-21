@@ -31,6 +31,10 @@ class CohortManager {
     const searchResult = this.cohortData.filter((obj) => {
       return obj.cohortName === cohort
     })
+
+    if (searchResult[0] === undefined) {
+      return "The cohort doesn't exist"
+    }
     return searchResult[0]
   }
 }
