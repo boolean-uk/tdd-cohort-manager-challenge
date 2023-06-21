@@ -39,3 +39,17 @@ describe('createCohort', () => {
         });
       });
     
+      describe('addStudentToCohort', () => {
+        it('should add a student to the specified cohort', () => {
+          cohortManager.addStudentToCohort('Cohort A', student1);
+          expect(cohortA.students.length).toBe(1);
+          expect(cohortA.students[0]).toBe(student1);
+        });
+    
+        it('should throw an error if the cohort is not found', () => {
+          expect(() => {
+            cohortManager.addStudentToCohort('Nonexistent Cohort', student1);
+          }).toThrowError('Cohort not found');
+        });
+      });
+    
