@@ -1,3 +1,5 @@
+const Student = require('../src/student.js')
+
 class CohortManager {
   constructor() {
     this.id = 0
@@ -23,26 +25,9 @@ class CohortManager {
 
   addStudent(cohortName, firstName, lastName, githubUsername, email) {
     const cohortToSearch = this.searchByCohortName(cohortName)
-    const student = {
-      firstName: firstName,
-      lastName: lastName,
-      githubUsername: githubUsername,
-      email: email,
-      studentID: this.generateStudentId(7)
-    }
+    const student = new Student(firstName, lastName, githubUsername, email)
     cohortToSearch.students.push(student)
     return cohortToSearch
-  }
-
-  generateStudentId(length) {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-    let randomValue = ''
-    for (let i = 0; i < length; i++) {
-      randomValue += characters.charAt(
-        Math.floor(Math.random() * characters.length)
-      )
-    }
-    return randomValue
   }
 
   removeCohort(cohort) {
@@ -79,6 +64,46 @@ class CohortManager {
 
     return this.cohorts
   }
+
+  getStudentId(cohortName, firstName, lastName) {
+    const cohortToSearch = this.searchByCohortName(cohortName)
+    const student = cohortToSearch.students.find(
+      (student) =>
+        student.firstName === firstName && student.lastName === lastName
+    )
+
+    if (!student) {
+      throw new Error('Student was not found')
+    }
+
+    return student.studentID
+  }
+
+  searchByStudentId(studentID) {
+    let studentFound = null
+    for (let i = 0; i < this.cohorts.length; i++) {
+      const students = this.cohorts[i].students
+      const student = students.find(
+        (student) => student.studentID === studentID
+      )
+      if (student) {
+        studentFound = student
+        break
+      }
+    }
+    if (!studentFound) {
+      throw new Error('Student was not found')
+    }
+    console.log(studentFound)
+    return true
+  }
 }
+
+const test = new CohortManager()
+test.addCohort('cohort01')
+test.addStudent('cohort01', 'carol', 'arruda')
+console.log(test.cohorts[0].students)
+const stTest = test.getStudentId('cohort01', 'carol', 'arruda')
+test.searchByStudentId(stTest)
 
 module.exports = CohortManager

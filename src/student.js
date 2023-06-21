@@ -7,10 +7,10 @@ class Student {
     this.studentID = this.generateStudentId(7)
   }
 
-  generateStudentId(length) {
+  generateStudentId() {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
     let randomValue = ''
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < 7; i++) {
       randomValue += characters.charAt(
         Math.floor(Math.random() * characters.length)
       )
