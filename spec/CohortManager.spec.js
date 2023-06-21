@@ -70,4 +70,14 @@ describe('Cohort Manager', () => {
       cohortManager.addStudentToCohort('Bob Smith', 'Cohort 1')
     ).toThrowError('Student is already in the cohort')
   })
+  it('cohort does not exist when student is added to the cohort', () => {
+    // setup
+    // execution
+    // check
+    expect(() =>
+      cohortManager
+        .addStudentToCohort('Bob Smith', 'Cohort 1')
+        .toThrowError('Cohort doesnt exist')
+    )
+  })
 })
