@@ -36,4 +36,21 @@ describe('Cohorts', () => {
     // verify
     expect(res).toEqual(false)
   })
+
+  it('Adds student to a chosen cohort', () => {
+    // setup
+    const cohortName = 'Cohort 1'
+    const studentInfo = {
+      studentId: 1,
+      firstName: 'John',
+      lastName: 'Terry',
+      githubUser: 'JT26',
+      email: 'jt@hotmail.com'
+    }
+    cohortManager.addCohort(cohortName)
+    // execute
+    const res = cohortManager.addStudent(cohortName, studentInfo)
+    // verify
+    expect(res).toEqual(true)
+  })
 })

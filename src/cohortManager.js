@@ -24,6 +24,17 @@ class CohortManager {
       return false
     }
   }
+
+  addStudent(cohortName, studentInfo) {
+    if (this.cohortList.find((cohort) => cohort.cohortName === cohortName)) {
+      const cohortData = this.cohortList.find(
+        (cohort) => cohort.cohortName === cohortName
+      )
+      const indexOfCohort = this.cohortList.indexOf(cohortData)
+      this.cohortList[indexOfCohort].students.push(studentInfo)
+      return true
+    }
+  }
 }
 
 module.exports = CohortManager
