@@ -1,4 +1,3 @@
-let id = 1
 class CohortManager {
   constructor() {
     this.cohortData = []
@@ -26,12 +25,20 @@ class CohortManager {
   }
 
   addStudent(firstName, lastName, githubUsername, email, cohort) {
+    if (this.searchCohort(cohort) === "The cohort doesn't exist") {
+      return "The cohort doesn't exist"
+    }
+
     this.searchCohort(cohort).students.push({
       firstName,
       lastName,
       githubUsername,
       email,
-      id: (`1` + `1` + `${id++}`) / '1'
+      id:
+        (`${this.cohortData.indexOf(this.searchCohort(cohort)) + 1}` +
+          `1` +
+          `${this.searchCohort(cohort).students.length + 1}`) /
+        '1'
     })
     return this.cohortData
   }

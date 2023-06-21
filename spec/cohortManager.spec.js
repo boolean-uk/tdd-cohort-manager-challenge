@@ -28,7 +28,7 @@ describe('cohortManager', () => {
   })
 
   // Test 2
-  it('retruns the cohort data, if it exists', () => {
+  it('returns the cohort data, if it exists', () => {
     // Set up
     const expected = {
       cohortName: 'Cohort 8',
@@ -81,7 +81,7 @@ describe('cohortManager', () => {
             lastName: 'Sanders',
             githubUsername: 'billysanders101',
             email: 'billysanders101@gmail.com',
-            id: 113
+            id: 112
           }
         ]
       },
@@ -93,7 +93,7 @@ describe('cohortManager', () => {
             lastName: "O'neil",
             githubUsername: 'zandOneil4',
             email: 'AlexOneil@gmail.com',
-            id: 112
+            id: 211
           }
         ]
       }
@@ -122,6 +122,47 @@ describe('cohortManager', () => {
       'billysanders101',
       'billysanders101@gmail.com',
       'Cohort 9'
+    )
+
+    // Verify
+    expect(result).toEqual(expected)
+  })
+
+  // Test 5
+  it('Will throw an error message if the cohort that the student is being added to does not exist', () => {
+    // Set up
+    const expected = "The cohort doesn't exist"
+
+    // Execute
+    cohortManager.create('Cohort 9')
+    cohortManager.create('Cohort 10')
+    cohortManager.addStudent(
+      'Kyle',
+      'Bridgewater',
+      'kyleUnderwater',
+      'kylebridge@yahoo.com',
+      'Cohort 9'
+    )
+    cohortManager.addStudent(
+      'Alexandra',
+      "O'neil",
+      'zandOneil4',
+      'AlexOneil@gmail.com',
+      'Cohort 10'
+    )
+    cohortManager.addStudent(
+      'Billy',
+      'Sanders',
+      'billysanders101',
+      'billysanders101@gmail.com',
+      'Cohort 9'
+    )
+    const result = cohortManager.addStudent(
+      'Carlo',
+      'Cùdegà',
+      'charles101',
+      'milanosushi@hotmail.it',
+      'Cohort 12'
     )
 
     // Verify
