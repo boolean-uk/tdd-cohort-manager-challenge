@@ -40,6 +40,16 @@ class CohortManager {
     const cohortIndex = this.cohorts.indexOf(cohortFound)
     this.cohorts.splice(cohortIndex, 1)
   }
+
+  removeStudentFromCohort(studentName, cohortName) {
+    const cohortFound = this.findCohortByName(cohortName)
+    cohortFound.students.splice(
+      cohortFound.students.indexOf(
+        cohortFound.students.find((student) => student.name === studentName)
+      ),
+      1
+    )
+  }
 }
 
 class Student {
