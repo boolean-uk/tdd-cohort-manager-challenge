@@ -21,4 +21,21 @@ describe('CohortManger', () => {
     // Then
     expect(res).toEqual(expected)
   })
+
+  it('Search cohort by cohort name', () => {
+    // Given
+    const name1 = 'Cohort 1'
+    const name2 = 'Cohort 2'
+
+    const expected = {
+      cohortName: 'Cohort 1',
+      students: []
+    }
+    // When
+    cohortList.createCohort(name1)
+    cohortList.createCohort(name2)
+    const res = cohortList.searchCohort('Cohort 2')
+    // Then
+    expect(res).toEqual(expected)
+  })
 })
