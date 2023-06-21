@@ -47,11 +47,23 @@ describe('createCohort', () => {
         });
     
         it('should throw an error if the cohort is not found', () => {
-          expect(() => {
-            cohortManager.addStudentToCohort('Nonexistent Cohort', student1);
-          }).toThrowError('Cohort not found');
+            expect(() => {
+              cohortManager.removeStudentFromCohort('Nonexistent Cohort', 1);
+            }).toThrowError('Cohort not found');
+          });
+      
+          it('should throw an error if the student is not found in the cohort', () => {
+            const cohortName = 'Cohort A';
+            const student = new Student(1, 'John', 'Doe', 'johndoe', 'john@example.com');
+            const cohort = cohortManager.createCohort(cohortName);
+            cohortManager.addStudentToCohort(cohortName, student);
+      
+            expect(() => {
+              cohortManager.removeStudentFromCohort(cohortName, 2);
+            }).toThrowError('Student not found');
+          });
         });
-      });
+    
     
       describe('removeCohort', () => {
         it('should remove the cohort with the given name', () => {
