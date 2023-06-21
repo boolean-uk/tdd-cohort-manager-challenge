@@ -65,3 +65,29 @@ describe('createCohort', () => {
           }).toThrowError('Cohort not found');
         });
       });
+
+      describe('removeStudentFromCohort', () => {
+        beforeEach(() => {
+          cohortManager.addStudentToCohort('Cohort A', student1);
+          cohortManager.addStudentToCohort('Cohort A', student2);
+        });
+    
+        it('should remove the student from the specified cohort', () => {
+          cohortManager.removeStudentFromCohort('Cohort A', 2);
+          expect(cohortA.students.length).toBe(1);
+          expect(cohortA.students[0]).toBe(student1);
+        });
+    
+        it('should throw an error if the cohort is not found', () => {
+          expect(() => {
+            cohortManager.removeStudentFromCohort('Nonexistent Cohort', 1);
+          }).toThrowError('Cohort not found');
+        });
+    
+        it('should throw an error if the student is not found in the cohort', () => {
+          expect(() => {
+            cohortManager.removeStudentFromCohort('Cohort A', 3);
+          }).toThrowError('Student not found');
+        });
+      });
+    
