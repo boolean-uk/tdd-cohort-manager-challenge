@@ -70,6 +70,7 @@ describe('Cohort Manager', () => {
       cohortManager.addStudentToCohort('Bob Smith', 'Cohort 1')
     ).toThrowError('Student is already in the cohort')
   })
+
   it('cohort does not exist when student is added to the cohort', () => {
     // setup
     // execution
@@ -79,5 +80,14 @@ describe('Cohort Manager', () => {
         .addStudentToCohort('Bob Smith', 'Cohort 1')
         .toThrowError('Cohort doesnt exist')
     )
+  })
+
+  it('remove a cohort by its name', () => {
+    // setup
+    cohortManager.createCohort('Cohort 1')
+    // execution
+    cohortManager.removeCohortByName('Cohort 1')
+    // check
+    expect(cohortManager.cohorts.length).toEqual(0)
   })
 })
