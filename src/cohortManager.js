@@ -16,26 +16,22 @@ class CohortManager {
   }
 
   searchByCohortName(cohortName) {
-    const cohort = this.cohorts.find((item) => item.cohortName === cohortName)
-    if (cohort === undefined) throw new Error('Cohort was not found')
-    return true
+    const item = this.cohorts.find((item) => item.cohortName === cohortName)
+    if (item === undefined) throw new Error('Cohort was not found')
+    return item
   }
 
-  addStudent(cohort, firstName, lastName, githubUsername, email) {
-    const item = this.cohorts.find((item) => item.cohortName === cohort)
-    console.log(item)
-    if (item === undefined) throw new Error('Cohort was not found')
-
+  addStudent(cohortName, firstName, lastName, githubUsername, email) {
+    const cohortToSearch = this.searchByCohortName(cohortName)
     const student = {
       firstName: firstName,
       lastName: lastName,
       githubUsername: githubUsername,
       email: email,
-      id: this.generateStudentId(7)
+      studentID: this.generateStudentId(7)
     }
-    item.students.push(student)
-    console.log(item)
-    return item
+    cohortToSearch.students.push(student)
+    return cohortToSearch
   }
 
   generateStudentId(length) {
@@ -47,6 +43,17 @@ class CohortManager {
       )
     }
     return randomValue
+  }
+
+  removeCohort(cohort) {
+    const cohortToDelete = this.searchByCohortName(cohort).cohortName
+    if (cohortToDelete) {
+      this.cohorts = this.cohorts.filter(
+        (item) => item.cohortName !== cohortToDelete
+      )
+    }
+
+    return this.cohorts
   }
 }
 
