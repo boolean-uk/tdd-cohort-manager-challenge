@@ -14,6 +14,12 @@ class CohortManager {
     this.cohorts.push(cohort)
     return cohort
   }
+
+  searchByCohortName(cohortName) {
+    const cohort = this.cohorts.find((item) => item.cohortName === cohortName)
+    if (cohort === undefined) throw new Error('Cohort was not found')
+    return true
+  }
 }
 
 module.exports = CohortManager
