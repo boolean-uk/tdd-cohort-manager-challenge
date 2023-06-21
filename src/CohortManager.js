@@ -25,6 +25,13 @@ class CohortManager {
 
   addStudentToCohort(studentName, cohortName) {
     const foundCohort = this.findCohortByName(cohortName)
+    if (
+      foundCohort.students.find(
+        (item) => `${item.firstName} ${item.lastName}` === studentName
+      )
+    ) {
+      throw new Error('Student is already in the cohort')
+    }
     foundCohort.students.push(new Student(studentName))
     return true
   }
