@@ -144,3 +144,31 @@ class CohortManager {
 // export default CohortManager
 module.exports = CohortManager
 
+// const cohortMan = new CohortManager()
+// cohortMan.createNewCohort('Cohort 1')
+// cohortMan.createNewCohort('Cohort 2')
+
+// const ss = cohortMan.removeCohortByName('Cohort 1')
+// console.log(ss)
+
+// const net = cohortMan.addStudentToCohort(
+//   'Rasheed',
+//   'Adesokan',
+//   '@adesokan',
+//   'ade@gmail.com',
+//   'Cohort 1'
+// )
+
+// const net2 = cohortManager.addStudentToCohort(
+//   'Rasheed',
+//   'Adesokan',
+//   '@gitadesokan',
+//   'ade@gmail.com',
+//   'Cohort 1'
+// )
+
+// console.log(net)
+// console.log(cohortManager.cohorts[0])
+
+// const aa = cohortManager.searchChortByName('Cohort 1')
+// console.log(aa)
