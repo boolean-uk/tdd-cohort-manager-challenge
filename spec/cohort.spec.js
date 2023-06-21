@@ -28,7 +28,7 @@ describe('CohortManger', () => {
     const name2 = 'Cohort 2'
 
     const expected = {
-      cohortName: 'Cohort 1',
+      cohortName: 'Cohort 2',
       students: []
     }
     // When
