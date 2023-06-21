@@ -128,4 +128,16 @@ describe('Cohort Manager', () => {
       cohortManager.removeStudentFromCohort('Billy Bob', 'Cohort 1')
     ).toThrowError('Student doesnt exist in the cohort')
   })
+
+  it('throws an error if the cohort does not exist when trying to remove a student', () => {
+    // setup
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.addStudentToCohort('Jim Bob', 'Cohort 1')
+
+    // execution
+    // check
+    expect(() =>
+      cohortManager.removeStudentFromCohort('Billy Bob', 'Cohort 2')
+    ).toThrowError('Cohort doesnt exist')
+  })
 })
