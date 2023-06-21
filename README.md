@@ -8,6 +8,15 @@ ___|       |                |     \  |                                   ___ \  
                                                         |___/                                    
 ```
 
+| Method          | Input                   | Data | Scenario                                        | Outputs    |
+|-----------------|-------------------------|------|-------------------------------------------------|------------|
+| createCohort()  | cohort@arr              |      | Create a cohort with a cohort name              | True       |
+| searchCohort()  | cohort@arr              |      | Search for a cohort by cohort name              | cohort@arr |
+| addStudent()    | cohort@arr, student@obj |      | Add a student to a specific cohort              | True       |
+| deleteCohort()  | cohort@arr              |      | Remove a cohort by cohort name                  | True       |
+| removeStudent() | cohort@arr, student@obj |      | remove a student by name from a specific cohort | True       |
+|                 |                         |      |                                                 |            |
+
 ### Setup
 
 1. Fork this repository to your GitHub account
