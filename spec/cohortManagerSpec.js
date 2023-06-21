@@ -53,3 +53,15 @@ describe('createCohort', () => {
         });
       });
     
+      describe('removeCohort', () => {
+        it('should remove the cohort with the given name', () => {
+          cohortManager.removeCohort('Cohort A');
+          expect(cohortManager.cohorts.length).toBe(0);
+        });
+    
+        it('should throw an error if the cohort is not found', () => {
+          expect(() => {
+            cohortManager.removeCohort('Nonexistent Cohort');
+          }).toThrowError('Cohort not found');
+        });
+      });
