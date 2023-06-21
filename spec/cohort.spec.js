@@ -49,14 +49,19 @@ describe('CohortManger', () => {
     }
 
     const expected = {
-      cohort: 'Cohort 1',
-      firstName: 'Chris',
-      lastName: 'Sach',
-      gitUserName: 'ChrisJS90',
-      email: 'christophersach90@gmail.com'
+      cohortName: 'Cohort 1',
+      students: [
+        {
+          studentId: 1,
+          firstName: 'Chris',
+          lastName: 'Sach',
+          gitUserName: 'ChrisJS90',
+          email: 'christophersach90@gmail.com'
+        }
+      ]
     }
     // When
-    cohortList.createCohort('Cohort1')
+    cohortList.createCohort('Cohort 1')
     const res = cohortList.createStudent(
       'Cohort 1',
       student.firstName,
@@ -66,6 +71,5 @@ describe('CohortManger', () => {
     )
     // Then
     expect(res).toEqual(expected)
-
   })
 })
