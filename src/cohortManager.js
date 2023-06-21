@@ -67,7 +67,7 @@ class CohortManager {
   // - Data => cohortName(@String)
   // - Scenario => If admin searches for cohort by cohort name
   // - Outputs => cohort(@object) is returned
-  searchChortByName(cohortName) {
+  searchCohortByName(cohortName) {
     let cohort
     for (let i = 0; i < this.cohorts.length; i++) {
       cohort = this.cohorts.find((el) => {
@@ -76,15 +76,30 @@ class CohortManager {
     }
     return cohort
   }
+
+  // QUESTION 3 => DOMAIN MODEL
+  // Add student to a specific cohort
+  // USER STORY =>
+  // - As an admin at boolean
+  // - So I can link a student to a cohort
+  // - I'd like to add a student to a specific cohort
+
+  // DOMAIN MODEL
+  // - Methods => createNewStudent(student@Object), addStudentToCohort(student@Object, cohortName)
+  // - Inputs => student@Object, cohortName
+  // - Data => student@Object, Properties: studentID@Number, firstname@String, lastname@String, gitusername@String, email@String, conhortName@String
+  // - Scenario => If admin creates student and add to cohort
+  // - Outputs => cohort(@object)
 }
 
-export default CohortManager
+// export default CohortManager
+module.exports = CohortManager
 
-// const cohortManager = new CohortManager()
-// cohortManager.createNewCohort('Cohort 1')
-// cohortManager.createNewCohort('Cohort 2')
+const cohortManager = new CohortManager()
+cohortManager.createNewCohort('Cohort 1')
+cohortManager.createNewCohort('Cohort 2')
 
-// console.log(cohortManager.cohorts)
+console.log(cohortManager.cohorts)
 // console.log(cohortManager.cohorts)
 
 // const aa = cohortManager.searchChortByName('Cohort 1')
