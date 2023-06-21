@@ -1,11 +1,14 @@
 class Cohort {
   constructor() {
-    this.cohortName = ''
+    this.cohortList = []
   }
 
   createCohort(cohortName) {
-    this.cohortName = cohortName
-    return cohortName
+    if (this.cohortList.includes(cohortName)) {
+      return 'cohort already exists'
+    }
+    this.cohortList.push(cohortName)
+    return this.cohortList
   }
 }
 
