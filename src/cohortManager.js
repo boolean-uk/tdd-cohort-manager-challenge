@@ -8,13 +8,9 @@ class CohortManager {
       name: name, // Can also be written as 'name,'
       students: []
     }
-    // if (this.cohortList.cohortName !== newCohort.cohortName) {
     this.cohorts.push(newCohort)
     return newCohort
   }
-  // else {
-  //   return 'This cohort already exists!'
-  // }
 
   // Returns the index/position of the cohort requested by 'name'
   findCohort(name) {
@@ -41,7 +37,9 @@ class CohortManager {
       this.cohorts = filteredCohorts
     }
   }
-  //   removeStudent() {}
+  // removeStudent() {
+
+  // }
 }
 
 module.exports = CohortManager
