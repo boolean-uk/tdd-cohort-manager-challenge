@@ -54,13 +54,21 @@ class Cohorts {
     }
   }
 
-  addStudentToCohort(cohortName, firstName, lastName, gitHub, emailAddress) {
+  addStudentToCohort(
+    cohortName,
+    firstName,
+    lastName,
+    gitHub,
+    emailAddress,
+    contactNumber
+  ) {
     const student = {
       id: this.id++,
       firstName: firstName,
       lastName: lastName,
       gitHub: gitHub,
-      email: emailAddress
+      email: emailAddress,
+      contactNumber: contactNumber
     }
 
     const cohort = this.searchByName(cohortName)
@@ -77,7 +85,8 @@ class Cohorts {
         s.firstName === firstName &&
         s.lastName === lastName &&
         s.gitHub === gitHub &&
-        s.email === emailAddress
+        s.email === emailAddress &&
+        s.contactNumber === contactNumber
     )
     if (studentDuble) {
       throw new Error('Error: Student already exists in another Cohort!')
