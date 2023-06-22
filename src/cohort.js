@@ -144,21 +144,21 @@ class Cohorts {
     return matchingStudents
   }
 }
-const cohort = new Cohorts()
-cohort.addCohort('Cohort 1')
-cohort.addCohort('Cohort 2')
-cohort.addCohort('Cohort 3')
-cohort.addCohort('Cohort 4')
-cohort.addCohort('Cohort 5')
-cohort.addCohort('Cohort 6')
-cohort.addCohort('Cohort 7')
-cohort.addCohort('Cohort 8')
-cohort.addCohort('Cohort 9')
-cohort.addCohort('Cohort 10')
-cohort.addStudentToCohort('Cohort 2', 'sd2fs', 'sd22fs', 'asdasd', 'asdaasd')
+// const cohort = new Cohorts()
+// cohort.addCohort('Cohort 1')
+// cohort.addCohort('Cohort 2')
+// cohort.addCohort('Cohort 3')
+// cohort.addCohort('Cohort 4')
+// cohort.addCohort('Cohort 5')
+// cohort.addCohort('Cohort 6')
+// cohort.addCohort('Cohort 7')
+// cohort.addCohort('Cohort 8')
+// cohort.addCohort('Cohort 9')
+// cohort.addCohort('Cohort 10')
+// cohort.addStudentToCohort('Cohort 2', 'sd2fs', 'sd22fs', 'asdasd', 'asdaasd')
 
-cohort.addStudentToCohort('Cohort 1', 'sdfs', 'sdfs', 'asdasd', 'asdaasd')
-const student = cohort.searchStudentById(1)
+// cohort.addStudentToCohort('Cohort 1', 'sdfs', 'sdfs', 'asdasd', 'asdaasd')
+// const student = cohort.searchStudentById(1)
 
-console.log(student)
+// console.log(student)
 module.exports = Cohorts
