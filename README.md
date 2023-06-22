@@ -49,7 +49,7 @@ A cohort should have a list of students. Each student should have a studentID, f
 - Cohorts can't have the same name, and can't exist without a name ---DONE
 - The same student can't exist in multiple cohorts.
 - A student can't be removed from a cohort if it wasn't present in the first place. ---DONE
-- Search for students by name (first and last) and return all matching results
+- Search for students by name (first and last) and return all matching results ---DONE
 
 Your program should be composed of at least two classes
 ```

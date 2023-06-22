@@ -54,18 +54,12 @@ class Cohorts {
     }
   }
 
-  addStudentToCohort(
-    cohortName,
-    studentFirstName,
-    studentLastName,
-    gitHubUsername,
-    emailAddress
-  ) {
+  addStudentToCohort(cohortName, firstName, lastName, gitHub, emailAddress) {
     const student = {
       id: this.id++,
-      firstName: studentFirstName,
-      lastName: studentLastName,
-      gitHub: gitHubUsername,
+      firstName: firstName,
+      lastName: lastName,
+      gitHub: gitHub,
       email: emailAddress
     }
 
@@ -77,6 +71,16 @@ class Cohorts {
     const studentsList = cohort[cohortName]
     if (studentsList.length >= 24) {
       throw new Error('Error: Cohort reached 24 students capacity')
+    }
+    const studentDuble = studentsList.find(
+      (s) =>
+        s.firstName === firstName &&
+        s.lastName === lastName &&
+        s.gitHub === gitHub &&
+        s.email === emailAddress
+    )
+    if (studentDuble) {
+      throw new Error('Error: Student already exists in another Cohort!')
     }
 
     studentsList.push(student)

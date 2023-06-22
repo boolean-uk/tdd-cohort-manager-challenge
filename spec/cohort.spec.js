@@ -85,168 +85,168 @@ describe('addCohort', () => {
     cohortLi.addCohort('Cohort 1')
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John1',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John2',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John3',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John4',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John5',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John6',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John7',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John8',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John9',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John10',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John11',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John12',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John13',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John14',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John15',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John16',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John17',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John18',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John19',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John20',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John21',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John22',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John23',
       'Cena',
       'JohnCena',
       'John@cena.com'
     )
     cohortLi.addStudentToCohort(
       'Cohort 1',
-      'John',
+      'John24',
       'Cena',
       'JohnCena',
       'John@cena.com'
@@ -387,5 +387,24 @@ describe('addCohort', () => {
     expect(() => {
       cohortLi.searchStudentByName('Bob', 'Burger')
     }).toThrowError('Error: No matching students found')
+  })
+  it('Expect error message to be throw if student already exists in any of the cohorts', () => {
+    cohortLi.addCohort('Cohort 1')
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'Max',
+      'Verstappen',
+      'maxie69',
+      'max@max.com'
+    )
+    expect(() =>
+      cohortLi.addStudentToCohort(
+        'Cohort 1',
+        'Max',
+        'Verstappen',
+        'maxie69',
+        'max@max.com'
+      )
+    ).toThrowError('Error: Student already exists in another Cohort!')
   })
 })
