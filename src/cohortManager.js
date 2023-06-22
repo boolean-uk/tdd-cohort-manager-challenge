@@ -19,16 +19,12 @@ class CohortManager {
     })
 
     if (searchResult[0] === undefined) {
-      return "The cohort doesn't exist"
+      throw new Error("The cohort doesn't exist")
     }
     return searchResult[0]
   }
 
   addStudent(firstName, lastName, githubUsername, email, cohort) {
-    if (this.searchCohort(cohort) === "The cohort doesn't exist") {
-      return "The cohort doesn't exist"
-    }
-
     this.searchCohort(cohort).students.push({
       firstName,
       lastName,
@@ -44,9 +40,6 @@ class CohortManager {
   }
 
   removeCohort(cohort) {
-    if (this.searchCohort(cohort) === "The cohort doesn't exist") {
-      return "The cohort doesn't exist"
-    }
     this.cohortData.splice(
       this.cohortData.indexOf(this.searchCohort(cohort), 1)
     )
@@ -63,26 +56,28 @@ class CohortManager {
       )
     })
     if (searchResult[0] === undefined) {
-      return "The student doesn't exist"
+      throw new Error("The student doesn't exist")
     }
     return searchResult[0]
   }
 
   removeStudent(first, last) {
-    if (this.searchStudent(first, last) === "The student doesn't exist") {
-      return "The student doesn't exist"
-    }
-    this.cohortData.forEach((obj) => {
-      if (obj.students.indexOf(this.searchStudent(first, last)) === -1) {
-        return
+    this.searchStudent(first, last)
+    try {
+      this.cohortData.forEach((obj) => {
+        if (obj.students.indexOf(this.searchStudent(first, last)) === -1) {
+          return
+        }
+        obj.students.splice(
+          obj.students.indexOf(this.searchStudent(first, last)),
+          1
+        )
+      })
+    } catch (err) {
+      if (err) {
+        return this.cohortData
       }
-      obj.students.splice(
-        obj.students.indexOf(this.searchStudent(first, last)),
-        1
-      )
-    })
-
-    return this.cohortData
+    }
   }
 }
 

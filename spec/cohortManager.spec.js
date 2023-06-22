@@ -48,18 +48,19 @@ describe('cohortManager', () => {
 
   // Test 3
   it('Throws error message if the cohort being serached does not exist', () => {
-    // Set up
-    const expected = "The cohort doesn't exist"
+    // Given
+    const cohort = 'Cohort 12'
 
     // Execute
     cohortManager.create('Cohort 7')
     cohortManager.create('Cohort 8')
     cohortManager.create('Cohort 9')
     cohortManager.create('Cohort 10')
-    const result = cohortManager.searchCohort('Cohort 12')
 
     // verify
-    expect(result).toEqual(expected)
+    expect(() => cohortManager.searchCohort(cohort)).toThrowError(
+      "The cohort doesn't exist"
+    )
   })
 
   // Test 4
@@ -130,9 +131,6 @@ describe('cohortManager', () => {
 
   // Test 5
   it('Will throw an error message if the cohort that the student is being added to does not exist', () => {
-    // Set up
-    const expected = "The cohort doesn't exist"
-
     // Execute
     cohortManager.create('Cohort 9')
     cohortManager.create('Cohort 10')
@@ -157,16 +155,17 @@ describe('cohortManager', () => {
       'billysanders101@gmail.com',
       'Cohort 9'
     )
-    const result = cohortManager.addStudent(
-      'Carlo',
-      'Cùdegà',
-      'charles101',
-      'milanosushi@hotmail.it',
-      'Cohort 12'
-    )
 
     // Verify
-    expect(result).toEqual(expected)
+    expect(() =>
+      cohortManager.addStudent(
+        'Carlo',
+        'Cùdegà',
+        'charles101',
+        'milanosushi@hotmail.it',
+        'Cohort 12'
+      )
+    ).toThrowError("The cohort doesn't exist")
   })
 
   // Test 6
@@ -240,7 +239,7 @@ describe('cohortManager', () => {
   // Test 7
   it('Will throw an error if the cohort trying to be removed does not exist', () => {
     // Set up
-    const expected = "The cohort doesn't exist"
+    const cohort = 'Cohort 20'
 
     // Execute
     cohortManager.create('Cohort 9')
@@ -267,10 +266,11 @@ describe('cohortManager', () => {
       'billysanders101@gmail.com',
       'Cohort 9'
     )
-    const result = cohortManager.removeCohort('Cohort 20')
 
     // verify
-    expect(result).toEqual(expected)
+    expect(() => cohortManager.removeCohort(cohort)).toThrowError(
+      "The cohort doesn't exist"
+    )
   })
 
   // Test 8
@@ -316,9 +316,6 @@ describe('cohortManager', () => {
 
   // Test 9
   it('Throws an error if the student that is being searched does not exist', () => {
-    // Set up
-    const expected = "The student doesn't exist"
-
     // Execute
     cohortManager.create('Cohort 9')
     cohortManager.create('Cohort 10')
@@ -343,10 +340,11 @@ describe('cohortManager', () => {
       'billysanders101@gmail.com',
       'Cohort 9'
     )
-    const result = cohortManager.searchStudent('Carlo', 'Cùdegà')
 
     // Verify
-    expect(result).toEqual(expected)
+    expect(() => cohortManager.searchStudent('Carlo', 'Cùdegà')).toThrowError(
+      "The student doesn't exist"
+    )
   })
 
   // Test 10
@@ -410,9 +408,6 @@ describe('cohortManager', () => {
 
   // Test 11
   it('Throws an error if the student that is being removed does not exist', () => {
-    // Set up
-    const expected = "The student doesn't exist"
-
     // Execute
     cohortManager.create('Cohort 9')
     cohortManager.create('Cohort 10')
@@ -437,9 +432,10 @@ describe('cohortManager', () => {
       'billysanders101@gmail.com',
       'Cohort 9'
     )
-    const result = cohortManager.removeStudent('Carlo', 'Cùdegà')
 
     // Verify
-    expect(result).toEqual(expected)
+    expect(() => cohortManager.removeStudent('Carlo', 'Cùdegà')).toThrowError(
+      "The student doesn't exist"
+    )
   })
 })
