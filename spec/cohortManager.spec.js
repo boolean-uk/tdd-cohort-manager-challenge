@@ -168,4 +168,74 @@ describe('cohortManager', () => {
     // Verify
     expect(result).toEqual(expected)
   })
+
+  // Test 6
+  it('Removes the cohort from the array, if the cohort exisists', () => {
+    // Set up
+    const expected = [
+      {
+        cohortName: 'Cohort 9',
+        students: [
+          {
+            firstName: 'Kyle',
+            lastName: 'Bridgewater',
+            githubUsername: 'kyleUnderwater',
+            email: 'kylebridge@yahoo.com',
+            id: 111
+          },
+          {
+            firstName: 'Billy',
+            lastName: 'Sanders',
+            githubUsername: 'billysanders101',
+            email: 'billysanders101@gmail.com',
+            id: 112
+          }
+        ]
+      },
+      {
+        cohortName: 'Cohort 10',
+        students: [
+          {
+            firstName: 'Alexandra',
+            lastName: "O'neil",
+            githubUsername: 'zandOneil4',
+            email: 'AlexOneil@gmail.com',
+            id: 211
+          }
+        ]
+      }
+    ]
+
+    // Execute
+    cohortManager.create('Cohort 9')
+    cohortManager.create('Cohort 10')
+    cohortManager.create('Cohort 11')
+    cohortManager.addStudent(
+      'Kyle',
+      'Bridgewater',
+      'kyleUnderwater',
+      'kylebridge@yahoo.com',
+      'Cohort 9'
+    )
+    cohortManager.addStudent(
+      'Alexandra',
+      "O'neil",
+      'zandOneil4',
+      'AlexOneil@gmail.com',
+      'Cohort 10'
+    )
+    cohortManager.addStudent(
+      'Billy',
+      'Sanders',
+      'billysanders101',
+      'billysanders101@gmail.com',
+      'Cohort 9'
+    )
+    const result = cohortManager.removeCohort('Cohort 11')
+
+    // Verify
+    expect(result).toEqual(expected)
+  })
+
+  
 })

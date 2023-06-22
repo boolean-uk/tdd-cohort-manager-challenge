@@ -42,6 +42,13 @@ class CohortManager {
     })
     return this.cohortData
   }
+
+  removeCohort(cohort) {
+    this.cohortData.splice(
+      this.cohortData.indexOf(this.searchCohort(cohort), 1)
+    )
+    return this.cohortData
+  }
 }
 
 module.exports = CohortManager
