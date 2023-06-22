@@ -10,3 +10,8 @@
 | | | |If student is not in any other cohorts|Updated cohort containing the student|
 |As a user, So I can find all students with same full name,I want to search students by fullname and get all matching results|`searchByFullname(fullname)`|fullname|If matching student objects exist|`true|
 | | | |If no matching student objects exist|throw Error|
+| | | |If student is not in any other cohorts|Updated cohort containing the student|
+|As a manager of the cohort, So I can get notified when a student is added,I want to receive a text with student name|`addStudent(cohortName, studentName)`|cohortName, studentName (first name, last name, GitHub username, email)|If cohort name exists|Updated cohort containing the student and text sent|
+| | | |If cohort name does not exist|throw Error|
+|As a manager of the cohort, So I can get notified when a student is deleted,I want to receive a text with student githubUsername|`removeStudent(githubUsername)`|githubUsername|If githubUsername exists in the cohort|Cohort Manager with the student removed from the cohort `@object[]` and text sent|
+| | | |If githubUsername does not exist|Cohort Manager remains unchanged|
