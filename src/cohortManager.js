@@ -106,10 +106,8 @@ class CohortManager {
     const cohort = this.cohorts.find(
       (cohort) => cohort.cohortName === cohortName
     )
-    if (!cohort) throw new Error('A cohort with this name does NOT exist')
-
+    if (!cohort) throw new Error('Cohort does not exist')
     cohort.students.push(student)
-
     return cohort
   }
 
@@ -174,6 +172,8 @@ class CohortManager {
     return removedID
     // return removeStud
   }
+
+  // Throw errors if student or cohort not found
 }
 
 // export default CohortManager
