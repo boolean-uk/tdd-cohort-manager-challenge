@@ -10,6 +10,9 @@ class CohortManager {
   }
 
   addCohort(name) {
+    if (name.trim() === '') {
+      return false
+    }
     const existingCohort = this.cohorts.find(
       (cohort) => cohort.cohortName === name
     )
