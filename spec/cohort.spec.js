@@ -171,4 +171,10 @@ describe('removeCohort', () => {
     const res = cohort.removeCohort('cohort_17')
     expect(res).toEqual([])
   })
+
+  it('returns error message if cohort does not exist in cohortList', () => {
+    cohort.createCohort('cohort_18')
+    const res = cohort.removeCohort('cohort_19')
+    expect(res).toEqual('cohort does not exist')
+  })
 })

@@ -71,6 +71,9 @@ class Cohort {
 
   removeCohort(cohortName) {
     const whichCohort = this.findCohort(cohortName)
+    if (whichCohort === 'cohort does not exist') {
+      return 'cohort does not exist'
+    }
     const newList = []
     this.cohortList.map((e) => {
       if (e !== whichCohort) {
