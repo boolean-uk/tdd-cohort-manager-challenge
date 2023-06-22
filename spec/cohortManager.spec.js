@@ -19,7 +19,6 @@ describe('Cohort Manager: ', () => {
 
     expect(newCohort.name).toEqual(name)
   })
-
   it('Should find a specific cohort by its name', () => {
     const name = 'Cohort1'
 
@@ -30,7 +29,6 @@ describe('Cohort Manager: ', () => {
 
     expect(cohort).toBeGreaterThanOrEqual(0)
   })
-
   it('Should add a student to a specific cohort', () => {
     const student = {
       studentID: 1,
@@ -39,11 +37,6 @@ describe('Cohort Manager: ', () => {
       githubusername: 'Shylan21',
       email: 'isabelle.tarta@live.com'
     }
-    const name1 = 'Cohort1'
-    cohortManager.createCohort(name1)
-    cohortManager.addStudent(student, name1)
-    // console.log('Cohort1', cohortManager.cohorts[0].students)
-
     const student2 = {
       studentID: 2,
       firstname: 'I',
@@ -51,15 +44,10 @@ describe('Cohort Manager: ', () => {
       githubusername: 'Shylan21',
       email: 'isabelle@live.co.uk'
     }
-    const name2 = 'Cohort2'
-    cohortManager.createCohort(name2)
-    cohortManager.addStudent(student2, name2)
-    // console.log('Cohort2', cohortManager.cohorts[1].students)
-
-    // const name3 = 'Cohort3'
-    // cohortManager.createCohort(name3)
-    // cohortManager.addStudent(student, name3)
-    // cohortManager.addStudent(student2, name3)
+    const name3 = 'Cohort3'
+    cohortManager.createCohort(name3)
+    cohortManager.addStudent(student, name3)
+    cohortManager.addStudent(student2, name3)
 
     // console.log('Students in one cohort', cohortManager.cohorts[0].students)
 
@@ -67,7 +55,6 @@ describe('Cohort Manager: ', () => {
 
     expect(result).toEqual(student)
   })
-
   it('Should remove a Cohort by its name', () => {
     const name = 'Cohort1'
     // const name1 = 'Cohort2'
@@ -81,8 +68,7 @@ describe('Cohort Manager: ', () => {
     })
     expect(result.length).toEqual(0)
   })
-
-  fit('Should remove a student from a specific cohort', () => {
+  it('Should remove a student from a specific cohort', () => {
     const name = 'Cohort1'
     cohortManager.createCohort(name)
 
@@ -105,14 +91,23 @@ describe('Cohort Manager: ', () => {
     cohortManager.addStudent(student2, name)
     cohortManager.removeStudent(student, name)
 
-    console.log(
-      'Students left in the Cohort',
-      cohortManager.cohorts[0].students
-    )
+    // console.log(
+    //   'Students left in the Cohort',
+    //   cohortManager.cohorts[0].students
+    // )
 
     const filterStudent = cohortManager.cohorts.find(
       (cohort) => cohort.name === name
-    ).students // should I add the '?' before .students
-    expect(filterStudent).toEqual(cohortManager.cohorts[0].students)
+    ).students
+    expect(filterStudent).toEqual([student2])
+  })
+  it('Shoud throw an error if cant find a student', () => {
+    const cohortName = 'Cohort1'
+    const studentName = 'Isa'
+
+    cohortManager.createCohort(cohortName)
+    cohortManager.addStudent(studentName)
+    const student = cohortManager.cohorts.students.findStudent(studentName)
+    expect(student).toEqual(studentName)
   })
 })

@@ -17,9 +17,18 @@ class CohortManager {
     const result = this.cohorts.findIndex((cohort) => {
       return cohort.name === name
     })
-
     if (result < 0) {
       throw new Error('Cohort not found!')
+    }
+    return result
+  }
+
+  findStudent(firstname) {
+    const result = this.cohorts.students.find((student) => {
+      return student.firstname === firstname
+    })
+    if (result < 0) {
+      throw new Error('Student not found!')
     }
     return result
   }
