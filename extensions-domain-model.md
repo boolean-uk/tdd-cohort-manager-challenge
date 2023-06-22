@@ -15,3 +15,6 @@
 | | | |If cohort name does not exist|throw Error|
 |As a manager of the cohort, So I can get notified when a student is deleted,I want to receive a text with student githubUsername|`removeStudent(githubUsername)`|githubUsername|If githubUsername exists in the cohort|Cohort Manager with the student removed from the cohort `@object[]` and text sent|
 | | | |If githubUsername does not exist|Cohort Manager remains unchanged|
+| | | |If cohort name does not exist|throw Error|
+|As a user, To keep things organised, A cohort name is needed when creating a cohort|`addCohort(cohort)`|cohort|If cohort name is given as an input|Updated cohort manager containing cohorts `@object[]`|
+| | | |If cohort name is empty string|throw Error|
