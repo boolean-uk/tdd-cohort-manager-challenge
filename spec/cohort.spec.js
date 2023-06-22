@@ -200,4 +200,17 @@ describe('removeStudent', () => {
     const res = cohort.removeStudent(1, 'cohort_01')
     expect(res).toEqual({ cohortName: 'cohort_01', studentList: [] })
   })
+
+  it('return error message if student does not exist for given cohort', () => {
+    cohort.createCohort('cohort_01')
+    cohort.createStudent(
+      uniqueID,
+      'joe',
+      'bloggs',
+      'joebloggsGit',
+      'joe.bloggs@email.co'
+    )
+    const res = cohort.removeStudent(1, 'cohort_01')
+    expect(res).toEqual('student does not exist in this cohort')
+  })
 })

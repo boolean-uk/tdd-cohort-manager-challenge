@@ -89,6 +89,9 @@ class Cohort {
     const whichStudent = this.findStudent(studentID)
     const whichCohort = this.findCohort(cohortName)
     const newList = []
+    if (!whichCohort.studentList.includes(whichStudent)) {
+      return 'student does not exist in this cohort'
+    }
     whichCohort.studentList.map((e) => {
       if (e !== whichStudent) {
         newList.push(e)
