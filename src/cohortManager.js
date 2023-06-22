@@ -37,9 +37,15 @@ class CohortManager {
       this.cohorts = filteredCohorts
     }
   }
-  // removeStudent() {
 
-  // }
+  removeStudent(student, name) {
+    const cohortIndex = this.findCohort(name)
+    const cohort = this.cohorts[cohortIndex]
+
+    cohort.students = cohort.students.filter(
+      (s) => s.studentID !== student.studentID
+    )
+  }
 }
 
 module.exports = CohortManager
