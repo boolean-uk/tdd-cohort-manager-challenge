@@ -139,33 +139,74 @@ class CohortManager {
     const total = this.cohorts.length
     return total
   }
+
+  // QUESTION 5 => DOMAIN MODEL
+  // Remove student from a specific cohort
+  // USER STORY =>
+  // - As an admin at boolean
+  // - So I update the record
+  // - I'd like to remove students from a specific cohort
+
+  // DOMAIN MODEL
+  // - Methods => removeStudentFromCohort(studentID, cohortName)
+  // - Inputs => studentID, cohortName
+  // - Data => studentID(@Number), cohortName(@String)
+  // - Scenario => If admin provides a studentID & cohort name
+  // - Outputs => student(@object) is removed from cohort@Object
+  findStudentByIdFromCohort(cohortName, studentID) {
+    const cohort = this.cohorts.find(
+      (cohort) => cohort.cohortName === cohortName
+    )
+    if (!cohort) throw new Error('Cohort does not exist')
+    const students = cohort.students
+    const findStudent = students.find(
+      (student) => student.studentID === studentID
+    )
+    if (!findStudent) throw new Error('Student with does not exist')
+    return findStudent
+  }
+
+  removeStudentFromCohort(cohortName, studentID) {
+    const cohort = this.cohorts.find(
+      (cohort) => cohort.cohortName === cohortName
+    )
+    if (!cohort) throw new Error('Cohort does not exist')
+    const students = cohort.students
+    const findStudent = this.findStudentByIdFromCohort(cohortName, studentID)
+    const index = students.indexOf(findStudent)
+    const result = students.splice(index, 1)[0]
+    return null
+  }
 }
 
 // export default CohortManager
 module.exports = CohortManager
 
-// const cohortMan = new CohortManager()
-// cohortMan.createNewCohort('Cohort 1')
-// cohortMan.createNewCohort('Cohort 2')
+// const cmanager = new CohortManager()
+// cmanager.createNewCohort('Cohort 1')
+// cmanager.createNewCohort('Cohort 2')
+// cmanager.addStudentToCohort(
+//   '1Rasheed',
+//   '1Adesokan',
+//   '1@adesokan',
+//   '1ade@gmail.com',
+//   'Cohort 1'
+// )
 
-// const ss = cohortMan.removeCohortByName('Cohort 1')
+// cmanager.addStudentToCohort(
+//   '2Rasheed',
+//   '2Adesokan',
+//   '2@adesokan',
+//   '2ade@gmail.com',
+//   'Cohort 1'
+// )
+
+// console.log(cmanager.cohorts[0])
+// const fin = cmanager.findStudentByIdFromCohort('Cohort 1', 1)
+// console.log(fin)
+
+// const ss = cmanager.removeCohortByName('Cohort 1')
 // console.log(ss)
-
-// const net = cohortMan.addStudentToCohort(
-//   'Rasheed',
-//   'Adesokan',
-//   '@adesokan',
-//   'ade@gmail.com',
-//   'Cohort 1'
-// )
-
-// const net2 = cohortManager.addStudentToCohort(
-//   'Rasheed',
-//   'Adesokan',
-//   '@gitadesokan',
-//   'ade@gmail.com',
-//   'Cohort 1'
-// )
 
 // console.log(net)
 // console.log(cohortManager.cohorts[0])
