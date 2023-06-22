@@ -94,6 +94,7 @@ class Cohorts {
     }
 
     studentsList.push(student)
+    this.twilioSmsAdd()
     return studentsList
   }
 
@@ -115,8 +116,8 @@ class Cohorts {
     if (studentIndex === -1) {
       throw new Error('Error: Student does not exist!')
     }
-
-    return cohort.splice(studentIndex, 1)[0]
+    const removedStudent = cohort.splice(studentIndex, 1)[0]
+    return removedStudent
   }
 
   searchStudentById(id) {
@@ -154,7 +155,7 @@ class Cohorts {
     return matchingStudents
   }
 
-  twilioSms() {
+  twilioSmsAdd() {
     const time = new Date()
     const options = {
       year: 'numeric',
@@ -197,9 +198,8 @@ cohort.addStudentToCohort(
   'Navickis',
   'something',
   'nothin',
-  ''
+  '+31649178224'
 )
-
-cohort.twilioSms()
+cohort.removeStudentByName('Cohort 2', 'Mantas', 'Navickis')
 
 module.exports = Cohorts
