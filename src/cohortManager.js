@@ -1,6 +1,6 @@
 const Student = require('../src/student.js')
 const accountSid = 'AC7c58fb9d8b144232bb704c036836aa4c'
-const authToken = '43165cf4c8b4a0d14ca83eeb45fa9f4f'
+const authToken = 'bc015ab89ddcebe2aeae2c70349ae381'
 const client = require('twilio')(accountSid, authToken)
 
 class CohortManager {
@@ -51,7 +51,7 @@ class CohortManager {
     if (cohortToSearch.students.length < 24) {
       const student = new Student(firstName, lastName, githubUsername, email)
       cohortToSearch.students.push(student)
-      this.sendReceiptViaSMSAdd(firstName, lastName)
+      this.textAdd(firstName, lastName)
       return cohortToSearch
     }
     throw new Error('Cohort capacity exceeded: cannot add more students')
@@ -77,7 +77,7 @@ class CohortManager {
       if (index !== -1) {
         students.splice(index, 1)
         studentFound = true
-        this.sendReceiptViaSMSRemove(githubUsername)
+        this.textRemove(githubUsername)
         break
       }
     }
@@ -140,7 +140,7 @@ class CohortManager {
     return true
   }
 
-  sendReceiptViaSMSAdd(firstName, lastName) {
+  textAdd(firstName, lastName) {
     const message = `Hey there, ${firstName} ${lastName} was added successfuly`
 
     return client.messages
@@ -153,7 +153,7 @@ class CohortManager {
       .done()
   }
 
-  sendReceiptViaSMSRemove(githubUsername) {
+  textRemove(githubUsername) {
     const message = `Hey there, the user with the GitHub username "${githubUsername}" was deleted successfully.`
     return client.messages
       .create({

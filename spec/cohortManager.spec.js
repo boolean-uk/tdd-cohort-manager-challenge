@@ -255,4 +255,17 @@ describe('Cohort Manager', () => {
     const result = app.searchByFullname('carol arruda')
     expect(result).toBeTrue()
   })
+  it('sending a text message if a new student is added', () => {
+    spyOn(app, 'textAdd')
+    app.addCohort('cohort10')
+    app.addStudent('cohort10', 'carol', 'arruda', 'carolarruda')
+    expect(app.textAdd).toHaveBeenCalled()
+  })
+  it('sending a text message if a student is deleted', () => {
+    spyOn(app, 'textRemove')
+    app.addCohort('cohort10')
+    app.addStudent('cohort10', 'carol', 'arruda', 'carolarruda')
+    app.removeStudent('carolarruda')
+    expect(app.textRemove).toHaveBeenCalled()
+  })
 })
