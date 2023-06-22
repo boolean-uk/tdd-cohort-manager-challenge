@@ -16,10 +16,15 @@ class CohortManager {
   getCohort(name) {
     const index = this.cohorts.findIndex((cohort) => cohort.name === name)
     if (index === -1) {
-      throw new Error('Cohort not found')
+      throw new Error('Cohort Not Found')
     }
     const cohort = this.cohorts[index]
     return [cohort, index]
+  }
+
+  getCohortByName(name) {
+    const [cohort] = this.getCohort(name)
+    return cohort
   }
 
   removeCohortByName(name) {
@@ -35,6 +40,15 @@ class CohortManager {
     }
     const cohort = this.cohorts[index]
     return [cohort, index]
+  }
+
+  searchCohort(id) {
+    for (let i = 0; i < this.cohorts.length; i++) {
+      if (this.cohorts[i].hasStudentWithID(id)) {
+        return this.cohorts[i].getStudentByID(id)
+      }
+    }
+    throw new Error('Student not found')
   }
 
   addStudentToCohort(cohortName, firstName, lastName, gitHub, email) {

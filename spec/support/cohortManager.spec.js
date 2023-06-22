@@ -55,4 +55,33 @@ describe('Test cohort manager', () => {
     expect(result).toEqual(expected)
     expect(cohortManager.cohorts.length).toEqual(0)
   })
+
+  fit('should get cohort by name', () => {
+    // set up
+    const expected = cohortManager.createCohort('Cohort 4')
+    // execute
+    const result = cohortManager.getCohortByName('Cohort 4')
+    // verify
+    expect(result).toEqual(expected)
+  })
+
+  it('will throw an error if cohort not found', () => {
+    expect(() => cohortManager.getCohortByName('Cohort 4')).toThrowError(
+      'Cohort not found'
+    )
+  })
 })
+
+// it('should show error is cohort not found', () => {
+//   // set up
+//   const expected = 'The Cohort searched cannot be found'
+
+//   cohortManager.createCohort('Cohort 7')
+//   cohortManager.createCohort('Cohort 8')
+//   cohortManager.createCohort('Cohort 9')
+//   cohortManager.createCohort('Cohort 10')
+//   const result = cohortManager.searchCohort('Cohort 10')
+
+//   // verify
+//   expect(result).toEqual(expected)
+// })
