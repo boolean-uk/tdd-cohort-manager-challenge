@@ -77,6 +77,28 @@ class Cohorts {
 
     return studentsList
   }
+
+  removeStudentByName(cohortName, firstName, lastName) {
+    const cohortIndex = this.cohortList.findIndex((cohort) =>
+      cohort.hasOwnProperty(cohortName)
+    )
+
+    if (cohortIndex === -1) {
+      throw new Error('Error: Cohort Not Found!')
+    }
+
+    const cohort = this.cohortList[cohortIndex][cohortName]
+    const studentIndex = cohort.findIndex(
+      (student) =>
+        student.firstName === firstName && student.lastName === lastName
+    )
+
+    if (studentIndex === -1) {
+      throw new Error('Error: Student Not Found!')
+    }
+
+    return cohort.splice(studentIndex, 1)[0]
+  }
 }
 const cohort = new Cohorts()
 cohort.addCohort('Cohort 1')
@@ -89,22 +111,10 @@ cohort.addCohort('Cohort 7')
 cohort.addCohort('Cohort 8')
 cohort.addCohort('Cohort 9')
 cohort.addCohort('Cohort 10')
-const student = cohort.addStudentToCohort(
-  'Cohort 1',
-  'sdfs',
-  'sdfs',
-  'sdfs',
-  'dsfs'
-)
-const student2 = cohort.addStudentToCohort(
-  'Cohort 2',
-  'sdfsfdg',
-  'sdfsfdgd',
-  'sdfsfg',
-  'dsfsdfg'
-)
+cohort.addStudentToCohort('Cohort 2', 'sd2fs', 'sd22fs', 'asdasd', 'asdaasd')
+
+cohort.addStudentToCohort('Cohort 1', 'sdfs', 'sdfs', 'asdasd', 'asdaasd')
+cohort.removeStudentByName('Cohort 1', 'sdfs', 'sdfs')
 
 console.log(cohort)
-console.log(student)
-console.log(student2)
 module.exports = Cohorts

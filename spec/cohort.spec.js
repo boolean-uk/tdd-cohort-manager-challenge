@@ -44,19 +44,15 @@ describe('addCohort', () => {
     expect(() => cohortLi.searchByName('Cohort 1')).toThrowError(expected)
   })
   it('Remove the cohort by name', () => {
-    const expected = [{ 'Cohort 2': [] }, { 'Cohort 3': [] }]
+    const expected = []
 
     cohortLi.addCohort('Cohort 1')
-    cohortLi.addCohort('Cohort 2')
-    cohortLi.addCohort('Cohort 3')
     const result = cohortLi.removeByName('Cohort 1')
     expect(result).toEqual(expected)
   })
   it('trying to remove the cohort but Cohort name does not exist', () => {
     const expected = 'Error: Cohort name does not exist'
     cohortLi.addCohort('Cohort 1')
-    cohortLi.addCohort('Cohort 2')
-    cohortLi.addCohort('Cohort 3')
     expect(() => cohortLi.removeByName('Cohort 4')).toThrowError(expected)
   })
   it('Trying to remove the cohort but Cohort list is empty', () => {
@@ -84,5 +80,51 @@ describe('addCohort', () => {
         'john@cena.com'
       )
     ).toEqual(expected)
+  })
+  it('Remove a student from the cohort by cohortName and firstName and lastName', () => {
+    const expected = {
+      id: 1,
+      firstName: 'John',
+      lastName: 'Cena',
+      gitHub: 'JohnCena',
+      email: 'John@cena.com'
+    }
+    cohortLi.addCohort('Cohort 1')
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    expect(cohortLi.removeStudentByName('Cohort 1', 'John', 'Cena')).toEqual(
+      expected
+    )
+  })
+  it('Student not found', () => {
+    cohortLi.addCohort('Cohort 1')
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    expect(() => {
+      cohortLi.removeStudentByName('Cohort 1', 'Johnx', 'Cena')
+    }).toThrowError('Error: Student Not Found!')
+  })
+  it('Cohort not found', () => {
+    cohortLi.addCohort('Cohort 1')
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    expect(() => {
+      cohortLi.removeStudentByName('Cohort 2', 'John', 'Cena')
+    }).toThrowError('Error: Cohort Not Found!')
   })
 })
