@@ -88,6 +88,25 @@ class CohortManager {
       throw new Error('Student not found')
     }
   }
+
+  findStudentByID(studentID) {
+    if (studentID === undefined || isNaN(studentID)) {
+      throw new Error('Invalid or missing student ID')
+    }
+    for (const cohort of this.cohortList) {
+      const studentFound = cohort.cohortStudents.find(
+        (item) => item.studentID === studentID
+      )
+      if (studentFound) {
+        const studentSearchResult = {
+          ...studentFound,
+          cohort: cohort.cohortName
+        }
+        return studentSearchResult
+      }
+    }
+    throw new Error('No student matching that ID was found')
+  }
 }
 
 module.exports = CohortManager

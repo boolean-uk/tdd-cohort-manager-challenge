@@ -170,6 +170,56 @@ describe('Testing CohortManager', () => {
         .toThrowError('Student not found')
     )
   })
+
+  it('findStudentByID returns student if found', () => {
+    // Setup
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.createCohort('Cohort 2')
+    cohortManager.addStudent('first', 'last', 'git', 'email', 'Cohort 1')
+    cohortManager.addStudent('first2', 'last2', 'git2', 'email2', 'Cohort 1')
+    cohortManager.addStudent('first3', 'last3', 'git3', 'email3', 'Cohort 2')
+    // Execution
+    const expectedResult = {
+      studentID: 3,
+      firstName: 'first3',
+      lastName: 'last3',
+      gitName: 'git3',
+      email: 'email3',
+      cohort: 'Cohort 2'
+    }
+    const result = cohortManager.findStudentByID(3)
+    // Check
+    expect(result).toEqual(expectedResult)
+  })
+
+  it('findStudentByID returns error if student not found', () => {
+    // Setup
+    cohortManager.createCohort('Cohort 1')
+    // Execution
+    // Check
+    expect(() =>
+      cohortManager
+        .findStudentByID(1)
+        .toThrowError('No student matching that ID was found')
+    )
+  })
+
+  it('findStudentByID returns error if ID not provided or NaA', () => {
+    // Setup
+    cohortManager.createCohort('Cohort 1')
+    // Execution
+    // Check
+    expect(() =>
+      cohortManager
+        .findStudentByID()
+        .toThrowError('Invalid or missing student ID')
+    )
+    expect(() =>
+      cohortManager
+        .findStudentByID('string')
+        .toThrowError('Invalid or missing student ID')
+    )
+  })
 })
 
 describe('Testing Student Constructor', () => {
