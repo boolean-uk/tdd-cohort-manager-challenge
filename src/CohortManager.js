@@ -10,6 +10,9 @@ class CohortManager {
 
   createCohort(cohortName) {
     const cohortFound = this.cohortList.find((item) => item.name === cohortName)
+    if (cohortName === '' || cohortName === undefined) {
+      throw new Error('Please provide a cohort name')
+    }
     if (cohortFound) {
       throw new Error('Cohort name is already in use')
     } else {
@@ -27,6 +30,23 @@ class CohortManager {
       return cohortFound
     } else {
       throw new Error('Cohort not found')
+    }
+  }
+
+  studentDuplicateCheck(firstName, lastName, gitName, email, cohortName) {
+    for (const cohort of this.cohortList) {
+      const studentFound = cohort.cohortStudents.find(
+        (item) =>
+          item.firstName === firstName &&
+          item.lastName === lastName &&
+          item.gitName === gitName &&
+          item.email === email
+      )
+      if (studentFound && cohort.cohortName === cohortName) {
+        throw new Error('Student already exists in this cohort')
+      } else if (studentFound && cohort.cohortName !== cohortName) {
+        throw new Error('Student already exists in another cohort')
+      }
     }
   }
 
@@ -48,6 +68,13 @@ class CohortManager {
     } else if (cohortFound.cohortStudents.length >= 24) {
       throw new Error('Cohort is full')
     } else {
+      this.studentDuplicateCheck(
+        firstName,
+        lastName,
+        gitName,
+        email,
+        cohortName
+      )
       this.newStudentID++
       const student = new Student(
         this.newStudentID,

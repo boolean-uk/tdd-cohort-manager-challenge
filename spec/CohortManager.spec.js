@@ -42,6 +42,20 @@ describe('Testing CohortManager', () => {
     )
   })
 
+  it('createCohort returns error if no cohort name given', () => {
+    // Setup
+    // Execution
+    // Check
+    expect(() =>
+      cohortManager
+        .createCohort('')
+        .toThrowError('Please provide a cohort name')
+    )
+    expect(() =>
+      cohortManager.createCohort().toThrowError('Please provide a cohort name')
+    )
+  })
+
   it('findCohort returns cohort if it exists', () => {
     // Setup
     cohortManager.createCohort('Cohort 1')
@@ -111,7 +125,7 @@ describe('Testing CohortManager', () => {
     // Setup
     cohortManager.createCohort('Cohort 1')
     for (let i = 0; i < 24; i++) {
-      cohortManager.addStudent('first', 'last', 'git', 'email', 'Cohort 1')
+      cohortManager.addStudent(`first${i}`, 'last', 'git', 'email', 'Cohort 1')
     }
     // Execution
     // Check
@@ -119,6 +133,26 @@ describe('Testing CohortManager', () => {
       cohortManager
         .addStudent('first', 'last', 'git', 'email', 'Cohort 1')
         .toThrowError('Cohort is full')
+    )
+  })
+
+  it('addStudent returns error if student already exists', () => {
+    // Setup
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.createCohort('Cohort 2')
+    cohortManager.addStudent('first', 'last', 'git', 'email', 'Cohort 1')
+    cohortManager.addStudent('first2', 'last2', 'git2', 'email2', 'Cohort 2')
+    // Execution
+    // Check
+    expect(() =>
+      cohortManager
+        .addStudent('first', 'last', 'git', 'email', 'Cohort 1')
+        .toThrowError('Student already exists in this cohort')
+    )
+    expect(() =>
+      cohortManager
+        .addStudent('first2', 'last2', 'git2', 'email2', 'Cohort 1')
+        .toThrowError('Student already exists in another cohort')
     )
   })
 
