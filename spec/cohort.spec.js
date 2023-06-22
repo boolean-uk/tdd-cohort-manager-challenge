@@ -1,4 +1,4 @@
-import { Cohort, Student } from '../src/cohort.js'
+import { Cohort } from '../src/cohort.js'
 
 describe('createCohort', () => {
   let cohort
@@ -142,5 +142,33 @@ describe('addStudentToCohort', () => {
     expect(res).toEqual([
       { cohortName: 'cohort_15', studentList: [newStudent] }
     ])
+  })
+
+  it('by ID, returns error message if student already assigned to cohort', () => {
+    const newCohort = 'cohort_16'
+    cohort.createCohort(newCohort)
+    cohort.createStudent(
+      uniqueID,
+      'joe',
+      'bloggs',
+      'joebloggsGit',
+      'joe.bloggs@email.co'
+    )
+    cohort.addStudentToCohort(1, 'cohort_16')
+    const res = cohort.addStudentToCohort(1, 'cohort_16')
+    expect(res).toEqual('student already in this cohort')
+  })
+})
+
+describe('removeCohort', () => {
+  let cohort
+  beforeEach(() => {
+    cohort = new Cohort()
+  })
+
+  it('removes a cohort from the cohortList', () => {
+    cohort.createCohort('cohort_17')
+    const res = cohort.removeCohort('cohort_17')
+    expect(res).toEqual([])
   })
 })

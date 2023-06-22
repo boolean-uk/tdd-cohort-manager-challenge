@@ -59,9 +59,26 @@ class Cohort {
   addStudentToCohort(studentID, cohortName) {
     const whichCohort = this.findCohort(cohortName)
     const whichStudent = this.findStudent(studentID)
-    console.log('whichCohort', whichCohort)
-    console.log('whichStudent', whichStudent)
+    const existingStudent = whichCohort.studentList.find(
+      (student) => student.studentID === studentID
+    )
+    if (existingStudent) {
+      return 'student already in this cohort'
+    }
     whichCohort.studentList.push(whichStudent)
+    return this.cohortList
+  }
+
+  removeCohort(cohortName) {
+    const whichCohort = this.findCohort(cohortName)
+    const newList = []
+    this.cohortList.map((e) => {
+      if (e !== whichCohort) {
+        newList.push(e)
+      }
+      return newList
+    })
+    this.cohortList = newList
     return this.cohortList
   }
 }
