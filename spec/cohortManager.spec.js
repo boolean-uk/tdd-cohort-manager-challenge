@@ -113,7 +113,7 @@ describe('Cohort Manager', () => {
     const result = () => app.removeCohort('cohort06')
     expect(result).toThrowError('Cohort was not found')
   })
-  it('delete student from a cohort', () => {
+  it('delete student from a cohort using github username', () => {
     app.addCohort('cohort05')
     app.addCohort('cohort06')
     app.addStudent(
@@ -157,7 +157,7 @@ describe('Cohort Manager', () => {
       }
     ]
 
-    const result = app.removeStudent('carolina arruda')
+    const result = app.removeStudent('carolarruda')
 
     for (let i = 0; i < result.length; i++) {
       expect(result[i].id).toEqual(expected[i].id)
@@ -174,7 +174,7 @@ describe('Cohort Manager', () => {
       expect(result[i].students[0].email).toEqual(expected[i].students[0].email)
     }
   })
-  it('error message when student name does not exist', () => {
+  it('error message when student github username does not exist', () => {
     app.addCohort('cohort05')
     app.addStudent(
       'cohort05',
@@ -183,7 +183,7 @@ describe('Cohort Manager', () => {
       'carolarruda',
       'carolinacarruda@sapo.pt'
     )
-    const resultTwo = () => app.removeStudent('carolina')
+    const resultTwo = () => app.removeStudent('gity')
     expect(resultTwo).toThrowError('Student was not found')
   })
   it('search for a specific student', () => {
