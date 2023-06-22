@@ -203,4 +203,88 @@ describe('CohortManger', () => {
     // Then
     expect(res).toEqual(expected)
   })
+
+  it('Remove student from non existing cohort', () => {
+    // Given
+    const name1 = 'Cohort 1'
+
+    const student1 = {
+      firstName: 'Chris',
+      lastName: 'Sach',
+      gitUserName: 'ChrisJS90',
+      email: 'christophersach90@gmail.com'
+    }
+
+    const student2 = {
+      firstName: 'Rei',
+      lastName: 'Ayanami',
+      gitUserName: 'EvaUnitZero',
+      email: 'deffoNotAClone@nerv.com'
+    }
+    // When
+    cohortList.createCohort(name1)
+    cohortList.createStudent(
+      'Cohort 1',
+      student1.firstName,
+      student1.lastName,
+      student1.gitUserName,
+      student1.email
+    )
+    cohortList.createStudent(
+      'Cohort 1',
+      student2.firstName,
+      student2.lastName,
+      student2.gitUserName,
+      student2.email
+    )
+
+    // Then
+    expect(() =>
+      cohortList
+        .removeStudent('Cohort 3', 1)
+        .toThrowError('Cohort does not exist')
+    )
+  })
+
+  it('Remove non existing student from existing cohort', () => {
+    // Given
+    const name1 = 'Cohort 1'
+
+    const student1 = {
+      firstName: 'Chris',
+      lastName: 'Sach',
+      gitUserName: 'ChrisJS90',
+      email: 'christophersach90@gmail.com'
+    }
+
+    const student2 = {
+      firstName: 'Rei',
+      lastName: 'Ayanami',
+      gitUserName: 'EvaUnitZero',
+      email: 'deffoNotAClone@nerv.com'
+    }
+    // When
+    cohortList.createCohort(name1)
+    cohortList.createStudent(
+      'Cohort 1',
+      student1.firstName,
+      student1.lastName,
+      student1.gitUserName,
+      student1.email
+    )
+    cohortList.createStudent(
+      'Cohort 1',
+      student2.firstName,
+      student2.lastName,
+      student2.gitUserName,
+      student2.email
+    )
+
+    // Then
+    expect(() =>
+      cohortList
+        .removeStudent('Cohort 1', 3)
+        .toThrowError('Student does not exist')
+    )
+  })
 })

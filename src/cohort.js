@@ -48,9 +48,15 @@ class CohortManager {
 
   removeStudent(coh, stuId) {
     const tCohInd = this.cohorts.findIndex((c) => c.cohortName === coh)
+    if (tCohInd === -1) {
+      throw new Error('Cohort does not exist')
+    }
     const tStuInd = this.cohorts[tCohInd].students.findIndex(
       (s) => s.studentId === stuId
     )
+    if (tStuInd === -1) {
+      throw new Error('Student does not exist')
+    }
     this.cohorts[tCohInd].students.splice(tStuInd, 1)
     return this.searchCohort(coh)
   }
