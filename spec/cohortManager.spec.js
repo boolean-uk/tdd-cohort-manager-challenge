@@ -48,14 +48,19 @@ describe('Cohort Manager: ', () => {
     expect(result).toEqual(student)
   })
 
-  // fit('Should remove a Cohort by its name', () => {
-  //   const name = 'Cohort1'
+  it('Should remove a Cohort by its name', () => {
+    const name = 'Cohort1'
+    // const name1 = 'Cohort2'
 
-  //   cohortManager.createCohort(name)
-  //   cohortManager.removeCohort(name)
-  //   const result = cohortManager.cohorts.filter((x) => {
-  //     return x.name === name.name
-  //   })
-  //   expect(result.length).toEqual(1)
-  // })
+    cohortManager.createCohort(name)
+    cohortManager.removeCohort(name)
+   // cohortManager.removeCohort(name1)
+
+    const result = cohortManager.cohorts.filter((x) => {
+      return x.name === name.name
+    })
+    expect(result.length).toEqual(0)
+  })
+
+  it('Should remove a student from a specific cohort', () => {})
 })

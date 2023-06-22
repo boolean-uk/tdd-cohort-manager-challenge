@@ -5,7 +5,7 @@ class CohortManager {
 
   createCohort(name) {
     const newCohort = {
-      name: name, // Can also be written as name,
+      name: name, // Can also be written as 'name,'
       students: []
     }
     // if (this.cohortList.cohortName !== newCohort.cohortName) {
@@ -16,7 +16,7 @@ class CohortManager {
   //   return 'This cohort already exists!'
   // }
 
-  // Returns the idex/position of the cohort requested by 'name'
+  // Returns the index/position of the cohort requested by 'name'
   findCohort(name) {
     const result = this.cohorts.findIndex((cohort) => {
       return cohort.name === name
@@ -25,7 +25,6 @@ class CohortManager {
     if (result < 0) {
       throw new Error('Cohort not found!')
     }
-
     return result
   }
 
@@ -34,9 +33,15 @@ class CohortManager {
     this.cohorts[index].students.push(student)
   }
 
-  // removeCohort() {
-
-  // }
+  removeCohort(name) {
+    if (this.findCohort(name) >= 0) {
+      const filteredCohorts = this.cohorts.filter(
+        (cohort) => cohort.name !== name.name
+      )
+      this.cohorts = filteredCohorts
+    }
+  }
+  //   removeStudent() {}
 }
 
 module.exports = CohortManager
