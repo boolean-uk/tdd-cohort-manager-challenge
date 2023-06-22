@@ -22,7 +22,7 @@ describe('Test cohort manager', () => {
 
   it('adds a student to an existent cohort', () => {
     // set up
-    const namesCohort = 'Cohort X'
+    const namesCohort = 'Cohort 10'
     const cohort = cohortManager.createCohort(namesCohort)
 
     // execute
@@ -44,5 +44,15 @@ describe('Test cohort manager', () => {
 
     expect(cohort.students.length).toBe(1)
     expect(cohort.students).toEqual([student])
+  })
+
+  it('should remove a cohort', () => {
+    // set up
+    const expected = cohortManager.createCohort('Cohort 1')
+    // execute
+    const result = cohortManager.removeCohortByName('Cohort 1')
+    // verify
+    expect(result).toEqual(expected)
+    expect(cohortManager.cohorts.length).toEqual(0)
   })
 })
