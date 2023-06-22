@@ -45,6 +45,8 @@ class CohortManager {
       throw new Error('Please make sure to provide all student details')
     } else if (!cohortFound) {
       throw new Error('Cohort not found')
+    } else if (cohortFound.cohortStudents.length >= 24) {
+      throw new Error('Cohort is full')
     } else {
       this.newStudentID++
       const student = new Student(

@@ -107,6 +107,21 @@ describe('Testing CohortManager', () => {
     )
   })
 
+  it('addStudent returns error if cohort already contains 24 students', () => {
+    // Setup
+    cohortManager.createCohort('Cohort 1')
+    for (let i = 0; i < 24; i++) {
+      cohortManager.addStudent('first', 'last', 'git', 'email', 'Cohort 1')
+    }
+    // Execution
+    // Check
+    expect(() =>
+      cohortManager
+        .addStudent('first', 'last', 'git', 'email', 'Cohort 1')
+        .toThrowError('Cohort is full')
+    )
+  })
+
   it('removeCohort successfully removes cohort', () => {
     // Setup
     cohortManager.createCohort('Cohort 1')
