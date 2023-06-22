@@ -7,16 +7,13 @@ describe('createCohort', () => {
   })
 
   it('creates a new cohort object with a cohortName property', () => {
-    // GIVEN
     const cohortName = 'cohort_01'
     const cohortObject = {
       cohortName: cohortName,
       studentList: []
     }
     const cohortList = [cohortObject]
-    // WHEN
     const res = cohort.createCohort('cohort_01')
-    // THEN
     expect(res).toEqual(cohortList)
   })
 
@@ -58,6 +55,39 @@ describe('findCohort', () => {
   it('if the cohort does not exist, return error message', () => {
     const res = cohort.findCohort('cohort_XX')
     expect(res).toEqual('cohort does not exist')
+  })
+})
+
+describe('findStudent', () => {
+  let uniqueID
+  let cohort
+  beforeEach(() => {
+    cohort = new Cohort()
+    uniqueID = 1
+  })
+
+  it('will return the student object matching the given studentID', () => {
+    const newStudent = {
+      studentID: 1,
+      firstName: 'joe',
+      lastName: 'bloggs',
+      githubUsername: 'joebloggsGit',
+      email: 'joe.bloggs@email.co'
+    }
+    cohort.createStudent(
+      uniqueID,
+      'joe',
+      'bloggs',
+      'joebloggsGit',
+      'joe.bloggs@email.co'
+    )
+    const res = cohort.findStudent(1)
+    expect(res).toEqual(newStudent)
+  })
+
+  it('will return error message is student does not exist', () => {
+    const res = cohort.findStudent(1)
+    expect(res).toEqual('student does not exist')
   })
 })
 

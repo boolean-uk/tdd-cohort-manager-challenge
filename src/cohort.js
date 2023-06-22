@@ -5,7 +5,7 @@ class Cohort {
       studentList: []
     }
     this.cohortList = []
-    this.unassignedStudents = []
+    this.allStudents = []
   }
 
   findCohort(cohortName) {
@@ -19,7 +19,7 @@ class Cohort {
   }
 
   findStudent(studentID) {
-    const student = this.unassignedStudents.find(
+    const student = this.allStudents.find(
       (student) => student.studentID === studentID
     )
     if (!student) {
@@ -52,7 +52,7 @@ class Cohort {
     }
     this.studentID++
     console.log(newStudent)
-    this.unassignedStudents.push(newStudent)
+    this.allStudents.push(newStudent)
     return newStudent
   }
 
