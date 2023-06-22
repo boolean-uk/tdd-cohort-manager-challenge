@@ -8,14 +8,18 @@ ___|       |                |     \  |                                   ___ \  
                                                         |___/                                    
 ```
 
-| Method          | Input                   | Data | Scenario                                        | Outputs    |
-|-----------------|-------------------------|------|-------------------------------------------------|------------|
-| createCohort()  | cohort@arr              |      | Create a cohort with a cohort name              | True       |
-| searchCohort()  | cohort@arr              |      | Search for a cohort by cohort name              | cohort@arr |
-| addStudent()    | cohort@arr, student@obj |      | Add a student to a specific cohort              | True       |
-| deleteCohort()  | cohort@arr              |      | Remove a cohort by cohort name                  | True       |
-| removeStudent() | cohort@arr, student@obj |      | remove a student by name from a specific cohort | True       |
-|                 |                         |      |                                                 |            |
+| Method          | Input                   | Data                                                                                                    | Scenario                                                                                           | Outputs                                        |
+|-----------------|-------------------------|---------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|------------------------------------------------|
+| createCohort()  | cohort@arr              |                                                                                                         | Create a cohort with a cohort name                                                                 | True                                           |
+| searchCohort()  | cohort@arr              |                                                                                                         | Search for a cohort by cohort name                                                                 | cohort@arr                                     |
+|                 | cohort@arr              |                                                                                                         | Returns the Cohort Does not exist when an invalid Cohort is inputted into the search               | Cohort does not exist                          |
+| addStudent()    | student@obj             | {      studentId:1,  firstName:'John', lastName:'Terry', githubUser:'JT26', email:'jt@hotmail.com' }    | Add a student to a specific cohort                                                                 | True                                           |
+| deleteCohort()  | cohort@arr              |                                                                                                         | Remove a cohort by cohort name                                                                     | True                                           |
+|                 | cohort@arr              |                                                                                                         | When a user attempts to remove a cohort, but the cohort does not exist, return error               | Unable to Delete Cohort, Cohort does not exist |
+| removeStudent() | cohort@arr, student@obj | {      studentId:15,  firstName:'Alan', lastName:'Jordan', githubUser:'AJ990', email:'aj@hotmail.com' } | remove a student by name from a specific cohort                                                    | True                                           |
+|                 | cohort@arr, student@obj | {      studentId:15,  firstName:'Alan', lastName:'Jordan', githubUser:'AJ990', email:'aj@hotmail.com' } | When a user attempts to remove a student, but the student is not found in the cohort, return error | Unable to Delete Student, Student not Found    |
+|                 | cohort@arr, student@obj | {      studentId:15,  firstName:'Alan', lastName:'Jordan', githubUser:'AJ990', email:'aj@hotmail.com' } | When a user attempts to remove a student, but the cohort does not exist, return error              | Unable to Delete Student, Cohort not found     |
+|                 |                         |                                                                                                         |                                                                                                    |                                                |
 
 ### Setup
 
