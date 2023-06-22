@@ -35,6 +35,22 @@ class CohortManager {
       return true
     }
   }
+
+  removeCohort(cohortName) {
+    if (this.cohortList.find((cohort) => cohort.cohortName === cohortName)) {
+      const cohortData = this.cohortList.find(
+        (cohort) => cohort.cohortName === cohortName
+      )
+      const indexOfCohort = this.cohortList.indexOf(cohortData)
+      this.cohortList.splice(indexOfCohort, 1)
+      return true
+    } else {
+      console.error('Unable to Delete Cohort, Cohort does not exist')
+      return false
+    }
+  }
+
+  // removeStudent(cohortName)
 }
 
 module.exports = CohortManager

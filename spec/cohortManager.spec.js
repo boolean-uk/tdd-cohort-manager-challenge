@@ -53,4 +53,40 @@ describe('Cohorts', () => {
     // verify
     expect(res).toEqual(true)
   })
+
+  // happy path
+  it('Deletes selected cohort', () => {
+    // setup
+    const cohortName = 'Cohort 1'
+    cohortManager.addCohort(cohortName)
+    // execute
+    const res = cohortManager.removeCohort(cohortName)
+    // verify
+    expect(res).toEqual(true)
+  })
+
+  // unhappy path
+  it('Returns Error when user attempts to Delete a cohort that does not exist', () => {
+    // setup
+    const cohortName = 'Cohort 54'
+    cohortManager.addCohort('Cohort 1')
+    // execute
+    const res = cohortManager.removeCohort(cohortName)
+    // verify
+    expect(res).toEqual(false)
+  })
+
+  // happy path
+  it('Remove Student from Selected Cohort', () => {
+    // setup
+    // execute
+    // verify
+  })
+
+  // unhappy path
+  it('Returns Error to user when Student is not found', () => {
+    // setup
+    // execute
+    // verify
+  })
 })
