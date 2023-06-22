@@ -153,29 +153,26 @@ class CohortManager {
   // - Data => studentID(@Number), cohortName(@String)
   // - Scenario => If admin provides a studentID & cohort name
   // - Outputs => student(@object) is removed from cohort@Object
-  findStudentByIdFromCohort(cohortName, studentID) {
-    const cohort = this.cohorts.find(
-      (cohort) => cohort.cohortName === cohortName
-    )
-    if (!cohort) throw new Error('Cohort does not exist')
-    const students = cohort.students
-    const findStudent = students.find(
-      (student) => student.studentID === studentID
-    )
-    if (!findStudent) throw new Error('Student with does not exist')
-    return findStudent
-  }
 
   removeStudentFromCohort(cohortName, studentID) {
     const cohort = this.cohorts.find(
       (cohort) => cohort.cohortName === cohortName
     )
+
     if (!cohort) throw new Error('Cohort does not exist')
-    const students = cohort.students
-    const findStudent = this.findStudentByIdFromCohort(cohortName, studentID)
-    const index = students.indexOf(findStudent)
-    const result = students.splice(index, 1)[0]
-    return null
+
+    const cohortStudnet = cohort.students.find(
+      (student) => student.studentID === studentID
+    )
+
+    if (!cohortStudnet) throw new Error('Cohort does not exist')
+
+    const studIndex = cohort.students.indexOf(cohortStudnet)
+    const removeStud = cohort.students.splice(studIndex, 1)[0]
+    const removedID = removeStud.studentID
+    // console.log('removeStud ID', removeStud.studentID)
+    return removedID
+    // return removeStud
   }
 }
 
