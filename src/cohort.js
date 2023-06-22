@@ -23,7 +23,7 @@ class CohortManager {
   createStudent(coh, firstName, lastName, gitUserName, email) {
     const tInd = this.cohorts.findIndex((c) => c.cohortName === coh)
     if (tInd === -1) {
-        throw new Error('Cohort does not exist')
+      throw new Error('Cohort does not exist')
     }
     const newId = this.cohorts[tInd].students.length + 1
     const newStudent = {
@@ -39,6 +39,9 @@ class CohortManager {
 
   removeCohort(name) {
     const tInd = this.cohorts.findIndex((c) => c.cohortName === name)
+    if (tInd === -1) {
+      throw new Error('Cohort does not exist')
+    }
     this.cohorts.splice(tInd, 1)
     return this.cohorts
   }
