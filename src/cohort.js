@@ -1,7 +1,11 @@
 class Cohort {
   constructor() {
-    this.cohortObject = {}
+    this.cohortObject = {
+      cohortName: '',
+      studentList: []
+    }
     this.cohortList = []
+    this.unassignedStudents = []
   }
 
   findCohort(cohortName) {
@@ -14,6 +18,16 @@ class Cohort {
     return cohort
   }
 
+  findStudent(studentID) {
+    const student = this.unassignedStudents.find(
+      (student) => student.studentID === studentID
+    )
+    if (!student) {
+      return 'student does not exist'
+    }
+    return student
+  }
+
   createCohort(cohortName) {
     const existingCohort = this.cohortList.find(
       (cohort) => cohort.cohortName === cohortName
@@ -24,17 +38,8 @@ class Cohort {
 
     this.cohortObject.cohortName = cohortName
     this.cohortList.push(this.cohortObject)
+    console.log(this.cohortList)
     return this.cohortList
-  }
-}
-
-class Student {
-  constructor(studentID, firstName, lastName, githubUsername, email) {
-    this.studentID = studentID
-    this.firstName = firstName
-    this.lastName = lastName
-    this.githubUsername = githubUsername
-    this.email = email
   }
 
   createStudent(uniqueID, firstName, lastName, githubUsername, email) {
@@ -47,7 +52,27 @@ class Student {
     }
     this.studentID++
     console.log(newStudent)
+    this.unassignedStudents.push(newStudent)
     return newStudent
+  }
+
+  addStudentToCohort(studentID, cohortName) {
+    const whichCohort = this.findCohort(cohortName)
+    const whichStudent = this.findStudent(studentID)
+    console.log('whichCohort', whichCohort)
+    console.log('whichStudent', whichStudent)
+    whichCohort.studentList.push(whichStudent)
+    return this.cohortList
+  }
+}
+
+class Student {
+  constructor(studentID, firstName, lastName, githubUsername, email) {
+    this.studentID = studentID
+    this.firstName = firstName
+    this.lastName = lastName
+    this.githubUsername = githubUsername
+    this.email = email
   }
 }
 
