@@ -1,6 +1,6 @@
 const Student = require('../src/student.js')
 const accountSid = 'AC7c58fb9d8b144232bb704c036836aa4c'
-const authToken = '43165cf4c8b4a0d14ca83eeb45fa9f4f'
+const authToken = 'bc015ab89ddcebe2aeae2c70349ae381'
 const client = require('twilio')(accountSid, authToken)
 
 class CohortManager {
@@ -51,17 +51,17 @@ class CohortManager {
     if (cohortToSearch.students.length < 24) {
       const student = new Student(firstName, lastName, githubUsername, email)
       cohortToSearch.students.push(student)
-      this.sendReceiptViaSMSAdd(firstName, lastName)
+      this.textAdd(firstName, lastName)
       return cohortToSearch
     }
     throw new Error('Cohort capacity exceeded: cannot add more students')
   }
 
   removeCohort(cohort) {
-    const cohortToDelete = this.searchByCohortName(cohort).cohortName
-    if (cohortToDelete) {
+    const deleteCohort = this.searchByCohortName(cohort).cohortName
+    if (deleteCohort) {
       this.cohorts = this.cohorts.filter(
-        (item) => item.cohortName !== cohortToDelete
+        (item) => item.cohortName !== deleteCohort
       )
     }
     return this.cohorts
@@ -77,7 +77,7 @@ class CohortManager {
       if (index !== -1) {
         students.splice(index, 1)
         studentFound = true
-        this.sendReceiptViaSMSRemove(githubUsername)
+        this.textRemove(githubUsername)
         break
       }
     }
@@ -87,16 +87,34 @@ class CohortManager {
     return this.cohorts
   }
 
-  getStudentId(cohortName, firstName, lastName) {
-    const cohortToSearch = this.searchByCohortName(cohortName)
-    const student = cohortToSearch.students.find(
-      (student) =>
-        student.firstName === firstName && student.lastName === lastName
-    )
-    if (!student) {
+  // getStudentId(cohortName, firstName, lastName) {
+  //   const searched = this.searchByCohortName(cohortName)
+  //   const studentFind = searched.students.find(
+  //     (student) =>
+  //       student.firstName === firstName && student.lastName === lastName
+  //   )
+  //   if (!studentFind) {
+  //     throw new Error('Student was not found')
+  //   }
+  //   return studentFind.studentID
+  // }
+
+  getStudentId(githubUsername) {
+    let studentFound = null
+    for (let i = 0; i < this.cohorts.length; i++) {
+      const students = this.cohorts[i].students
+      const student = students.find(
+        (student) => student.githubUsername === githubUsername
+      )
+      if (student) {
+        studentFound = student
+        break
+      }
+    }
+    if (!studentFound) {
       throw new Error('Student was not found')
     }
-    return student.studentID
+    return studentFound.studentID
   }
 
   searchByStudentId(studentID) {
@@ -134,9 +152,8 @@ class CohortManager {
     return true
   }
 
-  sendReceiptViaSMSAdd(firstName, lastName) {
+  textAdd(firstName, lastName) {
     const message = `Hey there, ${firstName} ${lastName} was added successfuly`
-
     return client.messages
       .create({
         body: message,
@@ -147,7 +164,7 @@ class CohortManager {
       .done()
   }
 
-  sendReceiptViaSMSRemove(githubUsername) {
+  textRemove(githubUsername) {
     const message = `Hey there, the user with the GitHub username "${githubUsername}" was deleted successfully.`
 
     return client.messages
@@ -164,6 +181,7 @@ class CohortManager {
 // const test = new CohortManager()
 // test.addCohort('cohort10')
 // test.addStudent('cohort10', 'carolina', 'arruda', 'git')
+//  console.log(test);
 // test.removeStudent('git')
 
 module.exports = CohortManager
