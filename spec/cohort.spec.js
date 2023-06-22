@@ -81,6 +81,180 @@ describe('addCohort', () => {
       )
     ).toEqual(expected)
   })
+  it('Cohort student limit is 24', () => {
+    cohortLi.addCohort('Cohort 1')
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    expect(() => {
+      cohortLi.addStudentToCohort('Cohort 1', 'Johnx', 'Cena')
+    }).toThrowError('Error: Cohort reached 24 students capacity')
+  })
   it('Remove a student from the cohort by cohortName and firstName and lastName', () => {
     const expected = {
       id: 1,
@@ -157,5 +331,61 @@ describe('addCohort', () => {
     expect(() => {
       cohortLi.searchStudentById(2)
     }).toThrowError('Error: Id does not exist')
+  })
+  it('Search for a student by its firstName and lastName', () => {
+    const expected = [
+      {
+        id: 1,
+        firstName: 'John',
+        lastName: 'Cena',
+        gitHub: 'JohnCena',
+        email: 'John@cena.com'
+      },
+      {
+        id: 2,
+        firstName: 'John',
+        lastName: 'Cena',
+        gitHub: 'JohnCena',
+        email: 'John@cena.com'
+      }
+    ]
+    cohortLi.addCohort('Cohort 1')
+    cohortLi.addCohort('Cohort 2')
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 2',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    expect(cohortLi.searchStudentByName('John', 'Cena')).toEqual(expected)
+  })
+  it('No student matches this firstName and lastName', () => {
+    cohortLi.addCohort('Cohort 1')
+    cohortLi.addCohort('Cohort 2')
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    cohortLi.addStudentToCohort(
+      'Cohort 2',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    expect(() => {
+      cohortLi.searchStudentByName('Bob', 'Burger')
+    }).toThrowError('Error: No matching students found')
   })
 })

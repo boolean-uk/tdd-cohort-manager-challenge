@@ -68,13 +68,18 @@ class Cohorts {
       gitHub: gitHubUsername,
       email: emailAddress
     }
+
     const cohort = this.searchByName(cohortName)
     if (!cohort) {
       throw new Error('Error: Cohort not found')
     }
-    const studentsList = cohort[cohortName]
-    studentsList.push(student)
 
+    const studentsList = cohort[cohortName]
+    if (studentsList.length >= 24) {
+      throw new Error('Error: Cohort reached 24 students capacity')
+    }
+
+    studentsList.push(student)
     return studentsList
   }
 
@@ -112,6 +117,27 @@ class Cohorts {
     }
 
     throw new Error('Error: Id does not exist')
+  }
+
+  searchStudentByName(firstName, lastName) {
+    const matchingStudents = []
+
+    for (const cohort of this.cohortList) {
+      const students = Object.values(cohort)
+      for (const studentList of students) {
+        const foundStudents = studentList.filter(
+          (student) =>
+            student.firstName === firstName && student.lastName === lastName
+        )
+        matchingStudents.push(...foundStudents)
+      }
+    }
+
+    if (matchingStudents.length === 0) {
+      throw new Error('Error: No matching students found')
+    }
+
+    return matchingStudents
   }
 }
 const cohort = new Cohorts()
