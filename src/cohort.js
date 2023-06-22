@@ -84,7 +84,7 @@ class Cohorts {
     )
 
     if (cohortIndex === -1) {
-      throw new Error('Error: Cohort Not Found!')
+      throw new Error('Error: Cohort does not exist!')
     }
 
     const cohort = this.cohortList[cohortIndex][cohortName]
@@ -94,7 +94,7 @@ class Cohorts {
     )
 
     if (studentIndex === -1) {
-      throw new Error('Error: Student Not Found!')
+      throw new Error('Error: Student does not exist!')
     }
 
     return cohort.splice(studentIndex, 1)[0]

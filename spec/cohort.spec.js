@@ -101,7 +101,7 @@ describe('addCohort', () => {
       expected
     )
   })
-  it('Student not found', () => {
+  it('Student does not exist', () => {
     cohortLi.addCohort('Cohort 1')
     cohortLi.addStudentToCohort(
       'Cohort 1',
@@ -112,9 +112,9 @@ describe('addCohort', () => {
     )
     expect(() => {
       cohortLi.removeStudentByName('Cohort 1', 'Johnx', 'Cena')
-    }).toThrowError('Error: Student Not Found!')
+    }).toThrowError('Error: Student does not exist!')
   })
-  it('Cohort not found', () => {
+  it('Cohort does not exist', () => {
     cohortLi.addCohort('Cohort 1')
     cohortLi.addStudentToCohort(
       'Cohort 1',
@@ -125,6 +125,6 @@ describe('addCohort', () => {
     )
     expect(() => {
       cohortLi.removeStudentByName('Cohort 2', 'John', 'Cena')
-    }).toThrowError('Error: Cohort Not Found!')
+    }).toThrowError('Error: Cohort does not exist!')
   })
 })
