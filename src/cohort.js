@@ -20,7 +20,7 @@ class Cohorts {
 
   searchByName(cohortName) {
     if (this.cohortList.length === 0) {
-      return `ERROR: Cohort List is empty`
+      throw new Error('ERROR: Cohort List is empty')
     }
 
     for (const cohort of this.cohortList) {
@@ -28,13 +28,15 @@ class Cohorts {
       console.log(cohortNameList)
       if (cohortNameList === cohortName) {
         return cohort
+      } else if (cohortNameList !== cohortName) {
+        throw new Error('Error: Cohort name does not exist')
       }
     }
   }
 
   removeByName(cohortName) {
     if (this.cohortList.length === 0) {
-      return `ERROR: Cohort List is empty`
+      throw new Error('ERROR: Cohort List is empty')
     }
 
     for (const cohort of this.cohortList) {
@@ -44,6 +46,8 @@ class Cohorts {
         this.cohortList.splice(index, 1)
         console.log(this.cohortList)
         return this.cohortList
+      } else if (cohortNameList !== cohortName) {
+        throw new Error('Error: Cohort name does not exist')
       }
     }
   }

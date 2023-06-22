@@ -33,6 +33,16 @@ describe('addCohort', () => {
     const result = cohortLi.searchByName('Cohort 1')
     expect(result).toEqual(expected)
   })
+  it('Search for a cohort by its name, but name does not exist', () => {
+    const expected = 'Error: Cohort name does not exist'
+
+    cohortLi.addCohort('Cohort 2')
+    expect(() => cohortLi.searchByName('Cohort 1')).toThrowError(expected)
+  })
+  it('Search for a cohort by its name, but Cohort list is empty', ()=>{
+    const expected = 'ERROR: Cohort List is empty'
+    expect(() => cohortLi.searchByName('Cohort 1')).toThrowError(expected)
+  })
   it('Remove the cohort by name', () => {
     const expected = [{ 'Cohort 2': [] }, { 'Cohort 3': [] }]
 
@@ -41,5 +51,18 @@ describe('addCohort', () => {
     cohortLi.addCohort('Cohort 3')
     const result = cohortLi.removeByName('Cohort 1')
     expect(result).toEqual(expected)
+  })
+  it('trying to remove the cohort but Cohort name does not exist', ()=>{
+    const expected = 'Error: Cohort name does not exist'
+    cohortLi.addCohort('Cohort 1')
+    cohortLi.addCohort('Cohort 2')
+    cohortLi.addCohort('Cohort 3')
+    expect(() => cohortLi.removeByName('Cohort 4')).toThrowError(expected)
+
+  })
+  it('Trying to remove the cohort but Cohort list is empty',()=>{
+    const expected = 'ERROR: Cohort List is empty'
+    expect(() => cohortLi.removeByName('Cohort 1')).toThrowError(expected)
+
   })
 })
