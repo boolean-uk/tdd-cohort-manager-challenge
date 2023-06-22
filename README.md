@@ -1,12 +1,13 @@
 # Cohort Manager
 
-```
+<!-- 
 ___|       |                |     \  |                                   ___ \   _ \___ \ ___ \  
 |      _ \  __ \   _ \   __| __|  |\/ |  _` | __ \   _` |  _` |  _ \  __|    ) | |   |  ) |   ) |
 |     (   | | | | (   | |    |    |   | (   | |   | (   | (   |  __/ |      __/  |   | __/   __/  
 \____|\___/ _| |_|\___/ _|   \__| _|  _|\__,_|_|  _|\__,_|\__, |\___|_|    _____|\___/_____|_____|
-                                                        |___/                                    
-```
+                                                        |___/                                     
+-->
+
 
 ### Setup
 
@@ -31,10 +32,10 @@ You should be able to run this in your JS console (using your node REPL, or brow
 ```
 The Cohort Manager should be able to support the following interactions
 
-- Create a cohort with a cohort name
-- Search for a cohort by cohort name
+- Create a cohort with a cohort name ---DONE
+- Search for a cohort by cohort name ---DONE
 - Add student to a specific cohort
-- Remove a cohort by cohort name
+- Remove a cohort by cohort name ---DONE
 - Remove student from a specific cohort
 - Throw errors if student or cohort not found
 
