@@ -237,5 +237,39 @@ describe('cohortManager', () => {
     expect(result).toEqual(expected)
   })
 
-  
+  // Test 7
+  it('Will throw an error if the cohort trying to be removed does not exist', () => {
+    // Set up
+    const expected = "The cohort doesn't exist"
+
+    // Execute
+    cohortManager.create('Cohort 9')
+    cohortManager.create('Cohort 10')
+    cohortManager.create('Cohort 11')
+    cohortManager.addStudent(
+      'Kyle',
+      'Bridgewater',
+      'kyleUnderwater',
+      'kylebridge@yahoo.com',
+      'Cohort 9'
+    )
+    cohortManager.addStudent(
+      'Alexandra',
+      "O'neil",
+      'zandOneil4',
+      'AlexOneil@gmail.com',
+      'Cohort 10'
+    )
+    cohortManager.addStudent(
+      'Billy',
+      'Sanders',
+      'billysanders101',
+      'billysanders101@gmail.com',
+      'Cohort 9'
+    )
+    const result = cohortManager.removeCohort('Cohort 20')
+
+    // verify
+    expect(result).toEqual(expected)
+  })
 })

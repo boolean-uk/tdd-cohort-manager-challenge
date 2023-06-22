@@ -44,6 +44,9 @@ class CohortManager {
   }
 
   removeCohort(cohort) {
+    if (this.searchCohort(cohort) === "The cohort doesn't exist") {
+      return "The cohort doesn't exist"
+    }
     this.cohortData.splice(
       this.cohortData.indexOf(this.searchCohort(cohort), 1)
     )
