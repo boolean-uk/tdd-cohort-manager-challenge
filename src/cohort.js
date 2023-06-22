@@ -1,6 +1,7 @@
 class Cohorts {
   constructor() {
     this.cohortList = []
+    this.id = 1
   }
 
   addCohort(cohortName) {
@@ -23,15 +24,16 @@ class Cohorts {
       throw new Error('ERROR: Cohort List is empty')
     }
 
-    for (const cohort of this.cohortList) {
+    const targetCohort = this.cohortList.find((cohort) => {
       const cohortNameList = Object.keys(cohort)[0]
-      console.log(cohortNameList)
-      if (cohortNameList === cohortName) {
-        return cohort
-      } else if (cohortNameList !== cohortName) {
-        throw new Error('Error: Cohort name does not exist')
-      }
+      return cohortNameList === cohortName
+    })
+
+    if (!targetCohort) {
+      throw new Error('Error: Cohort name does not exist')
     }
+
+    return targetCohort
   }
 
   removeByName(cohortName) {
@@ -51,6 +53,30 @@ class Cohorts {
       }
     }
   }
+
+  addStudentToCohort(
+    cohortName,
+    studentFirstName,
+    studentLastName,
+    gitHubUsername,
+    emailAddress
+  ) {
+    const student = {
+      id: this.id++,
+      firstName: studentFirstName,
+      lastName: studentLastName,
+      gitHub: gitHubUsername,
+      email: emailAddress
+    }
+    const cohort = this.searchByName(cohortName)
+    if (!cohort) {
+      throw new Error('Error: Cohort not found')
+    }
+    const studentsList = cohort[cohortName]
+    studentsList.push(student)
+
+    return studentsList
+  }
 }
 const cohort = new Cohorts()
 cohort.addCohort('Cohort 1')
@@ -63,5 +89,22 @@ cohort.addCohort('Cohort 7')
 cohort.addCohort('Cohort 8')
 cohort.addCohort('Cohort 9')
 cohort.addCohort('Cohort 10')
+const student = cohort.addStudentToCohort(
+  'Cohort 1',
+  'sdfs',
+  'sdfs',
+  'sdfs',
+  'dsfs'
+)
+const student2 = cohort.addStudentToCohort(
+  'Cohort 2',
+  'sdfsfdg',
+  'sdfsfdgd',
+  'sdfsfg',
+  'dsfsdfg'
+)
+
 console.log(cohort)
+console.log(student)
+console.log(student2)
 module.exports = Cohorts
