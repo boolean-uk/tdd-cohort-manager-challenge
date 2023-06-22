@@ -136,6 +136,21 @@ describe('CohortManger', () => {
     expect(res).toEqual(expected)
   })
 
+  it('Remove non existing cohort', () => {
+    // Given
+    const name1 = 'Cohort 1'
+    const name2 = 'Cohort 2'
+
+    // When
+    cohortList.createCohort(name1)
+    cohortList.createCohort(name2)
+
+    // Then
+    expect(() =>
+      cohortList.removeCohort('Cohort 3').toThrowError('Cohort does not exist')
+    )
+  })
+
   it('Remove student from specific cohort', () => {
     // Given
     const name1 = 'Cohort 1'
