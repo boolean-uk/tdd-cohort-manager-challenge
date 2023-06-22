@@ -84,6 +84,20 @@ class Cohort {
     this.cohortList = newList
     return this.cohortList
   }
+
+  removeStudent(studentID, cohortName) {
+    const whichStudent = this.findStudent(studentID)
+    const whichCohort = this.findCohort(cohortName)
+    const newList = []
+    whichCohort.studentList.map((e) => {
+      if (e !== whichStudent) {
+        newList.push(e)
+      }
+      return newList
+    })
+    whichCohort.studentList = newList
+    return whichCohort
+  }
 }
 
 class Student {
