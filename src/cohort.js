@@ -14,6 +14,9 @@ class CohortManager {
 
   searchCohort(name) {
     const targCoh = this.cohorts.find((c) => c.cohortName === name)
+    if(!targCoh) {
+        throw new Error('Cohort does not exist')
+    }
     return targCoh
   }
 
