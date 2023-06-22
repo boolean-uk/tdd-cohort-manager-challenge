@@ -67,6 +67,20 @@ class CohortManager {
     }
     return searchResult[0]
   }
+
+  removeStudent(first, last) {
+    this.cohortData.forEach((obj) => {
+      if (obj.students.indexOf(this.searchStudent(first, last)) === -1) {
+        return
+      }
+      obj.students.splice(
+        obj.students.indexOf(this.searchStudent(first, last)),
+        1
+      )
+    })
+
+    return this.cohortData
+  }
 }
 
 module.exports = CohortManager
