@@ -8,5 +8,5 @@
 |            |         |        | If cohort name does not exist | Throw Error |
 | As a user, So that I can change my cohort, I'd like to remove a cohort from my Cohort Manager | `removeCohort(cohort)` | cohort | If the cohort is in the Cohort Manager | Cohort Manager without the cohort `@object[]` |
 |            |         |        | If the cohort is not in the Cohort Manager | Cohort Manager remains unchanged |
-| As a user, So that I can modify a specific cohort, I'd like to remove a student from a specific cohort | `removeStudent(cohort, studentID)` | cohort, studentID | If studentID exists in the cohort | Cohort Manager with the student removed from the cohort `@object[]` |
-|            |         |        | If studentID does not exist in the cohort | Cohort Manager remains unchanged |
+| As a user, So that I can modify a specific cohort, I'd like to remove a student from a specific cohort | `removeStudent(githubUsername)` | githubUsername | If githubUsername exists in the cohort | Cohort Manager with the student removed from the cohort `@object[]` |
+|            |         |        | If githubUsername does not exist in the cohort | Cohort Manager remains unchanged |
