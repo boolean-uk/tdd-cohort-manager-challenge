@@ -14,14 +14,17 @@ class CohortManager {
 
   searchCohort(name) {
     const targCoh = this.cohorts.find((c) => c.cohortName === name)
-    if(!targCoh) {
-        throw new Error('Cohort does not exist')
+    if (!targCoh) {
+      throw new Error('Cohort does not exist')
     }
     return targCoh
   }
 
   createStudent(coh, firstName, lastName, gitUserName, email) {
     const tInd = this.cohorts.findIndex((c) => c.cohortName === coh)
+    if (tInd === -1) {
+        throw new Error('Cohort does not exist')
+    }
     const newId = this.cohorts[tInd].students.length + 1
     const newStudent = {
       studentId: newId,

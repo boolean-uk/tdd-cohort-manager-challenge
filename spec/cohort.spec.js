@@ -88,6 +88,32 @@ describe('CohortManger', () => {
     expect(res).toEqual(expected)
   })
 
+  it('Create student for a non existing cohort', () => {
+    // Given
+    const student = {
+      firstName: 'Chris',
+      lastName: 'Sach',
+      gitUserName: 'ChrisJS90',
+      email: 'christophersach90@gmail.com'
+    }
+
+    // When
+    cohortList.createCohort('Cohort 1')
+
+    // Then
+    expect(() =>
+      cohortList
+        .createStudent(
+          'Cohort 2',
+          student.firstName,
+          student.lastName,
+          student.gitUserName,
+          student.email
+        )
+        .toThrowError('Cohort does not exist')
+    )
+  })
+
   it('Remove existing cohort', () => {
     // Given
     const name1 = 'Cohort 1'
