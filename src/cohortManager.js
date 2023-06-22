@@ -3,6 +3,7 @@ const Cohort = require('../src/cohort')
 class CohortManager {
   constructor() {
     this.cohorts = []
+    this.previousStudent = -1
   }
 
   createCohort(name) {
