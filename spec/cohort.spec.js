@@ -10,7 +10,8 @@ describe('createCohort', () => {
     // GIVEN
     const cohortName = 'cohort_11'
     const cohortObject = {
-      cohortName: cohortName
+      cohortName: cohortName,
+      studentList: []
     }
     const cohortList = [cohortObject]
     // WHEN
@@ -22,7 +23,8 @@ describe('createCohort', () => {
   it('creates a different cohort object with a cohortName property', () => {
     const cohortName = 'cohort_12'
     const cohortObject = {
-      cohortName: cohortName
+      cohortName: cohortName,
+      studentList: []
     }
     const cohortList = [cohortObject]
     const res = cohort.createCohort('cohort_12')
@@ -45,7 +47,8 @@ describe('findCohort', () => {
 
   it('if cohort exits, return cohort object', () => {
     const cohort14 = {
-      cohortName: 'cohort_14'
+      cohortName: 'cohort_14',
+      studentList: []
     }
     cohort.createCohort('cohort_14')
     const res = cohort.findCohort('cohort_14')
@@ -60,10 +63,10 @@ describe('findCohort', () => {
 
 describe('createStudent', () => {
   let uniqueID
-  let student
+  let cohort
   beforeEach(() => {
+    cohort = new Cohort()
     uniqueID = 1
-    student = new Student()
   })
 
   it('creates a new student object with relevant properties assigned', () => {
@@ -74,7 +77,7 @@ describe('createStudent', () => {
       githubUsername: 'joebloggsGit',
       email: 'joe.bloggs@email.co'
     }
-    const res = student.createStudent(
+    const res = cohort.createStudent(
       uniqueID,
       'joe',
       'bloggs',
@@ -92,14 +95,14 @@ describe('createStudent', () => {
       githubUsername: 'joeybloggsyGit',
       email: 'joey.bloggsy@email.co'
     }
-    student.createStudent(
+    cohort.createStudent(
       1,
       'joeseph',
       'bloggson',
       'joesephbloggsonGit',
       'joeseph.bloggson@email.co'
     )
-    const res = student.createStudent(
+    const res = cohort.createStudent(
       2,
       'joey',
       'bloggsy',
@@ -107,5 +110,37 @@ describe('createStudent', () => {
       'joey.bloggsy@email.co'
     )
     expect(res).toEqual(newStudent)
+  })
+})
+
+describe('addStudentToCohort', () => {
+  let cohort
+  let uniqueID
+  beforeEach(() => {
+    cohort = new Cohort()
+    uniqueID = 1
+  })
+
+  it('by ID, if student is not in cohort list add them to it', () => {
+    const newStudent = {
+      studentID: 1,
+      firstName: 'joe',
+      lastName: 'bloggs',
+      githubUsername: 'joebloggsGit',
+      email: 'joe.bloggs@email.co'
+    }
+    const newCohort = 'cohort_15'
+    cohort.createCohort(newCohort)
+    cohort.createStudent(
+      uniqueID,
+      'joe',
+      'bloggs',
+      'joebloggsGit',
+      'joe.bloggs@email.co'
+    )
+    const res = cohort.addStudentToCohort(1, 'cohort_15')
+    expect(res).toEqual([
+      { cohortName: 'cohort_15', studentList: [newStudent] }
+    ])
   })
 })
