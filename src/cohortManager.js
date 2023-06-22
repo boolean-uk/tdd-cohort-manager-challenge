@@ -22,6 +22,7 @@ class CohortManager {
       cohortName: name,
       students: []
     }
+    
     this.cohorts.push(cohort)
     return cohort
   }
@@ -87,17 +88,6 @@ class CohortManager {
     return this.cohorts
   }
 
-  // getStudentId(cohortName, firstName, lastName) {
-  //   const searched = this.searchByCohortName(cohortName)
-  //   const studentFind = searched.students.find(
-  //     (student) =>
-  //       student.firstName === firstName && student.lastName === lastName
-  //   )
-  //   if (!studentFind) {
-  //     throw new Error('Student was not found')
-  //   }
-  //   return studentFind.studentID
-  // }
 
   getStudentId(githubUsername) {
     let studentFound = null
@@ -166,7 +156,6 @@ class CohortManager {
 
   textRemove(githubUsername) {
     const message = `Hey there, the user with the GitHub username "${githubUsername}" was deleted successfully.`
-
     return client.messages
       .create({
         body: message,
@@ -178,10 +167,5 @@ class CohortManager {
   }
 }
 
-// const test = new CohortManager()
-// test.addCohort('cohort10')
-// test.addStudent('cohort10', 'carolina', 'arruda', 'git')
-//  console.log(test);
-// test.removeStudent('git')
 
 module.exports = CohortManager
