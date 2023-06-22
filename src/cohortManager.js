@@ -1,6 +1,6 @@
 const Student = require('../src/student.js')
 const accountSid = 'AC7c58fb9d8b144232bb704c036836aa4c'
-const authToken = 'bc015ab89ddcebe2aeae2c70349ae381'
+const authToken = '43165cf4c8b4a0d14ca83eeb45fa9f4f'
 const client = require('twilio')(accountSid, authToken)
 
 class CohortManager {
@@ -51,17 +51,17 @@ class CohortManager {
     if (cohortToSearch.students.length < 24) {
       const student = new Student(firstName, lastName, githubUsername, email)
       cohortToSearch.students.push(student)
-      this.textAdd(firstName, lastName)
+      this.sendReceiptViaSMSAdd(firstName, lastName)
       return cohortToSearch
     }
     throw new Error('Cohort capacity exceeded: cannot add more students')
   }
 
   removeCohort(cohort) {
-    const deleteCohort = this.searchByCohortName(cohort).cohortName
-    if (deleteCohort) {
+    const cohortToDelete = this.searchByCohortName(cohort).cohortName
+    if (cohortToDelete) {
       this.cohorts = this.cohorts.filter(
-        (item) => item.cohortName !== deleteCohort
+        (item) => item.cohortName !== cohortToDelete
       )
     }
     return this.cohorts
@@ -77,7 +77,7 @@ class CohortManager {
       if (index !== -1) {
         students.splice(index, 1)
         studentFound = true
-        this.textRemove(githubUsername)
+        this.sendReceiptViaSMSRemove(githubUsername)
         break
       }
     }
@@ -86,7 +86,6 @@ class CohortManager {
     }
     return this.cohorts
   }
-
 
   getStudentId(githubUsername) {
     let studentFound = null
@@ -141,8 +140,9 @@ class CohortManager {
     return true
   }
 
-  textAdd(firstName, lastName) {
+  sendReceiptViaSMSAdd(firstName, lastName) {
     const message = `Hey there, ${firstName} ${lastName} was added successfuly`
+
     return client.messages
       .create({
         body: message,
@@ -153,7 +153,7 @@ class CohortManager {
       .done()
   }
 
-  textRemove(githubUsername) {
+  sendReceiptViaSMSRemove(githubUsername) {
     const message = `Hey there, the user with the GitHub username "${githubUsername}" was deleted successfully.`
     return client.messages
       .create({
@@ -165,6 +165,5 @@ class CohortManager {
       .done()
   }
 }
-
 
 module.exports = CohortManager

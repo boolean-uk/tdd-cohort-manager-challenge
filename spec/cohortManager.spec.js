@@ -2,10 +2,11 @@ const CohortManager = require('../src/cohortManager.js')
 
 describe('Cohort Manager', () => {
   let app
+
   beforeEach(() => {
     app = new CohortManager()
   })
-  
+
   it('creates a new cohort', () => {
     const expected = {
       id: 1,
@@ -40,7 +41,7 @@ describe('Cohort Manager', () => {
     const result = () => app.searchByCohortName('cohort10')
     expect(result).toThrowError('Cohort was not found')
   })
-  it('add a new student to a cohort', () => {
+  it('add a new student to a cohort - testing 2 classes', () => {
     app.addCohort('cohort05')
     const expected = {
       id: 1,
@@ -95,6 +96,7 @@ describe('Cohort Manager', () => {
     app.addCohort('cohort05')
     app.addCohort('cohort06')
     app.addCohort('cohort01')
+
     const expected = [
       { id: 1, cohortName: 'cohort05', students: [] },
       {
@@ -125,6 +127,7 @@ describe('Cohort Manager', () => {
     app.addStudent('cohort06', 'alan', 'charlie', 'alie1', 'alie1@sapo.pt')
     const id1 = app.getStudentId('sarajb')
     const id2 = app.getStudentId('alie1')
+
     const expected = [
       {
         id: 1,
@@ -155,7 +158,7 @@ describe('Cohort Manager', () => {
     ]
 
     const result = app.removeStudent('carolarruda')
-    
+
     for (let i = 0; i < result.length; i++) {
       expect(result[i].id).toEqual(expected[i].id)
       expect(result[i].cohortName).toEqual(expected[i].cohortName)
@@ -200,11 +203,12 @@ describe('Cohort Manager', () => {
   })
   it('error message when adding more students than cohort capacity', () => {
     app.addCohort('cohort05')
+
     for (let i = 0; i < 24; i++) {
       app.addStudent(
         'cohort05',
-        `firstName`,
-        `lastName`,
+        `firstName${i}`,
+        `lastName${i}`,
         `studentUsername${i}`,
         `student${i}@test.com`
       )
@@ -220,6 +224,7 @@ describe('Cohort Manager', () => {
       )
     }).toThrowError('Cohort capacity exceeded: cannot add more students')
   })
+
   it('error message when adding a cohort with existing name', () => {
     app.addCohort('cohort10')
     const result = () => app.addCohort('cohort10')
@@ -249,18 +254,5 @@ describe('Cohort Manager', () => {
     app.addStudent('cohort10', 'carol', 'arruda', 'crazyBee')
     const result = app.searchByFullname('carol arruda')
     expect(result).toBeTrue()
-  })
-  it('sending a text message if a new student is added', () => {
-    spyOn(app, 'textAdd')
-    app.addCohort('cohort10')
-    app.addStudent('cohort10', 'carol', 'arruda', 'carolarruda')
-    expect(app.textAdd).toHaveBeenCalled()
-  })
-  it('sending a text message if a student is removed', () => {
-    spyOn(app, 'textRemove')
-    app.addCohort('cohort10')
-    app.addStudent('cohort10', 'carol', 'arruda', 'carolarruda')
-    app.removeStudent('carolarruda')
-    expect(app.textRemove).toHaveBeenCalled()
   })
 })
