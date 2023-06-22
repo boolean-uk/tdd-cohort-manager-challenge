@@ -161,9 +161,9 @@ class CohortManager {
   }
 }
 
-const test = new CohortManager()
-test.addCohort('cohort10')
-test.addStudent('cohort10', 'carolina', 'arruda', 'git')
-test.removeStudent('git')
+// const test = new CohortManager()
+// test.addCohort('cohort10')
+// test.addStudent('cohort10', 'carolina', 'arruda', 'git')
+// test.removeStudent('git')
 
 module.exports = CohortManager
