@@ -17,8 +17,8 @@ describe('Cohort Manager', () => {
     expect(result).toEqual(expected)
   })
   it('try to add a new cohort without a name', () => {
-    const result = app.addCohort('')
-    expect(result).toBeFalse()
+    const result = () => app.addCohort('')
+    expect(result).toThrowError()
   })
   it('cohort manager has no cohorts', () => {
     const expected = []

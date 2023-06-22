@@ -11,7 +11,7 @@ class CohortManager {
 
   addCohort(name) {
     if (name.trim() === '') {
-      return false
+      throw new Error('Your cohort needs a name')
     }
     const existingCohort = this.cohorts.find(
       (cohort) => cohort.cohortName === name
