@@ -79,14 +79,40 @@ describe('Cohorts', () => {
   // happy path
   it('Remove Student from Selected Cohort', () => {
     // setup
+    const cohortName = 'Cohort 4'
+    const studentInfo = {
+      studentId: 15,
+      firstName: 'Alan',
+      lastName: 'Jordan',
+      githubUser: 'AJ990',
+      email: 'aj@hotmail.com'
+    }
+    const studentId = 15
+    cohortManager.addCohort(cohortName)
+    cohortManager.addStudent(cohortName, studentInfo)
     // execute
+    const res = cohortManager.removeStudent(cohortName, studentId)
     // verify
+    expect(res).toEqual(true)
   })
 
   // unhappy path
   it('Returns Error to user when Student is not found', () => {
     // setup
+    const cohortName = 'Cohort 4'
+    const studentInfo = {
+      studentId: 15,
+      firstName: 'Alan',
+      lastName: 'Jordan',
+      githubUser: 'AJ990',
+      email: 'aj@hotmail.com'
+    }
+    const studentId = 43
+    cohortManager.addCohort(cohortName)
+    cohortManager.addStudent(cohortName, studentInfo)
     // execute
+    const res = cohortManager.removeStudent(cohortName, studentId)
     // verify
+    expect(res).toEqual(false)
   })
 })
