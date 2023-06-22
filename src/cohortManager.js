@@ -47,7 +47,6 @@ class CohortManager {
   // - Data => newCohort(@Object), Properties: cohortName(@String), students(@Array_Object)
   // - Scenario => If admin enters a new cohort name
   // - Outputs => newCohort(@object) is added to cohort manager
-
   createNewCohort(cohortName) {
     const newCohort = { cohortName: cohortName, students: [] }
     this.cohorts.push(newCohort)
@@ -151,62 +150,22 @@ class CohortManager {
   // - Data => studentID(@Number), cohortName(@String)
   // - Scenario => If admin provides a studentID & cohort name
   // - Outputs => student(@object) is removed from cohort@Object
-
   removeStudentFromCohort(cohortName, studentID) {
     const cohort = this.cohorts.find(
       (cohort) => cohort.cohortName === cohortName
     )
-
     if (!cohort) throw new Error('Cohort does not exist')
 
     const cohortStudnet = cohort.students.find(
       (student) => student.studentID === studentID
     )
-
-    if (!cohortStudnet) throw new Error('Cohort does not exist')
+    if (!cohortStudnet) throw new Error('Student does not exist')
 
     const studIndex = cohort.students.indexOf(cohortStudnet)
     const removeStud = cohort.students.splice(studIndex, 1)[0]
-    const removedID = removeStud.studentID
-    // console.log('removeStud ID', removeStud.studentID)
-    return removedID
-    // return removeStud
+    return removeStud
   }
-
-  // Throw errors if student or cohort not found
 }
 
 // export default CohortManager
 module.exports = CohortManager
-
-// const cmanager = new CohortManager()
-// cmanager.createNewCohort('Cohort 1')
-// cmanager.createNewCohort('Cohort 2')
-// cmanager.addStudentToCohort(
-//   '1Rasheed',
-//   '1Adesokan',
-//   '1@adesokan',
-//   '1ade@gmail.com',
-//   'Cohort 1'
-// )
-
-// cmanager.addStudentToCohort(
-//   '2Rasheed',
-//   '2Adesokan',
-//   '2@adesokan',
-//   '2ade@gmail.com',
-//   'Cohort 1'
-// )
-
-// console.log(cmanager.cohorts[0])
-// const fin = cmanager.findStudentByIdFromCohort('Cohort 1', 1)
-// console.log(fin)
-
-// const ss = cmanager.removeCohortByName('Cohort 1')
-// console.log(ss)
-
-// console.log(net)
-// console.log(cohortManager.cohorts[0])
-
-// const aa = cohortManager.searchChortByName('Cohort 1')
-// console.log(aa)
