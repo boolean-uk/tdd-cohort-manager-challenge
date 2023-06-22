@@ -69,6 +69,9 @@ class CohortManager {
   }
 
   removeStudent(first, last) {
+    if (this.searchStudent(first, last) === "The student doesn't exist") {
+      return "The student doesn't exist"
+    }
     this.cohortData.forEach((obj) => {
       if (obj.students.indexOf(this.searchStudent(first, last)) === -1) {
         return
