@@ -7,6 +7,12 @@ class CohortManager {
   }
 
   addCohort(name) {
+    const existingCohort = this.cohorts.find(
+      (cohort) => cohort.cohortName === name
+    )
+    if (existingCohort) {
+      throw new Error('The cohort name is already in use! Please pick another')
+    }
     this.id++
     const cohort = {
       id: this.id,
@@ -25,9 +31,26 @@ class CohortManager {
 
   addStudent(cohortName, firstName, lastName, githubUsername, email) {
     const cohortToSearch = this.searchByCohortName(cohortName)
-    const student = new Student(firstName, lastName, githubUsername, email)
-    cohortToSearch.students.push(student)
-    return cohortToSearch
+    let studentFound = null
+    for (let i = 0; i < this.cohorts.length; i++) {
+      const students = this.cohorts[i].students
+      const student = students.find(
+        (student) => student.githubUsername === githubUsername
+      )
+      if (student) {
+        studentFound = student
+        break
+      }
+    }
+    if (studentFound) {
+      throw new Error('The student already exists in another cohort')
+    }
+    if (cohortToSearch.students.length < 24) {
+      const student = new Student(firstName, lastName, githubUsername, email)
+      cohortToSearch.students.push(student)
+      return cohortToSearch
+    }
+    throw new Error('Cohort capacity exceeded: cannot add more students')
   }
 
   removeCohort(cohort) {
@@ -43,15 +66,12 @@ class CohortManager {
   removeStudent(fullName) {
     const [firstName, lastName] = fullName.split(' ')
     let studentFound = false
-
     for (let i = 0; i < this.cohorts.length; i++) {
       const students = this.cohorts[i].students
-
       const index = students.findIndex(
         (student) =>
           student.firstName === firstName && student.lastName === lastName
       )
-
       if (index !== -1) {
         students.splice(index, 1)
         studentFound = true
@@ -61,7 +81,6 @@ class CohortManager {
     if (!studentFound) {
       throw new Error('Student was not found')
     }
-
     return this.cohorts
   }
 
@@ -71,11 +90,9 @@ class CohortManager {
       (student) =>
         student.firstName === firstName && student.lastName === lastName
     )
-
     if (!student) {
       throw new Error('Student was not found')
     }
-
     return student.studentID
   }
 
@@ -94,16 +111,25 @@ class CohortManager {
     if (!studentFound) {
       throw new Error('Student was not found')
     }
-    console.log(studentFound)
+    return true
+  }
+
+  searchByFullname(fullname) {
+    const [firstName, lastName] = fullname.split(' ')
+    const studentsFound = []
+    for (let i = 0; i < this.cohorts.length; i++) {
+      const students = this.cohorts[i].students
+      const matchingStudents = students.filter(
+        (student) =>
+          student.firstName === firstName && student.lastName === lastName
+      )
+      studentsFound.push(...matchingStudents)
+    }
+    if (studentsFound.length === 0) {
+      throw new Error('No students with that name exist')
+    }
     return true
   }
 }
-
-const test = new CohortManager()
-test.addCohort('cohort01')
-test.addStudent('cohort01', 'carol', 'arruda')
-console.log(test.cohorts[0].students)
-const stTest = test.getStudentId('cohort01', 'carol', 'arruda')
-test.searchByStudentId(stTest)
 
 module.exports = CohortManager

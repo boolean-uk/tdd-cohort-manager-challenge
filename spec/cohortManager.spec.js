@@ -63,13 +63,21 @@ describe('Cohort Manager', () => {
       'carolinacarruda@sapo.pt'
     )
 
-    expect(result.id).toEqual(expected.id)
-    expect(result.cohortName).toEqual(expected.cohortName)
-    expect(result.students[0].firstName).toEqual(expected.students[0].firstName)
-    expect(result.students[0].lastName).toEqual(expected.students[0].lastName)
-    expect(result.students[0].githubUsername).toEqual(
-      expected.students[0].githubUsername
-    )
+    for (let i = 0; i < result.length; i++) {
+      expect(result[i].id).toEqual(expected[i].id)
+      expect(result[i].cohortName).toEqual(expected[i].cohortName)
+      expect(result[i].students[0].firstName).toEqual(
+        expected[i].students[0].firstName
+      )
+      expect(result[i].students[0].lastName).toEqual(
+        expected[i].students[0].lastName
+      )
+      expect(result[i].students[0].githubUsername).toEqual(
+        expected[i].students[0].githubUsername
+      )
+      expect(result[i].students[0].email).toEqual(expected[i].students[0].email)
+    }
+
     expect(result.students[0].email).toEqual(expected.students[0].email)
   })
   it('error message when cohort name does not exist, when adding a student', () => {
@@ -192,5 +200,59 @@ describe('Cohort Manager', () => {
     app.addStudent('cohort05', 'carolina', 'arruda')
     const resultTwo = () => app.searchByStudentId('123')
     expect(resultTwo).toThrowError('Student was not found')
+  })
+  it('error message when adding more students than cohort capacity', () => {
+    app.addCohort('cohort05')
+
+    for (let i = 0; i < 24; i++) {
+      app.addStudent(
+        'cohort05',
+        `firstName${i}`,
+        `lastName${i}`,
+        `studentUsername${i}`,
+        `student${i}@test.com`
+      )
+    }
+
+    expect(() => {
+      app.addStudent(
+        'cohort05',
+        'extraStudentFirstName',
+        'extraStudentLastName',
+        'extraStudentUsername',
+        'extrastudent@test.com'
+      )
+    }).toThrowError('Cohort capacity exceeded: cannot add more students')
+  })
+
+  it('error message when adding a cohort with existing name', () => {
+    app.addCohort('cohort10')
+    const result = () => app.addCohort('cohort10')
+    expect(result).toThrowError(
+      'The cohort name is already in use! Please pick another'
+    )
+  })
+  it('error message when adding a new student that exists in another cohort', () => {
+    app.addCohort('cohort10')
+    app.addCohort('cohort01')
+    app.addStudent('cohort10', 'carol', 'arruda', 'carolarruda')
+    const result = () =>
+      app.addStudent('cohort01', 'carolina', 'calouro', 'carolarruda')
+    expect(result).toThrowError('The student already exists in another cohort')
+  })
+  it('error message searching students by fullname and no matches are found', () => {
+    app.addCohort('cohort10')
+    app.addCohort('cohort01')
+    app.addStudent('cohort10', 'carol', 'arruda', 'carolarruda')
+    const result = () => app.searchByFullname('sara jb')
+    expect(result).toThrowError('No students with that name exist')
+  })
+  it('searching students by fullname and matches are found', () => {
+    app.addCohort('cohort10')
+    app.addCohort('cohort01')
+    app.addStudent('cohort10', 'carol', 'arruda', 'carolarruda')
+    app.addStudent('cohort10', 'carol', 'arruda', 'crazyBee')
+    const result = app.searchByFullname('carol arruda')
+    expect(result).toBeTrue()
   })
 })
