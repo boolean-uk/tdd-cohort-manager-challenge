@@ -22,7 +22,6 @@ class CohortManager {
       cohortName: name,
       students: []
     }
-    
     this.cohorts.push(cohort)
     return cohort
   }
