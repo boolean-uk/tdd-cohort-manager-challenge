@@ -313,4 +313,40 @@ describe('cohortManager', () => {
     // Verify
     expect(result).toEqual(expected)
   })
+
+  // Test 9
+  it('Throws an error if the student that is being searched does not exist', () => {
+    // Set up
+    const expected = "The student doesn't exist"
+
+    // Execute
+    cohortManager.create('Cohort 9')
+    cohortManager.create('Cohort 10')
+    cohortManager.addStudent(
+      'Kyle',
+      'Bridgewater',
+      'kyleUnderwater',
+      'kylebridge@yahoo.com',
+      'Cohort 9'
+    )
+    cohortManager.addStudent(
+      'Alexandra',
+      "O'neil",
+      'zandOneil4',
+      'AlexOneil@gmail.com',
+      'Cohort 10'
+    )
+    cohortManager.addStudent(
+      'Billy',
+      'Sanders',
+      'billysanders101',
+      'billysanders101@gmail.com',
+      'Cohort 9'
+    )
+    const result = cohortManager.searchStudent('Carlo', 'Cùdegà')
+
+    // Verify
+    expect(result).toEqual(expected)
+
+  })
 })

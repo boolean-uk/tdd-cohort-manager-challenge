@@ -62,6 +62,9 @@ class CohortManager {
         })[0]
       )
     })
+    if (searchResult[0] === undefined) {
+      return "The student doesn't exist"
+    }
     return searchResult[0]
   }
 }
