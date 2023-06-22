@@ -1,3 +1,4 @@
+const Twilio = require('../src/sms.js')
 class Cohorts {
   constructor() {
     this.cohortList = []
@@ -152,22 +153,53 @@ class Cohorts {
 
     return matchingStudents
   }
+
+  twilioSms() {
+    const time = new Date()
+    const options = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric'
+    }
+    const regTime = time.toLocaleString('en-NL', options)
+    // .toLocaleDateString('en-GB').slice(0, 10)
+
+    const twilio = new Twilio()
+
+    for (const cohort of this.cohortList) {
+      const cohortName = Object.keys(cohort)[0]
+      const students = cohort[cohortName]
+
+      for (const student of students) {
+        const studentName = `${student.firstName[0]}.${student.lastName}`
+        const contactNumber = student.contactNumber
+        twilio.sendMessage(contactNumber, regTime, studentName, cohortName)
+      }
+    }
+  }
 }
-// const cohort = new Cohorts()
-// cohort.addCohort('Cohort 1')
-// cohort.addCohort('Cohort 2')
-// cohort.addCohort('Cohort 3')
-// cohort.addCohort('Cohort 4')
-// cohort.addCohort('Cohort 5')
-// cohort.addCohort('Cohort 6')
-// cohort.addCohort('Cohort 7')
-// cohort.addCohort('Cohort 8')
-// cohort.addCohort('Cohort 9')
-// cohort.addCohort('Cohort 10')
-// cohort.addStudentToCohort('Cohort 2', 'sd2fs', 'sd22fs', 'asdasd', 'asdaasd')
+const cohort = new Cohorts()
+cohort.addCohort('Cohort 1')
+cohort.addCohort('Cohort 2')
+cohort.addCohort('Cohort 3')
+cohort.addCohort('Cohort 4')
+cohort.addCohort('Cohort 5')
+cohort.addCohort('Cohort 6')
+cohort.addCohort('Cohort 7')
+cohort.addCohort('Cohort 8')
+cohort.addCohort('Cohort 9')
+cohort.addCohort('Cohort 10')
+cohort.addStudentToCohort(
+  'Cohort 2',
+  'Mantas',
+  'Navickis',
+  'something',
+  'nothin',
+  ''
+)
 
-// cohort.addStudentToCohort('Cohort 1', 'sdfs', 'sdfs', 'asdasd', 'asdaasd')
-// const student = cohort.searchStudentById(1)
+cohort.twilioSms()
 
-// console.log(student)
 module.exports = Cohorts

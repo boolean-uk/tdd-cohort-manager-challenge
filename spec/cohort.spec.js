@@ -74,7 +74,7 @@ describe('CoHORTS', () => {
           lastName: 'Cena',
           gitHub: 'JohnCena',
           email: 'john@cena.com',
-          contactNumber: 123123
+          contactNumber: '+37065482511'
         }
       ]
 
@@ -86,7 +86,7 @@ describe('CoHORTS', () => {
           'Cena',
           'JohnCena',
           'john@cena.com',
-          123123
+          '+37065482511'
         )
       ).toEqual(expected)
     })
@@ -98,7 +98,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -106,7 +106,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -114,7 +114,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -122,7 +122,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -130,7 +130,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -138,7 +138,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -146,7 +146,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -154,7 +154,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -162,7 +162,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -170,7 +170,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -178,7 +178,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -186,7 +186,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -194,7 +194,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -202,7 +202,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -210,7 +210,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -218,7 +218,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -226,7 +226,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -234,7 +234,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -242,7 +242,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -250,7 +250,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -258,7 +258,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -266,7 +266,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -274,7 +274,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 1',
@@ -282,7 +282,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       expect(() => {
         cohortLi.addStudentToCohort(
@@ -291,7 +291,7 @@ describe('CoHORTS', () => {
           'Cena',
           'johncena',
           'something',
-          123123
+          '+37065482511'
         )
       }).toThrowError('Error: Cohort reached 24 students capacity')
     })
@@ -325,7 +325,7 @@ describe('CoHORTS', () => {
         lastName: 'Cena',
         gitHub: 'JohnCena',
         email: 'John@cena.com',
-        contactNumber: 123123
+        contactNumber: '+37065482511'
       }
       cohortLi.addCohort('Cohort 1')
       cohortLi.addStudentToCohort(
@@ -334,7 +334,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       expect(cohortLi.removeStudentByName('Cohort 1', 'John', 'Cena')).toEqual(
         expected
@@ -362,7 +362,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       expect(() => {
         cohortLi.removeStudentByName('Cohort 2', 'John', 'Cena')
@@ -377,7 +377,7 @@ describe('CoHORTS', () => {
         lastName: 'Cena',
         gitHub: 'JohnCena',
         email: 'John@cena.com',
-        contactNumber: 123123
+        contactNumber: '+37065482511'
       }
       cohortLi.addCohort('Cohort 1')
       cohortLi.addStudentToCohort(
@@ -386,7 +386,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       expect(cohortLi.searchStudentById(1)).toEqual(expected)
     })
@@ -398,7 +398,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       expect(() => {
         cohortLi.searchStudentById(2)
@@ -414,7 +414,7 @@ describe('CoHORTS', () => {
           lastName: 'Cena',
           gitHub: 'JohnCena',
           email: 'John@cena.com',
-          contactNumber: 123123
+          contactNumber: '+37065482511'
         },
         {
           id: 2,
@@ -422,7 +422,7 @@ describe('CoHORTS', () => {
           lastName: 'Cena',
           gitHub: 'JohnCena',
           email: 'John@cena.com',
-          contactNumber: 123123
+          contactNumber: '+37065482511'
         }
       ]
       cohortLi.addCohort('Cohort 1')
@@ -433,7 +433,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 2',
@@ -441,7 +441,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       expect(cohortLi.searchStudentByName('John', 'Cena')).toEqual(expected)
     })
@@ -454,7 +454,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       cohortLi.addStudentToCohort(
         'Cohort 2',
@@ -462,7 +462,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123123
+        '+37065482511'
       )
       expect(() => {
         cohortLi.searchStudentByName('Bob', 'Burger')
