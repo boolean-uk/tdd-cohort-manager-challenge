@@ -272,4 +272,45 @@ describe('cohortManager', () => {
     // verify
     expect(result).toEqual(expected)
   })
+
+  // Test 8
+  it('Searches for  student for a specific cohort and returns the student data, if the student exists', () => {
+    // Set up
+    const expected = {
+      firstName: 'Kyle',
+      lastName: 'Bridgewater',
+      githubUsername: 'kyleUnderwater',
+      email: 'kylebridge@yahoo.com',
+      id: 111
+    }
+
+    // Execute
+    cohortManager.create('Cohort 9')
+    cohortManager.create('Cohort 10')
+    cohortManager.addStudent(
+      'Kyle',
+      'Bridgewater',
+      'kyleUnderwater',
+      'kylebridge@yahoo.com',
+      'Cohort 9'
+    )
+    cohortManager.addStudent(
+      'Alexandra',
+      "O'neil",
+      'zandOneil4',
+      'AlexOneil@gmail.com',
+      'Cohort 10'
+    )
+    cohortManager.addStudent(
+      'Billy',
+      'Sanders',
+      'billysanders101',
+      'billysanders101@gmail.com',
+      'Cohort 9'
+    )
+    const result = cohortManager.searchStudent('Kyle', 'Bridgewater')
+
+    // Verify
+    expect(result).toEqual(expected)
+  })
 })

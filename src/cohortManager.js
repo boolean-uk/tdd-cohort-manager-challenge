@@ -52,6 +52,19 @@ class CohortManager {
     )
     return this.cohortData
   }
+
+  searchStudent(first, last) {
+    const searchResult = []
+    this.cohortData.forEach((obj) => {
+      searchResult.push(
+        obj.students.filter((student) => {
+          return student.firstName === first && student.lastName === last
+        })[0]
+      )
+    })
+    return searchResult[0]
+
+  }
 }
 
 module.exports = CohortManager
