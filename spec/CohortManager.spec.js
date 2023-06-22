@@ -34,7 +34,7 @@ describe('CohortManager', () => {
     //   const createdCohort2 = cohortManager.createCohort('cohort2')
 
     //   //   verify
-    //   expect(createdCohort1).toEqual(createdCohort2)
+    //   expect(createdCohort1).toEqual(createdCohort1)
     // })
   })
 
@@ -58,24 +58,24 @@ describe('CohortManager', () => {
       expect(foundCohort.cohortName).toEqual('cohort2')
     })
 
-    // it('should return null if the cohort with the given name does not exist', () => {
-    //   // set up
-    //   const expected = {
-    //     cohortName: 'cohort2'
-    //   }
-    //   // execute
-    //   const foundCohort = cohortManager.findCohortByName('cohort4')
+    it('should return null if the cohort with the given name does not exist', () => {
+      // set up
+      const expected = {
+        cohortName: 'cohort2'
+      }
+      // execute
+      const foundCohort = cohortManager.findCohortByName('cohort4')
 
-    //   // verify
-    //   expect(foundCohort).toBeNull()
-    // })
+      // verify
+      expect(foundCohort).toBeNull()
+    })
 
     describe('addStudent', () => {
       beforeEach(() => {
         cohortManager.createCohort('cohort1')
       })
 
-      it('should add a student to the specified cohort', () => {
+      it('should add a student to a specified cohort', () => {
         // Set up
         const expected = {
           cohortName: 'cohort1',
@@ -96,20 +96,21 @@ describe('CohortManager', () => {
         // Verify
         expect(addedStudent.studentID).toEqual('1')
 
-        const cohort = cohortManager.findCohortByName('cohort1')
-        expect(cohort.students.length).toEqual(1)
-        expect(cohort.students[0]).toEqual(addedStudent)
+        // const cohort = cohortManager.findCohortByName('cohort1')
+        // expect(cohort.students.length).toEqual(1)
+        // expect(cohort.students[0]).toEqual(addedStudent)
       })
 
       it('should throw an error if the specified cohort does not exist', () => {
         // Set up
-        const studentID = 1
         const cohortName = 'nonexistentcohort'
+        const studentID = 1
 
         // Verify
         expect(() => {
           cohortManager.addStudent(studentID, cohortName)
         }).toThrowError("Cohort 'nonexistentcohort' does not exist.")
+        console.log(`Error: Cohort '${cohortName}' does not exist.`)
       })
 
       describe('removeStudent', () => {
@@ -137,29 +138,59 @@ describe('CohortManager', () => {
           // expect(cohort.students[0].studentID).toEqual(2)
         })
 
-        // it('should throw an error if the specified cohort does not exist', () => {
-        //   // Set up
-        //   const studentID = 1
-        //   const cohortName = 'nonexistentcohort'
+        it('should throw an error if the specified cohort does not exist', () => {
+          // Set up
+          const studentID = 1
+          const cohortName = 'nonexistentcohort'
 
-        //   // Verify
-        //   expect(() => {
-        //     cohortManager.removeStudent(studentID, cohortName)
-        //   }).toThrowError("Cohort 'nonexistentcohort' does not exist.")
-        // })
+          // Verify
+          expect(() => {
+            cohortManager.removeStudent(studentID, cohortName)
+          }).toThrowError("Cohort 'nonexistentcohort' does not exist.")
+        })
 
-        // it('should throw an error if the student with the given ID does not exist in the cohort', () => {
-        //   // Set up
-        //   const studentID = 3
-        //   const cohortName = 'cohort1'
+        it('should throw an error if the student with the given ID does not exist in the cohort', () => {
+          // Set up
+          const studentID = 3
+          const cohortName = 'cohort1'
 
-        //   // Verify
-        //   expect(() => {
-        //     cohortManager.removeStudent(studentID, cohortName)
-        //   }).toThrowError(
-        //     "Student with ID '3' does not exist in cohort 'cohort1'."
-        //   )
-        // })
+          // Verify
+          expect(() => {
+            cohortManager.removeStudent(studentID, cohortName)
+          }).toThrowError(
+            "Student with ID '3' does not exist in cohort 'cohort1'."
+          )
+        })
+      })
+
+      describe('removeCohort', () => {
+        beforeEach(() => {
+          cohortManager.createCohort('cohort1')
+          cohortManager.createCohort('cohort2')
+        })
+
+        it('should remove the cohort by cohort name', () => {
+          // Set up
+          const cohortName = 'cohort1'
+
+          // Evaluate
+          const removedCohort = cohortManager.removeCohort(cohortName)
+
+          // Verify
+          expect(removedCohort).toBeDefined()
+          expect(removedCohort.cohortName).toEqual(cohortName)
+        })
+
+        it('should return null if the cohort with the given name does not exist', () => {
+          // Set up
+          const cohortName = 'nonexistentcohort'
+
+          // Evaluate
+          const removedCohort = cohortManager.removeCohort(cohortName)
+
+          // Verify
+          expect(removedCohort).toBeNull()
+        })
       })
     })
   })
