@@ -63,7 +63,6 @@ class CohortManager {
       )
     })
     return searchResult[0]
-
   }
 }
 
