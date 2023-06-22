@@ -127,4 +127,35 @@ describe('addCohort', () => {
       cohortLi.removeStudentByName('Cohort 2', 'John', 'Cena')
     }).toThrowError('Error: Cohort does not exist!')
   })
+  it('Search for a student by id', () => {
+    const expected = {
+      id: 1,
+      firstName: 'John',
+      lastName: 'Cena',
+      gitHub: 'JohnCena',
+      email: 'John@cena.com'
+    }
+    cohortLi.addCohort('Cohort 1')
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    expect(cohortLi.searchStudentById(1)).toEqual(expected)
+  })
+  it('Student Id does not exist', () => {
+    cohortLi.addCohort('Cohort 1')
+    cohortLi.addStudentToCohort(
+      'Cohort 1',
+      'John',
+      'Cena',
+      'JohnCena',
+      'John@cena.com'
+    )
+    expect(() => {
+      cohortLi.searchStudentById(2)
+    }).toThrowError('Error: Id does not exist')
+  })
 })

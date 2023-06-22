@@ -99,6 +99,20 @@ class Cohorts {
 
     return cohort.splice(studentIndex, 1)[0]
   }
+
+  searchStudentById(id) {
+    for (const cohort of this.cohortList) {
+      const students = Object.values(cohort)
+      for (const student of students) {
+        const foundStudent = student.find((s) => s.id === id)
+        if (foundStudent) {
+          return foundStudent
+        }
+      }
+    }
+
+    throw new Error('Error: Id does not exist')
+  }
 }
 const cohort = new Cohorts()
 cohort.addCohort('Cohort 1')
@@ -114,7 +128,7 @@ cohort.addCohort('Cohort 10')
 cohort.addStudentToCohort('Cohort 2', 'sd2fs', 'sd22fs', 'asdasd', 'asdaasd')
 
 cohort.addStudentToCohort('Cohort 1', 'sdfs', 'sdfs', 'asdasd', 'asdaasd')
-cohort.removeStudentByName('Cohort 1', 'sdfs', 'sdfs')
+const student = cohort.searchStudentById(1)
 
-console.log(cohort)
+console.log(student)
 module.exports = Cohorts
