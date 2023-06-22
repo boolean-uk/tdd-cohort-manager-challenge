@@ -1,24 +1,42 @@
-class CohortList {
+class CohortManager {
   constructor() {
-    this.cohortList = []
+    this.cohorts = []
   }
 
-  createCohort(cohort) {
+  createCohort(name) {
     const newCohort = {
-      cohortName: cohort.cohortName, // try create 2 cohort and check that they get called their right 'cohortName'
+      name: name, // Can also be written as name,
       students: []
     }
-    if (this.cohortList.cohortName !== newCohort.cohortName) {
-      this.cohortList.push(newCohort)
-      console.log('list', this.cohortList)
-      return newCohort
-    } else {
-      return 'This cohort already exists!'
-    }
+    // if (this.cohortList.cohortName !== newCohort.cohortName) {
+    this.cohorts.push(newCohort)
+    return newCohort
   }
-  // addNewStudent(studentID) {
-  //   if()
+  // else {
+  //   return 'This cohort already exists!'
+  // }
+
+  // Returns the idex/position of the cohort requested by 'name'
+  findCohort(name) {
+    const result = this.cohorts.findIndex((cohort) => {
+      return cohort.name === name
+    })
+
+    if (result < 0) {
+      throw new Error('Cohort not found!')
+    }
+
+    return result
+  }
+
+  addStudent(student, cohortName) {
+    const index = this.findCohort(cohortName)
+    this.cohorts[index].students.push(student)
+  }
+
+  // removeCohort() {
+
   // }
 }
 
-module.exports = CohortList
+module.exports = CohortManager

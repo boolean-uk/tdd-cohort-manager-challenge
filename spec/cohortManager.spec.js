@@ -1,41 +1,61 @@
-const CohortList = require('../src/cohortManager.js')
+const CohortManager = require('../src/cohortManager.js')
 
-describe('Cohort List: ', () => {
-  let cohortList
+describe('Cohort Manager: ', () => {
+  let cohortManager
   beforeEach(() => {
-    cohortList = new CohortList()
+    cohortManager = new CohortManager()
   })
 
-  it('Creates a new cohort with a name', () => {
+  it('Should create a new cohort with a name', () => {
     // GIVEN
-    const cohort = {
-      cohortName: 'Cohort2',
-      students: []
-    }
-    // const cohort2 = {
-    //   cohortName: 'Cohort2',
-    //   students: []
-    // }
+    const name = 'Cohort1'
 
     // WHEN
-    const newCohort = cohortList.createCohort(cohort)
-    // cohortList.createCohort(cohort2)
-
+    const newCohort = cohortManager.createCohort(name)
     // THEN
-    expect(newCohort).toEqual(cohort)
-  })
-  // it('Adds a student to a specific cohort', () => {
-  //   const student = {
-  //     studentID: 1,
-  //     firstname: 'Isa',
-  //     lastname: 'Tartarelli',
-  //     githubusername: 'Shylan21',
-  //     email: 'isabel.tartarelli@live.it'
-  //   }
+    // console.log(cohortManager.cohorts)
 
-  //   const cohortList = new CohortList()
-  //   cohortList.addNewStudent(student)
-  //   const addStudent = cohortList.includes(student)
-  //   expect(addStudent).toEqual(cohortList)
+    expect(newCohort.name).toEqual(name)
+  })
+
+  it('Should find a specific cohort by its name', () => {
+    // GIVEN
+    const name = 'Cohort1'
+
+    // WHEN
+    cohortManager.createCohort(name)
+    const cohort = cohortManager.findCohort(name)
+    // THEN
+    // console.log(cohortManager.cohorts)
+
+    expect(cohort).toBeGreaterThanOrEqual(0)
+  })
+
+  it('Should add a student to a specific cohort', () => {
+    const student = {
+      studentID: 1,
+      firstname: 'Isa',
+      lastname: 'Tartarelli',
+      githubusername: 'Shylan21',
+      email: 'isabel.tartarelli@live.it'
+    }
+    const name = 'Cohort1'
+
+    cohortManager.createCohort(name)
+    cohortManager.addStudent(student, name)
+    const result = cohortManager.cohorts[0].students[0]
+    // console.log(cohortManager.cohorts[0].students)
+    expect(result).toEqual(student)
+  })
+
+  // fit('Should remove a Cohort by its name', () => {
+  //   const name = 'Cohort1'
+
+  //   cohortManager.createCohort(name)
+  //   cohortManager.removeCohort(name)
+  //   const result = cohortManager.cohorts.filter((x) => {
+  //     return x.name === name.name
+  //   })
+  //   expect(result.length).toEqual(1)
   // })
 })
