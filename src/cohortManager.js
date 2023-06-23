@@ -61,7 +61,18 @@ class CohortManager {
 
     if (cohort !== null) {
       this.previousStudent += 1
-      student = new Student(firstName, lastName, gitHub, email)
+      student = new Student(
+        this.previousStudent,
+        firstName,
+        lastName,
+        gitHub,
+        email
+      )
+      if (!cohort.addStudent(student)) {
+        student = null
+      } else {
+        this.previousStudent -= 1
+      }
     }
     return student
   }

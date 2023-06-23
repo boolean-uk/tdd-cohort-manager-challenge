@@ -19,9 +19,10 @@ describe('Test cohort manager', () => {
     expect(cohort.students).toEqual([])
   })
 
-  it('adds a student to an existing cohort', () => {
+  fit('adds a student to an existing cohort', () => {
     // set up
     const namesCohort = 'Cohort 10'
+    const cohort = cohortManager.createCohort(namesCohort)
 
     // execute
     const student = cohortManager.addStudentToCohort(
@@ -38,6 +39,8 @@ describe('Test cohort manager', () => {
     expect(student.lastName).toEqual('Usenbor')
     expect(student.githubAccount).toEqual('gid-ctrl')
     expect(student.email).toEqual('gideonusenbor')
+    expect(cohort.students.length).toBe(1)
+    expect(cohort.students).toEqual([student])
   })
 
   it('should remove a cohort', () => {
