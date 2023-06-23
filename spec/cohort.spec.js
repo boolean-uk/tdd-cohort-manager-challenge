@@ -1,4 +1,4 @@
-import { Cohort } from '../src/cohort.js'
+const Cohort = require('../src/cohort.js')
 
 describe('createCohort', () => {
   let cohort
