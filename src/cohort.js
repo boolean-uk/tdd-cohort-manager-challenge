@@ -99,8 +99,8 @@ class Cohorts {
   }
 
   removeStudentByName(cohortName, firstName, lastName) {
-    const cohortIndex = this.cohortList.findIndex((cohort) =>
-      cohort.hasOwnProperty(cohortName)
+    const cohortIndex = this.cohortList.findIndex(
+      (cohort) => cohortName in cohort
     )
 
     if (cohortIndex === -1) {
