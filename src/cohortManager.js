@@ -22,7 +22,7 @@ class CohortDetainment {
 
   searchForCohort(cohortName) {
     const resultOfFind = this.cohortManager.find((obj) =>
-      obj.hasOwnProperty(cohortName)
+      obj.hasOwn(cohortName)
     )
     return resultOfFind
   }
@@ -43,7 +43,7 @@ class CohortDetainment {
       }
     })
     const resultOfFind = this.cohortManager.find((obj) =>
-      obj.hasOwnProperty(cohortName)
+      obj.hasOwn(cohortName)
     )
     const newStudent = {
       StudentID: this.idCount++,
@@ -63,7 +63,7 @@ class CohortDetainment {
   removeCohort(cohortName) {
     let idxOfCohort
     const resultOfFind = this.cohortManager.find((obj, idx) => {
-      if (obj.hasOwnProperty(cohortName)) {
+      if (obj.hasOwn(cohortName)) {
         idxOfCohort = idx
         return obj
       } else return false
@@ -80,7 +80,7 @@ class CohortDetainment {
     let idxOfStudent
     let idxOfCohort
     const resultOfCohortFind = this.cohortManager.find((obj, idx) => {
-      if (obj.hasOwnProperty(cohortName)) {
+      if (obj.hasOwn(cohortName)) {
         idxOfCohort = idx
         return obj
       } else return false
