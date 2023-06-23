@@ -10,7 +10,7 @@ class Twilio {
       .create({
         body: `\nCongratulations ${studentName}\nYou have been added to ${cohortName}\n You are Student in ${cohortName} from :${regTime}`,
         from: '+15154978934',
-        to: `+${contactNumber}`
+        to: `${contactNumber}`
       })
       .then((message) => console.log(message.status))
   }
