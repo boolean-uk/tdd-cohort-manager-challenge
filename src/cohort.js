@@ -38,7 +38,6 @@ class Cohort {
 
     this.cohortObject.cohortName = cohortName
     this.cohortList.push(this.cohortObject)
-    console.log(this.cohortList)
     return this.cohortList
   }
 
@@ -51,7 +50,6 @@ class Cohort {
       email
     }
     this.studentID++
-    console.log(newStudent)
     this.allStudents.push(newStudent)
     return newStudent
   }
