@@ -303,7 +303,7 @@ describe('CoHORTS', () => {
         'Verstappen',
         'maxie69',
         'max@max.com',
-        123
+        '+37065482511'
       )
       expect(() =>
         cohortLi.addStudentToCohort(
@@ -312,7 +312,7 @@ describe('CoHORTS', () => {
           'Verstappen',
           'maxie69',
           'max@max.com',
-          123
+          '+37065482511'
         )
       ).toThrowError('Error: Student already exists in another Cohort!')
     })
@@ -348,7 +348,7 @@ describe('CoHORTS', () => {
         'Cena',
         'JohnCena',
         'John@cena.com',
-        123
+        '+37065482511'
       )
       expect(() => {
         cohortLi.removeStudentByName('Cohort 1', 'Johnx', 'Cena')
