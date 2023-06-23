@@ -88,38 +88,38 @@ class CohortManager {
     }
   }
 }
-const cohortManager = new CohortManager()
-cohortManager.create('Cohort 9')
-cohortManager.create('Cohort 10')
-cohortManager.create('Cohort 11')
-cohortManager.addStudent(
-  'Max',
-  'Verstappen',
-  'maxie',
-  'max@max.com',
-  'Cohort 11'
-)
-cohortManager.addStudent(
-  'Kyle',
-  'Bridgewater',
-  'kyleUnderwater',
-  'kylebridge@yahoo.com',
-  'Cohort 9'
-)
-cohortManager.addStudent(
-  'Alexandra',
-  "O'neil",
-  'zandOneil4',
-  'AlexOneil@gmail.com',
-  'Cohort 10'
-)
-cohortManager.addStudent(
-  'Billy',
-  'Sanders',
-  'billysanders101',
-  'billysanders101@gmail.com',
-  'Cohort 9'
-)
-console.log(cohortManager.removeStudent('Alexandra', "O'neil"))
+// const cohortManager = new CohortManager()
+// cohortManager.create('Cohort 9')
+// cohortManager.create('Cohort 10')
+// cohortManager.create('Cohort 11')
+// cohortManager.addStudent(
+//   'Max',
+//   'Verstappen',
+//   'maxie',
+//   'max@max.com',
+//   'Cohort 11'
+// )
+// cohortManager.addStudent(
+//   'Kyle',
+//   'Bridgewater',
+//   'kyleUnderwater',
+//   'kylebridge@yahoo.com',
+//   'Cohort 9'
+// )
+// cohortManager.addStudent(
+//   'Alexandra',
+//   "O'neil",
+//   'zandOneil4',
+//   'AlexOneil@gmail.com',
+//   'Cohort 10'
+// )
+// cohortManager.addStudent(
+//   'Billy',
+//   'Sanders',
+//   'billysanders101',
+//   'billysanders101@gmail.com',
+//   'Cohort 9'
+// )
+// console.log(cohortManager.removeStudent('Alexandra', "O'neil"))
 
 module.exports = CohortManager
