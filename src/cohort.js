@@ -65,11 +65,11 @@ class Cohorts {
   ) {
     const student = {
       id: this.id++,
-      firstName: firstName,
-      lastName: lastName,
-      gitHub: gitHub,
+      firstName,
+      lastName,
+      gitHub,
       email: emailAddress,
-      contactNumber: contactNumber
+      contactNumber
     }
 
     const cohort = this.searchByName(cohortName)
