@@ -192,16 +192,8 @@ describe('cohortManager', () => {
         ]
       },
       {
-        cohortName: 'Cohort 10',
-        students: [
-          {
-            firstName: 'Alexandra',
-            lastName: "O'neil",
-            githubUsername: 'zandOneil4',
-            email: 'AlexOneil@gmail.com',
-            id: 211
-          }
-        ]
+        cohortName: 'Cohort 11',
+        students: []
       }
     ]
 
@@ -230,7 +222,7 @@ describe('cohortManager', () => {
       'billysanders101@gmail.com',
       'Cohort 9'
     )
-    const result = cohortManager.removeCohort('Cohort 11')
+    const result = cohortManager.removeCohort('Cohort 10')
 
     // Verify
     expect(result).toEqual(expected)

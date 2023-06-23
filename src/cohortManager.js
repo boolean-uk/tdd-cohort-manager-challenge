@@ -41,7 +41,8 @@ class CohortManager {
 
   removeCohort(cohort) {
     this.cohortData.splice(
-      this.cohortData.indexOf(this.searchCohort(cohort), 1)
+      this.cohortData.indexOf(this.searchCohort(cohort)),
+      1
     )
     return this.cohortData
   }
@@ -92,6 +93,8 @@ class CohortManager {
 // cohortManager.create('Cohort 9')
 // cohortManager.create('Cohort 10')
 // cohortManager.create('Cohort 11')
+// cohortManager.create('Cohort 12')
+
 // cohortManager.addStudent(
 //   'Max',
 //   'Verstappen',
@@ -120,6 +123,6 @@ class CohortManager {
 //   'billysanders101@gmail.com',
 //   'Cohort 9'
 // )
-// console.log(cohortManager.removeStudent('Alexandra', "O'neil"))
+// console.log(cohortManager.removeStudent('Billy', 'Sanders'))
 
 module.exports = CohortManager
