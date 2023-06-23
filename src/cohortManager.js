@@ -21,9 +21,7 @@ class CohortDetainment {
   }
 
   searchForCohort(cohortName) {
-    const resultOfFind = this.cohortManager.find((obj) =>
-      obj[cohortName]
-    )
+    const resultOfFind = this.cohortManager.find((obj) => obj[cohortName])
     return resultOfFind
   }
 
@@ -42,9 +40,7 @@ class CohortDetainment {
         }
       }
     })
-    const resultOfFind = this.cohortManager.find((obj) =>
-      obj[cohortName]
-    )
+    const resultOfFind = this.cohortManager.find((obj) => obj[cohortName])
     const newStudent = {
       StudentID: this.idCount++,
       firstName: newStudentFirstName,
