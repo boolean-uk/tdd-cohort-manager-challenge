@@ -6,17 +6,8 @@ describe('Cohort Manager: ', () => {
     cohortManager = new CohortManager()
   })
   it('Should create a new cohort with a name', () => {
-    // GIVEN
     const name = 'Cohort1'
-    // const name1 = 'Cohort2'
-    // const name3 = 'Cohort3'
-
     const newCohort = cohortManager.createCohort(name)
-    // const newCohort1 = cohortManager.createCohort(name1)
-    // const newCohort3 = cohortManager.createCohort(name3)
-
-    // console.log('Cohort List', cohortManager.cohorts)
-
     expect(newCohort.name).toEqual(name)
   })
   it('Should find a specific cohort by its name', () => {
@@ -24,8 +15,6 @@ describe('Cohort Manager: ', () => {
 
     cohortManager.createCohort(name)
     const cohort = cohortManager.findCohort(name)
-
-    // console.log(cohortManager.cohorts)
 
     expect(cohort).toBeGreaterThanOrEqual(0)
   })
@@ -44,12 +33,10 @@ describe('Cohort Manager: ', () => {
       githubusername: 'Shylan21',
       email: 'isabelle@live.co.uk'
     }
-    const name3 = 'Cohort3'
-    cohortManager.createCohort(name3)
-    cohortManager.addStudent(student, name3)
-    cohortManager.addStudent(student2, name3)
-
-    // console.log('Students in one cohort', cohortManager.cohorts[0].students)
+    const cohortName = 'Cohort3'
+    cohortManager.createCohort(cohortName)
+    cohortManager.addStudent(student, cohortName)
+    cohortManager.addStudent(student2, cohortName)
 
     const result = cohortManager.cohorts[0].students[0]
 
@@ -57,11 +44,9 @@ describe('Cohort Manager: ', () => {
   })
   it('Should remove a Cohort by its name', () => {
     const name = 'Cohort1'
-    // const name1 = 'Cohort2'
 
     cohortManager.createCohort(name)
     cohortManager.removeCohort(name)
-    // cohortManager.removeCohort(name1)
 
     const result = cohortManager.cohorts.filter((x) => {
       return x.name === name.name
@@ -91,23 +76,19 @@ describe('Cohort Manager: ', () => {
     cohortManager.addStudent(student2, name)
     cohortManager.removeStudent(student, name)
 
-    // console.log(
-    //   'Students left in the Cohort',
-    //   cohortManager.cohorts[0].students
-    // )
-
     const filterStudent = cohortManager.cohorts.find(
       (cohort) => cohort.name === name
     ).students
     expect(filterStudent).toEqual([student2])
   })
-  it('Shoud throw an error if cant find a student', () => {
-    const cohortName = 'Cohort1'
-    const studentName = 'Isa'
+  it('Should throw an error if cant find a student', () => {
+    cohortManager.createCohort('Cohort1')
+    cohortManager.addStudent('Isa', 'Cohort1')
+    cohortManager.addStudent('Dan', 'Cohort1') // ({firstname: firstname}, cohortName)
 
-    cohortManager.createCohort(cohortName)
-    cohortManager.addStudent(studentName)
-    const student = cohortManager.cohorts.students.findStudent(studentName)
-    expect(student).toEqual(studentName)
+    // const student = cohortManager.findStudent('Mantas')
+    expect(() => {
+      cohortManager.findStudent('Kyle')
+    }).toThrowError('Student not found!')
   })
 })

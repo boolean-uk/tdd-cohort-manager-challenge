@@ -24,13 +24,15 @@ class CohortManager {
   }
 
   findStudent(firstname) {
-    const result = this.cohorts.students.find((student) => {
-      return student.firstname === firstname
-    })
-    if (result < 0) {
-      throw new Error('Student not found!')
+    for (const cohort of this.cohorts) {
+      const result = cohort.students.find(
+        (student) => student.firstname === firstname
+      )
+      if (result) {
+        return result
+      }
     }
-    return result
+    throw new Error('Student not found!')
   }
 
   addStudent(student, cohortName) {
