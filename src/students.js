@@ -1,4 +1,4 @@
-class Students {
+class Student {
   constructor(id, firstname, lastname, email, github) {
     this.id = id
     this.firstname = firstname
@@ -7,4 +7,4 @@ class Students {
     this.github = github
   }
 }
-module.exports = Students
+module.exports = Student

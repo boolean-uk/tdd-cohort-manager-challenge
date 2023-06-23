@@ -1,4 +1,4 @@
-class Cohorts {
+class Cohort {
   constructor(name) {
     this.name = name
     this.students = []
@@ -12,14 +12,14 @@ class Cohorts {
     return false
   }
 
-  removeStudent(targetStudent) {
-    const removeIndex = this.students.findIndex(
-      (student) => student === targetStudent
-    )
-    if (removeIndex === -1) return 'Student not in specified Cohort'
-    targetStudent.inCohort = false
-    this.students.splice(removeIndex, 1)
+  removeStudent(studentId) {
+    for (let i = 0; i < this.students.length; i++) {
+      if (this.students[i].studentId === studentId) {
+        this.students.splice(i, 1)
+        return true
+      }
+    }
+    return false
   }
 }
-
-module.exports = Cohorts
+module.exports = Cohort

@@ -13,6 +13,15 @@ class CohortManager {
     return cohort
   }
 
+  getCohortByName(name) {
+    for (let i = 0; i < this.cohorts.length; i++) {
+      if (this.cohorts[i].name === name) {
+        return this.cohorts[i]
+      }
+    }
+    return null
+  }
+
   getCohort(name) {
     const index = this.cohorts.findIndex((cohort) => cohort.name === name)
     if (index === -1) {
@@ -20,11 +29,6 @@ class CohortManager {
     }
     const cohort = this.cohorts[index]
     return [cohort, index]
-  }
-
-  getCohortByName(name) {
-    const [cohort] = this.getCohort(name)
-    return cohort
   }
 
   removeCohortByName(name) {
@@ -52,25 +56,23 @@ class CohortManager {
   }
 
   addStudentToCohort(cohortName, firstName, lastName, gitHub, email) {
-    const cohort = this.getCohort(cohortName)
+    const cohort = this.getCohortByName(cohortName)
     let student = null
 
     if (cohort !== null) {
       this.previousStudent += 1
-      student = new Student(
-        this.previousStudent,
-        firstName,
-        lastName,
-        gitHub,
-        email
-      )
-      if (!cohort.addStudentTo(student)) {
-        student = null
-      } else {
-        this.previousStudent -= 1
-      }
+      student = new Student(firstName, lastName, gitHub, email)
     }
     return student
   }
+
+  removeStudentFromCohort(cohortName, studentId) {
+    const cohort = this.getCohort(cohortName)
+    if (cohort !== null) {
+      return cohort.removeStudent(studentId)
+    }
+    return false
+  }
 }
+
 module.exports = CohortManager

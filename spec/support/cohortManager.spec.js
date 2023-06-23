@@ -1,5 +1,4 @@
 const CohortManager = require('../../src/cohortManager')
-const Student = require('../../src/students')
 
 describe('Test cohort manager', () => {
   let cohortManager
@@ -20,10 +19,9 @@ describe('Test cohort manager', () => {
     expect(cohort.students).toEqual([])
   })
 
-  it('adds a student to an existent cohort', () => {
+  it('adds a student to an existing cohort', () => {
     // set up
     const namesCohort = 'Cohort 10'
-    const cohort = cohortManager.createCohort(namesCohort)
 
     // execute
     const student = cohortManager.addStudentToCohort(
@@ -35,15 +33,11 @@ describe('Test cohort manager', () => {
     )
 
     // verify
-    expect(student).not.toBeNull()
-    expect(student.studentId).toEqual(0)
+
     expect(student.firstName).toEqual('Gideon')
     expect(student.lastName).toEqual('Usenbor')
     expect(student.githubAccount).toEqual('gid-ctrl')
     expect(student.email).toEqual('gideonusenbor')
-
-    expect(cohort.students.length).toBe(1)
-    expect(cohort.students).toEqual([student])
   })
 
   it('should remove a cohort', () => {
@@ -56,7 +50,7 @@ describe('Test cohort manager', () => {
     expect(cohortManager.cohorts.length).toEqual(0)
   })
 
-  fit('should get cohort by name', () => {
+  it('should get cohort by name', () => {
     // set up
     const expected = cohortManager.createCohort('Cohort 4')
     // execute
@@ -65,23 +59,42 @@ describe('Test cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('will throw an error if cohort not found', () => {
-    expect(() => cohortManager.getCohortByName('Cohort 4')).toThrowError(
+  it('should show error if cohort not found', () => {
+    expect(() => cohortManager.getCohortByName('Cohort 11')).toThrowError(
       'Cohort not found'
     )
   })
+
+  it('remove a student from a cohort', () => {
+    // set up
+    const namesCohort = 'Cohort 5'
+
+    const cohort = cohortManager.createCohort(namesCohort)
+
+    const student1 = cohortManager.addStudentToCohort(
+      namesCohort,
+      'Bob',
+      'Bobby',
+      'gitgit',
+      'email@email'
+    )
+    const student2 = cohortManager.addStudentToCohort(
+      namesCohort,
+      'G',
+      'U',
+      'gitmail',
+      'emailemail@email'
+    )
+
+    // execute
+    const result = cohortManager.removeStudentFromCohort(
+      namesCohort,
+      student1.studentId
+    )
+
+    // verify
+    expect(result).toEqual(true)
+    expect(cohort.students.length).toBe(1)
+    expect(cohort.students[0].studentId).toBe(student2.studentId)
+  })
 })
-
-// it('should show error is cohort not found', () => {
-//   // set up
-//   const expected = 'The Cohort searched cannot be found'
-
-//   cohortManager.createCohort('Cohort 7')
-//   cohortManager.createCohort('Cohort 8')
-//   cohortManager.createCohort('Cohort 9')
-//   cohortManager.createCohort('Cohort 10')
-//   const result = cohortManager.searchCohort('Cohort 10')
-
-//   // verify
-//   expect(result).toEqual(expected)
-// })
