@@ -1,4 +1,4 @@
-class Cohort {
+class CohortManager {
   constructor() {
     this.cohortObject = {
       cohortName: '',
@@ -101,4 +101,4 @@ class Cohort {
   }
 }
 
-module.exports = Cohort
+module.exports = CohortManager
