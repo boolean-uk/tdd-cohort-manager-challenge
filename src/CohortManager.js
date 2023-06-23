@@ -67,6 +67,8 @@ class Student {
     const splitName = fullName.split(' ')
     this.lastName = splitName.pop()
     this.firstName = splitName.join(' ')
+    this.ghUsername = ghUsername
+    this.email = email
   }
 }
 
