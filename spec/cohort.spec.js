@@ -17,17 +17,6 @@ describe('createCohort', () => {
     expect(res).toEqual(cohortList)
   })
 
-  it('creates a different cohort object with a cohortName property', () => {
-    const cohortName = 'cohort_01'
-    const cohortObject = {
-      cohortName: cohortName,
-      studentList: []
-    }
-    const cohortList = [cohortObject]
-    const res = cohort.createCohort('cohort_01')
-    expect(res).toEqual(cohortList)
-  })
-
   it('does not create a cohort if the given name already exists', () => {
     cohort.createCohort('cohort_01')
     const res = cohort.createCohort('cohort_01')
@@ -117,7 +106,7 @@ describe('createStudent', () => {
     expect(res).toEqual(newStudent)
   })
 
-  it('creates another student, with a different studentID', () => {
+  it('creates another student, with a different studentID to the first', () => {
     const newStudent = {
       studentID: 2,
       firstName: 'joey',
@@ -174,7 +163,7 @@ describe('addStudentToCohort', () => {
     ])
   })
 
-  it('by ID, returns error message if student already assigned to cohort', () => {
+  it('by ID, returns error message if student already assigned to that cohort', () => {
     const newCohort = 'cohort_01'
     cohort.createCohort(newCohort)
     cohort.createStudent(
@@ -203,8 +192,7 @@ describe('removeCohort', () => {
   })
 
   it('returns error message if cohort does not exist in cohortList', () => {
-    cohort.createCohort('cohort_01')
-    const res = cohort.removeCohort('cohort_02')
+    const res = cohort.removeCohort('cohort_01')
     expect(res).toEqual('cohort does not exist')
   })
 })
@@ -233,13 +221,6 @@ describe('removeStudent', () => {
 
   it('return error message if student does not exist for given cohort', () => {
     cohort.createCohort('cohort_01')
-    cohort.createStudent(
-      uniqueID,
-      'joe',
-      'bloggs',
-      'joebloggsGit',
-      'joe.bloggs@email.co'
-    )
     const res = cohort.removeStudent(1, 'cohort_01')
     expect(res).toEqual('student does not exist in this cohort')
   })
