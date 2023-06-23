@@ -1,4 +1,5 @@
 const CohortManager = require('../src/cohortManager.js')
+const Student = require('../src/student.js')
 
 describe('createCohort', () => {
   let cm
@@ -56,13 +57,13 @@ describe('findStudent', () => {
   })
 
   it('will return the student object matching the given studentID', () => {
-    const newStudent = {
-      studentID: 1,
-      firstName: 'joe',
-      lastName: 'bloggs',
-      githubUsername: 'joebloggsGit',
-      email: 'joe.bloggs@email.co'
-    }
+    const newStudent = new Student(
+      1,
+      'joe',
+      'bloggs',
+      'joebloggsGit',
+      'joe.bloggs@email.co'
+    )
     cm.createStudent(
       uniqueID,
       'joe',
@@ -89,13 +90,13 @@ describe('createStudent', () => {
   })
 
   it('creates a new student object with relevant properties assigned', () => {
-    const newStudent = {
-      studentID: 1,
-      firstName: 'joe',
-      lastName: 'bloggs',
-      githubUsername: 'joebloggsGit',
-      email: 'joe.bloggs@email.co'
-    }
+    const newStudent = new Student(
+      1,
+      'joe',
+      'bloggs',
+      'joebloggsGit',
+      'joe.bloggs@email.co'
+    )
     const res = cm.createStudent(
       uniqueID,
       'joe',
@@ -107,13 +108,13 @@ describe('createStudent', () => {
   })
 
   it('creates another student, with a different studentID to the first', () => {
-    const newStudent = {
-      studentID: 2,
-      firstName: 'joey',
-      lastName: 'bloggsy',
-      githubUsername: 'joeybloggsyGit',
-      email: 'joey.bloggsy@email.co'
-    }
+    const newStudent = new Student(
+      2,
+      'joey',
+      'bloggsy',
+      'joeybloggsyGit',
+      'joey.bloggsy@email.co'
+    )
     cm.createStudent(
       1,
       'joeseph',
@@ -141,13 +142,13 @@ describe('addStudentToCohort', () => {
   })
 
   it('by ID, if student is not in cohort list add them to it', () => {
-    const newStudent = {
-      studentID: 1,
-      firstName: 'joe',
-      lastName: 'bloggs',
-      githubUsername: 'joebloggsGit',
-      email: 'joe.bloggs@email.co'
-    }
+    const newStudent = new Student(
+      1,
+      'joe',
+      'bloggs',
+      'joebloggsGit',
+      'joe.bloggs@email.co'
+    )
     const newCohort = 'cohort_01'
     cm.createCohort(newCohort)
     cm.createStudent(

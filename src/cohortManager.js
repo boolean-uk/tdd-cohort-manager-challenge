@@ -1,3 +1,5 @@
+const Student = require('./student.js')
+
 class CohortManager {
   constructor() {
     this.cohortObject = {
@@ -6,6 +8,7 @@ class CohortManager {
     }
     this.cohortList = []
     this.allStudents = []
+    this.uniqueID = 1
   }
 
   findCohort(cohortName) {
@@ -41,15 +44,16 @@ class CohortManager {
     return this.cohortList
   }
 
-  createStudent(uniqueID, firstName, lastName, githubUsername, email) {
-    const newStudent = {
-      studentID: uniqueID,
+  createStudent(studentID, firstName, lastName, githubUsername, email) {
+    const newStudent = new Student(
+      studentID,
       firstName,
       lastName,
       githubUsername,
       email
-    }
-    this.studentID++
+    )
+
+    this.uniqueID++
     this.allStudents.push(newStudent)
     return newStudent
   }
