@@ -277,11 +277,11 @@ describe('cohortManager', () => {
   it('Searches for  student for a specific cohort and returns the student data, if the student exists', () => {
     // Set up
     const expected = {
-      firstName: 'Kyle',
-      lastName: 'Bridgewater',
-      githubUsername: 'kyleUnderwater',
-      email: 'kylebridge@yahoo.com',
-      id: 111
+      firstName: 'Alexandra',
+      lastName: "O'neil",
+      githubUsername: 'zandOneil4',
+      email: 'AlexOneil@gmail.com',
+      id: 211
     }
 
     // Execute
@@ -308,7 +308,7 @@ describe('cohortManager', () => {
       'billysanders101@gmail.com',
       'Cohort 9'
     )
-    const result = cohortManager.searchStudent('Kyle', 'Bridgewater')
+    const result = cohortManager.searchStudent('Alexandra', "O'neil")
 
     // Verify
     expect(result).toEqual(expected)
@@ -360,20 +360,19 @@ describe('cohortManager', () => {
             githubUsername: 'kyleUnderwater',
             email: 'kylebridge@yahoo.com',
             id: 111
+          },
+          {
+            firstName: 'Billy',
+            lastName: 'Sanders',
+            githubUsername: 'billysanders101',
+            email: 'billysanders101@gmail.com',
+            id: 112
           }
         ]
       },
       {
         cohortName: 'Cohort 10',
-        students: [
-          {
-            firstName: 'Alexandra',
-            lastName: "O'neil",
-            githubUsername: 'zandOneil4',
-            email: 'AlexOneil@gmail.com',
-            id: 211
-          }
-        ]
+        students: []
       }
     ]
     // Execute
@@ -400,7 +399,7 @@ describe('cohortManager', () => {
       'billysanders101@gmail.com',
       'Cohort 9'
     )
-    const result = cohortManager.removeStudent('Billy', 'Sanders')
+    const result = cohortManager.removeStudent('Alexandra', "O'neil")
 
     // Verify
     expect(result).toEqual(expected)

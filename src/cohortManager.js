@@ -55,6 +55,12 @@ class CohortManager {
         })[0]
       )
     })
+    searchResult.forEach((element) => {
+      if (element === undefined) {
+        searchResult.splice(searchResult.indexOf(element), 1)
+      }
+    })
+
     if (searchResult[0] === undefined) {
       throw new Error("The student doesn't exist")
     }
@@ -63,6 +69,7 @@ class CohortManager {
 
   removeStudent(first, last) {
     this.searchStudent(first, last)
+
     try {
       this.cohortData.forEach((obj) => {
         if (obj.students.indexOf(this.searchStudent(first, last)) === -1) {
@@ -73,6 +80,7 @@ class CohortManager {
           1
         )
       })
+      return this.cohortData
     } catch (err) {
       if (err) {
         return this.cohortData
@@ -80,5 +88,38 @@ class CohortManager {
     }
   }
 }
+const cohortManager = new CohortManager()
+cohortManager.create('Cohort 9')
+cohortManager.create('Cohort 10')
+cohortManager.create('Cohort 11')
+cohortManager.addStudent(
+  'Max',
+  'Verstappen',
+  'maxie',
+  'max@max.com',
+  'Cohort 11'
+)
+cohortManager.addStudent(
+  'Kyle',
+  'Bridgewater',
+  'kyleUnderwater',
+  'kylebridge@yahoo.com',
+  'Cohort 9'
+)
+cohortManager.addStudent(
+  'Alexandra',
+  "O'neil",
+  'zandOneil4',
+  'AlexOneil@gmail.com',
+  'Cohort 10'
+)
+cohortManager.addStudent(
+  'Billy',
+  'Sanders',
+  'billysanders101',
+  'billysanders101@gmail.com',
+  'Cohort 9'
+)
+console.log(cohortManager.removeStudent('Alexandra', "O'neil"))
 
 module.exports = CohortManager
