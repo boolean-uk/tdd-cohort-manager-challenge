@@ -5,10 +5,11 @@ class CohortManager {
   }
 
   addCohort(cohort) {
-    const cohortCheck = this.cohorts.findIndex((obj) => obj.cohort === cohort)
-    return cohortCheck === -1
-      ? (this.cohorts.push({ cohort: cohort }), `${cohort} created`)
-      : `${cohort} already exists`
+    return cohort
+      ? this.cohorts.findIndex((obj) => obj.cohort === cohort) === -1
+        ? (this.cohorts.push({ cohort: cohort }), `${cohort} created`)
+        : `${cohort} already exists`
+      : 'No cohort name specified'
   }
 
   searchCohort(cohort) {
@@ -19,18 +20,39 @@ class CohortManager {
   }
 
   addStudent(cohort, forename, surname, username, email) {
+    const studentCheck = this.cohorts.findIndex(
+      (cohort) =>
+        cohort.students &&
+        cohort.students.some(
+          (student) =>
+            student.forename === forename &&
+            student.surname === surname &&
+            student.github === username &&
+            student.email === email
+        )
+    )
+
     const cohortIndex = this.cohorts.findIndex((obj) => obj.cohort === cohort)
-    return cohortIndex !== -1
-      ? (this.studentID++,
-        (this.cohorts[cohortIndex].students = []),
-        this.cohorts[cohortIndex].students.push({
-          id: this.studentID,
-          forename: forename,
-          surname: surname,
-          github: username,
-          email: email
-        }),
-        this.cohorts[cohortIndex].students)
+
+    return studentCheck !== -1
+      ? `${forename} ${surname} is already in ${this.cohorts[studentCheck].cohort}`
+      : cohortIndex !== -1
+      ? typeof this.cohorts[cohortIndex].students === 'undefined' ||
+        this.cohorts[cohortIndex].students.length < 24
+        ? (this.studentID++,
+          (this.cohorts[cohortIndex].students =
+            typeof this.cohorts[cohortIndex].students === 'undefined'
+              ? []
+              : this.cohorts[cohortIndex].students),
+          this.cohorts[cohortIndex].students.push({
+            id: this.studentID,
+            forename: forename,
+            surname: surname,
+            github: username,
+            email: email
+          }),
+          this.cohorts[cohortIndex].students)
+        : `Maximum number of students reached for ${cohort}`
       : `${cohort} does not exist`
   }
 
