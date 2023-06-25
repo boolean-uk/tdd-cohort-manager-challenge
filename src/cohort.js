@@ -2,14 +2,18 @@ class Cohort {
   constructor(name) {
     this.name = name
     this.students = []
+    this.cohorts = []
   }
 
   addStudent(student) {
-    if (student !== null) {
-      this.students.push(student)
-      return true
-    }
-    return false
+    this.students.push(student)
+    return true
+  }
+
+  addCohort(cohortName) {
+    const cohort = { name: cohortName, students: [] }
+    this.cohorts.push(cohort)
+    return cohort
   }
 
   removeStudent(studentId) {
@@ -22,4 +26,5 @@ class Cohort {
     return false
   }
 }
+
 module.exports = Cohort

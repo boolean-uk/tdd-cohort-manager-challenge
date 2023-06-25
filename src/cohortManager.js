@@ -1,10 +1,10 @@
 const Cohort = require('../src/cohort')
-const Student = require('../src/students')
 
 class CohortManager {
   constructor() {
     this.cohorts = []
     this.previousStudent = -1
+    this._lastStudentId = 0
   }
 
   createCohort(name) {
@@ -13,13 +13,22 @@ class CohortManager {
     return cohort
   }
 
+  addCohort(cohortName) {
+    const cohort = new Cohort(cohortName) // Create an instance of Cohort class
+    this.cohorts.push(cohort)
+    return cohort
+  }
+
+  addStudent(student) {
+    this.students.push(student)
+  }
+
   getCohortByName(name) {
-    for (let i = 0; i < this.cohorts.length; i++) {
-      if (this.cohorts[i].name === name) {
-        return this.cohorts[i]
-      }
+    const cohort = this.cohorts.find((cohort) => cohort.name === name)
+    if (cohort === undefined) {
+      throw new Error('Cohort Not Found')
     }
-    return null
+    return cohort
   }
 
   getCohort(name) {
@@ -28,53 +37,26 @@ class CohortManager {
       throw new Error('Cohort Not Found')
     }
     const cohort = this.cohorts[index]
-    return [cohort, index]
+    return cohort // Return only the cohort object
   }
 
   removeCohortByName(name) {
-    const [cohort, index] = this.findByIndex(name)
-    this.cohorts.splice(index, 1)
-    return cohort
-  }
-
-  findByIndex(name) {
-    const index = this.cohorts.findIndex((cohort) => cohort.name === name)
-    if (index === -1) {
-      throw new Error('Cohort not found')
-    }
-    const cohort = this.cohorts[index]
-    return [cohort, index]
-  }
-
-  searchCohort(id) {
-    for (let i = 0; i < this.cohorts.length; i++) {
-      if (this.cohorts[i].hasStudentWithID(id)) {
-        return this.cohorts[i].getStudentByID(id)
-      }
-    }
-    throw new Error('Student not found')
-  }
-
-  addStudentToCohort(cohortName, firstName, lastName, gitHub, email) {
-    const cohort = this.getCohortByName(cohortName)
-    let student = null
-
+    const cohort = this.getCohort(name)
     if (cohort !== null) {
-      this.previousStudent += 1
-      student = new Student(
-        this.previousStudent,
-        firstName,
-        lastName,
-        gitHub,
-        email
-      )
-      if (!cohort.addStudent(student)) {
-        student = null
-      } else {
-        this.previousStudent -= 1
-      }
+      const index = this.cohorts.indexOf(cohort)
+      this.cohorts.splice(index, 1)
+      return cohort
     }
-    return student
+    return null
+  }
+
+  addStudentToCohort(cohortName, student) {
+    const cohort = this.getCohort(cohortName)
+    if (cohort) {
+      cohort.addStudent(student)
+      return true
+    }
+    return false
   }
 
   removeStudentFromCohort(cohortName, studentId) {

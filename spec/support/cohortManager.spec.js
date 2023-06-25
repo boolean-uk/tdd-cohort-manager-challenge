@@ -1,4 +1,5 @@
 const CohortManager = require('../../src/cohortManager')
+const Student = require('../../src/students')
 
 describe('Test cohort manager', () => {
   let cohortManager
@@ -19,28 +20,28 @@ describe('Test cohort manager', () => {
     expect(cohort.students).toEqual([])
   })
 
-  fit('adds a student to an existing cohort', () => {
-    // set up
-    const namesCohort = 'Cohort 10'
-    const cohort = cohortManager.createCohort(namesCohort)
+  it('should add a student to an existing cohort', () => {
+    const manager = new CohortManager()
 
-    // execute
-    const student = cohortManager.addStudentToCohort(
-      namesCohort,
+    manager.addCohort('Cohort A')
+
+    const addedStudent = manager.addStudentToCohort(
+      'Cohort A',
       'Gideon',
       'Usenbor',
-      'git-ctrl',
-      'gideonusenbor'
+      'gideonusenbor',
+      'gideon@example.com'
     )
 
-    // verify
+    const cohort = manager.getCohort('Cohort A')
 
-    expect(student.firstName).toEqual('Gideon')
-    expect(student.lastName).toEqual('Usenbor')
-    expect(student.githubAccount).toEqual('gid-ctrl')
-    expect(student.email).toEqual('gideonusenbor')
-    expect(cohort.students.length).toBe(1)
-    expect(cohort.students).toEqual([student])
+    expect(addedStudent).toBeDefined()
+    expect(addedStudent.firstName).toEqual('Gideon')
+    expect(addedStudent.lastName).toEqual('Usenbor')
+    expect(addedStudent.githubAccount).toEqual('gideonusenbor')
+    expect(addedStudent.email).toEqual('gideon@example.com')
+
+    expect(cohort.students).toContain(addedStudent)
   })
 
   it('should remove a cohort', () => {
@@ -62,9 +63,9 @@ describe('Test cohort manager', () => {
     expect(result).toEqual(expected)
   })
 
-  it('should show error if cohort not found', () => {
+  it('should show an error if cohort not found', () => {
     expect(() => cohortManager.getCohortByName('Cohort 11')).toThrowError(
-      'Cohort not found'
+      'Cohort Not Found'
     )
   })
 
@@ -81,6 +82,7 @@ describe('Test cohort manager', () => {
       'gitgit',
       'email@email'
     )
+
     const student2 = cohortManager.addStudentToCohort(
       namesCohort,
       'G',
@@ -88,7 +90,6 @@ describe('Test cohort manager', () => {
       'gitmail',
       'emailemail@email'
     )
-
     // execute
     const result = cohortManager.removeStudentFromCohort(
       namesCohort,
