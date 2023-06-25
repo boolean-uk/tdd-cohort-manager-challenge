@@ -27,7 +27,31 @@ class CohortManager {
           email: email
         }),
         this.cohorts[cohortIndex].students)
-      : 'cohort does not exist'
+      : `${cohort} does not exist`
+  }
+
+  removeCohort(name) {
+    const cohortIndex = this.cohorts.findIndex((obj) => obj.name === name)
+    return cohortIndex !== -1
+      ? (this.cohorts.splice(cohortIndex, 1), `${name} removed`)
+      : `${name} does not exist`
+  }
+
+  removeStudent(cohort, name) {
+    const cohortIndex = this.cohorts.findIndex((obj) => obj.name === cohort)
+    let studentIndex
+    cohortIndex !== -1
+      ? (studentIndex = this.cohorts[cohortIndex].students.findIndex(
+          (student) => `${student.forename} ${student.surname}` === name
+        ))
+      : (studentIndex = -1)
+
+    return cohortIndex !== -1
+      ? studentIndex !== -1
+        ? (this.cohorts[cohortIndex].students.splice[(studentIndex, 1)],
+          `${name} removed from ${cohort}`)
+        : `${name} is not a student of ${cohort}`
+      : `${cohort} does not exist`
   }
 }
 

@@ -73,7 +73,7 @@ describe('Cohort Manager', () => {
 
     it('add student to non existant cohort', () => {
       // SETUP
-      const expected = 'cohort does not exist'
+      const expected = 'Cohort 1 does not exist'
 
       // EXECUTE
       const result = cohortManager.addStudent(
@@ -85,6 +85,90 @@ describe('Cohort Manager', () => {
       )
 
       //   RESULT
+      expect(result).toEqual(expected)
+    })
+  })
+
+  describe('removeCohort', () => {
+    it('remove cohort by cohort name', () => {
+      //  SETUP
+      cohortManager.addCohort('Cohort 1')
+      const expected = 'Cohort 1 removed'
+
+      // EXECUTE
+      const result = cohortManager.removeCohort('Cohort 1')
+
+      // RESULT
+      expect(result).toEqual(expected)
+    })
+
+    it('cohort does not exist', () => {
+      //  SETUP
+      const expected = 'Cohort 1 does not exist'
+
+      // EXECUTE
+      const result = cohortManager.removeCohort('Cohort 1')
+
+      // RESULT
+      expect(result).toEqual(expected)
+    })
+  })
+
+  describe('removeStudent', () => {
+    it('from a specific cohort', () => {
+      // SETUP
+      cohortManager.addCohort('Cohort 1')
+      cohortManager.addStudent(
+        'Cohort 1',
+        'Joe',
+        'Bloggs',
+        'joebloggs23',
+        'joebloggs23@gmail.com'
+      )
+      const expected = 'Joe Bloggs removed from Cohort 1'
+
+      // EXECUTE
+      const result = cohortManager.removeStudent('Cohort 1', 'Joe Bloggs')
+
+      // RESULT
+      expect(result).toEqual(expected)
+    })
+
+    it('cohort does not exist', () => {
+      // SETUP
+      cohortManager.addCohort('Cohort 1')
+      cohortManager.addStudent(
+        'Cohort 1',
+        'Joe',
+        'Bloggs',
+        'joebloggs23',
+        'joebloggs23@gmail.com'
+      )
+      const expected = 'Cohort 2 does not exist'
+
+      // EXECUTE
+      const result = cohortManager.removeStudent('Cohort 2', 'Joe Bloggs')
+
+      // RESULT
+      expect(result).toEqual(expected)
+    })
+
+    it('student does not exist', () => {
+      // SETUP
+      cohortManager.addCohort('Cohort 1')
+      cohortManager.addStudent(
+        'Cohort 1',
+        'Joe',
+        'Bloggs',
+        'joebloggs23',
+        'joebloggs23@gmail.com'
+      )
+      const expected = 'John Smith is not a student of Cohort 1'
+
+      // EXECUTE
+      const result = cohortManager.removeStudent('Cohort 1', 'John Smith')
+
+      // RESULT
       expect(result).toEqual(expected)
     })
   })
