@@ -18,4 +18,29 @@ describe('Cohort Manager', () => {
       expect(result).toEqual(expected)
     })
   })
+
+  describe('searchCohort', () => {
+    it('by name', () => {
+      // SETUP
+      cohortManager.addCohort('Cohort 1')
+      const expected = 'Cohort 1 found'
+
+      // EXECUTE
+      const result = cohortManager.searchCohort('Cohort 1')
+
+      // RESULT
+      expect(result).toEqual(expected)
+    })
+
+    it('cohort does not exist', () => {
+      // SETUP
+      const expected = 'Cohort 1 does not exist'
+
+      // EXECUTE
+      const result = cohortManager.searchCohort('Cohort 1')
+
+      // RESULT
+      expect(result).toEqual(expected)
+    })
+  })
 })
