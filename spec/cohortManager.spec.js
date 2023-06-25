@@ -101,6 +101,52 @@ describe('Cohort Manager', () => {
     })
   })
 
+  describe('searchStudent', () => {
+    it('by id', () => {
+      // SETUP
+      cohortManager.addCohort('Cohort 1')
+      cohortManager.addCohort('Cohort 2')
+      cohortManager.addStudent(
+        'Cohort 1',
+        'Joe',
+        'Bloggs',
+        'joebloggs23',
+        'joebloggs23@gmail.com'
+      )
+      cohortManager.addStudent(
+        'Cohort 2',
+        'John',
+        'Smith',
+        'johnsmith06',
+        'johnsmith06@gmail.com'
+      )
+      const expected = {
+        id: 2,
+        forename: 'John',
+        surname: 'Smith',
+        github: 'johnsmith06',
+        email: 'johnsmith06@gmail.com'
+      }
+
+      // EXECUTE
+      const result = cohortManager.searchStudent(2)
+
+      // RESULT
+      expect(result).toEqual(expected)
+    })
+
+    it('does not exist', () => {
+      // SETUP
+      const expected = 'No student found for id 2'
+
+      // EXECUTE
+      const result = cohortManager.searchStudent(2)
+
+      // RESULT
+      expect(result).toEqual(expected)
+    })
+  })
+
   describe('removeCohort', () => {
     it('remove cohort by cohort name', () => {
       //  SETUP

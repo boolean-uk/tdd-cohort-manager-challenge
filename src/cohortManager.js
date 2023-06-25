@@ -34,6 +34,22 @@ class CohortManager {
       : `${cohort} does not exist`
   }
 
+  searchStudent(id) {
+    const cohortIndex = this.cohorts.findIndex(
+      (cohort) =>
+        cohort.students.findIndex((student) => student.id === id) !== -1
+    )
+    const studentIndex =
+      cohortIndex !== -1
+        ? this.cohorts[cohortIndex].students.findIndex(
+            (student) => student.id === id
+          )
+        : -1
+    return studentIndex !== -1
+      ? this.cohorts[cohortIndex].students[studentIndex]
+      : `No student found for id ${id}`
+  }
+
   removeCohort(cohort) {
     const cohortIndex = this.cohorts.findIndex((obj) => obj.cohort === cohort)
     return cohortIndex !== -1
@@ -43,12 +59,12 @@ class CohortManager {
 
   removeStudent(cohort, name) {
     const cohortIndex = this.cohorts.findIndex((obj) => obj.cohort === cohort)
-    let studentIndex
-    cohortIndex !== -1
-      ? (studentIndex = this.cohorts[cohortIndex].students.findIndex(
-          (student) => `${student.forename} ${student.surname}` === name
-        ))
-      : (studentIndex = -1)
+    const studentIndex =
+      cohortIndex !== -1
+        ? this.cohorts[cohortIndex].students.findIndex(
+            (student) => `${student.forename} ${student.surname}` === name
+          )
+        : -1
 
     return cohortIndex !== -1
       ? studentIndex !== -1
