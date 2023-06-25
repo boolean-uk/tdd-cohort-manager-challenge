@@ -3,6 +3,7 @@ const Cohort = require('../src/cohort')
 class CohortManager {
   constructor() {
     this.cohorts = []
+    this.students = []
     this.previousStudent = -1
     this._lastStudentId = 0
   }
@@ -14,7 +15,7 @@ class CohortManager {
   }
 
   addCohort(cohortName) {
-    const cohort = new Cohort(cohortName) // Create an instance of Cohort class
+    const cohort = { name: cohortName, students: [] }
     this.cohorts.push(cohort)
     return cohort
   }
@@ -37,7 +38,7 @@ class CohortManager {
       throw new Error('Cohort Not Found')
     }
     const cohort = this.cohorts[index]
-    return cohort // Return only the cohort object
+    return cohort
   }
 
   removeCohortByName(name) {
@@ -53,7 +54,7 @@ class CohortManager {
   addStudentToCohort(cohortName, student) {
     const cohort = this.getCohort(cohortName)
     if (cohort) {
-      cohort.addStudent(student)
+      cohort.students.push(student)
       return true
     }
     return false

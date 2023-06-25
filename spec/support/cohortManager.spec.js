@@ -21,29 +21,29 @@ describe('Test cohort manager', () => {
   })
 
   it('should add a student to an existing cohort', () => {
+    // set up
     const manager = new CohortManager()
 
-    manager.addCohort('Cohort A')
+    const cohort = manager.addCohort('Cohort A')
 
-    const addedStudent = manager.addStudentToCohort(
-      'Cohort A',
-      'Gideon',
-      'Usenbor',
-      'gideonusenbor',
-      'gideon@example.com'
-    )
+    const addedStudent = {
+      firstName: 'Gideon',
+      lastName: 'Usenbor',
+      githubAccount: 'gideonusenbor',
+      email: 'gideon@example.com'
+    }
 
-    const cohort = manager.getCohort('Cohort A')
+    // execute
+    const result = manager.addStudentToCohort('Cohort A', addedStudent)
 
-    expect(addedStudent).toBeDefined()
-    expect(addedStudent.firstName).toEqual('Gideon')
-    expect(addedStudent.lastName).toEqual('Usenbor')
-    expect(addedStudent.githubAccount).toEqual('gideonusenbor')
-    expect(addedStudent.email).toEqual('gideon@example.com')
-
-    expect(cohort.students).toContain(addedStudent)
+    // verify
+    expect(result).toBe(true)
+    expect(cohort.students.length).toBe(1)
+    expect(cohort.students[0].firstName).toBe('Gideon')
+    expect(cohort.students[0].lastName).toBe('Usenbor')
+    expect(cohort.students[0].githubAccount).toBe('gideonusenbor')
+    expect(cohort.students[0].email).toBe('gideon@example.com')
   })
-
   it('should remove a cohort', () => {
     // set up
     const expected = cohortManager.createCohort('Cohort 1')
