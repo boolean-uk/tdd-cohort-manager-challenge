@@ -25,4 +25,37 @@ describe('CohortManager method', () => {
 
     expect(res).toEqual(false)
   })
+
+  it('searchCohortByName returns all matching results', () => {
+    cohortManager.createCohortByName('Cohort 1')
+    cohortManager.createCohortByName('Cohort 2')
+    cohortManager.createCohortByName('Cohort 3')
+    cohortManager.createCohortByName('Cohort 4')
+    cohortManager.createCohortByName('Cohort 1 and 2')
+
+    const res = cohortManager.searchCohortByName('Cohort 1')
+    expect(...res).toBeInstanceOf(Cohort)
+  })
+
+  it('searchCohortByName returns false if no matches', () => {
+    cohortManager.createCohortByName('Cohort 1')
+    cohortManager.createCohortByName('Cohort 2')
+    cohortManager.createCohortByName('Cohort 3')
+    cohortManager.createCohortByName('Cohort 4')
+    cohortManager.createCohortByName('Cohort 1 and 2')
+
+    const res = cohortManager.searchCohortByName('Cohort 5')
+    expect(res).toEqual(false)
+  })
+
+  it('searchCohortByName returns false if invalid input', () => {
+    cohortManager.createCohortByName('Cohort 1')
+    cohortManager.createCohortByName('Cohort 2')
+    cohortManager.createCohortByName('Cohort 3')
+    cohortManager.createCohortByName('Cohort 4')
+    cohortManager.createCohortByName('Cohort 1 and 2')
+
+    const res = cohortManager.searchCohortByName(612)
+    expect(res).toEqual(false)
+  })
 })
