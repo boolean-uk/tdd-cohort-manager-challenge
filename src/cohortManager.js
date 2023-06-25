@@ -5,8 +5,8 @@ class CohortManager {
   }
 
   addCohort(cohort) {
-    const cohortCheck = this.cohorts.find((obj) => obj.cohort === cohort)
-    return cohortCheck !== -1
+    const cohortCheck = this.cohorts.findIndex((obj) => obj.cohort === cohort)
+    return cohortCheck === -1
       ? (this.cohorts.push({ cohort: cohort }), `${cohort} created`)
       : `${cohort} already exists`
   }

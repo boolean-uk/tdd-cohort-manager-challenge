@@ -17,6 +17,18 @@ describe('Cohort Manager', () => {
       // RESULT
       expect(result).toEqual(expected)
     })
+
+    it('cohort already exists', () => {
+      // SETUP
+      cohortManager.addCohort('Cohort 1')
+      const expected = 'Cohort 1 already exists'
+
+      // EXECUTE
+      const result = cohortManager.addCohort('Cohort 1')
+
+      // RESULT
+      expect(result).toEqual(expected)
+    })
   })
 
   describe('searchCohort', () => {
