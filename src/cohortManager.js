@@ -13,10 +13,8 @@ class CohortManager {
   }
 
   searchCohort(cohort) {
-    const findCohort = this.cohorts.find((obj) => obj.cohort === cohort)
-    return findCohort !== undefined
-      ? `${cohort} found`
-      : `${cohort} does not exist`
+    const findCohort = this.cohorts.some((obj) => obj.cohort === cohort)
+    return findCohort ? `${cohort} found` : `${cohort} does not exist`
   }
 
   addStudent(cohort, forename, surname, username, email) {
