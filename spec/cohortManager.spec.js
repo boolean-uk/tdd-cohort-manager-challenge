@@ -83,12 +83,18 @@ describe('Cohort Manager: ', () => {
   })
   it('Should throw an error if cant find a student', () => {
     cohortManager.createCohort('Cohort1')
-    cohortManager.addStudent('Isa', 'Cohort1')
-    cohortManager.addStudent('Dan', 'Cohort1') // ({firstname: firstname}, cohortName)
+    cohortManager.addStudent({ firstname: 'Isa' }, 'Cohort1')
+    cohortManager.addStudent({ firstname: 'Dan' }, 'Cohort1')
 
-    // const student = cohortManager.findStudent('Mantas')
     expect(() => {
       cohortManager.findStudent('Kyle')
     }).toThrowError('Student not found!')
+  })
+  it('Should throw an error if cant find a Cohort', () => {
+    cohortManager.createCohort('Cohort1')
+
+    expect(() => {
+      cohortManager.findCohort('Cohort2')
+    }).toThrowError('Cohort not found!')
   })
 })

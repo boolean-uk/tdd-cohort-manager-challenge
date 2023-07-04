@@ -24,15 +24,17 @@ class CohortManager {
   }
 
   findStudent(firstname) {
+    // eslint-disable-next-line no-unreachable-loop
     for (const cohort of this.cohorts) {
       const result = cohort.students.find(
         (student) => student.firstname === firstname
       )
       if (result) {
         return result
+      } else {
+        throw new Error('Student not found!')
       }
     }
-    throw new Error('Student not found!')
   }
 
   addStudent(student, cohortName) {
