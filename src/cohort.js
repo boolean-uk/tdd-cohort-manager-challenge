@@ -1,5 +1,13 @@
 export default class Cohort {
   constructor(name, capacity = 24) {
+    if (typeof name !== 'string') {
+      throw new Error('name input must be String')
+    }
+
+    if (name.length < 1) {
+      throw new Error('name input must not be blank')
+    }
+
     if (typeof capacity !== 'number') {
       throw new Error('capacity input must be Number')
     }
