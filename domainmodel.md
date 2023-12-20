@@ -18,8 +18,13 @@ A cohort should have a list of students. Each student should have a studentID, f
 
 | Name | Properties | Messages | Input | Output | Tests ❌ ✅ |
 | - | - | - | - | - | -  |
-| Branches@Object[] | | | | | ✅ 
-| addBranch | | | location@String | @Object[]Branches | ✅
+| Organization |
+| | name@String 
+| | studentCounter@integer
+| | branches@Object[]
+| | |addBranch |  location@String | @Object[]| ❌
+| | |registerNewStudent | - | studentID@Integer| ❌
+Branches | ✅
 | Branch | Location @String
 | | Cohorts | @Object[] | | | ✅
 | | | addCohort | @Object{} | @Object{} | ✅
@@ -33,7 +38,8 @@ A cohort should have a list of students. Each student should have a studentID, f
 | | | removeStudent() | @Object{} | @Object{} | ❌
 | | | setName() | cohortName@String | @Object{} | ❌
 | | | isFull() | | @Boolean | ❌
-| Student | firstName @String | | | | ❌
+| Student | studentId @Integer | | | | ❌
+| | firstName @String | | | | ❌
 | | lastName @ String | | | | ❌
 | | githubUsername @ String | | | | ❌
 | | EMail @ String | | | | ❌

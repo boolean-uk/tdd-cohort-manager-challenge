@@ -1,8 +1,9 @@
-import Student from "../src/student.js"
+import Student from '../src/student.js'
 
 describe('student', () => {
   it('creation works', () => {
     const expected = {
+      studentID: 0,
       firstName: 'Nathan',
       lastName: 'The Wise',
       email: '',

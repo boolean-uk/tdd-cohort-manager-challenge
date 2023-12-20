@@ -1,17 +1,17 @@
-import { Branch, Branches, addBranch } from '../src/branch.js'
+import { Branch, myOrganization } from '../src/branch.js'
 import Cohort from '../src/cohort.js'
 
 describe('Branch', () => {
   describe('creation', () => {
     it('is possible with given string', () => {
-      const expected = addBranch('London')
-      expect(Branches.length).toEqual(1)
-      expect(Branches[0].location).toEqual('London')
-      expect(Branches).toEqual(expected)
+      const expected = myOrganization.addBranch('London')
+      expect(myOrganization.branches.length).toEqual(1)
+      expect(myOrganization.branches[0].location).toEqual('London')
+      expect(myOrganization.branches).toEqual(expected)
     })
 
     it('is not possible without name', () => {
-      expect(addBranch).toThrowError('invalid input')
+      expect(myOrganization.addBranch).toThrowError('invalid input')
     })
   })
 

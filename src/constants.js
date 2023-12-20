@@ -1,3 +1,3 @@
-const cohortCapacity = 25
+const cohortCapacity = 24
 
 export { cohortCapacity }
