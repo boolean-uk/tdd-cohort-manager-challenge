@@ -3,7 +3,7 @@
 // - Remove a cohort by cohort name
 // - Throw errors if student or cohort not found
 
-import { cohortCapacity } from 'cohort.js'
+import { cohortCapacity } from '../src/constants.js'
 
 class Cohort {
   constructor(name) {
@@ -39,3 +39,5 @@ class Cohort {
     this.students = this.students.filter(student => student !== studentObj)
   }
 }
+
+export default Cohort
