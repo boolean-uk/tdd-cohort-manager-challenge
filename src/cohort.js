@@ -1,5 +1,5 @@
 export default class Cohort {
-  constructor(name, capacity) {
+  constructor(name, capacity = 24) {
     this.name = name
     this.capacity = capacity
     this.id = Cohort.nextId()
