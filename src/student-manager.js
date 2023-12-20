@@ -6,7 +6,6 @@ class StudentManager {
 
   assignStudentID() {
     this.list[this.list.length - 1].studentID = this.studentIDcounter
-    console.log(this.list)
     return this.list[this.list.length - 1].studentID
   }
 
