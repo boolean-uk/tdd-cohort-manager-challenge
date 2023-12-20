@@ -33,5 +33,15 @@ describe('Cohort Manger', () => {
         expect(() => cohortManager.removeCohort('').toThrowError(expected))
       })
     })
+    describe('find cohort', () => {
+      beforeEach(() => {
+        cohortManager.createCohort('findMe')
+      })
+      it('/ if found cohort', () => {
+        const expected = cohortManager.cohortList[0]
+        const result = cohortManager.findCohort('findMe')
+        expect(result).toEqual(expected)
+      })
+    })
   })
 })
