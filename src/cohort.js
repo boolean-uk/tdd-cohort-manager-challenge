@@ -7,6 +7,10 @@ import { cohortCapacity } from '../src/constants.js'
 
 class Cohort {
   constructor(name) {
+    if (!name || typeof name !== 'string') {
+      throw new Error('invalid input')
+    }
+
     this.name = name
     this.students = []
   }
