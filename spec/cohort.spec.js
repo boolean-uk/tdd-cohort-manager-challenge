@@ -17,5 +17,17 @@ describe('Cohort:', () => {
 
       expect(cohort.details).toEqual(expected)
     })
+
+    it('valid name input & no capacity input', () => {
+      const cohort = new Cohort('Potato')
+
+      const expected = {
+        name: 'Potato',
+        cohortId: 1,
+        capacity: 24
+      }
+
+      expect(cohort.details).toEqual(expected)
+    })
   })
 })
