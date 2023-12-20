@@ -14,5 +14,4 @@ class Cohort {
     )
   }
 }
-
 export default Cohort

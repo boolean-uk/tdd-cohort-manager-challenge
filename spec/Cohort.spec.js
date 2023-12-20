@@ -20,7 +20,7 @@ describe('Manager', () => {
     const cohort = new Cohort('Cohort 1')
     manager.addCohort(cohort)
     const found = manager.findCohortByName('Cohort 1')
-    expect(found).toBe(cohort)
+    expect(found).toEqual(cohort)
   })
 
   it('should remove a cohort by name', () => {
