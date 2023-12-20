@@ -11,9 +11,19 @@ class CohortManager {
     this.cohortList.push(cohort)
     return cohort
   }
+
+  removeCohort(name) {
+    return (this.cohortList = this.cohortList.filter(
+      (item) => item.name !== name
+    ))
+  }
 }
 
 export default CohortManager
 
 // const cohortManager = new CohortManager()
-// cohortManager.createCohort('')
+// cohortManager.createCohort('StayHere')
+// cohortManager.createCohort('RemoveMe')
+// console.log(cohortManager.cohortList)
+// cohortManager.removeCohort('RemoveMe')
+// console.log(cohortManager.cohortList)
