@@ -6,6 +6,7 @@ class CohortManager {
   }
 
   createCohort(name) {
+    if (name.length === 0) throw new Error('Cohort needs a name!')
     const cohort = new Cohort(name)
     this.cohortList.push(cohort)
     return cohort
@@ -13,3 +14,6 @@ class CohortManager {
 }
 
 export default CohortManager
+
+// const cohortManager = new CohortManager()
+// cohortManager.createCohort('')
