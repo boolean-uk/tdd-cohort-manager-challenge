@@ -1,6 +1,24 @@
 import CohortList from '../src/CohortList.js'
 import Student from '../src/Student.js'
 
+// Configuration of students
+const student1 = new Student(
+  1,
+  'Nazar',
+  'Tymiv',
+  'NazarTymiv',
+  'hello1@gmail.com'
+)
+
+const student2 = new Student(
+  2,
+  'Name 2',
+  'Last Name 2',
+  'GitHub Name 2',
+  'hello2@gmail.com'
+)
+
+// Tests
 describe('Cohort', () => {
   let cohortList
 
@@ -48,22 +66,6 @@ describe('Cohort', () => {
 
   // Add Student to a Specific Cohort
   it('with entered name exist: List of students of entered cohort', () => {
-    const student1 = new Student(
-      1,
-      'Nazar',
-      'Tymiv',
-      'NazarTymiv',
-      'hello1@gmail.com'
-    )
-
-    const student2 = new Student(
-      2,
-      'Name 2',
-      'Last Name 2',
-      'GitHub Name 2',
-      'hello2@gmail.com'
-    )
-
     cohortList.createCohort('Boolean')
 
     const expected = [student1, student2]
@@ -77,15 +79,7 @@ describe('Cohort', () => {
   it("with entered name doesn't exist: Thrown error", () => {
     const expected = 'Cohort not Found'
 
-    const student = new Student(
-      1,
-      'Nazar',
-      'Tymiv',
-      'NazarTymiv',
-      'hello1@gmail.com'
-    )
-
-    expect(() => cohortList.addStudent(student, 'Boolean')).toThrowError(
+    expect(() => cohortList.addStudent(student1, 'Boolean')).toThrowError(
       expected
     )
   })
@@ -110,21 +104,6 @@ describe('Cohort', () => {
 
   // Remove Student
   it('Student exist in entered cohort: Removed student', () => {
-    const student1 = new Student(
-      1,
-      'Nazar',
-      'Tymiv',
-      'NazarTymiv',
-      'hello1@gmail.com'
-    )
-    const student2 = new Student(
-      2,
-      'Name 2',
-      'Last Name 2',
-      'GitHub Name 2',
-      'hello2@gmail.com'
-    )
-
     const expected = student2
 
     cohortList.createCohort('Boolean')
@@ -148,14 +127,6 @@ describe('Cohort', () => {
 
   it("Cohort doesn't exist: Thrown error", () => {
     const expected = 'Cohort not Found'
-
-    const student1 = new Student(
-      1,
-      'Nazar',
-      'Tymiv',
-      'NazarTymiv',
-      'hello1@gmail.com'
-    )
 
     cohortList.createCohort('Cohort 1')
     cohortList.addStudent(student1, 'Cohort 1')
