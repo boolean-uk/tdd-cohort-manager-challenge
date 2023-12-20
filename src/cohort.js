@@ -1,3 +1,4 @@
+
 class Cohort {
     constructor() {
         this.cohortList = []
@@ -31,11 +32,59 @@ class Cohort {
 
         return findCohort
     }
+
+    addStudent(cohortName, studentToAdd) {
+        const findCohort = this.cohortList.find(cohort => cohort.name === cohortName)
+        const studentExists = findCohort.students.find(student => student.studentID === studentToAdd.studentID)
+
+        if(studentExists) {
+            throw new Error("this student already exists, add another student!")
+        }
+
+        for(let i = 0; i < findCohort.students.length; i++) {
+            console.log('i', findCohort.students[i])
+            if(
+                studentToAdd.fitrstName === findCohort.students[i].fitrstName &&
+                studentToAdd.lastName === findCohort.students[i].lastName &&
+                studentToAdd.userName === findCohort.students[i].userName && 
+                studentToAdd.email === findCohort.students[i].email
+            ) {
+                throw new Error("this student already enrolled in another Cohort!")
+            }
+        }
+       
+        findCohort.students.push(studentToAdd)
+      
+        return findCohort.students
+        
+    }
 }
 
 const cohort = new Cohort()
 cohort.createCohort('Cohort 1')
-console.log(cohort.searchCohort('Cohort 1'))
-console.log(cohort.cohortList)
+cohort.addStudent('Cohort 1', {
+    studentID: 1,
+    fitrstName: 'John',
+    lastName: 'Doe',
+    userName: 'JohnDoe',
+    email: 'johnDoe@gmail.com'
+})
+cohort.addStudent('Cohort 1', {
+    studentID: 2,
+    fitrstName: 'sas',
+    lastName: 'ds',
+    userName: 'asd',
+    email: 'johnDsaoe@gmail.com'
+})
+cohort.createCohort('Cohort 2')
+cohort.addStudent('Cohort 2', {
+    studentID: 1,
+    fitrstName: 'cs',
+    lastName: 'def',
+    userName: 'cc',
+    email: 'swww@gmail.com'
+})
+console.log('Students List', cohort.cohortList[0].students)
+console.log('Students List', cohort.cohortList[1].students)
 
 export default Cohort

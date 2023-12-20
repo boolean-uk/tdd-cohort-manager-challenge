@@ -36,10 +36,20 @@ describe('Cohort', () => {
             userName: 'JohnDoe',
             email: 'johnDoe@gmail.com'
         }
-        const expected = [student1]
 
-        cohort.addStudent()
-        const result = cohort.cohortList
-        expect(result.students[0]).toEqual(expected)
+        const student2 = {
+            studentID: 2,
+            fitrstName: 'Dylan',
+            lastName: 'Wood',
+            userName: 'Dylan',
+            email: 'dylanwood@gmail.com'
+        }
+        const expected = [student1, student2]
+
+        cohort.addStudent('Cohort 1', student1)
+        const result = cohort.addStudent('Cohort 1', student2)
+        expect(result).toEqual(expected)
     })
+
+    
 }) 
