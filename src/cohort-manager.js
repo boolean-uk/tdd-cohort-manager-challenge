@@ -13,6 +13,7 @@ class CohortManager {
   }
 
   removeCohort(name) {
+    if (name.length === 0) throw new Error('Please enter a cohort name')
     return (this.cohortList = this.cohortList.filter(
       (item) => item.name !== name
     ))
