@@ -111,4 +111,42 @@ describe('Cohort Manager:', () => {
       "please input a valid name e.g. 'cohort-11'"
     )
   })
+
+  it('removes student from specific cohort', () => {
+    const expected = 'Kye successfully removed from cohort-1'
+
+    cohort.createCohort('cohort-1')
+    cohort.addStudentToCohort(
+      {
+        firstName: 'Kye',
+        lastName: 'Yee',
+        github: '@yee0802',
+        email: 'ky@mail.com'
+      },
+      'cohort-1'
+    )
+
+    const result = cohort.removeStudentFromCohort(1, 'cohort-1')
+
+    expect(result).toEqual(expected)
+  })
+
+  it('should throw error if input is invalid', () => {
+    expect(() => cohort.removeStudentFromCohort([], 2)).toThrowError(
+      "please input a valid studentID & cohort name e.g. (3,'cohort-11')"
+    )
+  })
+
+  it('should throw error if student is not found', () => {
+    cohort.createCohort('cohort-1')
+    expect(() => cohort.removeStudentFromCohort(5, 'cohort-1')).toThrowError(
+      'Student does not exist'
+    )
+  })
+
+  it('should throw error if cohort not found', () => {
+    expect(() => cohort.removeStudentFromCohort(1, 'cohort-moon')).toThrowError(
+      'Cohort does not exist'
+    )
+  })
 })
