@@ -22,8 +22,8 @@ A cohort should have a list of students. Each student should have a studentID, f
 | addBranch | | | location@String | @Object[]Branches | ✅
 | Branch | Location @String
 | | Cohorts | @Object[] | | | ❌
-| | | addCohort | @Object{} | @Object{} | ❌
-| | | removeCohort | @Object{} | @Object{} | ❌
+| | | addCohort | @Object{} | @Object{} | ✅
+| | | removeCohort | @Object{} | @Object{} | ✅
 | | | searchStudentsByName | @String | @Object[] | ❌
 | | | cohortExists | @Object{} | @boolean | ❌
 | Cohort | Name@String 

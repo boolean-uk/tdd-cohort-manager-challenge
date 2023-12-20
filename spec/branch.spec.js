@@ -42,5 +42,9 @@ describe('Branch', () => {
       myBranch.removeCohort(myCohort)
       expect(myBranch.cohorts.length).toEqual(0)
     })
+
+    it('removing a cohort that does not exist', () => {
+      expect(() => myBranch.removeCohort(myCohort)).toThrowError()
+    })
   })
 })
