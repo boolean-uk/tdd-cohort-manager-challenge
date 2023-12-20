@@ -1,4 +1,5 @@
-import Cohort from '../../src/cohort.js'
+import Cohort from '../src/cohort.js'
+import Student from '../src/student.js'
 
 describe('Cohort', () => {
   let cohort
@@ -30,7 +31,7 @@ describe('Cohort', () => {
       expect(result).toEqual(expected)
     })
 
-    it('when an invalid cohortName is entered throw error', () => {
+    it('when an invalid cohortName is entered, throw error', () => {
       // set up
 
       // execute/verify
@@ -58,6 +59,40 @@ describe('Cohort', () => {
 
       // execute/verify
       expect(() => cohort.findCohort()).toThrowError('cohort does not exist')
+    })
+  })
+
+  describe('add student to specific cohort', () => {
+    it('cohort list is updated with new student details', () => {
+      // set up
+      cohort.createCohort('Cohort 1')
+      const student1 = cohort.enrolStudent(
+        'John',
+        'Doe',
+        'johndoe',
+        'john@doe.com'
+      )
+
+      const expected = [
+        {
+          name: 'Cohort 1',
+          students: [student1]
+        }
+      ]
+
+      // execute
+      cohort.addStudentToCohort('Cohort 1', 1)
+      const result = cohort.cohortList
+
+      // verify
+      expect(result).toEqual(expected)
+    })
+
+    it('when invalid student input, throw error', () => {
+      // set up
+
+      // execute/verify
+      expect(() => cohort.findStudent()).toThrowError('student does not exist')
     })
   })
 })

@@ -1,6 +1,9 @@
+import Student from './student.js'
+
 class Cohort {
   constructor() {
     this.cohortList = []
+    this.studentsList = []
   }
 
   createCohort(cohortName) {
@@ -17,6 +20,27 @@ class Cohort {
     )
     if (!cohortToFind) throw new Error('cohort does not exist')
     return cohortToFind
+  }
+
+  enrolStudent(firstName, lastName, githubUsername, email) {
+    const newStudent = new Student(firstName, lastName, githubUsername, email)
+    this.studentsList.push(newStudent)
+    return newStudent
+  }
+
+  findStudent(studentId) {
+    const studentToFind = this.studentsList.find(
+      (student) => student.id === studentId
+    )
+    if (!studentToFind) throw new Error('student does not exist')
+    return studentToFind
+  }
+
+  addStudentToCohort(cohortName, studentId) {
+    const student = this.findStudent(studentId)
+    const cohort = this.findCohort(cohortName)
+    cohort.students.push(student)
+    return student
   }
 }
 
