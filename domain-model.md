@@ -1,6 +1,6 @@
 ## Domain Model
 
-## Cohort Manger
+## Cohort Manager
 
 | Object        | Properties      | Methods              | Inputs                                | Notes | Scenario              | Output  | Example                                                                                                                                                                                                                                              |
 | ------------- | --------------- | -------------------- | ------------------------------------- | ----- | --------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -11,6 +11,8 @@
 |               |                 |                      |                                       |       | cohort does not exist | Error   | `findCohort('cohort-99') => Error: "Cohort doesn't exist"`                                                                                                                                                                                           |
 |               |                 | addStudentToCohort() | student(@Object), cohortName(@String) |       | cohort exists         | @Object | `addStudentToCohort({firstName: "Kye", lastName: "Yee", github:"@yee0802", email: "kye@mail.com"}, "cohort-11") => Cohort {name: 'cohort-11',students: [Student {id: 1,firstName: 'Kye',lastName: 'Yee',github: '@yee0802',email: 'kye@mail.com'} }` |
 |               |                 |                      |                                       |       | cohort does not exist | Error   | `addStudentToCohort({}, 'cohort-99') => Error: "Cohort does not exist"`                                                                                                                                                                              |
+|               |                 | removeCohortByName() | cohortName(@String)                   |       | cohort exists         | @String | `removeCohortByName('cohort-11') => "cohort-11 removed successfully"`                                                                                                                                                                                |
+|               |                 |                      |                                       |       | cohort does not exist | Error   | `removeCohortByName('cohort-11') => Error: "Cohort doesn't exist"`                                                                                                                                                                                   |
 
 ## Cohort
 
