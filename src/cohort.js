@@ -1,5 +1,9 @@
 export default class Cohort {
   constructor(name, capacity = 24) {
+    if (typeof capacity !== 'number') {
+      throw new Error('capacity input must be Number')
+    }
+
     this.name = name
     this.capacity = capacity
     this.id = Cohort.nextId()
