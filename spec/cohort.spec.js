@@ -29,5 +29,15 @@ describe('Cohort:', () => {
 
       expect(cohort.details).toEqual(expected)
     })
+
+    it('valid name input & capacity input not Number', () => {
+      const inputs = ['seven', '7', { 1: 1 }, [1]]
+
+      inputs.forEach((input) => {
+        const callback = () => new Cohort('Potato', input)
+
+        expect(callback).toThrowError('capacity input must be Number')
+      })
+    })
   })
 })
