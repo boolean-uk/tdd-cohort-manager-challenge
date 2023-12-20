@@ -21,4 +21,14 @@ describe('Manager', () => {
     const result = manager.searchBy('blue')
     expect(result.cohortName).toEqual('blue')
   })
+  it('removes a cohort', () => {
+    const cohort = new Cohort('purple')
+    manager.handleNewItem(cohort)
+    const result = manager.removeCohort('purple')
+    expect(result).toEqual([])
+  })
+  it('throws an error if attempting to remove a cohort using an inexistent cohort name ', () => {
+    const result = () => manager.removeCohort('purple')
+    expect(result).toThrowError('cohort name not found')
+  })
 })
