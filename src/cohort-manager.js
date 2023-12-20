@@ -21,6 +21,7 @@ class CohortManager {
 
   findCohort(name) {
     const foundCohort = this.cohortList.find((cohort) => cohort.name === name)
+    if (!foundCohort) throw new Error('No cohort found with that name')
     return foundCohort
   }
 }
@@ -33,3 +34,4 @@ export default CohortManager
 // console.log(cohortManager.cohortList)
 // cohortManager.removeCohort('RemoveMe')
 // console.log(cohortManager.cohortList)
+//  const foundCohort = this.findCohort(name)
