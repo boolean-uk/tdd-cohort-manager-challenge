@@ -7,4 +7,8 @@ describe('Branch', () => {
     expect(Branches[0].location).toEqual('London')
     expect(Branches).toEqual(expected)
   })
+
+  it('creation is not possible without name', () => {
+    expect(addBranch).toThrowError('invalid input')
+  })
 })
