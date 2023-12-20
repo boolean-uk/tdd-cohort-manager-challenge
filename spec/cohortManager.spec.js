@@ -90,4 +90,25 @@ describe('Cohort Manager:', () => {
       "Please input a valid student e.g. {firstName: 'John', lastName: 'Doe', github: '@johndoe', email:'johndoe@mail.com'}"
     )
   })
+
+  it('removes cohort by cohort name', () => {
+    const expected = 'cohort-11 removed successfully'
+
+    cohort.createCohort('cohort-11')
+    const result = cohort.removeCohortByName('cohort-11')
+
+    expect(result).toEqual(expected)
+  })
+
+  it('should throw error if cohort does not exist', () => {
+    expect(() => cohort.removeCohortByName('cohort-moon')).toThrowError(
+      'Cohort does not exist'
+    )
+  })
+
+  it('should throw error if input is invalid', () => {
+    expect(() => cohort.removeCohortByName(1)).toThrowError(
+      "please input a valid name e.g. 'cohort-11'"
+    )
+  })
 })
