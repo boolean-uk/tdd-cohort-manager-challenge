@@ -16,4 +16,13 @@ describe('Cohort', () => {
     })
 
     // Searching a cohort
+    it('searches cohort with its name', () => {
+        cohort.createCohort('Cohort 1')
+        cohort.createCohort('Cohort 2')
+        
+        const expected = {name: 'Cohort 1', students: [], capacity: 24}
+        const result = cohort.searchCohort('Cohort 1')
+
+        expect(result).toEqual(expected)
+    })
 }) 
