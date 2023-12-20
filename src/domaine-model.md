@@ -27,10 +27,12 @@ Objects | Properties | Methods | Notes | Scenario | Output | Example
 | | | | | | |
 CohortManager | this.cohortList, this.allStudents | createCohort(name(@string)) | a new cohort starting next month, a teacher creates a new class | a parameter is inputed | will return a new cohort class with a name and add it to this.cohortList |`Cohort {constructor() { this.name = name, this.studentList = []}}`
 | | | | | no parameter added | throws an error stating "Cohort needs a name!" | `"Error: "Cohort needs a name!"`
-| | | removeCohort(name(@string))| a teacher no longer needs cohort data | a name is inputed and it valid | found cohort is removed from this.cohortList | `Cohort {constructor() { this.name = name, this.studentList = []}}`
+| | | removeCohort(name(@string))| a teacher no longer needs cohort data | a name is inputed and it valid | found cohort is removed from this.cohortList | `this.cohortList = []`
 | | | | | a name is inputed and it not found | throws an error | `Error: "No cohort found with that name"`
 | | | | |No parameter is entered | Throwns an error | `Error: "Please enter a cohort name"`
-| | | | | | |
+| | | findCohort(name(@string)) | a teacher wants to find a specific cohort | a valid cohort name is inputted |returns the cohort object | `Cohort { name: name, studentList = []}`
+| | | | | no paramter is inputed |throws an error | "Error: 'please enter a cohort name'"
+| | | | |no cohort by that name is found |throws an error |"Error: 'no cohort found'
 
 ## COHORT
 
