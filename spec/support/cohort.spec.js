@@ -3,7 +3,7 @@ describe('Cohort', () => {
     let cohort 
 
     beforeEach(() => {
-        cohort = new Cohort()
+          cohort = new Cohort()
     })
 
     // Creating a cohort
