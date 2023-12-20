@@ -28,10 +28,3 @@ class CohortManager {
 }
 
 export default CohortManager
-
-// const cohortManager = new CohortManager()
-// cohortManager.createCohort('StayHere')
-// cohortManager.createCohort('RemoveMe')
-// console.log(cohortManager.cohortList)
-// cohortManager.removeCohort('RemoveMe')
-// console.log(cohortManager.cohortList)
