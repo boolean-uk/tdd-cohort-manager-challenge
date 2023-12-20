@@ -1,4 +1,4 @@
-### Domain model for Standard Criteria  in order to do 
+ Domain model for Standard Criteria  in order to do 
 The Cohort Manager should be able to support the following interactions
 
 - Create a cohort with a cohort name
