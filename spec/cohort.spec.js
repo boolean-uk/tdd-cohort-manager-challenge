@@ -2,7 +2,7 @@ import Cohort from '../src/cohort.js'
 
 describe('Cohort:', () => {
   describe('new instance -', () => {
-    xit('valid name input & capacity input', () => {
+    it('valid name input & capacity input', () => {
       const cohort = new Cohort('Potato', 16)
 
       const expected = {
@@ -11,7 +11,7 @@ describe('Cohort:', () => {
         capacity: 16
       }
 
-      expect(cohort.get).toEqual(expected)
+      expect(cohort.details).toEqual(expected)
     })
   })
 })
