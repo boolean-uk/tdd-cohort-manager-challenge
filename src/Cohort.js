@@ -9,6 +9,12 @@ class Cohort {
   addStudent(student) {
     this.students.push(student)
   }
+
+  removeStudentById(studentId) {
+    this.students = this.students.filter(
+      (student) => student.studentId !== studentId
+    )
+  }
 }
 
 export default Cohort
