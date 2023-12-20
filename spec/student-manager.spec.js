@@ -14,10 +14,37 @@ describe('StudentManager', () => {
       'lee.smith@hotmail.co.uk'
     )
     const result = manager.setList(student)
-    expect(result[0].studentID).toEqual('01LS')
     expect(result[0].lastName).toEqual('Smith')
     expect(result[0].firstName).toEqual('Lee')
     expect(result[0].githubUsername).toEqual('koala333')
     expect(result[0].email).toEqual('lee.smith@hotmail.co.uk')
+  })
+  it('generates unique student id', () => {
+    manager.increaseStudentIDCount()
+    manager.increaseStudentIDCount()
+    manager.increaseStudentIDCount()
+    const result = manager.increaseStudentIDCount()
+    expect(result).toEqual(4)
+  })
+  it('assigns a unique id to each student', () => {
+    const student1 = new Student(
+      'Lee',
+      'Smith',
+      'koala333',
+      'lee.smith@hotmail.co.uk'
+    )
+    manager.increaseStudentIDCount()
+    manager.setList(student1)
+    manager.assignStudentID()
+    manager.increaseStudentIDCount()
+    const student2 = new Student(
+      'Jen',
+      'Smith',
+      'panda93',
+      'jen.smith@gmail.com'
+    )
+    manager.setList(student2)
+    const result = manager.assignStudentID()
+    expect(result).toEqual(2)
   })
 })
