@@ -35,11 +35,11 @@ describe('Manager', () => {
   it('should add a student to a cohort', () => {
     const cohort = new Cohort('Cohort 1')
     const student = new Student(
-      'Alice',
-      'Johnson',
-      'alicegit',
-      'alice@email.com',
-      '001'
+      'Digby',
+      'Postman',
+      'Iimpregnate@gmail.com',
+      'Iimpregnate@gmail.com'
+      '01'
     )
     cohort.addStudent(student)
     expect(cohort.students.includes(student)).toBe(true)
