@@ -15,7 +15,24 @@ describe('Branch', () => {
     })
   })
 
-  describe(' addition and removal of cohorts', () => {
+  describe('checking for cohorts', () => {
+    let myCohort
+    let mySecondCohort
+    let myBranch
+
+    beforeEach(() => {
+      myBranch = new Branch('UK')
+      myCohort = new Cohort('#1')
+      mySecondCohort = new Cohort('#2')
+      myBranch.addCohort(myCohort)
+    })
+
+    it('returns true if cohort exists', () => {
+      expect(myBranch.cohortExists(myCohort)).toBeTrue()
+    })
+  })
+
+  describe('addition and removal of cohorts', () => {
     let myCohort
     let myBranch
 
