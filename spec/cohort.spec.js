@@ -67,10 +67,5 @@ describe('Cohort:', () => {
         expect(cohort.id).toEqual(expected)
       })
     })
-
-    // TODO: invalid name input type String
-    // TODO: name input length > 0
-    // TODO: Class id incrementor, id 4 after id 3
-    // TODO: Class id incrementor, id 3 after 2 if id 1 deleted
   })
 })
