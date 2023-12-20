@@ -13,4 +13,10 @@ describe('student', () => {
 
     expect(JSON.stringify(test)).toEqual(JSON.stringify(expected))
   })
+
+  it('returning the full name works', () => {
+    const expected = 'Nathan The Wise'
+    const student = new Student('Nathan', 'The Wise')
+    expect(student.fullName()).toEqual(expected)
+  })
 })
