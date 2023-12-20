@@ -27,12 +27,17 @@ describe('Cohort Manger', () => {
     it('/ removes a cohort', () => {
       const expectation = 1
       cohortManager.removeCohort('RemoveMe')
-      console.log(cohortManager.cohortList)
       expect(cohortManager.cohortList.length).toEqual(expectation)
     })
     it('/ no parameter inputed', () => {
       const expected = 'Please enter a cohort name'
       expect(() => cohortManager.removeCohort('').toThrowError(expected))
+    })
+    it('/ no cohort was found', () => {
+      const expected = 'No cohort found with that name'
+      expect(() => cohortManager.removeCohort('ImNotHere')).toThrowError(
+        expected
+      )
     })
   })
   describe('find cohort', () => {
