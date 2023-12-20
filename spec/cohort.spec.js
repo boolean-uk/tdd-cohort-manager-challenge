@@ -40,6 +40,16 @@ describe('Cohort:', () => {
       })
     })
 
+    it('name input not String', () => {
+      const inputs = [7, { seven: 'seven' }, ['seven']]
+
+      inputs.forEach((input) => {
+        const callback = () => new Cohort(input, 16)
+
+        expect(callback).toThrowError('name input must be String')
+      })
+    })
+
     // TODO: invalid name input type String
     // TODO: name input length > 0
     // TODO: Class id incrementor, id 4 after id 3
