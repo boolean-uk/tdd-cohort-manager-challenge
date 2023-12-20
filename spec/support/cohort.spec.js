@@ -6,6 +6,7 @@ describe('Cohort', () => {
         cohort = new Cohort()
     })
 
+    // Creating a cohort
     it('creates a cohort with a name', () => {
         const cohortName = 'Cohort 1'
         cohort.createCohort(cohortName)
@@ -14,4 +15,5 @@ describe('Cohort', () => {
         expect(result[0].name).toEqual(cohortName)
     })
 
+    // Searching a cohort
 }) 
