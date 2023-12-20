@@ -32,6 +32,7 @@ A cohort should have a list of students. Each student should have a studentID, f
 |||setList()|student(@Student)||list(@students)
 |||setStudentIDCount()||| this.studentIDCount(@integer)|
 |||assignStudentID()||| this.studentCount(@integer)|
+|||handleNewStudent()||| this.list|
 ||Student()|||||properties: studentID(@string), firstName(@string), lastName(@string), githubUsername(@string), email(@string)|
 |||constructor()|firstName(@string), lastName(@string), githubUsername(@string), email(@string)|valid input| throw error|
 |||||valid input| new instance of class Student()|
