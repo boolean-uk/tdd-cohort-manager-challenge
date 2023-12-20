@@ -42,49 +42,16 @@ class Cohort {
         }
 
         for(let i = 0; i < findCohort.students.length; i++) {
-            console.log('i', findCohort.students[i])
-            if(
-                studentToAdd.fitrstName === findCohort.students[i].fitrstName &&
-                studentToAdd.lastName === findCohort.students[i].lastName &&
-                studentToAdd.userName === findCohort.students[i].userName && 
-                studentToAdd.email === findCohort.students[i].email
-            ) {
+            if( studentToAdd.userName === findCohort.students[i].userName ) {
                 throw new Error("this student already enrolled in another Cohort!")
             }
         }
        
         findCohort.students.push(studentToAdd)
       
-        return findCohort.students
-        
+        return findCohort.students       
     }
 }
 
-const cohort = new Cohort()
-cohort.createCohort('Cohort 1')
-cohort.addStudent('Cohort 1', {
-    studentID: 1,
-    fitrstName: 'John',
-    lastName: 'Doe',
-    userName: 'JohnDoe',
-    email: 'johnDoe@gmail.com'
-})
-cohort.addStudent('Cohort 1', {
-    studentID: 2,
-    fitrstName: 'sas',
-    lastName: 'ds',
-    userName: 'asd',
-    email: 'johnDsaoe@gmail.com'
-})
-cohort.createCohort('Cohort 2')
-cohort.addStudent('Cohort 2', {
-    studentID: 1,
-    fitrstName: 'cs',
-    lastName: 'def',
-    userName: 'cc',
-    email: 'swww@gmail.com'
-})
-console.log('Students List', cohort.cohortList[0].students)
-console.log('Students List', cohort.cohortList[1].students)
 
 export default Cohort
