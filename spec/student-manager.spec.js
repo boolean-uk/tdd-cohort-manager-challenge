@@ -20,10 +20,10 @@ describe('StudentManager', () => {
     expect(result[0].email).toEqual('lee.smith@hotmail.co.uk')
   })
   it('generates unique student id', () => {
-    manager.increaseStudentIDCount()
-    manager.increaseStudentIDCount()
-    manager.increaseStudentIDCount()
-    const result = manager.increaseStudentIDCount()
+    manager.increaseIdCount()
+    manager.increaseIdCount()
+    manager.increaseIdCount()
+    const result = manager.increaseIdCount()
     expect(result).toEqual(4)
   })
   it('assigns a unique id to each student', () => {
@@ -33,10 +33,10 @@ describe('StudentManager', () => {
       'koala333',
       'lee.smith@hotmail.co.uk'
     )
-    manager.increaseStudentIDCount()
+    manager.increaseIdCount()
     manager.setList(student1)
-    manager.assignStudentID()
-    manager.increaseStudentIDCount()
+    manager.assignId()
+    manager.increaseIdCount()
     const student2 = new Student(
       'Jen',
       'Smith',
@@ -44,7 +44,7 @@ describe('StudentManager', () => {
       'jen.smith@gmail.com'
     )
     manager.setList(student2)
-    const result = manager.assignStudentID()
+    const result = manager.assignId()
     expect(result).toEqual(2)
   })
   it('handles each new student separately and ensure a unique id is allocated to each', () => {
@@ -66,11 +66,11 @@ describe('StudentManager', () => {
       'random203956',
       'm.michael@gmail.com'
     )
-    manager.handleNewStudent(student1)
-    manager.handleNewStudent(student2)
-    const result = manager.handleNewStudent(student3)
-    expect(result[0].studentID).toEqual(1)
-    expect(result[1].studentID).toEqual(2)
-    expect(result[2].studentID).toEqual(3)
+    manager.handleNewItem(student1)
+    manager.handleNewItem(student2)
+    const result = manager.handleNewItem(student3)
+    expect(result[0].id).toEqual(1)
+    expect(result[1].id).toEqual(2)
+    expect(result[2].id).toEqual(3)
   })
 })

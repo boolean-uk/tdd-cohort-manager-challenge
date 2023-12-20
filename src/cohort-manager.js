@@ -1,13 +1,6 @@
-class CohortManager {
-  constructor() {
-    this.list = []
-  }
+import { Manager } from './manager.js'
 
-  setList(cohort) {
-    this.list.push(cohort)
-    return this.list
-  }
-
+class CohortManager extends Manager {
   searchBy(name) {
     return this.list.find((cohort) => cohort.cohortName === name)
   }
