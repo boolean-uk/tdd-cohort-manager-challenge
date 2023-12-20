@@ -28,6 +28,10 @@ describe('Cohort Manger', () => {
         cohortManager.removeCohort('RemoveMe')
         expect(cohortManager.cohortList.length).toEqual(expectation)
       })
+      it('/ no parameter inputed', () => {
+        const expected = 'Please enter a cohort name'
+        expect(() => cohortManager.removeCohort('').toThrowError(expected))
+      })
     })
   })
 })
