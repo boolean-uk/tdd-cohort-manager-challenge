@@ -45,13 +45,13 @@ describe('Manager', () => {
     expect(cohort.students.includes(student)).toBe(true)
   })
 
-  it('should remove a student from a specific cohort', () => {
+  it('To remove a student from a specific cohort', () => {
     const cohort = new Cohort('Cohort 1')
     const student1 = new Student(
-      'Alice',
-      'Johnson',
-      'alicegit',
-      'alice@email.com',
+      'Digby',
+      'Postman',
+      'digbygit',
+      'digbygit@gmail.com',
       '001'
     )
     cohort.addStudent(student1)
