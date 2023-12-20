@@ -39,4 +39,25 @@ describe('Cohort', () => {
       )
     })
   })
+
+  describe('find cohort by cohort name', () => {
+    it('return cohort as object when successful', () => {
+      // set up
+      const expected = { name: 'Cohort 1', students: [] }
+
+      // execute
+      cohort.createCohort('Cohort 1')
+      const result = cohort.findCohort('Cohort 1')
+
+      // verify
+      expect(result).toEqual(expected)
+    })
+
+    it('when invalid name input, throw error', () => {
+      // set up
+
+      // execute/verify
+      expect(() => cohort.findCohort()).toThrowError('cohort does not exist')
+    })
+  })
 })
