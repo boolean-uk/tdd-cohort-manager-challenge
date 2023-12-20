@@ -1,6 +1,10 @@
 import Cohort from '../src/cohort.js'
 
 describe('Cohort:', () => {
+  beforeEach(() => {
+    Cohort.resetId()
+  })
+
   describe('new instance -', () => {
     it('valid name input & capacity input', () => {
       const cohort = new Cohort('Potato', 16)
