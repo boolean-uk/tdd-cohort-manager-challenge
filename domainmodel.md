@@ -16,31 +16,25 @@ A cohort should have a list of students. Each student should have a studentID, f
 - A student can't be removed from a cohort if it wasn't present in the first place.
 - Search for students by name (first and last) and return all matching results
 
-| Name | Properties | Messages | Input | Output |
-| - | - | - | - | - |
+| Name | Properties | Messages | Input | Output | Tests ❌ ✅ |
+| - | - | - | - | - | -  |
 | Branch | Location @String
-| | Cohorts | @Object[]
-| | | addCohort | @Object{} | @Object{}
-| | | searchStudentsByName | @String | @Object[]
-
-| Name | Properties | Messages | Input | Output |
-| - | - | - | - | - |
-| Cohort | Name @String 
+| | Cohorts | @Object[] | | | ❌
+| | | addCohort | @Object{} | @Object{} | ❌
+| | | searchStudentsByName | @String | @Object[] | ❌
+| Cohort | Name@String 
 | | Id @Integer
-| | students @Object[]
-| | | getStudentbyName() | fullName()@String | @Object{}
-| | | getStudentbyId() | id@String | @Object{}
-| | | addStudent() | id@String | @Object{}
-| | | removeStudent() | id@String | @Object{}
-| | | setName() | cohortName@String | @Object{}
-| | | isFull() | | @Boolean
-
-| Name | Properties | Messages | Input | Output |
-| - | - | - | - | - |
-| Student | firstName @String
-| | lastName @ String
-| | githubUsername @ String
-| | EMail @ String
-| | inCohort | Cohort@Object{}
-| | | fullName() | – | @String
-| | | assignCohort() | Cohort@Object{} | Student@Object{}
+| | students @Object[] | | | | ❌
+| | | getStudentbyName() | fullName()@String | @Object{} | ❌
+| | | getStudentbyId() | id@String | @Object{} | ❌
+| | | addStudent() | id@String | @Object{} | ❌
+| | | removeStudent() | id@String | @Object{} | ❌
+| | | setName() | cohortName@String | @Object{} | ❌
+| | | isFull() | | @Boolean | ❌
+| Student | firstName @String | | | | ❌
+| | lastName @ String | | | | ❌
+| | githubUsername @ String | | | | ❌
+| | EMail @ String | | | | ❌
+| | inCohort | Cohort@Object{} | | | ❌
+| | | fullName() | – | @String | ❌
+| | | assignCohort() | Cohort@Object{} | Student@Object{} | ❌
