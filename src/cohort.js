@@ -17,4 +17,8 @@ export default class Cohort {
     if (!this.lastId) this.lastId = 0
     return ++this.lastId
   }
+
+  static resetId() {
+    this.lastId = 0
+  }
 }
