@@ -56,6 +56,18 @@ describe('Cohort:', () => {
       expect(callback).toThrowError('name input must not be blank')
     })
 
+    it('id incrementing on each new instance', () => {
+      const inputs = ['One', 'Two', 'Three', 'Four']
+
+      inputs.forEach((input, index) => {
+        const cohort = new Cohort(input, 16)
+
+        const expected = index + 1
+
+        expect(cohort.id).toEqual(expected)
+      })
+    })
+
     // TODO: invalid name input type String
     // TODO: name input length > 0
     // TODO: Class id incrementor, id 4 after id 3
