@@ -11,6 +11,7 @@ const addBranch = (location) => {
   }
   return Branches
 }
+
 class Branch {
   constructor(location) {
     this.location = location
