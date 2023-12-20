@@ -1,8 +1,6 @@
-import { myOrganization } from "./organization.js"
-
 class Student {
-  constructor(firstName, lastName, email, githubUsername) {
-    this.studentID = 0
+  constructor(firstName, lastName, email, githubUsername, organization) {
+    this.studentID = organization.registerNewStudent()
     this.firstName = firstName
     this.lastName = lastName
     this.email = email || ''

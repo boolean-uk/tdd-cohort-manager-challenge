@@ -1,4 +1,4 @@
-import Branch from "./branch.js"
+import Branch from './branch.js'
 
 class Organization {
   constructor(name) {
@@ -25,6 +25,4 @@ class Organization {
   }
 }
 
-const myOrganization = new Organization('Boolean')
-console.log(myOrganization)
-export { Organization, myOrganization }
+export { Organization }

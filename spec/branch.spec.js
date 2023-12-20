@@ -1,8 +1,13 @@
-import { myOrganization } from '../src/organization.js'
+import { Organization } from '../src/organization.js'
 import Branch from '../src/branch.js'
 import Cohort from '../src/cohort.js'
 
 describe('Branch', () => {
+  let myOrganization
+  beforeAll(() => {
+    myOrganization = new Organization('Boolean')
+  })
+
   describe('creation', () => {
     it('is possible with given string', () => {
       const expected = myOrganization.addBranch('London')
