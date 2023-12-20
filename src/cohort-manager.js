@@ -14,8 +14,9 @@ class CohortManager {
 
   removeCohort(name) {
     if (name.length === 0) throw new Error('Please enter a cohort name')
+    const foundCohort = this.findCohort(name)
     return (this.cohortList = this.cohortList.filter(
-      (item) => item.name !== name
+      (item) => item.name !== foundCohort.name
     ))
   }
 
@@ -34,4 +35,3 @@ export default CohortManager
 // console.log(cohortManager.cohortList)
 // cohortManager.removeCohort('RemoveMe')
 // console.log(cohortManager.cohortList)
-//  const foundCohort = this.findCohort(name)
