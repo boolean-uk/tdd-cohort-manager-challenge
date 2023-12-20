@@ -3,7 +3,7 @@ import { Cohort } from '../src/cohort.js'
 describe('cohort', () => {
   it('creates a new instance of cohort with a name, an id, and an empty student list as properties', () => {
     const result = new Cohort('best cohort ever')
-    expect(result.id).toEqual(1)
+    expect(result.id).toBeUndefined()
     expect(result.cohortName).toEqual('best cohort ever')
     expect(result.students).toEqual([])
   })
