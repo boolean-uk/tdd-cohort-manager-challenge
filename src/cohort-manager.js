@@ -1,4 +1,4 @@
-class Manager {
+class CohortManager {
   constructor() {
     this.list = []
   }
@@ -12,4 +12,4 @@ class Manager {
     return this.list.find((cohort) => cohort.cohortName === name)
   }
 }
-export { Manager }
+export { CohortManager }

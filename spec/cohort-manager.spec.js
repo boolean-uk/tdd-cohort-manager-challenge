@@ -1,10 +1,10 @@
-import { Manager } from '../src/manager.js'
+import { CohortManager } from '../src/cohort-manager.js'
 import { Cohort } from '../src/cohort.js'
 
 describe('Manager', () => {
   let manager
   beforeEach(() => {
-    manager = new Manager()
+    manager = new CohortManager()
   })
   it('updates the list property', () => {
     const cohort = new Cohort('purple')
