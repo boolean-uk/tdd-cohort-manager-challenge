@@ -25,4 +25,21 @@ describe('Cohort', () => {
 
         expect(result).toEqual(expected)
     })
+
+    // Adding a student
+    it('can add a student to students list', () => {
+        cohort.createCohort('Cohort 1')
+        const student1 = {
+            studentID: 1,
+            fitrstName: 'John',
+            lastName: 'Doe',
+            userName: 'JohnDoe',
+            email: 'johnDoe@gmail.com'
+        }
+        const expected = [student1]
+
+        cohort.addStudent()
+        const result = cohort.cohortList
+        expect(result.students[0]).toEqual(expected)
+    })
 }) 

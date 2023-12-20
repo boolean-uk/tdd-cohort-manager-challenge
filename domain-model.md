@@ -31,6 +31,6 @@ Your program should be composed of at least two classes
 | ------- | ----- | ---- | -------- | ------ |
 | createCohort(cohortName) | cohortName(@string) | | if a new name does not exist in the cohortList and if there is a cohort name given |  cohortList[{ name: 'Cohort 1', students: [ ] }] |
 | searchCohort() | cohortName(@string) | | if cohort name exists in the cohort list | return cohort being searched |
-| addStudent(@student, cohortName) | student(@objs), cohortName(@string) | student properties -> studentId: @number, firstName: @string, lastName: @string, userName: @string, email: @string | if student ID does not exist in the given cohorts student list | cohortList[{name: 'Cohort 1', students: id: 1, firstName: 'John, lastName: 'Doe'...}]
+| addStudent(@student, cohortName) | student(@objs), cohortName(@string) | student properties -> studentId: @number, firstName: @string, lastName: @string, userName: @string, email: @string | if student ID does not exist in the given cohorts student list and if students number is less than studentsList capacity | cohortList[{name: 'Cohort 1', students: id: 1, firstName: 'John, lastName: 'Doe'...}]
 
 
