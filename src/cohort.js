@@ -7,6 +7,17 @@ class Cohort {
     this.id = undefined
     this.students = []
   }
+
+  addStudent(studentId, studentManager) {
+    const foundStudent = studentManager.list.find(
+      (student) => student.id === studentId
+    )
+    if (!foundStudent) {
+      throw new Error('student not found')
+    }
+    this.students.push(foundStudent)
+    return this.students
+  }
 }
 
 export { Cohort }
