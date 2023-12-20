@@ -8,10 +8,14 @@ class Cohort {
     this.students.push(student)
   }
 
-  removeStudentByName(studentId) {
-    this.students = this.students.filter(
-      (student) => student.name !== studentId
+  removeStudentByName(studentFirstName) {
+    const studentIndex = this.students.findIndex(
+      (student) => student.firstName === studentFirstName
     )
+    if (studentIndex === -1) {
+      throw new Error('Student does not exist')
+    }
+    this.students.splice(studentIndex, 1)
   }
 }
 export default Cohort

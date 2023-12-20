@@ -56,6 +56,13 @@ describe('Manager', () => {
     )
     cohort.addStudent(student1)
     cohort.removeStudentByName('Alice')
-    expect(cohort.students.includes(student1)).toBe(true)
+    expect(cohort.students.includes(student1)).toBe(false)
+  })
+
+  it('should throw an error when trying to remove a non-existent student', () => {
+    const cohort = new Cohort('Cohort 1')
+    expect(() => {
+      cohort.removeStudentByName('NonExistentStudent')
+    }).toThrowError('Student does not exist')
   })
 })
