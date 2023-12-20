@@ -1,4 +1,5 @@
 import Cohort from './cohort.js'
+import Student from './student.js'
 
 class CohortManager {
   constructor() {
@@ -35,11 +36,60 @@ class CohortManager {
       throw new Error('Cohort does not exist')
     }
   }
+
+  addStudentToCohort(student, cohortName) {
+    if (typeof cohortName !== 'string' || typeof student !== 'object') {
+      throw new Error(
+        "please input a valid studentID & cohort name e.g. (1, 'cohort-11')"
+      )
+    }
+
+    if (
+      !student.firstName ||
+      !student.lastName ||
+      !student.github ||
+      !student.email
+    ) {
+      throw new Error(
+        "Please input a valid student e.g. {firstName: 'John', lastName: 'Doe', github: '@johndoe', email:'johndoe@mail.com'}"
+      )
+    }
+
+    const hasCohort = this.cohorts.some((cohort) => cohort.name === cohortName)
+
+    if (hasCohort) {
+      const cohort = this.findCohort(cohortName)
+      const studentToAdd = new Student(
+        cohort.students.length + 1,
+        student.firstName,
+        student.lastName,
+        student.github,
+        student.email
+      )
+
+      cohort.students.push(studentToAdd)
+
+      return cohort.students
+    } else {
+      throw new Error('Cohort does not exist')
+    }
+  }
 }
 
 const c = new CohortManager()
 
 c.createCohort('cohort-11')
-console.log(c.findCohort('cohort-11'))
+
+console.log(
+  c.addStudentToCohort(
+    {
+      firstName: 'Kye',
+      lastName: 'Yee',
+      github: '@yee0802',
+      email: 'ky@mail.com'
+    },
+    'cohort-11'
+  )
+)
 
 export default CohortManager
