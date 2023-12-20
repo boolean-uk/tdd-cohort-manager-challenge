@@ -1,7 +1,9 @@
-class CohortList {
-  constructor() {
-    this.list = []
+class Cohort {
+  constructor(id, name) {
+    this.id = id
+    this.name = name
+    this.studentsList = []
   }
 }
 
-export default CohortList
+export default Cohort
