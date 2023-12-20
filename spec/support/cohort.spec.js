@@ -13,4 +13,5 @@ describe('Cohort', () => {
         const result = cohort.cohortList
         expect(result[0].name).toEqual(cohortName)
     })
+
 }) 
