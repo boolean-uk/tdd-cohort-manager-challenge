@@ -50,6 +50,12 @@ describe('Cohort:', () => {
       })
     })
 
+    it('name input length must be greater than 0', () => {
+      const callback = () => new Cohort('', 16)
+
+      expect(callback).toThrowError('name input must not be blank')
+    })
+
     // TODO: invalid name input type String
     // TODO: name input length > 0
     // TODO: Class id incrementor, id 4 after id 3
