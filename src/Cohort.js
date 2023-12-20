@@ -1,5 +1,3 @@
-import Student from '../src/Student.js'
-
 class Cohort {
   constructor(name) {
     this.students = []
@@ -8,10 +6,6 @@ class Cohort {
 
   addStudent(student) {
     this.students.push(student)
-  }
-
-  searchCohort(name, cohortsArray) {
-    return cohortsArray.find((cohort) => cohort.CohortName === name)
   }
 }
 
