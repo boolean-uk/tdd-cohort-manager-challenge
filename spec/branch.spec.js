@@ -26,6 +26,8 @@ describe('Branch', () => {
 
     it('adding a cohort', () => {
       myBranch.addCohort(myCohort)
+      expect(myBranch.cohorts.length).toEqual(1)
+      expect(myBranch.cohorts[0]).toEqual(myCohort)
     })
   })
 })
