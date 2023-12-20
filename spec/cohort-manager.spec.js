@@ -18,5 +18,16 @@ describe('Cohort Manger', () => {
       const expected = 'Cohort needs a name!'
       expect(() => cohortManager.createCohort('')).toThrowError(expected)
     })
+    describe('/ removeCohort', () => {
+      beforeEach(() => {
+        cohortManager.createCohort('KeepMe')
+        cohortManager.createCohort('RemoveMe')
+      })
+      it('/ removes a cohort', () => {
+        const expectation = 1
+        cohortManager.removeCohort('RemoveMe')
+        expect(cohortManager.cohortList.length).toEqual(expectation)
+      })
+    })
   })
 })
