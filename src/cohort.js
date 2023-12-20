@@ -25,6 +25,10 @@ export default class Cohort {
     }
   }
 
+  setCapacity(newCapacity) {
+    this.capacity = newCapacity
+  }
+
   static nextId() {
     if (!this.lastId) this.lastId = 0
     return ++this.lastId
