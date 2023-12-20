@@ -1,4 +1,5 @@
-import { Branches, addBranch } from '../src/branch.js'
+import { Branch, Branches, addBranch } from '../src/branch.js'
+import Cohort from '../src/cohort.js'
 
 describe('Branch', () => {
   describe('creation', () => {
@@ -11,6 +12,20 @@ describe('Branch', () => {
 
     it('is not possible without name', () => {
       expect(addBranch).toThrowError('invalid input')
+    })
+  })
+
+  describe(' addition and removal of cohorts', () => {
+    let myCohort
+    let myBranch
+
+    beforeEach(() => {
+      myCohort = new Cohort('#2')
+      myBranch = new Branch('UK')
+    })
+
+    it('adding a cohort', () => {
+      myBranch.addCohort(myCohort)
     })
   })
 })
