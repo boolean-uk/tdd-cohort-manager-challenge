@@ -25,4 +25,34 @@ describe('Cohort Manager:', () => {
 
     expect(result).toEqual(expected)
   })
+
+  it('should throw error with invalid input when creating a cohort', () => {
+    expect(() => cohort.createCohort(1)).toThrowError(
+      "please input a valid name e.g. 'cohort-11'"
+    )
+  })
+
+  it('find cohort by cohort name', () => {
+    const expected = {
+      name: 'Cohort-1',
+      students: []
+    }
+
+    cohort.createCohort('Cohort-1')
+    const result = cohort.findCohort('Cohort-1')
+
+    expect(result).toEqual(expected)
+  })
+
+  it('should throw error with invalid input when finding a cohort', () => {
+    expect(() => cohort.findCohort([])).toThrowError(
+      "please input a valid name e.g. 'cohort-11'"
+    )
+  })
+
+  it('should return a string if cohort does not exist with findCohort()', () => {
+    expect(() => cohort.findCohort('cohort-99')).toThrowError(
+      'Cohort does not exist'
+    )
+  })
 })
