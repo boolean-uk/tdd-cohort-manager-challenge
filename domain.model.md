@@ -11,20 +11,19 @@ The Cohort Manager should be able to support the following interactions
 
 A cohort should have a list of students. Each student should have a studentID, first name, last name, github username, email.
 
-| Objects | Properties   | Messages                               | Scenario                                | Output                                                       |
-| ------- | ------------ | -------------------------------------- | --------------------------------------- | ------------------------------------------------------------ |
-| Cohort  | name @String | createCohort(name@Str)                 | Name is not empty                       | Object of created cohort                                     |
-|         |              |                                        | Name is empty                           | Thrown error: "Enter name for create new cohort"             |
-|         |              | getCohortByName(name@Str)              | Cohort with entered name exist          | Object of searched cohort                                    |
-|         |              |                                        | Cohort with entered name doesn't exist  | Thrown error: "Cohort not Found"                             |
-|         |              | addStudent(student@Str, cohort@str)    | Cohort with entered name exist          | List of students of entered cohort                           |
-|         |              |                                        | Cohort with entered name doesn't exist  | Thrown error: "Cohort not Found"                             |
-|         |              |                                        | StudentName is Empty                    | Thrown error: "Enter student name for add student to cohort" |
-|         |              | removeCohort(name@Str)                 | Cohort with entered name exist          | Removed cohort                                               |
-|         |              |                                        | Cohort with entered name doesn't exist  | Thrown error: "Cohort not Found"                             |
-|         |              | removeStudent(student@Str, cohort@Str) | Student exist in entered cohort         | Removed student                                              |
-|         |              |                                        | Student doesn't exist in entered cohort | Thrown error: "Student not Found"                            |
-|         |              |                                        | Cohort doesn't exist                    | Thrown error: "Cohort not Found"                             |
+| Objects    | Properties | Messages                                 | Scenario                                | Output                                           |
+| ---------- | ---------- | ---------------------------------------- | --------------------------------------- | ------------------------------------------------ |
+| CohortList |            | createCohort(name@Str)                   | Name is not empty                       | Object of created cohort                         |
+|            |            |                                          | Name is empty                           | Thrown error: "Enter name for create new cohort" |
+|            |            | getCohortByName(name@Str)                | Cohort with entered name exist          | Object of searched cohort                        |
+|            |            |                                          | Cohort with entered name doesn't exist  | Thrown error: "Cohort not Found"                 |
+|            |            | addStudent(student@Str, cohort@str)      | Cohort with entered name exist          | List of students of entered cohort               |
+|            |            |                                          | Cohort with entered name doesn't exist  | Thrown error: "Cohort not Found"                 |
+|            |            | removeCohort(name@Str)                   | Cohort with entered name exist          | Removed cohort                                   |
+|            |            |                                          | Cohort with entered name doesn't exist  | Thrown error: "Cohort not Found"                 |
+|            |            | removeStudent(studentId@Int, cohort@Str) | Student exist in entered cohort         | Removed student                                  |
+|            |            |                                          | Student doesn't exist in entered cohort | Thrown error: "Student not Found"                |
+|            |            |                                          | Cohort doesn't exist                    | Thrown error: "Cohort not Found"                 |
 
 | Objects | Properties     | Messages | Scenario | Output |
 | ------- | -------------- | -------- | -------- | ------ |
