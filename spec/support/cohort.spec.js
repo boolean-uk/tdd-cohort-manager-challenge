@@ -1,4 +1,4 @@
-
+import {Cohort} from "../../src/cohort"
 describe('Cohort', () => {
     let cohort 
 
@@ -8,8 +8,8 @@ describe('Cohort', () => {
 
     it('creates a cohort with a name', () => {
         const cohortName = 'Cohort 1'
+        cohort.createCohort(cohortName)
 
-        const expected = {name: cohortName, students: []}
         const result = cohort.cohortList
         expect(result[0].name).toEqual(cohortName)
     })
