@@ -4,6 +4,7 @@ import Student from './student.js'
 class CohortManager {
   constructor() {
     this.cohorts = []
+    this.id = 1
   }
 
   createCohort(cohortName) {
@@ -60,7 +61,7 @@ class CohortManager {
     if (hasCohort) {
       const cohort = this.findCohort(cohortName)
       const studentToAdd = new Student(
-        cohort.students.length + 1,
+        this.id++,
         student.firstName,
         student.lastName,
         student.github,
@@ -92,23 +93,36 @@ class CohortManager {
       throw new Error('Cohort does not exist')
     }
   }
+
+  removeStudentFromCohort(studentId, cohortName) {
+    if (typeof cohortName !== 'string' || typeof studentId !== 'number') {
+      throw new Error(
+        "please input a valid studentID & cohort name e.g. (3,'cohort-11')"
+      )
+    }
+
+    const hasCohort = this.cohorts.some((cohort) => cohort.name === cohortName)
+
+    if (hasCohort) {
+      const cohort = this.findCohort(cohortName)
+
+      const student = cohort.students.find(
+        (student) => student.id === studentId
+      )
+
+      if (student) {
+        cohort.students = cohort.students.filter(
+          (student) => student.id !== studentId
+        )
+      } else {
+        throw new Error('Student does not exist')
+      }
+
+      return `${student.firstName} successfully removed from ${cohort.name}`
+    } else {
+      throw new Error('Cohort does not exist')
+    }
+  }
 }
-
-const c = new CohortManager()
-
-c.createCohort('cohort-11')
-c.createCohort('cohort-10')
-console.log(
-  c.addStudentToCohort(
-    {
-      firstName: 'Kye',
-      lastName: 'Yee',
-      github: '@yee0802',
-      email: 'ky@mail.com'
-    },
-    'cohort-11'
-  )
-)
-console.log(c.removeCohortByName('cohort-10'))
 
 export default CohortManager
