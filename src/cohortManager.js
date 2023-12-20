@@ -74,12 +74,30 @@ class CohortManager {
       throw new Error('Cohort does not exist')
     }
   }
+
+  removeCohortByName(cohortName) {
+    if (typeof cohortName !== 'string') {
+      throw new Error("please input a valid name e.g. 'cohort-11'")
+    }
+
+    const hasCohort = this.cohorts.some((cohort) => cohort.name === cohortName)
+
+    if (hasCohort) {
+      const cohortToRemove = this.findCohort(cohortName)
+
+      this.cohorts = this.cohorts.filter((cohort) => cohort !== cohortToRemove)
+
+      return `${cohortName} removed successfully`
+    } else {
+      throw new Error('Cohort does not exist')
+    }
+  }
 }
 
 const c = new CohortManager()
 
 c.createCohort('cohort-11')
-
+c.createCohort('cohort-10')
 console.log(
   c.addStudentToCohort(
     {
@@ -91,5 +109,6 @@ console.log(
     'cohort-11'
   )
 )
+console.log(c.removeCohortByName('cohort-10'))
 
 export default CohortManager
