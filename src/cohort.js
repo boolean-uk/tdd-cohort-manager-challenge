@@ -1,4 +1,3 @@
-// DELETE THIS FILE AFTER YOU HAVE MADE YOUR FIRST COMMIT WHICH CONTAINS YOUR OWN TESTS AND CODE
 export default class Cohort {
   constructor(name, capacity) {
     this.name = name
