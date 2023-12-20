@@ -1,4 +1,6 @@
 import Cohort from '../src/Cohort.js'
+import Student from '../src/Student.js'
+
 // contains the whole cohort tests
 describe('cohort', () => {
   // creating a new cohort with a specific name
@@ -12,5 +14,17 @@ describe('cohort', () => {
     const cohortsArray = [cohort1]
     const searchResult = cohort1.searchCohort('Cohort 1', cohortsArray)
     expect(searchResult.CohortName).toBe('Cohort 1')
+  })
+  it('adding a new student to a cohort', () => {
+    const cohort = new Cohort('Cohort 1')
+    const student = new Student(
+      'Bob',
+      'Smith',
+      'bobgit',
+      'bob@email.com',
+      '123'
+    )
+    cohort.addStudent(student)
+    expect(cohort.students.includes(student)).toBe(true)
   })
 })

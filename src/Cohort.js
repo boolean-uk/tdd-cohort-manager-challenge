@@ -1,6 +1,13 @@
+import Student from '../src/Student.js'
+
 class Cohort {
   constructor(name) {
+    this.students = []
     this.CohortName = name
+  }
+
+  addStudent(student) {
+    this.students.push(student)
   }
 
   searchCohort(name, cohortsArray) {
