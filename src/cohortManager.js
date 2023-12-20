@@ -1,3 +1,5 @@
+import Cohort from './cohort.js'
+
 class CohortManager {
   constructor() {
     this.cohorts = []
@@ -11,10 +13,9 @@ class CohortManager {
     const duplicate = this.cohorts.some((cohort) => cohort.name === cohortName)
 
     if (!duplicate) {
-      this.cohorts.push({
-        name: cohortName,
-        students: []
-      })
+      const cohort = new Cohort(cohortName)
+      this.cohorts.push(cohort)
+
       return this.cohorts.find((cohort) => cohort.name === cohortName)
     } else {
       return `${cohortName} already exists`

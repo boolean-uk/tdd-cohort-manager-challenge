@@ -1,4 +1,5 @@
 import CohortManager from '../src/cohortManager.js'
+import Cohort from '../src/cohort.js'
 
 describe('Cohort Manager:', () => {
   let cohort
@@ -8,10 +9,7 @@ describe('Cohort Manager:', () => {
   })
 
   it('create cohort with cohort name', () => {
-    const expected = {
-      name: 'Cohort-1',
-      students: []
-    }
+    const expected = new Cohort('Cohort-1')
 
     const result = cohort.createCohort('Cohort-1')
 
@@ -33,10 +31,7 @@ describe('Cohort Manager:', () => {
   })
 
   it('find cohort by cohort name', () => {
-    const expected = {
-      name: 'Cohort-1',
-      students: []
-    }
+    const expected = new Cohort('Cohort-1')
 
     cohort.createCohort('Cohort-1')
     const result = cohort.findCohort('Cohort-1')
