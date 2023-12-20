@@ -4,8 +4,8 @@
 ```
 The Cohort Manager should be able to support the following interactions
 
-:smile: Create a cohort with a cohort name
-- Search for a cohort by cohort name
+✅ Create a cohort with a cohort name
+✔ Search for a cohort by cohort name
 - Add student to a specific cohort
 - Remove a cohort by cohort name
 - Remove student from a specific cohort
