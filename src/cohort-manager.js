@@ -18,6 +18,11 @@ class CohortManager {
       (item) => item.name !== name
     ))
   }
+
+  findCohort(name) {
+    const foundCohort = this.cohortList.find((cohort) => cohort.name === name)
+    return foundCohort
+  }
 }
 
 export default CohortManager
