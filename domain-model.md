@@ -15,20 +15,23 @@ A cohort should have a list of students. Each student should have a studentID, f
 
 |Requirement number|Class|Methods|Inputs|Scenarios|Outputs|Data|
 |-|-|-|-|-|-|-|
-||Manager()|||||properties: list(@cohort[])|
-|||setList()|cohort(@Cohort)|invalid input| throw error|
-|||||valid input| list(@cohort[])|
+||CohortManager()|||||properties: list(@cohort[])|
+|||setList()|cohort(@Cohort)|| list(@cohort[])|
 |2||searchBy()|cohortName(@string)|cohort found| cohort(@Cohort)|
 |6||||cohort not found| throw error|
 |4||removeCohort()|cohortName(@string)|cohort found| this.list(@cohort[])|
 |6||||cohort not found|throw error|
-||Cohort()|||||properties: id(@string), cohortName(@string), students(@Student[])|
+||Cohort()|||||properties: id(@string), studentCount(@integer) cohortName(@string), students(@Student[])|
 |1||constructor()|cohortName(@string)|invalid input| throw error|
 |||||valid input| new instance of class Cohort()|
 |3||addStudent()|studentID(@string)|student found|this.students(@Student[])|
 |||||student not found|throw error|
 |5||removeStudent()|studentID(@string)|student found|this.students(@cohort[])|
 |6||||student not found| throw error|
+||StudentManager()||||properties: studentIDcount, list(@Students[])|
+|||setList()|student(@Student)||list(@students)
+|||setStudentIDCount()||| this.studentIDCount(@integer)|
+|||assignStudentID()||| this.studentCount(@integer)|
 ||Student()|||||properties: studentID(@string), firstName(@string), lastName(@string), githubUsername(@string), email(@string)|
 |||constructor()|firstName(@string), lastName(@string), githubUsername(@string), email(@string)|valid input| throw error|
 |||||valid input| new instance of class Student()|
