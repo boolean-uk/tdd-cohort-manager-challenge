@@ -18,20 +18,26 @@ class Branch {
     this.cohorts = []
   }
 
+  cohortExists(cohortObj) {
+    return !!this.cohorts.find((cohort) => cohort === cohortObj)
+  }
+
   addCohort(cohortObj) {
-    if (!!this.cohorts.find(cohort => cohort === cohortObj)) {
+    if (this.cohortExists(cohortObj)) {
       throw new Error('already exists')
     }
 
     this.cohorts.push(cohortObj)
+    return this.cohorts
   }
 
   removeCohort(cohortObj) {
-    if (!this.cohorts.find(cohort => cohort === cohortObj)) {
+    if (!this.cohortExists(cohortObj)) {
       throw new Error('does not exist')
     }
 
-    this.cohorts = this.cohorts.filter(cohort => cohort !== cohortObj)
+    this.cohorts = this.cohorts.filter((cohort) => cohort !== cohortObj)
+    return this.cohorts
   }
 }
 
