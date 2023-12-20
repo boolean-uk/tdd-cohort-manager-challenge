@@ -30,6 +30,10 @@ describe('Branch', () => {
     it('returns true if cohort exists', () => {
       expect(myBranch.cohortExists(myCohort)).toBeTrue()
     })
+
+    it('returns true if cohort exists', () => {
+      expect(myBranch.cohortExists(mySecondCohort)).toBeFalse()
+    })
   })
 
   describe('addition and removal of cohorts', () => {
