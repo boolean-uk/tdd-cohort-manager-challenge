@@ -1,3 +1,5 @@
+import Branch from "./branch.js"
+
 class Organization {
   constructor(name) {
     this.name = name
@@ -24,5 +26,5 @@ class Organization {
 }
 
 const myOrganization = new Organization('Boolean')
-
-export default { myOrganization }
+console.log(myOrganization)
+export { Organization, myOrganization }

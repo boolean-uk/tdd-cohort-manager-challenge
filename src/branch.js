@@ -27,4 +27,4 @@ class Branch {
   }
 }
 
-export { myOrganization, Branch }
+export default Branch

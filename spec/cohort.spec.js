@@ -1,4 +1,3 @@
-import { Branch } from '../src/branch.js'
 import Cohort from '../src/cohort.js'
 
 describe('cohort', () => {

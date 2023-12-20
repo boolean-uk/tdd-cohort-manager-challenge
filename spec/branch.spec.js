@@ -1,4 +1,5 @@
-import { Branch, myOrganization } from '../src/branch.js'
+import { myOrganization } from '../src/organization.js'
+import Branch from '../src/branch.js'
 import Cohort from '../src/cohort.js'
 
 describe('Branch', () => {
