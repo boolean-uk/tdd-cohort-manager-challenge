@@ -68,4 +68,17 @@ describe('Cohort:', () => {
       })
     })
   })
+
+  describe('setCapacity -', () => {
+    let cohort
+    beforeEach(() => {
+      cohort = new Cohort('Kappa City', 16)
+    })
+
+    it('valid number input', () => {
+      cohort.setCapacity(32)
+
+      expect(cohort.capacity).toBe(32)
+    })
+  })
 })
