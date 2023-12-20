@@ -20,7 +20,7 @@ A cohort should have a list of students. Each student should have a studentID, f
 |||setIDCount()||| this.idCount(@integer)|
 |||assignID()||| this.idCount(@integer)|
 |||handleNewItems()||| this.list|
-||CohortManager()|||||properties: list(@cohort[]), idCount(@integer)|
+||CohortManager()|||||properties: same as Manager()|
 |2||searchBy()|cohortName(@string)|cohort found| cohort(@Cohort)|
 |6||||cohort not found| throw error|
 |4||removeCohort()|cohortName(@string)|cohort found| this.list(@cohort[])|
@@ -28,11 +28,11 @@ A cohort should have a list of students. Each student should have a studentID, f
 ||Cohort()|||||properties: id(@string), studentCount(@integer) cohortName(@string), students(@Student[])|
 |1||constructor()|cohortName(@string)|invalid input| throw error|
 |||||valid input| new instance of class Cohort()|
-|3||addStudent()|studentID(@string)|student found|this.students(@Student[])|
+|3||addStudent()|id(@string)|student found|this.students(@Student[])|
 |||||student not found|throw error|
-|5||removeStudent()|studentID(@string)|student found|this.students(@cohort[])|
+|5||removeStudent()|id(@string)|student found|this.students(@cohort[])|
 |6||||student not found| throw error|
-||StudentManager()||||properties: studentIDcount, list(@Students[])|
-||Student()|||||properties: studentID(@string), firstName(@string), lastName(@string), githubUsername(@string), email(@string)|
+||StudentManager()||||properties: same as Manager()|
+||Student()|||||properties: id(@string), firstName(@string), lastName(@string), githubUsername(@string), email(@string)|
 |||constructor()|firstName(@string), lastName(@string), githubUsername(@string), email(@string)|valid input| throw error|
 |||||valid input| new instance of class Student()|
