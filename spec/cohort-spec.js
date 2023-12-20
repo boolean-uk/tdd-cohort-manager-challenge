@@ -9,20 +9,20 @@ describe('Manager', () => {
     manager = new Manager()
   })
 
-  it('should add a cohort', () => {
+  it('To add a cohort by name', () => {
     const cohort = new Cohort('Cohort 1')
     manager.addCohort(cohort)
     expect(manager.cohorts.includes(cohort)).toBe(true)
   })
 
-  it('should find a cohort by name', () => {
+  it('To find a cohort by name', () => {
     const cohort = new Cohort('Cohort 1')
     manager.addCohort(cohort)
     const found = manager.findCohortByName('Cohort 1')
     expect(found).toBe(cohort)
   })
 
-  it('should remove a cohort by name', () => {
+  it('To remove a cohort by name', () => {
     const cohort1 = new Cohort('Cohort 1')
     const cohort2 = new Cohort('Cohort 2')
     manager.addCohort(cohort1)
@@ -32,7 +32,7 @@ describe('Manager', () => {
     expect(manager.cohorts.includes(cohort2)).toBe(true)
   })
 
-  it('should add a student to a cohort', () => {
+  it('To add a student to a cohort', () => {
     const cohort = new Cohort('Cohort 1')
     const student = new Student(
       'Digby',
