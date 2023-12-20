@@ -4,6 +4,7 @@ class Student {
     this.lastName = lastName
     this.email = email || ''
     this.githubUsername = githubUsername || ''
+    this.inCohort = {}
   }
 
   fullName() {

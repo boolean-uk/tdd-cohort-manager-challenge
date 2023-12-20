@@ -6,7 +6,8 @@ describe('student', () => {
       firstName: 'Nathan',
       lastName: 'The Wise',
       email: '',
-      githubUsername: ''
+      githubUsername: '',
+      inCohort: {}
     }
     const test = new Student('Nathan', 'The Wise')
 
