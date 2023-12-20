@@ -15,6 +15,7 @@ const addBranch = (location) => {
 class Branch {
   constructor(location) {
     this.location = location
+    this.cohorts = []
   }
 }
 

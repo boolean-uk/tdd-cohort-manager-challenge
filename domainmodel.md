@@ -25,12 +25,10 @@ A cohort should have a list of students. Each student should have a studentID, f
 | | | addCohort | @Object{} | @Object{} | ❌
 | | | searchStudentsByName | @String | @Object[] | ❌
 | Cohort | Name@String 
-| | Id @Integer
 | | students @Object[] | | | | ❌
 | | | getStudentbyName() | fullName()@String | @Object{} | ❌
-| | | getStudentbyId() | id@String | @Object{} | ❌
-| | | addStudent() | id@String | @Object{} | ❌
-| | | removeStudent() | id@String | @Object{} | ❌
+| | | addStudent() | @Object{} | @Object{} | ❌
+| | | removeStudent() | @Object{} | @Object{} | ❌
 | | | setName() | cohortName@String | @Object{} | ❌
 | | | isFull() | | @Boolean | ❌
 | Student | firstName @String | | | | ❌
