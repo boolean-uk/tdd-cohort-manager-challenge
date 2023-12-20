@@ -18,6 +18,13 @@ class StudentManager {
     this.list.push(student)
     return this.list
   }
+
+  handleNewStudent(student) {
+    this.setList(student)
+    this.increaseStudentIDCount()
+    this.assignStudentID()
+    return this.list
+  }
 }
 
 export { StudentManager }

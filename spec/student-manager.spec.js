@@ -47,4 +47,30 @@ describe('StudentManager', () => {
     const result = manager.assignStudentID()
     expect(result).toEqual(2)
   })
+  it('handles each new student separately and ensure a unique id is allocated to each', () => {
+    const student1 = new Student(
+      'Lee',
+      'Smith',
+      'koala333',
+      'lee.smith@hotmail.co.uk'
+    )
+    const student2 = new Student(
+      'Jen',
+      'Smith',
+      'panda93',
+      'jen.smith@gmail.com'
+    )
+    const student3 = new Student(
+      'Matt',
+      'Micheal',
+      'random203956',
+      'm.michael@gmail.com'
+    )
+    manager.handleNewStudent(student1)
+    manager.handleNewStudent(student2)
+    const result = manager.handleNewStudent(student3)
+    expect(result[0].studentID).toEqual(1)
+    expect(result[1].studentID).toEqual(2)
+    expect(result[2].studentID).toEqual(3)
+  })
 })
