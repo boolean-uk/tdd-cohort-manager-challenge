@@ -30,6 +30,13 @@ describe('Branch', () => {
       expect(myBranch.cohorts[0]).toEqual(myCohort)
     })
 
+    it('adding a cohort that already exists', () => {
+      myBranch.addCohort(myCohort)
+      expect(myBranch.cohorts.length).toEqual(1)
+      expect(() => myBranch.addCohort(myCohort)).toThrowError('already exists')
+      expect(myBranch.cohorts.length).toEqual(1)
+    })
+
     it('removing a cohort', () => {
       myBranch.addCohort(myCohort)
       myBranch.removeCohort(myCohort)
