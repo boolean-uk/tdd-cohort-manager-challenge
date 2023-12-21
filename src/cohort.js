@@ -9,23 +9,23 @@ class Cohort {
   }
 
   addStudent(studentId, studentManager) {
-    const foundStudent = studentManager.list.find(
-      (student) => student.id === studentId
-    )
-    if (!foundStudent) {
-      throw new Error('student not found')
-    }
+    const foundStudent = studentManager.searchSchoolById(studentId)
     this.students.push(foundStudent)
     return this.students
   }
 
-  removeStudent(studentId) {
+  searchCohortById(studentId) {
     const foundStudent = this.students.find(
       (student) => student.id === studentId
     )
     if (!foundStudent) {
       throw new Error('student not found')
     }
+    return foundStudent
+  }
+
+  removeStudent(studentId) {
+    const foundStudent = this.searchCohortById(studentId)
     const index = this.students.indexOf(foundStudent)
     this.students.splice(index, 1)
 

@@ -73,4 +73,26 @@ describe('StudentManager', () => {
     expect(result[1].id).toEqual(2)
     expect(result[2].id).toEqual(3)
   })
+  it('includes this specific student', () => {
+    const student1 = new Student(
+      'Lee',
+      'Smith',
+      'koala333',
+      'lee.smith@hotmail.co.uk'
+    )
+    const student2 = new Student(
+      'Jen',
+      'Smith',
+      'panda93',
+      'jen.smith@gmail.com'
+    )
+    manager.handleNewItem(student1)
+    manager.handleNewItem(student2)
+    const result = manager.searchSchoolById(1)
+    expect(result).toBe(manager.list[0])
+  })
+  it('this student is not in this cohort', () => {
+    const result = () => manager.searchSchoolById(1)
+    expect(result).toThrowError('student not found')
+  })
 })

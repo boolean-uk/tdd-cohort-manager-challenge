@@ -58,10 +58,16 @@ describe('cohort', () => {
     expect(result[0].id).toEqual(1)
     expect(result[1].id).toEqual(3)
   })
-  it('this student does not exist in the system', () => {
+  it('includes this specific student', () => {
     const cohort1 = new Cohort('best cohort ever')
     cohort1.addStudent(2, studentManager)
-    const result = () => cohort1.removeStudent(576, studentManager)
+    const result = cohort1.searchCohortById(2, studentManager)
+    expect(result).toBe(cohort1.students[0])
+  })
+  it('this student is not in this cohort', () => {
+    const cohort1 = new Cohort('best cohort ever')
+    cohort1.addStudent(2, studentManager)
+    const result = () => cohort1.searchCohortById(576, studentManager)
     expect(result).toThrowError('student not found')
   })
 })
