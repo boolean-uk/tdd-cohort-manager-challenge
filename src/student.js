@@ -1,8 +1,6 @@
-import { countID } from './cohort-manager.js'
-
 class Student {
-  constructor(firstName, lastName, gitHub, email) {
-    this.studentId = countID
+  constructor(firstName, lastName, gitHub, email, studentIDCount) {
+    this.studentId = studentIDCount
     this.firstName = firstName
     this.lastName = lastName
     this.gitHub = gitHub
