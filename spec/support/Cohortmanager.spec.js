@@ -6,7 +6,7 @@ describe('Cohortmanager', () => {
   beforeEach(() => {
     cohortmanager = new Cohortmanager()
   })
-  describe('creates and search for a cohort by cohort name', () => {
+  describe('creates, search and removes a cohort by cohort name', () => {
     it('creates a cohort by cohort name and returns expected', () => {
       const expected = {
         name: 'cohort 11'
@@ -17,12 +17,18 @@ describe('Cohortmanager', () => {
     })
 
     it('searches for a cohort by name and returns the cohort', () => {
-      const name = 'cohort 12'
+      const cohortName = 'cohort 12'
 
-      cohortmanager.create(name)
+      cohortmanager.create(cohortName)
 
-      const result = cohortmanager.search(name)
-      expect(result).toEqual({ name: name })
+      const result = cohortmanager.search(cohortName)
+      expect(result).toEqual({ name: cohortName })
+    })
+    it('removes a cohort by name and returns the cohort', () => {
+      const cohortName = 'cohort 13'
+      cohortmanager.create(cohortName)
+      const result = cohortmanager.removeBy(cohortName)
+      expect(result).toEqual({ name: cohortName })
     })
   })
 })

@@ -11,8 +11,18 @@ class Cohortmanager {
     return cohort
   }
 
-  search(name) {
-    return this.cohorts.find((cohort) => cohort.name === name)
+  search(cohortName) {
+    return this.cohorts.find((cohort) => cohort.name === cohortName)
+  }
+
+  removeBy(name) {
+    const cohort = this.search(name)
+    if (cohort) {
+      const index = this.cohorts.indexOf(cohort)
+      return this.cohorts.splice(index, 1)[0]
+    } else {
+      return null // Cohort not found
+    }
   }
 }
 export default Cohortmanager
