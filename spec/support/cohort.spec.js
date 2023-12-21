@@ -117,6 +117,7 @@ describe('Cohort', () => {
        
         cohort.removeCohort('Cohort 1')
         expect(cohort.cohortList.length).toEqual(1)
+        
     })
 
     // Removing a student from a specific cohort
