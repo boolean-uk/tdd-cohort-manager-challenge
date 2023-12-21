@@ -31,4 +31,14 @@ describe('CohortManager', () => {
     expect(result.name).toBe(cohortName)
     expect(result.students).toEqual([])
   })
+
+  it('should throw an error if cohort does not exist', () => {
+    const cohortName = 'cohort-11'
+    cohort.createCohort(cohortName)
+
+    const result = 'cohort-34'
+    expect(() => {
+      cohort.findCohort(result)
+    }).toThrowError('Cohort does not exist')
+  })
 })
