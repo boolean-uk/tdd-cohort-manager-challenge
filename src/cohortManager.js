@@ -71,6 +71,15 @@ class CohortManager {
         throw new Error('Cohort has reached its capacity of 24')
       }
 
+      this.cohorts.forEach((cohort) => {
+        const studentExists = cohort.students.some(
+          (eachStudent) => eachStudent.github === student.github
+        )
+        if (studentExists) {
+          throw new Error('Student already exists')
+        }
+      })
+
       const studentToAdd = new Student(
         this.id++,
         student.firstName,
