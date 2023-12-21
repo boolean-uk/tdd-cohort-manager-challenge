@@ -66,6 +66,11 @@ class CohortManager {
 
     if (hasCohort) {
       const cohort = this.findCohortByName(cohortName)
+
+      if (cohort.students.length >= 24) {
+        throw new Error('Cohort has reached its capacity of 24')
+      }
+
       const studentToAdd = new Student(
         this.id++,
         student.firstName,
