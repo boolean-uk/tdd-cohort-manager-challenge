@@ -30,6 +30,15 @@ class Cohort {
         return findCohort
     }
 
+    searchStudent(cohortName, userName) {
+        const findCohort = this.cohortList.find(cohort => cohort.name === cohortName)
+        const findStudent = findCohort.students.find(student => student.userName === userName)
+
+        if (!findStudent) throw new Error("Student not found")
+
+        return findStudent
+    }
+
     addStudent(cohortName, studentToAdd) {
         const findCohort = this.cohortList.find(cohort => cohort.name === cohortName)
         const studentExists = findCohort.students.find(student => student.studentID === studentToAdd.studentID)
@@ -49,12 +58,23 @@ class Cohort {
         if(findCohort.students.length > findCohort.capacity){
             throw new Error("Cohort is full, student cannot be added!")
         } 
-        console.log('findCohort', findCohort)
         findCohort.students.push(studentToAdd)
       
         return findCohort.students       
     }
 }
 
+
+// const cohort = new Cohort()
+// console.log(cohort.createCohort('Cohort 1'))
+// console.log(cohort.searchCohort('Cohort 1'))
+// cohort.addStudent('Cohort 1', {
+//     studentID: 1,
+//     fitrstName: 'John',
+//     lastName: 'Doe',
+//     userName: 'JohnDoe',
+//     email: 'johnDoe@gmail.com'
+// })
+// console.log(cohort.searchStudnet('Cohort 1', 'JohsanDoe'))
 
 export default Cohort

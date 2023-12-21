@@ -26,6 +26,12 @@ describe('Cohort', () => {
         expect(result).toEqual(expected)
     })
 
+    it('throws an error if a cohort not found', () => {
+        cohort.createCohort('Cohort 1')
+        
+        expect(() => cohort.searchCohort('Cohort 2')).toThrowError("Cohort not found")
+    })
+
     // Adding a student
     it('can add a student to students list', () => {
         cohort.createCohort('Cohort 1')
@@ -51,6 +57,7 @@ describe('Cohort', () => {
         expect(result).toEqual(expected)
     })
 
+    
     it('throws error if same student exists in multiple cohorts', () => {
         cohort.createCohort('Cohort 1')
         cohort.createCohort('Cohort 2')
@@ -70,6 +77,22 @@ describe('Cohort', () => {
             email: 'johnDoe@gmail.com'
         })
         expect(result).toEqual("this student already enrolled in another Cohort!")
+
+    })
+
+    // Searching a student
+    it('throws error if student not found', () => {
+        cohort.createCohort('Cohort 1')
+
+        const student = {
+            studentID: 1,
+            fitrstName: 'John',
+            lastName: 'Doe',
+            userName: 'JohnDoe',
+            email: 'johnDoe@gmail.com'
+        }
+        cohort.addStudent('Cohort 1', student)
+        expect(() => cohort.searchStudent('Cohort 1', 'Michael')).toThrowError("Student not found")
 
     })
     
