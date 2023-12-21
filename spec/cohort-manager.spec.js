@@ -196,13 +196,18 @@ describe('Cohort Manger', () => {
       const expectation = 1
       const result = cohortManager.findCohort('Cohort 1')
 
-      console.log('.......BEFORE REMOVAL........', result.studentList)
-
       cohortManager.removeStudent(1, 'Cohort 1')
 
-      console.log('........AFTER REMOVAL.........', result.studentList)
-
       expect(result.studentList.length).toEqual(expectation)
+      expect(result.studentList[0].firstName).toEqual('Jimmy')
     })
+    // it('/ removes student from all student list', () => {
+    //   const expectation = 3
+    //   const result = cohortManager.allStudents
+
+    //   cohortManager.removeStudent(1)
+
+    //   expect(result).toEqual(expectation)
+    // })
   })
 })
