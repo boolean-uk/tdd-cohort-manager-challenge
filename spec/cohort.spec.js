@@ -112,9 +112,13 @@ describe('Cohort', () => {
   })
 
   describe('when removing a cohort', () => {
+    beforeEach(() => {
+      cohort.createCohort('Cohort 1')
+      cohort.createCohort('Cohort 2')
+    })
+
     it('a valid cohortName is input and returns true', () => {
       // set up
-      cohort.createCohort('Cohort 1')
 
       // execute
       const result = cohort.removeCohort('Cohort 1')
@@ -125,8 +129,6 @@ describe('Cohort', () => {
 
     it('the cohort is removed from the cohortList', () => {
       // set up
-      cohort.createCohort('Cohort 1')
-      cohort.createCohort('Cohort 2')
       const expected = [{ name: 'Cohort 2', students: [] }]
 
       // execute
