@@ -22,9 +22,9 @@
 |        |                |                          |                    | inputName does not match cohort.name in cohorts[] | throw error ('cohort not found')                                   |
 |        |                |                          |                    |                                                   |                                                                    |
 |        |                |                          |                    |                                                   |                                                                    |
-|        | Cohort         |                          |                    |                                                   |                                                                    |
-|        |                | setCapacity              | newCapacity:number |                                                   |                                                                    |
-|        |                |                          |                    |                                                   |                                                                    |
+| [ x ]  | Cohort         |                          |                    |                                                   |                                                                    |
+| [ x ]  |                | setCapacity              | newCapacity:number | typeof input === Number                           | set Cohort.capacity = inputCapacity                                |
+| [ x ]  |                |                          |                    | typeof input !== Number                           | throw error ('capacity number must be Number)                      |
 |        |                |                          |                    |                                                   |                                                                    |
 |        | StudentManager |                          |                    |                                                   |                                                                    |
 |        |                | getAllStudents           |                    |                                                   | return Student[]                                                   |
