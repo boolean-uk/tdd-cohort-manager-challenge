@@ -31,7 +31,7 @@ describe('Cohort', () => {
       expect(result).toEqual(expected)
     })
 
-    it('when an invalid cohortName is entered, throw error', () => {
+    it('if an invalid cohortName is entered, throw error', () => {
       // set up
 
       // execute/verify
@@ -93,6 +93,42 @@ describe('Cohort', () => {
 
       // execute/verify
       expect(() => cohort.findStudent()).toThrowError('student does not exist')
+    })
+  })
+
+  describe('when removing a cohort', () => {
+    it('a valid cohort name is input and returns true', () => {
+      // set up
+      cohort.createCohort('Cohort 1')
+
+      // execute
+      const result = cohort.removeCohort('Cohort 1')
+
+      // verify
+      expect(result).toBeTrue()
+    })
+
+    it('the cohort is removed from the cohortList', () => {
+      // set up
+      cohort.createCohort('Cohort 1')
+      cohort.createCohort('Cohort 2')
+      const expected = [{ name: 'Cohort 2', students: [] }]
+
+      // execute
+      cohort.removeCohort('Cohort 1')
+      const result = cohort.cohortList
+
+      // verify
+      expect(result).toEqual(expected)
+    })
+
+    it('if an invalid cohort name is input, throw error', () => {
+      // set up
+
+      // execute/verify
+      expect(() => cohort.removeCohort()).toThrowError(
+        'cohort does not exist, unable to remove cohort'
+      )
     })
   })
 })

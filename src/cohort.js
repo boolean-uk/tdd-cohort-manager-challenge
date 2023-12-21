@@ -42,6 +42,15 @@ class Cohort {
     cohort.students.push(student)
     return student
   }
+
+  removeCohort(cohortName) {
+    const cohort = this.cohortList.find((cohort) => cohort.name === cohortName)
+    if (!cohort)
+      throw new Error('cohort does not exist, unable to remove cohort')
+    const index = this.cohortList.indexOf(cohort)
+    this.cohortList.splice(index, 1)
+    return true
+  }
 }
 
 export default Cohort
