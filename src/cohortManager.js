@@ -27,6 +27,11 @@ class CohortManager {
     return existingCohort
   }
 
+  removeCohortByName(cohortName) {
+    this.cohorts = this.cohorts.filter((cohort) => cohort.name !== cohortName)
+    return 'removed successfully'
+  }
+
   addStudentToCohort(cohortName, student) {
     const existingCohort = this.cohorts.find(
       (cohort) => cohort.name === cohortName

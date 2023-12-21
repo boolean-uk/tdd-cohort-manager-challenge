@@ -43,6 +43,13 @@ describe('CohortManager', () => {
     }).toThrowError('Cohort does not exist')
   })
 
+  it(`should remove a cohort with a given name`, () => {
+    const cohortName = 'cohort-1'
+    cohort.createCohort(cohortName)
+    cohort.removeCohortByName(cohortName)
+    expect(cohort.name).toBeUndefined()
+  })
+
   it('should add a student to a cohort', () => {
     const cohortName = 'cohort-1'
     cohort.createCohort(cohortName)
