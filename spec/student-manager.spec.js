@@ -95,4 +95,60 @@ describe('StudentManager', () => {
     const result = () => manager.searchSchoolById(1)
     expect(result).toThrowError('student not found')
   })
+
+  describe('finds students by', () => {
+    let student1
+    let student2
+    let student3
+    let student4
+    beforeEach(() => {
+      student1 = new Student(
+        'Lee',
+        'Smith',
+        'koala333',
+        'lee.smith@hotmail.co.uk'
+      )
+      student2 = new Student('Jen', 'Smith', 'panda93', 'jen.smith@gmail.com')
+      student3 = new Student(
+        'Matt',
+        'Micheal',
+        'random203956',
+        'm.michael@gmail.com'
+      )
+      student4 = new Student(
+        'Matt',
+        'Smith',
+        'citizenErased',
+        'm.kerr@gmail.com'
+      )
+      manager.handleNewItem(student1)
+      manager.handleNewItem(student2)
+      manager.handleNewItem(student3)
+      manager.handleNewItem(student4)
+    })
+    it('first name', () => {
+      const result = manager.searchByFirstName('Matt', manager.list)
+      expect(result).toEqual([student3, student4])
+    })
+    it('first name failed - no such first name', () => {
+      const result = () => manager.searchByFirstName('Mike', manager.list)
+      expect(result).toThrowError('no students found with this first name')
+    })
+    it('last name', () => {
+      const result = manager.searchByLastName('Smith', manager.list)
+      expect(result).toEqual([student1, student2, student4])
+    })
+    it('last name failed - no such last name', () => {
+      const result = () => manager.searchByLastName('Kerr', manager.list)
+      expect(result).toThrowError('no students found with this last name')
+    })
+    it('first and last name', () => {
+      const result = manager.searchByFirstAndLastName('Matt Smith')
+      expect(result).toEqual([student4])
+    })
+    it('first and last name failed - no such first and last name combination', () => {
+      const result = () => manager.searchByFirstAndLastName('Jen Michael')
+      expect(result).toThrowError('no such first and last name combination')
+    })
+  })
 })
