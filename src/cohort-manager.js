@@ -55,6 +55,14 @@ class CohortManager {
     if (!foundStudent) throw new Error('student not found')
     return foundStudent
   }
+
+  addStudentToCohort(studentId, cohort) {
+    const foundStudent = this.findStudent(studentId)
+    const foundCohort = this.findCohort(cohort)
+
+    foundCohort.studentList.push(foundStudent)
+    return foundCohort.studentlist
+  }
 }
 
 export { CohortManager }
