@@ -31,6 +31,9 @@ class Cohort {
   }
 
   removeStudent(studentId) {
+    if (this.occupancy === 0) {
+      throw new Error('no students to be removed - cohort empty')
+    }
     const foundStudent = this.searchCohortById(studentId)
     const index = this.students.indexOf(foundStudent)
     this.students.splice(index, 1)

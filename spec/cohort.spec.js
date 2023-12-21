@@ -101,6 +101,11 @@ describe('cohort', () => {
     expect(result[1].id).toEqual(3)
     expect(cohort1.occupancy).toEqual(2)
   })
+  it('throws an error if attempting to remove any students from an empty cohort', () => {
+    const cohort = new Cohort('empty cohort')
+    const result = () => cohort.removeStudent(1, studentManager)
+    expect(result).toThrowError('no students to be removed - cohort empty')
+  })
   it('includes this specific student', () => {
     const cohort1 = new Cohort('best cohort ever')
     cohort1.addStudent(2, studentManager)
