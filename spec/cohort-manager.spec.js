@@ -160,9 +160,16 @@ describe('Cohort Manger', () => {
       expect(action).toThrowError(expectation)
     })
 
-    it('/ if student is not found', () => {
+    it('/ if student is not correct', () => {
       const expectation = 'student not found'
       const action = () => cohortManager.addStudentToCohort(7, 'Cohort 1')
+
+      expect(action).toThrowError(expectation)
+    })
+
+    it('/ if cohort is not correct', () => {
+      const expectation = 'No cohort found with that name'
+      const action = () => cohortManager.addStudentToCohort(1, 'Cohort 5')
 
       expect(action).toThrowError(expectation)
     })
