@@ -82,13 +82,14 @@ describe('cohort', () => {
       'capacity exceeded - there should never be more than 24 students'
     )
   })
-  it('add a specific student to a cohort and increase occupancy by one', () => {
+  it('add a specific student to a cohort and increase occupancy by one and set the student cohort name', () => {
     const cohort1 = new Cohort('best cohort ever', cohortManager)
     const result = cohort1.addStudent(2, studentManager)
     expect(result[0].id).toEqual(2)
     expect(result[0].firstName).toEqual('Jen')
     expect(result[0].lastName).toEqual('Smith')
     expect(cohort1.occupancy).toEqual(1)
+    expect(result[0].cohortName).toEqual('best cohort ever')
   })
   it('throws an error if attempt to add students while the cohort is full', () => {
     const cohort = new Cohort('full cohort', cohortManager)
@@ -121,11 +122,21 @@ describe('cohort', () => {
     cohort1.addStudent(2, studentManager)
     cohort1.addStudent(1, studentManager)
     cohort1.addStudent(3, studentManager)
-    const result = cohort1.removeStudent(2)
+    const result = cohort1.removeStudent(2, studentManager)
     expect(result.length).toEqual(2)
     expect(result[0].id).toEqual(1)
     expect(result[1].id).toEqual(3)
     expect(cohort1.occupancy).toEqual(2)
+  })
+  it('upon removal, a the cohort name propertyy of a student is set to undefined', () => {
+    const cohort1 = new Cohort('best cohort ever', cohortManager)
+    cohort1.addStudent(2, studentManager)
+    expect(cohort1.students[0].cohortName).toEqual('best cohort ever')
+    cohort1.addStudent(1, studentManager)
+    cohort1.addStudent(3, studentManager)
+    cohort1.removeStudent(2, studentManager)
+    const result = studentManager.searchSchoolById(2)
+    expect(result.cohortName).toBeUndefined()
   })
   it('throws an error if attempting to remove any students from an empty cohort', () => {
     const cohort = new Cohort('empty cohort', cohortManager)

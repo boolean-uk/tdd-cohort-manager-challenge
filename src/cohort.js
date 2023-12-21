@@ -30,6 +30,7 @@ class Cohort {
       throw new Error('cannot add students - this cohort is full')
     }
     const foundStudent = studentManager.searchSchoolById(studentId)
+    this.assignCohortNameToStudent(studentId, studentManager)
     this.students.push(foundStudent)
     this.increaseOccupancyByOne()
     return this.students
@@ -45,11 +46,12 @@ class Cohort {
     return foundStudent
   }
 
-  removeStudent(studentId) {
+  removeStudent(studentId, manager) {
     if (this.occupancy === 0) {
       throw new Error('no students to be removed - cohort empty')
     }
     const foundStudent = this.searchCohortById(studentId)
+    this.clearStudentCohortName(studentId, manager)
     const index = this.students.indexOf(foundStudent)
     this.students.splice(index, 1)
     this.decreaseOccupancyByOne()
