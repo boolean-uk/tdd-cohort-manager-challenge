@@ -24,4 +24,12 @@ describe('othello', () => {
         expect(result2).toEqual(expected2)
     })
 
+    it('remove cohort by name!', () => {
+        cohortManager.createCohort('class 2')
+        cohortManager.createCohort('class 5')
+        cohortManager.createCohort('class 10')
+        const result = cohortManager.removeCohortByName('class 5')
+        expect(cohortManager.cohorts.length).toEqual(2)
+    })
+
 })
