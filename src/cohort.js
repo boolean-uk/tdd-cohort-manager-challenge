@@ -13,6 +13,7 @@ class Cohort {
   addStudent(studentId, studentManager) {
     const foundStudent = studentManager.searchSchoolById(studentId)
     this.students.push(foundStudent)
+    this.increaseOccupancyByOne()
     return this.students
   }
 
@@ -30,6 +31,7 @@ class Cohort {
     const foundStudent = this.searchCohortById(studentId)
     const index = this.students.indexOf(foundStudent)
     this.students.splice(index, 1)
+    this.decreaseOccupancyByOne()
 
     return this.students
   }

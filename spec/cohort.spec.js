@@ -71,19 +71,20 @@ describe('cohort', () => {
       'capacity exceeded - there should never be more than 24 students'
     )
   })
-  it('add a specific student to a cohort', () => {
+  it('add a specific student to a cohort and increase occupancy by one', () => {
     const cohort1 = new Cohort('best cohort ever')
     const result = cohort1.addStudent(2, studentManager)
     expect(result[0].id).toEqual(2)
     expect(result[0].firstName).toEqual('Jen')
     expect(result[0].lastName).toEqual('Smith')
+    expect(cohort1.occupancy).toEqual(1)
   })
   it('this student does not exist in the system', () => {
     const cohort1 = new Cohort('best cohort ever')
     const result = () => cohort1.addStudent(576, studentManager)
     expect(result).toThrowError('student not found')
   })
-  it('removes a student from a cohort', () => {
+  it('removes a student from a cohort and decrease occupancy by one', () => {
     const cohort1 = new Cohort('best cohort ever')
     cohort1.addStudent(2, studentManager)
     cohort1.addStudent(1, studentManager)
@@ -92,6 +93,7 @@ describe('cohort', () => {
     expect(result.length).toEqual(2)
     expect(result[0].id).toEqual(1)
     expect(result[1].id).toEqual(3)
+    expect(cohort1.occupancy).toEqual(2)
   })
   it('includes this specific student', () => {
     const cohort1 = new Cohort('best cohort ever')
