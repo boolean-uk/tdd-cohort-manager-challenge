@@ -70,6 +70,9 @@ class CohortManager {
   removeStudentFromCohort(studentId, cohort) {
     if (!cohort || cohort.length === 0)
       throw new Error('please enter a cohort name')
+    if (!studentId || studentId.length === 0)
+      throw new Error('please enter a student ID')
+
     const foundStudent = this.findStudent(studentId)
     const foundCohort = this.findCohort(cohort)
 
