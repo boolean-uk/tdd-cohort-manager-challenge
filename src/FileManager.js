@@ -8,7 +8,13 @@ class FileManager {
   }
 
   removeCohortByName(name) {
-    this.cohorts = this.cohorts.filter((cohort) => cohort.CohortName !== name)
+    const locatedCohort = this.cohorts.find(
+      (cohort) => cohort.CohortName === name
+    )
+    if (!locatedCohort) {
+      throw new Error('This cohort does not exist')
+    }
+    return locatedCohort
   }
 
   findCohortByName(name) {

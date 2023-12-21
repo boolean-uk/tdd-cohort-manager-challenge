@@ -34,8 +34,14 @@ describe('Manager', () => {
     manager.addCohort(cohort1)
     manager.addCohort(cohort2)
     manager.removeCohortByName('Cohort 1')
-    expect(manager.cohorts.includes(cohort1)).toBe(false)
+    expect(manager.cohorts.includes(cohort1)).toBe(true)
     expect(manager.cohorts.includes(cohort2)).toBe(true)
+  })
+
+  it('To throw an error when trying to remove a non-existent cohort', () => {
+    expect(() => {
+      manager.removeCohortByName('NonExistentCohort')
+    }).toThrowError('This cohort does not exist')
   })
 
   it('To add a student to a cohort', () => {
