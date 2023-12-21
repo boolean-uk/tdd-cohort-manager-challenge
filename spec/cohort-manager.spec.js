@@ -112,5 +112,11 @@ describe('Cohort Manger', () => {
 
       expect(result.firstName).toEqual(expectation)
     })
+    it('/ if no paramter is inputted', () => {
+      const expectation = 'please enter a student ID'
+      const action = () => cohortManager.findStudent()
+
+      expect(action).toThrowError(expectation)
+    })
   })
 })
