@@ -11,13 +11,15 @@ class Cohort {
   }
 
   removeStudentById(studentId) {
-    const locatedStudent = this.students.find(
-        (students) => students.studentId === studentId
+    const studentIndex = this.students.findIndex(
+      (student) => student.studentId === studentId
     )
-    if (!locatedStudent) {
-        throw new Error('This student does not exist')
+    if (studentIndex === -1) {
+      throw new Error('This student does not exist')
     }
-    return locatedStudent
+    // Remove the student from the array
+    this.students.splice(studentIndex, 1)
+  }
 }
 
 export default Cohort

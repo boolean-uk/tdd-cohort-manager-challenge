@@ -67,13 +67,14 @@ describe('Manager', () => {
       '001'
     )
     cohort.addStudent(student1)
-    cohort.removeStudentById('01')
-    expect(cohort.students.includes(student1)).toBe(true)
+    cohort.removeStudentById('001')
+    expect(cohort.students.includes(student1)).toBe(false)
   })
 
-  it('To throw an error when trying to remove a non-existent student', () => {
+  it('should throw an error when trying to remove a non-existent student', () => {
+    const cohort = new Cohort('Some Cohort')
     expect(() => {
-      manager.removeCohortByName('NonExistentCohort')
-    }).toThrowError('This cohort does not exist')
+      cohort.removeStudentById('NonExistentStudent')
+    }).toThrowError('This student does not exist')
   })
 })
