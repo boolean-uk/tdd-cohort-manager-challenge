@@ -51,6 +51,26 @@ describe('cohort', () => {
     const result = cohort.decreaseOccupancyByOne()
     expect(result).toEqual(3)
   })
+  it('is not full', () => {
+    const cohort = new Cohort('my cohort')
+    cohort.occupancy = 10
+    const result = cohort.isFull()
+    expect(result).toBeFalse()
+  })
+  it('is full', () => {
+    const cohort = new Cohort('my cohort')
+    cohort.occupancy = 24
+    const result = cohort.isFull()
+    expect(result).toBeTrue()
+  })
+  it('is full beyond its capacity', () => {
+    const cohort = new Cohort('my cohort')
+    cohort.occupancy = 75
+    const result = () => cohort.isFull()
+    expect(result).toThrowError(
+      'capacity exceeded - there should never be more than 24 students'
+    )
+  })
   it('add a specific student to a cohort', () => {
     const cohort1 = new Cohort('best cohort ever')
     const result = cohort1.addStudent(2, studentManager)

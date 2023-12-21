@@ -43,6 +43,15 @@ class Cohort {
     this.occupancy--
     return this.occupancy
   }
+
+  isFull() {
+    if (this.occupancy > this.capacity) {
+      throw new Error(
+        'capacity exceeded - there should never be more than 24 students'
+      )
+    }
+    return this.occupancy === this.capacity
+  }
 }
 
 export { Cohort }
