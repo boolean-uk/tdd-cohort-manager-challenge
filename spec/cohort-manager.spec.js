@@ -201,9 +201,17 @@ describe('Cohort Manger', () => {
       expect(result.studentList.length).toEqual(expectation)
       expect(result.studentList[0].firstName).toEqual('Jimmy')
     })
+
     it('/ if only student ID is inputted', () => {
       const expectation = 'please enter a cohort name'
       const action = () => cohortManager.removeStudentFromCohort(1, '')
+
+      expect(action).toThrowError(expectation)
+    })
+
+    it('/ only a cohort name was inputted', () => {
+      const expectation = 'please enter a student ID'
+      const action = () => cohortManager.removeStudentFromCohort('', 'Cohort 1')
 
       expect(action).toThrowError(expectation)
     })
