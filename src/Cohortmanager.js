@@ -31,6 +31,15 @@ class CohortManager {
         this.cohorts.splice(foundIndex, 1)
     }
 
+    addStudentToSpecificCohort(cohortName, firstName, secondName) {
+        const studentCohort = this.cohorts.find((cohort) => cohort.cohortName === cohortName )
+        if (!studentCohort) {
+            throw new Error('Student cant be found!')
+        } 
+        studentCohort.addStudent(firstName, secondName);
+        console.log('Student added successfully!');
+    }
+
 }
 
 

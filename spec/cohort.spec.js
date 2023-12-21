@@ -32,4 +32,20 @@ describe('othello', () => {
         expect(cohortManager.cohorts.length).toEqual(2)
     })
 
+    it('add a student to a specific cohort', () => {
+        cohortManager.createCohort('class 1');
+        
+        const studentFirstName = 'John';
+        const studentLastName = 'Doe';
+    
+        cohortManager.addStudentToSpecificCohort('class 1', studentFirstName, studentLastName);
+    
+        const cohort = cohortManager.searchCohortByName('class 1');
+        const addedStudent = cohort.studentList.find(student => student.firstName === studentFirstName && student.secondName === studentLastName);
+    
+        expect(addedStudent).toBeDefined();
+        expect(addedStudent.firstName).toEqual(studentFirstName);
+        expect(addedStudent.secondName).toEqual(studentLastName);
+    });
+
 })
