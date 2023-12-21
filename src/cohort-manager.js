@@ -66,6 +66,18 @@ class CohortManager {
     foundCohort.studentList.push(foundStudent)
     return foundCohort.studentlist
   }
+
+  removeStudent(studentId, cohort) {
+    const foundStudent = this.findStudent(studentId)
+    const foundCohort = this.findCohort(cohort)
+
+    console.log('........found student.........', foundStudent)
+
+    const studentIndex = foundCohort.studentList.indexOf(foundStudent)
+    console.log('......THAT STUDENTS INDEX........', studentIndex)
+    foundCohort.studentList.splice(studentIndex, 1)
+    return true
+  }
 }
 
 export { CohortManager }
