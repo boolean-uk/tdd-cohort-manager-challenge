@@ -7,10 +7,27 @@ class CohortManager {
     this.id = 1
   }
 
-  createCohort(cohortName) {
+  validateCohortName(cohortName) {
     if (typeof cohortName !== 'string') {
-      throw new Error("please input a valid name e.g. 'cohort-11'")
+      throw new Error("Please input a valid name e.g. 'cohort-11'")
     }
+  }
+
+  validateStudent(student) {
+    if (
+      !student.firstName ||
+      !student.lastName ||
+      !student.github ||
+      !student.email
+    ) {
+      throw new Error(
+        "Please input a valid student e.g. {firstName: 'John', lastName: 'Doe', github: '@johndoe', email:'johndoe@mail.com'}"
+      )
+    }
+  }
+
+  createCohort(cohortName) {
+    this.validateCohortName(cohortName)
 
     const duplicate = this.cohorts.some((cohort) => cohort.name === cohortName)
 
@@ -24,10 +41,8 @@ class CohortManager {
     }
   }
 
-  findCohort(cohortName) {
-    if (typeof cohortName !== 'string') {
-      throw new Error("please input a valid name e.g. 'cohort-11'")
-    }
+  findCohortByName(cohortName) {
+    this.validateCohortName(cohortName)
 
     const hasCohort = this.cohorts.some((cohort) => cohort.name === cohortName)
 
@@ -41,25 +56,16 @@ class CohortManager {
   addStudentToCohort(student, cohortName) {
     if (typeof cohortName !== 'string' || typeof student !== 'object') {
       throw new Error(
-        "please input a valid studentID & cohort name e.g. (1, 'cohort-11')"
+        "Please input a valid studentID & cohort name e.g. (1, 'cohort-11')"
       )
     }
 
-    if (
-      !student.firstName ||
-      !student.lastName ||
-      !student.github ||
-      !student.email
-    ) {
-      throw new Error(
-        "Please input a valid student e.g. {firstName: 'John', lastName: 'Doe', github: '@johndoe', email:'johndoe@mail.com'}"
-      )
-    }
+    this.validateStudent(student)
 
     const hasCohort = this.cohorts.some((cohort) => cohort.name === cohortName)
 
     if (hasCohort) {
-      const cohort = this.findCohort(cohortName)
+      const cohort = this.findCohortByName(cohortName)
       const studentToAdd = new Student(
         this.id++,
         student.firstName,
@@ -77,14 +83,12 @@ class CohortManager {
   }
 
   removeCohortByName(cohortName) {
-    if (typeof cohortName !== 'string') {
-      throw new Error("please input a valid name e.g. 'cohort-11'")
-    }
+    this.validateCohortName(cohortName)
 
     const hasCohort = this.cohorts.some((cohort) => cohort.name === cohortName)
 
     if (hasCohort) {
-      const cohortToRemove = this.findCohort(cohortName)
+      const cohortToRemove = this.findCohortByName(cohortName)
 
       this.cohorts = this.cohorts.filter((cohort) => cohort !== cohortToRemove)
 
@@ -97,14 +101,14 @@ class CohortManager {
   removeStudentFromCohort(studentId, cohortName) {
     if (typeof cohortName !== 'string' || typeof studentId !== 'number') {
       throw new Error(
-        "please input a valid studentID & cohort name e.g. (3,'cohort-11')"
+        "Please input a valid studentID & cohort name e.g. (3,'cohort-11')"
       )
     }
 
     const hasCohort = this.cohorts.some((cohort) => cohort.name === cohortName)
 
     if (hasCohort) {
-      const cohort = this.findCohort(cohortName)
+      const cohort = this.findCohortByName(cohortName)
 
       const student = cohort.students.find(
         (student) => student.id === studentId
@@ -119,6 +123,28 @@ class CohortManager {
       }
 
       return `${student.firstName} successfully removed from ${cohort.name}`
+    } else {
+      throw new Error('Cohort does not exist')
+    }
+  }
+
+  findStudentById(studentId, cohortName) {
+    this.validateCohortName(cohortName)
+
+    const hasCohort = this.cohorts.some((cohort) => cohort.name === cohortName)
+
+    if (hasCohort) {
+      const cohort = this.findCohortByName(cohortName)
+
+      const student = cohort.students.find(
+        (student) => student.id === studentId
+      )
+
+      if (student) {
+        return student
+      } else {
+        throw new Error('Student does not exist')
+      }
     } else {
       throw new Error('Cohort does not exist')
     }
