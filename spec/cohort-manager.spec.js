@@ -1,4 +1,4 @@
-import CohortManager from '../src/cohort-manager.js'
+import { CohortManager } from '../src/cohort-manager.js'
 
 describe('Cohort Manger', () => {
   let cohortManager
@@ -54,6 +54,22 @@ describe('Cohort Manger', () => {
       expect(() => cohortManager.findCohort('dontFindMe')).toThrowError(
         expected
       )
+    })
+  })
+  describe('/ createStudent method', () => {
+    beforeEach(() => {
+      cohortManager.allStudents = []
+    })
+    it('/ properly creates and adds a student to allStudent list', () => {
+      const expectation = 'Steve'
+      cohortManager.createStudent(
+        'Steve',
+        'Stevenson',
+        '/Stevyboy',
+        'steve@hotmail.com'
+      )
+      console.log(cohortManager.allStudents)
+      expect(cohortManager.allStudents[0].firstName).toEqual(expectation)
     })
   })
 })
