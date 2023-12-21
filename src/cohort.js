@@ -5,3 +5,5 @@ class Cohort {
     }
     // add/remove student methods
 }
+
+export default Cohort;
