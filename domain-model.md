@@ -34,6 +34,7 @@ Your program should be composed of at least two classes
 | addStudent(@student, cohortName) | student(@objs), cohortName(@string) | student properties -> studentId: @number, firstName: @string, lastName: @string, userName: @string, email: @string | if student ID does not exist in the given cohorts student list and if students number is less than studentsList capacity | cohortList[{name: 'Cohort 1', students: id: 1, firstName: 'John, lastName: 'Doe'...}] |
 | searchStudent(cohortName, studentID) | cohortName(@string), studentID(@number) | | if student is enrolled or if not | return student being searched or throw error 'Student not found |
 | removeCohort(cohortName) | cohortName(@string) | | if cohort name found in the cohort list - ('Cohort 1') | cohortList['Cohort 1', 'Cohort 2'] === cohortList['Cohort 2'] |
+| removeStudent(cohortName, studentID) | cohortName(@string), studentID(@number) | | if student exists in the given cohort | students['John Doe', 'Dylan Woods'] === students['John Doe'] otherwise throw Error ('Student does not exist in this cohort") |
 
 
 
