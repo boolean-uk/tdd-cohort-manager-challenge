@@ -106,18 +106,21 @@ describe('Cohort Manger', () => {
       cohortManager.createStudent('Jimmy')
       cohortManager.createStudent('Molly')
     })
+
     it('/ a valid student ID is inputted', () => {
       const expectation = 'Jimmy'
       const result = cohortManager.findStudent(2)
 
       expect(result.firstName).toEqual(expectation)
     })
+
     it('/ if no paramter is inputted', () => {
       const expectation = 'please enter a student ID'
       const action = () => cohortManager.findStudent()
 
       expect(action).toThrowError(expectation)
     })
+
     it('/ no student found', () => {
       const expectation = 'student not found'
       const action = () => cohortManager.findStudent(6)
@@ -135,6 +138,7 @@ describe('Cohort Manger', () => {
       cohortManager.createStudent('Molly')
       cohortManager.createStudent('Jane')
     })
+
     it('/ adds to a specific cohort', () => {
       const expectationOne = 'Alex'
       const expectationTwo = 'Molly'
@@ -147,6 +151,13 @@ describe('Cohort Manger', () => {
 
       expect(resultOne.studentList[0].firstName).toEqual(expectationOne)
       expect(resultTwo.studentList[0].firstName).toEqual(expectationTwo)
+    })
+
+    it('/ if one parameter is not inputted', () => {
+      const expectation = 'please enter both student and cohort'
+      const action = () => cohortManager.addStudentToCohort('', 'Cohort 1')
+
+      expect(action).toThrowError(expectation)
     })
   })
 })
