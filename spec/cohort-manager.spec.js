@@ -101,14 +101,15 @@ describe('Cohort Manger', () => {
   })
   describe('/ findStudent', () => {
     beforeEach(() => {
+      cohortManager.studentIdCount = 1
       cohortManager.createStudent('Alex')
       cohortManager.createStudent('Jimmy')
       cohortManager.createStudent('Molly')
+      console.log(cohortManager.allStudents)
     })
     it('/ a valid student ID is inputted', () => {
       const expectation = 'Jimmy'
       const result = cohortManager.findStudent(2)
-      console.log(result)
 
       expect(result.firstName).toEqual(expectation)
     })

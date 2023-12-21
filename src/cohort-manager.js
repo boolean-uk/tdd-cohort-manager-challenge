@@ -1,12 +1,11 @@
 import Cohort from './cohort.js'
 import { Student } from './student.js'
 
-let countID = 1
-
 class CohortManager {
   constructor() {
     this.cohortList = []
     this.allStudents = []
+    this.studentIdCount = 1
   }
 
   createCohort(name) {
@@ -36,13 +35,20 @@ class CohortManager {
     if (firstName.length === 0 && email === '')
       throw new Error('please enter a name to add student')
 
-    const student = new Student(firstName, lastName, gitHub, email)
+    const student = new Student(
+      firstName,
+      lastName,
+      gitHub,
+      email,
+      this.studentIdCount
+    )
     this.allStudents.push(student)
-    countID += 1
+    this.studentIdCount += 1
     return student
   }
 
   findStudent(id) {
+    if (!id || id.length === 0) throw new Error('please enter a student ID')
     const foundStudent = this.allStudents.find(
       (student) => student.studentId === id
     )
@@ -50,4 +56,4 @@ class CohortManager {
   }
 }
 
-export { CohortManager, countID }
+export { CohortManager }
