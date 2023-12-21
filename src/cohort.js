@@ -40,7 +40,7 @@ class Cohort {
     const student = this.findStudent(studentId)
     const cohort = this.findCohort(cohortName)
     cohort.students.push(student)
-    return student
+    return true
   }
 
   removeCohort(cohortName) {

@@ -64,9 +64,23 @@ describe('Cohort', () => {
   })
 
   describe('add student to specific cohort', () => {
+    beforeEach(() => {
+      cohort.createCohort('Cohort 1')
+    })
+
+    it('a student is successfully added and returns true', () => {
+      // set up
+      cohort.enrolStudent('John', 'Doe', 'johndoe', 'john@doe.com')
+
+      // execute
+      const result = cohort.addStudentToCohort('Cohort 1', 1)
+
+      // verify
+      expect(result).toBeTrue()
+    })
+
     it('cohortList is updated with new student details', () => {
       // set up
-      cohort.createCohort('Cohort 1')
       const student1 = cohort.enrolStudent(
         'John',
         'Doe',
