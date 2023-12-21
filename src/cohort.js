@@ -79,7 +79,7 @@ class Cohort {
 
         const findStudentIndex = findCohort.students.indexOf(findStudent)
         findCohort.students.splice(findStudentIndex, 1)
-
+        
         return findCohort.students
     }
 }
