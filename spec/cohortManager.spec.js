@@ -86,6 +86,74 @@ describe('Cohort Manager:', () => {
     ).toThrowError('Cohort does not exist')
   })
 
+  it('Should throw error if cohort has hit the limit of 24', () => {
+    function generateRandomFirstName() {
+      const firstNames = [
+        'Alice',
+        'Bob',
+        'Charlie',
+        'David',
+        'Eva',
+        'Frank',
+        'Grace',
+        'Henry',
+        'Jane',
+        'John',
+        'Lucie',
+        'Mary',
+        'Miriam'
+      ]
+      const randomIndex = Math.floor(Math.random() * firstNames.length)
+      return firstNames[randomIndex]
+    }
+
+    function generateRandomLastName() {
+      const lastNames = [
+        'Anderson',
+        'Brown',
+        'Clark',
+        'Davis',
+        'Evans',
+        'Fisher',
+        'Green',
+        'Harris',
+        'Cena',
+        'Solomon'
+      ]
+      const randomIndex = Math.floor(Math.random() * lastNames.length)
+      return lastNames[randomIndex]
+    }
+
+    cohort.createCohort('cohort-1')
+    for (let i = 1; i <= 24; i++) {
+      cohort.addStudentToCohort(
+        {
+          firstName: generateRandomFirstName(),
+          lastName: generateRandomLastName(),
+          github: `@${generateRandomLastName()}${Math.floor(
+            Math.random() * 1000
+          )}`,
+          email: `${
+            generateRandomFirstName() + generateRandomLastName()
+          }@mail.com`
+        },
+        'cohort-1'
+      )
+    }
+
+    expect(() =>
+      cohort.addStudentToCohort(
+        {
+          firstName: 'Kye',
+          lastName: 'Yee',
+          github: '@yee0802',
+          email: 'ky@mail.com'
+        },
+        'cohort-1'
+      )
+    ).toThrowError('Cohort has reached its capacity of 24')
+  })
+
   it('should throw error if student input is invalid', () => {
     expect(() => cohort.addStudentToCohort({}, 'cohort-11')).toThrowError(
       "Please input a valid student e.g. {firstName: 'John', lastName: 'Doe', github: '@johndoe', email:'johndoe@mail.com'}"
