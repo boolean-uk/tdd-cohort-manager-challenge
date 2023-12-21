@@ -128,14 +128,17 @@ A cohort should have a list of students. Each student should have a studentID, f
 |||clearStudentCohortName()|studentManager, studentId||student(@object)| student.cohortName = undefined
 |||addStudent()|new input: isFull()| new scenario: isFull returns true| throw new Error('cannot add students - this cohort is full)|
 |||removeStudent()|new input: cohort.occupancy|new scenario: the cohort is empty|throw new Error('no students to be removed - cohort empty')|
+||searchByFirstAndLastName()| searchByFirstName(), searchByLastName(), studentManager.list(@student[]), firstName(@string), lastName(@string)| first and last name found | a list of the students who match|
+|||| first name found only | a list of the students who match|
+|||| last name found only | a list of the students who match|
+|||| no match found | throw new Error('the names provided do not exist in our system')
 ||CohortManager()||||||
 |NEW|isNameNew()|cohortName(@string), cohortList(@Cohort[])|name is found|false|
 ||||name is not found|true|
 |NEW|handleNewCohort()|cohort(@Cohort), nameIsNew(), handleNewItem()|isNameNew returns true|cohortlist()|
 |NEW|||isNameNew returns false|throw new Error('this cohort cannot be added - cohort name already taken)|
 ||Student()|||||new property: cohortName| cohortName default value: undefined|
-||StudentManager() - new: it extends StudentList()|
-|NEW| StudentList()|
+||StudentManager()|
 ||searchByFirstAndLastName()| searchByFirstName(), searchByLastName(), studentManager.list(@student[]), firstName(@string), lastName(@string)| first and last name found | a list of the students who match|
 |||| first name found only | a list of the students who match|
 |||| last name found only | a list of the students who match|
