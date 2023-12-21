@@ -1,89 +1,104 @@
-
 class Cohort {
-    constructor() {
-        this.cohortList = []
+  constructor() {
+    this.cohortList = []
+  }
+
+  createCohort(cohortName) {
+    const newCohort = { name: cohortName, students: [], capacity: 24 }
+    const findCohort = this.cohortList.find(
+      (cohort) => cohort.name === cohortName
+    )
+
+    if (findCohort) {
+      throw new Error('This Cohort already exists, please choose another name!')
+    }
+    if (!cohortName) {
+      throw new Error('Please give a name to your class!')
+    } else {
+      this.cohortList.push(newCohort)
     }
 
-    createCohort(cohortName) {
-        const newCohort = {name: cohortName, students: [], capacity: 24}
-        const findCohort = this.cohortList.find(cohort => cohort.name === cohortName)
-        
-        if(findCohort) {
-            throw new Error('This Cohort already exists, please choose another name!')
+    return this.cohortList
+  }
+
+  searchCohort(cohortName) {
+    const findCohort = this.cohortList.find(
+      (cohort) => cohort.name === cohortName
+    )
+
+    if (!findCohort) {
+      throw new Error('Cohort not found')
+    }
+
+    return findCohort
+  }
+
+  searchStudent(cohortName, studentID) {
+    const findCohort = this.cohortList.find(
+      (cohort) => cohort.name === cohortName
+    )
+    const findStudent = findCohort.students.find(
+      (student) => student.studentID === studentID
+    )
+
+    if (!findStudent) throw new Error('Student not found')
+
+    return findStudent
+  }
+
+  addStudent(cohortName, studentToAdd) {
+    const findCohort = this.cohortList.find(
+      (cohort) => cohort.name === cohortName
+    )
+    const studentExists = findCohort.students.find(
+      (student) => student.studentID === studentToAdd.studentID
+    )
+
+    if (studentExists) {
+      throw new Error('this student already exists, add another student!')
+    }
+
+    for (let i = 0; i < this.cohortList.length; i++) {
+      for (let j = 0; j < this.cohortList[i].students.length; j++) {
+        if (studentToAdd.userName === this.cohortList[i].students[j].userName) {
+          return 'this student already enrolled in another Cohort!'
         }
-        if (!cohortName) {
-            throw new Error('Please give a name to your class!')
-        } else {
-            this.cohortList.push(newCohort)
-        }
-
-        return this.cohortList
+      }
     }
 
-    searchCohort(cohortName) {
-        const findCohort = this.cohortList.find(cohort => cohort.name === cohortName)
-
-        if (!findCohort) {
-            throw new Error("Cohort not found")
-        }
-
-        return findCohort
+    if (findCohort.students.length > findCohort.capacity) {
+      throw new Error('Cohort is full, student cannot be added!')
     }
 
-    searchStudent(cohortName, studentID) {
-        const findCohort = this.cohortList.find(cohort => cohort.name === cohortName)
-        const findStudent = findCohort.students.find(student => student.studentID === studentID)
+    findCohort.students.push(studentToAdd)
 
-        if (!findStudent) throw new Error("Student not found")
+    return findCohort.students
+  }
 
-        return findStudent
-    }
+  removeCohort(cohortName) {
+    const findCohort = this.cohortList.find(
+      (cohort) => cohort.name === cohortName
+    )
+    const findIndex = this.cohortList.indexOf(findCohort)
 
-    addStudent(cohortName, studentToAdd) {
-        const findCohort = this.cohortList.find(cohort => cohort.name === cohortName)
-        const studentExists = findCohort.students.find(student => student.studentID === studentToAdd.studentID)
+    this.cohortList.splice(findIndex, 1)
 
-        if(studentExists) {
-            throw new Error("this student already exists, add another student!")
-        }
+    return this.cohortList
+  }
 
-        for(let i = 0; i < this.cohortList.length; i++) {
-            for(let j = 0; j < this.cohortList[i].students.length; j++) {
-                if( studentToAdd.userName === this.cohortList[i].students[j].userName ) {
-                    return "this student already enrolled in another Cohort!"
-                }
-            }
-        }
-       
-        if(findCohort.students.length > findCohort.capacity){
-            throw new Error("Cohort is full, student cannot be added!")
-        } 
+  removeStudent(cohortName, studentID) {
+    const findCohort = this.cohortList.find(
+      (cohort) => cohort.name === cohortName
+    )
+    const findStudent = findCohort.students.find(
+      (student) => student.studentID === studentID
+    )
 
-        findCohort.students.push(studentToAdd)
-      
-        return findCohort.students       
-    }
+    const findStudentIndex = findCohort.students.indexOf(findStudent)
+    findCohort.students.splice(findStudentIndex, 1)
 
-    removeCohort(cohortName) {
-        const findCohort = this.cohortList.find(cohort => cohort.name === cohortName)
-        const findIndex = this.cohortList.indexOf(findCohort)
-
-        this.cohortList.splice(findIndex, 1)
-
-        return this.cohortList
-    }
-
-    removeStudent(cohortName, studentID) {
-        const findCohort = this.cohortList.find(cohort => cohort.name === cohortName)
-        const findStudent = findCohort.students.find(student => student.studentID === studentID)
-
-        const findStudentIndex = findCohort.students.indexOf(findStudent)
-        findCohort.students.splice(findStudentIndex, 1)
-        
-        return findCohort.students
-    }
+    return findCohort.students
+  }
 }
-
-
 
 export default Cohort
