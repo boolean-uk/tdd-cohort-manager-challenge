@@ -242,5 +242,12 @@ describe('Cohort Manger', () => {
       expect(expectationOne.length).toEqual(3)
       expect(expectationTwo.length).toEqual(1)
     })
+
+    it('/ if student ID does not match any student IDs', () => {
+      const expectation = 'student not found'
+      const action = () => cohortManager.removeStudent(7)
+
+      expect(action).toThrowError(expectation)
+    })
   })
 })
