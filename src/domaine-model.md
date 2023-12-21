@@ -33,14 +33,24 @@ CohortManager | this.cohortList, this.allStudents | createCohort(name(@string)) 
 | | | findCohort(name(@string)) | a teacher wants to find a specific cohort | a valid cohort name is inputted |returns the cohort object | `Cohort { name: name, studentList = []}`
 | | | | | no paramter is inputed |throws an error | "Error: 'please enter a cohort name'"
 | | | | |no cohort by that name is found |throws an error |"Error: 'no cohort found'
+| | |createStudent(firstName(@string), lastName(@string), gitHub(@string),email(@string)) | A teacher wants to create a new student profile | valid parameters added | returns the student object with as many details as possible and adds to allStudents list  | `Student {studentID: 1, firstName: Steve, lastName: Stevenson, this.gitHub: Steveyboy, this.email: steve@hotmail.com}`
+| | | | | only a name was added | returns object with only a name and empty strings |
+| | | | | No parameter added| throws an error |`"Error: please enter a name to add student"`
+| | | addStudentToCohort(studentID(@int), cohort(@string)) | a teacher wants to specify which cohort the student belongs in|a valid studentID and cohort inputed | pushes student to corresponding cohort |`Student {studentID: 1, firstName: Steve, lastName: Stevenson, this.gitHub: Steveyboy, this.email: steve@hotmail.com}`
+| | | | |if one of the parameters is left empty |throws an error |`"Error: please enter student and cohort`
+| | | | |if parameter does not match a student or cohort | throws an error| `"Could not find student or cohort"`
+| | | removeStudent(studentID(@Int), cohort(@string))|a teacher would like to remove a student from the student list or a specific cohort | if a valid studentID and a cohort is inputed |The corresponding student is removed from the corresponding cohort | `Student {studentID: 1, firstName: Steve, lastName: Stevenson, this.gitHub: Steveyboy, this.email: steve@hotmail.com}`
+| | | | |if only a studentID is inputed | removes that student from allStudents list| `allStudents = []`
+| | | | |if only a cohort is entered |throws an error | `"Error: please enter a student`
+| | | | | if student or cohort does not exist | throws an error |`"Error: student or cohort does not exist`
 
 ## COHORT
 
 Objects | Properties | Methods | Notes | Scenario | Output | Example
 ------- | ---------- | -------- | ----- | -------- | ------ | -------
 | | | | | | |
-| Cohort | this.studentList | createStudent(firstName(@string), lastName(@string), gitHub(@string),email(@string)) | A teacher wants to add a student to a cohort | valid parameters added | returns the student class with as many details as possible  | `Student: {studentId: 1, firstName: 'string', lastName: 'string', gitHub: 'string',email: 'string'}`
-| | | | | only a name was added | returns object with only a name and empty strings |
+| Cohort | this.name, this.studentList |||||
+| | | | | | |
 | | | | | | |
 
 ## STUDENT
