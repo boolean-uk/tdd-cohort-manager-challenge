@@ -14,5 +14,9 @@ class CohortManager extends Manager {
     this.list.splice(index, 1)
     return this.list
   }
+
+  isNameNew(name) {
+    return !this.searchBy(name)
+  }
 }
 export { CohortManager }

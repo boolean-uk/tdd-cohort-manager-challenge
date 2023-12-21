@@ -31,4 +31,18 @@ describe('Manager', () => {
     const result = () => manager.removeCohort('purple')
     expect(result).toThrowError('cohort name not found')
   })
+  it('checks that a cohort name is new', () => {
+    const cohort1 = new Cohort('name')
+    manager.setList(cohort1)
+    const result = manager.isNameNew('new name')
+    expect(result).toBeTrue()
+  })
+  it('checks that a cohort name is not new', () => {
+    const cohort1 = new Cohort('name')
+    const cohort2 = new Cohort('new name')
+    manager.setList(cohort1)
+    manager.setList(cohort2)
+    const result = manager.isNameNew('new name')
+    expect(result).toBeFalse()
+  })
 })
