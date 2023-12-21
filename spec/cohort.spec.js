@@ -1,6 +1,7 @@
 import { Cohort, Student } from '../src/cohort.js'
 
 describe('Cohort Manager', () => {
+  let cohorts
   let cohort
 
   beforeEach(() => {
@@ -29,7 +30,7 @@ describe('Cohort Manager', () => {
     cohort.create()
     cohort.remove()
     expect(cohorts.length).toBe(0)
-  });
+  })
 
   it('should remove a student from a cohort', () => {
     const student = new Student('19', 'Jane', 'Doe', 'janeDoeGitHub', 'jane.doe@example.com')
