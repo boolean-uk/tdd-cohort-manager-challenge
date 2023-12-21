@@ -82,6 +82,18 @@ describe('cohort', () => {
       'capacity exceeded - there should never be more than 24 students'
     )
   })
+  it('does not add a student to a cohort if the student is already enrolled in another, and throws an error instead', () => {
+    const cohort1 = new Cohort('best cohort ever', cohortManager)
+    const cohort2 = new Cohort('some other cohort', cohortManager)
+    cohortManager.handleNewItem(cohort1)
+    cohortManager.handleNewItem(cohort2)
+    cohort1.addStudent(2, studentManager)
+    const result = () => cohort2.addStudent(2, studentManager)
+    expect(result).toThrowError(
+      'this student is already enrolled elsewhere - cannot be added to this cohort'
+    )
+    expect(cohort2.students).toEqual([])
+  })
   it('add a specific student to a cohort and increase occupancy by one and set the student cohort name', () => {
     const cohort1 = new Cohort('best cohort ever', cohortManager)
     const result = cohort1.addStudent(2, studentManager)
