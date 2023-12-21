@@ -66,6 +66,4 @@ Objects | Properties | Methods | Notes | Scenario | Output | Example
 Objects | Properties | Methods | Notes | Scenario | Output | Example
 ------- | ---------- | -------- | ----- | -------- | ------ | -------
 | | | | | | |
-| Student |this.studentID, this.firstName, this.lastName, this.gitHub, this.email | | | | |
-
-| | | | | | |
+| Student |this.studentID, this.firstName, this.lastName, this.gitHub, this.email, this.cohorts | | | | |
