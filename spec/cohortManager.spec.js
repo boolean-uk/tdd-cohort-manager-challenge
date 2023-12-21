@@ -154,6 +154,43 @@ describe('Cohort Manager:', () => {
     ).toThrowError('Cohort has reached its capacity of 24')
   })
 
+  it('should throw error if student already exists in any cohort', () => {
+    cohort.createCohort('cohort-1')
+    cohort.createCohort('cohort-2')
+    cohort.addStudentToCohort(
+      {
+        firstName: 'Kye',
+        lastName: 'Yee',
+        github: '@yee0802',
+        email: 'ky@mail.com'
+      },
+      'cohort-1'
+    )
+
+    expect(() =>
+      cohort.addStudentToCohort(
+        {
+          firstName: 'Kye',
+          lastName: 'Yee',
+          github: '@yee0802',
+          email: 'ky@mail.com'
+        },
+        'cohort-1'
+      )
+    ).toThrowError('Student already exists')
+    expect(() =>
+      cohort.addStudentToCohort(
+        {
+          firstName: 'Kye',
+          lastName: 'Yee',
+          github: '@yee0802',
+          email: 'ky@mail.com'
+        },
+        'cohort-2'
+      )
+    ).toThrowError('Student already exists')
+  })
+
   it('should throw error if student input is invalid', () => {
     expect(() => cohort.addStudentToCohort({}, 'cohort-11')).toThrowError(
       "Please input a valid student e.g. {firstName: 'John', lastName: 'Doe', github: '@johndoe', email:'johndoe@mail.com'}"
