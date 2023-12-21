@@ -1,5 +1,3 @@
-import Student from '../src/Student.js'
-
 class Cohort {
   constructor(name) {
     this.CohortName = name
