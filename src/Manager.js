@@ -12,8 +12,13 @@ class Manager {
   }
 
   findCohortByName(name) {
-    return this.cohorts.find((cohort) => cohort.CohortName === name)
+    const foundCohort = this.cohorts.find(
+      (cohort) => cohort.CohortName === name
+    )
+    if (!foundCohort) {
+      throw new Error('Cohort does not exist')
+    }
+    return foundCohort
   }
 }
-
 export default Manager

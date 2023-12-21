@@ -65,4 +65,10 @@ describe('Manager', () => {
       cohort.removeStudentByName('NonExistentStudent')
     }).toThrowError('Student does not exist')
   })
+
+  it('should throw an error when trying to find a non-existent cohort', () => {
+    expect(() => {
+      manager.findCohortByName('NonExistentCohort')
+    }).toThrowError('Cohort does not exist')
+  })
 })
