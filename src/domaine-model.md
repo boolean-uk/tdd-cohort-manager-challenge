@@ -41,12 +41,16 @@ CohortManager | this.cohortList, this.allStudents | createCohort(name(@string)) 
 | | | | |if no parameter was inputted |throws an error |`"Error: 'please enter a student ID'`
 | | | addStudentToCohort(studentID(@int), cohort(@string)) | a teacher wants to specify which cohort the student belongs in|a valid studentID and cohort inputed | pushes student to corresponding cohort |`Student {studentID: 1, firstName: Steve, lastName: Stevenson, this.gitHub: Steveyboy, this.email: steve@hotmail.com}`
 | | | | |if one of the parameters is left empty |throws an error |`"Error: please enter both student and cohort`
-| | | | |if parameter does not match a student| throws an error| `"student not found"`
-| | | | |if parameter does not match a cohort| throws an error| `"No cohort found with that name"`
-| | | removeStudent(studentID(@Int), cohort(@string))|a teacher would like to remove a student from the student list or a specific cohort | if a valid studentID and a cohort is inputed |The corresponding student is removed from the corresponding cohort | `Student {studentID: 1, firstName: Steve, lastName: Stevenson, this.gitHub: Steveyboy, this.email: steve@hotmail.com}`
-| | | | |if only a studentID is inputed | removes that student from allStudents list| `allStudents = []`
-| | | | |if only a cohort is entered |throws an error | `"Error: please enter a student`
-| | | | | if student or cohort does not exist | throws an error |`"Error: student or cohort does not exist`
+| | | | |if parameter does not match a student| throws an error| `'Error: "student not found"'`
+| | | | |if parameter does not match a cohort| throws an error| `'Error: "No cohort found with that name"'`
+| | | removeStudentFromCohort(studentID(@Int), cohort(@string))|a teacher would like to remove a student from a specific cohort | if a valid studentID and a cohort is inputed |The corresponding student is removed from the corresponding cohort | 'removed student no longer exists in student list'
+| | | | |if only a studentID is inputed | throws Error | `'Error: "please enter a cohort name"'`
+| | | | |if only a cohort is entered |throws an error | `"Error: please enter a student ID`
+| | | | | if student does not exist | throws an error |`'"Error: "student not found"'`
+| | | | | if cohort does not exist | throws an error |`'Error: "No cohort found with that name"'`
+| | | removeStudent(studentId(@Int))|a teacher wantes to remove student entirely | a valid id is entered|removes student from enitre cohort manager | `Student is permanently removed`
+| | | | | if student Id does not match| throws an error | `'Error: "student not found"'`
+| | | | | if no parameter is inputted | throws an error | `'Error: "please enter a student ID"'`
 
 ## COHORT
 
