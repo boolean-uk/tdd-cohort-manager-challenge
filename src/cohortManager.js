@@ -26,6 +26,17 @@ class CohortManager {
     }
     return existingCohort
   }
+
+  addStudentToCohort(cohortName, student) {
+    const existingCohort = this.cohorts.find(
+      (cohort) => cohort.name === cohortName
+    )
+    if (!existingCohort) {
+      throw new Error('Cohort does not exist')
+    }
+    existingCohort.students.push(student)
+    return existingCohort
+  }
 }
 
 export default CohortManager

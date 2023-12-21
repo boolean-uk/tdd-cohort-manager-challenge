@@ -1,4 +1,5 @@
 import CohortManager from '../src/cohortManager.js'
+import Student from '../src/student.js'
 
 describe('CohortManager', () => {
   let cohort
@@ -40,5 +41,22 @@ describe('CohortManager', () => {
     expect(() => {
       cohort.findCohort(result)
     }).toThrowError('Cohort does not exist')
+  })
+
+  it('should add a student to a cohort', () => {
+    const cohortName = 'cohort-1'
+    cohort.createCohort(cohortName)
+    const student = new Student(
+      1,
+      'Pierluigi',
+      'Capirci',
+      'PCapid3v',
+      'pierluigi.capirci@gmail.com'
+    )
+    cohort.addStudentToCohort(cohortName, student)
+    expect(cohort.findCohort(cohortName).students.length).toBe(1)
+    expect(cohort.findCohort(cohortName).students[0].firstName).toBe(
+      'Pierluigi'
+    )
   })
 })
