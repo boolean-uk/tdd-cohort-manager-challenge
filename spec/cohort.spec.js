@@ -79,6 +79,12 @@ describe('cohort', () => {
     expect(result[0].lastName).toEqual('Smith')
     expect(cohort1.occupancy).toEqual(1)
   })
+  it('throws an error if attempt to add students while the cohort is full', () => {
+    const cohort = new Cohort('full cohort')
+    cohort.occupancy = 24
+    const result = () => cohort.addStudent(1, studentManager)
+    expect(result).toThrowError('cannot add students - this cohort is full')
+  })
   it('this student does not exist in the system', () => {
     const cohort1 = new Cohort('best cohort ever')
     const result = () => cohort1.addStudent(576, studentManager)

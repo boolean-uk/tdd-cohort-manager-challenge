@@ -11,6 +11,9 @@ class Cohort {
   }
 
   addStudent(studentId, studentManager) {
+    if (this.isFull()) {
+      throw new Error('cannot add students - this cohort is full')
+    }
     const foundStudent = studentManager.searchSchoolById(studentId)
     this.students.push(foundStudent)
     this.increaseOccupancyByOne()
