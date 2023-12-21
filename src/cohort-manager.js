@@ -41,6 +41,13 @@ class CohortManager {
     countID += 1
     return student
   }
+
+  findStudent(id) {
+    const foundStudent = this.allStudents.find(
+      (student) => student.studentId === id
+    )
+    return foundStudent
+  }
 }
 
 export { CohortManager, countID }
