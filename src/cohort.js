@@ -1,7 +1,10 @@
 class Cohort {
-  constructor(cohortName) {
+  constructor(cohortName, cohortManager) {
     if (!cohortName) {
       throw new Error('cohort could not be created - missing input')
+    }
+    if (!cohortManager.isNameNew(cohortName)) {
+      throw new Error('cannot create cohort - this name is already taken')
     }
     this.cohortName = cohortName
     this.id = undefined
