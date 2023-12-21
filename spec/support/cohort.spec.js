@@ -51,5 +51,26 @@ describe('Cohort', () => {
         expect(result).toEqual(expected)
     })
 
+    it('throws error if same student exists in multiple cohorts', () => {
+        cohort.createCohort('Cohort 1')
+        cohort.createCohort('Cohort 2')
+        cohort.addStudent('Cohort 1', {
+            studentID: 1,
+            fitrstName: 'John',
+            lastName: 'Doe',
+            userName: 'JohnDoe',
+            email: 'johnDoe@gmail.com'
+        })
+
+        const result = cohort.addStudent('Cohort 2', {
+            studentID: 1,
+            fitrstName: 'John',
+            lastName: 'Doe',
+            userName: 'JohnDoe',
+            email: 'johnDoe@gmail.com'
+        })
+        expect(result).toEqual("this student already enrolled in another Cohort!")
+
+    })
     
 }) 

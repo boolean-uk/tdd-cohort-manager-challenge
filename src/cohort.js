@@ -13,9 +13,6 @@ class Cohort {
         }
         if (!cohortName) {
             throw new Error('Please give a name to your class!')
-        }
-        if(this.cohortList.length > this.capacity) {
-            throw new Error("Cohort list is full, please create another list!")
         } else {
             this.cohortList.push(newCohort)
         }
@@ -41,12 +38,18 @@ class Cohort {
             throw new Error("this student already exists, add another student!")
         }
 
-        for(let i = 0; i < findCohort.students.length; i++) {
-            if( studentToAdd.userName === findCohort.students[i].userName ) {
-                throw new Error("this student already enrolled in another Cohort!")
+        for(let i = 0; i < this.cohortList.length; i++) {
+            for(let j = 0; j < this.cohortList[i].students.length; j++) {
+                if( studentToAdd.userName === this.cohortList[i].students[j].userName ) {
+                    return "this student already enrolled in another Cohort!"
+                }
             }
         }
        
+        if(findCohort.students.length > findCohort.capacity){
+            throw new Error("Cohort is full, student cannot be added!")
+        } 
+        console.log('findCohort', findCohort)
         findCohort.students.push(studentToAdd)
       
         return findCohort.students       
