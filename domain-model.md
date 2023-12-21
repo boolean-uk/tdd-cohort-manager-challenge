@@ -2,17 +2,17 @@
 
 ## Creating and deleting cohorts
 
-``
+```
 As a user
 So I can start a cohort
 I'd like to create a cohort by name
-``
+```
 
-``
+```
 As a user
 So I can finish a cohort
 I'd like to delete a cohort by name
-``
+```
 
 ### Keywords
 
@@ -28,11 +28,11 @@ I'd like to delete a cohort by name
 
 ## Searching the cohort
 
-``
+```
 As a user
 So I can find a cohort
 I'd like to search for a cohort by name
-``
+```
 
 ### Keywords
 
@@ -47,17 +47,17 @@ I'd like to search for a cohort by name
 
 ## 
 
-``
+```
 As a user
 So I can add a student to a cohort
 I'd like to add a student by name
-``
+```
 
-``
+```
 As a user
 So I can remove a student from a cohort
 I'd like to remove a student by name
-``
+```
 
 ### Keywords
 
