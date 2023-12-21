@@ -63,6 +63,8 @@ class CohortManager {
     const foundStudent = this.findStudent(studentId)
     const foundCohort = this.findCohort(cohort)
 
+    foundStudent.cohorts.push(cohort)
+
     foundCohort.studentList.push(foundStudent)
     return foundCohort.studentlist
   }
@@ -79,6 +81,17 @@ class CohortManager {
     const studentIndex = foundCohort.studentList.indexOf(foundStudent)
 
     foundCohort.studentList.splice(studentIndex, 1)
+    return true
+  }
+
+  removeStudent(studentId) {
+    const foundStudent = this.findStudent(studentId)
+    foundStudent.cohorts.forEach((cohort) => {
+      this.removeStudentFromCohort(studentId, cohort)
+    })
+
+    const studentIndex = this.allStudents.indexOf(foundStudent)
+    this.allStudents.splice(studentIndex, 1)
     return true
   }
 }
