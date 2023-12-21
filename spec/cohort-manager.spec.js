@@ -105,7 +105,6 @@ describe('Cohort Manger', () => {
       cohortManager.createStudent('Alex')
       cohortManager.createStudent('Jimmy')
       cohortManager.createStudent('Molly')
-      console.log(cohortManager.allStudents)
     })
     it('/ a valid student ID is inputted', () => {
       const expectation = 'Jimmy'
@@ -124,6 +123,30 @@ describe('Cohort Manger', () => {
       const action = () => cohortManager.findStudent(6)
 
       expect(action).toThrowError(expectation)
+    })
+  })
+  describe('/ addStudentToCohort', () => {
+    beforeEach(() => {
+      cohortManager.createCohort('Cohort 1')
+      cohortManager.createCohort('Cohort 2')
+      cohortManager.studentIdCount = 1
+      cohortManager.createStudent('Alex')
+      cohortManager.createStudent('Jimmy')
+      cohortManager.createStudent('Molly')
+      cohortManager.createStudent('Jane')
+    })
+    it('/ adds to a specific cohort', () => {
+      const expectationOne = 'Alex'
+      const expectationTwo = 'Molly'
+
+      cohortManager.addStudentToCohort(1, 'Cohort 1')
+      cohortManager.addStudentToCohort(3, 'Cohort 2')
+
+      const resultOne = cohortManager.findCohort('Cohort 1')
+      const resultTwo = cohortManager.findCohort('Cohort 2')
+
+      expect(resultOne.studentList[0].firstName).toEqual(expectationOne)
+      expect(resultTwo.studentList[0].firstName).toEqual(expectationTwo)
     })
   })
 })
