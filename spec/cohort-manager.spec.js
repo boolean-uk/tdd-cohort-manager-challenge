@@ -87,5 +87,16 @@ describe('Cohort Manger', () => {
       expect(cohortManager.allStudents[0].firstName).toEqual(expectationOne)
       expect(cohortManager.allStudents[0].lastName).toEqual(expecationTwo)
     })
+    it('/ if no name is added', () => {
+      const expectation = 'please enter a name to add student'
+      const action = () =>
+        cohortManager.createStudent(
+          '',
+          'Stevenson',
+          '/Stevyboy',
+          'steve@hotmail.com'
+        )
+      expect(action).toThrowError(expectation)
+    })
   })
 })
