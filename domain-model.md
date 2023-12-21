@@ -28,6 +28,8 @@ A cohort should have a list of students. Each student should have a studentID, f
 ||Cohort()|||||properties: id(@string), studentCount(@integer) cohortName(@string), students(@Student[])|
 |1||constructor()|cohortName(@string)|invalid input| throw error|
 |||||valid input| new instance of class Cohort()|
+|||searchById()|studentId(@string)|student found| cohort(@Cohort)|
+|||||student not found| throw error|
 |3||addStudent()|id(@string)|student found|this.students(@Student[])|
 |||||student not found|throw error|
 |5||removeStudent()|id(@string)|student found|this.students(@cohort[])|
