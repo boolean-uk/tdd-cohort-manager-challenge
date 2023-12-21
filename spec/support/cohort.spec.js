@@ -118,5 +118,32 @@ describe('Cohort', () => {
         cohort.removeCohort('Cohort 1')
         expect(cohort.cohortList.length).toEqual(1)
     })
+
+    // Removing a student from a specific cohort
+    it('removes a student from a specific cohort', () => {
+        cohort.createCohort('Cohort 1')
+
+        const student1 = {
+            studentID: 1,
+            fitrstName: 'John',
+            lastName: 'Doe',
+            userName: 'JohnDoe',
+            email: 'johnDoe@gmail.com'
+        }
+
+        const student2 = {
+            studentID: 2,
+            fitrstName: 'Dylan',
+            lastName: 'Woods',
+            userName: 'Dylan',
+            email: 'dylanwood@gmail.com'
+        }
+
+        cohort.addStudent('Cohort 1', student1)
+        cohort.addStudent('Cohort 1', student2)
+
+        const result = cohort.removeStudent('Cohort 1', student2)
+        expect(result).toEqual([student1])
+    })
     
 }) 
