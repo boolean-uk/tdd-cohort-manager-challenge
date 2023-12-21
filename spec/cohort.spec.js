@@ -4,7 +4,7 @@ describe('Cohort Manager', () => {
   let cohort
 
   beforeEach(() => {
-    cohort = new Cohort('SampleCohort');
+    cohort = new Cohort('SampleCohort')
   })
 
   test('should create a cohort', () => {
