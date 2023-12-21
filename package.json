@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  
   "scripts": {
     "test": "npx eslint src && npx jasmine",
     "prepare": "husky install"
