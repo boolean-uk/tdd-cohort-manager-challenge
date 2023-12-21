@@ -50,9 +50,9 @@ class CohortManager {
         }
     }
 
-    // getfullList() {
-    //     return this.cohorts
-    // }
+    getfullList() {
+        return this.cohorts
+    }
 
 }
 

@@ -64,4 +64,14 @@ describe('othello', () => {
         expect(cohort.studentList).toEqual([])
     })
 
+    it('get the full cohort list', () => {
+        cohortManager.createCohort('class 5');
+        cohortManager.createCohort('class 3');
+        cohortManager.createCohort('class 5');
+        cohortManager.createCohort('class 3');
+
+       const listOfCohort =  cohortManager.getfullList()
+       expect(listOfCohort.length).toEqual(4)
+    })
+
 })
