@@ -17,7 +17,7 @@ class Cohort {
     if (studentIndex === -1) {
       throw new Error('This student does not exist')
     }
-    
+
     this.students.splice(studentIndex, 1)
   }
 }
