@@ -119,5 +119,11 @@ describe('Cohort Manger', () => {
 
       expect(action).toThrowError(expectation)
     })
+    it('/ no student found', () => {
+      const expectation = 'student not found'
+      const action = () => cohortManager.findStudent(6)
+
+      expect(action).toThrowError(expectation)
+    })
   })
 })
