@@ -18,6 +18,19 @@ class CohortManager {
       }
     }
 
+
+
+    
+  searchCohort(cohortName) {
+    const foundCohort = this.cohorts.find(
+      (cohort) => cohort.cohortName === cohortName
+    )
+    if (!foundCohort) {
+      throw Error('Cohort cant be found!')
+    }
+    return foundCohort
+  }
+
 }
 
 export default CohortManager

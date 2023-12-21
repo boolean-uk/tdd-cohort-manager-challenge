@@ -35,6 +35,20 @@ describe('Cohort Manager', () => {
   });
 
 
+  
+  
+  describe('searchCohort', () => {
+    it('should search cohort by name!', () => {
+  const expected = cohortManager.createCohort('class 11');
+  cohortManager.createCohort('class 0');
+  const expected2 = cohortManager.createCohort('class 13');
+  cohortManager.createCohort('class 4');
+  const result = cohortManager.searchCohort('class 11');
+  const result2 = cohortManager.searchCohort('class 13');
+  expect(result).toEqual(expected);
+  expect(result2).toEqual(expected2);
+  });
 
+});
 
 });
