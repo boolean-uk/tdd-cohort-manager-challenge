@@ -174,4 +174,35 @@ describe('Cohort Manger', () => {
       expect(action).toThrowError(expectation)
     })
   })
+  
+  describe('/ removeStudent', () => {
+    beforeEach(() => {
+      cohortManager.createCohort('Cohort 1')
+      cohortManager.createCohort('Cohort 2')
+
+      cohortManager.studentIdCount = 1
+      cohortManager.createStudent('Alex')
+      cohortManager.createStudent('Jimmy')
+      cohortManager.createStudent('Molly')
+      cohortManager.createStudent('Jane')
+
+      cohortManager.addStudentToCohort(1, 'Cohort 1')
+      cohortManager.addStudentToCohort(2, 'Cohort 1')
+      cohortManager.addStudentToCohort(3, 'Cohort 2')
+      cohortManager.addStudentToCohort(4, 'Cohort 2')
+    })
+
+    it('/ removes a student from a cohort', () => {
+      const expectation = 1
+      const result = cohortManager.findCohort('Cohort 1')
+
+      console.log('.......BEFORE REMOVAL........', result.studentList)
+
+      cohortManager.removeStudent(1, 'Cohort 1')
+
+      console.log('........AFTER REMOVAL.........', result.studentList)
+
+      expect(result.studentList.length).toEqual(expectation)
+    })
+  })
 })
