@@ -52,6 +52,7 @@ class CohortManager {
     const foundStudent = this.allStudents.find(
       (student) => student.studentId === id
     )
+    if (!foundStudent) throw new Error('student not found')
     return foundStudent
   }
 }
