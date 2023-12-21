@@ -292,4 +292,68 @@ describe('Cohort Manager:', () => {
       'Cohort does not exist'
     )
   })
+
+  it('returns students that match the first name and last name', () => {
+    const student1 = new Student(
+      1,
+      'John',
+      'Doe',
+      '@johndoe',
+      'johndoe@mail.com'
+    )
+
+    const student2 = new Student(
+      2,
+      'John',
+      'Doe',
+      '@johndoe2',
+      'johndoe2@mail.com'
+    )
+
+    const expected = [student1, student2]
+
+    cohort.createCohort('cohort-1')
+    cohort.addStudentToCohort(
+      {
+        firstName: 'John',
+        lastName: 'Doe',
+        github: '@johndoe',
+        email: 'johndoe@mail.com'
+      },
+      'cohort-1'
+    )
+    cohort.addStudentToCohort(
+      {
+        firstName: 'John',
+        lastName: 'Doe',
+        github: '@johndoe2',
+        email: 'johndoe2@mail.com'
+      },
+      'cohort-1'
+    )
+    cohort.addStudentToCohort(
+      {
+        firstName: 'Kye',
+        lastName: 'Yee',
+        github: '@yee0802',
+        email: 'kye@mail.com'
+      },
+      'cohort-1'
+    )
+    const result = cohort.findStudentsByName('John', 'Doe')
+
+    expect(result).toEqual(expected)
+  })
+
+  it('should throw error if no student found with name', () => {
+    expect(() => cohort.findStudentsByName('Koka', 'Lokaka')).toThrowError(
+      'No student found by that name'
+    )
+  })
+
+  it('should throw error if input is invalid', () => {
+    expect(() => cohort.findStudentsByName([])).toThrowError(
+      "Please input a valid student name e.g. ('John','Doe')"
+    )
+  })
 })
