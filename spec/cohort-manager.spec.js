@@ -83,7 +83,7 @@ describe('Cohort Manger', () => {
       const expectationOne = 'Steve'
       const expecationTwo = ''
       cohortManager.createStudent('Steve')
-      console.log(cohortManager.allStudents)
+
       expect(cohortManager.allStudents[0].firstName).toEqual(expectationOne)
       expect(cohortManager.allStudents[0].lastName).toEqual(expecationTwo)
     })
@@ -99,9 +99,18 @@ describe('Cohort Manger', () => {
       expect(action).toThrowError(expectation)
     })
   })
-  // describe('/ addStudentToCohort', () => {
-  //   beforeEach(() => {
+  describe('/ findStudent', () => {
+    beforeEach(() => {
+      cohortManager.createStudent('Alex')
+      cohortManager.createStudent('Jimmy')
+      cohortManager.createStudent('Molly')
+    })
+    it('/ a valid student ID is inputted', () => {
+      const expectation = 'Jimmy'
+      const result = cohortManager.findStudent(2)
+      console.log(result)
 
-  //   })
-  // })
+      expect(result.firstName).toEqual(expectation)
+    })
+  })
 })
