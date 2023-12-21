@@ -163,6 +163,27 @@ class CohortManager {
       throw new Error('Cohort does not exist')
     }
   }
+
+  findStudentsByName(firstName, lastName) {
+    if (typeof firstName !== 'string' || typeof lastName !== 'string') {
+      throw new Error("Please input a valid student name e.g. ('John','Doe')")
+    }
+
+    const students = []
+
+    this.cohorts.forEach((cohort) => {
+      cohort.students.forEach((student) => {
+        if (student.firstName === firstName && student.lastName === lastName)
+          students.push(student)
+      })
+    })
+
+    if (students.length > 0) {
+      return students
+    } else {
+      throw new Error('No student found by that name')
+    }
+  }
 }
 
 export default CohortManager
