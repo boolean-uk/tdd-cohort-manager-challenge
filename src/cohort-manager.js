@@ -57,6 +57,8 @@ class CohortManager {
   }
 
   addStudentToCohort(studentId, cohort) {
+    if (!studentId || studentId.length === 0 || !cohort || cohort.lenth === 0)
+      throw new Error('please enter both student and cohort')
     const foundStudent = this.findStudent(studentId)
     const foundCohort = this.findCohort(cohort)
 
