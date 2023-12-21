@@ -34,7 +34,7 @@ CohortManager | this.cohortList, this.allStudents | createCohort(name(@string)) 
 | | | | | no paramter is inputed |throws an error | "Error: 'please enter a cohort name'"
 | | | | |no cohort by that name is found |throws an error |"Error: 'no cohort found'
 | | |createStudent(firstName(@string), lastName(@string), gitHub(@string),email(@string)) | A teacher wants to create a new student profile | valid parameters added | returns the student object with as many details as possible and adds to allStudents list  | `Student {studentID: 1, firstName: Steve, lastName: Stevenson, this.gitHub: Steveyboy, this.email: steve@hotmail.com}`
-| | | | | only a name was added | returns object with only a name and empty strings |
+| | | | | only a name was added | returns object with only a name and empty strings | Student {studentID: 1, firstName: Steve, lastName: '', this.gitHub: '', this.email: ''}
 | | | | | No parameter added| throws an error |`"Error: please enter a name to add student"`
 | | | addStudentToCohort(studentID(@int), cohort(@string)) | a teacher wants to specify which cohort the student belongs in|a valid studentID and cohort inputed | pushes student to corresponding cohort |`Student {studentID: 1, firstName: Steve, lastName: Stevenson, this.gitHub: Steveyboy, this.email: steve@hotmail.com}`
 | | | | |if one of the parameters is left empty |throws an error |`"Error: please enter student and cohort`
