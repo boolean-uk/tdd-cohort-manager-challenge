@@ -91,7 +91,7 @@ A cohort should have a list of students. Each student should have a studentID, f
 - Cohort can't exist without a name - DONE (will throw an error)
 - Search for student by student ID - DONE (searchCohortById() and searchSchoolById())
 - A student can't be removed from a cohort if it wasn't present in the first place. - DONE (will throw an error)
-- Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit.
+- Cohorts have fixed capacity at 24 students. - DONE Adding students is not possible beyond the 24 limit. - DONE, will throw an error
 
 ### todo
 
@@ -127,7 +127,6 @@ A cohort should have a list of students. Each student should have a studentID, f
 |||clearStudentCohortNameOnRemoval()|studentManager, studentId||student(@object)| student.cohortName = undefined
 |||addStudent()|new input: isFull()| new scenario: isFull returns true| throw new Error('cannot add students - this cohort is full)|
 |||removeStudent()|new input: cohort.occupancy|new scenario: the cohort is empty|throw new Error('no students to be removed - cohort empty')|
-
 ||CohortManager()||||||
 |NEW|isNameNew()|cohortName(@string), cohortList(@Cohort[])|name is found|false|
 ||||name is not found|true|
