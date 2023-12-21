@@ -1,4 +1,5 @@
 import Cohort from './cohort.js'
+import { Student, countID } from './student.js'
 
 class CohortManager {
   constructor() {

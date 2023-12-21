@@ -1,6 +1,8 @@
+let countID = 1
+
 class Student {
   constructor(studentID, firstName, lastName, gitHub, email) {
-    this.studentId = 0
+    this.studentId = studentID
     this.firstName = firstName
     this.lastname = lastName
     this.gitHub = gitHub
@@ -8,4 +10,4 @@ class Student {
   }
 }
 
-export default Student
+export { Student, countID }
