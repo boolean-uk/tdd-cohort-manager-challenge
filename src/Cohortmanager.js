@@ -40,6 +40,20 @@ class CohortManager {
         console.log('Student added successfully!');
     }
 
+
+    removeStudentFromSpecificCohort(cohortName, Name) {
+        const studentCohort = this.cohorts.find((cohort) => cohort.cohortName === cohortName )
+        
+        if(studentCohort) {
+            console.log('checking')
+            studentCohort.removeStudent(Name)
+        }
+    }
+
+    // getfullList() {
+    //     return this.cohorts
+    // }
+
 }
 
 

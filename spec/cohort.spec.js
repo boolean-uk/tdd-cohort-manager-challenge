@@ -48,4 +48,20 @@ describe('othello', () => {
         expect(addedStudent.secondName).toEqual(studentLastName);
     });
 
+    it('remove student from a specific cohort', () => {
+        cohortManager.createCohort('class 5');
+        cohortManager.createCohort('class 3');
+
+        const studentFirstName = 'John';
+        const studentLastName = 'Doe';
+
+        cohortManager.addStudentToSpecificCohort('class 3', studentFirstName, studentLastName);
+        cohortManager.removeStudentFromSpecificCohort('class 3', studentFirstName)
+        const cohort = cohortManager.searchCohortByName('class 3');
+        const removedStudent = cohort.searchByName(studentFirstName)
+
+        expect(removedStudent).toBeUndefined()
+        expect(cohort.studentList).toEqual([])
+    })
+
 })
