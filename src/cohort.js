@@ -1,4 +1,4 @@
-import Student from './student.js'
+import { Student } from './student.js'
 
 class Cohort {
   constructor() {
@@ -49,6 +49,14 @@ class Cohort {
       throw new Error('cohort does not exist, unable to remove cohort')
     const index = this.cohortList.indexOf(cohort)
     this.cohortList.splice(index, 1)
+    return true
+  }
+
+  removeStudentFromCohort(cohortName, studentId) {
+    const cohort = this.findCohort(cohortName)
+    const studentToRemove = this.findStudent(studentId)
+    const studentIndex = cohort.students.indexOf(studentToRemove)
+    cohort.students.splice(studentIndex, 1)
     return true
   }
 }

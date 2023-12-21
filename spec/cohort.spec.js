@@ -1,15 +1,16 @@
 import Cohort from '../src/cohort.js'
-import Student from '../src/student.js'
+import { setId } from '../src/student.js'
 
 describe('Cohort', () => {
   let cohort
 
   beforeEach(() => {
     cohort = new Cohort()
+    setId(1)
   })
 
   describe('when creating a new cohort', () => {
-    it('a valid cohort name is entered and returns true', () => {
+    it('a valid cohortName is entered and returns true', () => {
       // set up
 
       // execute
@@ -19,7 +20,7 @@ describe('Cohort', () => {
       expect(result).toBeTrue()
     })
 
-    it('a valid cohort name is entered and the cohort is added to cohortList', () => {
+    it('a valid cohortName is entered and the cohort is added to cohortList', () => {
       // set up
       const expected = [{ name: 'Cohort 1', students: [] }]
 
@@ -63,7 +64,7 @@ describe('Cohort', () => {
   })
 
   describe('add student to specific cohort', () => {
-    it('cohort list is updated with new student details', () => {
+    it('cohortList is updated with new student details', () => {
       // set up
       cohort.createCohort('Cohort 1')
       const student1 = cohort.enrolStudent(
@@ -97,7 +98,7 @@ describe('Cohort', () => {
   })
 
   describe('when removing a cohort', () => {
-    it('a valid cohort name is input and returns true', () => {
+    it('a valid cohortName is input and returns true', () => {
       // set up
       cohort.createCohort('Cohort 1')
 
@@ -122,12 +123,60 @@ describe('Cohort', () => {
       expect(result).toEqual(expected)
     })
 
-    it('if an invalid cohort name is input, throw error', () => {
+    it('if an invalid cohortName is input, throw error', () => {
       // set up
 
       // execute/verify
       expect(() => cohort.removeCohort()).toThrowError(
         'cohort does not exist, unable to remove cohort'
+      )
+    })
+  })
+
+  describe('when removing a student from a cohort', () => {
+    beforeEach(() => {
+      cohort.createCohort('Cohort 1')
+      cohort.enrolStudent('John', 'Doe', 'johndoe', 'john@doe.com')
+      cohort.addStudentToCohort('Cohort 1', 1)
+    })
+
+    it('a valid student ID is input and returns true', () => {
+      // set up
+
+      // execute
+      const result = cohort.removeStudentFromCohort('Cohort 1', 1)
+
+      // verify
+      expect(result).toBeTrue()
+    })
+
+    it('the cohortList list is updated with removed student', () => {
+      // set up
+      const expected = [{ name: 'Cohort 1', students: [] }]
+
+      // execute
+      cohort.removeStudentFromCohort('Cohort 1', 1)
+      const result = cohort.cohortList
+
+      // verify
+      expect(result).toEqual(expected)
+    })
+
+    it('if an invalid cohortName is input, throw error', () => {
+      // set up
+
+      // execute/verify
+      expect(() => cohort.removeStudentFromCohort('Cohort 99', 1)).toThrowError(
+        'cohort does not exist'
+      )
+    })
+
+    it('if an invalid studentId is input, throw error', () => {
+      // set up
+
+      // execute/verify
+      expect(() => cohort.removeStudentFromCohort('Cohort 1', 99)).toThrowError(
+        'student does not exist'
       )
     })
   })

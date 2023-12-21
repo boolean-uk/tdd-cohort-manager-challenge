@@ -15,4 +15,4 @@ class Student {
   }
 }
 
-export default Student
+export { Student, setId }

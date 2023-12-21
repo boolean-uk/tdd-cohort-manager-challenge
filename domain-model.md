@@ -13,7 +13,7 @@ Class | Properties | Methods | Notes | Scenario | Output | Example
 | | | removeCohort(@String) | remove cohort by cohortName | valid & existing cohort name input | return true, cohortList updated | `removeCohort("Cohort 1") => true, cohortList = []` |
 | | | | | invalid cohort name input | throw error | `removeCohort(1) => "cohort does not exist, unable to remove cohort"` |
 | | | removeStudentFromCohort(@String, @Int) | remove student from specific cohort using cohortName @String and studentId @Int | valid & existing cohort name input, valid studentId input  | return true, cohortList updated | `removeStudentFromCohort("Cohort 1, 1") => true, cohortList = [{name: "Cohort 1", students: []}]` |
-| | | | | invalid cohort name/studentId input | throw error | `removeStudentFromCohort(1) => "unable to remove student to cohort, ensure cohort name and studentId are valid"` |
+| | | | | invalid cohort name/studentId input | throw error | `removeStudentFromCohort(1) => "student does not exist" or "cohort does not exist"` |
 
 ## Student
 
