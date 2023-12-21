@@ -15,5 +15,14 @@ describe('Cohortmanager', () => {
       const result = cohortmanager.create('cohort 11')
       expect(result).toEqual(expected)
     })
+
+    it('searches for a cohort by name and returns the cohort', () => {
+      const name = 'cohort 12'
+
+      cohortmanager.create(name)
+
+      const result = cohortmanager.search(name)
+      expect(result).toEqual({ name: name })
+    })
   })
 })

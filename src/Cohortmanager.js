@@ -10,5 +10,9 @@ class Cohortmanager {
     this.cohorts.push(cohort)
     return cohort
   }
+
+  search(name) {
+    return this.cohorts.find((cohort) => cohort.name === name)
+  }
 }
 export default Cohortmanager
