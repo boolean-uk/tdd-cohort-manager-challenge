@@ -30,9 +30,9 @@ class Cohort {
         return findCohort
     }
 
-    searchStudent(cohortName, userName) {
+    searchStudent(cohortName, studentID) {
         const findCohort = this.cohortList.find(cohort => cohort.name === cohortName)
-        const findStudent = findCohort.students.find(student => student.userName === userName)
+        const findStudent = findCohort.students.find(student => student.studentID === studentID)
 
         if (!findStudent) throw new Error("Student not found")
 

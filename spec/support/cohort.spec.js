@@ -92,7 +92,7 @@ describe('Cohort', () => {
             email: 'johnDoe@gmail.com'
         }
         cohort.addStudent('Cohort 1', student)
-        expect(() => cohort.searchStudent('Cohort 1', 'Michael')).toThrowError("Student not found")
+        expect(() => cohort.searchStudent('Cohort 1', 2)).toThrowError("Student not found")
 
     })
     
