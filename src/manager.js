@@ -1,5 +1,6 @@
 class Manager {
-    constructor(cohorts) {
+    constructor(cohorts, students) {
         this.cohorts = cohorts;
+        this.students = students;
     }
 }
