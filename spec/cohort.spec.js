@@ -36,6 +36,21 @@ describe('cohort', () => {
     const result = () => new Cohort()
     expect(result).toThrowError('cohort could not be created - missing input')
   })
+  it('increase occupancy by one', () => {
+    const cohort = new Cohort('my cohort')
+    cohort.increaseOccupancyByOne()
+    const result = cohort.increaseOccupancyByOne()
+    expect(result).toEqual(2)
+  })
+  it('decrease occupancy by one', () => {
+    const cohort = new Cohort('my cohort')
+    cohort.increaseOccupancyByOne()
+    cohort.increaseOccupancyByOne()
+    cohort.increaseOccupancyByOne()
+    cohort.increaseOccupancyByOne()
+    const result = cohort.decreaseOccupancyByOne()
+    expect(result).toEqual(3)
+  })
   it('add a specific student to a cohort', () => {
     const cohort1 = new Cohort('best cohort ever')
     const result = cohort1.addStudent(2, studentManager)

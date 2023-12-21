@@ -6,6 +6,8 @@ class Cohort {
     this.cohortName = cohortName
     this.id = undefined
     this.students = []
+    this.capacity = 24
+    this.occupancy = 0
   }
 
   addStudent(studentId, studentManager) {
@@ -30,6 +32,16 @@ class Cohort {
     this.students.splice(index, 1)
 
     return this.students
+  }
+
+  increaseOccupancyByOne() {
+    this.occupancy++
+    return this.occupancy
+  }
+
+  decreaseOccupancyByOne() {
+    this.occupancy--
+    return this.occupancy
   }
 }
 
