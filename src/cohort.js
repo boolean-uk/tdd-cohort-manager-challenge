@@ -58,23 +58,22 @@ class Cohort {
         if(findCohort.students.length > findCohort.capacity){
             throw new Error("Cohort is full, student cannot be added!")
         } 
+
         findCohort.students.push(studentToAdd)
       
         return findCohort.students       
     }
+
+    removeCohort(cohortName) {
+        const findCohort = this.cohortList.find(cohort => cohort.name === cohortName)
+        const findIndex = this.cohortList.indexOf(findCohort)
+
+        this.cohortList.splice(findIndex, 1)
+
+        return this.cohortList
+    }
 }
 
 
-// const cohort = new Cohort()
-// console.log(cohort.createCohort('Cohort 1'))
-// console.log(cohort.searchCohort('Cohort 1'))
-// cohort.addStudent('Cohort 1', {
-//     studentID: 1,
-//     fitrstName: 'John',
-//     lastName: 'Doe',
-//     userName: 'JohnDoe',
-//     email: 'johnDoe@gmail.com'
-// })
-// console.log(cohort.searchStudnet('Cohort 1', 'JohsanDoe'))
 
 export default Cohort

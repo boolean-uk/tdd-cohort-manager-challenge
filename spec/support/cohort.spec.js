@@ -81,6 +81,21 @@ describe('Cohort', () => {
     })
 
     // Searching a student
+    it('searches a student by their ID', () => {
+        cohort.createCohort('Cohort 1')
+        const student = {
+            studentID: 1,
+            fitrstName: 'John',
+            lastName: 'Doe',
+            userName: 'JohnDoe',
+            email: 'johnDoe@gmail.com'
+        }
+        cohort.addStudent('Cohort 1', student)
+
+        const result = cohort.searchStudent('Cohort 1', 1)
+        expect(result).toEqual(student)
+    })
+
     it('throws error if student not found', () => {
         cohort.createCohort('Cohort 1')
 
@@ -93,7 +108,15 @@ describe('Cohort', () => {
         }
         cohort.addStudent('Cohort 1', student)
         expect(() => cohort.searchStudent('Cohort 1', 2)).toThrowError("Student not found")
+    })
 
+    // Removing a cohort by name
+    it('removes a cohort by its name', () => {
+        cohort.createCohort('Cohort 1')
+        cohort.createCohort('Cohort 2')
+       
+        cohort.removeCohort('Cohort 1')
+        expect(cohort.cohortList.length).toEqual(1)
     })
     
 }) 
