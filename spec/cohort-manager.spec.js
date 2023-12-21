@@ -249,5 +249,12 @@ describe('Cohort Manger', () => {
 
       expect(action).toThrowError(expectation)
     })
+
+    it('/ if no parameter is entered', () => {
+      const expectation = 'please enter a student ID'
+      const action = () => cohortManager.removeStudent()
+
+      expect(action).toThrowError(expectation)
+    })
   })
 })
