@@ -13,6 +13,18 @@ class Cohort {
     this.occupancy = 0
   }
 
+  assignCohortNameToStudent(studentId, manager) {
+    const foundStudent = manager.searchSchoolById(studentId)
+    foundStudent.cohortName = this.cohortName
+    return foundStudent
+  }
+
+  clearStudentCohortName(studentId, manager) {
+    const foundStudent = manager.searchSchoolById(studentId)
+    foundStudent.cohortName = undefined
+    return foundStudent
+  }
+
   addStudent(studentId, studentManager) {
     if (this.isFull()) {
       throw new Error('cannot add students - this cohort is full')

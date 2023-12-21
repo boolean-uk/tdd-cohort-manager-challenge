@@ -7,7 +7,8 @@ class Student {
     this.lastName = lastName
     this.githubUsername = githubUsername
     this.email = email
-    this.studentID = undefined
+    this.id = undefined
+    this.cohortName = undefined
   }
 }
 

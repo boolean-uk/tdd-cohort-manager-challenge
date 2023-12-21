@@ -92,14 +92,15 @@ A cohort should have a list of students. Each student should have a studentID, f
 - Search for student by student ID - DONE (searchCohortById() and searchSchoolById())
 - A student can't be removed from a cohort if it wasn't present in the first place. - DONE (will throw an error)
 - Cohorts have fixed capacity at 24 students. - DONE Adding students is not possible beyond the 24 limit. - DONE, will throw an error
+- Cohorts can't have the same name - DONE
 
 ### todo
 
-- Cohorts can't have the same name
 - The same student can't exist in multiple cohorts.
 - Search for students by name (first and last) and return all matching results
 
-## EXTENDED DOMAIN MODEL 
+## EXTENDED DOMAIN MODEL
+
 ### as an addition to core (above)
 
 ```js

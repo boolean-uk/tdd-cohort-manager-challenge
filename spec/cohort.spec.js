@@ -96,6 +96,21 @@ describe('cohort', () => {
     const result = () => cohort.addStudent(1, studentManager)
     expect(result).toThrowError('cannot add students - this cohort is full')
   })
+  it('assigns the name of this cohort to a student as its cohortName property', () => {
+    const cohort = new Cohort('some cool name', cohortManager)
+    cohort.addStudent(2, studentManager)
+    const result = cohort.assignCohortNameToStudent(2, studentManager)
+    expect(result.id).toEqual(2)
+    expect(result.cohortName).toEqual('some cool name')
+  })
+  it('resets the cohortName property on a student upon removal from a cohort', () => {
+    const cohort = new Cohort('some cool name', cohortManager)
+    cohort.addStudent(2, studentManager)
+    cohort.assignCohortNameToStudent(2, studentManager)
+    const result = cohort.clearStudentCohortName(2, studentManager)
+    expect(result.id).toEqual(2)
+    expect(result.cohortName).toBeUndefined()
+  })
   it('this student does not exist in the system', () => {
     const cohort1 = new Cohort('best cohort ever', cohortManager)
     const result = () => cohort1.addStudent(576, studentManager)
