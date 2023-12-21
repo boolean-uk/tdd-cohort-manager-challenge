@@ -99,4 +99,9 @@ describe('Cohort Manger', () => {
       expect(action).toThrowError(expectation)
     })
   })
+  // describe('/ addStudentToCohort', () => {
+  //   beforeEach(() => {
+
+  //   })
+  // })
 })
