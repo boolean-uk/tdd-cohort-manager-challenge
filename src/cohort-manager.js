@@ -30,7 +30,12 @@ class CohortManager {
     return foundCohort
   }
 
-  createStudent(firstName, lastName, gitHub, email) {
+  createStudent(firstName, lastName = '', gitHub = '', email = '') {
+    if (!firstName || firstName.length === 0)
+      throw new Error('please enter a name to add student')
+    if (firstName.length === 0 && email === '')
+      throw new Error('please enter a name to add student')
+
     const student = new Student(firstName, lastName, gitHub, email)
     this.allStudents.push(student)
     countID += 1
