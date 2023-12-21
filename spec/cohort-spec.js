@@ -22,6 +22,12 @@ describe('Manager', () => {
     expect(found).toBe(cohort)
   })
 
+  it('To throw an error when trying to find a non-existent cohort', () => {
+    expect(() => {
+      manager.findCohortByName('NonExistentCohort')
+    }).toThrowError('This cohort does not exist')
+  })
+
   it('To remove a cohort by name', () => {
     const cohort1 = new Cohort('Cohort 1')
     const cohort2 = new Cohort('Cohort 2')

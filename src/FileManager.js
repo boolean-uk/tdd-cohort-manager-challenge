@@ -12,7 +12,13 @@ class FileManager {
   }
 
   findCohortByName(name) {
-    return this.cohorts.find((cohort) => cohort.CohortName === name)
+    const locatedCohort = this.cohorts.find(
+      (cohort) => cohort.CohortName === name
+    )
+    if (!locatedCohort) {
+      throw new Error('This cohort does not exist')
+    }
+    return locatedCohort
   }
 }
 
