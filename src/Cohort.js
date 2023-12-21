@@ -11,10 +11,13 @@ class Cohort {
   }
 
   removeStudentById(studentId) {
-    this.students = this.students.filter(
-      (student) => student.studentId !== studentId
+    const locatedStudent = this.students.find(
+        (students) => students.studentId === studentId
     )
-  }
+    if (!locatedStudent) {
+        throw new Error('This student does not exist')
+    }
+    return locatedStudent
 }
 
 export default Cohort

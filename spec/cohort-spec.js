@@ -70,4 +70,10 @@ describe('Manager', () => {
     cohort.removeStudentById('01')
     expect(cohort.students.includes(student1)).toBe(true)
   })
+
+  it('To throw an error when trying to remove a non-existent student', () => {
+    expect(() => {
+      manager.removeCohortByName('NonExistentCohort')
+    }).toThrowError('This cohort does not exist')
+  })
 })
