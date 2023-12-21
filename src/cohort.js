@@ -26,6 +26,10 @@ export default class Cohort {
   }
 
   setCapacity(newCapacity) {
+    if (typeof newCapacity !== 'number') {
+      throw new Error('capacity input must be Number')
+    }
+
     this.capacity = newCapacity
   }
 
