@@ -5,6 +5,7 @@ class Student {
     this.lastName = lastName
     this.gitHub = gitHub
     this.email = email
+    this.cohorts = []
   }
 }
 
