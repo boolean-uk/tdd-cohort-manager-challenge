@@ -51,4 +51,37 @@ describe('Cohort Manager', () => {
 
 });
 
+
+describe('removeCohort', () => {
+    it('should remove a cohort by name', () => {
+      // Create cohorts
+      cohortManager.createCohort('class 11');
+      cohortManager.createCohort('class 15');
+      cohortManager.createCohort('class 18');
+    
+      // Ensure all three cohorts are initially created
+      expect(cohortManager.cohorts.length).toEqual(3);
+    
+      // Remove a cohort by name
+      cohortManager.removeCohortByName('class 11');
+    
+      // Ensure 'class 11' cohort is removed
+      expect(cohortManager.cohorts.length).toEqual(2);
+    });
+  
+   // it('should throw an error if the cohort to be removed is not found', () => {
+   //   // Ensure the initial state has three cohorts
+   //   expect(cohortManager.cohorts.length).toEqual(3);
+   //   
+   //   // Attempt to remove a non-existing cohort and expect an error
+   //   expect(() => cohortManager.removeCohortByName('nonExistingClass')).toThrowError(
+   //     'cohortName cant be found!'
+   //   );
+   // 
+   //   // Ensure the number of cohorts remains the same
+   //   expect(cohortManager.cohorts.length).toEqual(3);
+   // });
+  });
+  
+
 });

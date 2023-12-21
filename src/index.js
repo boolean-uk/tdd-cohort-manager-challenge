@@ -31,6 +31,17 @@ class CohortManager {
     return foundCohort
   }
 
+
+  removeCohortByName(cohortName) {
+    const foundIndex = this.cohorts.findIndex(
+      (cohort) => cohort.cohortName === cohortName
+    )
+    if (foundIndex === -1) {
+      throw new Error('cohortName cant be found!')
+    }
+    this.cohorts.splice(foundIndex, 1)
+  }
+
 }
 
 export default CohortManager
