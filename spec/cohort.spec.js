@@ -80,5 +80,15 @@ describe('Cohort:', () => {
 
       expect(cohort.capacity).toBe(32)
     })
+
+    it('non Number input', () => {
+      const inputs = ['seven', [7], { 7: 7 }]
+
+      inputs.forEach((input) => {
+        const callback = () => cohort.setCapacity(input)
+
+        expect(callback).toThrowError('capacity input must be Number')
+      })
+    })
   })
 })
