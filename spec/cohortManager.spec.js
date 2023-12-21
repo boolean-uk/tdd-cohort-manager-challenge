@@ -59,4 +59,33 @@ describe('CohortManager', () => {
       'Pierluigi'
     )
   })
+  it(`should return the students in a cohort with a given id`, () => {
+    const cohortName = 'cohort-1'
+    cohort.createCohort(cohortName)
+    const student = new Student(
+      1,
+      'Pierluigi',
+      'Capirci',
+      'PCapid3v',
+      'pierluigi.capirci@gmail.com'
+    )
+    cohort.addStudentToCohort(cohortName, student)
+    const result = cohort.findStudentById(cohortName, 1)
+    expect(result.id).toBe(student.id)
+  })
+  it('should throw an error if student does not exist', () => {
+    const cohortName = 'cohort-1'
+    cohort.createCohort(cohortName)
+    const student = new Student(
+      1,
+      'Pierluigi',
+      'Capirci',
+      'PCapid3v',
+      'pierluigi.capirci@gmail.com'
+    )
+    cohort.addStudentToCohort(cohortName, student.id)
+    expect(() => {
+      cohort.findStudentById(cohortName, 0)
+    }).toThrowError('Student does not exist')
+  })
 })
