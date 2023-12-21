@@ -174,8 +174,8 @@ describe('Cohort Manger', () => {
       expect(action).toThrowError(expectation)
     })
   })
-  
-  describe('/ removeStudent', () => {
+
+  describe('/ removeStudentFromCohort', () => {
     beforeEach(() => {
       cohortManager.createCohort('Cohort 1')
       cohortManager.createCohort('Cohort 2')
@@ -196,18 +196,16 @@ describe('Cohort Manger', () => {
       const expectation = 1
       const result = cohortManager.findCohort('Cohort 1')
 
-      cohortManager.removeStudent(1, 'Cohort 1')
+      cohortManager.removeStudentFromCohort(1, 'Cohort 1')
 
       expect(result.studentList.length).toEqual(expectation)
       expect(result.studentList[0].firstName).toEqual('Jimmy')
     })
-    // it('/ removes student from all student list', () => {
-    //   const expectation = 3
-    //   const result = cohortManager.allStudents
+    it('/ if only student ID is inputted', () => {
+      const expectation = 'please enter a cohort name'
+      const action = () => cohortManager.removeStudentFromCohort(1, '')
 
-    //   cohortManager.removeStudent(1)
-
-    //   expect(result).toEqual(expectation)
-    // })
+      expect(action).toThrowError(expectation)
+    })
   })
 })
