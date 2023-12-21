@@ -1,4 +1,3 @@
-
 /* eslint-disable prettier/prettier */
 import Cohort from "./Cohort.js"
 
