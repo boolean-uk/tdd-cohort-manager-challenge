@@ -9,6 +9,7 @@ describe('cohort', () => {
   let student1
   let student2
   let student3
+  let student4
   beforeEach(() => {
     studentManager = new StudentManager()
     cohortManager = new CohortManager()
@@ -25,9 +26,11 @@ describe('cohort', () => {
       'random203956',
       'm.michael@gmail.com'
     )
+    student4 = new Student('Matt', 'Smith', 'citizenErased', 'm.kerr@gmail.com')
     studentManager.handleNewItem(student1)
     studentManager.handleNewItem(student2)
     studentManager.handleNewItem(student3)
+    studentManager.handleNewItem(student4)
   })
   it('creates a new instance of cohort with a name, an id, and an empty student list as properties', () => {
     const result = new Cohort('best cohort ever', cohortManager)
@@ -166,5 +169,40 @@ describe('cohort', () => {
     cohort1.addStudent(2, studentManager)
     const result = () => cohort1.searchCohortById(576, studentManager)
     expect(result).toThrowError('student not found')
+  })
+
+  describe('finds students by', () => {
+    let cohort1
+    beforeEach(() => {
+      cohort1 = new Cohort('best cohort ever', cohortManager)
+      cohort1.addStudent(1, studentManager)
+      cohort1.addStudent(2, studentManager)
+      cohort1.addStudent(3, studentManager)
+      cohort1.addStudent(4, studentManager)
+    })
+    it('first name', () => {
+      const result = cohort1.searchByFirstName('Matt', cohort1.students)
+      expect(result).toEqual([student3, student4])
+    })
+    it('first name failed - no such first name', () => {
+      const result = () => cohort1.searchByFirstName('Mike', cohort1.students)
+      expect(result).toThrowError('no students found with this first name')
+    })
+    it('last name', () => {
+      const result = cohort1.searchByLastName('Smith', cohort1.students)
+      expect(result).toEqual([student1, student2, student4])
+    })
+    it('last name failed - no such last name', () => {
+      const result = () => cohort1.searchByLastName('Kerr', cohort1.students)
+      expect(result).toThrowError('no students found with this last name')
+    })
+    it('first and last name', () => {
+      const result = cohort1.searchByFirstAndLastName('Matt Smith')
+      expect(result).toEqual([student4])
+    })
+    it('first and last name failed - no such first and last name combination', () => {
+      const result = () => cohort1.searchByFirstAndLastName('Jen Michael')
+      expect(result).toThrowError('no such first and last name combination')
+    })
   })
 })

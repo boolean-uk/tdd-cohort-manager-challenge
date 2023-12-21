@@ -11,6 +11,7 @@ class Cohort {
     this.students = []
     this.capacity = 24
     this.occupancy = 0
+    this.searchResults = []
   }
 
   assignCohortNameToStudent(studentId, manager) {
@@ -81,6 +82,44 @@ class Cohort {
       )
     }
     return this.occupancy === this.capacity
+  }
+
+  searchByFirstName(firstName, array) {
+    this.searchResults = []
+    array.map(
+      (student) =>
+        student.firstName === firstName && this.searchResults.push(student)
+    )
+    if (this.searchResults.length === 0) {
+      throw new Error('no students found with this first name')
+    }
+    return this.searchResults
+  }
+
+  searchByLastName(lastName, array) {
+    this.searchResults = []
+    array.map(
+      (student) =>
+        student.lastName === lastName && this.searchResults.push(student)
+    )
+    if (this.searchResults.length === 0) {
+      throw new Error('no students found with this last name')
+    }
+    return this.searchResults
+  }
+
+  searchByFirstAndLastName(name) {
+    this.searchResults = []
+    const firstName = name.split(' ')[0]
+    const lastName = name.split(' ')[1]
+
+    try {
+      this.searchByFirstName(firstName, this.students)
+      this.searchByLastName(lastName, this.searchResults)
+    } catch {
+      throw new Error('no such first and last name combination')
+    }
+    return this.searchResults
   }
 }
 

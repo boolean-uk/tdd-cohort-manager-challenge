@@ -93,10 +93,10 @@ A cohort should have a list of students. Each student should have a studentID, f
 - A student can't be removed from a cohort if it wasn't present in the first place. - DONE (will throw an error)
 - Cohorts have fixed capacity at 24 students. - DONE Adding students is not possible beyond the 24 limit. - DONE, will throw an error
 - Cohorts can't have the same name - DONE
+- The same student can't exist in multiple cohorts. - DONE
 
 ### todo
 
-- The same student can't exist in multiple cohorts.
 - Search for students by name (first and last) and return all matching results
 
 ## EXTENDED DOMAIN MODEL
@@ -109,7 +109,7 @@ A cohort should have a list of students. Each student should have a studentID, f
 
 |pre-existent or new|Class|Methods|Inputs|Scenarios|Outputs|Data|
 |-|-|-|-|-|-|-|
-|NEW|Cohort()|||||new properties: capacity(24), occupancy(@integer)|
+|NEW|Cohort()|||||new properties: capacity(24), occupancy(@integer) also new: it extends StudentList()|
 ||searchByFirstAndLastName()| searchByFirstName(), searchByLastName(), cohort.students(@student[]), firstName(@string), lastName(@string)| first and last name found | a list of the students who match|
 |||| first name found only | a list of the students who match|
 |||| last name found only | a list of the students who match|
@@ -125,7 +125,7 @@ A cohort should have a list of students. Each student should have a studentID, f
 |||||occupancy === capacity|true|
 |||assignCohortNameToStudent()|studentManager, studentId, cohortName(@string)|student.cohortName is undefined| student(@Student)|
 |||assignCohortNameToStudent()|studentManager, studentId, cohortName(@string)|student.cohortName is not undefined|throw new Error('student already enrolled in another cohort - to add them here, remove them from their current cohort first')|
-|||clearStudentCohortNameOnRemoval()|studentManager, studentId||student(@object)| student.cohortName = undefined
+|||clearStudentCohortName()|studentManager, studentId||student(@object)| student.cohortName = undefined
 |||addStudent()|new input: isFull()| new scenario: isFull returns true| throw new Error('cannot add students - this cohort is full)|
 |||removeStudent()|new input: cohort.occupancy|new scenario: the cohort is empty|throw new Error('no students to be removed - cohort empty')|
 ||CohortManager()||||||
@@ -134,7 +134,8 @@ A cohort should have a list of students. Each student should have a studentID, f
 |NEW|handleNewCohort()|cohort(@Cohort), nameIsNew(), handleNewItem()|isNameNew returns true|cohortlist()|
 |NEW|||isNameNew returns false|throw new Error('this cohort cannot be added - cohort name already taken)|
 ||Student()|||||new property: cohortName| cohortName default value: undefined|
-|NEW| StudenManager()|
+||StudentManager() - new: it extends StudentList()|
+|NEW| StudentList()|
 ||searchByFirstAndLastName()| searchByFirstName(), searchByLastName(), studentManager.list(@student[]), firstName(@string), lastName(@string)| first and last name found | a list of the students who match|
 |||| first name found only | a list of the students who match|
 |||| last name found only | a list of the students who match|
