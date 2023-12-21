@@ -1,5 +1,6 @@
 import CohortManager from '../src/cohortManager.js'
 import Cohort from '../src/cohort.js'
+import Student from '../src/student.js'
 
 describe('Cohort Manager:', () => {
   let cohort
@@ -26,7 +27,7 @@ describe('Cohort Manager:', () => {
 
   it('should throw error with invalid input when creating a cohort', () => {
     expect(() => cohort.createCohort(1)).toThrowError(
-      "please input a valid name e.g. 'cohort-11'"
+      "Please input a valid name e.g. 'cohort-11'"
     )
   })
 
@@ -34,19 +35,19 @@ describe('Cohort Manager:', () => {
     const expected = new Cohort('Cohort-1')
 
     cohort.createCohort('Cohort-1')
-    const result = cohort.findCohort('Cohort-1')
+    const result = cohort.findCohortByName('Cohort-1')
 
     expect(result).toEqual(expected)
   })
 
   it('should throw error with invalid input when finding a cohort', () => {
-    expect(() => cohort.findCohort([])).toThrowError(
-      "please input a valid name e.g. 'cohort-11'"
+    expect(() => cohort.findCohortByName([])).toThrowError(
+      "Please input a valid name e.g. 'cohort-11'"
     )
   })
 
   it('should return a string if cohort does not exist with findCohort()', () => {
-    expect(() => cohort.findCohort('cohort-99')).toThrowError(
+    expect(() => cohort.findCohortByName('cohort-99')).toThrowError(
       'Cohort does not exist'
     )
   })
@@ -108,7 +109,7 @@ describe('Cohort Manager:', () => {
 
   it('should throw error if input is invalid', () => {
     expect(() => cohort.removeCohortByName(1)).toThrowError(
-      "please input a valid name e.g. 'cohort-11'"
+      "Please input a valid name e.g. 'cohort-11'"
     )
   })
 
@@ -131,9 +132,9 @@ describe('Cohort Manager:', () => {
     expect(result).toEqual(expected)
   })
 
-  it('should throw error if input is invalid', () => {
+  it('should throw error if input is invalid when removing a student', () => {
     expect(() => cohort.removeStudentFromCohort([], 2)).toThrowError(
-      "please input a valid studentID & cohort name e.g. (3,'cohort-11')"
+      "Please input a valid studentID & cohort name e.g. (3,'cohort-11')"
     )
   })
 
@@ -146,6 +147,43 @@ describe('Cohort Manager:', () => {
 
   it('should throw error if cohort not found', () => {
     expect(() => cohort.removeStudentFromCohort(1, 'cohort-moon')).toThrowError(
+      'Cohort does not exist'
+    )
+  })
+
+  it('finds student by id', () => {
+    const expected = new Student(
+      1,
+      'John',
+      'Doe',
+      '@johndoe',
+      'johndoe@mail.com'
+    )
+
+    cohort.createCohort('cohort-11')
+    cohort.addStudentToCohort(
+      {
+        firstName: 'John',
+        lastName: 'Doe',
+        github: '@johndoe',
+        email: 'johndoe@mail.com'
+      },
+      'cohort-11'
+    )
+    const result = cohort.findStudentById(1, 'cohort-11')
+
+    expect(result).toEqual(expected)
+  })
+
+  it('should throw error if student not found using findStudentById()', () => {
+    cohort.createCohort('cohort-11')
+    expect(() => cohort.findStudentById(2, 'cohort-11')).toThrowError(
+      'Student does not exist'
+    )
+  })
+
+  it('should throw error if cohort does not exist using findStudentById()', () => {
+    expect(() => cohort.findStudentById(2, 'cohort-11')).toThrowError(
       'Cohort does not exist'
     )
   })
