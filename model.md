@@ -3,21 +3,19 @@
 | Status | Class          | Methods                  | Inputs             | Scenario                                          | Output                                                             |
 | ------ | -------------- | ------------------------ | ------------------ | ------------------------------------------------- | ------------------------------------------------------------------ |
 |        | CohortManager  |                          |                    |                                                   |                                                                    |
-|        |                | getAllStudents           |                    |                                                   | return Student[]                                                   |
-|        |                |                          |                    |                                                   |                                                                    |
-|        |                | searchCohortByName       | name:string        | typeof input === String, input.length > 0         | return foundCohort:Cohort where cohort.name === inputName          |
-|        |                |                          |                    | invalid input                                     | throw error ('cohort name not found')                              |
+| [ x ]  |                | searchCohortByName       | name:string        | typeof input === String, input.length > 0         | return foundCohort:Cohort where cohort.name === inputName          |
+| [ x ]  |                |                          |                    | invalid input                                     | throw error ('cohort name not found')                              |
 |        |                |                          |                    |                                                   |                                                                    |
 |        |                | searchCohortById         | id:number          | typeof input === Number                           | return foundCohort:Cohort where cohort.cohortId === inputId        |
 |        |                |                          |                    | typeof input === Number, no match                 | throw error ('cohort id not found')                                |
 |        |                |                          |                    | typeof input !== Number                           | throw error ('input must be Number')                               |
 |        |                |                          |                    |                                                   |                                                                    |
-|        |                | createCohort             | name:string        | typeof input === String, input.length > 0         | return cohorts.push(cohort)                                        |
+| [ x ]  |                | createCohort             | name:string        | typeof input === String, input.length > 0         | return cohorts.push(cohort)                                        |
 |        |                |                          |                    | typeof input !== String OR input.length === 0     | throw error ('input must be String')                               |
 |        |                |                          |                    | nameInput matches existing cohort                 | throw error ('input matches existing cohortId: {matchingCohortId}) |
 |        |                |                          |                    |                                                   |                                                                    |
-|        |                | removeCohortByName       | name:string        | inputName matches cohort.name in cohorts[]        | remove matching cohort from cohorts[], return cohorts[].length     |
-|        |                |                          |                    | inputName does not match cohort.name in cohorts[] | throw error ('cohort not found')                                   |
+| [ x ]  |                | removeCohortByName       | name:string        | inputName matches cohort.name in cohorts[]        | remove matching cohort from cohorts[], return cohorts[].length     |
+| [ ]    |                |                          |                    | inputName does not match cohort.name in cohorts[] | throw error ('cohort not found')                                   |
 |        |                |                          |                    |                                                   |                                                                    |
 |        |                |                          |                    |                                                   |                                                                    |
 | [ x ]  | Cohort         |                          |                    |                                                   |                                                                    |
@@ -33,7 +31,7 @@
 |        |                |                          |                    |                                                   |                                                                    |
 |        |                | searchStudentByLastName  | name:string        |                                                   | return Student[] where student.lastName === inputName              |
 |        |                |                          |                    |                                                   |                                                                    |
-|        |                | assignStudentToCohort    | studentId:number,  | inputIds match existing Ids                       | foundStudent.cohortId = inputCohortId, return foundStudent         |
+| [ ]    |                | assignStudentToCohort    | studentId:number,  | inputIds match existing Ids                       | foundStudent.cohortId = inputCohortId, return foundStudent         |
 |        |                |                          | cohortId:number    |                                                   |                                                                    |
 |        |                |                          |                    | studentId not found                               | throw error ('student not found')                                  |
 |        |                |                          |                    | cohortId not found                                | throw error ('cohort not found')                                   |
@@ -46,9 +44,8 @@
 |        |                |                          |                    |                                                   |                                                                    |
 |        |                |                          |                    | foundStudent.cohortId !== inputCohortId           | throw error ('student not in passed cohort')                       |
 |        |                |                          |                    |                                                   |                                                                    |
-|        |                |                          |                    |                                                   |                                                                    |
-|        | Student        |                          |                    |                                                   |                                                                    |
-|        |                | details                  |                    |                                                   | return { ... student properties }                                  |
+| [ x ]  | Student        |                          |                    |                                                   |                                                                    |
+| [ x ]  |                | details                  |                    |                                                   | return { ... student properties }                                  |
 |        |                |                          |                    |                                                   |                                                                    |
 
 ## CohortManager
