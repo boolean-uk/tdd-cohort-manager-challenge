@@ -50,4 +50,20 @@ describe('CohortManager:', () => {
       expect(callback).toThrowError('cohort name not found')
     })
   })
+
+  describe('removeCohortByName', () => {
+    beforeEach(() => {
+      manager.createCohort('Corey')
+      manager.createCohort('Potato')
+      manager.createCohort('Class 11')
+    })
+
+    it('removing matching cohort name', () => {
+      const result = manager.removeCohortByName('Potato')
+
+      expect(result).toBe(2)
+      expect(manager.cohorts[0].name).toBe('Corey')
+      expect(manager.cohorts[1].name).toBe('Class 11')
+    })
+  })
 })
