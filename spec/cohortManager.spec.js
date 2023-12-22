@@ -24,4 +24,22 @@ describe('CohortManager:', () => {
     })
     // TODO: invalid input
   })
+
+  describe('searchCohortByName -', () => {
+    it('return cohort on match', () => {
+      manager.createCohort('Corey')
+      manager.createCohort('Potato')
+      manager.createCohort('Class 11')
+
+      const result = manager.searchCohortByName('Potato')
+
+      const expected = {
+        name: 'Potato',
+        cohortId: 2,
+        capacity: 24
+      }
+
+      expect(result.details).toEqual(expected)
+    })
+  })
 })
