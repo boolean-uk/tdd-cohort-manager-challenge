@@ -37,6 +37,7 @@ describe('Student:', () => {
 
         const callback = () => new Student(input)
 
+        // TODO: more specific throw error specifying which details are missing
         expect(callback).toThrowError('student missing details')
       }
     })
