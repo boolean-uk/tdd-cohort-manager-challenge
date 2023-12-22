@@ -25,6 +25,10 @@ export default class CohortManager {
       (cohort) => cohort.name === name
     )
 
+    if (foundCohortIndex === -1) {
+      throw new Error('cohort name not found')
+    }
+
     this.cohorts.splice(foundCohortIndex, 1)
     return this.cohorts.length
   }
