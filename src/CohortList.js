@@ -8,7 +8,13 @@ class CohortList {
 
   // Create Cohort
   createCohort(name) {
-    if (name.length === 0) throw new Error('Enter name for create new cohort')
+    if (name.length === 0) {
+      throw new Error('Enter name for create new cohort')
+    }
+
+    if (this.list.find((item) => item.name === name)) {
+      throw new Error('Cohort with this name has already exist')
+    }
 
     const cohort = new Cohort(this.list.length + 1, name)
 
@@ -30,7 +36,17 @@ class CohortList {
 
   // Add student
   addStudent(student, cohortName) {
+    if (
+      this.studentsList.find((item) => item.studentId === student.studentId)
+    ) {
+      throw new Error('This student has already added to cohort')
+    }
+
     const findCohort = this.getCohortByName(cohortName)
+
+    if (findCohort.studentsList.length === 24) {
+      throw new Error('Exceeded capacity of students')
+    }
 
     findCohort.studentsList.push(student)
     this.studentsList.push(student)
@@ -67,6 +83,37 @@ class CohortList {
     )
 
     return findStudent
+  }
+
+  // Get Student By Id
+  getStudentById(studentId) {
+    const findStudent = this.studentsList.find(
+      (item) => item.studentId === studentId
+    )
+
+    if (!findStudent) {
+      throw new Error('Student not Found')
+    }
+
+    return findStudent
+  }
+
+  // Get Student By Name
+  getStudentByName(name) {
+    const findStudents = this.studentsList
+      .map(
+        (item) =>
+          (item.firstName.toLowerCase() === name.toLowerCase() ||
+            item.lastName.toLowerCase() === name.toLowerCase()) &&
+          item
+      )
+      .filter((item) => item !== false)
+
+    if (findStudents.length === 0) {
+      throw new Error('Students not found')
+    }
+
+    return findStudents
   }
 }
 

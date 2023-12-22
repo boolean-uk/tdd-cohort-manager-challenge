@@ -18,6 +18,14 @@ const student2 = new Student(
   'hello2@gmail.com'
 )
 
+const student3 = new Student(
+  3,
+  'Nazar',
+  'Last Name 2',
+  'GitHub Name 3',
+  'hello3@gmail.com'
+)
+
 // Tests
 describe('Cohort', () => {
   let cohortList
@@ -41,6 +49,14 @@ describe('Cohort', () => {
     const expected = 'Enter name for create new cohort'
 
     expect(() => cohortList.createCohort('')).toThrowError(expected)
+  })
+
+  it('Entered the exist name of cohort: Thrown error', () => {
+    const expected = 'Cohort with this name has already exist'
+
+    cohortList.createCohort('Boolean')
+
+    expect(() => cohortList.createCohort('Boolean')).toThrowError(expected)
   })
 
   // Search Cohort By Cohort Name
@@ -83,6 +99,53 @@ describe('Cohort', () => {
     const expected = 'Cohort not Found'
 
     expect(() => cohortList.addStudent(student1, 'Boolean')).toThrowError(
+      expected
+    )
+  })
+
+  it('Add 25 students: Thrown error', () => {
+    const expected = 'Exceeded capacity of students'
+
+    cohortList.createCohort('Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+    cohortList.addStudent(new Student(), 'Boolean')
+
+    expect(() => cohortList.addStudent(new Student(), 'Boolean')).toThrowError(
+      expected
+    )
+  })
+
+  it('Added the same student in another cohort: Thrown error', () => {
+    const expected = 'This student has already added to cohort'
+
+    cohortList.createCohort('Boolean')
+    cohortList.createCohort('Cohort 1')
+
+    cohortList.addStudent(student1, 'Boolean')
+
+    expect(() => cohortList.addStudent(student1, 'Cohort 1')).toThrowError(
       expected
     )
   })
@@ -138,5 +201,58 @@ describe('Cohort', () => {
 
     expect(() => cohortList.removeStudent(1, 'Boolean')).toThrowError(expected)
     expect(cohortList.list[0].studentsList[0]).toEqual(student1)
+  })
+
+  // Search Student By studentId
+  it('Student exist: Object of Student', () => {
+    const expected = student1
+
+    cohortList.createCohort('Boolean')
+    cohortList.createCohort('Cohort 1')
+    cohortList.addStudent(student1, 'Boolean')
+    cohortList.addStudent(student2, 'Cohort 1')
+
+    const res = cohortList.getStudentById(1)
+
+    expect(res).toEqual(expected)
+  })
+
+  it("Student doesn't exist: Thrown error", () => {
+    const expected = 'Student not Found'
+
+    expect(() => cohortList.getStudentById(1)).toThrowError(expected)
+  })
+
+  // Search Student By Name (first and last)
+  it('Student name exist: List of students', () => {
+    const expected = [student1, student3]
+
+    cohortList.createCohort('Boolean')
+    cohortList.addStudent(student1, 'Boolean')
+    cohortList.addStudent(student2, 'Boolean')
+    cohortList.addStudent(student3, 'Boolean')
+
+    const res = cohortList.getStudentByName('Nazar')
+
+    expect(res).toEqual(expected)
+  })
+
+  it('Student last name exist: List of students', () => {
+    const expected = [student2, student3]
+
+    cohortList.createCohort('Boolean')
+    cohortList.addStudent(student1, 'Boolean')
+    cohortList.addStudent(student2, 'Boolean')
+    cohortList.addStudent(student3, 'Boolean')
+
+    const res = cohortList.getStudentByName('Last Name 2')
+
+    expect(res).toEqual(expected)
+  })
+
+  it("Student name doesn't exist: Thrown error", () => {
+    const expected = 'Students not found'
+
+    expect(() => cohortList.getStudentByName('Nazar')).toThrowError(expected)
   })
 })
