@@ -1,4 +1,5 @@
 import Cohort from "../../src/cohort.js"
+
 describe('Cohort', () => {
     let cohort 
 
