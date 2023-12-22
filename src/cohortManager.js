@@ -19,4 +19,13 @@ export default class CohortManager {
 
     return foundCohort
   }
+
+  removeCohortByName(name) {
+    const foundCohortIndex = this.cohorts.findIndex(
+      (cohort) => cohort.name === name
+    )
+
+    this.cohorts.splice(foundCohortIndex, 1)
+    return this.cohorts.length
+  }
 }
