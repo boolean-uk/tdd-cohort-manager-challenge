@@ -26,11 +26,13 @@ describe('CohortManager:', () => {
   })
 
   describe('searchCohortByName -', () => {
-    it('return cohort on match', () => {
+    beforeEach(() => {
       manager.createCohort('Corey')
       manager.createCohort('Potato')
       manager.createCohort('Class 11')
+    })
 
+    it('return cohort on match', () => {
       const result = manager.searchCohortByName('Potato')
 
       const expected = {
