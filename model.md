@@ -25,8 +25,6 @@
 | [ x ]  |                |                          |                    | typeof input !== Number                           | throw error ('capacity number must be Number)                      |
 |        |                |                          |                    |                                                   |                                                                    |
 |        | StudentManager |                          |                    |                                                   |                                                                    |
-|        |                | getAllStudents           |                    |                                                   | return Student[]                                                   |
-|        |                |                          |                    |                                                   |                                                                    |
 |        |                | searchStudentById        | id:number          | id:number found in students                       | return foundStudent:Student where student.studentId === inputId    |
 |        |                |                          |                    |                                                   |                                                                    |
 |        |                | searchStudentByCohortId  | id:number          | id:number                                         | return Student[] where student.cohortId === inputId                |
