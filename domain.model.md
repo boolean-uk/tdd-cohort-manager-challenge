@@ -1,5 +1,7 @@
 # Standard requirements
 
+## Standard
+
 The Cohort Manager should be able to support the following interactions
 
 - ✅ Create a cohort with a cohort name
@@ -10,6 +12,17 @@ The Cohort Manager should be able to support the following interactions
 - ✅ Throw errors if student or cohort not found
 
 A cohort should have a list of students. Each student should have a studentID, first name, last name, github username, email.
+
+## Extended
+
+- Search for student by student ID
+- Cohorts have fixed capacity at 24 students. Adding students is not possible beyond the 24 limit.
+- Cohorts can't have the same name, and can't exist without a name
+- The same student can't exist in multiple cohorts.
+- A student can't be removed from a cohort if it wasn't present in the first place.
+- Search for students by name (first and last) and return all matching results
+
+Your program should be composed of at least two classes
 
 | Objects    | Properties | Messages                                 | Scenario                                | Output                                           |
 | ---------- | ---------- | ---------------------------------------- | --------------------------------------- | ------------------------------------------------ |
@@ -25,10 +38,11 @@ A cohort should have a list of students. Each student should have a studentID, f
 |            |            |                                          | Student doesn't exist in entered cohort | Thrown error: "Student not Found"                |
 |            |            |                                          | Cohort doesn't exist                    | Thrown error: "Cohort not Found"                 |
 
-| Objects | Properties     | Messages | Scenario | Output |
-| ------- | -------------- | -------- | -------- | ------ |
-| Student | studentID@Int  |          |          |        |
-|         | firstName@Str  |          |          |        |
-|         | lastName@Str   |          |          |        |
-|         | githubName@Str |          |          |        |
-|         | email@Str      |          |          |        |
+| Objects | Properties      | Messages                         | Scenario | Output         |
+| ------- | --------------- | -------------------------------- | -------- | -------------- |
+| Student | studentID@Int   | createStudent()                  |          | Student Object |
+|         | firstName@Str   | getStudentById(studentId@Number) |          |                |
+|         | lastName@Str    |                                  |          |                |
+|         | githubName@Str  |                                  |          |                |
+|         | email@Str       |                                  |          |                |
+|         | studentList@Arr |                                  |          |                |
