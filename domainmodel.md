@@ -38,11 +38,11 @@ Branches |
 | | | removeStudent() | @Object{} | @Object{} | ❌
 | | | setName() | cohortName@String | @Object{} | ❌
 | | | isFull() | | @Boolean | ❌
-| Student | studentId @Integer | | | | ❌
+| Student | studentId @Integer | | | | ✅
 | | firstName @String | | | | ✅
 | | lastName @ String | | | | ✅
 | | githubUsername @ String | | | | ✅
 | | EMail @ String | | | | ✅
-| | inCohort | Cohort@Object{} | | | ❌
+| | inCohort | Cohort@Object{} | | | ✅
 | | | fullName() | – | @String | ✅
-| | | assignCohort() | Cohort@Object{} | Student@Object{} | ❌
+| | | assignCohort() | Cohort@Object{} | Student@Object{} | ✅

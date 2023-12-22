@@ -1,10 +1,16 @@
 import Student from '../src/student.js'
 import { Organization } from '../src/organization.js'
+import Cohort from '../src/cohort.js'
 
 describe('student', () => {
   let myOrganization
+  let newCohort
+
   beforeAll(() => {
     myOrganization = new Organization('Boolean')
+    myOrganization.addBranch('UK')
+    newCohort = new Cohort('My TestCohort')
+    myOrganization.branches[0].addCohort(newCohort)
   })
 
   it('creation works', () => {
@@ -43,5 +49,18 @@ describe('student', () => {
       myOrganization
     )
     expect(student.fullName()).toEqual(expected)
+  })
+
+  it('assigning to cohort', () => {
+    const student = new Student(
+      'Nathan',
+      'The Wise',
+      'no@email.com',
+      'nwise',
+      myOrganization
+    )
+    
+    student.assignCohort(newCohort)
+    expect(student.inCohort).toEqual(newCohort)
   })
 })
