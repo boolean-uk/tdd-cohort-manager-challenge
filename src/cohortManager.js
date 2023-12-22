@@ -9,4 +9,8 @@ export default class CohortManager {
     const cohort = new Cohort(name, capacity)
     return this.cohorts.push(cohort)
   }
+
+  searchCohortByName(name) {
+    return this.cohorts.find((cohort) => cohort.name === name)
+  }
 }
