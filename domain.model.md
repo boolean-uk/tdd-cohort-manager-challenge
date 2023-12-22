@@ -24,6 +24,8 @@ A cohort should have a list of students. Each student should have a studentID, f
 
 Your program should be composed of at least two classes
 
+### Cohort List
+
 | Objects    | Properties      | Messages                                 | Scenario                                 | Output                                                   |
 | ---------- | --------------- | ---------------------------------------- | ---------------------------------------- | -------------------------------------------------------- |
 | CohortList | list@Arr        | createCohort(name@Str)                   | Name is not empty                        | Object of created cohort                                 |
@@ -45,6 +47,8 @@ Your program should be composed of at least two classes
 |            |                 | getStudentByName(studentName@Str)        | Student name exist                       | List of students                                         |
 |            |                 |                                          | Student name doesn't exist               | Thrown error: "Student not found"                        |
 
+### Student
+
 | Objects | Properties     | Messages | Scenario | Output |
 | ------- | -------------- | -------- | -------- | ------ |
 | Student | studentID@Int  |          |          |        |
@@ -52,3 +56,11 @@ Your program should be composed of at least two classes
 |         | lastName@Str   |          |          |        |
 |         | githubName@Str |          |          |        |
 |         | email@Str      |          |          |        |
+
+### Cohort
+
+| Objects | Properties       | Messages | Scenario | Output |
+| ------- | ---------------- | -------- | -------- | ------ |
+| Cohort  | id@Int           |          |          |        |
+|         | name@Str         |          |          |        |
+|         | studentsList@Arr |          |          |        |
