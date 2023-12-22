@@ -43,5 +43,11 @@ describe('CohortManager:', () => {
 
       expect(result.details).toEqual(expected)
     })
+
+    it('throw error when no match', () => {
+      const callback = () => manager.searchCohortByName('Tick Tock Clock')
+
+      expect(callback).toThrowError('cohort name not found')
+    })
   })
 })
