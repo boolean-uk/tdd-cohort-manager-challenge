@@ -65,5 +65,11 @@ describe('CohortManager:', () => {
       expect(manager.cohorts[0].name).toBe('Corey')
       expect(manager.cohorts[1].name).toBe('Class 11')
     })
+
+    it('throw error when cohort not found', () => {
+      const callback = () => manager.removeCohortByName('Steve')
+
+      expect(callback).toThrowError('cohort name not found')
+    })
   })
 })
