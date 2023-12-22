@@ -6,13 +6,14 @@ class Cohort {
         this.studentList = [];
     }
 
-    addStudent(firstName, secondName) {
-        const student = new Student(firstName, secondName);
-        console.log('Account Created Successfully!')
-        return this.studentList.push(student);
 
-    
+    addStudent(firstName, secondName) {
+        if(this.studentList.length < 24) {
+            const student = new Student(firstName, secondName);
+            return this.studentList.push(student);
+        } 
     }
+
 
     searchByName(Name) {
         const studentSearched = this.studentList.find((student) => student.firstName === Name)
@@ -21,15 +22,19 @@ class Cohort {
 
 
     removeStudent(Name) {
-        console.log('isama')
         const foundIndex = this.studentList.findIndex((student) => student.firstName === Name);
-        console.log(foundIndex)
         if (foundIndex >= 0) {
-            console.log('deleting student');
             this.studentList.splice(foundIndex, 1);
+            return true
         }
+        return false
     }
     
+
+    searchStudentById(studentId) {
+        return this.studentList.find((student) => student.id === studentId)
+    }
+
 
     getList() {
         return this.studentList
