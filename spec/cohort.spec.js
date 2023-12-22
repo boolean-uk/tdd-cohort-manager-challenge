@@ -74,6 +74,9 @@ describe('Cohort', () => {
     const res = cohortList.addStudent(student2, 'Boolean')
 
     expect(res).toEqual(expected)
+    expect(cohortList.studentsList[0]).toEqual(student1)
+    expect(cohortList.studentsList[1]).toEqual(student2)
+    expect(cohortList.studentsList.length).toEqual(2)
   })
 
   it("with entered name doesn't exist: Thrown error", () => {
@@ -115,6 +118,8 @@ describe('Cohort', () => {
     expect(res).toEqual(expected)
     expect(cohortList.list[0].studentsList.length).toEqual(1)
     expect(cohortList.list[0].studentsList[0]).toEqual(student1)
+    expect(cohortList.studentsList.length).toEqual(1)
+    expect(cohortList.studentsList[0]).toEqual(student1)
   })
 
   it("Student doesn't exist in entered cohort: Thrown error", () => {

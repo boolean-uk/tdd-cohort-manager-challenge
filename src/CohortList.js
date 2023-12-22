@@ -3,6 +3,7 @@ import Cohort from './Cohort.js'
 class CohortList {
   constructor() {
     this.list = []
+    this.studentsList = []
   }
 
   // Create Cohort
@@ -32,6 +33,7 @@ class CohortList {
     const findCohort = this.getCohortByName(cohortName)
 
     findCohort.studentsList.push(student)
+    this.studentsList.push(student)
 
     return findCohort.studentsList
   }
@@ -57,6 +59,10 @@ class CohortList {
     }
 
     findCohort.studentsList = findCohort.studentsList.filter(
+      (item) => item.studentId !== studentId
+    )
+
+    this.studentsList = this.studentsList.filter(
       (item) => item.studentId !== studentId
     )
 
