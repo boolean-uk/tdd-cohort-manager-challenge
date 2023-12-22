@@ -7,6 +7,16 @@ export default class Student {
     this.gitHubUserName = gitHubUserName
     this.email = email
     this.cohortId = cohortId
+
+    for (const key in this.details) {
+      if (key === 'studentId') continue
+
+      const val = this.details[key]
+      if (typeof val === 'undefined') {
+        throw new Error('student missing details')
+      }
+    }
+
     this.studentId = Student.nextId()
   }
 
