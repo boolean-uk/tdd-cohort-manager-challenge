@@ -69,14 +69,14 @@ describe('Cohort', () => {
             email: 'johnDoe@gmail.com'
         })
 
-        const result = cohort.addStudent('Cohort 2', {
+        expect(() => cohort.addStudent('Cohort 2', 
+        {
             studentID: 1,
             fitrstName: 'John',
             lastName: 'Doe',
             userName: 'JohnDoe',
             email: 'johnDoe@gmail.com'
-        })
-        expect(result).toEqual("this student already enrolled in another Cohort!")
+        })).toThrowError("This student already enrolled in another Cohort!")
 
     })
 

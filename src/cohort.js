@@ -34,9 +34,7 @@ class Cohort {
   }
 
   searchStudent(cohortName, studentID) {
-    const findCohort = this.cohortList.find(
-      (cohort) => cohort.name === cohortName
-    )
+    const findCohort = this.searchCohort(cohortName)
     const findStudent = findCohort.students.find(
       (student) => student.studentID === studentID
     )
@@ -47,9 +45,7 @@ class Cohort {
   }
 
   addStudent(cohortName, studentToAdd) {
-    const findCohort = this.cohortList.find(
-      (cohort) => cohort.name === cohortName
-    )
+    const findCohort = this.searchCohort(cohortName)
     const studentExists = findCohort.students.find(
       (student) => student.studentID === studentToAdd.studentID
     )
@@ -61,7 +57,7 @@ class Cohort {
     for (let i = 0; i < this.cohortList.length; i++) {
       for (let j = 0; j < this.cohortList[i].students.length; j++) {
         if (studentToAdd.userName === this.cohortList[i].students[j].userName) {
-          return 'this student already enrolled in another Cohort!'
+          throw new Error('This student already enrolled in another Cohort!')
         }
       }
     }
@@ -76,9 +72,7 @@ class Cohort {
   }
 
   removeCohort(cohortName) {
-    const findCohort = this.cohortList.find(
-      (cohort) => cohort.name === cohortName
-    )
+    const findCohort = this.searchCohort(cohortName)
     const findIndex = this.cohortList.indexOf(findCohort)
 
     this.cohortList.splice(findIndex, 1)
@@ -87,9 +81,7 @@ class Cohort {
   }
 
   removeStudent(cohortName, studentID) {
-    const findCohort = this.cohortList.find(
-      (cohort) => cohort.name === cohortName
-    )
+    const findCohort = this.searchCohort(cohortName)
     const findStudent = findCohort.students.find(
       (student) => student.studentID === studentID
     )
