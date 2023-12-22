@@ -24,11 +24,11 @@ class Cohort {
   }
 
   getStudentByName(fullName) {
-    return this.students.find(student => student.fullName() === fullName)
+    return this.students.find((student) => student.fullName() === fullName)
   }
 
   addStudent(studentObj) {
-    if (this.students.filter(student => student === studentObj).length) {
+    if (this.students.filter((student) => student === studentObj).length) {
       throw new Error('Student already present')
     }
 
@@ -36,11 +36,11 @@ class Cohort {
   }
 
   removeStudent(studentObj) {
-    if (!this.students.filter(student => student === studentObj).length) {
+    if (!this.students.filter((student) => student === studentObj).length) {
       throw new Error('Student not present')
     }
 
-    this.students = this.students.filter(student => student !== studentObj)
+    this.students = this.students.filter((student) => student !== studentObj)
   }
 }
 

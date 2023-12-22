@@ -16,14 +16,32 @@ describe('student', () => {
       githubUsername: 'nwise',
       inCohort: {}
     }
-    const test = new Student('Nathan', 'The Wise', 'no@email.com', 'nwise', myOrganization)
+    const test = new Student(
+      'Nathan',
+      'The Wise',
+      'no@email.com',
+      'nwise',
+      myOrganization
+    )
 
     expect(JSON.stringify(test)).toEqual(JSON.stringify(expected))
+    expect(typeof test.studentID).toEqual('number')
+    expect(typeof test.firstName).toEqual('string')
+    expect(typeof test.lastName).toEqual('string')
+    expect(typeof test.email).toEqual('string')
+    expect(typeof test.githubUsername).toEqual('string')
+    expect(test.email.match('@').length).toEqual(1)
   })
 
   it('returning the full name works', () => {
     const expected = 'Nathan The Wise'
-    const student = new Student('Nathan', 'The Wise', 'no@email.com', 'nwise', myOrganization)
+    const student = new Student(
+      'Nathan',
+      'The Wise',
+      'no@email.com',
+      'nwise',
+      myOrganization
+    )
     expect(student.fullName()).toEqual(expected)
   })
 })
