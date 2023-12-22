@@ -143,9 +143,7 @@ describe('Cohort', () => {
       // set up
 
       // execute/verify
-      expect(() => cohort.removeCohort()).toThrowError(
-        'cohort does not exist, unable to remove cohort'
-      )
+      expect(() => cohort.removeCohort()).toThrowError('cohort does not exist')
     })
   })
 

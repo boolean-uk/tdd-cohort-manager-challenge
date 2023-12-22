@@ -44,9 +44,7 @@ class Cohort {
   }
 
   removeCohort(cohortName) {
-    const cohort = this.cohortList.find((cohort) => cohort.name === cohortName)
-    if (!cohort)
-      throw new Error('cohort does not exist, unable to remove cohort')
+    const cohort = this.findCohort(cohortName)
     const index = this.cohortList.indexOf(cohort)
     this.cohortList.splice(index, 1)
     return true
