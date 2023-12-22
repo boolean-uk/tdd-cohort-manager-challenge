@@ -44,7 +44,6 @@ Your program should be composed of at least two classes
 |            |                 |                                          | Student doesn't exist                    | Thrown error: "Student not Found"                        |
 |            |                 | getStudentByName(studentName@Str)        | Student name exist                       | List of students                                         |
 |            |                 |                                          | Student name doesn't exist               | Thrown error: "Student not found"                        |
-|            |                 |                                          |                                          |                                                          |
 
 | Objects | Properties     | Messages | Scenario | Output |
 | ------- | -------------- | -------- | -------- | ------ |
