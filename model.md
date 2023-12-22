@@ -3,8 +3,6 @@
 | Status | Class          | Methods                  | Inputs             | Scenario                                          | Output                                                             |
 | ------ | -------------- | ------------------------ | ------------------ | ------------------------------------------------- | ------------------------------------------------------------------ |
 |        | CohortManager  |                          |                    |                                                   |                                                                    |
-|        |                | getAllCohorts            |                    |                                                   | return cohorts:Cohort[]                                            |
-|        |                |                          |                    |                                                   |                                                                    |
 |        |                | getAllStudents           |                    |                                                   | return Student[]                                                   |
 |        |                |                          |                    |                                                   |                                                                    |
 |        |                | searchCohortByName       | name:string        | typeof input === String, input.length > 0         | return foundCohort:Cohort where cohort.name === inputName          |
