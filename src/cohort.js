@@ -85,10 +85,8 @@ class Cohort {
   }
 
   searchByFirstName(firstName, array) {
-    this.searchResults = []
-    array.map(
-      (student) =>
-        student.firstName === firstName && this.searchResults.push(student)
+    this.searchResults = array.filter(
+      (student) => student.firstName === firstName
     )
     if (this.searchResults.length === 0) {
       throw new Error('no students found with this first name')
@@ -97,10 +95,8 @@ class Cohort {
   }
 
   searchByLastName(lastName, array) {
-    this.searchResults = []
-    array.map(
-      (student) =>
-        student.lastName === lastName && this.searchResults.push(student)
+    this.searchResults = array.filter(
+      (student) => student.lastName === lastName
     )
     if (this.searchResults.length === 0) {
       throw new Error('no students found with this last name')
@@ -109,7 +105,6 @@ class Cohort {
   }
 
   searchByFirstAndLastName(name) {
-    this.searchResults = []
     const firstName = name.split(' ')[0]
     const lastName = name.split(' ')[1]
 

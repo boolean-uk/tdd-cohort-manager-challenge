@@ -15,10 +15,8 @@ class StudentManager extends Manager {
   }
 
   searchByFirstName(firstName, array) {
-    this.searchResults = []
-    array.map(
-      (student) =>
-        student.firstName === firstName && this.searchResults.push(student)
+    this.searchResults = array.filter(
+      (student) => student.firstName === firstName
     )
     if (this.searchResults.length === 0) {
       throw new Error('no students found with this first name')
@@ -27,10 +25,8 @@ class StudentManager extends Manager {
   }
 
   searchByLastName(lastName, array) {
-    this.searchResults = []
-    array.map(
-      (student) =>
-        student.lastName === lastName && this.searchResults.push(student)
+    this.searchResults = array.filter(
+      (student) => student.lastName === lastName
     )
     if (this.searchResults.length === 0) {
       throw new Error('no students found with this last name')
