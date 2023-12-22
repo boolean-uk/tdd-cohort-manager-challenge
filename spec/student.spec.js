@@ -14,7 +14,9 @@ describe('Student', () => {
     expect(result.email).toEqual('lee.smith@hotmail.co.uk')
   })
   it('throws an error when a new instance cannot be created due to missing input', () => {
-    const result = () => new Student('Smith', 333, '')
-    expect(result).toThrowError('new student cannot be created - missing input')
+    const callback = () => new Student('Smith', 333, '')
+    expect(callback).toThrowError(
+      'new student cannot be created - missing input'
+    )
   })
 })

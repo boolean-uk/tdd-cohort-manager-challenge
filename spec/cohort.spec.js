@@ -41,14 +41,14 @@ describe('cohort', () => {
   it('throws an error and does not create a new cohort if the name is already in use', () => {
     const cohort = new Cohort('best cohort ever', cohortManager)
     cohortManager.handleNewItem(cohort)
-    const result = () => new Cohort('best cohort ever', cohortManager)
-    expect(result).toThrowError(
+    const callback = () => new Cohort('best cohort ever', cohortManager)
+    expect(callback).toThrowError(
       'cannot create cohort - this name is already taken'
     )
   })
   it('throws an error and does not create an instance of Cohort() when the input is missing', () => {
-    const result = () => new Cohort()
-    expect(result).toThrowError('cohort could not be created - missing input')
+    const callback = () => new Cohort()
+    expect(callback).toThrowError('cohort could not be created - missing input')
   })
   it('increase occupancy by one', () => {
     const cohort = new Cohort('my cohort', cohortManager)
@@ -80,8 +80,8 @@ describe('cohort', () => {
   it('is full beyond its capacity', () => {
     const cohort = new Cohort('my cohort', cohortManager)
     cohort.occupancy = 75
-    const result = () => cohort.isFull()
-    expect(result).toThrowError(
+    const callback = () => cohort.isFull()
+    expect(callback).toThrowError(
       'capacity exceeded - there should never be more than 24 students'
     )
   })
@@ -91,8 +91,8 @@ describe('cohort', () => {
     cohortManager.handleNewItem(cohort1)
     cohortManager.handleNewItem(cohort2)
     cohort1.addStudent(2, studentManager)
-    const result = () => cohort2.addStudent(2, studentManager)
-    expect(result).toThrowError(
+    const callback = () => cohort2.addStudent(2, studentManager)
+    expect(callback).toThrowError(
       'this student is already enrolled elsewhere - cannot be added to this cohort'
     )
     expect(cohort2.students).toEqual([])
@@ -109,8 +109,8 @@ describe('cohort', () => {
   it('throws an error if attempt to add students while the cohort is full', () => {
     const cohort = new Cohort('full cohort', cohortManager)
     cohort.occupancy = 24
-    const result = () => cohort.addStudent(1, studentManager)
-    expect(result).toThrowError('cannot add students - this cohort is full')
+    const callback = () => cohort.addStudent(1, studentManager)
+    expect(callback).toThrowError('cannot add students - this cohort is full')
   })
   it('assigns the name of this cohort to a student as its cohortName property', () => {
     const cohort = new Cohort('some cool name', cohortManager)
@@ -155,8 +155,8 @@ describe('cohort', () => {
   })
   it('throws an error if attempting to remove any students from an empty cohort', () => {
     const cohort = new Cohort('empty cohort', cohortManager)
-    const result = () => cohort.removeStudent(1, studentManager)
-    expect(result).toThrowError('no students to be removed - cohort empty')
+    const callback = () => cohort.removeStudent(1, studentManager)
+    expect(callback).toThrowError('no students to be removed - cohort empty')
   })
   it('includes this specific student', () => {
     const cohort1 = new Cohort('best cohort ever', cohortManager)
@@ -167,8 +167,8 @@ describe('cohort', () => {
   it('this student is not in this cohort', () => {
     const cohort1 = new Cohort('best cohort ever', cohortManager)
     cohort1.addStudent(2, studentManager)
-    const result = () => cohort1.searchCohortById(576, studentManager)
-    expect(result).toThrowError('student not found')
+    const callback = () => cohort1.searchCohortById(576, studentManager)
+    expect(callback).toThrowError('student not found')
   })
 
   describe('finds students by', () => {
@@ -185,24 +185,24 @@ describe('cohort', () => {
       expect(result).toEqual([student3, student4])
     })
     it('first name failed - no such first name', () => {
-      const result = () => cohort1.searchByFirstName('Mike', cohort1.students)
-      expect(result).toThrowError('no students found with this first name')
+      const callback = () => cohort1.searchByFirstName('Mike', cohort1.students)
+      expect(callback).toThrowError('no students found with this first name')
     })
     it('last name', () => {
       const result = cohort1.searchByLastName('Smith', cohort1.students)
       expect(result).toEqual([student1, student2, student4])
     })
     it('last name failed - no such last name', () => {
-      const result = () => cohort1.searchByLastName('Kerr', cohort1.students)
-      expect(result).toThrowError('no students found with this last name')
+      const callback = () => cohort1.searchByLastName('Kerr', cohort1.students)
+      expect(callback).toThrowError('no students found with this last name')
     })
     it('first and last name', () => {
       const result = cohort1.searchByFirstAndLastName('Matt Smith')
       expect(result).toEqual([student4])
     })
     it('first and last name failed - no such first and last name combination', () => {
-      const result = () => cohort1.searchByFirstAndLastName('Jen Michael')
-      expect(result).toThrowError('no such first and last name combination')
+      const callback = () => cohort1.searchByFirstAndLastName('Jen Michael')
+      expect(callback).toThrowError('no such first and last name combination')
     })
   })
 })

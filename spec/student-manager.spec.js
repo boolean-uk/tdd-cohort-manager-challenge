@@ -92,8 +92,8 @@ describe('StudentManager', () => {
     expect(result).toBe(manager.list[0])
   })
   it('this student is not in this cohort', () => {
-    const result = () => manager.searchSchoolById(1)
-    expect(result).toThrowError('student not found')
+    const callback = () => manager.searchSchoolById(1)
+    expect(callback).toThrowError('student not found')
   })
 
   describe('finds students by', () => {
@@ -131,24 +131,24 @@ describe('StudentManager', () => {
       expect(result).toEqual([student3, student4])
     })
     it('first name failed - no such first name', () => {
-      const result = () => manager.searchByFirstName('Mike', manager.list)
-      expect(result).toThrowError('no students found with this first name')
+      const callback = () => manager.searchByFirstName('Mike', manager.list)
+      expect(callback).toThrowError('no students found with this first name')
     })
     it('last name', () => {
       const result = manager.searchByLastName('Smith', manager.list)
       expect(result).toEqual([student1, student2, student4])
     })
     it('last name failed - no such last name', () => {
-      const result = () => manager.searchByLastName('Kerr', manager.list)
-      expect(result).toThrowError('no students found with this last name')
+      const callback = () => manager.searchByLastName('Kerr', manager.list)
+      expect(callback).toThrowError('no students found with this last name')
     })
     it('first and last name', () => {
       const result = manager.searchByFirstAndLastName('Matt Smith')
       expect(result).toEqual([student4])
     })
     it('first and last name failed - no such first and last name combination', () => {
-      const result = () => manager.searchByFirstAndLastName('Jen Michael')
-      expect(result).toThrowError('no such first and last name combination')
+      const callback = () => manager.searchByFirstAndLastName('Jen Michael')
+      expect(callback).toThrowError('no such first and last name combination')
     })
   })
 })

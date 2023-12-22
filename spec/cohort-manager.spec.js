@@ -28,8 +28,8 @@ describe('Manager', () => {
     expect(result).toEqual([])
   })
   it('throws an error if attempting to remove a cohort using an inexistent cohort name ', () => {
-    const result = () => manager.removeCohort('purple')
-    expect(result).toThrowError('cohort name not found')
+    const callback = () => manager.removeCohort('purple')
+    expect(callback).toThrowError('cohort name not found')
   })
   it('checks that a cohort name is new', () => {
     const cohort1 = new Cohort('name', manager)

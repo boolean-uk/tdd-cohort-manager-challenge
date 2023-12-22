@@ -51,7 +51,7 @@
 
 6. Throw errors if student or cohort not found - DONE
 
-A cohort should have a list of students. Each student should have a studentID, first name, last name, github username, email.
+A cohort should have a list of students. Each student should have a studentID, first name, last name, github username, email. - DONE
 
 ## CORE DOMAIN MODEL
 
@@ -85,8 +85,6 @@ A cohort should have a list of students. Each student should have a studentID, f
 
 ## EXTENDED REQUIREMENTS
 
-### already met
-
 - Your program should be composed of at least two classes - DONE
 - Cohort can't exist without a name - DONE (will throw an error)
 - Search for student by student ID - DONE (searchCohortById() and searchSchoolById())
@@ -94,18 +92,16 @@ A cohort should have a list of students. Each student should have a studentID, f
 - Cohorts have fixed capacity at 24 students. - DONE Adding students is not possible beyond the 24 limit. - DONE, will throw an error
 - Cohorts can't have the same name - DONE
 - The same student can't exist in multiple cohorts. - DONE
+- Search for students by name (first and last) and return all matching results - DONE
 
 ### todo
 
-- Search for students by name (first and last) and return all matching results
+- refactor: aim for dry code + check for single responsibility.
+- go through existing code base - see whether additional tests are needed
 
 ## EXTENDED DOMAIN MODEL
 
 ### as an addition to core (above)
-
-```js
-// CURRENTLY CONSIDERING THE OPTION OF CREATING A PARENT CLASS FOR COHORT AND STUDENT MANAGER, WITH THE AIM OF USING IT TO STORE AND RENDER ACCESSIBLE ALL THE METHODS THAT BOTH THESE CLASSES SEEM TO SHARE (searchByFirstAndLastName(), searchByFirstName(), searchByLastName(), searchById(), ...)
-```
 
 |pre-existent or new|Class|Methods|Inputs|Scenarios|Outputs|Data|
 |-|-|-|-|-|-|-|
@@ -142,4 +138,4 @@ A cohort should have a list of students. Each student should have a studentID, f
 ||searchByFirstAndLastName()| searchByFirstName(), searchByLastName(), studentManager.list(@student[]), firstName(@string), lastName(@string)| first and last name found | a list of the students who match|
 |||| first name found only | a list of the students who match|
 |||| last name found only | a list of the students who match|
-|||| no match found | throw new Error('the names provided do not exist in our system')
+|||| no match found | throw new Error('the names provided do not exist in our system')|
