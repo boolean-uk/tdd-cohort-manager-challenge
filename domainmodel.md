@@ -44,5 +44,5 @@ Branches |
 | | githubUsername @ String | | | | ✅
 | | EMail @ String | | | | ✅
 | | inCohort | Cohort@Object{} | | | ❌
-| | | fullName() | – | @String | ❌
+| | | fullName() | – | @String | ✅
 | | | assignCohort() | Cohort@Object{} | Student@Object{} | ❌
