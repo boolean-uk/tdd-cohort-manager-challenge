@@ -11,6 +11,12 @@ export default class CohortManager {
   }
 
   searchCohortByName(name) {
-    return this.cohorts.find((cohort) => cohort.name === name)
+    const foundCohort = this.cohorts.find((cohort) => cohort.name === name)
+
+    if (typeof foundCohort === 'undefined') {
+      throw new Error('cohort name not found')
+    }
+
+    return foundCohort
   }
 }
