@@ -1,12 +1,16 @@
 # Cohort Manager
 
-```
-_________        .__                   __       _____                                             
-\_   ___ \  ____ |  |__   ____________/  |_    /     \ _____    ____ _____     ____   ___________ 
-/    \  \/ /  _ \|  |  \ /  _ \_  __ \   __\  /  \ /  \\__  \  /    \\__  \   / ___\_/ __ \_  __ \
-\     \___(  <_> )   Y  (  <_> )  | \/|  |   /    Y    \/ __ \|   |  \/ __ \_/ /_/  >  ___/|  | \/
- \______  /\____/|___|  /\____/|__|   |__|   \____|__  (____  /___|  (____  /\___  / \___  >__|   
-        \/            \/                             \/     \/     \/     \//_____/      \/       
+```txt
+ .oOOOo.         o                             Oo      oO                                         
+.O     o        O                              O O    o o                                         
+o               o                    O         o  o  O  O                                         
+o               O                   oOo        O   Oo   O                                         
+o         .oOo. OoOo. .oOo. `OoOo.   o         O        o .oOoO' 'OoOo. .oOoO' .oOoO .oOo. `OoOo. 
+O         O   o o   o O   o  o       O         o        O O   o   o   O O   o  o   O OooO'  o     
+`o     .o o   O o   O o   O  O       o         o        O o   O   O   o o   O  O   o O      O     
+ `OoooO'  `OoO' O   o `OoO'  o       `oO       O        o `OoO'o  o   O `OoO'o `OoOo `OoO'  o     
+                                                                                   O              
+                                                                                OoO'              
 ```
 
 ### Setup
