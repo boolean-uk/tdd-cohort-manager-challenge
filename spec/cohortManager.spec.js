@@ -22,5 +22,6 @@ describe('CohortManager:', () => {
       expect(result).toBe(1)
       expect(manager.cohorts[0].details).toEqual(expected)
     })
+    // TODO: invalid input
   })
 })
