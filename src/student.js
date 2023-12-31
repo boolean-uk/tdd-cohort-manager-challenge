@@ -1,10 +1,10 @@
 class Student {
-  constructor(studentId, firstName, lastName, github, email) {
-    this.studentId = studentId
+  constructor(firstName, lastName, gitHubUser, email, studentId) {
     this.firstName = firstName
     this.lastName = lastName
-    this.github = github
+    this.gitHubUser = gitHubUser
     this.email = email
+    this.studentId = studentId
   }
 }
 

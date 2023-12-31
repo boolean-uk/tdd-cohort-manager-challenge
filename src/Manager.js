@@ -1,32 +1,29 @@
-import Cohort from './cohort'
-
 class Manager {
   constructor() {
     this.cohorts = []
-    this.studentId = 1
   }
 
-  addCohort(cohortName) {
-    if (typeof cohortName !== 'string') {
-      throw new Error("Please provide a valid name, e.g., 'cohort 6'")
-    }
+  addTheCohort(cohort) {
+    this.cohorts.push(cohort)
+  }
 
-    const isDuplicate = this.cohorts.some(
-      (cohort) => cohort.name === cohortName
+  deleteCohortByName(name) {
+    const targetCohort = this.getCohortByName(name)
+    if (!targetCohort) {
+      throw new Error('This cohort does not exist')
+    }
+    return targetCohort
+  }
+
+  getCohortByName(name) {
+    const targetCohort = this.cohorts.find(
+      (cohort) => cohort.NameOfCohort === name
     )
-
-    if (!isDuplicate) {
-      const newCohort = new Cohort(cohortName)
-      this.cohorts.push(newCohort)
-
-      return this.findCohortByName(cohortName)
-    } else {
-      return `${cohortName} already exists there`
+    if (!targetCohort) {
+      throw new Error('This cohort does not exist')
     }
-  }
-
-  findCohortByName(cohortName) {
-    return this.cohorts.find((cohort) => cohort.name === cohortName)
+    return targetCohort
   }
 }
+
 export default Manager
