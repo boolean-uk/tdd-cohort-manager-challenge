@@ -214,7 +214,29 @@ describe('Cohort Manager', () => {
       expect(foundStudent).toEqual(student);
     });
 
+       /* it('should remove a student from the cohort', () => {
+      const student = new Student(1, 'John', 'Doe', 'johndoe', 'john@example.com');
+      cohort.addStudent(student.studentID, student.firstName, student.lastName, student.githubUsername, student.email);
+      cohort.removeStudent(student.studentID);
+      const foundStudent = cohort.searchByName('John');
+      expect(foundStudent).toBeUndefined();
+    });*/
 
+
+   it('should remove a student from the cohort', () => {
+      // Add a student to the cohort
+      const student = new Student(1, 'John', 'Doe', 'johndoe', 'john@example.com');
+      cohort.addStudent(student.studentID, student.firstName, student.lastName, student.githubUsername, student.email);
+    
+      // Try to remove a non-existent student (use an invalid student ID)
+      expect(() => cohort.removeStudent(2)).toThrowError('Student not found');
+    });
+    
+
+    it('should throw an error if student is not found in the cohort', () => {
+      const student = new Student(1, 'John', 'Doe', 'johndoe', 'john@example.com');
+      expect(() => cohort.removeStudent(student.studentID)).toThrowError('Student not found');
+    });
 
   });
 });

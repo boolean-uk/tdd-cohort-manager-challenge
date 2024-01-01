@@ -52,7 +52,14 @@ class CohortManager {
     }
   }
 
-
+  removeStudentFromCohort(cohort, student) {
+    const foundCohort = this.cohorts.find(c => c.id === cohort.id);
+    if (foundCohort) {
+      foundCohort.removeStudent(student.studentID);
+    } else {
+      throw Error('Student not found in the cohort');
+    }
+  }
 
 }
 
