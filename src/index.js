@@ -1,47 +1,60 @@
+import Student from '../src/student.js';
+import Cohort from '../src/cohort.js';
+
 class CohortManager {
-    constructor() {
-      this.cohorts = []
-      this.nextCohortId = 1
+  constructor() {
+    this.cohorts = [];
+    this.nextCohortId = 1;
+  }
+
+  createCohort(cohortName) {
+    if (typeof cohortName !== 'string' || cohortName.length === 0) {
+      throw Error('Cohort name must be a non-empty string');
+    } else if (
+      this.cohorts.some((cohort) => cohort.cohortName === cohortName)
+    ) {
+      throw Error('Cohort with the same name already exists');
+    } else {
+      const newCohort = new Cohort(this.nextCohortId++, cohortName, []);
+      this.cohorts.push(newCohort);
+      return newCohort;
     }
-  
-    createCohort(cohortName) {
-      if (typeof cohortName !== 'string' || cohortName.length === 0) {
-        throw Error('Cohort name must be a non-empty string')
-      } else if (
-        this.cohorts.some((cohort) => cohort.cohortName === cohortName)
-      ) {
-        throw Error('Cohort with the same name already exists')
-      } else {
-        const newCohort = { id: this.nextCohortId++, cohortName, students: [] }
-        this.cohorts.push(newCohort)
-        return newCohort
-      }
-    }
+  }
 
-
-
-    
   searchCohort(cohortName) {
     const foundCohort = this.cohorts.find(
       (cohort) => cohort.cohortName === cohortName
-    )
+    );
     if (!foundCohort) {
-      throw Error('Cohort cant be found!')
+      throw Error('Cohort cant be found!');
     }
-    return foundCohort
+    return foundCohort;
   }
-
 
   removeCohortByName(cohortName) {
     const foundIndex = this.cohorts.findIndex(
       (cohort) => cohort.cohortName === cohortName
-    )
+    );
     if (foundIndex === -1) {
-      throw new Error('cohortName cant be found!')
+      throw Error('cohortName cant be found!');
     }
-    this.cohorts.splice(foundIndex, 1)
+    this.cohorts.splice(foundIndex, 1);
   }
+
+ 
+
+  addStudentToCohort(cohort, student) {
+    const foundCohort = this.cohorts.find(cohort => cohort.id === cohort.id);
+    if (foundCohort) {
+      foundCohort.addStudent(student.studentID, student.firstName, student.lastName, student.githubUsername, student.email);
+    } else {
+      throw Error('student not found');
+    }
+  }
+
+
 
 }
 
-export default CohortManager
+
+export default CohortManager;

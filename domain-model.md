@@ -30,7 +30,7 @@ A cohort should have a list of students. Each student should have a studentID, f
 | ------ | ------ | ---------- | -------- | --------- | ------- |
 ||CohortManager ||||||
 |||createCohort| name(string ) |typeof input === String, input.length > 0 ,typeof input !== String OR input.length === 0 , nameInput matches existing cohort  |  input === string | cohort.push(cohort) if input not string then throw error or input matches with existing cohortId then throw error
-| | |searchCohort(cohortName: string,cohortId: number) -> Cohort |cohortName(string) |Search for a cohort by name/Id | Cohort object or throw error(cohortId not found or input must be a number)
+| | |searchCohort(cohortName: string) -> Cohort |cohortName(string) |Search for a cohort by name | Cohort object or throw error(cohort not found)
 |||removeCohort(cohortName: string)|cohortName (string)|Remove a cohort by name|remove the wanted cohort if not then throw error
 |||addStudentToCohort(cohort: Cohort, student: Student)|cohort (Cohort object), student (Student object)|Add a student to a specific cohort||
 |||removeStudentFromCohort(cohort: Cohort, student: Student)|studentId:number,cohortId: number|Remove a student from a specific cohort|return student found ,if not then return null

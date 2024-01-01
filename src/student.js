@@ -5,6 +5,7 @@ class Student {
       this.lastName = lastName
       this.githubUsername = githubUsername
       this.email = email
+      
     }
   }
   
