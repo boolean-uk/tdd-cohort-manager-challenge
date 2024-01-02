@@ -3,7 +3,6 @@ import Student from '../src/student.js'
 import { Organization } from '../src/organization.js'
 
 // | | | removeStudent() | @Object{} | @Object{} | ❌
-// | | | setName() | cohortName@String | @Object{} | ❌
 // | | | isFull() | | @Boolean | ❌
 
 describe('cohort', () => {
@@ -86,6 +85,33 @@ describe('cohort', () => {
     it('does not work if student does not exist', () => {
       const result = myCohort.getStudentByName('FirstName 20 LastName 20')
       expect(result).toBeUndefined()
+    })
+  })
+
+  describe('removing students', () => {
+    let myOrg
+    let myCohort
+    beforeAll(() => {
+      myOrg = new Organization('Somewhere')
+      myCohort = new Cohort('#11')
+      for (let i = 0; i < 3; i++) {
+        myCohort.addStudent(
+          new Student('FirstName ' + i, 'LastName ' + i, '', '', myOrg)
+        )
+      }
+    })
+
+    it('works if student exists', () => {
+      const studentToRemove = myCohort.getStudentByName('FirstName 2 LastName 2')
+      expect(studentToRemove).toBeDefined()
+      myCohort.removeStudent(studentToRemove)
+      expect(myCohort.getStudentByName('FirstName 2 LastName 2')).toBeUndefined()
+    })
+
+    it('fails if student does not exist', () => {
+      const studentToRemove = new Student('FirstName', 'LastName', '', '', myOrg)
+      expect(studentToRemove).toBeDefined()
+      expect(() => myCohort.removeStudent(studentToRemove)).toThrowError('Student not present')
     })
   })
 })
