@@ -20,7 +20,7 @@ class Organization {
   }
 
   registerNewStudent() {
-    this.studentCounter += 1
+    this.studentCounter += 1 
     return this.studentCounter
   }
 }
