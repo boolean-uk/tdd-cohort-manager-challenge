@@ -21,8 +21,9 @@ class Cohortmanager {
       const index = this.cohorts.indexOf(cohort)
       return this.cohorts.splice(index, 1)[0]
     } else {
-      return null // Cohort not found
+      throw new Error('Cohort not found!') // Cohort not found
     }
   }
 }
+
 export default Cohortmanager
