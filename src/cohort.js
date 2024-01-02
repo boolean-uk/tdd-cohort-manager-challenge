@@ -28,5 +28,22 @@ class Cohort {
     this.cohortList.push(newCohort)
     return this.cohortList
   }
+
+  // search for a cohort by name
+  searchCohort(cohortName) {
+    const foundCohort = this.cohortList.find(
+      (cohort) => cohort.name === cohortName
+    )
+
+    // Check if the cohort was not found
+    if (!foundCohort) {
+      throw new Error(
+        `Cohort with the name '${cohortName}' not found. Please enter a valid cohort name.`
+      )
+    }
+
+    // Return the found cohort
+    return foundCohort
+  }
 }
 export default Cohort
