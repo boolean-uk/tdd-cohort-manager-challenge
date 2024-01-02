@@ -42,7 +42,7 @@ describe('cohort', () => {
         myCohort.students.push({ id: i })
       }
 
-      expect(myCohort.addStudent({ id: 25 })).toThrowError(
+      expect(() => myCohort.addStudent({ id: 25 })).toThrowError(
         'Cohort is at maximum capacity'
       )
     })
