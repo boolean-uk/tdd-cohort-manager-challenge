@@ -23,4 +23,17 @@ describe('Cohort Manager', () => {
       expect(found).toEqual(cohort)
     })
 
+    it('Add student to a specific cohort', () => {
+        const cohort = new Cohort('Cohort 11')
+        const student1 = new Student(
+          'John',
+          'Smith',
+          'Johngit',
+          'john2@gmail.com',
+          '001'
+        )
+        cohort.addStudent(student1)
+        expect(cohort.students.includes(student1)).toBe(true)
+      })
+
 })

@@ -18,6 +18,10 @@ class Cohort {
     }
     return foundCohort
   }
+
+  addStudent(student) {
+    this.students.push(student)
+  }
 }
 
 export default Cohort
