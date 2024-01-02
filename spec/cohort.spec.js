@@ -1,5 +1,6 @@
 import Cohort from '../src/cohort.js'
 import Student from '../src/student.js'
+import { Organization } from '../src/organization.js'
 
 // students @Object[] | | | | ❌
 // | | | getStudentbyName() | fullName()@String | @Object{} | ❌
@@ -45,6 +46,27 @@ describe('cohort', () => {
       expect(() => myCohort.addStudent({ id: 25 })).toThrowError(
         'Cohort is at maximum capacity'
       )
+    })
+  })
+
+  describe('get students by name', () => {
+    let myOrg
+    let myCohort
+    beforeAll(() => {
+      myOrg = new Organization('Somewhere')
+      myCohort = new Cohort('#11')
+      for (let i = 0; i < 3; i++) {
+        myCohort.addStudent(
+          new Student('FirstName ' + i, 'LastName ' + i, '', '', myOrg)
+        )
+      }
+    })
+
+    it('works if student exists', () => {
+      const result = myCohort.getStudentByName('FirstName 2 LastName 2')
+      expect(typeof result).toEqual('object')
+      expect(result.firstName).toEqual('FirstName 2')
+      expect(result.lastName).toEqual('LastName 2')
     })
   })
 })
