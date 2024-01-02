@@ -33,6 +33,16 @@ class Cohort {
       throw new Error('Cohort does not exist')
     }
   }
+
+  removeStudentByName(studentFirstName) {
+    const studentIndex = this.students.findIndex(
+      (student) => student.firstName === studentFirstName
+    )
+    if (studentIndex === -1) {
+      throw new Error('Student does not exist')
+    }
+    this.students.splice(studentIndex, 1)
+  }
 }
 
 export default Cohort
