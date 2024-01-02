@@ -2,9 +2,6 @@ import Cohort from '../src/cohort.js'
 import Student from '../src/student.js'
 import { Organization } from '../src/organization.js'
 
-// students @Object[] | | | | ❌
-// | | | getStudentbyName() | fullName()@String | @Object{} | ❌
-// | | | addStudent() | @Object{} | @Object{} | ❌
 // | | | removeStudent() | @Object{} | @Object{} | ❌
 // | | | setName() | cohortName@String | @Object{} | ❌
 // | | | isFull() | | @Boolean | ❌
@@ -19,6 +16,15 @@ describe('cohort', () => {
 
     it('creation fails when name is not a string', () => {
       expect(() => new Cohort('')).toThrowError('invalid input')
+    })
+  })
+
+  describe('name change', () => {
+    it('is possible with valid name', () => {
+      const myCohort = new Cohort('#11')
+      expect(myCohort.name).toEqual('#11')
+      myCohort.setName('NewName')
+      expect(myCohort.name).toEqual('NewName')
     })
   })
 
