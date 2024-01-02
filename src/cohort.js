@@ -28,6 +28,10 @@ class Cohort {
   }
 
   addStudent(studentObj) {
+    if (this.isFull()) {
+      throw new Error('Cohort is at maximum capacity')
+    }
+
     if (this.students.filter((student) => student === studentObj).length) {
       throw new Error('Student already present')
     }

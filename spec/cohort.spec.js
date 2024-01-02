@@ -21,7 +21,7 @@ describe('cohort', () => {
     })
   })
 
-  describe('capacity works', () => {
+  describe('capacity', () => {
     it('after creation isFull is false', () => {
       const myCohort = new Cohort('#11')
       expect(myCohort.isFull()).toBeFalse()
@@ -34,6 +34,17 @@ describe('cohort', () => {
       }
       expect(myCohort.isFull()).toBeTrue()
       expect(myCohort.students.length).toEqual(24)
+    })
+
+    it('at max lets adding students fail', () => {
+      const myCohort = new Cohort('#11')
+      for (let i = 0; i < 24; i++) {
+        myCohort.students.push({ id: i })
+      }
+
+      expect(myCohort.addStudent({ id: 25 })).toThrowError(
+        'Cohort is at maximum capacity'
+      )
     })
   })
 })
