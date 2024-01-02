@@ -37,7 +37,19 @@ describe('Cohortmanager', () => {
       expect(result).toEqual({ name: cohortName })
     })
   })
-  describe('', () => {
-    it('', () => {})
+  describe('Adds student to a specific cohort and Remove student from a specific cohort', () => {
+    it('adds student to a specific cohort', () => {
+      const student = {
+        id: 1,
+        firstName: 'Tinubu',
+        lastName: 'Buhari',
+        githubUsername: 'tinubu2019',
+        email: 'tinububuhari@yahoo.com'
+      }
+      const cohortName = 'cohort11'
+      cohortmanager.create(cohortName)
+      const result = cohortmanager.addStudent(cohortName, student)
+      expect(result).toEqual(student)
+    })
   })
 })

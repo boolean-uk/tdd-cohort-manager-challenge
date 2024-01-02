@@ -24,6 +24,20 @@ class Cohortmanager {
       throw new Error('Cohort not found!') // Cohort not found
     }
   }
+
+  addStudent(cohortName, student) {
+    const cohort = this.search(cohortName)
+
+    if (cohort) {
+      cohort.students = cohort.students || []
+
+      cohort.students.push(student)
+
+      return student
+    } else {
+      throw new Error('Cohort not found!')
+    }
+  }
 }
 
 export default Cohortmanager
