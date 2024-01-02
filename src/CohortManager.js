@@ -1,13 +1,22 @@
 class Cohort {
   constructor(name) {
-    this.name = name
+    this.students = []
+    this.CohortName = name
     this.cohortList = []
   }
 
-  createCohortName(name) {
-    const cohortName = new Cohort(name)
-    this.cohortList.push(cohortName)
-    return cohortName
+  addCohort(cohort) {
+    this.cohortList.push(cohort)
+  }
+
+  findCohortByName(name) {
+    const foundCohort = this.cohortList.find(
+      (cohort) => cohort.CohortName === name
+    )
+    if (!foundCohort) {
+      throw new Error('Cohort does not exist')
+    }
+    return foundCohort
   }
 }
 
