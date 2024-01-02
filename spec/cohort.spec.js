@@ -26,6 +26,14 @@ describe('cohort', () => {
       myCohort.setName('NewName')
       expect(myCohort.name).toEqual('NewName')
     })
+
+    it('is not possible with invalid name input', () => {
+      const myCohort = new Cohort('#11')
+      expect(myCohort.name).toEqual('#11')
+
+      expect(() => myCohort.setName(1254)).toThrowError('invalid input')
+      expect(myCohort.name).toEqual('#11')
+    })
   })
 
   describe('capacity', () => {

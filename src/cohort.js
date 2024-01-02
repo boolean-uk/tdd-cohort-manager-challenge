@@ -16,6 +16,9 @@ class Cohort {
   }
 
   setName(newName) {
+    if (!newName || typeof newName !== 'string') {
+      throw new Error('invalid input')
+    }
     this.name = newName
   }
 
