@@ -22,6 +22,17 @@ class Cohort {
   addStudent(student) {
     this.students.push(student)
   }
+
+  removeCohortByName(name) {
+    const cohortLength = this.cohortList.length
+    this.cohortList = this.cohortList.filter(
+      (cohort) => cohort.CohortName !== name
+    )
+
+    if (this.cohortList.length === cohortLength) {
+      throw new Error('Cohort does not exist')
+    }
+  }
 }
 
 export default Cohort

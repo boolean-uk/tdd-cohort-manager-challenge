@@ -36,4 +36,11 @@ describe('Cohort Manager', () => {
         expect(cohort.students.includes(student1)).toBe(true)
       })
 
+      it('Remove a cohort by cohort name', () => {
+        const cohort1 = new Cohort('Cohort 11')
+        cohortManager.addCohort(cohort1)
+        cohortManager.removeCohortByName('Cohort 11')
+        expect(cohortManager.cohortList.includes(cohort1)).toBe(false)
+      })
+
 })
