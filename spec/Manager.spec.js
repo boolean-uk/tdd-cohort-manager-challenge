@@ -1,5 +1,5 @@
-import Cohort from '../src/Cohort.js'
-import Student from '../src/Student.js'
+import Cohort from '../src/cohort.js'
+import Student from '../src/student.js'
 import Manager from '../src/Manager.js'
 
 describe(' cohort Manager', () => {
