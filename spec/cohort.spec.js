@@ -68,5 +68,10 @@ describe('cohort', () => {
       expect(result.firstName).toEqual('FirstName 2')
       expect(result.lastName).toEqual('LastName 2')
     })
+
+    it('does not work if student does not exist', () => {
+      const result = myCohort.getStudentByName('FirstName 20 LastName 20')
+      expect(result).toBeUndefined()
+    })
   })
 })
