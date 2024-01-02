@@ -57,4 +57,23 @@ describe('Cohort Manager', () => {
         expect(cohort.students.includes(student1)).toBe(false)
       })
 
+      it('Throw an error when trying to remove a non-existent student', () => {
+        const cohort = new Cohort('Cohort 11')
+        expect(() => {
+          cohort.removeStudentByName('NonExistentStudent')
+        }).toThrowError('Student does not exist')
+      })
+    
+      it('Throw an error when trying to find a non-existent cohort', () => {
+        expect(() => {
+          cohortManager.findCohortByName('NonExistentCohort')
+        }).toThrowError('Cohort does not exist')
+      })
+    
+      it('Throw an error when trying to remove a non-existent cohort by name', () => {
+        expect(() => {
+          cohortManager.removeCohortByName('NonExistentCohort')
+        }).toThrowError('Cohort does not exist')
+    })
+
 })
