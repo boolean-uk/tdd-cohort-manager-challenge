@@ -2,9 +2,6 @@ import Cohort from '../src/cohort.js'
 import Student from '../src/student.js'
 import { Organization } from '../src/organization.js'
 
-// | | | removeStudent() | @Object{} | @Object{} | ❌
-// | | | isFull() | | @Boolean | ❌
-
 describe('cohort', () => {
   describe('creation', () => {
     it('is possible with valid name input', () => {
