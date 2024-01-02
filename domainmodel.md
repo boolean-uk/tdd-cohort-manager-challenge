@@ -32,12 +32,12 @@ Branches |
 | | | searchStudentsByName | @String | @Object[] | ❌
 | | | cohortExists | @Object{} | @boolean | ✅
 | Cohort | Name@String 
-| | students @Object[] | | | | ❌
-| | | getStudentbyName() | fullName()@String | @Object{} | ❌
-| | | addStudent() | @Object{} | @Object{} | ❌
-| | | removeStudent() | @Object{} | @Object{} | ❌
-| | | setName() | cohortName@String | @Object{} | ❌
-| | | isFull() | | @Boolean | ❌
+| | students @Object[] | | | | ✅
+| | | getStudentbyName() | fullName()@String | @Object{} | ✅
+| | | addStudent() | @Object{} | @Object{} | ✅
+| | | removeStudent() | @Object{} | @Object{} | ✅
+| | | setName() | cohortName@String | @Object{} | ✅
+| | | isFull() | | @Boolean | ✅
 | Student | studentId @Integer | | | | ✅
 | | firstName @String | | | | ✅
 | | lastName @ String | | | | ✅
