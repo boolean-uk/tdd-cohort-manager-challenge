@@ -42,7 +42,7 @@ describe('Branch', () => {
     })
   })
 
-  describe('addition and removal of cohorts', () => {
+  describe('cohorts', () => {
     let myCohort
     let myBranch
 
@@ -51,27 +51,32 @@ describe('Branch', () => {
       myBranch = new Branch('UK')
     })
 
-    it('adding a cohort', () => {
-      myBranch.addCohort(myCohort)
-      expect(myBranch.cohorts.length).toEqual(1)
-      expect(myBranch.cohorts[0]).toEqual(myCohort)
+    describe('addition', () => {
+      beforeEach(() => {
+        myBranch.addCohort(myCohort)
+      })
+      it('works if everything is fine', () => {
+        expect(myBranch.cohorts.length).toEqual(1)
+        expect(myBranch.cohorts[0]).toEqual(myCohort)
+      })
+
+      it('of possible duplicates fails', () => {
+        expect(myBranch.cohorts.length).toEqual(1)
+        expect(() => myBranch.addCohort(myCohort)).toThrowError('already exists')
+        expect(myBranch.cohorts.length).toEqual(1)
+      })
     })
 
-    it('adding a cohort that already exists', () => {
-      myBranch.addCohort(myCohort)
-      expect(myBranch.cohorts.length).toEqual(1)
-      expect(() => myBranch.addCohort(myCohort)).toThrowError('already exists')
-      expect(myBranch.cohorts.length).toEqual(1)
-    })
+    describe('removal', () => {
+      it('works if cohort exists', () => {
+        myBranch.addCohort(myCohort)
+        myBranch.removeCohort(myCohort)
+        expect(myBranch.cohorts.length).toEqual(0)
+      })
 
-    it('removing a cohort', () => {
-      myBranch.addCohort(myCohort)
-      myBranch.removeCohort(myCohort)
-      expect(myBranch.cohorts.length).toEqual(0)
-    })
-
-    it('removing a cohort that does not exist', () => {
-      expect(() => myBranch.removeCohort(myCohort)).toThrowError()
+      it('does not work if cohort does not exist', () => {
+        expect(() => myBranch.removeCohort(myCohort)).toThrowError()
+      })
     })
   })
 })
