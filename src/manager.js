@@ -9,7 +9,7 @@ class Manager {
     createCohort(cohortName) {
         if (typeof cohortName !== 'string') return 'ERROR: cohortName is not a string'
         const exists = this.cohorts.forEach(c => {
-            if (c.Name === cohortName) {
+            if (c.name === cohortName) {
                 return true
             }
         });
