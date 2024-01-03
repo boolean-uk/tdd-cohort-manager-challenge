@@ -17,12 +17,15 @@ class Branch {
     return this.cohorts
   }
 
-  removeCohort(cohortObj) {
-    if (!this.cohortExists(cohortObj)) {
+  removeCohort(cohortName) {
+    const cohortToRemove = this.cohorts.find(
+      (cohort) => cohort.name === cohortName
+    )
+    if (!cohortToRemove) {
       throw new Error('does not exist')
     }
 
-    this.cohorts = this.cohorts.filter((cohort) => cohort !== cohortObj)
+    this.cohorts = this.cohorts.filter((cohort) => cohort !== cohortToRemove)
     return this.cohorts
   }
 }

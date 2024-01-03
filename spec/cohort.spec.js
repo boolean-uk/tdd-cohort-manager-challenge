@@ -106,7 +106,13 @@ describe('cohort', () => {
     })
 
     it('fails if student does not exist', () => {
-      const studentToRemove = new Student('FirstName', 'LastName', '', '', myOrg)
+      const studentToRemove = new Student(
+        'FirstName',
+        'LastName',
+        '',
+        '',
+        myOrg
+      )
       expect(studentToRemove).toBeDefined()
       expect(() => myCohort.removeStudent(studentToRemove)).toThrowError('Student not present')
     })

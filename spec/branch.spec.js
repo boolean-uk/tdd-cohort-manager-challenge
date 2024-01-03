@@ -70,7 +70,7 @@ describe('Branch', () => {
     describe('removal', () => {
       it('works if cohort exists', () => {
         myBranch.addCohort(myCohort)
-        myBranch.removeCohort(myCohort)
+        myBranch.removeCohort('#2')
         expect(myBranch.cohorts.length).toEqual(0)
       })
 
