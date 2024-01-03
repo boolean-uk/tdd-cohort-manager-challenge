@@ -69,9 +69,28 @@ describe('manager', () => {
 
             expect(result).toEqual(expected)
         })
+    })
 
+    describe('searching for a cohort', () => {
+        it('by name', () => {
+            const expected = { name: 'Cohort2', students: [] }
 
+            manager.createCohort('Cohort1')
+            manager.createCohort('Cohort2')
+            manager.createCohort('Cohort3')
 
+            const result = manager.searchByCohortName('Cohort2')
+
+            expect(result).toEqual(expected)
+        })
+
+        it('by name that does not exist', () => {
+            const expected = 'ERROR: Cohort not found'
+
+            const result = manager.searchByCohortName('Cohort1')
+            
+            expect(result).toEqual(expected)
+        })
     })
 
 
