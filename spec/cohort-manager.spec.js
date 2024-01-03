@@ -27,6 +27,17 @@ describe('manager', () => {
 
             expect(result).toEqual(expected)
         })
+
+        it('by 2 of the same name', () => {
+            const expected = [{ name: 'Cohort1', students: [] }]
+
+            manager.createCohort('Cohort1')
+            manager.createCohort('Cohort1')
+
+            const result = manager.cohorts
+
+            expect(result).toEqual(expected)
+        })
     })
 
     describe('removing a cohort', () => {
