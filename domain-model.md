@@ -43,7 +43,7 @@ I'd like to search for a cohort by name
 
 | Methods | Inputs | Scenario | Outputs
 | ------ | ------ | ------ | -----
-| searchByCohortName(cohortName) | cohortName(@String) | If cohort name is in array | true
+| searchByCohortName(cohortName) | cohortName(@String) | If cohort name is in array, return cohort | true
 
 ## 
 
