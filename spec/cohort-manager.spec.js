@@ -1,3 +1,4 @@
+import Cohort from "../src/cohort.js"
 import Manager from "../src/manager.js"
 
 describe('manager', () => {
@@ -84,7 +85,7 @@ describe('manager', () => {
             expect(result).toEqual(expected)
         })
 
-        it('by name that does not exist', () => {
+        it('that does not exist', () => {
             const expected = 'ERROR: Cohort not found'
 
             const result = manager.searchByCohortName('Cohort1')
@@ -92,6 +93,22 @@ describe('manager', () => {
             expect(result).toEqual(expected)
         })
     })
-
-
 })
+
+describe('cohort', () => {
+    let cohort
+
+    beforeEach(() => {
+        cohort = new Cohort
+    })
+    it('adding a student', () => {
+        const expected = [{ firstName: 'Ryan', lastName: 'Tinsley', gitUsername: 'Radio58', email: 'rt58gm@gmail.com'}]
+
+        cohort.addStudent('Ryan', 'Tinsley', 'Radio58', 'rt58gm@gmail.com')
+
+        const result = cohort.students
+            
+        expect(result).toEqual(expected)
+    })
+})
+
