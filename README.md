@@ -33,7 +33,7 @@ You should be able to run this in your JS console (using your node REPL, or brow
 The Cohort Manager should be able to support the following interactions
 
 [x] Create a cohort with a cohort name 
-[…] Search for a cohort by cohort name
+[x] Search for a cohort by cohort name
 [x] Add student to a specific cohort
 [x] Remove a cohort by cohort name
 [x] Remove student from a specific cohort

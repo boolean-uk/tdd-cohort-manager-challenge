@@ -30,6 +30,10 @@ class Cohort {
     return this.students.find((student) => student.fullName() === fullName)
   }
 
+  getStudentsByName(fullName) {
+    return this.students.filter((student) => student.fullName() === fullName)
+  }
+
   getStudentByID(id) {
     return this.students.find((student) => student.studentID === id)
   }
