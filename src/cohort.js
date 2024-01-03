@@ -45,5 +45,75 @@ class Cohort {
     // Return the found cohort
     return foundCohort
   }
+
+  // Method to search for a student by ID in a specific cohort
+  searchStudent(cohortName, studentID) {
+    const findCohort = this.searchCohort(cohortName)
+    const findStudent = findCohort.students.find(
+      (student) => student.studentID === studentID
+    )
+
+    if (!findStudent) {
+      throw new Error('Student not found. Please enter a valid student ID.')
+    }
+
+    return findStudent
+  }
+
+  // Method to add a student to a cohort
+  addStudent(cohortName, studentToAdd) {
+    const findCohort = this.searchCohort(cohortName)
+
+    // Check if the student exists in any other cohort
+    const studentExistsInOtherCohort = this.cohortList.some((otherCohort) =>
+      otherCohort.students.some(
+        (student) => student.studentID === studentToAdd.studentID
+      )
+    )
+
+    if (studentExistsInOtherCohort) {
+      throw new Error('This student is already enrolled in another cohort!')
+    }
+
+    // Check if the student already exists in the current cohort
+    const studentExists = findCohort.students.find(
+      (student) => student.studentID === studentToAdd.studentID
+    )
+
+    if (studentExists) {
+      throw new Error('This student already exists in the current cohort!')
+    }
+
+    // Check if the cohort is full
+    if (findCohort.students.length >= findCohort.capacity) {
+      throw new Error('Cohort is full. Student cannot be added!')
+    }
+
+    // Add the student to the cohort
+    findCohort.students.push(studentToAdd)
+    return findCohort.students
+  }
+
+  // Method to remove a cohort by name
+  removeCohort(cohortName) {
+    const findCohort = this.searchCohort(cohortName)
+    const findIndex = this.cohortList.indexOf(findCohort)
+
+    this.cohortList.splice(findIndex, 1)
+    return this.cohortList
+  }
+
+  // Method to remove a student from a cohort
+  removeStudent(cohortName, studentID) {
+    const findCohort = this.searchCohort(cohortName)
+    const findStudent = findCohort.students.find(
+      (student) => student.studentID === studentID
+    )
+
+    const findStudentIndex = findCohort.students.indexOf(findStudent)
+    findCohort.students.splice(findStudentIndex, 1)
+
+    return findCohort.students
+  }
 }
 export default Cohort
