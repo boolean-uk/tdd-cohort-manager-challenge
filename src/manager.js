@@ -37,7 +37,11 @@ class Manager {
     searchByCohortName(cohortName) {
         if (typeof cohortName !== 'string') return 'ERROR: cohortName is not a string'
 
-        return this.cohorts.find((c) => c.name === cohortName)
+        const cohort = this.cohorts.find((c) => c.name === cohortName)
+
+        if (cohort !== undefined) return cohort
+
+        return 'ERROR: Cohort not found'
     }
 }
 
