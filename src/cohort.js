@@ -30,6 +30,10 @@ class Cohort {
     return this.students.find((student) => student.fullName() === fullName)
   }
 
+  getStudentByID(id) {
+    return this.students.find((student) => student.studentID === id)
+  }
+
   addStudent(studentObj) {
     if (this.isFull()) {
       throw new Error('Cohort is at maximum capacity')

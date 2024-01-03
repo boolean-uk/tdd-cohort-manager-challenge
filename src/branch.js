@@ -16,7 +16,6 @@ class Branch {
 
   addCohort(cohortName) {
     const duplicates = this.getCohortByName(cohortName)
-    console.log(duplicates)
     if (duplicates) {
       throw new Error('already exists')
     }

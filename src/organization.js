@@ -23,6 +23,15 @@ class Organization {
     this.studentCounter += 1
     return this.studentCounter
   }
+
+  getStudentByID(id) {
+    let foundStudent
+    this.branches.forEach((branch) => {
+      if (!foundStudent) {
+        return branch.getStudentByID(id)
+      }
+    })
+  }
 }
 
 export { Organization }
