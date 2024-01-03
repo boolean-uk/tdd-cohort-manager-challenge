@@ -30,7 +30,7 @@ Branches |
 | | Cohorts | @Object[] | | | ✅
 | | | addCohort | Name@String{} | @Object{} | ✅
 | | | removeCohort | Name@String{} | @Object{} | ✅
-| | | searchStudentsByName | @String | @Object[] | ❌
+| | | getStudentsByName | @String | @Object[] | ❌
 | | | cohortExists | Name@String{} | @Boolean | ✅
 | | | getCohortByName | Name@String{} | @Object{} | ✅
 | Cohort | Name@String

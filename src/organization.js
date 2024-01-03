@@ -32,6 +32,16 @@ class Organization {
       }
     })
   }
+
+  getStudentsByName(fullName) {
+    const allMatches = []
+    this.branches.forEach((branch) => {
+      const branchMatches = branch.getStudentsByName(fullName)
+      allMatches.push(...branchMatches)
+    })
+
+    return allMatches
+  }
 }
 
 export { Organization }

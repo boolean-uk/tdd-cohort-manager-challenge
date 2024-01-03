@@ -21,6 +21,16 @@ class Branch {
     return foundCohort
   }
 
+  getStudentsByName(fullName) {
+    const allMatches = []
+    this.cohorts.forEach((cohort) => {
+      const cohortMatches = cohort.getStudentsByName(fullName)
+      allMatches.push(...cohortMatches)
+    })
+
+    return allMatches
+  }
+
   addCohort(cohortName) {
     const duplicates = this.cohortExists(cohortName)
     if (duplicates) {
