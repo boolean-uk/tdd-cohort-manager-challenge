@@ -32,8 +32,26 @@ describe('Branch', () => {
       expect(myBranch.cohortExists('#1')).toBeTrue()
     })
 
-    it('returns true if cohort exists', () => {
+    it('returns false if cohort does not exist', () => {
       expect(myBranch.cohortExists('#2')).toBeFalse()
+    })
+  })
+
+  describe('search for cohort by name', () => {
+    let myBranch
+
+    beforeEach(() => {
+      myBranch = new Branch('UK')
+      myBranch.addCohort('#1')
+    })
+
+    it('works if cohort exists', () => {
+      const foundCohort = myBranch.getCohortByName('#1')
+      expect(foundCohort).toBeDefined()
+    })
+
+    it('does not if cohort does not exist', () => {
+      expect(() => myBranch.getCohortByName('#2')).toThrowError('cohort of name #2 does not exist')
     })
   })
 

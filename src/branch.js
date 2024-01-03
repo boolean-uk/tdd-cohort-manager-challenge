@@ -7,15 +7,22 @@ class Branch {
   }
 
   cohortExists(cohortName) {
-    return !!this.getCohortByName(cohortName)
+    return !!this.cohorts.find((cohort) => cohort.name === cohortName)
   }
 
   getCohortByName(cohortName) {
-    return this.cohorts.find((cohort) => cohort.name === cohortName)
+    const foundCohort = this.cohorts.find(
+      (cohort) => cohort.name === cohortName
+    )
+
+    if (!foundCohort) {
+      throw new Error(`cohort of name ${cohortName} does not exist`)
+    }
+    return foundCohort
   }
 
   addCohort(cohortName) {
-    const duplicates = this.getCohortByName(cohortName)
+    const duplicates = this.cohortExists(cohortName)
     if (duplicates) {
       throw new Error('already exists')
     }

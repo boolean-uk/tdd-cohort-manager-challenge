@@ -31,7 +31,7 @@ Branches |
 | | | removeCohort | Name@String{} | @Object{} | ✅
 | | | searchStudentsByName | @String | @Object[] | ❌
 | | | cohortExists | Name@String{} | @Boolean | ✅
-| | | getCohortByName | Name@String{} | @Object{} | ❌
+| | | getCohortByName | Name@String{} | @Object{} | ✅
 | Cohort | Name@String
 | | students @Object[] | | | | ✅
 | | | getStudentbyName() | fullName()@String | @Object{} | ✅
