@@ -101,14 +101,47 @@ describe('cohort', () => {
     beforeEach(() => {
         cohort = new Cohort
     })
-    it('adding a student', () => {
-        const expected = [{ firstName: 'Ryan', lastName: 'Tinsley', gitUsername: 'Radio58', email: 'rt58gm@gmail.com'}]
 
-        cohort.addStudent('Ryan', 'Tinsley', 'Radio58', 'rt58gm@gmail.com')
-
-        const result = cohort.students
-            
-        expect(result).toEqual(expected)
+    describe('adding students', () => {
+        it('adding a student', () => {
+            const expected = [{ firstName: 'Ryan', lastName: 'Tinsley', gitUsername: 'Radio58', email: 'rt58gm@gmail.com'}]
+    
+            cohort.addStudent('Ryan', 'Tinsley', 'Radio58', 'rt58gm@gmail.com')
+    
+            const result = cohort.students
+                
+            expect(result).toEqual(expected)
+        })
+        it('by 2 of the same name', () => {
+            const expected = [{ firstName: 'Ryan', lastName: 'Tinsley', gitUsername: 'Radio58', email: 'rt58gm@gmail.com'}]
+    
+            cohort.addStudent('Ryan', 'Tinsley', 'Radio58', 'rt58gm@gmail.com')
+            cohort.addStudent('Ryan', 'Tinsley', 'Radio58', 'rt58gm@gmail.com')
+    
+            const result = cohort.students
+                
+            expect(result).toEqual(expected)
+        })
     })
+
+    describe('removing students', () => {
+        it('removing a student', () => {
+            const expected = []
+    
+            cohort.addStudent('Ryan', 'Tinsley', 'Radio58', 'rt58gm@gmail.com')
+            cohort.removeStudent('Radio58')
+            const result = cohort.students
+                
+            expect(result).toEqual(expected)
+        })
+        it('removing a student that does not exist', () => {
+            const expected = 'ERROR: Student is not in this cohort'
+    
+            const result = cohort.removeStudent('Radio58')
+                
+            expect(result).toEqual(expected)
+        })
+    })
+    
 })
 
