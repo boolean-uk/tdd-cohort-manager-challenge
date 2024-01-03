@@ -29,5 +29,18 @@ describe('manager', () => {
         })
     })
 
+    describe('removing a cohort', () => {
+        it('by name', () => {
+            const expected = []
+
+            manager.createCohort('Cohort1')
+            manager.removeCohort('Cohort1')
+
+            const result = manager.cohorts
+
+            expect(result).toEqual(expected)
+        })
+    })
+
 
 })
