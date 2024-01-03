@@ -9,8 +9,7 @@ describe('student', () => {
   beforeAll(() => {
     myOrganization = new Organization('Boolean')
     myOrganization.addBranch('UK')
-    newCohort = new Cohort('My TestCohort')
-    myOrganization.branches[0].addCohort(newCohort)
+    myOrganization.branches[0].addCohort('My TestCohort')
   })
 
   it('creation works', () => {
@@ -59,7 +58,7 @@ describe('student', () => {
       'nwise',
       myOrganization
     )
-    
+
     student.assignCohort(newCohort)
     expect(student.inCohort).toEqual(newCohort)
   })
