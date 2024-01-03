@@ -1,5 +1,5 @@
 class Cohort {
-    constructorl(name, students) {
+    constructor(name, students) {
         this.name = name;
         this.students = students;
     }
