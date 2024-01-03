@@ -8,12 +8,11 @@ class Manager {
 
     createCohort(cohortName) {
         if (typeof cohortName !== 'string') return 'ERROR: cohortName is not a string'
-        const exists = this.cohorts.forEach(c => {
-            if (c.name === cohortName) {
-                return true
-            }
-        });
-        if (exists) return 'ERROR: cohort already exists by that name'
+        
+        const exists = this.cohorts.some(c => c.name === cohortName)
+        
+        if (exists) return 'ERROR: cohort already exists'
+        
         const cohort = { name: cohortName, students: [] }
         this.cohorts.push(cohort)
         return true
