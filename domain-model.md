@@ -68,5 +68,5 @@ I'd like to remove a student by name
 
 | Methods | Inputs | Scenario | Outputs
 | ------ | ------ | ------ | -----
-| addStudent(username) | studentUsername(@String) | add student to cohort if the username doesn't already exist | true
-| removeStudent(username) | studentUsername(@String) | remove student from cohort if the username doesn't already exist | true
+| addStudent(githubUsername) | studentUsername(@String) | add student to cohort if the username doesn't already exist | true
+| removeStudent(githubUsername) | studentUsername(@String) | remove student from cohort if the username doesn't already exist | true
