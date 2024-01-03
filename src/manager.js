@@ -24,7 +24,6 @@ class Manager {
         const exists = this.cohorts.forEach((c, index) => {
             if (c.name === cohortName) {
                 this.cohorts.splice(index, 1)
-                console.log('spliced', this.cohorts)
             }
         });
         if (!exists) return `ERROR: cohort doesn't exist by that name`
