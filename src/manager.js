@@ -20,11 +20,13 @@ class Manager {
 
     removeCohort(cohortName) {
         if (typeof cohortName !== 'string') return 'ERROR: cohortName is not a string'
+        
         const exists = this.cohorts.forEach((c, index) => {
             if (c.name === cohortName) {
                 this.cohorts.splice(index, 1)
             }
         });
+        
         if (!exists) return `ERROR: cohort doesn't exist by that name`
 
         return true
