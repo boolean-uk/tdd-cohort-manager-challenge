@@ -13,7 +13,9 @@ class Manager {
         
         if (exists) return 'ERROR: cohort already exists'
         
-        const cohort = { name: cohortName, students: [] }
+        // const cohort = { name: cohortName, students: [] }
+        const {...cohort} = new Cohort(cohortName, [])
+
         this.cohorts.push(cohort)
         return true
     }
@@ -30,6 +32,12 @@ class Manager {
         if (!exists) return `ERROR: cohort doesn't exist by that name`
 
         return true
+    }
+
+    searchByCohortName(cohortName) {
+        if (typeof cohortName !== 'string') return 'ERROR: cohortName is not a string'
+
+        return this.cohorts.find((c) => c.name === cohortName)
     }
 }
 
