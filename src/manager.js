@@ -1,7 +1,7 @@
 import Cohort from "./cohort.js";
 
 class Manager {
-    constructor(cohorts, students) {
+    constructor() {
         this.cohorts = [];
         this.students = [];
     }
