@@ -9,9 +9,7 @@ class Manager {
 
   deleteCohortByName(name) {
     const targetCohort = this.getCohortByName(name)
-    if (!targetCohort) {
-      throw new Error('This cohort does not exist')
-    }
+
     return targetCohort
   }
 
