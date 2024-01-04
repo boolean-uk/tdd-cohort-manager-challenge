@@ -8,7 +8,6 @@ class Student {
         this.firstName = firstName;
         this.secondName = secondName;
         this.id = this.incremenentId()
-        // Add other properties if needed
     };
 
     incremenentId() {

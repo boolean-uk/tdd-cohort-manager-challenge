@@ -44,7 +44,7 @@ class CohortManager {
 
 
         if (existingStudent) {
-            return 'student already exist in', existingStudent.cohortName
+            return `student already exist in ${existingStudent.cohortName}`
         }
 
         const studentCohort = this.cohorts.find((cohort) => cohort.cohortName === cohortName )
