@@ -1,7 +1,6 @@
-// eslint-disable-next-line import/no-duplicates
 import Manager from '../../src/Manager.js'
-// eslint-disable-next-line import/no-duplicates
-import { Cohort, Student } from '../../src/Cohort.js'
+import Cohort from '../../src/Cohort.js'
+import Student from '../../src/Student.js'
 
 describe('Manager', () => {
   let manager
