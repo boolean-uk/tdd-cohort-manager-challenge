@@ -94,4 +94,11 @@ describe('Cohort', () => {
       )
     })
   })
+
+  it('should remove a cohort with a provided name ', () => {
+    cohort.createCohort('Cohort 1')
+    cohort.removeCohort('Cohort 1')
+
+    expect(cohort.name).toBeUndefined()
+  })
 })

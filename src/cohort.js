@@ -41,6 +41,13 @@ class Cohort {
 
     return existingCohort.students.find((student) => student.id === id)
   }
+
+  removeCohort(cohortName) {
+    this.cohortList = this.cohortList.filter(
+      (cohort) => cohort.name !== cohortName
+    )
+    return true
+  }
 }
 
 const bb = new Cohort()
