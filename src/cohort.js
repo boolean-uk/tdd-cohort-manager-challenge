@@ -29,12 +29,24 @@ class Cohort {
     existingCohort.students.push(student)
     return existingCohort
   }
+
+  findStudentById(cohortName, id) {
+    const existingCohort = this.cohortList.find(
+      (cohort) => cohort.name === cohortName
+    )
+    if (!existingCohort) throw new Error(`Cohort doesn't exist`)
+
+    if (existingCohort.students.find((student) => student.id !== id))
+      throw new Error(`Student doesn't exist`)
+
+    return existingCohort.students.find((student) => student.id === id)
+  }
 }
 
 const bb = new Cohort()
 bb.createCohort('aayush')
 bb.addStudentToCohort('aayush', 'gunda')
 
-console.log(bb.cohortList)
+console.log(bb.cohortList.students)
 
 export default Cohort

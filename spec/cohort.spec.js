@@ -57,4 +57,41 @@ describe('Cohort', () => {
       'aayush'
     )
   })
+
+  describe('find studnet by id', () => {
+    it('should return student with given id', () => {
+      cohort.createCohort('Cohort 1')
+
+      const student = new Student(
+        1,
+        'aayush',
+        'lama',
+        'viking',
+        'aayushlama@rocket.com'
+      )
+
+      cohort.addStudentToCohort('Cohort 1', student)
+
+      const result = cohort.findStudentById('Cohort 1', 1)
+
+      expect(result.id).toBe(student.id)
+    })
+
+    it('should throw error if student does not exist', () => {
+      cohort.createCohort('Cohort 1')
+
+      const student = new Student(
+        1,
+        'aayush',
+        'lama',
+        'viking',
+        'aayushlama@rocket.com'
+      )
+      cohort.addStudentToCohort('Cohort 1', student.id)
+
+      expect(() => cohort.findStudentById('Cohort 1', 0)).toThrowError(
+        `Student doesn't exist`
+      )
+    })
+  })
 })
