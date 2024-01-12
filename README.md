@@ -35,7 +35,7 @@ The Cohort Manager should be able to support the following interactions
 
 - [x] Create a cohort with a cohort name
 - [x] Search for a cohort by cohort name
-- [] Add student to a specific cohort
+- [x] Add student to a specific cohort
 - [] Remove a cohort by cohort name
 - [] Remove student from a specific cohort
 - [] Throw errors if student or cohort not found
