@@ -1,0 +1,6 @@
+Cohort:
+  - Attributes:
+    cohortID: (unique identifier for the cohort)
+    cohortName: (name of the cohort)
+    creationDate: (date when the cohort was created)
+
