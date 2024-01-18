@@ -5,6 +5,9 @@ module.exports = {
     node: true,
     jasmine: true
   },
+  parserOptions: {
+    sourceType: 'module'
+  },
   extends: ['standard', 'prettier'],
   parserOptions: {
     ecmaVersion: 'latest'
