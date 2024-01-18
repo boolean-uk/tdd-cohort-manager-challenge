@@ -12,30 +12,46 @@ console.log(search(list, searchFor))
 
 class CohortManager {
     constructor() {
-      this.cohorts = [];
+      this.cohorts = [
+        {
+            name: 'cohort1',
+            students: [
+                { id: 1, name: 'Tayo', age: 23 },
+                { id: 2, name: 'Eazy', age: 22 },
+                { id: 3, name: 'Tosin', age: 38 }
+            ]
+        }
+      ];
     }
   
     create(cohortName) {
+
       const cohort = {
         name: cohortName,
+        students : []
       };
+
       this.cohorts.push(cohort);
       return cohort;
     }
   
-    search(name) {
-      return this.cohorts.find((cohort) => cohort.name === name);
-    }
+
   }
   
   // Create an instance of CohortManager
   const cohortManager = new CohortManager();
   
   // Create a new cohort using the create method
-  const newCohort = cohortManager.create('cohort 1');
+  const newCohort4 = cohortManager.create('cohort4');
+  const newCohort5 = cohortManager.create('cohort5');
+
+  const newCohort6 = cohortManager.create('cohort6');
+
   
   // Print the cohorts array
-  console.log(cohortManager.cohorts);
+  //console.log(cohortManager.cohorts);
+  console.log(cohortManager, cohortList)
+
   
-  export default CohortManager;
+  module.exports = {CohortManager}
   

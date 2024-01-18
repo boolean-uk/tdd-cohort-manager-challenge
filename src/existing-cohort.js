@@ -1,3 +1,4 @@
+
 const cohortList = [
     {
         name: 'cohort1',
@@ -25,16 +26,4 @@ const cohortList = [
     }
 ];
 
-/* const removeStudent = (cohortList, cohortName, studentId) => {
-    const cohort = cohortList.find(cohort => cohort.name === cohortName);
-
-    if (cohort) {
-        cohort.students = cohort.students.filter(student => student.id !== studentId);
-    }
-
-    return cohortList;
-};
-
-const updatedCohortList = removeStudent(cohortList, 'cohort1', 1);
-console.log(updatedCohortList);
- */
+module.exports = {cohortList}
