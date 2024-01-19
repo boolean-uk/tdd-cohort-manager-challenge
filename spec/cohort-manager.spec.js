@@ -44,30 +44,22 @@ describe('COHORT MANAGER', () => {
     
 
     it('Can add a student to a specific cohort', () => {
-      // GIVEN
-      const foundCohort = cohortList.find(cohort => cohort.name === 'cohort2');
-    
-      // WHEN
-      let addedStudent;
-      let studentName;
-      let studentAge;
-    
-      if (foundCohort) {
-        const cohortName = 'cohort2';
-        studentName = 'Gracial';
-        studentAge = 24;
-        addedStudent = cohortManager.addStudent(cohortName, studentName, studentAge);
+      //GIVEN
+        const cohortName = 'cohort1'
+        const newStudent = 'Teniola'
+        const StudentAge = 19
+
+      //WHEN
+      const result = cohortManager.addStudent(cohortName, newStudent, StudentAge)
+
+      //THEN
+      expect(result).toBeDefined();
+      expect(result.name).toBeDefined()
+      expect(result.id).toBeDefined()
+      expect(result.age).toBeDefined()
 
 
-      }
-            // THEN
-            expect(addedStudent).toBeDefined();
-            expect(addedStudent.id).toBeDefined();
-            expect(addedStudent.name).toBe(studentName);
-            expect(addedStudent.age).toBe(studentAge);
-   
-    });
-    
+    })
 
     it('Can throw an error if cohort not found ',()=>{
       //GIVEN
@@ -81,10 +73,76 @@ describe('COHORT MANAGER', () => {
     })
 
   })
+
+  describe('Can remove cohort, Can remove student from a specific cohort', ()=>{
+    it('Remove a cohort by cohort name', ()=>{
+
+       // GIVEN
+       const cohortNameToRemove = 'cohort3';
+   
+       // WHEN
+       const result = cohortManager.removeCohort(cohortNameToRemove);
+   
+        //THEN
+        expect(result).toBeDefined();
+        expect(result[0].name).toBe(cohortNameToRemove);
+    })
+
+
+    it('Return "Cohort not found" if the cohort does not exist', () => {
+      // GIVEN
+      const nonExistentCohortName = 'nonexistentcohort';
   
+      // WHEN
+      const result = cohortManager.removeCohort(nonExistentCohortName);
+  
+      // THEN
+      expect(result).toEqual('Cohort not found');
+    });
+
+    //Can remove students
+  })
+  
+  it('Remove a student by name when both cohort and student are found', () => {
+    //GIVEN
+    const cohortName = 'cohort1';
+    const studentNameToRemove = 'Tosin';
+
+    //WHEN
+    const result = cohortManager.removeStudent(cohortName, studentNameToRemove)
+
+    //THEN
+    expect(result).toBeDefined
+    expect(result[0].name).toBe(studentNameToRemove);
+
+  })
+
+
+  it('Return "Cohort not found" if the cohort does not exist', () => {
+    // GIVEN
+    const nonExistentCohortName = 'nonexistentcohort';
+    const studentNameToRemove = 'Eazy';
+
+    // WHEN
+    const result = cohortManager.removeStudent(nonExistentCohortName, studentNameToRemove);
+
+    // THEN
+    expect(result).toEqual('Cohort not found');
+  });
+
+  it('Return "Student not found" if the student does not exist in the cohort', () => {
+    // GIVEN
+    const cohortName = 'cohort1';
+    const nonExistentStudentName = 'nonexistentstudent';
+
+    // WHEN
+    const result = cohortManager.removeStudent(cohortName, nonExistentStudentName);
+
+    // THEN
+    expect(result).toEqual('Student not found');
+  });
 
 
 })
 
 
-const foundCohort = cohortList.find(cohort => cohort.name === 'cohort2');
