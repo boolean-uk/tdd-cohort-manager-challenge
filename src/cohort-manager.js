@@ -4,17 +4,53 @@ class CohortManager {
       {
         name: 'cohort1',
         students: [
-          { id: 1, name: 'Tayo', age: 23 },
-          { id: 2, name: 'Eazy', age: 22 },
-          { id: 3, name: 'Tosin', age: 38 }
+          {
+            id: 1,
+            name: 'Tayo',
+            age: 23,
+            github: 'tayokanch',
+            email: 'tayoyes@gmail.com'
+          },
+          {
+            id: 2,
+            name: 'Eazy',
+            age: 22,
+            github: 'eazyE',
+            email: 'eazyBalogun@gmail.com'
+          },
+          {
+            id: 3,
+            name: 'Tosin',
+            age: 38,
+            github: 'TosinGaga',
+            email: 'olorundaT@gmail.com'
+          }
         ]
       },
       {
         name: 'cohort3',
         students: [
-          { id: 1, name: 'Damilola', age: 23 },
-          { id: 2, name: 'Segun', age: 56 },
-          { id: 3, name: 'Ope', age: 32 }
+          {
+            id: 1,
+            name: 'Damilola',
+            age: 23,
+            github: 'damiJade',
+            email: 'jadesola@gmail.com'
+          },
+          {
+            id: 2,
+            name: 'Segun',
+            age: 56,
+            github: 'shegs',
+            email: 'seggs@gmail.com'
+          },
+          {
+            id: 3,
+            name: 'Ope',
+            age: 32,
+            github: 'opemipo',
+            email: 'opemipo@gmail.com'
+          }
         ]
       }
     ]
@@ -37,23 +73,27 @@ class CohortManager {
     return foundCohort
   }
 
-  addStudent(cohortName, newStudent, studentAge) {
+  addStudent(cohortName, studentInfo) {
+    const { name, age, github, email } = studentInfo
+
     const cohort = this.cohorts.find((cohort) => cohort.name === cohortName)
 
-    if (cohort) {
+    if (!cohort) {
+      return 'Cohort not found'
+    } else {
       const newStudentId = cohort.students.length
         ? cohort.students.length + 1
         : 1
       const newStudentObject = {
         id: newStudentId,
-        name: newStudent,
-        age: studentAge
+        name,
+        age,
+        github,
+        email
       }
       cohort.students.push(newStudentObject)
 
       return newStudentObject
-    } else {
-      return 'Cohort not found'
     }
   }
 
@@ -96,7 +136,6 @@ const cohortManager = new CohortManager()
 // Create a new cohort using the create method
 
 cohortManager.create('cohort4')
-console.log(cohortManager.addStudent('cohort1', 'Jamie', '18'))
 
 cohortManager.removeStudent('cohort1', 'Eazy')
 module.exports = { CohortManager }

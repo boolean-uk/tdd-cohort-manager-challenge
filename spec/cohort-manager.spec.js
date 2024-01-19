@@ -41,35 +41,42 @@ describe('COHORT MANAGER', () => {
     })
 
     
-    
 
     it('Can add a student to a specific cohort', () => {
-      //GIVEN
-        const cohortName = 'cohort1'
-        const newStudent = 'Teniola'
-        const StudentAge = 19
-
-      //WHEN
-      const result = cohortManager.addStudent(cohortName, newStudent, StudentAge)
-
-      //THEN
+      // GIVEN
+      const cohortName = 'cohort1';
+    
+      const studentInfo = {
+        name: 'Jamie',
+        age: '18',
+        email: 'jamie737@gmail.com',
+        github: 'jamiecode'
+      };
+    
+      // WHEN
+      const result = cohortManager.addStudent(cohortName, studentInfo);
+    
+      // THEN
       expect(result).toBeDefined();
-      expect(result.name).toBeDefined()
-      expect(result.id).toBeDefined()
-      expect(result.age).toBeDefined()
-
-
+      expect(result.name).toEqual(studentInfo.name);
+      expect(result.id).toBeDefined(); 
+      expect(result.age).toEqual(studentInfo.age);
     })
+    
 
     it('Can throw an error if cohort not found ',()=>{
       //GIVEN
-      const cohortManager = new CohortManager();
-
-      const foundCohort = cohortList.find(cohort=> cohort.name === 'cohort9' )
-      if(!foundCohort){
-       const result =  cohortManager.addStudent()
+      const nonexistentcohort = 'cohort12'
+      const studentInfo = {
+        name: 'Anabel',
+        age: '23',
+        email: 'anabelsmil@gmail.com',
+        github: 'anabelsmil'
+      }; 
+     
+       const result =  cohortManager.addStudent(nonexistentcohort, studentInfo )
         expect(result).toEqual('Cohort not found')
-      }
+      
     })
 
   })
