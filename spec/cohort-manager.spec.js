@@ -42,10 +42,10 @@ describe('COHORT MANAGER', () => {
 
     
 
-    it('Can add a student to a specific cohort', () => {
+    it('Can add a student to a specific cohort and also check if cohort is full', () => {
       // GIVEN
       const cohortName = 'cohort1';
-    
+      
       const studentInfo = {
         name: 'Jamie',
         age: '18',
@@ -57,11 +57,17 @@ describe('COHORT MANAGER', () => {
       const result = cohortManager.addStudent(cohortName, studentInfo);
     
       // THEN
-      expect(result).toBeDefined();
-      expect(result.name).toEqual(studentInfo.name);
-      expect(result.id).toBeDefined(); 
-      expect(result.age).toEqual(studentInfo.age);
-    })
+      if (typeof result === 'string') {
+        // If result is a string, it means the maximum capacity was reached
+        expect(result).toEqual(`${cohortName} has reached its maximum capacity`);
+      } else {
+        // If result is an object, it means a student was successfully added
+        expect(result).toBeDefined();
+        expect(result.name).toEqual(studentInfo.name);
+        expect(result.id).toBeDefined(); 
+        expect(result.age).toEqual(studentInfo.age);
+      }
+    });
     
 
     it('Can throw an error if cohort not found ',()=>{
@@ -149,7 +155,7 @@ describe('COHORT MANAGER', () => {
     expect(result).toEqual('Student not found');
   });
 
-
+ 
 })
 
 

@@ -80,6 +80,9 @@ class CohortManager {
 
     if (!cohort) {
       return 'Cohort not found'
+    }
+    if (cohort.students.length === 3) {
+      return `${cohort.name} has reached its maximum capacity`
     } else {
       const newStudentId = cohort.students.length
         ? cohort.students.length + 1
@@ -136,6 +139,15 @@ const cohortManager = new CohortManager()
 // Create a new cohort using the create method
 
 cohortManager.create('cohort4')
+
+const cohortName = 'cohort1'
+const studentInfo = {
+  name: 'Jamie',
+  age: '18',
+  email: 'jamie737@gmail.com',
+  github: 'jamiecode'
+}
+console.log(cohortManager.addStudent(cohortName, studentInfo))
 
 cohortManager.removeStudent('cohort1', 'Eazy')
 module.exports = { CohortManager }
