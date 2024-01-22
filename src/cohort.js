@@ -1,91 +1,121 @@
-import fs from 'fs/promises'
-
-const cohorts = []
-
-let rawData
-fs.readFile('../cohort.json', 'utf-8')
-  .then((data) => {
-    rawData = data
-    initializeCohortData()
-  })
-  .catch((error) => {
-    console.error('Error reading cohort data:', error.message)
-    throw error
-  })
-
-function initializeCohortData() {
-  try {
-    const parsedData = JSON.parse(rawData)
-    // Use parsedData as needed
-    console.log('Parsed Cohort Data:', parsedData)
-  } catch (error) {
-    console.error('Error parsing cohort data:', error.message)
-    throw error
-  }
-}
-
-export class Student {
-  constructor(studentID, firstName, lastName, githubUsername, email) {
-    this.studentID = studentID
-    this.firstName = firstName
-    this.lastName = lastName
-    this.githubUsername = githubUsername
-    this.email = email
-  }
-}
-
-export class Cohort {
-  constructor(cohortName) {
+class Cohort {
+  constructor(cohortName, cohortManager) {
+    if (!cohortName) {
+      throw new Error('cohort could not be created - missing input')
+    }
+    if (!cohortManager.isNameNew(cohortName)) {
+      throw new Error('cannot create cohort - this name is already taken')
+    }
     this.cohortName = cohortName
+    this.id = undefined
     this.students = []
+    this.capacity = 24
+    this.occupancy = 0
+    this.searchResults = []
   }
 
-  create() {
-    const existingCohort = cohorts.find((c) => c.cohortName === this.cohortName)
-    if (existingCohort) {
-      throw new Error(`Cohort '${this.cohortName}' already exists.`)
+  assignCohortNameToStudent(studentId, manager) {
+    const foundStudent = manager.searchSchoolById(studentId)
+    foundStudent.cohortName = this.cohortName
+    return foundStudent
+  }
+
+  clearStudentCohortName(studentId, manager) {
+    const foundStudent = manager.searchSchoolById(studentId)
+    foundStudent.cohortName = undefined
+    return foundStudent
+  }
+
+  addStudent(studentId, studentManager) {
+    if (this.isFull()) {
+      throw new Error('cannot add students - this cohort is full')
     }
-
-    cohorts.push(this)
-  }
-
-  search() {
-    const foundCohort = cohorts.find((c) => c.cohortName === this.cohortName)
-    if (!foundCohort) {
-      throw new Error(`Cohort '${this.cohortName}' not found.`)
-    }
-    return foundCohort
-  }
-
-  addStudent(student) {
-    if (this.students.find((s) => s.studentID === student.studentID)) {
+    const foundStudent = studentManager.searchSchoolById(studentId)
+    if (foundStudent.cohortName) {
       throw new Error(
-        `Student '${student.studentID}' already exists in '${this.cohortName}'.`
+        'this student is already enrolled elsewhere - cannot be added to this cohort'
       )
     }
-    this.students.push(student)
+    this.assignCohortNameToStudent(studentId, studentManager)
+    this.students.push(foundStudent)
+    this.increaseOccupancyByOne()
+    return this.students
   }
 
-  remove() {
-    const index = cohorts.findIndex((c) => c.cohortName === this.cohortName)
-    if (index === -1) {
-      throw new Error(`Cohort '${this.cohortName}' not found.`)
-    }
-    cohorts.splice(index, 1)
-  }
-
-  removeStudent(student) {
-    const index = this.students.findIndex(
-      (s) => s.studentID === student.studentID
+  searchCohortById(studentId) {
+    const foundStudent = this.students.find(
+      (student) => student.id === studentId
     )
-    if (index === -1) {
+    if (!foundStudent) {
+      throw new Error('student not found')
+    }
+    return foundStudent
+  }
+
+  removeStudent(studentId, manager) {
+    if (this.occupancy === 0) {
+      throw new Error('no students to be removed - cohort empty')
+    }
+    const foundStudent = this.searchCohortById(studentId)
+    this.clearStudentCohortName(studentId, manager)
+    const index = this.students.indexOf(foundStudent)
+    this.students.splice(index, 1)
+    this.decreaseOccupancyByOne()
+
+    return this.students
+  }
+
+  increaseOccupancyByOne() {
+    this.occupancy++
+    return this.occupancy
+  }
+
+  decreaseOccupancyByOne() {
+    this.occupancy--
+    return this.occupancy
+  }
+
+  isFull() {
+    if (this.occupancy > this.capacity) {
       throw new Error(
-        `Student '${student.studentID}' not found in '${this.cohortName}'.`
+        'capacity exceeded - there should never be more than 24 students'
       )
     }
+    return this.occupancy === this.capacity
+  }
 
-    this.students.splice(index, 1)
+  searchByFirstName(firstName, array) {
+    this.searchResults = array.filter(
+      (student) => student.firstName === firstName
+    )
+    if (this.searchResults.length === 0) {
+      throw new Error('no students found with this first name')
+    }
+    return this.searchResults
+  }
+
+  searchByLastName(lastName, array) {
+    this.searchResults = array.filter(
+      (student) => student.lastName === lastName
+    )
+    if (this.searchResults.length === 0) {
+      throw new Error('no students found with this last name')
+    }
+    return this.searchResults
+  }
+
+  searchByFirstAndLastName(name) {
+    const firstName = name.split(' ')[0]
+    const lastName = name.split(' ')[1]
+
+    try {
+      this.searchByFirstName(firstName, this.students)
+      this.searchByLastName(lastName, this.searchResults)
+    } catch {
+      throw new Error('no such first and last name combination')
+    }
+    return this.searchResults
   }
 }
 
-export default { cohorts }
+export { Cohort }

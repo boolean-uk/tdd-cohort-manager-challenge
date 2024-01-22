@@ -6,12 +6,10 @@ module.exports = {
     jasmine: true
   },
   parserOptions: {
-    sourceType: 'module'
-  },
-  extends: ['standard', 'prettier'],
-  parserOptions: {
+    sourceType: 'module',
     ecmaVersion: 'latest'
   },
+  extends: ['standard', 'prettier'],
   plugins: ['prettier'],
   rules: {
     'prettier/prettier': ['error']
