@@ -28,4 +28,10 @@ describe('Cohort Manager Standard Critera:', () => {
       'saul@hudson.com'
     )
   })
+
+  it('Removes a cohort by cohort name', () => {
+    cohortManager.create('DeleteThisCohort')
+    expect(cohortManager.remove('DeleteThisCohort')).toBeTrue()
+    expect(cohortManager.find('DeleteThisCohort')).toBeNull()
+  })
 })

@@ -41,8 +41,23 @@ function addStudent(student, cohortName) {
   return true
 }
 
+/**
+ * Removes a cohort by a given name
+ * @returns True if the deletion is successful, otherwise false
+ */
+function remove(name) {
+  const cohort = find(name)
+  if (cohort === null) {
+    return false
+  }
+  const cohortIndex = cohorts.indexOf(cohort)
+  cohorts.splice(cohortIndex, 1)
+  return true
+}
+
 module.exports = {
   create: create,
   find: find,
-  addStudent: addStudent
+  addStudent: addStudent,
+  remove: remove
 }
