@@ -20,4 +20,12 @@ export default class CohortManager {
     }
     this.cohorts = this.cohorts.filter((cohort) => cohort.name !== cohortName)
   }
+
+  addStudentToCohort(student, cohortName) {
+    const cohort = this.getCohort(cohortName)
+    if (!cohort) {
+      throw new Error(`Cohort ${cohortName} not found`)
+    }
+    cohort.students.push(student)
+  }
 }

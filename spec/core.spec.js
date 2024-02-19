@@ -27,4 +27,15 @@ describe('Test core criteria', () => {
     expect(cohortManager.cohorts).toEqual([{ name: 'cohort 2', students: [] }])
     expect(() => cohortManager.removeCohort('cohort 1')).toThrow()
   })
+
+  it('Should be able to add student to cohort', function () {
+    cohortManager.addCohort('cohort 1')
+    cohortManager.addStudentToCohort('student 1', 'cohort 1')
+    expect(cohortManager.cohorts).toEqual([
+      { name: 'cohort 1', students: ['student 1'] }
+    ])
+    expect(() =>
+      cohortManager.addStudentToCohort('student 1', 'cohort 2')
+    ).toThrow()
+  })
 })
