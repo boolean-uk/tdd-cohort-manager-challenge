@@ -1,6 +1,7 @@
 export default class CohortManager {
   constructor() {
     this.cohorts = []
+    this.idCount = 0
   }
 
   addCohort(cohortName) {
@@ -26,14 +27,32 @@ export default class CohortManager {
     if (!cohort) {
       throw new Error(`Cohort ${cohortName} not found`)
     }
-    cohort.students.push(student)
+    cohort.students.push({
+      id: this.idCount++,
+      name: student
+    })
   }
 
-  removeStudentFromCohort(student, cohortName) {
+  removeStudentFromCohort(studentName, cohortName) {
     const cohort = this.getCohort(cohortName)
     if (!cohort) {
       throw new Error(`Cohort ${cohortName} not found`)
     }
-    cohort.students = cohort.students.filter((s) => s !== student)
+    const studentIndex = cohort.students.findIndex(
+      (student) => student.name === studentName
+    )
+    if (studentIndex === -1) {
+      throw new Error(
+        `Student ${studentName} not found in cohort ${cohortName}`
+      )
+    }
+    cohort.students.splice(studentIndex, 1)
+  }
+
+  getStudentById(studentId) {
+    return this.cohorts
+      .map((cohort) => cohort.students)
+      .flat()
+      .find((student) => student.id === studentId)
   }
 }
