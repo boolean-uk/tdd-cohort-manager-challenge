@@ -3,7 +3,7 @@
  * @returns A cohort object
  */
 function create(name) {
-  throw new Error('Not implemented')
+  return { name: name }
 }
 
 module.exports = {
