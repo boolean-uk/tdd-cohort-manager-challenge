@@ -1,3 +1,22 @@
+const FIRST_NAMES = [
+  'John',
+  'Phil',
+  'Jacob',
+  'Kurt',
+  'Saul',
+  'Michael',
+  'Jackson'
+]
+
+const LAST_NAMES = [
+  'Duncan',
+  'Jacobs',
+  'Adams',
+  'Hårfagre',
+  'Ozbourne',
+  'Cobain'
+]
+
 describe('Cohort Manager Extended Criteria:', () => {
   let cohortManager
 
@@ -29,5 +48,20 @@ describe('Cohort Manager Extended Criteria:', () => {
     const foundStudent = cohortManager.findStudentById(3)
     delete foundStudent.id
     expect(foundStudent).toEqual(student)
+  })
+
+  it('Has a fixed capacity at 24 students per cohort', () => {
+    const cohortName = 'CapacityCohort'
+    cohortManager.create(cohortName)
+    for (let i = 0; i < 24; i++) {
+      const student = {
+        firstName: FIRST_NAMES[Math.random() * (FIRST_NAMES.length + 1)],
+        lastName: LAST_NAMES[Math.random() * (LAST_NAMES.length + 1)]
+      }
+      cohortManager.addStudent(student, cohortName)
+    }
+    expect(() => cohortManager.addStudent(student, cohortName)).toThrow(
+      new Error('Student max capacity reached!')
+    )
   })
 })

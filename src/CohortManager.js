@@ -1,4 +1,5 @@
 const cohorts = []
+const COHORT_CAPACITY = 24
 let idTracker = 1
 
 /**
@@ -8,7 +9,8 @@ let idTracker = 1
 function create(name) {
   const cohort = {
     name: name,
-    students: []
+    students: [],
+    cohortCapacity: COHORT_CAPACITY
   }
   cohorts.push(cohort)
   return cohort
@@ -32,6 +34,9 @@ function find(name) {
  */
 function addStudent(student, cohortName) {
   const cohort = find(cohortName)
+  if (cohort.students.length + 1 > cohort.cohortCapacity) {
+    throw new Error('Student max capacity reached!')
+  }
   student.id = idTracker
   idTracker += 1
   cohort.students.push(student)
