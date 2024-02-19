@@ -1,4 +1,5 @@
 const cohorts = []
+let idTracker = 1
 
 /**
  * Creates a cohort with a given name
@@ -25,7 +26,23 @@ function find(name) {
   return cohort
 }
 
+/**
+ * Adds a student to an existing cohort by name
+ * @returns True if the process is successful, otherwise false
+ */
+function addStudent(student, cohortName) {
+  const cohort = find(cohortName)
+  if (cohort === null) {
+    return false
+  }
+  student.id = idTracker
+  idTracker += 1
+  cohort.students.push(student)
+  return true
+}
+
 module.exports = {
   create: create,
-  find: find
+  find: find,
+  addStudent: addStudent
 }
