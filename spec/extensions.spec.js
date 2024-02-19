@@ -57,4 +57,14 @@ describe('Test core criteria', () => {
       cohortManager.addStudentToCohort('student', '1', 'cohort 2')
     ).toThrow()
   })
+
+  it('TestFindStudentByFirstNameAndLastName', function () {
+    cohortManager.addCohort('cohort 1')
+    cohortManager.addStudentToCohort('student', '1', 'cohort 1')
+    expect(cohortManager.getStudentByName('student', '1')).toEqual({
+      id: 0,
+      firstname: 'student',
+      lastname: '1'
+    })
+  })
 })

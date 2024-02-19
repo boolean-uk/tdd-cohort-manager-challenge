@@ -75,4 +75,15 @@ export default class CohortManager {
       .flat()
       .find((student) => student.id === studentId)
   }
+
+  getStudentByName(studentFirstName, studentLastName) {
+    return this.cohorts
+      .map((cohort) => cohort.students)
+      .flat()
+      .find(
+        (student) =>
+          student.firstname === studentFirstName &&
+          student.lastname === studentLastName
+      )
+  }
 }
