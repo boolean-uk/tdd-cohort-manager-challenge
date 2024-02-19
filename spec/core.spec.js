@@ -10,4 +10,13 @@ describe('Test core criteria', () => {
     cohortManager.addCohort('cohort 1')
     expect(cohortManager.cohorts).toEqual([{ name: 'cohort 1', students: [] }])
   })
+
+  it('Should be able to get cohort', function () {
+    cohortManager.addCohort('cohort 1')
+    expect(cohortManager.getCohort('cohort 1')).toEqual({
+      name: 'cohort 1',
+      students: []
+    })
+    expect(cohortManager.getCohort('cohort 2')).toBeUndefined()
+  })
 })
