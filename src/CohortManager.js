@@ -27,6 +27,9 @@ export default class CohortManager {
     if (!cohort) {
       throw new Error(`Cohort ${cohortName} not found`)
     }
+    if (cohort.students.length >= 24) {
+      throw new Error('Cohort is full')
+    }
     cohort.students.push({
       id: this.idCount++,
       name: student

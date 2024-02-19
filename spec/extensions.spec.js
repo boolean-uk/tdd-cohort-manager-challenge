@@ -19,4 +19,14 @@ describe('Test core criteria', () => {
       name: 'student 2'
     })
   })
+
+  it('Adding more than 24 students to a cohort should throw an error', function () {
+    cohortManager.addCohort('cohort 1')
+    for (let i = 0; i < 24; i++) {
+      cohortManager.addStudentToCohort(`student ${i}`, 'cohort 1')
+    }
+    expect(() =>
+      cohortManager.addStudentToCohort('student 25', 'cohort 1')
+    ).toThrow()
+  })
 })
