@@ -63,10 +63,26 @@ function removeStudentById(cohortName, studentId) {
   return true
 }
 
+/**
+ * Find a specific student by id. This function searches all cohorts.
+ * @returns A student if found, otherwise throws an error
+ */
+function findStudentById(studentId) {
+  const student = cohorts
+    .map((c) => c.students)
+    .flat()
+    .find((s) => s.id === studentId)
+  if (student === undefined) {
+    throw new Error(`No student with id: ${studentId}`)
+  }
+  return student
+}
+
 module.exports = {
   create: create,
   find: find,
   addStudent: addStudent,
   remove: remove,
-  removeStudentById: removeStudentById
+  removeStudentById: removeStudentById,
+  findStudentById: findStudentById
 }

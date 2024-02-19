@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npx eslint src && npx jasmine",
+    "test-extensions": "npx eslint src && npx jasmine spec/extensions/Extensions.spec.js",
     "prepare": "husky install"
   },
   "author": "dearshrewdwit",
