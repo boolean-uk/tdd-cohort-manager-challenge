@@ -38,4 +38,17 @@ describe('Test core criteria', () => {
       cohortManager.addStudentToCohort('student 1', 'cohort 2')
     ).toThrow()
   })
+
+  it('Should be able to remove student from cohort', function () {
+    cohortManager.addCohort('cohort 1')
+    cohortManager.addStudentToCohort('student 1', 'cohort 1')
+    cohortManager.addStudentToCohort('student 2', 'cohort 1')
+    cohortManager.removeStudentFromCohort('student 1', 'cohort 1')
+    expect(cohortManager.cohorts).toEqual([
+      { name: 'cohort 1', students: ['student 2'] }
+    ])
+    expect(() =>
+      cohortManager.removeStudentFromCohort('student 1', 'cohort 2')
+    ).toThrow()
+  })
 })

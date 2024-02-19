@@ -28,4 +28,12 @@ export default class CohortManager {
     }
     cohort.students.push(student)
   }
+
+  removeStudentFromCohort(student, cohortName) {
+    const cohort = this.getCohort(cohortName)
+    if (!cohort) {
+      throw new Error(`Cohort ${cohortName} not found`)
+    }
+    cohort.students = cohort.students.filter((s) => s !== student)
+  }
 }
