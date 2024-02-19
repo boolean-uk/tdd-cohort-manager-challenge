@@ -5,6 +5,10 @@ export default class CohortManager {
   }
 
   addCohort(cohortName) {
+    if (!cohortName) throw new Error('Cohort name is required')
+    if (this.cohorts.find((cohort) => cohort.name === cohortName)) {
+      throw new Error(`Cohort ${cohortName} already exists`)
+    }
     this.cohorts.push({
       name: cohortName,
       students: []

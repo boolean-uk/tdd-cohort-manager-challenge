@@ -29,4 +29,13 @@ describe('Test core criteria', () => {
       cohortManager.addStudentToCohort('student 25', 'cohort 1')
     ).toThrow()
   })
+
+  it('Cohort name is required', function () {
+    expect(() => cohortManager.addCohort()).toThrow()
+  })
+
+  it('Cohort name already exists', function () {
+    cohortManager.addCohort('cohort 1')
+    expect(() => cohortManager.addCohort('cohort 1')).toThrow()
+  })
 })
