@@ -64,4 +64,10 @@ describe('Cohort Manager Extended Criteria:', () => {
       new Error('Student max capacity reached!')
     )
   })
+
+  it('Can not have two or more cohorts with the same name', () => {
+    const cohortName = 'SameNameCohort'
+    cohortManager.create(cohortName)
+    expect(() => cohortManager.create(cohortName)).toThrowError()
+  })
 })

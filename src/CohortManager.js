@@ -7,6 +7,9 @@ let idTracker = 1
  * @returns A cohort object
  */
 function create(name) {
+  if (cohorts.some((c) => c.name === name)) {
+    throw new Error(`A cohort with name "${name}" already exists!`)
+  }
   const cohort = {
     name: name,
     students: [],
