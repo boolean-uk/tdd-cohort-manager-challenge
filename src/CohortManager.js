@@ -21,7 +21,7 @@ function create(name) {
 function find(name) {
   const cohort = cohorts.find((p) => p.name === name)
   if (cohort === undefined) {
-    return null
+    throw new Error(`No cohort with name: ${name}`)
   }
   return cohort
 }
@@ -32,9 +32,6 @@ function find(name) {
  */
 function addStudent(student, cohortName) {
   const cohort = find(cohortName)
-  if (cohort === null) {
-    return false
-  }
   student.id = idTracker
   idTracker += 1
   cohort.students.push(student)
@@ -47,11 +44,22 @@ function addStudent(student, cohortName) {
  */
 function remove(name) {
   const cohort = find(name)
-  if (cohort === null) {
-    return false
-  }
   const cohortIndex = cohorts.indexOf(cohort)
   cohorts.splice(cohortIndex, 1)
+  return true
+}
+
+/**
+ * Removes a specific student from a cohort by id
+ * @returns True if the deletion is successful, otherwise false
+ */
+function removeStudentById(cohortName, studentId) {
+  const cohort = find(cohortName)
+  const studentIndex = cohort.students.map((s) => s.id).indexOf(studentId)
+  if (studentIndex === -1) {
+    throw new Error(`No student with id: ${studentId}`)
+  }
+  cohort.students.splice(studentIndex, 1)
   return true
 }
 
@@ -59,5 +67,6 @@ module.exports = {
   create: create,
   find: find,
   addStudent: addStudent,
-  remove: remove
+  remove: remove,
+  removeStudentById: removeStudentById
 }
