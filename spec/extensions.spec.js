@@ -38,4 +38,12 @@ describe('Test core criteria', () => {
     cohortManager.addCohort('cohort 1')
     expect(() => cohortManager.addCohort('cohort 1')).toThrow()
   })
+
+  it('Student cannot be removed from cohort it is not in', function () {
+    cohortManager.addCohort('cohort 1')
+    cohortManager.addStudentToCohort('student 1', 'cohort 1')
+    expect(() =>
+      cohortManager.removeStudentFromCohort('student 1', 'cohort 2')
+    ).toThrow()
+  })
 })
