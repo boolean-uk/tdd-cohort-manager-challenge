@@ -30,25 +30,31 @@ describe('Test core criteria', () => {
 
   it('Should be able to add student to cohort', function () {
     cohortManager.addCohort('cohort 1')
-    cohortManager.addStudentToCohort('student 1', 'cohort 1')
+    cohortManager.addStudentToCohort('student', '1', 'cohort 1')
     expect(cohortManager.cohorts).toEqual([
-      { name: 'cohort 1', students: [{ id: 0, name: 'student 1' }] }
+      {
+        name: 'cohort 1',
+        students: [{ id: 0, firstname: 'student', lastname: '1' }]
+      }
     ])
     expect(() =>
-      cohortManager.addStudentToCohort('student 1', 'cohort 2')
+      cohortManager.addStudentToCohort('student', '1', 'cohort 2')
     ).toThrow()
   })
 
   it('Should be able to remove student from cohort', function () {
     cohortManager.addCohort('cohort 1')
-    cohortManager.addStudentToCohort('student 1', 'cohort 1')
-    cohortManager.addStudentToCohort('student 2', 'cohort 1')
-    cohortManager.removeStudentFromCohort('student 1', 'cohort 1')
+    cohortManager.addStudentToCohort('student', '1', 'cohort 1')
+    cohortManager.addStudentToCohort('student', '2', 'cohort 1')
+    cohortManager.removeStudentFromCohort('student', '1', 'cohort 1')
     expect(cohortManager.cohorts).toEqual([
-      { name: 'cohort 1', students: [{ id: 1, name: 'student 2' }] }
+      {
+        name: 'cohort 1',
+        students: [{ id: 1, firstname: 'student', lastname: '2' }]
+      }
     ])
     expect(() =>
-      cohortManager.removeStudentFromCohort('student 1', 'cohort 2')
+      cohortManager.removeStudentFromCohort('student', '1', 'cohort 2')
     ).toThrow()
   })
 })

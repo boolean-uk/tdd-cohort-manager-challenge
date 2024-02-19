@@ -26,7 +26,7 @@ export default class CohortManager {
     this.cohorts = this.cohorts.filter((cohort) => cohort.name !== cohortName)
   }
 
-  addStudentToCohort(student, cohortName) {
+  addStudentToCohort(studentFirstName, studentLastName, cohortName) {
     const cohort = this.getCohort(cohortName)
     if (!cohort) {
       throw new Error(`Cohort ${cohortName} not found`)
@@ -34,24 +34,37 @@ export default class CohortManager {
     if (cohort.students.length >= 24) {
       throw new Error('Cohort is full')
     }
-    cohort.students.push({
+    const student = {
       id: this.idCount++,
-      name: student
-    })
+      firstname: studentFirstName,
+      lastname: studentLastName
+    }
+    if (
+      this.cohorts
+        .map((cohort) => cohort.students)
+        .flat()
+        .find(
+          (s) =>
+            s.firstname === studentFirstName && s.lastname === studentLastName
+        )
+    ) {
+      throw new Error('Student cannot be in multiple cohorts at the same time')
+    }
+    cohort.students.push(student)
   }
 
-  removeStudentFromCohort(studentName, cohortName) {
+  removeStudentFromCohort(studentFirstName, studentLastName, cohortName) {
     const cohort = this.getCohort(cohortName)
     if (!cohort) {
       throw new Error(`Cohort ${cohortName} not found`)
     }
     const studentIndex = cohort.students.findIndex(
-      (student) => student.name === studentName
+      (student) =>
+        student.firstname === studentFirstName &&
+        student.lastname === studentLastName
     )
     if (studentIndex === -1) {
-      throw new Error(
-        `Student ${studentName} not found in cohort ${cohortName}`
-      )
+      throw new Error(`Student not found in cohort ${cohortName}`)
     }
     cohort.students.splice(studentIndex, 1)
   }
