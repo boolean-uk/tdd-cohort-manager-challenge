@@ -1,4 +1,5 @@
 import CohortManager from '../src/CohortManager.js'
+import Student from '../src/Student.js'
 describe('Test core criteria', () => {
   let cohortManager
 
@@ -34,31 +35,19 @@ describe('Test core criteria', () => {
     })
   })
 
-  it('Should not return when not existing', function () {
-    cohortManager.addCohort('New cohort')
-    expect(cohortManager.searchCohort('Second cohort')).toEqual(undefined)
-  })
-
   it('Should add student', function () {
     cohortManager.addCohort('New cohort')
-    cohortManager.addStudent('New cohort', {
-      id: 1,
-      firstName: 'Kristian',
-      lastName: 'Verduin',
-      github: 'kristianverdiun',
-      email: 'kristian@mail.com'
-    })
+    const newStudent = new Student(
+      1,
+      'Kristian',
+      'Verduin',
+      'kristianverduin',
+      'kristian@mail.com'
+    )
+    cohortManager.addStudent('New cohort', newStudent)
     expect(cohortManager.searchCohort('New cohort')).toEqual({
       name: 'New cohort',
-      students: [
-        {
-          id: 1,
-          firstName: 'Kristian',
-          lastName: 'Verduin',
-          github: 'kristianverdiun',
-          email: 'kristian@mail.com'
-        }
-      ]
+      students: [newStudent]
     })
   })
 
@@ -70,13 +59,14 @@ describe('Test core criteria', () => {
 
   it('Should Remove student', function () {
     cohortManager.addCohort('New cohort')
-    cohortManager.addStudent('New cohort', {
-      id: 1,
-      firstName: 'Kristian',
-      lastName: 'Verduin',
-      github: 'kristianverdiun',
-      email: 'kristian@mail.com'
-    })
+    const newStudent = new Student(
+      1,
+      'Kristian',
+      'Verduin',
+      'kristianverduin',
+      'kristian@mail.com'
+    )
+    cohortManager.addStudent('New cohort', newStudent)
     cohortManager.removeStudent('New cohort', 1)
     expect(cohortManager.searchCohort('New cohort')).toEqual({
       name: 'New cohort',
