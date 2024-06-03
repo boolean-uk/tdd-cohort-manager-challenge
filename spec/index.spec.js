@@ -26,4 +26,19 @@ describe('CohortList', () => {
 
     expect(result.cohortName).toBe('cohort12')
   })
+
+  it('should remove a cohort', () => {
+    cohortList.add('cohort12')
+    cohortList.add('cohort13')
+    cohortList.add('cohort14')
+
+    expect(cohortList.cohorts.length).toBe(3)
+
+    const removed = cohortList.remove('cohort13')
+
+    expect(removed.cohortName).toBe('cohort13')
+    expect(cohortList.cohorts.length).toBe(2)
+    expect(cohortList.cohorts[0].cohortName).toBe('cohort12')
+    expect(cohortList.cohorts[1].cohortName).toBe('cohort14')
+  })
 })
