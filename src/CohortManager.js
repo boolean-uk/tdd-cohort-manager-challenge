@@ -50,6 +50,14 @@ class CohortManager {
       throw new Error('No cohort found with that name')
     }
   }
+
+  removeCohort(name) {
+    const cohortToRemove = this.cohorts.find((cohort) => cohort.name === name)
+    if (cohortToRemove) {
+      const index = this.cohorts.indexOf(cohortToRemove)
+      this.cohorts.splice(index, 1)
+    }
+  }
 }
 
 export default CohortManager
