@@ -24,6 +24,11 @@ class CohortManager {
     const searchedCohort = this.cohortList.find(
       (cohort) => cohort.cohortName === cohortName
     )
+
+    if (!searchedCohort) {
+      throw new Error('cohortName not found')
+    }
+
     return searchedCohort
   }
 
