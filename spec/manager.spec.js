@@ -122,6 +122,14 @@ describe('CohortManager', () => {
     expect(cohort.students[0].studentID).toBe('1234')
   })
 
+  it('should throw an error if student not found in cohort', () => {
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.addStudentToCohort('Cohort 1', student)
+    expect(() =>
+      cohortManager.addStudentToCohort('Cohort 1', student)
+    ).toThrowError('Student exists in this cohort already')
+  })
+
   it('should remove a cohort', () => {
     cohortManager.createCohort('Cohort 1')
     cohortManager.removeCohort('Cohort 1')
