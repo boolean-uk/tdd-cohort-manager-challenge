@@ -70,6 +70,8 @@ class CohortManager {
       this.cohortList.splice(this.cohortList[cohort], 1)
       return this.cohortList
     }
+
+    throw new Error('cohortName not found')
   }
 
   removeStudent(studentID, cohortID) {
