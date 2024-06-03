@@ -18,6 +18,7 @@
     "prettier": "^2.6.1"
   },
   "dependencies": {
-    "jasmine-expect": "^5.0.0"
+    "jasmine-expect": "^5.0.0",
+    "uuid": "^9.0.1"
   }
 }

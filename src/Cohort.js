@@ -1,10 +1,10 @@
 import Student from './Student.js'
+import { v4 as uuidv4 } from 'uuid';
 
 class Cohort {
-  static studentIdCount = 1
-  constructor(id, name) {
+  constructor(name) {
     this.students = []
-    this.id = id
+    this.id = uuidv4()
     this.name = name
   }
 
@@ -13,12 +13,10 @@ class Cohort {
       const student = new Student(
         firstName,
         lastName,
-        Cohort.studentIdCount,
         githubUsername,
         email
       )
       this.students.push(student)
-      Cohort.studentIdCount++
       return student
     } else {
       throw new Error('No more than 24 students per cohort')
