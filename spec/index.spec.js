@@ -18,6 +18,10 @@ describe('cohortsManager', () => {
     expect(result.cName).toBe('cohort 12')
     expect(result.studentsList).toEqual([])
   })
+
+  it('should find the cohort', () => {
+    const result = cohortmanager.search('cohort 12')
+  })
 })
 
 

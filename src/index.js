@@ -10,11 +10,15 @@ class Cohortmanager {
     this.cohorts.push(newCohort)
     return newCohort
   }
+
+  search(cName) {
+    
+  }
 }
 
 class Cohort {
-  constructor(id, ctName) {
-    this.cName = ctName
+  constructor(id, cName) {
+    this.cName = cName
     this.studentsList = []
     this.id = id
   }
