@@ -247,7 +247,7 @@ describe('CohortList', () => {
     )
   })
 
-  it('should not be possible to add the same student to a diffrent cohort', () => {
+  it('should not be possible to add the same student to a different cohort', () => {
     cohortList.addCohort('cohort12')
     cohortList.addCohort('cohort13')
 

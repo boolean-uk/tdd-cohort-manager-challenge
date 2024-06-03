@@ -69,20 +69,14 @@ class CohortList {
       throw 'cohort not found'
     }
 
-    const uniqueStudent = {
-      firstName: firstName,
-      lastName: lastName,
-      githubUsername: githubUsername,
-      email: email
-    }
-
     for (let i = 0; i < this.cohorts.length; i++) {
       const foundStudent = this.cohorts[i].students.find(
         (student) =>
-          student.firstName === uniqueStudent.firstName &&
-          student.lastName === uniqueStudent.lastName &&
-          student.githubUsername === uniqueStudent.githubUsername &&
-          student.email === uniqueStudent.email
+          student.firstName === firstName &&
+          student.lastName === lastName &&
+          student.githubUsername === githubUsername &&
+          student.email === email &&
+          student.studentID
       )
 
       if (foundStudent) {
