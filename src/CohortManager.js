@@ -103,7 +103,7 @@ class CohortManager {
       cohort.students.forEach((student) => {
         if (
           student.firstName.includes(name) ||
-          student.firstName.includes(name)
+          student.lastName.includes(name)
         ) {
           foundStudents.push(student)
         }

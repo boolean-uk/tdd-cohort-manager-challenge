@@ -168,8 +168,8 @@ describe('Cohort Manager', () => {
 
     cohortManager.addStudent(
       'findStudentNameTestCohort',
+      'smithington',
       'tompson',
-      'smithy',
       'testGit',
       'test@email.com'
     )
