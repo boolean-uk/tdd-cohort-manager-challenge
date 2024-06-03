@@ -8,6 +8,12 @@ class Cohorts {
     this.cohorts.push(newCohort)
   }
 
+  removeCohort(name) {
+    this.cohorts = this.cohorts.filter((element) => {
+      return element.name !== name
+    })
+  }
+
   addStudent(name, cohortName) {
     const student = new Student(name)
 

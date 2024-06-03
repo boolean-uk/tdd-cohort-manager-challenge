@@ -26,4 +26,13 @@ describe('cohorts', () => {
 
     expect(cohorts.cohorts[0].students[0].name).toBe('Angus')
   })
+
+  it('can remove a cohort using the name of the cohort', () => {
+    cohorts.createCohort('1')
+    cohorts.createCohort('2')
+
+    cohorts.removeCohort('1')
+
+    expect(cohorts.cohorts[0].name).toBe('2')
+  })
 })
