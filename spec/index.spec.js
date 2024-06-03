@@ -7,7 +7,11 @@ describe('cohortsManager', () => {
   })
 
   it('should exist', () => {
+    expect(cohortmanager).toBeInstanceOf(Cohortmanager)
+  })
 
+  it('should create a new cohort and add it to cohortsManager', () => {
+    const result = cohortmanager.creat('cohort 12')
   })
 })
 
