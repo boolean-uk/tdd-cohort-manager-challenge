@@ -1,6 +1,7 @@
 class Cohorts {
   constructor() {
     this.cohorts = []
+    this.idCounter = 1
   }
 }
 

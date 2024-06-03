@@ -11,4 +11,8 @@ describe('cohorts', () => {
   it('is created with an empty array', () => {
     expect(cohorts.cohorts.length).toBe(0)
   })
+
+  it('has an ID counter that starts at 1', () => {
+    expect(cohorts.idCounter).toBe(1)
+  })
 })
