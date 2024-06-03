@@ -1,7 +1,8 @@
+import crypto from 'crypto'
+
 class CohortManager {
   constructor() {
     this.cohorts = []
-    this.idCounter = 1
   }
 
   createCohort(name) {
@@ -40,11 +41,11 @@ class CohortManager {
     if (!cohort) {
       throw new Error('Cohort not found')
     }
-    const student = new Student(name, this.idCounter)
+    const student = new Student(name, crypto.randomUUID())
 
     cohort.students.push(student)
 
-    this.idCounter++
+    return student
   }
 
   removeStudent(cohortName, studentId) {

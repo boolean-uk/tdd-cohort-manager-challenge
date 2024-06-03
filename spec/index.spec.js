@@ -39,9 +39,9 @@ describe('cohorts', () => {
   it('can remove a student from a cohort', () => {
     cohortManager.createCohort('1')
 
-    cohortManager.addStudent('Angus', '1')
+    const student = cohortManager.addStudent('Angus', '1')
 
-    cohortManager.removeStudent('1', 1)
+    cohortManager.removeStudent('1', student.id)
 
     expect(cohortManager.cohorts[0].students.length).toBe(0)
   })
@@ -54,7 +54,7 @@ describe('cohorts', () => {
 
   it('throws an error if the cohort cannot be found when removing a student', () => {
     expect(() => {
-      cohortManager.removeStudent('Angus', '1')
+      cohortManager.removeStudent('1', 'Angus')
     }).toThrow(Error('Cohort not found'))
   })
 
