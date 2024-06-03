@@ -16,11 +16,13 @@ class Student {
       this.id = studentData.id
       this.githubUsername = studentData.githubUsername
       this.email = studentData.email
+    } else {
+      throw new Error('There is no student with this name or surname')
     }
   }
 }
 
-const ns = new Student('Pickle Rick', 'Sanchez')
-console.log(ns)
+// const ns = new Student('Pick', 'Shez')
+// console.log(ns)
 
 export default Student
