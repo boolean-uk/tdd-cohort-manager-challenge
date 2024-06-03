@@ -219,4 +219,10 @@ describe('Cohort Manager', () => {
       'cohortName already exists'
     )
   })
+
+  it('should throw an error for create cohort without a name', () => {
+    expect(() => cohortManager.createCohort('')).toThrowError(
+      'cohortName not provided'
+    )
+  })
 })
