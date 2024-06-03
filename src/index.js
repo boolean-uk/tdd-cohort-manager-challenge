@@ -4,17 +4,17 @@ class Cohortmanager {
     this.id = 1
   }
 
-  creat(cName) {
+  create(cName) {
     const newCohort = new Cohort(this.id, cName)
     this.id++
     this.cohorts.push(newCohort)
-    return this.cohorts
+    return newCohort
   }
 }
 
 class Cohort {
-  constructor(id, cohortName) {
-    this.cohortName = cohortName
+  constructor(id, ctName) {
+    this.cName = ctName
     this.studentsList = []
     this.id = id
   }
@@ -29,4 +29,4 @@ class Student {
     this.email = email
   }
 }
-export { Student, Cohortmanager }
+export { Student, Cohortmanager, Cohort }

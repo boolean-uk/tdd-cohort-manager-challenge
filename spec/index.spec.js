@@ -1,4 +1,4 @@
-import { Student, Cohortmanager } from '../src/index.js'
+import { Student, Cohortmanager, Cohort } from '../src/index.js'
 
 describe('cohortsManager', () => {
   let cohortmanager
@@ -11,7 +11,12 @@ describe('cohortsManager', () => {
   })
 
   it('should create a new cohort and add it to cohortsManager', () => {
-    const result = cohortmanager.creat('cohort 12')
+    const result = cohortmanager.create('cohort 12')
+
+    expect(result).toBeInstanceOf(Cohort)
+    expect(result.id).toBe(1)
+    expect(result.cName).toBe('cohort 12')
+    expect(result.studentsList).toEqual([])
   })
 })
 
