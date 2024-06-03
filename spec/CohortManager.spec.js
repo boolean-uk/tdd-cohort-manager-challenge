@@ -76,7 +76,7 @@ describe('Cohort Manager', () => {
   })
 
   it('should throw an error for not string provided when create cohort', () => {
-    expect(cohortManager.createCohort(12)).toThrowError(
+    expect(() => cohortManager.createCohort(12)).toThrowError(
       'cohortName not string provided'
     )
   })

@@ -7,6 +7,10 @@ class CohortManager {
   }
 
   createCohort(cohortName) {
+    if (typeof cohortName !== 'string') {
+      throw new Error('cohortName not string provided')
+    }
+
     const newCohort = new Cohort(
       this.cohortID++,
       cohortName,
