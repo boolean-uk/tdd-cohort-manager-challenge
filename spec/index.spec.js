@@ -207,8 +207,6 @@ describe('CohortList', () => {
 
   it('should should not be possible to add more than 24 students to a cohort', () => {
     cohortList.addCohort('cohort12')
-    cohortList.addCohort('cohort13')
-    cohortList.addCohort('cohort14')
 
     let index = 1
 
@@ -234,5 +232,16 @@ describe('CohortList', () => {
     )
 
     expect(cohortList.cohorts[0].students.length).toBe(24)
+  })
+
+  it('should not be possible for cohorts to have the same name or exist without name', () => {
+    cohortList.addCohort('cohort12')
+    cohortList.addCohort('cohort13')
+
+    expect(() => cohortList.addCohort('')).toThrow('cohort must have a name')
+
+    expect(() => cohortList.addCohort('cohort12')).toThrow(
+      'cohort already exists, cohort must have an unique name'
+    )
   })
 })
