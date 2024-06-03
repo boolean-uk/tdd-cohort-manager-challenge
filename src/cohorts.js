@@ -1,5 +1,4 @@
 import Student from './student.js'
-import student from './student.js'
 
 class Cohort {
   constructor(name) {
@@ -10,26 +9,16 @@ class Cohort {
   addStudent(firstName, lastName) {
     const cohortFullMsg = `Cohort ${this.name} is full. No more students can be added. Choose another cohort`
     const student = new Student(firstName, lastName)
-    if (this.studentsList.length === 5) {
+    if (this.studentsList.length === 24) {
       throw new Error(cohortFullMsg)
-    }
-    if (student) {
-      this.studentsList.push(student)
     } else {
-      throw new Error()
+      this.studentsList.push(student)
+      process.stdout.write(
+        `${firstName} ${lastName} was succesfully added to Cohort ${this.name}\n`
+      )
     }
   }
+  removeStudent(firstName, lastName) {}
 }
 
 export default Cohort
-
-// const nc = new Cohort(1)
-// // nc.addStudent('Wrong', 'Saz')
-// nc.addStudent('Bart', 'Simpson')
-// nc.addStudent('Lisa', 'Simpson')
-// nc.addStudent('Homer', 'Simpson')
-// nc.addStudent('Eric', 'Cartman')
-// nc.addStudent('Kyle', 'Broflovski')
-// nc.addStudent('Stan', 'Marsh')
-
-// console.log(nc);

@@ -13,9 +13,9 @@ class Student {
         std.firstName === this.firstName && std.lastName === this.lastName
     )
     if (studentData) {
-      this.id = studentData.id
       this.githubUsername = studentData.githubUsername
       this.email = studentData.email
+      this.id = studentData.id
     } else {
       throw new Error('There is no student with this name or surname')
     }
