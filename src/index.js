@@ -12,7 +12,11 @@ class Cohortmanager {
   }
 
   search(cName) {
-    
+    const result = this.cohorts.find((c) => c.cName === cName)
+    if (result === undefined) {
+      return false
+    }
+    return result
   }
 }
 

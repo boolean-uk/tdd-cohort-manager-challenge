@@ -20,7 +20,15 @@ describe('cohortsManager', () => {
   })
 
   it('should find the cohort', () => {
+    cohortmanager.create('cohort 12')
+    cohortmanager.create('cohort 1')
     const result = cohortmanager.search('cohort 12')
+    const result2 = cohortmanager.search('test')
+    const result3 = cohortmanager.search('cohort 1')
+
+    expect(result.cName).toBe(`cohort 12`)
+    expect(result2).toBe(false)
+    expect(result3.id).toBe(2)
   })
 })
 
