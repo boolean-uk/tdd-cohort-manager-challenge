@@ -130,7 +130,13 @@ describe('CohortManager', () => {
     )
   })
 
-  it('should remoce a student form a cohort', () => {
+  it('throw an error if cohort not found', () => {
+    expect(() => cohortManager.searchCohort('Nonexistent')).toThrow(
+      'Cohort not found'
+    )
+  })
+
+  it('should remove a student form a cohort', () => {
     cohortManager.createCohort('Cohort 1')
     cohortManager.addStudentToCohort('Cohort 1', student)
     cohortManager.removeStudentFromCohort('Cohort 1', '1234')
