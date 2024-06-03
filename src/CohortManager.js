@@ -3,7 +3,6 @@ class CohortManager {
     this.cohortList = []
     this.cohortID = 1
     this.studentID = 1
-    this.cohortStudents = []
   }
 
   createCohort(cohortName) {
@@ -58,6 +57,17 @@ class CohortManager {
       throw new Error('adding students is not possible beyond the 24 limit')
     }
 
+    const student = this.cohortList.some((cohort) =>
+      cohort.cohortStudents.some(
+        (student) =>
+          student.firstName === firstName && student.lastName === lastName
+      )
+    )
+
+    if (student) {
+      throw new Error('the student is already in a cohort')
+    }
+
     if (cohort) {
       const newStudent = new Student(
         this.studentID++,
@@ -74,12 +84,12 @@ class CohortManager {
   }
 
   removeCohort(cohortName) {
-    const cohort = this.cohortList.find(
+    const cohort = this.cohortList.findIndex(
       (cohort) => cohort.cohortName === cohortName
     )
 
-    if (cohort) {
-      this.cohortList.splice(this.cohortList[cohort], 1)
+    if (cohort !== -1) {
+      this.cohortList.splice(cohort, 1)
       return this.cohortList
     }
 
@@ -95,15 +105,15 @@ class CohortManager {
       throw new Error('cohortID not found')
     }
 
-    const student = cohort.cohortStudents.find(
+    const student = cohort.cohortStudents.findIndex(
       (student) => student.studentID === studentID
     )
 
-    if (!student) {
+    if (student === -1) {
       throw new Error('studentID not found')
     }
 
-    cohort.cohortStudents.splice(cohort.cohortStudents[studentID], 1)
+    cohort.cohortStudents.splice(student, 1)
     return cohort
   }
 
@@ -129,7 +139,7 @@ class CohortManager {
 }
 
 class Cohort {
-  constructor(cohortID, cohortName, cohortStudents) {
+  constructor(cohortID, cohortName, cohortStudents = []) {
     this.cohortID = cohortID
     this.cohortName = cohortName
     this.cohortStudents = cohortStudents

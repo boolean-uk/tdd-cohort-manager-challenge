@@ -241,8 +241,8 @@ describe('Cohort Manager', () => {
       cohortManager.addStudent(
         'Leonardo',
         'Lodi',
-        'LeoLodi',
-        'leonardosaraceli10@gmail.com',
+        'LeonardoSaraceli',
+        'leonardolodi09@gmail.com',
         2
       )
     ).toThrowError('the student is already in a cohort')
