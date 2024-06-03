@@ -66,4 +66,26 @@ describe('Cohort Manager', () => {
       cohortManager.addStudent('testCohort', 'test', 'student')
     }).toThrowError('No more than 24 students per cohort')
   })
+
+  it('should throw an error if student aleady exists', () => {
+    const cohortManager = new CohortManager()
+    cohortManager.addCohort('testCohort')
+    cohortManager.addStudent(
+      'testCohort',
+      'test',
+      'student',
+      'testGit',
+      'test@email.com'
+    )
+
+    expect(() => {
+      cohortManager.addStudent(
+        'testCohort',
+        'test',
+        'student',
+        'testGit',
+        'test@email.com'
+      )
+    }).toThrowError('This student already exists')
+  })
 })
