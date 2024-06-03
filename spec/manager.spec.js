@@ -65,4 +65,10 @@ describe('Cohort', () => {
       'Student not found'
     )
   })
+
+  it('should throw an error if student not found in cohort when searching', () => {
+    expect(() => cohort.findStudent('nonexistent')).toThrowError(
+      'Student not found'
+    )
+  })
 })
