@@ -1,11 +1,19 @@
+import CohortManager, { Cohort } from '../src/CohortManager.js'
+
 describe('Cohort Manager', () => {
-  let cohortList
+  let cohortManager
 
   beforeEach(() => {
-    cohortList = new CohortManager()
+    cohortManager = new CohortManager()
   })
 
   it('should create a cohort', () => {
-    expect(cohortList.createCohort('Cohort 12')).toEqual([new Cohort(1, 'Cohort 12')])
+    cohortManager.createCohort('Cohort 12')
+    cohortManager.createCohort('Cohort 16')
+
+    expect(cohortManager.cohortList).toEqual([
+      new Cohort(1, 'Cohort 12'),
+      new Cohort(2, 'Cohort 16')
+    ])
   })
 })
