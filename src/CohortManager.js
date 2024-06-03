@@ -26,6 +26,13 @@ class CohortManager {
       throw new Error('No cohort found with that name')
     }
   }
+
+  addStudent(cohortName, firstName, lastName) {
+    const targetCohort = this.cohorts.find(
+      (cohort) => cohort.name === cohortName
+    )
+    targetCohort.addStudent(firstName, lastName)
+  }
 }
 
 export default CohortManager
