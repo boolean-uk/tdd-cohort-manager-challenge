@@ -270,7 +270,7 @@ describe('CohortList', () => {
     ).toThrow('student already exists in another cohort')
   })
 
-  it('should find a student by first name and last name', () => {
+  it('should find a student by first name and last name and otherwise throw an error', () => {
     cohortList.addCohort('cohort12')
     cohortList.addCohort('cohort13')
     cohortList.addCohort('cohort14')
@@ -304,5 +304,9 @@ describe('CohortList', () => {
     expect(result.length).toBe(2)
     expect(result[0].githubUsername).toBe('JennyBody')
     expect(result[1].githubUsername).toBe('JenniferSomebody')
+
+    expect(() => cohortList.searchStudentByName('Mark', 'Something')).toThrow(
+      'no student found by that name'
+    )
   })
 })
