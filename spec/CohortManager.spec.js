@@ -187,4 +187,28 @@ describe('Cohort Manager', () => {
       'cohortID not found'
     )
   })
+
+  it('should throw an error for adding more than 24 students to a cohort', () => {
+    cohortManager.createCohort('Cohort 12')
+
+    for (let i = 0; i < 24; i++) {
+      cohortManager.addStudent(
+        `Leonardo${i}`,
+        'Lodi',
+        `LeonardoSaraceli${i}`,
+        `leonardolodi${i}@gmail.com`,
+        1
+      )
+    }
+
+    expect(() =>
+      cohortManager.addStudent(
+        'Leonardo',
+        'Lodi',
+        'LeonardoSaraceli',
+        'leonardolodi09@gmail.com',
+        1
+      )
+    ).toThrowError('adding students is not possible beyond the 24 limit')
+  })
 })

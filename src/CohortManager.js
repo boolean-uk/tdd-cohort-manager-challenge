@@ -11,11 +11,7 @@ class CohortManager {
       throw new Error('cohortName not string provided')
     }
 
-    const newCohort = new Cohort(
-      this.cohortID++,
-      cohortName,
-      this.cohortStudents
-    )
+    const newCohort = new Cohort(this.cohortID++, cohortName, [])
     this.cohortList.push(newCohort)
     return this.cohortList
   }
