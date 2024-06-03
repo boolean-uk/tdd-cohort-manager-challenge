@@ -142,6 +142,19 @@ class CohortManager {
 
     return student
   }
+
+  searchAllStudents(firstName, lastName) {
+    const students = []
+
+    this.cohortList.forEach((cohort) => {
+      cohort.cohortStudents.forEach((student) => {
+        if (student.firstName === firstName || student.lastName === lastName)
+          students.push(student)
+      })
+    })
+
+    return students
+  }
 }
 
 class Cohort {

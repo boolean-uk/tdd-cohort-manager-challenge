@@ -292,7 +292,7 @@ describe('Cohort Manager', () => {
         'LeonardoSaraceli',
         'leonardolodi09@gmail.com'
       ),
-      new Student(1, 'Pedro', 'Lodi', 'PedroSaraceli', 'pedrolodi10@gmail.com')
+      new Student(2, 'Pedro', 'Lodi', 'PedroSaraceli', 'pedrolodi10@gmail.com')
     ])
   })
 })
