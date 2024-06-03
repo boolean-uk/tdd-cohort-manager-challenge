@@ -1,9 +1,13 @@
 export default class CohortManager {
-  constructor(name) {
-    this.name = name
+  constructor(cohorts = []) {
+    this.cohorts = cohorts
   }
 
-  getName() {
-    return this.name
+  searchName(name) {
+    for (let cohort of this.cohorts) {
+      if (cohort.name === name) {
+        return cohort.name
+      }
+    }
   }
 }
