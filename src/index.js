@@ -1,3 +1,4 @@
+/* eslint-disable no-throw-literal */
 class CohortList {
   constructor() {
     this.cohorts = []
@@ -29,6 +30,10 @@ class CohortList {
 
     if (foundIndex >= 0 && found) {
       this.cohorts.splice(foundIndex, 1)
+    }
+
+    if (!found) {
+      throw 'cohort not found'
     }
 
     return found
