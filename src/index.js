@@ -52,6 +52,10 @@ class CohortManager {
       return element.name === cohortName
     })
 
+    if (cohort.students.length === 24) {
+      throw new Error('Cohort at maximum size')
+    }
+
     if (!cohort) {
       throw new Error('Cohort not found')
     }
