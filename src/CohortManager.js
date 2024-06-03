@@ -45,7 +45,13 @@ class CohortManager {
       (cohort) => cohort.name === cohortName
     )
     if (targetCohort) {
-      targetCohort.addStudent(firstName, lastName, githubUsername, email)
+      const addedStudent = targetCohort.addStudent(
+        firstName,
+        lastName,
+        githubUsername,
+        email
+      )
+      return addedStudent
     } else {
       throw new Error('No cohort found with that name')
     }
@@ -81,15 +87,17 @@ class CohortManager {
     }
   }
 
-  findStudent(studentId) {
-    const targetStudent = this.cohorts.forEach((cohort) => {
-      cohort.students.find((student) => student.studentId === studentId)
-    })
-    if (targetStudent) {
-      return targetStudent
-    } else {
-      throw new Error('No student found with that ID')
+  findStudent(studentIdToFind) {
+    for (let i = 0; i < this.cohorts.length; i++) {
+      console.log(this.cohorts[i].students)
+      const targetStudent = this.cohorts[i].students.find(
+        (student) => student.studentId === studentIdToFind
+      )
+      if (targetStudent) {
+        return targetStudent
+      }
     }
+    throw new Error('No student found with that ID')
   }
 }
 

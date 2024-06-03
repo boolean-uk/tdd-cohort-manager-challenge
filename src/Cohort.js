@@ -19,6 +19,7 @@ class Cohort {
       )
       this.students.push(student)
       Cohort.studentIdCount++
+      return student
     } else {
       throw new Error('No more than 24 students per cohort')
     }

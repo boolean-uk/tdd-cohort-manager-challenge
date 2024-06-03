@@ -133,24 +133,16 @@ describe('Cohort Manager', () => {
 
   it('should find student by their student ID', () => {
     const cohortManager = new CohortManager()
-    cohortManager.addCohort('testCohort')
-    cohortManager.addStudent(
-      'testCohort',
+    cohortManager.addCohort('findStudentTestCohort')
+    const student1 = cohortManager.addStudent(
+      'findStudentTestCohort',
       'test',
       'student',
       'testGit',
       'test@email.com'
     )
-    cohortManager.addStudent(
-      'testCohort',
-      'test2',
-      'student2',
-      'testGit2',
-      'test@email.com2'
-    )
-
-    const studentToFind = cohortManager.findStudent(2)
-
-    expect(studentToFind).name.toEqual('test2')
+  
+    const studentToFind = cohortManager.findStudent(student1.studentId)
+    expect(studentToFind.studentId).toEqual(student1.studentId)
   })
 })
