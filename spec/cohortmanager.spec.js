@@ -51,7 +51,8 @@ describe('Cohort Manager', () => {
   it('should throw an error if adding student to non-existant cohort', () => {
     const cohortManager = new CohortManager()
     cohortManager.addCohort('testCohort')
-    cohortManager.addStudent('otherCohort', 'test', 'student')
-    expect(() => {cohortManager.addStudent('otherCohort', 'test', 'student')}).toThrowError('No cohort found with that name')
+    expect(() => {
+      cohortManager.addStudent('otherCohort', 'test', 'student')
+    }).toThrowError('No cohort found with that name')
   })
 })
