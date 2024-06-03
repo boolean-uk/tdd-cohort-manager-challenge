@@ -9,6 +9,13 @@ class CohortManager {
     this.cohortList.push(newCohort)
     return this.cohortList
   }
+
+  searchCohort(cohortName) {
+    const searchedCohort = this.cohortList.find(
+      (cohort) => cohort.cohortName === cohortName
+    )
+    return searchedCohort
+  }
 }
 
 class Cohort {
