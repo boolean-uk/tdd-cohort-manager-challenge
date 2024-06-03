@@ -33,4 +33,11 @@ describe('Cohort Manager', () => {
       'No cohort found with that name'
     )
   })
+
+  it('find a cohort and add student', () => {
+    const cohort = new CohortManager()
+    cohort.addCohort('testCohort')
+    cohort.addStudent('testCohort', 'test', 'student')
+    expect(cohort.students.length).toEqual(1)
+  })
 })
