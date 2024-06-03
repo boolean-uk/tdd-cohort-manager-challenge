@@ -143,4 +143,11 @@ describe('CohortManager', () => {
     const cohort = cohortManager.searchCohort('Cohort 1')
     expect(cohort.students.length).toBe(0)
   })
+
+  it('should throw an error if student not found in cohort', () => {
+    cohortManager.createCohort('Cohort 1')
+    expect(() =>
+      cohortManager.removeStudentFromCohort('Cohort 1', 'nonexistent')
+    ).toThrow('Student not found')
+  })
 })
