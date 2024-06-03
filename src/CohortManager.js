@@ -79,6 +79,14 @@ class CohortManager {
       (cohort) => cohort.cohortID === cohortID
     )
 
+    const student = cohort.cohortStudents.find(
+      (student) => student.studentID === studentID
+    )
+
+    if (!student) {
+      throw new Error('studentID not found')
+    }
+
     if (cohort) {
       cohort.cohortStudents.splice(cohort.cohortStudents[studentID], 1)
       return cohort
