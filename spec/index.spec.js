@@ -32,7 +32,16 @@ describe('cohortsManager', () => {
   })
 
   it('should remove the cohort', () => {
-    cohortmanager.remove('cohort 12')
+    cohortmanager.create('cohort 12')
+    cohortmanager.create('cohort 1')
+
+    expect(() => cohortmanager.remove('cohort 2')).toThrowError('cohort not found!')
+    expect(cohortmanager.cohorts.length).toBe(2)
+
+    const result2 = cohortmanager.remove('cohort 12')
+
+    expect(result2[0].cName).toBe('cohort 1')
+    expect(cohortmanager.cohorts.length).toBe(1)
   })
 })
 

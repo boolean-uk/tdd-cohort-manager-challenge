@@ -20,7 +20,13 @@ class Cohortmanager {
   }
 
   remove(cName) {
-    return 0
+    const found = this.cohorts.find((c) => c.cName === cName)
+    if (!found) {
+      throw new Error('cohort not found!')
+    } else {
+      this.cohorts = this.cohorts.filter((c) => c.cName !== cName)
+      return this.cohorts
+    }
   }
 }
 
