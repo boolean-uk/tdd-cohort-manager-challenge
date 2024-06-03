@@ -42,6 +42,10 @@ class CohortManager {
       throw new Error('student not string provided')
     }
 
+    if (cohort.cohortStudents.length >= 24) {
+      throw new Error('adding students is not possible beyond the 24 limit')
+    }
+
     if (cohort) {
       const newStudent = new Student(
         this.studentID++,
