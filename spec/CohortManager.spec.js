@@ -265,4 +265,34 @@ describe('Cohort Manager', () => {
       'student can not be removed as it is not present in the first place'
     )
   })
+
+  it('should search for all students first and last name', () => {
+    cohortManager.createCohort('Cohort 12')
+    cohortManager.addStudent(
+      'Leonardo',
+      'Lodi',
+      'LeonardoSaraceli',
+      'leonardolodi09@gmail.com',
+      1
+    )
+    cohortManager.createCohort('Cohort 16')
+    cohortManager.addStudent(
+      'Pedro',
+      'Lodi',
+      'PedroSaraceli',
+      'pedrolodi10@gmail.com',
+      2
+    )
+
+    expect(cohortManager.searchAllStudents('Leonardo', 'Lodi')).toEqual([
+      new Student(
+        1,
+        'Leonardo',
+        'Lodi',
+        'LeonardoSaraceli',
+        'leonardolodi09@gmail.com'
+      ),
+      new Student(1, 'Pedro', 'Lodi', 'PedroSaraceli', 'pedrolodi10@gmail.com')
+    ])
+  })
 })
