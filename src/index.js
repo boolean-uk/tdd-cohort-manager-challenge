@@ -67,6 +67,36 @@ class CohortList {
 
     return newStudent
   }
+
+  removeStudent(cohortName, studentID) {
+    const foundCohort = this.cohorts.find(
+      (cohort) => cohort.cohortName === cohortName
+    )
+
+    if (foundCohort) {
+      const foundStudent = foundCohort.students.find(
+        (student) => student.studentID === studentID
+      )
+
+      const foundStudentIndex = foundCohort.students.findIndex(
+        (student) => student.studentID === studentID
+      )
+
+      if (foundStudentIndex >= 0 && foundStudent) {
+        foundCohort.students.splice(foundStudentIndex, 1)
+      }
+
+      if (!foundStudent) {
+        throw 'student not found'
+      }
+
+      return foundStudent
+    }
+
+    if (!foundCohort) {
+      throw 'cohort not found'
+    }
+  }
 }
 
 class Cohort {
