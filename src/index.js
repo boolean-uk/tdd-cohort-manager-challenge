@@ -73,7 +73,6 @@ class Cohort {
   constructor(name) {
     this.name = name
     this.students = []
-    this.idCounter = 1
   }
 }
 

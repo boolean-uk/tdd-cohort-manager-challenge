@@ -65,4 +65,11 @@ describe('cohorts', () => {
       cohorts.removeStudent('1', 'Angus')
     }).toThrow(Error('Student not found'))
   })
+
+  it('throws an error if another cohort is created with the same name', () => {
+    cohorts.createCohort('1')
+    expect(() => {
+      cohorts.createCohort('1')
+    }).toThrowError()
+  })
 })
