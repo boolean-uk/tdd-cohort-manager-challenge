@@ -75,6 +75,13 @@ class CohortManager {
     const cohort = this.searchCohort(cohortName)
     cohort.addStudent(student)
   }
+
+  removeCohort(cohortName) {
+    if (!this.cohorts.has(cohortName)) {
+      throw new Error('Cohort not found')
+    }
+    this.cohorts.delete(cohortName)
+  }
 }
 
 export { Student, Cohort, CohortManager }

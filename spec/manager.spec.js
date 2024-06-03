@@ -121,4 +121,12 @@ describe('CohortManager', () => {
     expect(cohort.students.length).toBe(1)
     expect(cohort.students[0].studentID).toBe('1234')
   })
+
+  it('should remove a cohort', () => {
+    cohortManager.createCohort('Cohort 2')
+    cohortManager.removeCohort('Cohort 1')
+    expect(() => cohortManager.searchCohort('Cohort 1')).toThrowError(
+      'Cohort not found'
+    )
+  })
 })
