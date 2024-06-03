@@ -14,7 +14,12 @@ describe('student', () => {
 
 describe('Cohort', () => {
   const cohortOne = new Cohort(1)
+  const student = new Student('Pickle Rick', 'Sanchez')
   it('should exist', () => {
     expect(cohortOne.name).toBe(1)
+  })
+  it('should be able to add students to the student list', () => {
+    expect(cohortOne.studentsList.length).toBe(1)
+    expect(cohortOne.studentsList[0].firstName).toBe('Pickle Rick')
   })
 })
