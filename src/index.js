@@ -18,6 +18,10 @@ class Cohortmanager {
     }
     return result
   }
+
+  remove(cName) {
+    return 0
+  }
 }
 
 class Cohort {

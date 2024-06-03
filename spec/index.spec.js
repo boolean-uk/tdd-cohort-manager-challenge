@@ -30,8 +30,11 @@ describe('cohortsManager', () => {
     expect(result2).toBe(false)
     expect(result3.id).toBe(2)
   })
-})
 
+  it('should remove the cohort', () => {
+    cohortmanager.remove('cohort 12')
+  })
+})
 
 describe('student', () => {
   let student
