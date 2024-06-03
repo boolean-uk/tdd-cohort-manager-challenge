@@ -1,23 +1,26 @@
 import students from './studentsDB.js'
 
 class Student {
-  constructor(id) {
-    this.id = id
+  constructor(firstName, lastName) {
+    this.firstName = firstName
+    this.lastName = lastName
     this.loadStudents()
   }
 
   loadStudents() {
-    const studentData = students.find((std) => std.id === this.id)
+    const studentData = students.find(
+      (std) =>
+        std.firstName === this.firstName && std.lastName === this.lastName
+    )
     if (studentData) {
-      this.firstName = studentData.firstName
-      this.lastName = studentData.lastName
+      this.id = studentData.id
       this.githubUsername = studentData.githubUsername
       this.email = studentData.email
     }
   }
 }
 
-const ns = new Student(3)
+const ns = new Student('Pickle Rick', 'Sanchez')
 console.log(ns)
 
 export default Student

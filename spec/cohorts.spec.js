@@ -5,6 +5,8 @@ describe('student', () => {
   it('should exist', () => {
     expect(student.id).toBe(42)
     expect(student.firstName).toBe('Pickle Rick')
-    expect(student.lastNametName).toBe('Sanchez')
+    expect(student.lastName).toBe('Sanchez')
+    expect(student.githubUsername).toBe('picklerick')
+    expect(student.email).toBe('picklerick@pickledimension.com')
   })
 })

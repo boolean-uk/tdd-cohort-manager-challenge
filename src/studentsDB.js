@@ -94,12 +94,14 @@ const students = [
     id: 14,
     firstName: 'Wendy',
     lastName: 'Testaburger',
+    githubUsername: 'wendytweaks',
     email: 'wendy.testaburger@southpark.com'
   },
   {
     id: 15,
     firstName: 'Butters',
     lastName: 'Stotch',
+    githubUsername: 'butterstotch',
     email: 'butters.stotch@southpark.com'
   },
   {
@@ -119,7 +121,7 @@ const students = [
   {
     id: 18,
     firstName: 'Scruffy',
-    lastName: 'Janitor',
+    lastName: 'the Janitor',
     githubUsername: 'scruffy',
     email: 'scruffy.janitor@citadel.com'
   },
@@ -127,144 +129,168 @@ const students = [
     id: 19,
     firstName: 'Principal',
     lastName: 'Skinner',
+    githubUsername: 'skinneradmin',
     email: 'seymour.skinner@springfield.edu'
   },
   {
     id: 20,
     firstName: 'Nelson',
     lastName: 'Muntz',
+    githubUsername: 'nelsonmuntz',
     email: 'nelson.muntz@springfield.edu'
   },
   {
     id: 21,
     firstName: 'Ralph',
     lastName: 'Wiggum',
+    githubUsername: 'ralphwiggum',
     email: 'ralph.wiggum@springfield.edu'
   },
   {
     id: 22,
     firstName: 'Superintendent',
     lastName: 'Chalmers',
+    githubUsername: 'superchalmers',
     email: 'chalmers@springfield.edu'
   },
   {
     id: 23,
     firstName: 'Apu',
     lastName: 'Nahasapeemapetilon',
+    githubUsername: 'apunahas',
     email: 'apu@kwikiemart.com'
   },
   {
     id: 24,
     firstName: 'Moe',
     lastName: 'Szyslak',
+    githubUsername: 'moeszyslak',
     email: 'moe@tavern.com'
   },
   {
     id: 25,
     firstName: 'Cletus',
     lastName: 'Spuckler',
+    githubUsername: 'cletusfarm',
     email: 'cletus@spucklerfarm.com'
   },
   {
     id: 26,
     firstName: 'Barney',
     lastName: 'Gumble',
+    githubUsername: 'barneygumble',
     email: 'barney.gumble@moe.com'
   },
   {
     id: 27,
     firstName: 'Sideshow',
     lastName: 'Bob',
+    githubUsername: 'sideshowbob',
     email: 'sideshowbob@krustyland.com'
   },
   {
     id: 28,
     firstName: 'Krusty',
-    lastName: 'Theclown',
+    lastName: 'Clown',
+    githubUsername: 'krustytheclown',
     email: 'krusty@krustyland.com'
   },
   {
     id: 29,
     firstName: 'Charles',
     lastName: 'Burns',
+    githubUsername: 'mrburns',
     email: 'burns@springfieldnuclear.com'
   },
   {
     id: 30,
     firstName: 'Snake',
     lastName: 'Jailbird',
+    githubUsername: 'snakejailbird',
     email: 'snake@springfieldprison.com'
   },
   {
     id: 31,
     firstName: 'Chief',
     lastName: 'Wiggum',
+    githubUsername: 'chiefwiggum',
     email: 'wiggum@springfieldpd.com'
   },
   {
     id: 32,
     firstName: 'Leopold',
     lastName: 'Stotch',
+    githubUsername: 'leopoldstotch',
     email: 'leopold.stotch@southpark.com'
   },
   {
     id: 33,
     firstName: 'Token',
     lastName: 'Black',
+    githubUsername: 'tokenblack',
     email: 'token.black@southpark.com'
   },
   {
     id: 34,
     firstName: 'Tweek',
-    lastName: 'Tweak',
+    lastName: 'Tweaky',
+    githubUsername: 'tweektweak',
     email: 'tweek@tweakscoffee.com'
   },
   {
     id: 35,
     firstName: 'Craig',
     lastName: 'Tucker',
+    githubUsername: 'craigtucker',
     email: 'craig@southpark.com'
   },
   {
     id: 36,
     firstName: 'Birdperson',
-    lastName: 'Birdy',
+    lastName: 'Bird',
+    githubUsername: 'birdperson',
     email: 'birdperson@citadel.com'
   },
   {
     id: 37,
-    firstName: 'Squirrely Dan',
+    firstName: 'Squirrely',
     lastName: 'Squirrel',
+    githubUsername: 'squirrelydan',
     email: 'squirrelydan@citadel.com'
   },
   {
     id: 38,
     firstName: 'Poopybutthole',
-    lastName: 'Pb',
+    lastName: 'Boopyputhole',
+    githubUsername: 'mrpoopybutthole',
     email: 'mrpoopybutthole@citadel.com'
   },
   {
     id: 39,
     firstName: 'Goldenfold',
-    lastName: 'Folgengold',
+    lastName: 'FoldedGold',
+    githubUsername: 'goldenfold',
     email: 'goldenfold@citadel.com'
   },
   {
     id: 40,
     firstName: 'NoobNoob',
     lastName: 'Nobs',
+    githubUsername: 'noobnoob',
     email: 'noobNoob@citadel.com'
   },
   {
     id: 41,
     firstName: 'Meseeks',
     lastName: 'Youfind',
+    githubUsername: 'mrmeeseeks',
     email: 'mrmeeseeks@citadel.com'
   },
   {
     id: 42,
     firstName: 'Pickle Rick',
     lastName: 'Sanchez',
+    githubUsername: 'picklerick',
     email: 'picklerick@pickledimension.com'
   },
   {
@@ -294,9 +320,7 @@ const students = [
     lastName: 'Belcher',
     githubUsername: 'bobbobbob',
     email: 'bob.belcher@bobsburgers.com'
- 
-
- },
+  },
   {
     id: 47,
     firstName: 'Linda',
