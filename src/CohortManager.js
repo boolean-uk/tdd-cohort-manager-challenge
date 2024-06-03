@@ -113,6 +113,9 @@ class CohortManager {
         }
       })
     )
+    if (foundStudents.length === 0) {
+      throw new Error('No students found')
+    }
     return foundStudents
   }
 }
