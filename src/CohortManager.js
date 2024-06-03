@@ -80,6 +80,17 @@ class CohortManager {
       throw new Error('No cohort found with that name')
     }
   }
+
+  findStudent(studentId) {
+    const targetStudent = this.cohorts.forEach((cohort) => {
+      cohort.students.find((student) => student.studentId === studentId)
+    })
+    if (targetStudent) {
+      return targetStudent
+    } else {
+      throw new Error('No student found with that ID')
+    }
+  }
 }
 
 export default CohortManager
