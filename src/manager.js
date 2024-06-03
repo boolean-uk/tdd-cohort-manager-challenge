@@ -20,4 +20,18 @@ class Student {
   }
 }
 
-export { Student }
+class Cohort {
+  constructor(name) {
+    this.name = name
+    this.students = []
+  }
+
+  addStudent(student) {
+    if (this.student.some((s) => s.studentID === student.studentId)) {
+      throw new Error('Student already in cohort')
+    }
+    this.students.push(student)
+  }
+}
+
+export { Student, Cohort }
