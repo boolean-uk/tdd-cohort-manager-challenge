@@ -51,6 +51,17 @@ class CohortManager {
       return this.cohortList
     }
   }
+
+  removeStudent(studentID, cohortID) {
+    const cohort = this.cohortList.find(
+      (cohort) => cohort.cohortID === cohortID
+    )
+
+    if (cohort) {
+      cohort.cohortStudents.splice(cohort.cohortStudents[studentID], 1)
+      return cohort
+    }
+  }
 }
 
 class Cohort {
