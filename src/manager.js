@@ -38,7 +38,7 @@ class Cohort {
       (s) => s.studentID === studentID
     )
     if (studentIndex === -1) {
-      throw new Error('Student not found.')
+      throw new Error('Student not found')
     }
     this.students.splice(studentIndex, 1)
   }
