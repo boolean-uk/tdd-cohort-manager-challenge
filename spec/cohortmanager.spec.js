@@ -78,8 +78,6 @@ describe('Cohort Manager', () => {
       'test@email.com'
     )
 
-    console.log(cohortManager.cohorts[0].students)
-
     expect(() => {
       cohortManager.addStudent(
         'testCohort',
@@ -89,5 +87,13 @@ describe('Cohort Manager', () => {
         'test@email.com'
       )
     }).toThrowError('This student already exists')
+  })
+
+  it('should remove cohorts by name', () => {
+    const cohortManager = new CohortManager()
+    cohortManager.addCohort('testCohort')
+    cohortManager.removeCohort('testCohort')
+
+    expect(cohortManager.cohorts.length).toEqual(0)
   })
 })
