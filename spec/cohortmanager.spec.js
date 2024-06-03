@@ -25,4 +25,12 @@ describe('Cohort Manager', () => {
     cohort.addCohort('testCohort')
     expect(cohort.findCohort('testCohort').name).toEqual('testCohort')
   })
+
+  it('should throw an error if no cohort can be found with that name', () => {
+    const cohort = new CohortManager()
+    cohort.addCohort('testCohort')
+    expect(() => cohort.findCohort('otherCohort').name).toThrowError(
+      'No cohort found with that name'
+    )
+  })
 })
