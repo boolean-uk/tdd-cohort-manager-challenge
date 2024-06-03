@@ -8,6 +8,10 @@ class CohortManager {
   }
 
   addCohort(name) {
+    if (!name) {
+      throw new Error('All cohorts require a name')
+    }
+
     const duplicateCohort = this.cohorts.find((cohort) => cohort.name === name)
     if (!duplicateCohort) {
       const cohort = new Cohort(name)

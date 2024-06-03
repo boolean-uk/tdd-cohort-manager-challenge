@@ -177,4 +177,11 @@ describe('Cohort Manager', () => {
     const foundStudents = cohortManager.findStudentByName('tom')
     expect(foundStudents.length).toEqual(3)
   })
+
+  it('should throw an error if user creates a cohort withotu a name', () => {
+    const cohortManager = new CohortManager()
+    expect(() => cohortManager.addCohort('')).toThrowError(
+      'All cohorts require a name'
+    )
+  })
 })
