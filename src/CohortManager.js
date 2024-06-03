@@ -47,7 +47,6 @@ class CohortManager {
     if (this.findCohort(cohortName).students.length > 23) {
       throw new Error('No more than 24 students per cohort')
     }
-
     const targetCohort = this.findCohort(cohortName)
     if (targetCohort) {
       const studentToAdd = new Student(firstName, lastName, githubUsername, email)
@@ -58,8 +57,8 @@ class CohortManager {
     }
   }
 
-  removeCohort(name) {
-    const cohortToRemove = this.cohorts.find((cohort) => cohort.name === name)
+  removeCohort(cohortName) {
+    const cohortToRemove = this.findCohort(cohortName)
     if (cohortToRemove) {
       const index = this.cohorts.indexOf(cohortToRemove)
       this.cohorts.splice(index, 1)
