@@ -113,6 +113,12 @@ class CohortManager {
       throw new Error('studentID not found')
     }
 
+    if (cohort.cohortStudents[0].studentID !== studentID) {
+      throw new Error(
+        'student can not be removed as it is not present in the first place'
+      )
+    }
+
     cohort.cohortStudents.splice(student, 1)
     return cohort
   }
