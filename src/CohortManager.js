@@ -37,6 +37,15 @@ class CohortManager {
       (cohort) => cohort.cohortID === cohortID
     )
 
+    if (
+      typeof firstName !== 'string' ||
+      typeof lastName !== 'string' ||
+      typeof gitHubUsername !== 'string' ||
+      typeof email !== 'string'
+    ) {
+      throw new Error('student not string provided')
+    }
+
     if (cohort) {
       const newStudent = new Student(
         this.studentID++,

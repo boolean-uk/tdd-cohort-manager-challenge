@@ -90,7 +90,7 @@ describe('Cohort Manager', () => {
   it('should throw an error for add student not string provided', () => {
     cohortManager.createCohort('Cohort 12')
 
-    expect(
+    expect(() =>
       cohortManager.addStudent(
         'Leonardo',
         12,
