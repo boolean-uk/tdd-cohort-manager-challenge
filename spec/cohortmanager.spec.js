@@ -5,4 +5,10 @@ describe('Cohort Manager', () => {
     const cohort = new CohortManager()
     expect(cohort).toBeInstanceOf(CohortManager)
   })
+
+  it('should add new cohorts to the cohort list', () => {
+    const cohort = new CohortManager()
+    cohort.addCohort('testCohort')
+    expect(cohort.cohorts.length).toEqual(1)
+  })
 })
