@@ -26,6 +26,8 @@ You should be able to run this in your JS console (using your node REPL, or brow
 
 **NB** This is a TDD challenge - evidence your work by committing for each passing test and its source code.
 
+A domain model is required as the core criteria.
+
 ### Acceptance Criteria
 
 #### Standard
@@ -58,6 +60,7 @@ Your program should be composed of at least two classes
 ```
 - Send a text message to yourself whenever a student is successfully added or removed to a cohort
 Use: https://www.twilio.com/docs/sms/quickstart/node
+- Build a frontend application for this system
 ```
 
 
