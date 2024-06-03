@@ -9,9 +9,13 @@ class Cohort {
   }
 
   addStudent(firstName, lastName) {
-    const student = new Student(firstName, lastName, this.studentIdCount)
-    this.students.push(student)
-    this.studentIdCount++
+    if (this.students.length < 24) {
+      const student = new Student(firstName, lastName, this.studentIdCount)
+      this.students.push(student)
+      this.studentIdCount++
+    } else {
+      throw new Error('No more than 24 students per cohort')
+    }
   }
 }
 

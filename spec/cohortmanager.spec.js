@@ -62,7 +62,6 @@ describe('Cohort Manager', () => {
     for (let i = 0; i < 24; i++) {
       cohortManager.addStudent('testCohort', 'test', 'student')
     }
-
     expect(() => {
       cohortManager.addStudent('testCohort', 'test', 'student')
     }).toThrowError('No more than 24 students per cohort')
