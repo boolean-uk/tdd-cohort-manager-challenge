@@ -96,4 +96,7 @@ describe('CohortManager', () => {
     )
     expect(cohort.search(1)).toEqual(result)
   })
+  it('should throw an error if the student id does not exist', () => {
+    expect(() => cohort.search(67)).toThrow('Student not found')
+  })
 })

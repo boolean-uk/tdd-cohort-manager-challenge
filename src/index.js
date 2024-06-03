@@ -39,7 +39,11 @@ class Cohort {
   search(id) {
     const students = this.getAll()
     const found = students.find((s) => s.id === id)
-    console.log(found)
+
+    if (!found) {
+      // eslint-disable-next-line no-throw-literal
+      throw 'Student not found'
+    }
     return found
   }
 }
