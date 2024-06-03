@@ -140,18 +140,19 @@ class CohortList {
   }
 
   searchStudentByID(studentID) {
+    let found = null
     for (let i = 0; i < this.cohorts.length; i++) {
-      const found = this.cohorts[i].students.find(
+      found = this.cohorts[i].students.find(
         (student) => student.studentID === studentID
       )
 
       if (found) {
         return found
       }
+    }
 
-      if (!found) {
-        throw 'student not found'
-      }
+    if (!found) {
+      throw 'student not found'
     }
   }
 
@@ -166,6 +167,10 @@ class CohortList {
       if (found) {
         foundStudents.push(found)
       }
+    }
+
+    if (foundStudents.length === 0) {
+      throw 'no student found by that name'
     }
 
     return foundStudents
