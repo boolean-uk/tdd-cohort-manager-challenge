@@ -8,4 +8,11 @@ class Student {
   }
 }
 
-export { Student }
+class Cohortmanager {
+  constructor() {
+    this.cohorts = []
+    this.id = 1
+  }
+}
+
+export { Student, Cohortmanager }

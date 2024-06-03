@@ -1,13 +1,24 @@
-import { Student } from '../src/index.js'
+import { Student, Cohortmanager } from '../src/index.js'
+
+describe('cohortsManager', () => {
+  let cohortmanager
+  beforeEach(() => {
+    cohortmanager = new Cohortmanager()
+  })
+
+  it('should exist', () => {
+
+  })
+})
+
 
 describe('student', () => {
+  let student
+
+  beforeEach(() => {
+    student = new Student()
+  })
   it('should have a id, fName, lName, git hub and email', () => {
-    const student1 = new Student(
-      1,
-      'Farshad',
-      'Bagdeli',
-      'FBagdeli',
-      'fbagdeli@gmail.com'
-    )
+    
   })
 })
