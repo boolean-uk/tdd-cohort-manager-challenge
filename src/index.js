@@ -97,6 +97,22 @@ class CohortList {
       throw 'cohort not found'
     }
   }
+
+  searchStudentByID(studentID) {
+    for (let i = 0; i < this.cohorts.length; i++) {
+      const found = this.cohorts[i].students.find(
+        (student) => student.studentID === studentID
+      )
+
+      if (found) {
+        return found
+      }
+
+      if (!found) {
+        throw 'student not found'
+      }
+    }
+  }
 }
 
 class Cohort {

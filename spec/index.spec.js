@@ -202,6 +202,6 @@ describe('CohortList', () => {
     expect(result.studentID).toBe(2)
     expect(result.firstName).toBe('Mark')
 
-    expect(() => cohortList.searchStudentByID(2)).toThrow('student not found')
+    expect(() => cohortList.searchStudentByID(5)).toThrow('student not found')
   })
 })
