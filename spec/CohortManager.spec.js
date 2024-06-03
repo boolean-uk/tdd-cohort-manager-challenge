@@ -1,4 +1,4 @@
-import CohortManager, { Cohort } from '../src/CohortManager.js'
+import CohortManager, { Cohort, Student } from '../src/CohortManager.js'
 
 describe('Cohort Manager', () => {
   let cohortManager
@@ -12,8 +12,8 @@ describe('Cohort Manager', () => {
     cohortManager.createCohort('Cohort 16')
 
     expect(cohortManager.cohortList).toEqual([
-      new Cohort(1, 'Cohort 12'),
-      new Cohort(2, 'Cohort 16')
+      new Cohort(1, 'Cohort 12', []),
+      new Cohort(2, 'Cohort 16', [])
     ])
   })
 
@@ -21,7 +21,7 @@ describe('Cohort Manager', () => {
     cohortManager.createCohort('Cohort 12')
 
     expect(cohortManager.searchCohort('Cohort 12')).toEqual(
-      new Cohort(1, 'Cohort 12')
+      new Cohort(1, 'Cohort 12', [])
     )
   })
 
@@ -37,13 +37,15 @@ describe('Cohort Manager', () => {
         1
       )
     ).toEqual(
-      new Cohort(1, 'Cohort 12', {
-        firstName: 'Leonardo',
-        lastName: 'Lodi',
-        gitHubUsername: 'LeonardoSaraceli',
-        email: 'leonardolodi09@gmail.com',
-        cohortID: 1
-      })
+      new Cohort(1, 'Cohort 12', [
+        new Student(
+          1,
+          'Leonardo',
+          'Lodi',
+          'LeonardoSaraceli',
+          'leonardolodi09@gmail.com'
+        )
+      ])
     )
   })
 })
