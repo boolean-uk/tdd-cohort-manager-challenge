@@ -114,4 +114,10 @@ describe('Cohort Manager', () => {
         .toThrowError('cohortID not found')
     )
   })
+
+  it('should throw an error when remove unexist cohort', () => {
+    expect(() => cohortManager.removeCohort('Cohort 12')).toThrowError(
+      'cohortName not found'
+    )
+  })
 })
