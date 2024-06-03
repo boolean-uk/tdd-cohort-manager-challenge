@@ -204,4 +204,45 @@ describe('CohortList', () => {
 
     expect(() => cohortList.searchStudentByID(5)).toThrow('student not found')
   })
+
+  it('should should not be possible to add more than 24 students to a cohort', () => {
+    cohortList.addCohort('cohort12')
+    cohortList.addCohort('cohort13')
+    cohortList.addCohort('cohort14')
+
+    let index = 1
+
+    for (let i = 0; i < 24; i++) {
+      cohortList.addStudent(
+        'cohort12',
+        `Jane${index}`,
+        `Doe${index}`,
+        `JaneDoe${index}`,
+        `janedoe${index}@hotmail.com`
+      )
+      index++
+    }
+
+    expect(cohortList.cohorts[0].students.length).toBe(24)
+
+    cohortList.addStudent(
+      'cohort12',
+      'Mark',
+      'Something',
+      'MarkSomething',
+      'marksomething@hotmail.com'
+    )
+
+    expect(cohortList.cohorts[0].students.length).toBe(24)
+
+    expect(() =>
+      cohortList.addStudent(
+        'cohort12',
+        'Mark',
+        'Something',
+        'MarkSomething',
+        'marksomething@hotmail.com'
+      )
+    ).toThrow('cohort full')
+  })
 })
