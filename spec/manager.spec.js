@@ -116,7 +116,7 @@ describe('CohortManager', () => {
 
   it('should add a student to a cohort', () => {
     cohortManager.createCohort('Cohort 1')
-    cohortManager.addStudentToCohort('Cohort 1')
+    cohortManager.addStudentToCohort('Cohort 1', student)
     const cohort = cohortManager.searchCohort('Cohort 1')
     expect(cohort.students.length).toBe(1)
     expect(cohort.students[0].studentID).toBe('1234')
