@@ -43,7 +43,7 @@ describe('Cohort', () => {
 
   it('should remove a student from a cohort', () => {
     cohort.addStudent(student)
-    cohort.removeStudent('12334')
+    cohort.removeStudent('1234')
     expect(cohort.students.length).toBe(0)
   })
 })
