@@ -10,7 +10,7 @@ describe('Student', () => {
       'codeDoe',
       'john_doe@boolean.com'
     )
-    expect(student.studentID).toBe('123')
+    expect(student.studentID).toBe('1234')
     expect(student.firstName).toBe('John')
     expect(student.lastName).toBe('Doe')
     expect(student.githubUsername).toBe('codeDoe')
