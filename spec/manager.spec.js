@@ -148,6 +148,6 @@ describe('CohortManager', () => {
     cohortManager.createCohort('Cohort 1')
     expect(() =>
       cohortManager.removeStudentFromCohort('Cohort 1', 'nonexistent')
-    ).toThrow('Student not found')
+    ).toThrowError('Student not found')
   })
 })
