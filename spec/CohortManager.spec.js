@@ -48,4 +48,12 @@ describe('Cohort Manager', () => {
       ])
     )
   })
+
+  it('should remove a cohort', () => {
+    cohortManager.createCohort('Cohort 12')
+    cohortManager.createCohort('Cohort 16')
+    cohortManager.removeCohort('Cohort 12')
+
+    expect(cohortManager.cohortList).toEqual([new Cohort(2, 'Cohort 16', [])])
+  })
 })
