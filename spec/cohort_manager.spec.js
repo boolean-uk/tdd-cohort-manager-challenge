@@ -41,22 +41,21 @@ describe('Cohort', () => {
     })
   })
 
-  // it('should throw an error if the cohort is full', () => {
-  //   // I ll modify the code so cohort max size is 5 so I don't have to add 24 students
-  //   cohortOne.addStudent('Bart', 'Simpson')
-  //   cohortOne.addStudent('Lisa', 'Simpson')
-  //   cohortOne.addStudent('Homer', 'Simpson')
-  //   cohortOne.addStudent('Eric', 'Cartman')
-  //   cohortOne.addStudent('Kyle', 'Broflovski')
-
-  //   expect(() => {
-  //     cohortOne
-  //       .addStudent('Stan', 'Marsh')
-  //       .toThrowError(
-  //         `Cohort ${this.name} is full. No more students can be added. Choose another cohort`
-  //       )
-  //   })
-  // })
+  it('should throw an error if the cohort is full', () => {
+    // I ll modify the code so cohort max size is 5 so I don't have to add 24 students
+    cohortOne.addStudent('Bart', 'Simpson')
+    cohortOne.addStudent('Lisa', 'Simpson')
+    cohortOne.addStudent('Homer', 'Simpson')
+    cohortOne.addStudent('Eric', 'Cartman')
+    cohortOne.addStudent('Kyle', 'Broflovski')
+    expect(() => {
+      cohortOne
+        .addStudent('Stan', 'Marsh')
+        .toThrowError(
+          `Cohort ${this.name} is full. No more students can be added. Choose another cohort`
+        )
+    })
+  })
 
   it('should remove a student from a cohort', () => {
     cohortOne.addStudent('Bart', 'Simpson')
@@ -64,8 +63,7 @@ describe('Cohort', () => {
     cohortOne.addStudent('Homer', 'Simpson')
     cohortOne.addStudent('Eric', 'Cartman')
     cohortOne.addStudent('Kyle', 'Broflovski')
-    console.log(cohortOne.length)
     cohortOne.removeStudent('Bart', 'Simpson')
-    expect(cohortOne.length).toBe(4)
+    expect(cohortOne.studentsList.length).toBe(4)
   })
 })
