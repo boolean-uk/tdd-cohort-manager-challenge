@@ -100,4 +100,18 @@ describe('Cohort Manager', () => {
       )
     ).toThrowError('student not string provided')
   })
+
+  it('should throw an error for add student when unexist cohort', () => {
+    expect(() =>
+      cohortManager
+        .addStudent(
+          'Leonardo',
+          'Lodi',
+          'LeonardoSaraceli',
+          'leonardolodi09@gmail.com',
+          1
+        )
+        .toThrowError('cohortID not found')
+    )
+  })
 })
