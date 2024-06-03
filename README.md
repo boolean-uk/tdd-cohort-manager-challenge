@@ -58,8 +58,8 @@ Your program should be composed of at least two classes
 
 #### Bonus
 ```
-- Send a text message to yourself whenever a student is successfully added or removed to a cohort
-Use: https://www.twilio.com/docs/sms/quickstart/node
+- Send an email to yourself whenever a student is successfully added or removed to a cohort
+Use: https://www.resend.com/
 - Build a frontend application for this system
 ```
 
