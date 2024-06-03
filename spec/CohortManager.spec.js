@@ -16,4 +16,12 @@ describe('Cohort Manager', () => {
       new Cohort(2, 'Cohort 16')
     ])
   })
+
+  it('should search for a cohort', () => {
+    cohortManager.createCohort('Cohort 12')
+
+    expect(cohortManager.searchCohort('Cohort 12')).toEqual([
+      new Cohort(1, 'Cohort 12')
+    ])
+  })
 })
