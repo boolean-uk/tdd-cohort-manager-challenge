@@ -60,7 +60,7 @@ describe('Cohort Manager', () => {
     const cohortManager = new CohortManager()
     cohortManager.addCohort('testCohort')
     for (let i = 0; i < 24; i++) {
-      cohortManager.addStudent('testCohort', 'test', 'student')
+      cohortManager.addStudent('testCohort', `test${i}`, 'student')
     }
     expect(() => {
       cohortManager.addStudent('testCohort', 'test', 'student')
@@ -77,6 +77,8 @@ describe('Cohort Manager', () => {
       'testGit',
       'test@email.com'
     )
+
+    console.log(cohortManager.cohorts[0].students)
 
     expect(() => {
       cohortManager.addStudent(

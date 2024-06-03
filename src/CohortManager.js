@@ -28,14 +28,22 @@ class CohortManager {
   }
 
   addStudent(cohortName, firstName, lastName, githubUsername, email) {
+ 
+    if (
+      findDuplicateStudent(
+        firstName,
+        lastName,
+        githubUsername,
+        email,
+        this.cohorts
+      )
+    ) {
+      throw new Error('This student already exists')
+    }
     const targetCohort = this.cohorts.find(
-      (cohort) => cohort.name === cohortName
-    )
-    const duplicateStudent = findDuplicateStudent(
-      firstName,
-      lastName,
-      this.cohorts
-    )
+        (cohort) => cohort.name === cohortName
+      )
+      
     if (targetCohort) {
       targetCohort.addStudent(firstName, lastName, githubUsername, email)
     } else {
@@ -44,6 +52,25 @@ class CohortManager {
   }
 }
 
-function findDuplicateStudent(firstName, lastName, cohorts) {}
+function findDuplicateStudent(
+  firstName,
+  lastName,
+  githubUsername,
+  email,
+  cohorts
+) {
+  for (let i = 0; i < cohorts.length; i++) {
+    const duplicateStudent = cohorts[i].students.find(
+      (student) =>
+        student.firstName === firstName &&
+        student.lastName === lastName &&
+        student.githubUsername === githubUsername &&
+        student.email === email
+    )
+    if (duplicateStudent) {
+      return true
+    }
+  }
+}
 
 export default CohortManager

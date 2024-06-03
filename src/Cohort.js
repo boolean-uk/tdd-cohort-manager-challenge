@@ -10,7 +10,13 @@ class Cohort {
 
   addStudent(firstName, lastName, githubUsername, email) {
     if (this.students.length < 24) {
-      const student = new Student(firstName, lastName, this.studentIdCount)
+      const student = new Student(
+        firstName,
+        lastName,
+        this.studentIdCount,
+        githubUsername,
+        email
+      )
       this.students.push(student)
       this.studentIdCount++
     } else {
