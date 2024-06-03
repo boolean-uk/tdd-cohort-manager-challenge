@@ -1,6 +1,6 @@
 import CohortManager, { Cohort } from '../src/index.js'
 
-describe('cohorts', () => {
+describe('cohort manager', () => {
   let cohortManager
   beforeEach(() => (cohortManager = new CohortManager()))
 
@@ -22,9 +22,17 @@ describe('cohorts', () => {
   it('can succesfully add a student to a cohort', () => {
     cohortManager.createCohort('1')
 
-    cohortManager.addStudent('Angus', '1')
+    cohortManager.addStudent(
+      {
+        firstName: 'Angus',
+        lastName: 'Townsley',
+        email: 'angustownsley@gmail.com',
+        username: 'angustownsley'
+      },
+      '1'
+    )
 
-    expect(cohortManager.cohorts[0].students[0].name).toBe('Angus')
+    expect(cohortManager.cohorts[0].students[0].firstName).toBe('Angus')
   })
 
   it('can remove a cohort using the name of the cohort', () => {
@@ -39,7 +47,15 @@ describe('cohorts', () => {
   it('can remove a student from a cohort', () => {
     cohortManager.createCohort('1')
 
-    const student = cohortManager.addStudent('Angus', '1')
+    const student = cohortManager.addStudent(
+      {
+        firstName: 'Angus',
+        lastName: 'Townsley',
+        email: 'angustownsley@gmail.com',
+        username: 'angustownsley'
+      },
+      '1'
+    )
 
     cohortManager.removeStudent('1', student.id)
 
@@ -75,5 +91,31 @@ describe('cohorts', () => {
         'Cohort already exists with this name, please ensure each name is unique'
       )
     )
+  })
+
+  it('throws an error if student is already enrolled in a cohort', () => {
+    cohortManager.createCohort('1')
+
+    cohortManager.addStudent(
+      {
+        firstName: 'Angus',
+        lastName: 'Townsley',
+        email: 'angustownsley@gmail.com',
+        username: 'angustownsley'
+      },
+      '1'
+    )
+
+    expect(() => {
+      cohortManager.addStudent(
+        {
+          firstName: 'Angus',
+          lastName: 'Townsley',
+          email: 'angustownsley@gmail.com',
+          username: 'angustownsley'
+        },
+        '1'
+      )
+    }).toThrow(Error('Student already enrolled'))
   })
 })

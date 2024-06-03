@@ -33,7 +33,21 @@ class CohortManager {
     })
   }
 
-  addStudent(name, cohortName) {
+  addStudent(student, cohortName) {
+    this.cohorts.forEach((cohort) => {
+      if (
+        cohort.students.find((element) => {
+          return (
+            element.firstName === student.firstName &&
+            element.lastName === student.lastName &&
+            element.email === student.email &&
+            element.username === student.username
+          )
+        })
+      )
+        throw new Error('Student already enrolled')
+    })
+
     const cohort = this.cohorts.find((element) => {
       return element.name === cohortName
     })
@@ -41,11 +55,14 @@ class CohortManager {
     if (!cohort) {
       throw new Error('Cohort not found')
     }
-    const student = new Student(name, crypto.randomUUID())
 
-    cohort.students.push(student)
+    const studentData = [...Object.values(student)]
 
-    return student
+    const newStudent = new Student(...studentData, crypto.randomUUID())
+
+    cohort.students.push(newStudent)
+
+    return newStudent
   }
 
   removeStudent(cohortName, studentId) {
@@ -79,8 +96,11 @@ class Cohort {
 }
 
 class Student {
-  constructor(name, id) {
-    this.name = name
+  constructor(firstName, lastName, email, username, id) {
+    this.firstName = firstName
+    this.lastName = lastName
+    this.email = email
+    this.username = username
     this.id = id
   }
 }
