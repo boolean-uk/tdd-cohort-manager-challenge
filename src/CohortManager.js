@@ -1,4 +1,3 @@
-import 'jasmine-expect'
 import Cohort from './Cohort.js'
 import findDuplicateStudent from './functions/findDuplicateStudent.js'
 import Student from './Student.js'
