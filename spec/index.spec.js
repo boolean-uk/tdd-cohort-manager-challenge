@@ -56,7 +56,7 @@ describe('CohortManager', () => {
     const expected = cohort.getAll()
     expect(expected.length).toBe(2)
   })
-  it('should remove a cohort from the list', () => {
+  it('should remove a cohort by name from the list', () => {
     cohortManager.create('Cohort 11')
     cohortManager.create('Cohort 12')
     cohortManager.create('Cohort 13')
@@ -66,5 +66,18 @@ describe('CohortManager', () => {
     expect(cohortManager.getAll().length).toBe(3)
     expect(cohortManager.remove('Cohort 13')).toEqual(result)
     expect(cohortManager.getAll().length).toBe(2)
+  })
+  it('should remove a student by id from the cohort', () => {
+    cohort.add('Troy', 'McClure', 'tmcclure', 'tmcclure@hollywood.org')
+    cohort.add('Sideshow', 'Bob', 'bob@krustyproductions.org')
+    const expected = cohort.getAll()
+    expect(expected.length).toBe(2)
+    const result = [
+      new Student(1, 'Troy', 'McClure', 'tmcclure', 'tmcclure@hollywood.org')
+    ]
+    expect(cohort.remove(1)).toEqual(result)
+  })
+  it('should throw an error if a cohort that does not exist is removed', () => {
+    expect(() => cohortManager.remove('Cohort 14')).toThrow('Cohort not found')
   })
 })

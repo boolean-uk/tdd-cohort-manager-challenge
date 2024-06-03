@@ -25,6 +25,12 @@ class Cohort {
   getAll() {
     return this.students
   }
+
+  remove(id) {
+    const found = this.getAll()
+    this.students = found.filter((s) => s.id === id)
+    return this.students
+  }
 }
 
 class CohortManager {
@@ -55,8 +61,13 @@ class CohortManager {
   }
 
   remove(name) {
-    const found = this.getAll()
-    this.cohorts = found.filter((c) => c.cohortName !== name)
+    const allCohorts = this.getAll()
+    const found = this.search(name)
+    this.cohorts = allCohorts.filter((c) => c.cohortName !== name)
+    if (!found) {
+      // eslint-disable-next-line no-throw-literal
+      throw 'Cohort not found'
+    }
     return this.cohorts
   }
 }
