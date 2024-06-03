@@ -40,4 +40,18 @@ describe('Cohort Manager', () => {
     cohortManager.addStudent('testCohort', 'test', 'student')
     expect(cohortManager.cohorts[0].students[0].firstName).toEqual('test')
   })
+
+  it('should find a cohort and add student', () => {
+    const cohortManager = new CohortManager()
+    cohortManager.addCohort('testCohort')
+    cohortManager.addStudent('testCohort', 'test', 'student')
+    expect(cohortManager.cohorts[0].students[0].firstName).toEqual('test')
+  })
+
+  it('should throw an error if adding student to non-existant cohort', () => {
+    const cohortManager = new CohortManager()
+    cohortManager.addCohort('testCohort')
+    cohortManager.addStudent('otherCohort', 'test', 'student')
+    expect(() => {cohortManager.addStudent('otherCohort', 'test', 'student')}).toThrowError('No cohort found with that name')
+  })
 })
