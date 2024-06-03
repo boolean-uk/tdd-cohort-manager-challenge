@@ -50,6 +50,6 @@ describe('Cohort', () => {
   it('should find a student in the cohort', () => {
     cohort.addStudent(student)
     const foundStudent = cohort.findStudent('1234')
-    expect(foundStudent.studentID).toBe('12734')
+    expect(foundStudent.studentID).toBe('1234')
   })
 })
