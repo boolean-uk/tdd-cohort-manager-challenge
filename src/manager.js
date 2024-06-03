@@ -52,4 +52,17 @@ class Cohort {
   }
 }
 
-export { Student, Cohort }
+class CohortManager {
+  constructor() {
+    this.cohorts = new Map()
+  }
+
+  createCohort(cohortName) {
+    if (this.cohorts.has(cohortName)) {
+      throw new Error('Cohort already exists')
+    }
+    this.cohorts.set(cohortName, new Cohort(cohortName))
+  }
+}
+
+export { Student, Cohort, CohortManager }

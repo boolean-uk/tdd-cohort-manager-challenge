@@ -1,4 +1,4 @@
-import { Cohort, Student } from '../src/manager.js'
+import { CohortManager, Cohort, Student } from '../src/manager.js'
 
 describe('Student', () => {
   it('should set a students details and return fullname', () => {
@@ -69,6 +69,36 @@ describe('Cohort', () => {
   it('should throw an error if student not found in cohort when searching', () => {
     expect(() => cohort.findStudent('nonexistent')).toThrowError(
       'Student not found'
+    )
+  })
+})
+
+describe('CohortManager', () => {
+  let cohortManager
+  let student
+
+  beforeEach(() => {
+    cohortManager = new CohortManager()
+    student = new Student()
+    student.studentDetails(
+      '1234',
+      'John',
+      'Doe',
+      'codeDoe',
+      'john_doe@boolean.com'
+    )
+  })
+
+  it('should create a new cohort', () => {
+    cohortManager.createCohort('Cohort 1')
+    const cohort = cohortManager.cohorts.get('Cohort 1')
+    expect(cohort.name).toBe('Cohort 1')
+  })
+
+  it('should throw an error if the cohort already exists', () => {
+    cohortManager.createCohort('Cohort 1')
+    expect(() => cohortManager.createCohort('Cohort 1')).toThrowError(
+      'Cohort already exists.'
     )
   })
 })
