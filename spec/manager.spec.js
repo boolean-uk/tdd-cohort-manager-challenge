@@ -110,7 +110,7 @@ describe('CohortManager', () => {
 
   it('should throw an error if the cohort does not exist', () => {
     expect(() => cohortManager.searchCohort('nonexistent')).toThrowError(
-      'Cohort not found..'
+      'Cohort not found'
     )
   })
 })
