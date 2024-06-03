@@ -154,6 +154,22 @@ class CohortList {
       }
     }
   }
+
+  searchStudentByName(firstName, lastName) {
+    const foundStudents = []
+    for (let i = 0; i < this.cohorts.length; i++) {
+      const found = this.cohorts[i].students.find(
+        (student) =>
+          student.firstName === firstName && student.lastName === lastName
+      )
+
+      if (found) {
+        foundStudents.push(found)
+      }
+    }
+
+    return foundStudents
+  }
 }
 
 class Cohort {
