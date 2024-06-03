@@ -246,4 +246,27 @@ describe('CohortList', () => {
       'cohort already exists, cohort must have an unique name'
     )
   })
+
+  it('should not be possible to add the same student to a diffrent cohort', () => {
+    cohortList.addCohort('cohort12')
+    cohortList.addCohort('cohort13')
+
+    cohortList.addStudent(
+      'cohort12',
+      'Jane',
+      'Doe',
+      'JaneDoe',
+      'janedoe@hotmail.com'
+    )
+
+    expect(() =>
+      cohortList.addStudent(
+        'cohort13',
+        'Jane',
+        'Doe',
+        'JaneDoe',
+        'janedoe@hotmail.com'
+      )
+    ).toThrow('student already exists in another cohort')
+  })
 })
