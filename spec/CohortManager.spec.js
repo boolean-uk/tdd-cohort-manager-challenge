@@ -247,4 +247,22 @@ describe('Cohort Manager', () => {
       )
     ).toThrowError('the student is already in a cohort')
   })
+
+  it('should throw an error for remove student that is not in the first place', () => {
+    cohortManager.createCohort('Cohort 12')
+
+    for (let i = 0; i < 2; i++) {
+      cohortManager.addStudent(
+        `Leonardo${i}`,
+        `Lodi${i}`,
+        `LeonardoSaraceli${i}`,
+        `leonardolodi${i}@gmail.com`,
+        1
+      )
+    }
+
+    expect(() => cohortManager.removeStudent(2, 1)).toThrowError(
+      'student can not be removed as it is not present in the first place'
+    )
+  })
 })
