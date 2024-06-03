@@ -63,6 +63,13 @@ class CohortManager {
     }
     this.cohorts.set(cohortName, new Cohort(cohortName))
   }
+
+  searchCohort(cohortName) {
+    if (!this.cohorts.has(cohortName)) {
+      throw new Error('Cohort not found')
+    }
+    return this.cohorts.get(cohortName)
+  }
 }
 
 export { Student, Cohort, CohortManager }

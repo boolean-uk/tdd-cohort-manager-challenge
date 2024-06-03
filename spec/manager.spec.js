@@ -101,4 +101,16 @@ describe('CohortManager', () => {
       'Cohort already exists'
     )
   })
+
+  it('should find an existing cohort', () => {
+    cohortManager.createCohort('Cohort 1')
+    const foundCohort = cohortManager.searchCohort('Cohort 1')
+    expect(foundCohort.name).toBe('Cohort 1')
+  })
+
+  it('should throw an error if the cohort does not exist', () => {
+    expect(() => cohortManager.searchCohort('nonexistent')).toThrowError(
+      'Cohort not found..'
+    )
+  })
 })
