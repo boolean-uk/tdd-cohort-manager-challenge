@@ -167,4 +167,41 @@ describe('CohortList', () => {
       'student not found'
     )
   })
+
+  it('should find a student and throw an error if student not found', () => {
+    cohortList.addCohort('cohort12')
+    cohortList.addCohort('cohort13')
+    cohortList.addCohort('cohort14')
+
+    cohortList.addStudent(
+      'cohort12',
+      'Jane',
+      'Doe',
+      'JaneDoe',
+      'janedoe@hotmail.com'
+    )
+
+    cohortList.addStudent(
+      'cohort12',
+      'Mark',
+      'Something',
+      'MarkSomething',
+      'marksomething@hotmail.com'
+    )
+
+    cohortList.addStudent(
+      'cohort13',
+      'Jennifer',
+      'Somebody',
+      'JenniferSomebody',
+      'jennifersomebody@hotmail.com'
+    )
+
+    const result = cohortList.searchStudentByID(2)
+
+    expect(result.studentID).toBe(2)
+    expect(result.firstName).toBe('Mark')
+
+    expect(() => cohortList.searchStudentByID(2)).toThrow('student not found')
+  })
 })
