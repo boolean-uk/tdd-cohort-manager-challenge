@@ -238,7 +238,9 @@ describe('CohortList', () => {
     cohortList.addCohort('cohort12')
     cohortList.addCohort('cohort13')
 
-    expect(() => cohortList.addCohort('')).toThrow('cohort must have a name')
+    expect(() => cohortList.addCohort('')).toThrow(
+      'cohort must have a valid name'
+    )
 
     expect(() => cohortList.addCohort('cohort12')).toThrow(
       'cohort already exists, cohort must have an unique name'

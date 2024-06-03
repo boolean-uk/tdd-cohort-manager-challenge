@@ -6,10 +6,26 @@ class CohortList {
   }
 
   addCohort(cohortName) {
-    const newCohort = new Cohort(cohortName)
-    this.cohorts.push(newCohort)
+    const found = this.cohorts.find(
+      (cohort) => cohort.cohortName === cohortName
+    )
 
-    return newCohort
+    if (!found) {
+      if (cohortName) {
+        const newCohort = new Cohort(cohortName)
+        this.cohorts.push(newCohort)
+
+        return newCohort
+      }
+
+      if (!cohortName) {
+        throw 'cohort must have a valid name'
+      }
+    }
+
+    if (found) {
+      throw 'cohort already exists, cohort must have an unique name'
+    }
   }
 
   searchCohort(cohortName) {
