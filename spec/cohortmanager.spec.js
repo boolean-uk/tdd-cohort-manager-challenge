@@ -55,4 +55,16 @@ describe('Cohort Manager', () => {
       cohortManager.addStudent('otherCohort', 'test', 'student')
     }).toThrowError('No cohort found with that name')
   })
+
+  it('should throw an error if adding student to cohort with >= 24 students', () => {
+    const cohortManager = new CohortManager()
+    cohortManager.addCohort('testCohort')
+    for (let i = 0; i < 24; i++) {
+      cohortManager.addStudent('testCohort', 'test', 'student')
+    }
+
+    expect(() => {
+      cohortManager.addStudent('testCohort', 'test', 'student')
+    }).toThrowError('No more than 24 students per cohort')
+  })
 })
