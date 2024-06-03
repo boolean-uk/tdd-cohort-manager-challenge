@@ -83,4 +83,17 @@ describe('CohortManager', () => {
   it('should throw an error if a student that does not exist is removed', () => {
     expect(() => cohort.remove(67)).toThrow('Student not found')
   })
+  it('should search for a student by ID', () => {
+    cohort.add('Troy', 'McClure', 'tmcclure', 'tmcclure@hollywood.org')
+    cohort.add('Sideshow', 'Bob', 'bob@krustyproductions.org')
+
+    const result = new Student(
+      1,
+      'Troy',
+      'McClure',
+      'tmcclure',
+      'tmcclure@hollywood.org'
+    )
+    expect(cohort.search(1)).toEqual(result)
+  })
 })
