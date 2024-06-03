@@ -14,7 +14,8 @@ describe('student', () => {
 
 describe('Cohort', () => {
   const cohortOne = new Cohort(1)
-  const student = new Student('Pickle Rick', 'Sanchez')
+  // const student = new Student('Pickle Rick', 'Sanchez')
+  cohortOne.addStudent('Pickle Rick', 'Sanchez')
   it('should exist', () => {
     expect(cohortOne.name).toBe(1)
   })

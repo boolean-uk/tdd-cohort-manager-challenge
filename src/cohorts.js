@@ -4,10 +4,12 @@ import student from './student.js'
 class Cohort {
   constructor(name) {
     this.name = name
-    this.studentsNum = 0
     this.studentsList = []
   }
-  addStudent(firstName, lastName) {}
+
+  addStudent(firstName, lastName) {
+
+  }
 }
 
 export default Cohort
