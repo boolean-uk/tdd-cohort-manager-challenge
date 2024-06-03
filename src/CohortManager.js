@@ -57,6 +57,8 @@ class CohortManager {
       cohort.cohortStudents.push(newStudent)
       return cohort
     }
+
+    throw new Error('cohortID not found')
   }
 
   removeCohort(cohortName) {

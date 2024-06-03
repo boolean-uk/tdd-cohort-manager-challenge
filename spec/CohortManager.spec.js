@@ -101,7 +101,7 @@ describe('Cohort Manager', () => {
     ).toThrowError('student not string provided')
   })
 
-  it('should throw an error for add student when unexist cohort', () => {
+  it('should throw an error when add student for unexist cohort', () => {
     expect(() =>
       cohortManager
         .addStudent(
