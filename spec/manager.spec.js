@@ -59,4 +59,10 @@ describe('Cohort', () => {
       'Student already in cohort'
     )
   })
+
+  it('should throw an error if student not found in cohort', () => {
+    expect(() => cohort.removeStudent('nonexistent')).toThrowError(
+      'Student not found'
+    )
+  })
 })
