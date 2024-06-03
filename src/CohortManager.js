@@ -40,6 +40,17 @@ class CohortManager {
       return cohort
     }
   }
+
+  removeCohort(cohortName) {
+    const cohort = this.cohortList.find(
+      (cohort) => cohort.cohortName === cohortName
+    )
+
+    if (cohort) {
+      this.cohortList.splice(this.cohortList[cohort], 1)
+      return this.cohortList
+    }
+  }
 }
 
 class Cohort {
