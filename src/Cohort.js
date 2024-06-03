@@ -1,11 +1,11 @@
 import Student from './Student.js'
 
 class Cohort {
+  static studentIdCount = 1
   constructor(id, name) {
     this.students = []
     this.id = id
     this.name = name
-    this.studentIdCount = 1
   }
 
   addStudent(firstName, lastName, githubUsername, email) {
@@ -13,12 +13,12 @@ class Cohort {
       const student = new Student(
         firstName,
         lastName,
-        this.studentIdCount,
+        Cohort.studentIdCount,
         githubUsername,
         email
       )
       this.students.push(student)
-      this.studentIdCount++
+      Cohort.studentIdCount++
     } else {
       throw new Error('No more than 24 students per cohort')
     }

@@ -105,4 +105,29 @@ describe('Cohort Manager', () => {
       'No cohort found with that name'
     )
   })
+
+  it('should find and remove a student from a specific cohort', () => {
+    const cohortManager = new CohortManager()
+    cohortManager.addCohort('testCohort')
+    cohortManager.addCohort('testCohort2')
+    cohortManager.addStudent(
+      'testCohort',
+      'test',
+      'student',
+      'testGit',
+      'test@email.com'
+    )
+    cohortManager.addStudent(
+      'testCohort2',
+      'test2',
+      'student2',
+      'testGit2',
+      'test@email.com2'
+    )
+
+    cohortManager.removeStudent('testCohort', 'test', 'student')
+    const targetCohort = cohortManager.findCohort('testCohort')
+
+    expect(targetCohort.students.length).toEqual(0)
+  })
 })
