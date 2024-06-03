@@ -211,4 +211,12 @@ describe('Cohort Manager', () => {
       )
     ).toThrowError('adding students is not possible beyond the 24 limit')
   })
+
+  it('should throw an error for create cohort already created', () => {
+    cohortManager.createCohort('Cohort 12')
+
+    expect(() => cohortManager.createCohort('Cohort 12')).toThrowError(
+      'cohortName already exists'
+    )
+  })
 })
