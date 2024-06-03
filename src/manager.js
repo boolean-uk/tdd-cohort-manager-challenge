@@ -1,10 +1,18 @@
 class Student {
   constructor() {
-    this.studentID = '1234'
-    this.firstName = 'John'
-    this.lastName = 'Doe'
-    this.githubUsername = 'codeDoe'
-    this.email = 'john_doe@boolean.com'
+    this.studentID = ''
+    this.firstName = ''
+    this.lastName = ''
+    this.githubUsername = ''
+    this.email = ''
+  }
+
+  studentDetails(studentID, firstName, lastName, githubUsername, email) {
+    this.studentID = studentID
+    this.firstName = firstName
+    this.lastName = lastName
+    this.githubUsername = githubUsername
+    this.email = email
   }
 }
 
