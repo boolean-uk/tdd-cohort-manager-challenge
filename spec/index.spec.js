@@ -27,6 +27,14 @@ describe('CohortList', () => {
     expect(result.cohortName).toBe('cohort12')
   })
 
+  it('should throw an error when trying to serach for a non existent cohort', () => {
+    cohortList.add('cohort12')
+    cohortList.add('cohort13')
+    cohortList.add('cohort14')
+
+    expect(() => cohortList.search('cohort15')).toThrow('cohort not found')
+  })
+
   it('should remove a cohort', () => {
     cohortList.add('cohort12')
     cohortList.add('cohort13')
@@ -42,7 +50,7 @@ describe('CohortList', () => {
     expect(cohortList.cohorts[1].cohortName).toBe('cohort14')
   })
 
-  it('should throw an eroor when trying to remove a non existent cohort', () => {
+  it('should throw an error when trying to remove a non existent cohort', () => {
     cohortList.add('cohort12')
     cohortList.add('cohort13')
     cohortList.add('cohort14')
