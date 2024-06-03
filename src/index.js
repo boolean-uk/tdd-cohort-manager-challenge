@@ -1,6 +1,7 @@
 class Cohorts {
   constructor() {
     this.cohorts = []
+    this.idCounter = 1
   }
 
   createCohort(name) {
@@ -39,11 +40,11 @@ class Cohorts {
     if (!cohort) {
       throw new Error('Cohort not found')
     }
-    const student = new Student(name, cohort.idCounter)
+    const student = new Student(name, this.idCounter)
 
     cohort.students.push(student)
 
-    cohort.idCounter++
+    this.idCounter++
   }
 
   removeStudent(cohortName, studentId) {
