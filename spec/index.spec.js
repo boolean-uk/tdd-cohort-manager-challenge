@@ -269,4 +269,40 @@ describe('CohortList', () => {
       )
     ).toThrow('student already exists in another cohort')
   })
+
+  it('should find a student by first name and last name', () => {
+    cohortList.addCohort('cohort12')
+    cohortList.addCohort('cohort13')
+    cohortList.addCohort('cohort14')
+
+    cohortList.addStudent(
+      'cohort12',
+      'Jane',
+      'Doe',
+      'JaneDoe',
+      'janedoe@hotmail.com'
+    )
+
+    cohortList.addStudent(
+      'cohort12',
+      'Jennifer',
+      'Somebody',
+      'JennyBody',
+      'jennybody@hotmail.com'
+    )
+
+    cohortList.addStudent(
+      'cohort14',
+      'Jennifer',
+      'Somebody',
+      'JenniferSomebody',
+      'jennifersomebody@hotmail.com'
+    )
+
+    const result = cohortList.searchStudentByName('Jennifer', 'Somebody')
+
+    expect(result.length).toBe(2)
+    expect(result[0].githubUsername).toBe('JennyBody')
+    expect(result[1].githubUsername).toBe('JenniferSomebody')
+  })
 })
