@@ -98,7 +98,7 @@ describe('CohortManager', () => {
   it('should throw an error if the cohort already exists', () => {
     cohortManager.createCohort('Cohort 1')
     expect(() => cohortManager.createCohort('Cohort 1')).toThrowError(
-      'Cohort already exists.'
+      'Cohort already exists'
     )
   })
 })
