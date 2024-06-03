@@ -136,8 +136,8 @@ describe('Cohort Manager', () => {
     cohortManager.addCohort('findStudentTestCohort')
     const student1 = cohortManager.addStudent(
       'findStudentTestCohort',
-      'test',
-      'student',
+      'steve',
+      'tester',
       'testGit',
       'test@email.com'
     )

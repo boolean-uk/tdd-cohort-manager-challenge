@@ -1,6 +1,7 @@
 import 'jasmine-expect'
 import Cohort from './Cohort.js'
 import findDuplicateStudent from './functions/findDuplicateStudent.js'
+import Student from './Student.js'
 
 class CohortManager {
   constructor() {
@@ -43,17 +44,15 @@ class CohortManager {
       throw new Error('This student already exists')
     }
 
-    const targetCohort = this.cohorts.find(
-      (cohort) => cohort.name === cohortName
-    )
+    if (this.findCohort(cohortName).students.length > 23) {
+      throw new Error('No more than 24 students per cohort')
+    }
+
+    const targetCohort = this.findCohort(cohortName)
     if (targetCohort) {
-      const addedStudent = targetCohort.addStudent(
-        firstName,
-        lastName,
-        githubUsername,
-        email
-      )
-      return addedStudent
+      const studentToAdd = new Student(firstName, lastName, githubUsername, email)
+      targetCohort.students.push(studentToAdd)
+      return studentToAdd
     } else {
       throw new Error('No cohort found with that name')
     }
@@ -67,6 +66,7 @@ class CohortManager {
     } else {
       throw new Error('No cohort found with that name')
     }
+    return cohortToRemove
   }
 
   removeStudent(cohortName, firstName, lastName) {
@@ -81,12 +81,14 @@ class CohortManager {
       if (targetStudent) {
         const index = targetCohort.students.indexOf(targetStudent)
         targetCohort.students.splice(index, 1)
+        return targetStudent
       } else {
         throw new Error('No student with that name in this cohort')
       }
     } else {
       throw new Error('No cohort found with that name')
     }
+    
   }
 
   findStudentById(studentIdToFind) {

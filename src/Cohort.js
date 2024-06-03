@@ -7,21 +7,6 @@ class Cohort {
     this.id = uuidv4()
     this.name = name
   }
-
-  addStudent(firstName, lastName, githubUsername, email) {
-    if (this.students.length < 24) {
-      const student = new Student(
-        firstName,
-        lastName,
-        githubUsername,
-        email
-      )
-      this.students.push(student)
-      return student
-    } else {
-      throw new Error('No more than 24 students per cohort')
-    }
-  }
 }
 
 export default Cohort
