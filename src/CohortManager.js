@@ -11,6 +11,10 @@ class CohortManager {
       throw new Error('cohortName not string provided')
     }
 
+    if (cohortName === '') {
+      throw new Error('cohortName not provided')
+    }
+
     const cohort = this.cohortList.find(
       (cohort) => cohort.cohortName === cohortName
     )
