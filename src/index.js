@@ -16,6 +16,10 @@ class CohortList {
       (cohort) => cohort.cohortName === cohortName
     )
 
+    if (!found) {
+      throw 'cohort not found'
+    }
+
     return found
   }
 
