@@ -45,4 +45,24 @@ describe('cohorts', () => {
 
     expect(cohorts.cohorts[0].students.length).toBe(0)
   })
+
+  it('throws an error if the cohort cannot be found', () => {
+    expect(() => {
+      cohorts.removeCohort('1')
+    }).toThrow(Error('Cohort not found'))
+  })
+
+  it('throws an error if the cohort cannot be found when removing a student', () => {
+    expect(() => {
+      cohorts.removeStudent('Angus', '1')
+    }).toThrow(Error('Cohort not found'))
+  })
+
+  it('throws an error if the student cannot be found when removing a student', () => {
+    cohorts.createCohort('1')
+
+    expect(() => {
+      cohorts.removeStudent('1', 'Angus')
+    }).toThrow(Error('Student not found'))
+  })
 })

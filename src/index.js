@@ -4,11 +4,28 @@ class Cohorts {
   }
 
   createCohort(name) {
+    if (
+      this.cohorts.find((element) => {
+        return element.name === name
+      })
+    ) {
+      throw new Error(
+        'Cohort already exists with this name, please ensure each name is unique'
+      )
+    }
+
     const newCohort = new Cohort(name)
     this.cohorts.push(newCohort)
   }
 
   removeCohort(name) {
+    if (
+      !this.cohorts.find((element) => {
+        return element.name === name
+      })
+    ) {
+      throw new Error('Cohort not found')
+    }
     this.cohorts = this.cohorts.filter((element) => {
       return element.name !== name
     })
@@ -18,6 +35,10 @@ class Cohorts {
     const cohort = this.cohorts.find((element) => {
       return element.name === cohortName
     })
+
+    if (!cohort) {
+      throw new Error('Cohort not found')
+    }
     const student = new Student(name, cohort.idCounter)
 
     cohort.students.push(student)
@@ -29,6 +50,18 @@ class Cohorts {
     const cohort = this.cohorts.find((element) => {
       return element.name === cohortName
     })
+
+    if (!cohort) {
+      throw new Error('Cohort not found')
+    }
+
+    if (
+      !cohort.students.find((element) => {
+        return element.id === studentId
+      })
+    ) {
+      throw new Error('Student not found')
+    }
 
     cohort.students = cohort.students.filter((element) => {
       return element.id !== studentId
