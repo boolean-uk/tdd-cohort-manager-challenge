@@ -19,4 +19,10 @@ describe('Cohort Manager', () => {
       'A cohort already exists with that name'
     )
   })
+
+  it('should find a cohort from a string', () => {
+    const cohort = new CohortManager()
+    cohort.findCohort('testCohort')
+    expect(cohort.findCohort('testCohort').name).toEqaul('testCohort')
+  })
 })
