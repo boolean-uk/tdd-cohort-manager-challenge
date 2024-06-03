@@ -15,5 +15,6 @@ describe('Student', () => {
     expect(student.lastName).toBe('Doe')
     expect(student.githubUsername).toBe('codeDoe')
     expect(student.email).toBe('john_doe@boolean.com')
+    expect(student.getName()).toBe('John Roe')
   })
 })

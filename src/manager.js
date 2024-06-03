@@ -14,6 +14,10 @@ class Student {
     this.githubUsername = githubUsername
     this.email = email
   }
+
+  getName() {
+    return `${this.firstName} ${this.lastName}`
+  }
 }
 
 export { Student }
