@@ -20,7 +20,11 @@ class CohortManager {
 
   findCohort(name) {
     const duplicateCohort = this.cohorts.find((cohort) => cohort.name === name)
-    return duplicateCohort
+    if (duplicateCohort) {
+      return duplicateCohort
+    } else {
+      throw new Error('No cohort found with that name')
+    }
   }
 }
 
