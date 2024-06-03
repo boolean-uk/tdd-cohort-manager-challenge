@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "npx eslint src && npx jasmine",
-    "prepare": "husky install"
+    "test": "npx eslint src && npx jasmine"
   },
   "author": "dearshrewdwit",
   "license": "ISC",
