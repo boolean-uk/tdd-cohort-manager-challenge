@@ -55,7 +55,7 @@ describe('Cohort', () => {
 
   it('should throw an error if studnet already in the cohort', () => {
     cohort.addStudent(student)
-    expect(() => cohort.addStudent(student)).toThrow(
+    expect(() => cohort.addStudent(student)).toThrowError(
       'Student already in cohort'
     )
   })
