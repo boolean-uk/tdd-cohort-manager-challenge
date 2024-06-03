@@ -15,13 +15,24 @@ class Cohorts {
   }
 
   addStudent(name, cohortName) {
-    const student = new Student(name)
+    const cohort = this.cohorts.find((element) => {
+      return element.name === cohortName
+    })
+    const student = new Student(name, cohort.idCounter)
 
-    this.cohorts
-      .find((element) => {
-        return element.name === cohortName
-      })
-      .students.push(student)
+    cohort.students.push(student)
+
+    cohort.idCounter++
+  }
+
+  removeStudent(cohortName, studentId) {
+    const cohort = this.cohorts.find((element) => {
+      return element.name === cohortName
+    })
+
+    cohort.students = cohort.students.filter((element) => {
+      return element.id !== studentId
+    })
   }
 }
 
