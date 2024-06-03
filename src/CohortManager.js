@@ -3,17 +3,17 @@ import Cohort from './Cohort.js'
 import findDuplicateStudent from './functions/findDuplicateStudent.js'
 
 class CohortManager {
+    static cohortIdCount = 1
   constructor() {
     this.cohorts = []
-    this.cohortIdCount = 1
   }
 
   addCohort(name) {
     const duplicateCohort = this.cohorts.find((cohort) => cohort.name === name)
     if (!duplicateCohort) {
-      const cohort = new Cohort(this.cohortIdCount, name)
+      const cohort = new Cohort(Cohort.cohortIdCount, name)
       this.cohorts.push(cohort)
-      this.cohortIdCount++
+      CohortManager.cohortIdCount++
     } else {
       throw new Error('A cohort already exists with that name')
     }
@@ -89,7 +89,6 @@ class CohortManager {
 
   findStudent(studentIdToFind) {
     for (let i = 0; i < this.cohorts.length; i++) {
-      console.log(this.cohorts[i].students)
       const targetStudent = this.cohorts[i].students.find(
         (student) => student.studentId === studentIdToFind
       )

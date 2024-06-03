@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import Student from './Student.js'
 
 class Cohort {
