@@ -194,7 +194,7 @@ describe('Cohort Manager', () => {
     for (let i = 0; i < 24; i++) {
       cohortManager.addStudent(
         `Leonardo${i}`,
-        'Lodi',
+        `Lodi${i}`,
         `LeonardoSaraceli${i}`,
         `leonardolodi${i}@gmail.com`,
         1
@@ -224,5 +224,27 @@ describe('Cohort Manager', () => {
     expect(() => cohortManager.createCohort('')).toThrowError(
       'cohortName not provided'
     )
+  })
+
+  it('should throw an error for add student already added', () => {
+    cohortManager.createCohort('Cohort 12')
+    cohortManager.addStudent(
+      'Leonardo',
+      'Lodi',
+      'LeonardoSaraceli',
+      'leonardolodi09@gmail.com',
+      1
+    )
+    cohortManager.createCohort('Cohort 16')
+
+    expect(() =>
+      cohortManager.addStudent(
+        'Leonardo',
+        'Lodi',
+        'LeoLodi',
+        'leonardosaraceli10@gmail.com',
+        2
+      )
+    ).toThrowError('the student is already in a cohort')
   })
 })
