@@ -8,9 +8,14 @@ class CohortManager {
   }
 
   addCohort(name) {
-    const cohort = new Cohort(this.cohortIdCount, name)
-    this.cohorts.push(cohort)
-    this.cohortIdCount++
+    const duplicateCohort = this.cohorts.find((cohort) => cohort.name === name)
+    if (!duplicateCohort) {
+      const cohort = new Cohort(this.cohortIdCount, name)
+      this.cohorts.push(cohort)
+      this.cohortIdCount++
+    } else {
+      throw new Error('A cohort already exists with that name')
+    }
   }
 }
 
