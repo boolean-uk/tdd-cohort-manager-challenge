@@ -69,21 +69,17 @@ class CohortManager {
   }
 
   removeStudent(cohortName, firstName, lastName) {
-    const targetCohort = this.cohorts.find(
-      (cohort) => cohort.name === cohortName
+    const targetCohort = this.findCohort(cohortName);
+    const targetStudent = targetCohort.students.find(
+      (student) =>
+        student.firstName === firstName && student.lastName === lastName
     );
-    if (targetCohort) {
-      const targetStudent = targetCohort.students.find(
-        (student) =>
-          student.firstName === firstName && student.lastName === lastName
-      );
-      if (targetStudent) {
-        const index = targetCohort.students.indexOf(targetStudent);
-        targetCohort.students.splice(index, 1);
-        return targetStudent;
-      } else {
-        throw new Error("No student with that name in this cohort");
-      }
+    if (targetStudent) {
+      const index = targetCohort.students.indexOf(targetStudent);
+      targetCohort.students.splice(index, 1);
+      return targetStudent;
+    } else {
+      throw new Error("No student with that name in this cohort");
     }
   }
 
