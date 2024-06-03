@@ -127,7 +127,7 @@ describe('CohortManager', () => {
     cohortManager.addStudentToCohort('Cohort 1', student)
     expect(() =>
       cohortManager.addStudentToCohort('Cohort 1', student)
-    ).toThrowError('Student exists in this cohort already')
+    ).toThrowError('Student already in cohort')
   })
 
   it('should remove a cohort', () => {
