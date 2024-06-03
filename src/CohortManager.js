@@ -104,6 +104,10 @@ class CohortManager {
       (student) => student.studentID === studentID
     )
 
+    if (!student) {
+      throw new Error('studentID not found')
+    }
+
     return student
   }
 }
