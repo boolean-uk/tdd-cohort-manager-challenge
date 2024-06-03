@@ -40,4 +40,10 @@ describe('Cohort', () => {
     expect(cohort.students.length).toBe(1)
     expect(cohort.students[0].studentID).toBe('1234')
   })
+
+  it('should remove a student from a cohort', () => {
+    cohort.addStudent(student)
+    cohort.removeStudent('12334')
+    expect(cohort.students.length).toBe(0)
+  })
 })

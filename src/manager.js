@@ -32,6 +32,16 @@ class Cohort {
     }
     this.students.push(student)
   }
+
+  removeStudent(studentID) {
+    const studentIndex = this.students.findIndex(
+      (s) => s.studentID === studentID
+    )
+    if (studentIndex === -1) {
+      throw new Error('Student not found.')
+    }
+    this.students.splice(studentIndex, 1)
+  }
 }
 
 export { Student, Cohort }
