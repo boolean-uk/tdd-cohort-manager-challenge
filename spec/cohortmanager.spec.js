@@ -20,9 +20,9 @@ describe('Cohort Manager', () => {
     )
   })
 
-  it('should find a cohort from a string', () => {
+  it('should find a cohort from its name', () => {
     const cohort = new CohortManager()
-    cohort.findCohort('testCohort')
-    expect(cohort.findCohort('testCohort').name).toEqaul('testCohort')
+    cohort.addCohort('testCohort')
+    expect(cohort.findCohort('testCohort').name).toEqual('testCohort')
   })
 })

@@ -17,6 +17,11 @@ class CohortManager {
       throw new Error('A cohort already exists with that name')
     }
   }
+
+  findCohort(name) {
+    const duplicateCohort = this.cohorts.find((cohort) => cohort.name === name)
+    return duplicateCohort
+  }
 }
 
 export default CohortManager
