@@ -141,23 +141,40 @@ describe('Cohort Manager', () => {
       'testGit',
       'test@email.com'
     )
-    
+
     const studentToFind = cohortManager.findStudentById(student1.studentId)
     expect(studentToFind.studentId).toEqual(student1.studentId)
   })
 
-  // it('should find student by their name', () => {
-  //   const cohortManager = new CohortManager()
-  //   cohortManager.addCohort('findStudentNameTestCohort')
-  //   const student1 = cohortManager.addStudent(
-  //     'findStudentTestCohort',
-  //     'test',
-  //     'student',
-  //     'testGit',
-  //     'test@email.com'
-  //   )
+  it('should find matching students from their name', () => {
+    const cohortManager = new CohortManager()
+    cohortManager.addCohort('findStudentNameTestCohort')
 
-  //   const studentToFind = cohortManager.findStudentById(student1.studentId)
-    
-  // })
+    cohortManager.addStudent(
+      'findStudentNameTestCohort',
+      'tom',
+      'smith',
+      'testGit',
+      'test@email.com'
+    )
+
+    cohortManager.addStudent(
+      'findStudentNameTestCohort',
+      'tomasina',
+      'smithington',
+      'testGit',
+      'test@email.com'
+    )
+
+    cohortManager.addStudent(
+      'findStudentNameTestCohort',
+      'tompson',
+      'smithy',
+      'testGit',
+      'test@email.com'
+    )
+
+    const foundStudents = cohortManager.findStudentByName('tom')
+    expect(foundStudents.length).toEqual(3)
+  })
 })

@@ -2,9 +2,7 @@ import 'jasmine-expect'
 import Cohort from './Cohort.js'
 import findDuplicateStudent from './functions/findDuplicateStudent.js'
 
-
 class CohortManager {
-  
   constructor() {
     this.cohorts = []
   }
@@ -97,6 +95,21 @@ class CohortManager {
       }
     }
     throw new Error('No student found with that ID')
+  }
+
+  findStudentByName(name) {
+    const foundStudents = []
+    this.cohorts.forEach((cohort) =>
+      cohort.students.forEach((student) => {
+        if (
+          student.firstName.includes(name) ||
+          student.firstName.includes(name)
+        ) {
+          foundStudents.push(student)
+        }
+      })
+    )
+    return foundStudents
   }
 }
 
