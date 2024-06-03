@@ -143,4 +143,25 @@ describe('Cohort Manager', () => {
       'cohortID not found'
     )
   })
+
+  it('should search for a student', () => {
+    cohortManager.createCohort('Cohort 12')
+    cohortManager.addStudent(
+      'Leonardo',
+      'Lodi',
+      'LeonardoSaraceli',
+      'leonardolodi09@gmail.com',
+      1
+    )
+
+    expect(cohortManager.searchStudent(1, 1)).toEqual(
+      new Student(
+        1,
+        'Leonardo',
+        'Lodi',
+        'LeonardoSaraceli',
+        'leonardolodi09@gmail.com'
+      )
+    )
+  })
 })
