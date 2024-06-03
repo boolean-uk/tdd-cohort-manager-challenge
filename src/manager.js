@@ -70,6 +70,11 @@ class CohortManager {
     }
     return this.cohorts.get(cohortName)
   }
+
+  addStudentToCohort(cohortName, student) {
+    const cohort = this.searchCohort(cohortName)
+    cohort.addStudent(student)
+  }
 }
 
 export { Student, Cohort, CohortManager }

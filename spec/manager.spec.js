@@ -113,4 +113,12 @@ describe('CohortManager', () => {
       'Cohort not found'
     )
   })
+
+  it('should add a student to a cohort', () => {
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.addStudentToCohort('Cohort 1')
+    const cohort = cohortManager.searchCohort('Cohort 1')
+    expect(cohort.students.length).toBe(1)
+    expect(cohort.students[0].studentID).toBe('1234')
+  })
 })
