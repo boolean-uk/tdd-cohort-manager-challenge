@@ -86,4 +86,18 @@ describe('Cohort Manager', () => {
       'cohortName not found'
     )
   })
+
+  it('should throw an error for add student not string provided', () => {
+    cohortManager.createCohort('Cohort 12')
+
+    expect(
+      cohortManager.addStudent(
+        'Leonardo',
+        12,
+        'LeonardoSaraceli',
+        'leonardolodi09@gmail.com',
+        1
+      )
+    ).toThrowError('student not string provided')
+  })
 })
