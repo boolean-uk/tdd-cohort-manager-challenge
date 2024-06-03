@@ -62,7 +62,7 @@ describe('CohortList', () => {
     )
   })
 
-  it('should add a student to a cohort', () => {
+  it('should add a student to a cohort and throw an error if cohort not found', () => {
     cohortList.addCohort('cohort12')
     cohortList.addCohort('cohort13')
     cohortList.addCohort('cohort14')
@@ -120,5 +120,51 @@ describe('CohortList', () => {
         'janedoe@hotmail.com'
       )
     ).toThrow('cohort not found')
+  })
+
+  it('should remove a student from a cohort and throw an error if student or cohort not found', () => {
+    cohortList.addCohort('cohort12')
+    cohortList.addCohort('cohort13')
+    cohortList.addCohort('cohort14')
+
+    cohortList.addStudent(
+      'cohort12',
+      'Jane',
+      'Doe',
+      'JaneDoe',
+      'janedoe@hotmail.com'
+    )
+
+    cohortList.addStudent(
+      'cohort12',
+      'Mark',
+      'Something',
+      'MarkSomething',
+      'marksomething@hotmail.com'
+    )
+
+    cohortList.addStudent(
+      'cohort13',
+      'Jennifer',
+      'Somebody',
+      'JenniferSomebody',
+      'jennifersomebody@hotmail.com'
+    )
+
+    const removed = cohortList.removeStudent('cohort12', 2)
+
+    expect(removed.studentID).toBe(2)
+    expect(removed.firstName).toBe('Mark')
+    expect(cohortList.cohorts[0].students.length).toBe(1)
+    expect(cohortList.cohorts[0].students[0].studentID).toBe(1)
+    expect(cohortList.cohorts[0].students[0].firstName).toBe('Jane')
+
+    expect(() => cohortList.removeStudent('cohort15', 1)).toThrow(
+      'cohort not found'
+    )
+
+    expect(() => cohortList.removeStudent('cohort12', 5)).toThrow(
+      'student not found'
+    )
   })
 })
