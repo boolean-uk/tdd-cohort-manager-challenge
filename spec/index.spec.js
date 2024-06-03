@@ -1,4 +1,4 @@
-import Cohorts from '../src/index.js'
+import Cohorts, { Cohort } from '../src/index.js'
 
 describe('cohorts', () => {
   let cohorts
@@ -12,7 +12,10 @@ describe('cohorts', () => {
     expect(cohorts.cohorts.length).toBe(0)
   })
 
-  it('has an ID counter that starts at 1', () => {
-    expect(cohorts.idCounter).toBe(1)
+  it('can create a new Cohort with the specified name', () => {
+    cohorts.createCohort('1')
+
+    expect(cohorts.cohorts[0].name).toBe('1')
+    expect(cohorts.cohorts[0]).toBeInstanceOf(Cohort)
   })
 })
