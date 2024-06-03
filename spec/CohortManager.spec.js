@@ -80,4 +80,10 @@ describe('Cohort Manager', () => {
       'cohortName not string provided'
     )
   })
+
+  it('should throw an error when search for unexist cohort', () => {
+    expect(() => cohortManager.searchCohort('Cohort 12')).toThrowError(
+      'cohortName not found'
+    )
+  })
 })
