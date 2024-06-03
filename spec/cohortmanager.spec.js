@@ -96,4 +96,13 @@ describe('Cohort Manager', () => {
 
     expect(cohortManager.cohorts.length).toEqual(0)
   })
+
+  it('should throw an error when attempting to remove a non-existant cohort', () => {
+    const cohortManager = new CohortManager()
+    cohortManager.addCohort('testCohort')
+
+    expect(() => cohortManager.removeCohort('otherCohort')).toThrowError(
+      'No cohort found with that name'
+    )
+  })
 })

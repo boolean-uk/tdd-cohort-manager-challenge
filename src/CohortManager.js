@@ -56,6 +56,8 @@ class CohortManager {
     if (cohortToRemove) {
       const index = this.cohorts.indexOf(cohortToRemove)
       this.cohorts.splice(index, 1)
+    } else {
+      throw new Error('No cohort found with that name')
     }
   }
 }
