@@ -7,7 +7,7 @@ module.exports = {
   },
   extends: ['standard', 'prettier'],
   parserOptions: {
-    ecmaVersion: '2022'
+    ecmaVersion: 2022
   },
   plugins: ['prettier'],
   rules: {
