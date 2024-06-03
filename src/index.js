@@ -9,6 +9,14 @@ class CohortList {
 
     return newCohort
   }
+
+  search(cohortName) {
+    const found = this.cohorts.find(
+      (cohort) => cohort.cohortName === cohortName
+    )
+
+    return found
+  }
 }
 
 class Cohort {
