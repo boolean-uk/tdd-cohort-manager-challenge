@@ -18,4 +18,12 @@ describe('CohortList', () => {
     expect(result.cohortName).toBe('cohort12')
     expect(cohortList.cohorts.length).toBe(1)
   })
+
+  it('should be able to search for a cohort', () => {
+    cohortList.add('cohort12')
+
+    const result = cohortList.search('cohort12')
+
+    expect(result.cohortName).toBe('cohort12')
+  })
 })
