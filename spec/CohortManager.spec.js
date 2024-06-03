@@ -172,4 +172,19 @@ describe('Cohort Manager', () => {
       'studentID not found'
     )
   })
+
+  it('should throw an error for search student from unexist cohort', () => {
+    cohortManager.createCohort('Cohort 12')
+    cohortManager.addStudent(
+      'Leonardo',
+      'Lodi',
+      'LeonardoSaraceli',
+      'leonardolodi09@gmail.com',
+      1
+    )
+
+    expect(() => cohortManager.searchStudent(1, 2)).toThrowError(
+      'cohortID not found'
+    )
+  })
 })
