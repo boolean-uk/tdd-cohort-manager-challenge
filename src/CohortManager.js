@@ -11,6 +11,14 @@ class CohortManager {
       throw new Error('cohortName not string provided')
     }
 
+    const cohort = this.cohortList.find(
+      (cohort) => cohort.cohortName === cohortName
+    )
+
+    if (cohort) {
+      throw new Error('cohortName already exists')
+    }
+
     const newCohort = new Cohort(this.cohortID++, cohortName, [])
     this.cohortList.push(newCohort)
     return this.cohortList
