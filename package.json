@@ -23,5 +23,8 @@
     "husky": "^7.0.4",
     "jasmine": "^5.1.0",
     "prettier": "^2.6.1"
+  },
+  "dependencies": {
+    "jasmine-expect": "^5.0.0"
   }
 }
