@@ -27,7 +27,7 @@ class Cohort {
   }
 
   addStudent(student) {
-    if (this.students.some((s) => s.studentID === student.studentId)) {
+    if (this.students.some((s) => s.studentID === student.studentID)) {
       throw new Error('Student already in cohort')
     }
     this.students.push(student)

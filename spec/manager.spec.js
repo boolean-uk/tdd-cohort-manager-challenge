@@ -52,4 +52,11 @@ describe('Cohort', () => {
     const foundStudent = cohort.findStudent('1234')
     expect(foundStudent.studentID).toBe('1234')
   })
+
+  it('should throw an error if studnet already in the cohort', () => {
+    cohort.addStudent(student)
+    expect(() => cohort.addStudent(student)).toThrow(
+      'Student already in cohort'
+    )
+  })
 })
