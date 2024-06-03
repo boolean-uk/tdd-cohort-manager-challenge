@@ -42,6 +42,14 @@ class Cohort {
     }
     this.students.splice(studentIndex, 1)
   }
+
+  findStudent(studentID) {
+    const student = this.students.find((s) => s.studentID === studentID)
+    if (!student) {
+      throw new Error('Student not found')
+    }
+    return student
+  }
 }
 
 export { Student, Cohort }

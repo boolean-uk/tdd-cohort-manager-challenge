@@ -46,4 +46,10 @@ describe('Cohort', () => {
     cohort.removeStudent('1234')
     expect(cohort.students.length).toBe(0)
   })
+
+  it('should find a student in the cohort', () => {
+    cohort.addStudent(student)
+    const foundStudent = cohort.findStudent('1234')
+    expect(foundStudent.studentID).toBe('12734')
+  })
 })
