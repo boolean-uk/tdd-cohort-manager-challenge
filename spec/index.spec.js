@@ -67,18 +67,22 @@ describe('CohortList', () => {
     cohortList.addCohort('cohort13')
     cohortList.addCohort('cohort14')
 
-    const student = new Student('Jane', 'Doe', 'JaneDoe', 'janedoe@hotmail.com')
+    const result = cohortList.addStudent(
+      'cohort12',
+      'Jane',
+      'Doe',
+      'JaneDoe',
+      'janedoe@hotmail.com'
+    )
 
-    const result = cohortList.addStudent('cohort12', student)
-
-    expect(student).toBeInstanceOf(Student)
+    expect(result).toBeInstanceOf(Student)
 
     expect(result.firstName).toBe('Jane')
     expect(result.lastName).toBe('Doe')
     expect(result.githubUsername).toBe('JaneDoe')
     expect(result.email).toBe('janedoe@hotmail.com')
 
-    expect(cohortList.cohorts.students.length).toBe(1)
-    expect(cohortList.cohorts.students[0].firstName).toBe('Jane')
+    expect(cohortList.cohorts[0].students.length).toBe(1)
+    expect(cohortList.cohorts[0].students[0].firstName).toBe('Jane')
   })
 })

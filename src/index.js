@@ -42,15 +42,39 @@ class CohortList {
 
     return found
   }
+
+  addStudent(cohortName, firstName, lastName, githubUsername, email) {
+    const newStudent = new Student(firstName, lastName, githubUsername, email)
+
+    const found = this.cohorts.find(
+      (cohort) => cohort.cohortName === cohortName
+    )
+
+    if (found) {
+      found.students.push(newStudent)
+    } else {
+      throw 'cohort not found'
+    }
+
+    return newStudent
+  }
 }
 
 class Cohort {
   constructor(cohortName) {
     this.cohortName = cohortName
+    this.students = []
   }
 }
 
-class Student {}
+class Student {
+  constructor(firstName, lastName, githubUsername, email) {
+    this.firstName = firstName
+    this.lastName = lastName
+    this.githubUsername = githubUsername
+    this.email = email
+  }
+}
 
 export { Cohort, Student }
 export default CohortList
