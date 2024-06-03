@@ -84,5 +84,15 @@ describe('CohortList', () => {
 
     expect(cohortList.cohorts[0].students.length).toBe(1)
     expect(cohortList.cohorts[0].students[0].firstName).toBe('Jane')
+
+    expect(() =>
+      cohortList.addStudent(
+        'cohort15',
+        'Jane',
+        'Doe',
+        'JaneDoe',
+        'janedoe@hotmail.com'
+      )
+    ).toThrow('cohort not found')
   })
 })
