@@ -46,7 +46,7 @@ class Cohort {
   findStudent(studentID) {
     const student = this.students.find((s) => s.studentID === studentID)
     if (!student) {
-      throw new Error('Student not found.')
+      throw new Error('Student not found')
     }
     return student
   }
