@@ -18,4 +18,12 @@ describe('cohorts', () => {
     expect(cohorts.cohorts[0].name).toBe('1')
     expect(cohorts.cohorts[0]).toBeInstanceOf(Cohort)
   })
+
+  it('can succesfully add a student to a cohort', () => {
+    cohorts.createCohort('1')
+
+    cohorts.addStudent('Angus', '1')
+
+    expect(cohorts.cohorts[0].students[0].name).toBe('Angus')
+  })
 })

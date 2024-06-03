@@ -7,6 +7,16 @@ class Cohorts {
     const newCohort = new Cohort(name)
     this.cohorts.push(newCohort)
   }
+
+  addStudent(name, cohortName) {
+    const student = new Student(name)
+
+    this.cohorts
+      .find((element) => {
+        return element.name === cohortName
+      })
+      .students.push(student)
+  }
 }
 
 class Cohort {
@@ -14,6 +24,13 @@ class Cohort {
     this.name = name
     this.students = []
     this.idCounter = 1
+  }
+}
+
+class Student {
+  constructor(name, id) {
+    this.name = name
+    this.id = id
   }
 }
 
