@@ -1,4 +1,5 @@
 import CohortManager, { Cohort, Student } from '../src/index.js'
+import { students } from '../src/students.js'
 
 describe('CohortManager', () => {
   let cohortManager
@@ -52,7 +53,7 @@ describe('CohortManager', () => {
   })
   it('should get all students in the cohort', () => {
     cohort.add('Troy', 'McClure', 'tmcclure', 'tmcclure@hollywood.org')
-    cohort.add('Sideshow', 'Bob', 'bob@krustyproductions.org')
+    cohort.add('Sideshow', 'Bob', 'sidebob', 'bob@krustyproductions.org')
     const expected = cohort.getAll()
     expect(expected.length).toBe(2)
   })
@@ -69,7 +70,7 @@ describe('CohortManager', () => {
   })
   it('should remove a student by id from the cohort', () => {
     cohort.add('Troy', 'McClure', 'tmcclure', 'tmcclure@hollywood.org')
-    cohort.add('Sideshow', 'Bob', 'bob@krustyproductions.org')
+    cohort.add('Sideshow', 'Bob', 'sidebob', 'bob@krustyproductions.org')
     const expected = cohort.getAll()
     expect(expected.length).toBe(2)
     const result = [
@@ -85,7 +86,7 @@ describe('CohortManager', () => {
   })
   it('should search for a student by ID', () => {
     cohort.add('Troy', 'McClure', 'tmcclure', 'tmcclure@hollywood.org')
-    cohort.add('Sideshow', 'Bob', 'bob@krustyproductions.org')
+    cohort.add('Sideshow', 'Bob', 'sidebob', 'bob@krustyproductions.org')
 
     const result = new Student(
       1,
@@ -98,5 +99,19 @@ describe('CohortManager', () => {
   })
   it('should throw an error if the student id does not exist', () => {
     expect(() => cohort.search(67)).toThrow('Student not found')
+  })
+  it('should alert when the cohort is at full capacity', () => {
+    const newCohort = new Cohort('Cohort 13')
+    for (let i = 0; i < students.length; i++) {
+      if (students[i].id <= 24) {
+        return students[i]
+      }
+      newCohort.students.push(students[i])
+      console.log(newCohort)
+    }
+
+    expect(
+      cohort.add('Bruce', 'Wayne', 'batman', 'bruce.wayne@wayneenterprises.com')
+    ).toThrow('Cohort is at full capacity')
   })
 })

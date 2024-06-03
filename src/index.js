@@ -18,7 +18,12 @@ class Cohort {
   add(first, last, username, email) {
     const student = new Student(this.id, first, last, username, email)
     this.id++
-    this.students.push(student)
+    if (this.students.length <= 24) {
+      this.students.push(student)
+    } else {
+      // eslint-disable-next-line no-throw-literal
+      throw 'Cohort is at full capacity'
+    }
     return student
   }
 
