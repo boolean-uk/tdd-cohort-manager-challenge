@@ -120,4 +120,12 @@ describe('Cohort Manager', () => {
       'cohortName not found'
     )
   })
+
+  it('should throw an error when remove unexist student', () => {
+    cohortManager.createCohort('Cohort 12')
+
+    expect(() => cohortManager.removeStudent(1, 1)).toThrowError(
+      'studentID not found'
+    )
+  })
 })
