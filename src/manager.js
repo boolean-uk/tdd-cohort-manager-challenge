@@ -82,6 +82,11 @@ class CohortManager {
     }
     this.cohorts.delete(cohortName)
   }
+
+  removeStudentFromCohort(cohortName, studentID) {
+    const cohort = this.searchCohort(cohortName)
+    cohort.removeStudent(studentID)
+  }
 }
 
 export { Student, Cohort, CohortManager }

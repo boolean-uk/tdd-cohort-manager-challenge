@@ -129,4 +129,12 @@ describe('CohortManager', () => {
       'Cohort not found'
     )
   })
+
+  it('should remoce a student form a cohort', () => {
+    cohortManager.createCohort('Cohort 1')
+    cohortManager.addStudentToCohort('Cohort 1', student)
+    cohortManager.removeStudentFromCohort('Cohort 1', '234')
+    const cohort = cohortManager.searchCohort('Cohort 1')
+    expect(cohort.students.length).toBe(0)
+  })
 })
