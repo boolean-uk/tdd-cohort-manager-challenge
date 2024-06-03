@@ -4,14 +4,14 @@ class CohortList {
     this.cohorts = []
   }
 
-  add(cohortName) {
+  addCohort(cohortName) {
     const newCohort = new Cohort(cohortName)
     this.cohorts.push(newCohort)
 
     return newCohort
   }
 
-  search(cohortName) {
+  searchCohort(cohortName) {
     const found = this.cohorts.find(
       (cohort) => cohort.cohortName === cohortName
     )
@@ -23,7 +23,7 @@ class CohortList {
     return found
   }
 
-  remove(cohortName) {
+  removeCohort(cohortName) {
     const found = this.cohorts.find(
       (cohort) => cohort.cohortName === cohortName
     )
@@ -50,5 +50,7 @@ class Cohort {
   }
 }
 
-export { Cohort }
+class Student {}
+
+export { Cohort, Student }
 export default CohortList

@@ -1,4 +1,4 @@
-import CohortList, { Cohort } from '../src/index.js'
+import CohortList, { Cohort, Student } from '../src/index.js'
 
 describe('CohortList', () => {
   let cohortList
@@ -12,7 +12,7 @@ describe('CohortList', () => {
   })
 
   it('should create a new cohort', () => {
-    const result = cohortList.add('cohort12')
+    const result = cohortList.addCohort('cohort12')
 
     expect(result).toBeInstanceOf(Cohort)
     expect(result.cohortName).toBe('cohort12')
@@ -20,29 +20,31 @@ describe('CohortList', () => {
   })
 
   it('should be able to search for a cohort', () => {
-    cohortList.add('cohort12')
+    cohortList.addCohort('cohort12')
 
-    const result = cohortList.search('cohort12')
+    const result = cohortList.searchCohort('cohort12')
 
     expect(result.cohortName).toBe('cohort12')
   })
 
-  it('should throw an error when trying to serach for a non existent cohort', () => {
-    cohortList.add('cohort12')
-    cohortList.add('cohort13')
-    cohortList.add('cohort14')
+  it('should throw an error when trying to search for a non existent cohort', () => {
+    cohortList.addCohort('cohort12')
+    cohortList.addCohort('cohort13')
+    cohortList.addCohort('cohort14')
 
-    expect(() => cohortList.search('cohort15')).toThrow('cohort not found')
+    expect(() => cohortList.searchCohort('cohort15')).toThrow(
+      'cohort not found'
+    )
   })
 
   it('should remove a cohort', () => {
-    cohortList.add('cohort12')
-    cohortList.add('cohort13')
-    cohortList.add('cohort14')
+    cohortList.addCohort('cohort12')
+    cohortList.addCohort('cohort13')
+    cohortList.addCohort('cohort14')
 
     expect(cohortList.cohorts.length).toBe(3)
 
-    const removed = cohortList.remove('cohort13')
+    const removed = cohortList.removeCohort('cohort13')
 
     expect(removed.cohortName).toBe('cohort13')
     expect(cohortList.cohorts.length).toBe(2)
@@ -51,10 +53,32 @@ describe('CohortList', () => {
   })
 
   it('should throw an error when trying to remove a non existent cohort', () => {
-    cohortList.add('cohort12')
-    cohortList.add('cohort13')
-    cohortList.add('cohort14')
+    cohortList.addCohort('cohort12')
+    cohortList.addCohort('cohort13')
+    cohortList.addCohort('cohort14')
 
-    expect(() => cohortList.remove('cohort15')).toThrow('cohort not found')
+    expect(() => cohortList.removeCohort('cohort15')).toThrow(
+      'cohort not found'
+    )
+  })
+
+  it('should add a student to a cohort', () => {
+    cohortList.addCohort('cohort12')
+    cohortList.addCohort('cohort13')
+    cohortList.addCohort('cohort14')
+
+    const student = new Student('Jane', 'Doe', 'JaneDoe', 'janedoe@hotmail.com')
+
+    const result = cohortList.addStudent('cohort12', student)
+
+    expect(student).toBeInstanceOf(Student)
+
+    expect(result.firstName).toBe('Jane')
+    expect(result.lastName).toBe('Doe')
+    expect(result.githubUsername).toBe('JaneDoe')
+    expect(result.email).toBe('janedoe@hotmail.com')
+
+    expect(cohortList.cohorts.students.length).toBe(1)
+    expect(cohortList.cohorts.students[0].firstName).toBe('Jane')
   })
 })
