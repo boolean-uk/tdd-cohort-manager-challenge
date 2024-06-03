@@ -27,8 +27,13 @@ class Cohort {
   }
 
   remove(id) {
-    const found = this.getAll()
-    this.students = found.filter((s) => s.id === id)
+    const students = this.getAll()
+    const found = this.students.find((s) => s.id === id)
+    this.students = students.filter((s) => s.id === id)
+    if (!found) {
+      // eslint-disable-next-line no-throw-literal
+      throw 'Student not found'
+    }
     return this.students
   }
 }
