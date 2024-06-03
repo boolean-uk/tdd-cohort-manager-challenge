@@ -60,4 +60,18 @@ describe('Cohort Manager', () => {
 
     expect(cohortManager.cohortList).toEqual([])
   })
+
+  it('should remove student from cohort', () => {
+    cohortManager.createCohort('Cohort 12')
+    cohortManager.addStudent(
+      'Leonardo',
+      'Lodi',
+      'LeonardoSaraceli',
+      'leonardolodi09@gmail.com',
+      1
+    )
+    expect(cohortManager.removeStudent(1, 1)).toEqual(
+      new Cohort(1, 'Cohort 12', [])
+    )
+  })
 })
