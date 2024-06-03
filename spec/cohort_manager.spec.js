@@ -15,6 +15,7 @@ describe('student', () => {
 describe('Cohort', () => {
   let cohortOne
   let cohortTwo
+  let cohortThree
   beforeEach(() => {
     cohortOne = new Cohort(1)
     cohortTwo = new Cohort(2)
@@ -61,9 +62,29 @@ describe('Cohort', () => {
     cohortOne.addStudent('Bart', 'Simpson')
     cohortOne.addStudent('Lisa', 'Simpson')
     cohortOne.addStudent('Homer', 'Simpson')
+    cohortOne.removeStudent('Bart', 'Simpson')
+    expect(cohortOne.studentsList.length).toBe(2)
+  })
+
+  it('should through an error and give a message if there is no student with the provided name/surname in the cohort', () => {
     cohortOne.addStudent('Eric', 'Cartman')
     cohortOne.addStudent('Kyle', 'Broflovski')
-    cohortOne.removeStudent('Bart', 'Simpson')
-    expect(cohortOne.studentsList.length).toBe(4)
+
+    expect(() => {
+      cohortOne
+        .removeStudentt('Stn', 'Msh')
+        .toThrowError(
+          `There is no student named ${this.firstName} ${this.lastName} in Cohort ${this.name}\n`
+        )
+    })
+    expect(cohortOne.studentsList.length).toBe(2)
+  })
+
+  it('should find a student using the student id', () => {
+    cohortOne.addStudent('Bart', 'Simpson')
+    cohortOne.addStudent('Lisa', 'Simpson')
+    cohortOne.addStudent('Homer', 'Simpson')
+    cohortOne.addStudent('Eric', 'Cartman')
+    cohortOne.addStudent('Kyle', 'Broflovski')
   })
 })
