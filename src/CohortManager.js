@@ -94,6 +94,18 @@ class CohortManager {
     cohort.cohortStudents.splice(cohort.cohortStudents[studentID], 1)
     return cohort
   }
+
+  searchStudent(studentID, cohortID) {
+    const cohort = this.cohortList.find(
+      (cohort) => cohort.cohortID === cohortID
+    )
+
+    const student = cohort.cohortStudents.find(
+      (student) => student.studentID === studentID
+    )
+
+    return student
+  }
 }
 
 class Cohort {
