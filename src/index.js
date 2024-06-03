@@ -65,26 +65,47 @@ class CohortList {
       (cohort) => cohort.cohortName === cohortName
     )
 
-    if (found && found.students.length < 24) {
-      const newStudent = new Student(
-        firstName,
-        lastName,
-        githubUsername,
-        email,
-        this.id
-      )
-
-      this.id++
-
-      if (found) {
-        found.students.push(newStudent)
-      }
-
-      return newStudent
-    }
-
     if (!found) {
       throw 'cohort not found'
+    }
+
+    const uniqueStudent = {
+      firstName: firstName,
+      lastName: lastName,
+      githubUsername: githubUsername,
+      email: email
+    }
+
+    for (let i = 0; i < this.cohorts.length; i++) {
+      const foundStudent = this.cohorts[i].students.find(
+        (student) =>
+          student.firstName === uniqueStudent.firstName &&
+          student.lastName === uniqueStudent.lastName &&
+          student.githubUsername === uniqueStudent.githubUsername &&
+          student.email === uniqueStudent.email
+      )
+
+      if (foundStudent) {
+        throw 'student already exists in another cohort'
+      } else {
+        if (found && found.students.length < 24) {
+          const newStudent = new Student(
+            firstName,
+            lastName,
+            githubUsername,
+            email,
+            this.id
+          )
+
+          this.id++
+
+          if (found) {
+            found.students.push(newStudent)
+          }
+
+          return newStudent
+        }
+      }
     }
   }
 
