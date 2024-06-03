@@ -50,4 +50,21 @@ describe('CohortManager', () => {
     const expected = cohortManager.getAll()
     expect(expected.length).toBe(3)
   })
+  it('should get all students in the cohort', () => {
+    cohort.add('Troy', 'McClure', 'tmcclure', 'tmcclure@hollywood.org')
+    cohort.add('Sideshow', 'Bob', 'bob@krustyproductions.org')
+    const expected = cohort.getAll()
+    expect(expected.length).toBe(2)
+  })
+  it('should remove a cohort from the list', () => {
+    cohortManager.create('Cohort 11')
+    cohortManager.create('Cohort 12')
+    cohortManager.create('Cohort 13')
+
+    const result = [new Cohort('Cohort 11'), new Cohort('Cohort 12')]
+
+    expect(cohortManager.getAll().length).toBe(3)
+    expect(cohortManager.remove('Cohort 13')).toEqual(result)
+    expect(cohortManager.getAll().length).toBe(2)
+  })
 })

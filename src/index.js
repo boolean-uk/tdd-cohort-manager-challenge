@@ -21,15 +21,21 @@ class Cohort {
     this.students.push(student)
     return student
   }
+
+  getAll() {
+    return this.students
+  }
 }
 
 class CohortManager {
   constructor() {
     this.cohorts = []
+    this.id = 1
   }
 
   create(name) {
     const newCohort = new Cohort(name)
+    this.id++
     this.cohorts.push(newCohort)
     return newCohort
   }
@@ -50,8 +56,8 @@ class CohortManager {
 
   remove(name) {
     const found = this.getAll()
-    const removed = found.filter((c) => c.cohortName !== name)
-    return removed
+    this.cohorts = found.filter((c) => c.cohortName !== name)
+    return this.cohorts
   }
 }
 
