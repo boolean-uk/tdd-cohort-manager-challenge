@@ -164,4 +164,12 @@ describe('Cohort Manager', () => {
       )
     )
   })
+
+  it('should throw an error for search unexist student', () => {
+    cohortManager.createCohort('Cohort 12')
+
+    expect(() => cohortManager.searchStudent(1, 1)).toThrowError(
+      'studentID not found'
+    )
+  })
 })
