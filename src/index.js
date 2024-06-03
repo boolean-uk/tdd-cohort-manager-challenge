@@ -1,6 +1,6 @@
 class Cohorts {
   constructor() {
-    this.Cohorts = []
+    this.cohorts = []
   }
 }
 
