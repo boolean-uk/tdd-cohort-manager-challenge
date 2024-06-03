@@ -100,6 +100,10 @@ class CohortManager {
       (cohort) => cohort.cohortID === cohortID
     )
 
+    if (!cohort) {
+      throw new Error('cohortID not found')
+    }
+
     const student = cohort.cohortStudents.find(
       (student) => student.studentID === studentID
     )
