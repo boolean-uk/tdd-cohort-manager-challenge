@@ -45,27 +45,31 @@ class CohortList {
   }
 
   addStudent(cohortName, firstName, lastName, githubUsername, email) {
-    const newStudent = new Student(
-      firstName,
-      lastName,
-      githubUsername,
-      email,
-      this.id
-    )
-
-    this.id++
-
     const found = this.cohorts.find(
       (cohort) => cohort.cohortName === cohortName
     )
 
-    if (found) {
-      found.students.push(newStudent)
-    } else {
-      throw 'cohort not found'
+    if (found && found.students.length < 24) {
+      const newStudent = new Student(
+        firstName,
+        lastName,
+        githubUsername,
+        email,
+        this.id
+      )
+
+      this.id++
+
+      if (found) {
+        found.students.push(newStudent)
+      }
+
+      return newStudent
     }
 
-    return newStudent
+    if (!found) {
+      throw 'cohort not found'
+    }
   }
 
   removeStudent(cohortName, studentID) {

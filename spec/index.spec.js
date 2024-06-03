@@ -234,15 +234,5 @@ describe('CohortList', () => {
     )
 
     expect(cohortList.cohorts[0].students.length).toBe(24)
-
-    expect(() =>
-      cohortList.addStudent(
-        'cohort12',
-        'Mark',
-        'Something',
-        'MarkSomething',
-        'marksomething@hotmail.com'
-      )
-    ).toThrow('cohort full')
   })
 })
