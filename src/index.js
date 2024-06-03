@@ -1,4 +1,4 @@
-class Cohorts {
+class CohortManager {
   constructor() {
     this.cohorts = []
     this.idCounter = 1
@@ -84,6 +84,6 @@ class Student {
   }
 }
 
-export default Cohorts
+export default CohortManager
 
 export { Cohort }
