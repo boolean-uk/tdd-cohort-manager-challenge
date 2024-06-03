@@ -87,7 +87,7 @@ describe('CohortList', () => {
     expect(cohortList.cohorts[0].students[0].studentID).toBe(1)
 
     cohortList.addStudent(
-      'cohort13',
+      'cohort12',
       'Mark',
       'Something',
       'MarkSomething',
@@ -95,7 +95,7 @@ describe('CohortList', () => {
     )
 
     expect(cohortList.cohorts[0].students.length).toBe(2)
-    expect(cohortList.cohorts[0].students[1].firstName).toBe('Jane')
+    expect(cohortList.cohorts[0].students[1].firstName).toBe('Mark')
     expect(cohortList.cohorts[0].students[1].studentID).toBe(2)
 
     expect(() =>

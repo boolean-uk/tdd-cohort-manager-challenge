@@ -2,6 +2,7 @@
 class CohortList {
   constructor() {
     this.cohorts = []
+    this.id = 1
   }
 
   addCohort(cohortName) {
@@ -44,7 +45,15 @@ class CohortList {
   }
 
   addStudent(cohortName, firstName, lastName, githubUsername, email) {
-    const newStudent = new Student(firstName, lastName, githubUsername, email)
+    const newStudent = new Student(
+      firstName,
+      lastName,
+      githubUsername,
+      email,
+      this.id
+    )
+
+    this.id++
 
     const found = this.cohorts.find(
       (cohort) => cohort.cohortName === cohortName
@@ -68,7 +77,8 @@ class Cohort {
 }
 
 class Student {
-  constructor(firstName, lastName, githubUsername, email) {
+  constructor(firstName, lastName, githubUsername, email, studentID) {
+    this.studentID = studentID
     this.firstName = firstName
     this.lastName = lastName
     this.githubUsername = githubUsername
