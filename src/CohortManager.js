@@ -87,7 +87,7 @@ class CohortManager {
     }
   }
 
-  findStudent(studentIdToFind) {
+  findStudentById(studentIdToFind) {
     for (let i = 0; i < this.cohorts.length; i++) {
       const targetStudent = this.cohorts[i].students.find(
         (student) => student.studentId === studentIdToFind
