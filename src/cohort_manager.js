@@ -24,6 +24,8 @@ class CohortManager {
       throw new Error('No cohort with this name\n')
     }
   }
+
+  findCohort(name) {}
 }
 
 export default CohortManager

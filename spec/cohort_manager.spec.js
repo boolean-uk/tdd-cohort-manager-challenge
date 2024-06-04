@@ -153,4 +153,13 @@ describe('CohortManager', () => {
       'No cohort with this name\n'
     )
   })
+
+  it('should find and display a cohort with the provided name', () => {
+    manager.createCohort(1)
+    manager.createCohort(2)
+    manager.createCohort(3)
+
+    const found = manager.findCohort(2)
+    expect(found.name).toBe(2)
+  })
 })
