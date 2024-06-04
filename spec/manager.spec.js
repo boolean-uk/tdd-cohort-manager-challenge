@@ -129,7 +129,7 @@ describe('CohortManager', () => {
 
   it('should throw an error if cohort is created without a name', () => {
     expect(() => cohortManager.createCohort()).toThrowError(
-      'Cohort must have name'
+      'Cohort must have a name'
     )
   })
 
