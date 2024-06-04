@@ -163,7 +163,7 @@ describe('CohortManager', () => {
     expect(found.name).toBe(2)
   })
 
-  it('should return an error if non-existent cohort is searched', () => {
+  it('should throw an error if non-existent cohort is searched', () => {
     manager.createCohort(1)
     manager.createCohort(2)
     manager.createCohort(3)
@@ -174,6 +174,15 @@ describe('CohortManager', () => {
   })
 
   it('should add a student with the provided studentId to a cohort with provided cohortName', () => {
+    manager.createCohort(1)
+    manager.createCohort(2)
+    manager.createCohort(3)
+
+    manager.addStudentToCohort(11, 1)
+    expect(manager.cohortsList[0].studentsList.length).toBe(1)
+  })
+
+  it('should throw an error if trying to add an already existing student', () => {
     manager.createCohort(1)
     manager.createCohort(2)
     manager.createCohort(3)
@@ -196,4 +205,6 @@ describe('CohortManager', () => {
     manager.removeStudentFromCohort(11, 1)
     expect(manager.cohortsList[0].studentsList.length).toBe(0)
   })
+
+  it('', () => {})
 })
