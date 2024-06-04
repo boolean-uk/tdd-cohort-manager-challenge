@@ -1,5 +1,5 @@
-const requireParam = (field, value) => {
-  if (!value) throw new TypeError(`${field} is required`)
+function requireParam(field, value) {
+  if (!value) throw new Error(`${field} is required`)
 
   return value
 }
