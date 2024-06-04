@@ -4,23 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="./src/script.js"></script>
+    <link rel="stylesheet" href="./styles.css">
     <title>Cohort Manager</title>
   </head>
   <body>
     <div class="container">
       <h1>Cohort Manager</h1>
       <section id="queries">
+        <div class="query">
       <label for="new-cohort-input">Create new cohort</label>
       <input id="new-cohort-input" name="new-cohort-input" type="text" placeholder="Enter new cohort name">
       <button id="new-cohort-button">Add</button>
+    </div>
+    <div class="query" id="find-cohort-query">
+      <label for="find-cohort-input">Find cohort</label>
+      <input id="find-cohort-input" name="find-cohort-input" type="text" placeholder="Enter cohort name">
+      <button id="find-cohort-button">Search</button>
+    </div>
     </section>
     <section>
-      <p>Cohorts</p>
       <ul id="cohort-list">
 
       </ul>
     </section>
-    <section id="cohort-panel"></section>
+    <section id="cohort-panel-section">
+
+    </section>
     </div>
     
   </body>

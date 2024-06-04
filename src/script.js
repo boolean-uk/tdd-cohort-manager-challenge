@@ -1,60 +1,152 @@
-import CohortManager from './CohortManager'
-const cm = new CohortManager
-const cohortUl = document.querySelector('#cohort-list')
-const cohortPanel = document.querySelector('#cohort-panel')
+import CohortManager from "./CohortManager";
+const cm = new CohortManager();
+const cohortUl = document.querySelector("#cohort-list");
+const cohortPanel = document.querySelector("#cohort-panel-section");
+const createCohortButton = document.querySelector("#new-cohort-button");
+const findCohortButton = document.querySelector("#find-cohort-button");
 
-const createCohortButton = document.querySelector('#new-cohort-button')
+cm.addCohort("Cohort 1");
+cm.addCohort("Cohort 2");
+cm.addStudent("Cohort 1", "Tom", "Johnson", "TommyJ", "tommy@j.com");
+cm.addStudent("Cohort 1", "Dave", "Johnson", "DaveyJ", "davey@j.com");
+cm.addStudent("Cohort 2", "Paul", "Johnson", "PaulyJ", "pauly@j.com");
+cm.addStudent("Cohort 2", "Mike", "Johnson", "MikeyJ", "mikey@j.com");
+renderCohortList();
 
-createCohortButton.addEventListener('click', () => {
-    let createCohortInput = document.querySelector('#new-cohort-input')
-    cm.addCohort(createCohortInput.value)
-    createCohortInput.value = ''
-    renderCohortList()
+createCohortButton.addEventListener("click", () => {
+  const createCohortInput = document.querySelector("#new-cohort-input");
+  cm.addCohort(createCohortInput.value);
+  createCohortInput.value = "";
+  renderCohortList();
+});
+
+findCohortButton.addEventListener('click', () => {
+    const findCohortInput = document.querySelector('#find-cohort-input')
+    try {
+    renderCohortPanel(findCohortInput.value)
+    } catch(error) {
+        const findCohortQuery = document.querySelector('#find-cohort-query')
+        const p = document.createElement('p')
+        p.classList.add('error-message')
+        p.innerText = error
+        findCohortQuery.append(p)
+        setTimeout(() => {
+            findCohortQuery.removeChild(p)
+        }, '2000')
+    }
+    findCohortInput.value = ''
 })
 
+
 function renderCohortList() {
-    cohortUl.innerHTML = ''
-    cm.cohorts.forEach((cohort) => {
-        const cohortLi = document.createElement('li')
-        cohortLi.innerText = cohort.name
-        cohortLi.classList.add('cohort-li')
-        cohortLi.addEventListener('click', (e) => {
-            cohortPanel.innerHTML = ''
-            renderCohortPanel(e)})
-        cohortUl.append(cohortLi)
-    })
+  cohortUl.innerHTML = "";
+  cm.cohorts.forEach((cohort) => {
+    const cohortLi = document.createElement("li");
+    cohortLi.classList.add("cohort-li");
+    const p = document.createElement("p");
+    const button = document.createElement("button");
+    button.innerText = "Delete";
+    p.innerText = cohort.name;
+    cohortLi.append(p);
+    cohortLi.append(button);
+
+    button.addEventListener("click", () => {
+      cm.removeCohort(cohort.name);
+      renderCohortList();
+      cohortPanel.innerHTML = "";
+    });
+
+    p.addEventListener("click", (e) => {
+      cohortPanel.innerHTML = "";
+      renderCohortPanel(e.target.innerHTML);
+    });
+
+    cohortUl.append(cohortLi);
+  });
 }
 
-function renderCohortPanel(e) {
-   const targetCohort = cm.findCohort(e.target.innerHTML)
-    const h3 = document.createElement('h3')
-    h3.innerText = targetCohort.name
-    cohortPanel.append(h3)
+function renderCohortPanel(cohortName) {
+  const targetCohort = cm.findCohort(cohortName);
+  const cohortPanelDiv = document.createElement("div");
+  cohortPanel.innerHTML = "";
+  cohortPanelDiv.setAttribute("id", "cohort-panel");
 
-    const studentUl = document.createElement('ul')
-    studentUl.setAttribute('id', 'cohort-students')
-    cohortPanel.append(studentUl)
+  const h2 = document.createElement("h2");
+  h2.innerText = targetCohort.name;
+  cohortPanelDiv.append(h2);
+  cohortPanel.append(cohortPanelDiv);
 
-    targetCohort.students.forEach((student) => {
-        const studentLi = createElement('li')
-        studentLi.innerText = `${student.firstName} ${student.lastName}`
-        studentUl.append(studentLi)
-    })
+  const p = document.createElement("p");
+  if (targetCohort.students.length === 0) {
+    p.innerText = "This cohort currently has no students enrolled";
+  } else {
+    p.innerText = "Students:";
+  }
+  cohortPanelDiv.append(p);
 
-    const addStudentLabel = document.createElement('label')
-    addStudentLabel.setAttribute('for', 'add-student')
-    addStudentLabel.innerText = 'Add Student '
-    cohortPanel.append(addStudentLabel)
+  const studentUl = document.createElement("ul");
+  studentUl.setAttribute("id", "cohort-students");
+  cohortPanelDiv.append(studentUl);
 
+  targetCohort.students.forEach((student) => {
+    const button = document.createElement("button");
+    button.innerText = "Delete";
+    button.addEventListener("click", () => {
+      cm.removeStudent(cohortName, student.firstName, student.lastName);
+      renderCohortPanel(cohortName);
+    });
+    let studentLi = document.createElement("li");
+    studentLi.innerText = `${student.firstName} ${student.lastName}`;
+    studentLi.append(button);
+    studentUl.append(studentLi);
+  });
 
-    const addStudentInput = document.createElement('input')
-    addStudentInput.setAttribute('name', 'add-student')
-    addStudentInput.setAttribute('type', 'textbox')
-    addStudentInput.setAttribute('placeholder', 'Student name...')
-    cohortPanel.append(addStudentInput)
+  const addStudentForm = document.createElement("form");
+  addStudentForm.setAttribute("id", "add-student-form");
+  cohortPanelDiv.append(addStudentForm);
 
-    const addStudentButton = document.createElement('button')
-    addStudentButton.innerText = 'Add'
-    cohortPanel.append(addStudentButton)
+  const addStudentTitle = document.createElement("h3");
+  addStudentTitle.innerText = "Add Student";
+  addStudentForm.append(addStudentTitle);
 
+  const studentFirstNameInput = document.createElement("input");
+  studentFirstNameInput.setAttribute("id", "first-name-input");
+  studentFirstNameInput.setAttribute("type", "textbox");
+  studentFirstNameInput.setAttribute("placeholder", "Student first name...");
+  addStudentForm.append(studentFirstNameInput);
+
+  const studentLastNameInput = document.createElement("input");
+  studentLastNameInput.setAttribute("id", "last-name-input");
+  studentLastNameInput.setAttribute("type", "textbox");
+  studentLastNameInput.setAttribute("placeholder", "Student last name...");
+  addStudentForm.append(studentLastNameInput);
+
+  const studentgitHubInput = document.createElement("input");
+  studentgitHubInput.setAttribute("id", "github-input");
+  studentgitHubInput.setAttribute("type", "textbox");
+  studentgitHubInput.setAttribute("placeholder", "Student git hub...");
+  addStudentForm.append(studentgitHubInput);
+
+  const studentEmail = document.createElement("input");
+  studentEmail.setAttribute("id", "email-input");
+  studentEmail.setAttribute("type", "textbox");
+  studentEmail.setAttribute("placeholder", "Student email...");
+  addStudentForm.append(studentEmail);
+
+  const addStudentButton = document.createElement("button");
+  addStudentButton.innerText = "Add";
+  addStudentButton.setAttribute("type", "submit");
+  addStudentForm.append(addStudentButton);
+
+  addStudentForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const firstName = addStudentForm.querySelector("#first-name-input").value;
+    const lastName = addStudentForm.querySelector("#last-name-input").value;
+    const gitHub = addStudentForm.querySelector("#github-input").value;
+    const email = addStudentForm.querySelector("#email-input").value;
+    cm.addStudent(targetCohort.name, firstName, lastName, gitHub, email);
+    cohortPanelDiv.innerHTML = "";
+    renderCohortPanel(targetCohort.name);
+  });
 }
