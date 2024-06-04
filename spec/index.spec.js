@@ -1,4 +1,5 @@
 import CohortManager, { Cohort } from '../src/index.js'
+import errors from '../src/errors.js'
 
 describe('cohort manager', () => {
   let cohortManager
@@ -65,13 +66,13 @@ describe('cohort manager', () => {
   it('throws an error if the cohort cannot be found', () => {
     expect(() => {
       cohortManager.removeCohort('1')
-    }).toThrow(Error('Cohort not found'))
+    }).toThrow(errors.notFound)
   })
 
   it('throws an error if the cohort cannot be found when removing a student', () => {
     expect(() => {
       cohortManager.removeStudent('1', 'Angus')
-    }).toThrow(Error('Cohort not found'))
+    }).toThrow(errors.notFound)
   })
 
   it('throws an error if the student cannot be found when removing a student', () => {
@@ -79,18 +80,14 @@ describe('cohort manager', () => {
 
     expect(() => {
       cohortManager.removeStudent('1', 'Angus')
-    }).toThrow(Error('Student not found'))
+    }).toThrow(errors.studentNotFound)
   })
 
   it('throws an error if another cohort is created with the same name', () => {
     cohortManager.createCohort('1')
     expect(() => {
       cohortManager.createCohort('1')
-    }).toThrow(
-      Error(
-        'Cohort already exists with this name, please ensure each name is unique'
-      )
-    )
+    }).toThrow(errors.cohortExists)
   })
 
   it('throws an error if student is already enrolled in a cohort', () => {
@@ -116,7 +113,7 @@ describe('cohort manager', () => {
         },
         '1'
       )
-    }).toThrow(Error('Student already enrolled'))
+    }).toThrow(errors.alreadyEnrolled)
   })
 
   it('throws an error if cohort at maximum size', () => {
@@ -137,13 +134,13 @@ describe('cohort manager', () => {
         },
         '1'
       )
-    }).toThrow(Error('Cohort at maximum size'))
+    }).toThrow(errors.maximumSize)
   })
 
   it('will not create cohorts with an empty name', () => {
     expect(() => {
       cohortManager.createCohort('')
-    }).toThrow(Error('Cohort name must contain at least 1 character'))
+    }).toThrow(errors.cohortNameInvalid)
   })
 
   it('succesfully searches for a cohort and returns the cohort object', () => {
@@ -154,5 +151,11 @@ describe('cohort manager', () => {
     expect(cohortManager.searchCohort('1').name).toBe('1')
     expect(cohortManager.searchCohort('2')).toBeInstanceOf(Cohort)
     expect(cohortManager.searchCohort('2').name).toBe('2')
+  })
+
+  it('throws an error when the cohort does not exist', () => {
+    expect(() => {
+      cohortManager.searchCohort('')
+    }).toThrow(errors.notFound)
   })
 })

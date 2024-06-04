@@ -1,4 +1,5 @@
 import crypto from 'crypto'
+import errors from './errors.js'
 
 class CohortManager {
   constructor() {
@@ -6,8 +7,8 @@ class CohortManager {
   }
 
   createCohort(name) {
-    if (name.length === 0) {
-      throw new Error('Cohort name must contain at least 1 character')
+    if (name.length === 0 || !name) {
+      throw errors.cohortNameInvalid
     }
 
     if (
@@ -15,9 +16,7 @@ class CohortManager {
         return element.name === name
       })
     ) {
-      throw new Error(
-        'Cohort already exists with this name, please ensure each name is unique'
-      )
+      throw errors.cohortExists
     }
 
     const newCohort = new Cohort(name)
@@ -30,7 +29,7 @@ class CohortManager {
         return element.name === name
       })
     ) {
-      throw new Error('Cohort not found')
+      throw errors.notFound
     }
     this.cohorts = this.cohorts.filter((element) => {
       return element.name !== name
@@ -49,7 +48,7 @@ class CohortManager {
           )
         })
       )
-        throw new Error('Student already enrolled')
+        throw errors.alreadyEnrolled
     })
 
     const cohort = this.cohorts.find((element) => {
@@ -57,11 +56,11 @@ class CohortManager {
     })
 
     if (cohort.students.length === 24) {
-      throw new Error('Cohort at maximum size')
+      throw errors.maximumSize
     }
 
     if (!cohort) {
-      throw new Error('Cohort not found')
+      throw errors.notFound
     }
 
     const studentData = [...Object.values(student)]
@@ -79,7 +78,7 @@ class CohortManager {
     })
 
     if (!cohort) {
-      throw new Error('Cohort not found')
+      throw errors.notFound
     }
 
     if (
@@ -87,7 +86,7 @@ class CohortManager {
         return element.id === studentId
       })
     ) {
-      throw new Error('Student not found')
+      throw errors.studentNotFound
     }
 
     cohort.students = cohort.students.filter((element) => {
@@ -101,7 +100,7 @@ class CohortManager {
     })
 
     if (!cohort) {
-      throw new Error('Cohort not found')
+      throw errors.notFound
     }
 
     return cohort
