@@ -1,4 +1,5 @@
 import Student from './student.js'
+import students from './studentsDB.js'
 
 class Cohort {
   constructor(name) {
@@ -22,12 +23,21 @@ class Cohort {
     }
   }
 
+  populateCohort(cohort, num) {
+    for (let i = 1; i <= num; i++) {
+      const firstName = students[i].firstName
+      const lastName = students[i].lastName
+      cohort.addStudent(firstName, lastName)
+    }
+  }
+
   addStudent(firstName, lastName) {
     const cohortFullMsg = `Cohort ${this.name} is full. No more students can be added. Choose another cohort`
     const student = new Student(firstName, lastName)
     this.studentExists(student.firstName, student.lastName)
 
     if (this.studentsList.length === 24) {
+      console.log(cohortFullMsg)
       throw new Error(cohortFullMsg)
     } else {
       this.studentsList.push(student)

@@ -46,12 +46,14 @@ class CohortManager {
     )
     if (studentToAdd && receivingCohort && alreadyInACohort !== true) {
       receivingCohort.addStudent(studentToAdd.firstName, studentToAdd.lastName)
+    } else if (!receivingCohort) {
+      console.log(`Cohort ${cohort} does not exist`)
+      throw new Error(`Cohort ${cohort} does not exist`)
     }
   }
 
   removeStudentFromCohort(stdId, cohort) {
     const cohortToUse = this.cohortsList.find((co) => co.name === cohort)
-    console.log(cohortToUse)
     const studentToRemove = cohortToUse.studentsList.find(
       (std) => std.id === stdId
     )
@@ -65,16 +67,16 @@ class CohortManager {
 }
 export default CohortManager
 
-const nm = new CohortManager()
-nm.createCohort(1)
-nm.createCohort(2)
+// const nm = new CohortManager()
+// nm.createCohort(1)
+// nm.createCohort(2)
 // // nm.createCohort(2)
 // // // nm.findCohort(1)
-nm.addStudentToCohort(1, 1)
+// nm.addStudentToCohort(1, 1)
 // nm.addStudentToCohort(1, 1)
 // console.log(nm)
 // console.log(nm.cohortsList[0]);
-nm.removeStudentFromCohort(1, 1)
-nm.removeStudentFromCohort(1, 1)
+// nm.removeStudentFromCohort(1, 1)
+// nm.removeStudentFromCohort(1, 1)
 
 // console.log(nm)

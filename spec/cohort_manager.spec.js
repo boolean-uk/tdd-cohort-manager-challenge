@@ -1,6 +1,7 @@
 import Student from '../src/student.js'
 import Cohort from '../src/cohorts.js'
 import CohortManager from '../src/cohort_manager.js'
+import students from '../src/studentsDB.js'
 
 describe('student', () => {
   const student = new Student('Pickle Rick', 'Sanchez')
@@ -52,24 +53,21 @@ describe('Cohort', () => {
     cohortOne.addStudent('Lisa', 'Simpson')
     expect(cohortOne.studentsList.length).toBe(2)
 
-    // cohortOne.addStudent('Bart', 'Simpson')
-    // expect(cohortOne.studentsList.length).toBe(2)
     expect(() => cohortOne.addStudent('Bart', 'Simpson')).toThrowError(
       `Bart Simpson is already enrolled in Cohort 1`
     )
+    expect(cohortOne.studentsList.length).toBe(2)
   })
 
-  // it('should throw an error if the cohort is full', () => {
-  //   // I ll modify the code so cohort max size is 5 so I don't have to add 24 students
-  //   cohortOne.addStudent('Bart', 'Simpson')
-  //   cohortOne.addStudent('Lisa', 'Simpson')
-  //   cohortOne.addStudent('Homer', 'Simpson')
-  //   cohortOne.addStudent('Eric', 'Cartman')
-  //   cohortOne.addStudent('Kyle', 'Broflovski')
-  //   expect(() => cohortOne.addStudent('Stan', 'Marsh')).toThrowError(
-  //     `Cohort 1 is full. No more students can be added. Choose another cohort`
-  //   )
-  // })
+  it('should throw an error if the cohort is full', () => {
+    cohortOne.populateCohort(cohortOne, 24)
+    console.log(cohortOne.studentsList.length)
+    expect(() =>
+      cohortOne.addStudent('Poopybutthole', 'Boopyputhole')
+    ).toThrowError(
+      `Cohort 1 is full. No more students can be added. Choose another cohort`
+    )
+  })
 
   it('should remove a student from a cohort', () => {
     cohortOne.addStudent('Bart', 'Simpson')
@@ -195,7 +193,7 @@ describe('CohortManager', () => {
     )
   })
 
-  it('should throw an error if trying to add a student that already exists in any cohort cohort', () => {
+  it('should throw an error if trying to add a student that already exists in any other cohort', () => {
     manager.createCohort(1)
     manager.createCohort(2)
 
@@ -204,6 +202,14 @@ describe('CohortManager', () => {
 
     expect(() => manager.addStudentToCohort(11, 2)).toThrowError(
       'Ned Flanders is already enrolled in Cohort 1'
+    )
+  })
+
+  it('should throw an error if trying to add a student to a non-existing cohort', () => {
+    manager.createCohort(1)
+
+    expect(() => manager.addStudentToCohort(11, 2)).toThrowError(
+      'Cohort 2 does not exist'
     )
   })
 
