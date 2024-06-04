@@ -9,7 +9,10 @@ const addFirstNameInput = document.querySelector('#first-name-input')
 const addLastNameInput = document.querySelector('#last-name-input')
 const addUsernameInput = document.querySelector('#username-input')
 const addEmailInput = document.querySelector('#email-input')
+const studentsUl = document.querySelector('.students-ul')
+
 let cohortInput = ''
+let selectedCohort = ''
 
 const cohortList = new CohortList()
 
@@ -33,6 +36,10 @@ function renderCohortSelect() {
 
   label.innerText = 'Select Cohort'
 
+  const defaultOption = document.createElement('option')
+  defaultOption.innerText = '--Select cohort--'
+  select.append(defaultOption)
+
   cohortList.cohorts.forEach((cohort) => {
     const option = document.createElement('option')
 
@@ -42,6 +49,11 @@ function renderCohortSelect() {
 
   selectCohortDiv.append(label)
   selectCohortDiv.append(select)
+
+  select.addEventListener('change', () => {
+    selectedCohort = select.value
+    renderStudents()
+  })
 }
 
 function renderCohortSelectForm() {
@@ -68,7 +80,6 @@ function renderCohortSelectForm() {
 
   select.addEventListener('change', () => {
     cohortInput = select.value
-    console.log(cohortInput)
   })
 }
 
@@ -85,12 +96,33 @@ function handleAddStudent() {
     )
     renderCohortSelect()
     renderCohortSelectForm()
+    renderStudents()
 
     console.log(cohortList.cohorts)
   })
+}
+
+function renderStudents() {
+  studentsUl.innerHTML = ''
+
+  const foundCohort = cohortList.cohorts.find(
+    (cohort) => cohort.cohortName === selectedCohort
+  )
+
+  if (foundCohort) {
+    foundCohort.students.forEach((student) => {
+      const li = document.createElement('li')
+      li.innerText = student.firstName
+
+      studentsUl.append(li)
+    })
+  }
+
+  console.log(foundCohort)
 }
 
 renderCohortSelectForm()
 handleAddCohort()
 renderCohortSelect()
 handleAddStudent()
+renderStudents()
