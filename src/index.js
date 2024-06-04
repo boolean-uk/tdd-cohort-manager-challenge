@@ -4,6 +4,7 @@ import errors from './errors.js'
 class CohortManager {
   constructor() {
     this.cohorts = []
+    this.maximumCohortSize = 24
   }
 
   createCohort(name) {
@@ -61,7 +62,7 @@ class CohortManager {
       throw errors.notFound
     }
 
-    if (searchedCohort.students.length === 24) {
+    if (searchedCohort.students.length === this.maximumCohortSize) {
       throw errors.maximumSize
     }
 
