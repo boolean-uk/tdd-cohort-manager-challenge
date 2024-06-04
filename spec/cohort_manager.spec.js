@@ -140,7 +140,7 @@ describe('CohortManager', () => {
   it('should remove a cohort with the provided cohort name', () => {
     manager.createCohort(1)
     manager.createCohort(2)
-
+    // console.log(manager.cohortsList.length)
     manager.removeCohort(2)
     expect(manager.cohortsList.length).toBe(1)
   })

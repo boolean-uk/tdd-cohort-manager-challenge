@@ -13,11 +13,14 @@ class CohortManager {
       process.stdout.write('A cohort with this name already exists\n')
       throw new Error('A cohort with this name already exists\n')
     } else this.cohortsList.push(newCohort)
+  }
+
+  removeCohort(name) {
+    const cohortToRemove = this.cohortsList.findIndex((co) => co.name === name)
+    if (cohortToRemove !== -1) {
+      this.cohortsList.splice(cohortToRemove, 1)
     }
-    
-    removeCohort(name) {
-        
-    }
+  }
 }
 
 export default CohortManager
