@@ -12,16 +12,16 @@ describe('CohortManager', () => {
     student = new Student()
   })
   it('should create a new cohort', () => {
-    const expected = cohortManager.create('Cohort 12')
+    const expected = cohortManager.create('Cohort 4')
     expect(expected).toBeInstanceOf(Cohort)
-    expect(expected.cohortName).toBe('Cohort 12')
+    expect(expected.cohortName).toBe('Cohort 4')
   })
   it('should search cohort by name', () => {
-    cohortManager.create('Cohort 10')
-    cohortManager.create('Cohort 11')
-    cohortManager.create('Cohort 12')
+    cohortManager.create('Cohort 5')
+    cohortManager.create('Cohort 6')
+    cohortManager.create('Cohort 7')
 
-    expect(cohortManager.search('Cohort 12').cohortName).toBe('Cohort 12')
+    expect(cohortManager.search('Cohort 7').cohortName).toBe('Cohort 7')
   })
   it('should throw an error if the cohort does not exist', () => {
     expect(() => cohortManager.search('Cohort 13')).toThrow('Cohort not found')
@@ -44,9 +44,9 @@ describe('CohortManager', () => {
     expect(expected).toEqual(result)
   })
   it('should get all cohorts', () => {
-    cohortManager.create('Cohort 11')
-    cohortManager.create('Cohort 12')
-    cohortManager.create('Cohort 13')
+    cohortManager.create('Cohort 8')
+    cohortManager.create('Cohort 9')
+    cohortManager.create('Cohort 10')
 
     const expected = cohortManager.getAll()
     expect(expected.length).toBe(3)
@@ -101,17 +101,21 @@ describe('CohortManager', () => {
     expect(() => cohort.search(67)).toThrow('Student not found')
   })
   it('should alert when the cohort is at full capacity', () => {
-    const newCohort = new Cohort('Cohort 13')
+    const fullCohort = cohortManager.create('Cohort 13')
     for (let i = 0; i < students.length; i++) {
       if (students[i].id <= 24) {
-        return students[i]
+        fullCohort.students.push(students[i])
       }
-      newCohort.students.push(students[i])
-      console.log(newCohort)
     }
-
-    expect(
+    console.log(fullCohort)
+    expect(() =>
       cohort.add('Bruce', 'Wayne', 'batman', 'bruce.wayne@wayneenterprises.com')
     ).toThrow('Cohort is at full capacity')
+  })
+  it('should not allow cohorts to have the same name', () => {
+    cohortManager.create('Cohort 14')
+    expect(() => cohortManager.create('Cohort 14')).toThrow(
+      'Cohort already exists, choose another name'
+    )
   })
 })

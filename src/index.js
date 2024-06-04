@@ -62,7 +62,13 @@ class CohortManager {
   create(name) {
     const newCohort = new Cohort(name)
     this.id++
-    this.cohorts.push(newCohort)
+    if (this.getAll().find((c) => c.cohortName === name)) {
+      // eslint-disable-next-line no-throw-literal
+      throw 'Cohort already exists, choose another name'
+    } else {
+      this.cohorts.push(newCohort)
+    }
+
     return newCohort
   }
 
