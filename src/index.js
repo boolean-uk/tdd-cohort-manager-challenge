@@ -41,33 +41,19 @@ class CohortList {
   }
 
   removeCohort(cohortName) {
-    const found = this.cohorts.find(
-      (cohort) => cohort.cohortName === cohortName
-    )
+    const found = this.searchCohort(cohortName)
 
-    const foundIndex = this.cohorts.findIndex(
-      (cohort) => cohort.cohortName === cohortName
-    )
+    const foundIndex = this.cohorts.indexOf(found)
 
     if (foundIndex >= 0 && found) {
       this.cohorts.splice(foundIndex, 1)
-    }
-
-    if (!found) {
-      throw 'cohort not found'
     }
 
     return found
   }
 
   addStudent(cohortName, firstName, lastName, githubUsername, email) {
-    const found = this.cohorts.find(
-      (cohort) => cohort.cohortName === cohortName
-    )
-
-    if (!found) {
-      throw 'cohort not found'
-    }
+    const found = this.searchCohort(cohortName)
 
     for (let i = 0; i < this.cohorts.length; i++) {
       const foundStudent = this.cohorts[i].students.find(
@@ -81,32 +67,30 @@ class CohortList {
 
       if (foundStudent) {
         throw 'student already exists in another cohort'
-      } else {
-        if (found && found.students.length < 24) {
-          const newStudent = new Student(
-            firstName,
-            lastName,
-            githubUsername,
-            email,
-            this.id
-          )
+      }
 
-          this.id++
+      if (found && found.students.length < 24) {
+        const newStudent = new Student(
+          firstName,
+          lastName,
+          githubUsername,
+          email,
+          this.id
+        )
 
-          if (found) {
-            found.students.push(newStudent)
-          }
+        this.id++
 
-          return newStudent
+        if (found) {
+          found.students.push(newStudent)
         }
+
+        return newStudent
       }
     }
   }
 
   removeStudent(cohortName, studentID) {
-    const foundCohort = this.cohorts.find(
-      (cohort) => cohort.cohortName === cohortName
-    )
+    const foundCohort = this.searchCohort(cohortName)
 
     if (foundCohort) {
       const foundStudent = foundCohort.students.find(

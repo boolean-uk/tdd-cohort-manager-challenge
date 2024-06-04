@@ -100,8 +100,6 @@ function handleAddStudent() {
     renderCohortSelect()
     renderCohortSelectForm()
     renderStudents()
-
-    console.log(cohortList.cohorts)
   })
 }
 
@@ -130,8 +128,6 @@ function renderStudents() {
       })
     })
   }
-
-  console.log(foundCohort)
 }
 
 function renderRemoveCohortForm() {
@@ -161,8 +157,6 @@ function renderRemoveCohortForm() {
 
   select.addEventListener('change', () => {
     removeCohort = select.value
-    console.log(removeCohort)
-    console.log(cohortList.cohorts)
   })
 }
 
