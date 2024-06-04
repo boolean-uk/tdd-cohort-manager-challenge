@@ -11,8 +11,15 @@ class CohortManager {
 
   search(name) {
     const found = this.cohorts.find((Cohort) => Cohort.name === name)
-
     return found
+  }
+
+  remove(name) {
+    const updatedCohortsList = this.cohorts.filter(
+      (cohort) => cohort.name !== name
+    )
+    this.cohorts = updatedCohortsList
+    return this.cohorts
   }
 }
 
@@ -20,8 +27,6 @@ class CohortManager {
     class Cohort {
   constructor(name) {
     this.name = name
-    this.students = []
-    this.studentID = 1
   }
 }
 export { Cohort }

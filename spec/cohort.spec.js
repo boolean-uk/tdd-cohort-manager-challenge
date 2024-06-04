@@ -29,4 +29,14 @@ describe('CohortManager', () => {
     expect(result2.name).toBe('Class of 24')
     expect(result1).toBe(result2)
   })
+
+  it('should remove a cohort by cohort name', () => {
+    cohortManager.createCohort('Class of 2022')
+    cohortManager.createCohort('Class of 2023')
+    cohortManager.createCohort('Class of 2024')
+
+    expect(cohortManager.cohorts.length).toBe(3)
+    cohortManager.remove('Class of 2023')
+    expect(cohortManager.cohorts.length).toBe(2)
+  })
 })
