@@ -126,4 +126,12 @@ describe('CohortManager', () => {
     manager.createCohort(1)
     expect(manager.cohortsList.length).toBe(1)
   })
+
+  it('should not a cohort with an already existing cohort name', () => {
+    manager.createCohort(1)
+
+    expect(() => manager.createCohort(1)).toThrowError(
+      'A cohort with this name already exists\n'
+    )
+  })
 })
