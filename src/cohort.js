@@ -16,6 +16,10 @@ export default class CohortsManeger {
 
     return cohort
   }
+
+  getErrorMessage(cohortName) {
+    return `The ${cohortName} cohort is not found!`
+  }
 }
 
 export class Cohort {

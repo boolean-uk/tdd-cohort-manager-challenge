@@ -26,5 +26,11 @@ describe('CohortManeger', () => {
 
     expect(result.name).toBe('boolean-12')
   })
+
+  it('should throw an error if the cohort to remove is not found', () => {
+    expect(() => cohortsManeger.findCohort('boolean-13')).toThrow(
+      new Error('The boolean-13 cohort is not found!')
+    )
+  })
   // ----
 })
