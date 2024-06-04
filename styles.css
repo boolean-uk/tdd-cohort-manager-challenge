@@ -33,11 +33,13 @@ body {
     place-items: center;
 }
 
-.cohort-li p {
+.cohort-li p, #cohort-students p {
     margin: 0px;
+    cursor: pointer;
 }
 
 #cohort-students {
+    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -47,6 +49,7 @@ body {
     display: flex;
     gap: 10px;
     place-items: center;
+    
 }
 
 #queries {
@@ -58,4 +61,17 @@ body {
 .error-message {
     color: red;
 
+}
+
+.info-panels {
+    display: grid;
+    grid-template-columns: 300px 300px;
+}
+
+#student-panel {
+    border: 2px solid;
+    width: auto;
+    padding: 10px;
+    background-color: bisque;
+    height: 200px;
 }

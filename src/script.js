@@ -2,6 +2,7 @@ import CohortManager from "./CohortManager";
 const cm = new CohortManager();
 const cohortUl = document.querySelector("#cohort-list");
 const cohortPanel = document.querySelector("#cohort-panel-section");
+const studentPanel = document.querySelector('#student-panel-section')
 const createCohortButton = document.querySelector("#new-cohort-button");
 const findCohortButton = document.querySelector("#find-cohort-button");
 
@@ -96,7 +97,13 @@ function renderCohortPanel(cohortName) {
       renderCohortPanel(cohortName);
     });
     let studentLi = document.createElement("li");
-    studentLi.innerText = `${student.firstName} ${student.lastName}`;
+    const p = document.createElement('p')
+    p.innerText = `${student.firstName} ${student.lastName}`;
+    p.addEventListener('click', ()=> {
+        renderStudentInfo(student)
+    })
+
+    studentLi.append(p)
     studentLi.append(button);
     studentUl.append(studentLi);
   });
@@ -149,4 +156,39 @@ function renderCohortPanel(cohortName) {
     cohortPanelDiv.innerHTML = "";
     renderCohortPanel(targetCohort.name);
   });
+}
+
+
+function renderStudentInfo(student) {
+    const studentPanelDiv = document.createElement("div");
+    studentPanelDiv.setAttribute('id', 'student-panel')
+
+    studentPanel.innerHTML = ''
+    const h2 = document.createElement("h2");
+    h2.innerText = `${student.firstName} ${student.lastName}`
+    studentPanelDiv.append(h2);
+    
+    const ul = document.createElement('ul')
+    ul.setAttribute('id', 'student-info-list')
+    studentPanelDiv.append(ul)
+
+    const idLi = document.createElement('li')
+    const idP = document.createElement('p')
+    idP.innerText = `Student ID: ${student.studentId}`
+    idLi.append(idP)
+    ul.append(idLi)
+
+    const emailLi = document.createElement('li')
+    const emailP = document.createElement('p')
+    emailP.innerText = `Email: ${student.email}`
+    emailLi.append(emailP)
+    ul.append(emailLi)
+
+    const githubLi = document.createElement('li')
+    const githubP = document.createElement('p')
+    githubP.innerText = `Github: ${student.githubUsername}`
+    githubLi.append(githubP)
+    ul.append(githubLi)
+
+    studentPanel.append(studentPanelDiv)
 }
