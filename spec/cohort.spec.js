@@ -108,5 +108,13 @@ describe('CohortManager', () => {
       )
     )
   })
+
+  it('should throw an error when removing student cohort that does not exist', () => {
+    cohortsManager.createCohort('boolean-12')
+
+    expect(() =>
+      cohortsManager.removeStudent('boolean-15', 'ha-hamada-ab')
+    ).toThrow(new Error('The boolean-15 cohort is not found!'))
+  })
   // ----
 })
