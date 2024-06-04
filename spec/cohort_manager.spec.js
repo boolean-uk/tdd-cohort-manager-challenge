@@ -185,4 +185,15 @@ describe('CohortManager', () => {
       'Ned Flanders is already enrolled in Cohort 1'
     )
   })
+
+  it('should remove a student with the provided studentId from a cohort with provided cohortName', () => {
+    manager.createCohort(1)
+    manager.createCohort(2)
+    manager.createCohort(3)
+
+    manager.addStudentToCohort(11, 1)
+    expect(manager.cohortsList[0].studentsList.length).toBe(1)
+    manager.removeStudentFromCohort(11, 1)
+    expect(manager.cohortsList[0].studentsList.length).toBe(0)
+  })
 })

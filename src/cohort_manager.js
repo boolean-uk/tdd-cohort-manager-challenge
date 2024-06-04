@@ -45,6 +45,8 @@ class CohortManager {
       receivingCohort.addStudent(studentToAdd.firstName, studentToAdd.lastName)
     }
   }
+
+  removeStudentFromCohort(stdId, cohort) {}
 }
 export default CohortManager
 
