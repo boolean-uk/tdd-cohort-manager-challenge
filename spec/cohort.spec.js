@@ -73,5 +73,11 @@ describe('CohortManager', () => {
 
     expect(cohortsManager.cohorts.length).toBe(1)
   })
+
+  it('should throw an error when the chohort to remove does not exist', () => {
+    expect(() => cohortsManager.removeCohort('boolean-11')).toThrow(
+      new Error('The boolean-11 cohort is not found!')
+    )
+  })
   // ----
 })
