@@ -13,7 +13,8 @@ class Cohort {
       i < 24 && j < args.length;
       i++, j++
     ) {
-      if (args[j] instanceof Student) this._students.push(args[j])
+      if (args[j] instanceof Student && !this.hasStudent(args[j].id))
+        this._students.push(args[j])
     }
   }
 
@@ -21,16 +22,16 @@ class Cohort {
     return this._students.length
   }
 
-  findStudent({ id, name }) {
-    const student = this._students.find((e) => e.id === id || e.name === name)
+  findStudent(id) {
+    const student = this._students.find((e) => e.id === id)
 
     if (!student) throw Error("Couldn't find student")
 
     return student
   }
 
-  hasStudent({ id, name }) {
-    return this.findStudent({ id, name }) !== undefined
+  hasStudent(id) {
+    return this._students.find((e) => e.id === id) !== undefined
   }
 
   deleteStudent(id) {
