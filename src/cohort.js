@@ -1,12 +1,12 @@
 class Cohort {
   constructor(name) {
-    this.name = name
-    this.students = []
+    this.name = name;
+    this.students = [];
   }
 
   addStudent(student) {
-    this.students.push(student)
+    this.students.push(student);
   }
 }
 
-module.exports = Cohort
+export default Cohort;
