@@ -57,4 +57,22 @@ describe("CohortManager", () => {
     it("student information incorrect when trying to add a student will result in error", () => {
         expect(() => cohortManager.addStudent("alpha", {})).toThrow("Student object needs an: firstName, lastName, github, email")
     })
+
+    it("should remove an student from an cohort", () => {
+        cohortManager.addStudent("alpha", studentOne)
+        cohortManager.removeStudent("alpha", 1)
+        expect(cohortManager.cohorts).toEqual([{name: "alpha", students: []}])
+    })
+
+    it("error thrown if cohort can't be found", () => {
+        expect(cohortManager.removeStudent("bravo", 10)).toThrow("This cohort doesn't exist")
+    })
+
+    it("error thrown if student doesn't exist", () => {
+        expect(() => cohortManager.removeStudent("alpha", 12)).toThrow("This student doesn't exist in the cohort")
+    })
+
+    it("throw error if studentId missing", () => {
+        expect(() => cohortManager.removeStudent("alpha")).toThrow("studentId missing")
+    })
 })

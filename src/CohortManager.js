@@ -51,7 +51,7 @@ class CohortManager {
         this.id++
         this.cohorts[cohortIndex].students.push(student)
     }
-
+    
 }
 
 export default CohortManager
