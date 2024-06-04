@@ -1,3 +1,5 @@
+import CohortManager from "../src/CohortManager.js"
+
 describe("CohortManager", () => {
     let cohortManager
 
@@ -15,10 +17,10 @@ describe("CohortManager", () => {
     })
 
     it("should throw an error if the name isn't a string when creating a cohort", () => {
-        expect(cohortManager.createCohort(42)).toThrow("Name must be a string")
+        expect(() => cohortManager.createCohort(42)).toThrow("Name must be a string")
     })
 
     it("should throw an error if no name value given when creating a cohort", () => {
-        expect(cohortManager.createCohort()).toThrow("No value given")
+        expect(() => cohortManager.createCohort()).toThrow("No value given")
     })
 })
