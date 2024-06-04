@@ -22,7 +22,22 @@ class Cohort {
   }
 
   findStudent({ id, name }) {
-    return this._students.find((e) => e.id === id || e.name === name)
+    const student = this._students.find((e) => e.id === id || e.name === name)
+
+    if (!student) throw Error("Couldn't find student")
+
+    return student
+  }
+
+  hasStudent({ id, name }) {
+    return this.findStudent({ id, name }) !== undefined
+  }
+
+  deleteStudent(id) {
+    this._students.splice(
+      this._students.findIndex((e) => e.id === id),
+      1
+    )
   }
 }
 
