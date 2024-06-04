@@ -1,5 +1,5 @@
 export default class Cohort {
-  constructor(name, students = people, studentAdded = newStudent) {
+  constructor(name, students = [...people], studentAdded = newStudent) {
     this.name = name
     this.students = students
     this.studentAdded = studentAdded
@@ -15,6 +15,8 @@ export default class Cohort {
     )
     if (index !== -1) {
       this.students.splice(index, 1)
+    } else {
+      throw new Error(`Student with id ${id} is not found`)
     }
   }
 }
