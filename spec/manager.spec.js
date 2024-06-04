@@ -127,6 +127,12 @@ describe('CohortManager', () => {
     )
   })
 
+  it('should throw an error if cohort is created without a name', () => {
+    expect(() => cohortManager.createCohort()).toThrowError(
+      'Cohort must have name'
+    )
+  })
+
   it('should find an existing cohort', () => {
     cohortManager.createCohort('Cohort 1')
     const foundCohort = cohortManager.searchCohort('Cohort 1')

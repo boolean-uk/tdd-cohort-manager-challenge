@@ -62,6 +62,9 @@ class CohortManager {
   }
 
   createCohort(cohortName) {
+    if (!cohortName) {
+      throw new Error('Cohort must have a name')
+    }
     if (this.cohorts.has(cohortName)) {
       throw new Error('Cohort already exists')
     }
