@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll } from 'jest'
+const Student = require('../src/Student.js')
 
 describe('Student', () => {
   it('Should define a student uuid after initialization', () => {
