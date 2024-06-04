@@ -8,10 +8,6 @@ export default class Cohort {
   getName() {
     return this.name
   }
-
-  addStudent() {
-    return this.students
-  }
 }
 const newStudent = [
   {

@@ -29,4 +29,9 @@ describe('Cohort Manager', () => {
       'definitelynotspiderman@gmail.com'
     )
   })
+  it('should remove a cohort by name', function () {
+    let cohort = new CohortManager([{ name: 'test' }])
+    cohort.removeCohort('test')
+    expect(Object.keys(cohort.cohorts).length).toBe(0)
+  })
 })

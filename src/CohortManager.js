@@ -10,4 +10,10 @@ export default class CohortManager {
       }
     }
   }
+  removeCohort(name) {
+    const index = this.cohorts.findIndex((cohort) => cohort.name === name)
+    if (index !== -1) {
+      this.cohorts.splice(index, 1)
+    }
+  }
 }
