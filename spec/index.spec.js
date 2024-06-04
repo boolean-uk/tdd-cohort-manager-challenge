@@ -79,6 +79,27 @@ describe('Cohort', () => {
 
     expect(cohort12.studentsList.length).toBe(1)
   })
+
+  it('should remove student via Id', () => {
+    const cohortmanager = new Cohortmanager()
+    const cohort12 = cohortmanager.create('cohort12')
+    const Student1 = cohort12.addStudent(
+      'Farshad',
+      'Bagdeli',
+      'FBagdeli',
+      'fbagdeli13@gmail.com'
+    )
+    const Student2 = cohort12.addStudent('web', 'dev', 'wb', 'wb@gmail.com')
+    const Student3 = cohort12.addStudent('web2', 'dev2', 'wb2', 'wb@gmail.com2')
+
+    expect(cohortmanager.cohorts.length).toBe(1)
+    expect(cohortmanager.cohorts[0].studentsList.length).toBe(3)
+    expect(cohort12.studentsList[1].fName).toBe('web')
+    expect(() => cohort12.remove('1')).toThrowError('Could not found it!')
+
+    const result = cohort12.remove('web')
+    expect(result[1].id).toBe(3)
+  })
 })
 
 describe('Student', () => {

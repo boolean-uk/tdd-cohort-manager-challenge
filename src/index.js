@@ -44,6 +44,19 @@ class Cohort {
     this.studentId++
     return newStudent
   }
+
+  remove(fName) {
+    const found = this.studentsList.find((name) => name.fName === fName)
+    if (!found) {
+      throw new Error('Could not found it!')
+    } else {
+      this.studentsList = this.studentsList.filter((s) => s.fName !== fName)
+      return this.studentsList
+
+      // this.cohorts = this.cohorts.filter((c) => c.cName !== cName)
+      // return this.cohorts
+    }
+  }
 }
 
 class Student {
