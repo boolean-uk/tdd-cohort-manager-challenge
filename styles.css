@@ -1,0 +1,77 @@
+body {
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 10px;
+}
+
+#add-student-form {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    gap: 5px;
+}
+
+#cohort-panel {
+    border: 2px solid;
+    width: 200px;
+    padding: 10px;
+    background-color: bisque;
+}
+
+#cohort-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cohort-li {
+    display: flex;
+    gap: 10px;
+    place-items: center;
+}
+
+.cohort-li p, #cohort-students p {
+    margin: 0px;
+    cursor: pointer;
+}
+
+#cohort-students {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#cohort-students li {
+    display: flex;
+    gap: 10px;
+    place-items: center;
+    
+}
+
+#queries {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.error-message {
+    color: red;
+
+}
+
+.info-panels {
+    display: grid;
+    grid-template-columns: 300px 300px;
+}
+
+#student-panel {
+    border: 2px solid;
+    width: auto;
+    padding: 10px;
+    background-color: bisque;
+    height: 200px;
+}

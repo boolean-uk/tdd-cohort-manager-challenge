@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="./src/script.js"></script>
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Cohort Manager</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Cohort Manager</h1>
+      <section id="queries">
+        <div class="query">
+          <label for="new-cohort-input">Create new cohort</label>
+          <input
+            id="new-cohort-input"
+            name="new-cohort-input"
+            type="text"
+            placeholder="Enter new cohort name"
+          />
+          <button id="new-cohort-button">Add</button>
+        </div>
+        <div class="query" id="find-cohort-query">
+          <label for="find-cohort-input">Find cohort</label>
+          <input
+            id="find-cohort-input"
+            name="find-cohort-input"
+            type="text"
+            placeholder="Enter cohort name"
+          />
+          <button id="find-cohort-button">Search</button>
+        </div>
+        <div class="query" id="find-student-query">
+          <label for="find-student-input">Find student (by ID)</label>
+          <input
+            id="find-student-input"
+            name="find-student-input"
+            type="text"
+            placeholder="Enter student ID"
+          />
+          <button id="find-student-button">Search</button>
+        </div>
+      </section>
+      <section>
+        <ul id="cohort-list"></ul>
+      </section>
+      <div class="info-panels">
+        <section id="cohort-panel-section"></section>
+        <section id="student-panel-section"></section>
+      </div>
+    </div>
+  </body>
+</html>
