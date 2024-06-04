@@ -19,17 +19,13 @@ export default class CohortsManager {
   findCohort(cohortName) {
     const cohort = this.cohorts.find((cohort) => cohort.name === cohortName)
 
-    if (cohort instanceof Cohort === false)
-      throw new Error(this.getErrorMessage(cohortName))
+    if (!cohort) throw new Error(this.getErrorMessage(cohortName))
 
     return cohort
   }
 
   addStudent(cohortName, student) {
     const cohort = this.findCohort(cohortName)
-
-    if (cohort instanceof Cohort === false)
-      throw new Error(this.getErrorMessage(cohortName))
 
     cohort.addStudent(student)
   }
@@ -40,6 +36,7 @@ export default class CohortsManager {
     return cohort.removeStudent(studentId)
   }
 
+  // a helper function
   getErrorMessage(cohortName) {
     return `The ${cohortName} cohort is not found!`
   }
@@ -67,6 +64,7 @@ export class Cohort {
     )
   }
 
+  // a helper function
   getErrorMessage(studentId) {
     return `The student with id '${studentId}' is not found in this cohort! Please check the cohort name and the student's ID`
   }
