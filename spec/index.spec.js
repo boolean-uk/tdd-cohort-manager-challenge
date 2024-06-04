@@ -67,6 +67,12 @@ describe('Cohort', () => {
     expect(expect(cohort.studentsList.length).toBe(2))
     expect(cohort.studentsList[1].email).toBe('wd@gmail.com')
     expect(cohort.studentsList[1].id).toBe(2)
+
+    const cohortmanager = new Cohortmanager()
+    const cohort12 = cohortmanager.create('cohort 12')
+    
+    cohort12.addStudent('Farshad', 'Bagdeli', 'FBagdeli', 'fbagdeli13@gmail.com')
+    expect(cohort12.studentsList.length).toBe(1)
   })
 })
 
