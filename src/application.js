@@ -114,7 +114,17 @@ function renderStudents() {
       const li = document.createElement('li')
       li.innerText = student.firstName
 
+      const deleteButton = document.createElement('button')
+      deleteButton.innerText = 'Delete'
+
+      li.append(deleteButton)
+
       studentsUl.append(li)
+
+      deleteButton.addEventListener('click', () => {
+        cohortList.removeStudent(foundCohort.cohortName, student.studentID)
+        renderStudents()
+      })
     })
   }
 
