@@ -7,7 +7,7 @@ class CohortManager {
   }
 
   createCohort(name) {
-    if (name.length === 0 || !name) {
+    if (!name) {
       throw errors.cohortNameInvalid
     }
 
