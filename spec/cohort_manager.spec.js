@@ -49,13 +49,9 @@ describe('Cohort', () => {
     cohortOne.addStudent('Homer', 'Simpson')
     cohortOne.addStudent('Eric', 'Cartman')
     cohortOne.addStudent('Kyle', 'Broflovski')
-    expect(() => {
-      cohortOne
-        .addStudent('Stan', 'Marsh')
-        .toThrowError(
-          `Cohort ${this.name} is full. No more students can be added. Choose another cohort`
-        )
-    })
+    expect(() => cohortOne.addStudent('Stan', 'Marsh')).toThrowError(
+      `Cohort 1 is full. No more students can be added. Choose another cohort`
+    )
   })
 
   it('should remove a student from a cohort', () => {
@@ -70,13 +66,10 @@ describe('Cohort', () => {
     cohortOne.addStudent('Eric', 'Cartman')
     cohortOne.addStudent('Kyle', 'Broflovski')
 
-    expect(() => {
-      cohortOne
-        .removeStudentt('Stn', 'Msh')
-        .toThrowError(
-          `There is no student named ${this.firstName} ${this.lastName} in Cohort ${this.name}\n`
-        )
-    })
+    expect(() => cohortOne.removeStudent('Stan', 'Marsh')).toThrowError(
+      `There is no student named Stan Marsh in Cohort 1\n`
+    )
+
     expect(cohortOne.studentsList.length).toBe(2)
   })
 
@@ -90,5 +83,14 @@ describe('Cohort', () => {
     const found = cohortOne.findStudent(2)
     expect(found.firstName).toBe('Lisa')
     expect(found.lastName).toBe('Simpson')
+  })
+
+  it('should return an error if wrong id is provided for findStudent', () => {
+    cohortOne.addStudent('Eric', 'Cartman') // id = 4
+    cohortOne.addStudent('Kyle', 'Broflovski') // id = 5
+
+    expect(() => cohortOne.findStudent(22)).toThrowError(
+      `There is no student with id 22 in Cohort 1\n`
+    )
   })
 })
