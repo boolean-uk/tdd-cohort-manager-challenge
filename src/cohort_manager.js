@@ -19,6 +19,9 @@ class CohortManager {
     const cohortToRemove = this.cohortsList.findIndex((co) => co.name === name)
     if (cohortToRemove !== -1) {
       this.cohortsList.splice(cohortToRemove, 1)
+    } else {
+      process.stdout.write('No cohort with this name\n')
+      throw new Error('No cohort with this name\n')
     }
   }
 }
