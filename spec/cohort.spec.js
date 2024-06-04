@@ -13,7 +13,9 @@ describe('CohortManager', () => {
   })
 
   it('should create a cohort with a cohort name', () => {
-    // eslint-disable-next-line no-unused-vars
     const result = cohortManager.createCohort('class of 2024')
+
+    expect(result).toBeInstanceOf(Cohort)
+    expect(result.name).toBe('Class of 24')
   })
 })
