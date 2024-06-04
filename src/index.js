@@ -105,6 +105,20 @@ class CohortManager {
 
     return cohort
   }
+
+  searchStudentById(studentId) {
+    for (let i = 0; i < this.cohorts.length; i++) {
+      const cohort = this.cohorts[i]
+      const student = cohort.students.find(
+        (element) => element.id === studentId
+      )
+      if (student) {
+        return student
+      }
+    }
+
+    throw errors.studentNotFound
+  }
 }
 
 class Cohort {
@@ -126,4 +140,4 @@ class Student {
 
 export default CohortManager
 
-export { Cohort }
+export { Cohort, Student }

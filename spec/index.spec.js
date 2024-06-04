@@ -1,4 +1,4 @@
-import CohortManager, { Cohort } from '../src/index.js'
+import CohortManager, { Cohort, Student } from '../src/index.js'
 import errors from '../src/errors.js'
 
 describe('cohort manager', () => {
@@ -157,5 +157,20 @@ describe('cohort manager', () => {
     expect(() => {
       cohortManager.searchCohort('')
     }).toThrow(errors.notFound)
+  })
+
+  it('returns the student object if one is found', () => {
+    cohortManager.createCohort('1')
+    const student = cohortManager.addStudent(
+      {
+        firstName: 'Angus',
+        lastName: 'Townsley',
+        email: 'angustownsley@gmail.com',
+        username: 'angustownsley'
+      },
+      '1'
+    )
+    expect(cohortManager.searchStudentById(student.id)).toBeInstanceOf(Student)
+    expect(cohortManager.searchStudentById(student.id)).toEqual(student)
   })
 })
