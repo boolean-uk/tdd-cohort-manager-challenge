@@ -35,7 +35,11 @@ class CohortManager {
       process.stdout.write('No cohort with this name\n')
       throw new Error('No cohort with this name\n')
     }
-  }
+    }
+    
+    addStudentToCohort(stdId, cohort) {
+        
+    }
 }
 
 export default CohortManager
