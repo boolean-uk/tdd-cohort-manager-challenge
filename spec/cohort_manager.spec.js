@@ -206,5 +206,12 @@ describe('CohortManager', () => {
     expect(manager.cohortsList[0].studentsList.length).toBe(0)
   })
 
-  it('', () => {})
+  it('should throw an error if trying to remove a student that is not in a cohort', () => {
+    manager.createCohort(1)
+
+    manager.addStudentToCohort(11, 1)
+    expect(manager.cohortsList[0].studentsList.length).toBe(1)
+    manager.removeStudentFromCohort(1, 1)
+    expect(manager.cohortsList[0].studentsList.length).toBe(0)
+  })
 })
