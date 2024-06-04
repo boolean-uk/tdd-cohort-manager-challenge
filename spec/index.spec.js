@@ -65,7 +65,7 @@ describe("CohortManager", () => {
     })
 
     it("error thrown if cohort can't be found", () => {
-        expect(cohortManager.removeStudent("bravo", 10)).toThrow("This cohort doesn't exist")
+        expect(() => cohortManager.removeStudent("bravo", 10)).toThrow("This cohort doesn't exist")
     })
 
     it("error thrown if student doesn't exist", () => {
