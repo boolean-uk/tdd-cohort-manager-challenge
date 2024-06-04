@@ -52,8 +52,21 @@ describe('Cohort', () => {
   beforeEach(() => {
     cohort = new Cohort()
   })
+
   it('should exist', () => {
     expect(cohort).toBeInstanceOf(Cohort)
+  })
+
+  it('should add new student to cohort', () => {
+    cohort.addStudent('Farshad', 'Bagdeli', 'FBagdeli', 'fbagdeli13@gmail.com')
+
+    expect(cohort.studentsList.length).toBe(1)
+    expect(cohort.studentsList[0].fName).toBe('Farshad')
+
+    cohort.addStudent('web', 'dev', 'wd', 'wd@gmail.com')
+    expect(expect(cohort.studentsList.length).toBe(2))
+    expect(cohort.studentsList[1].email).toBe('wd@gmail.com')
+    expect(cohort.studentsList[1].id).toBe(2)
   })
 })
 

@@ -35,6 +35,14 @@ class Cohort {
     this.cName = cName
     this.studentsList = []
     this.id = id
+    this.studentId = 1
+  }
+
+  addStudent(fName, lName, gitHub, email) {
+    const newStudent = new Student(this.studentId, fName, lName, gitHub, email)
+    this.studentsList.push(newStudent)
+    this.studentId++
+    return newStudent
   }
 }
 
