@@ -79,5 +79,22 @@ describe('CohortManager', () => {
       new Error('The boolean-11 cohort is not found!')
     )
   })
+
+  it('should remove student from a specific cohort', () => {
+    cohortsManager.createCohort('boolean-12')
+
+    const student1 = new Student(
+      'Hamada',
+      'Abdelaal',
+      'hamada-ab',
+      'hamada@boolean.uk'
+    )
+
+    cohortsManager.addStudent('boolean-12', student1)
+
+    cohortsManager.removeStudent('boolean-12', 'ha-hamada-ab')
+
+    expect(cohortsManager.cohorts[0].students.length).toBe(0)
+  })
   // ----
 })

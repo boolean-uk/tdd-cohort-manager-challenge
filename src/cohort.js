@@ -34,6 +34,12 @@ export default class CohortsManager {
     cohort.addStudent(student)
   }
 
+  removeStudent(cohortName, studentId) {
+    const cohort = this.findCohort(cohortName)
+
+    return cohort.removeStudent(studentId)
+  }
+
   getErrorMessage(cohortName) {
     return `The ${cohortName} cohort is not found!`
   }
@@ -47,6 +53,16 @@ export class Cohort {
 
   addStudent(student) {
     this.students.push(student)
+  }
+
+  removeStudent(studentId) {
+    const studentToRemove = this.students.find(
+      (student) => student.id === studentId
+    )
+
+    this.students = this.students.filter(
+      (student) => student.id !== studentToRemove.id
+    )
   }
 }
 
