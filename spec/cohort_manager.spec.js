@@ -86,5 +86,9 @@ describe('Cohort', () => {
     cohortOne.addStudent('Homer', 'Simpson')
     cohortOne.addStudent('Eric', 'Cartman')
     cohortOne.addStudent('Kyle', 'Broflovski')
+
+    const found = cohortOne.findStudent(2)
+    expect(found.firstName).toBe('Lisa')
+    expect(found.lastName).toBe('Simpson')
   })
 })

@@ -34,19 +34,29 @@ class Cohort {
       throw new Error(errorMsg)
     }
   }
+
+  findStudent(id) {
+    const found = this.studentsList.find((std) => std.id === id)
+    if (found) {
+      process.stdout.write(`Here is the student with id ${id} \n`)
+      process.stdout.write(JSON.stringify(found, null, 2) + '\n')
+      return found
+    } 
+  }
 }
 
 export default Cohort
 
-// const nc = new Cohort(1)
-// // nc.addStudent('Wrong', 'Saz')
-// nc.addStudent('Bart', 'Simpson')
-// nc.addStudent('Lisa', 'Simpson')
-// nc.addStudent('Homer', 'Simpson')
-// nc.addStudent('Eric', 'Cartman')
-// nc.addStudent('Kyle', 'Broflovski')
-// nc.addStudent('Stan', 'Marsh')
+const nc = new Cohort(1)
+// nc.addStudent('Wrong', 'Saz')
+nc.addStudent('Bart', 'Simpson')
+nc.addStudent('Lisa', 'Simpson')
+nc.addStudent('Homer', 'Simpson')
+nc.addStudent('Eric', 'Cartman')
+nc.addStudent('Kyle', 'Broflovski')
+nc.addStudent('Stan', 'Marsh')
 // console.log(nc)
 // nc.removeStudent('Stan', 'Marsh')
 // console.log(nc)
 // nc.removeStudent('Stan', 'Marsh')
+nc.findStudent(2)
