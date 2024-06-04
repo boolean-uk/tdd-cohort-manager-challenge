@@ -78,19 +78,3 @@ class Cohort {
 }
 
 export default Cohort
-
-// const nc = new Cohort(1)
-// nc.addStudent('Wrong', 'Saz')
-// nc.addStudent('Bart', 'Simpson')
-// nc.addStudent('Bart', 'Simpson')
-// nc.addStudent('Lisa', 'Simpson')
-// nc.addStudent('Homer', 'Simpson')
-// nc.addStudent('Eric', 'Cartman')
-// nc.addStudent('Kyle', 'Broflovski')
-// nc.addStudent('Stan', 'Marsh')
-// nc.addStudent('Stan', 'Marsh')
-// console.log(nc)
-// nc.removeStudent('Stan', 'Marsh')
-// console.log(nc)
-// nc.removeStudent('Stan', 'Marsh')
-// nc.findStudent(22)

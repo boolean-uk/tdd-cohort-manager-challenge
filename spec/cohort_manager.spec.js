@@ -127,7 +127,6 @@ describe('CohortManager', () => {
   })
 
   it('should not create a cohort with an already existing cohort name', () => {
-    // console.log(manager.cohortsList.length)
     manager.createCohort(1)
 
     expect(() => manager.createCohort(1)).toThrowError(
@@ -138,7 +137,7 @@ describe('CohortManager', () => {
   it('should remove a cohort with the provided cohort name', () => {
     manager.createCohort(1)
     manager.createCohort(2)
-    // console.log(manager.cohortsList.length)
+
     manager.removeCohort(2)
     expect(manager.cohortsList.length).toBe(1)
   })
@@ -231,5 +230,16 @@ describe('CohortManager', () => {
     expect(manager.cohortsList[0].studentsList.length).toBe(1)
     manager.removeStudentFromCohort(1, 1)
     expect(manager.cohortsList[0].studentsList.length).toBe(1)
+  })
+
+  it('should find a student in any cohort using student id', () => {
+    manager.createCohort(1)
+    manager.createCohort(2)
+    manager.createCohort(3)
+
+    manager.addStudentToCohort(11, 1)
+    const found = manager.findStudentInAllCohorts(11)
+    expect(found.firstName).toBe('Ned')
+    expect(found.lastName).toBe('Flanders')
   })
 })

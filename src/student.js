@@ -25,7 +25,4 @@ class Student {
   }
 }
 
-// const ns = new Student('Pick', 'Shez')
-// console.log(ns)
-
 export default Student
