@@ -55,6 +55,6 @@ describe("CohortManager", () => {
     })
 
     it("student information incorrect when trying to add a student will result in error", () => {
-        expect(() => cohortManager.addStudent("alpha")).toThrow("Student object needs an: firstName, lastName, github, email")
+        expect(() => cohortManager.addStudent("alpha", {})).toThrow("Student object needs an: firstName, lastName, github, email")
     })
 })
