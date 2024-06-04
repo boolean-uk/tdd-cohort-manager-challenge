@@ -25,12 +25,21 @@ class CohortManager {
     }
   }
 
-  findCohort(name) {}
+  findCohort(name) {
+    const found = this.cohortsList.find((co) => co.name === name)
+    if (found) {
+      process.stdout.write(`You searched for Cohort ${name}\n`)
+      process.stdout.write(JSON.stringify(found, null, 2) + '\n')
+      return found
+    }
+  }
 }
 
 export default CohortManager
 
 // const nm = new CohortManager()
 // nm.createCohort(1)
+// nm.createCohort(2)
+// nm.findCohort(1)
 
 // console.log(nm)
