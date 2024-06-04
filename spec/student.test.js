@@ -11,4 +11,11 @@ describe('Student', () => {
 
     expect(student.id).toBeDefined()
   })
+
+  it('Should throw if any of the required args is not provided', () => {
+    expect(() => new Student('asd', 'asd', 'asd')).toThrow(TypeError)
+    expect(() => new Student('asd', 'asd')).toThrow(TypeError)
+    expect(() => new Student('asd')).toThrow(TypeError)
+    expect(() => new Student()).toThrow(TypeError)
+  })
 })
