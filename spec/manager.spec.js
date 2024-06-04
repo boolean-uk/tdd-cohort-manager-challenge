@@ -42,7 +42,7 @@ describe('Cohort', () => {
   })
 
   it('should throw an error if the cohort has reached the max capacity of 24 student', () => {
-    for (let i = 1; 1 <= 24; i++) {
+    for (let i = 1; i <= 24; i++) {
       const newStudent = new Student()
       newStudent.studentDetails(
         `${i}`,
