@@ -124,14 +124,24 @@ describe('CohortManager', () => {
 
   it('should add a new Cohort with the provided name', () => {
     manager.createCohort(1)
-    expect(manager.cohortsList.length).toBe(1)
+    manager.createCohort(2)
+    expect(manager.cohortsList.length).toBe(2)
   })
 
-  it('should not a cohort with an already existing cohort name', () => {
+  it('should not create a cohort with an already existing cohort name', () => {
+    // console.log(manager.cohortsList.length)
     manager.createCohort(1)
 
     expect(() => manager.createCohort(1)).toThrowError(
       'A cohort with this name already exists\n'
     )
+  })
+
+  it('should remove a cohort with the provided cohort name', () => {
+    manager.createCohort(1)
+    manager.createCohort(2)
+
+    manager.removeCohort(2)
+    expect(manager.cohortsList.length).toBe(1)
   })
 })

@@ -13,11 +13,16 @@ class CohortManager {
       process.stdout.write('A cohort with this name already exists\n')
       throw new Error('A cohort with this name already exists\n')
     } else this.cohortsList.push(newCohort)
-  }
+    }
+    
+    removeCohort(name) {
+        
+    }
 }
 
 export default CohortManager
 
-const nm = new CohortManager()
-nm.createCohort(1)
-console.log(nm)
+// const nm = new CohortManager()
+// nm.createCohort(1)
+
+// console.log(nm)
