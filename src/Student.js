@@ -4,10 +4,10 @@ const { requireParam } = require('./utils')
 
 class Student {
   constructor(firstName, lastName, github, email) {
-    requireParam('firstName', firstName)
-    requireParam('lastName', lastName)
-    requireParam('github', github)
-    requireParam('email', email)
+    this.firstName = requireParam('firstName', firstName)
+    this.lastName = requireParam('lastName', lastName)
+    this.github = requireParam('github', github)
+    this.email = requireParam('email', email)
     this._id = uuidv4()
   }
 
