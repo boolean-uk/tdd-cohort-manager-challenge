@@ -31,6 +31,9 @@ class CohortManager {
       process.stdout.write(`You searched for Cohort ${name}\n`)
       process.stdout.write(JSON.stringify(found, null, 2) + '\n')
       return found
+    } else {
+      process.stdout.write('No cohort with this name\n')
+      throw new Error('No cohort with this name\n')
     }
   }
 }

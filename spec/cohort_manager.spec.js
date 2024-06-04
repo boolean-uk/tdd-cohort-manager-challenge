@@ -169,7 +169,7 @@ describe('CohortManager', () => {
     manager.createCohort(3)
 
     expect(() => manager.findCohort(22)).toThrowError(
-      `There is no cohort with this name\n`
+      `No cohort with this name\n`
     )
   })
 })
