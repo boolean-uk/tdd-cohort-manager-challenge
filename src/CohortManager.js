@@ -4,13 +4,14 @@ export default class CohortManager {
   }
 
   searchName(name) {
-    for (let cohort of this.cohorts) {
+    for (const cohort of this.cohorts) {
       if (cohort.name === name) {
         return cohort.name
       }
     }
     throw new Error(`Cohort with name ${name} not found`)
   }
+
   removeCohort(name) {
     const index = this.cohorts.findIndex((cohort) => cohort.name === name)
     if (index !== -1) {
