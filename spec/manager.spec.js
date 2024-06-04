@@ -41,6 +41,31 @@ describe('Cohort', () => {
     expect(cohort.students[0].studentID).toBe('1234')
   })
 
+  it('should throw an error if the cohort has reached the max capacity of 24 student', () => {
+    for (let i = 1; 1 <= 24; i++) {
+      const newStudent = new Student()
+      newStudent.studentDetails(
+        `${i}`,
+        `First${i}`,
+        `Last${i}`,
+        `github${i}`,
+        `email${i}@Boolean.com`
+      )
+      cohort.addStudent(newStudent)
+    }
+    expect(() => {
+      const newStudent = new Student()
+      newStudent.studentDetails(
+        '25',
+        'First25',
+        'Last25',
+        'github25',
+        'email25@boolean.com'
+      )
+      cohort.addStudent(newStudent)
+    }).toThrowError('Cohort is at full capacity')
+  })
+
   it('should remove a student from a cohort', () => {
     cohort.addStudent(student)
     cohort.removeStudent('1234')

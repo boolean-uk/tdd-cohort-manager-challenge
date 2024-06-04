@@ -24,11 +24,15 @@ class Cohort {
   constructor(name) {
     this.name = name
     this.students = []
+    this.capacity = 24
   }
 
   addStudent(student) {
     if (this.students.some((s) => s.studentID === student.studentID)) {
       throw new Error('Student already in cohort')
+    }
+    if (this.students.length >= this.capacity) {
+      throw new Error('Cohort is at full capacity')
     }
     this.students.push(student)
   }
