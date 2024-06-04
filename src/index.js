@@ -6,6 +6,10 @@ class CohortManager {
   }
 
   createCohort(name) {
+    if (name.length === 0) {
+      throw new Error('Cohort name must contain at least 1 character')
+    }
+
     if (
       this.cohorts.find((element) => {
         return element.name === name

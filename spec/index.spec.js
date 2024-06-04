@@ -139,4 +139,10 @@ describe('cohort manager', () => {
       )
     }).toThrow(Error('Cohort at maximum size'))
   })
+
+  it('will not create cohorts with an empty name', () => {
+    expect(() => {
+      cohortManager.createCohort('')
+    }).toThrow(Error('Cohort name must contain at least 1 character'))
+  })
 })
