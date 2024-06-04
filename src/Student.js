@@ -1,16 +1,13 @@
 const { v4: uuidv4 } = require('uuid')
 
-const initializeParam = (field, value) => {
-  if (!value) throw new TypeError(`${field} is required`)
-  else this[field] = value
-}
+const { requireParam } = require('./utils')
 
 class Student {
   constructor(firstName, lastName, github, email) {
-    initializeParam('firstName', firstName)
-    initializeParam('lastName', lastName)
-    initializeParam('github', github)
-    initializeParam('email', email)
+    requireParam('firstName', firstName)
+    requireParam('lastName', lastName)
+    requireParam('github', github)
+    requireParam('email', email)
     this._id = uuidv4()
   }
 
