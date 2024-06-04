@@ -162,4 +162,14 @@ describe('CohortManager', () => {
     const found = manager.findCohort(2)
     expect(found.name).toBe(2)
   })
+
+  it('should return an error if non-existent cohort is searched', () => {
+    manager.createCohort(1)
+    manager.createCohort(2)
+    manager.createCohort(3)
+
+    expect(() => manager.findCohort(22)).toThrowError(
+      `There is no cohort with this name\n`
+    )
+  })
 })
