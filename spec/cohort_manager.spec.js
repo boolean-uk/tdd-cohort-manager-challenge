@@ -10,6 +10,12 @@ describe('student', () => {
     expect(student.githubUsername).toBe('picklerick')
     expect(student.email).toBe('picklerick@pickledimension.com')
   })
+
+  it('should throw an error if there is no student with the provided name surname in the studentsDB', () => {
+    expect(() => {
+      const student = new Student('Pick', 'Nose')
+    }).toThrowError('There is no student with this name or surname')
+  })
 })
 
 describe('Cohort', () => {
@@ -35,11 +41,9 @@ describe('Cohort', () => {
   })
 
   it('should throw an error if there is no student with the provided name', () => {
-    expect(() => {
-      cohortOne
-        .addStudent('Wrong', 'Name')
-        .toThrowError('There is no student with this name or surname')
-    })
+    expect(() => cohortOne.addStudent('Wrong', 'Name')).toThrowError(
+      'There is no student with this name or surname'
+    )
   })
 
   it('should throw an error if the cohort is full', () => {
