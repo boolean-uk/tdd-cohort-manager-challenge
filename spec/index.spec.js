@@ -1,6 +1,6 @@
 import { Student, Cohortmanager, Cohort } from '../src/index.js'
 
-describe('cohortsManager', () => {
+describe('CohortsManager', () => {
   let cohortmanager
   beforeEach(() => {
     cohortmanager = new Cohortmanager()
@@ -35,7 +35,9 @@ describe('cohortsManager', () => {
     cohortmanager.create('cohort 12')
     cohortmanager.create('cohort 1')
 
-    expect(() => cohortmanager.remove('cohort 2')).toThrowError('cohort not found!')
+    expect(() => cohortmanager.remove('cohort 2')).toThrowError(
+      'cohort not found!'
+    )
     expect(cohortmanager.cohorts.length).toBe(2)
 
     const result2 = cohortmanager.remove('cohort 12')
@@ -45,7 +47,17 @@ describe('cohortsManager', () => {
   })
 })
 
-describe('student', () => {
+describe('Cohort', () => {
+  let cohort
+  beforeEach(() => {
+    cohort = new Cohort()
+  })
+  it('should exist', () => {
+    expect(cohort).toBeInstanceOf(Cohort)
+  })
+})
+
+describe('Student', () => {
   let student
 
   beforeEach(() => {
