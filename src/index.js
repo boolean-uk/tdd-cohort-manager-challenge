@@ -37,7 +37,13 @@ class CohortManager {
   }
 
   addStudent(student, cohortName) {
+    let searchedCohort
+
     this.cohorts.forEach((cohort) => {
+      if (cohort.name === cohortName) {
+        searchedCohort = cohort
+      }
+
       if (
         cohort.students.find((element) => {
           return (
@@ -51,23 +57,19 @@ class CohortManager {
         throw errors.alreadyEnrolled
     })
 
-    const cohort = this.cohorts.find((element) => {
-      return element.name === cohortName
-    })
-
-    if (cohort.students.length === 24) {
-      throw errors.maximumSize
+    if (!searchedCohort) {
+      throw errors.notFound
     }
 
-    if (!cohort) {
-      throw errors.notFound
+    if (searchedCohort.students.length === 24) {
+      throw errors.maximumSize
     }
 
     const studentData = [...Object.values(student)]
 
     const newStudent = new Student(...studentData, crypto.randomUUID())
 
-    cohort.students.push(newStudent)
+    searchedCohort.students.push(newStudent)
 
     return newStudent
   }

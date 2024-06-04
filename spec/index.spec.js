@@ -173,4 +173,11 @@ describe('cohort manager', () => {
     expect(cohortManager.searchStudentById(student.id)).toBeInstanceOf(Student)
     expect(cohortManager.searchStudentById(student.id)).toEqual(student)
   })
+
+  it('throws error if student object is not found', () => {
+    cohortManager.createCohort('1')
+    expect(() => {
+      cohortManager.searchStudentById('2')
+    }).toThrow(errors.studentNotFound)
+  })
 })
