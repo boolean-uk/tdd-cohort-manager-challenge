@@ -49,5 +49,20 @@ describe('CohortManager', () => {
     expect(cohortsManager.cohorts[0].students.length).toBe(1)
     expect(cohortsManager.cohorts[0].students[0].firstName).toBe('Hamada')
   })
+
+  it('should throw an error when adding a student to a cohort that does not exist', () => {
+    cohortsManager.createCohort('boolean-12')
+
+    const student1 = new Student(
+      'Hamada',
+      'Abdelaal',
+      'hamada-ab',
+      'hamada@boolean.uk'
+    )
+
+    expect(() => cohortsManager.addStudent('boolean-13', student1)).toThrow(
+      new Error('The boolean-13 cohort is not found!')
+    )
+  })
   // ----
 })

@@ -20,6 +20,9 @@ export default class CohortsManager {
   addStudent(cohortName, student) {
     const cohort = this.findCohort(cohortName)
 
+    if (cohort instanceof Cohort === false)
+      throw new Error(this.getErrorMessage(cohortName))
+
     cohort.addStudent(student)
   }
 
