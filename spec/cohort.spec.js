@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import CohortManager, { Cohort } from '../src/cohort.js'
+import CohortManager, { Cohort, Student } from '../src/cohort.js'
 
 describe('CohortManager', () => {
   let cohortManager
@@ -38,5 +38,43 @@ describe('CohortManager', () => {
     expect(cohortManager.cohorts.length).toBe(3)
     cohortManager.remove('Class of 2023')
     expect(cohortManager.cohorts.length).toBe(2)
+  })
+
+  it('should remove student from a specific cohort', () => {
+    cohortManager.createCohort('Class of 2022')
+    cohortManager.createCohort('Class of 2023')
+    cohortManager.createCohort('Class of 2024')
+
+    cohortManager.addStudentToCohort(
+      {
+        firstName: 'Terrence',
+        lastName: 'Howard',
+        githubUsername: 'terry',
+        email: 'terry@how.ard'
+      },
+      'Class of 2023'
+    )
+    cohortManager.addStudentToCohort(
+      {
+        firstName: 'Jasmine',
+        lastName: 'Hercules',
+        githubUsername: 'terry',
+        email: 'terry@how.ard'
+      },
+      'Class of 2023'
+    )
+    cohortManager.addStudentToCohort(
+      {
+        firstName: 'Jericho',
+        lastName: 'Cleopatra',
+        githubUsername: 'terry',
+        email: 'terry@how.ard'
+      },
+      'Class of 2023'
+    )
+    const cohort = cohortManager.search('Class of 2023')
+    expect(cohort.students.length).toBe(3)
+    cohortManager.removeStudentFromCohort('Terrence', 'Class of 2023')
+    expect(cohort.students.length).toBe(2)
   })
 })
