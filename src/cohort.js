@@ -60,9 +60,15 @@ export class Cohort {
       (student) => student.id === studentId
     )
 
+    if (!studentToRemove) throw new Error(this.getErrorMessage(studentId))
+
     this.students = this.students.filter(
       (student) => student.id !== studentToRemove.id
     )
+  }
+
+  getErrorMessage(studentId) {
+    return `The student with id '${studentId}' is not found in this cohort! Please check the cohort name and the student's ID`
   }
 }
 

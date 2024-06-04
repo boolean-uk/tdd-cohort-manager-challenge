@@ -96,5 +96,17 @@ describe('CohortManager', () => {
 
     expect(cohortsManager.cohorts[0].students.length).toBe(0)
   })
+
+  it('should throw an error when removing student does not exist', () => {
+    cohortsManager.createCohort('boolean-12')
+
+    expect(() =>
+      cohortsManager.removeStudent('boolean-12', 'ha-hamada-ab')
+    ).toThrow(
+      new Error(
+        `The student with id 'ha-hamada-ab' is not found in this cohort! Please check the cohort name and the student's ID`
+      )
+    )
+  })
   // ----
 })
