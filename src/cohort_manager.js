@@ -40,9 +40,10 @@ class CohortManager {
 
   addStudentToCohort(stdId, cohort) {
     const studentToAdd = students.find((std) => std.id === stdId)
-      const receivingCohort = this.cohortsList.find((co) => co.name === cohort)
-      
-      
+    const receivingCohort = this.cohortsList.find((co) => co.name === cohort)
+    if (studentToAdd && receivingCohort) {
+      receivingCohort.addStudent(studentToAdd.firstName, studentToAdd.lastName)
+    }
   }
 }
 export default CohortManager
