@@ -39,5 +39,6 @@ describe("CohortManager", () => {
 
     it("should throw an error when trying to remove an cohort which doesn't exist", () => {
         expect(() => cohortManager.removeCohort("bravo")).toThrow("This cohort doesn't exist")
+        expect(cohortManager.cohorts).toEqual([{name: "alpha", students: []}])
     })
 })
