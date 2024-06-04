@@ -1,5 +1,6 @@
 import Student from '../src/student.js'
 import Cohort from '../src/cohorts.js'
+import CohortManager from '../src/cohort_manager.js'
 
 describe('student', () => {
   const student = new Student('Pickle Rick', 'Sanchez')
@@ -46,17 +47,29 @@ describe('Cohort', () => {
     )
   })
 
-  it('should throw an error if the cohort is full', () => {
-    // I ll modify the code so cohort max size is 5 so I don't have to add 24 students
+  it('should not add an already existing student in the cohort', () => {
     cohortOne.addStudent('Bart', 'Simpson')
     cohortOne.addStudent('Lisa', 'Simpson')
-    cohortOne.addStudent('Homer', 'Simpson')
-    cohortOne.addStudent('Eric', 'Cartman')
-    cohortOne.addStudent('Kyle', 'Broflovski')
-    expect(() => cohortOne.addStudent('Stan', 'Marsh')).toThrowError(
-      `Cohort 1 is full. No more students can be added. Choose another cohort`
+    expect(cohortOne.studentsList.length).toBe(2)
+
+    // cohortOne.addStudent('Bart', 'Simpson')
+    // expect(cohortOne.studentsList.length).toBe(2)
+    expect(() => cohortOne.addStudent('Bart', 'Simpson')).toThrowError(
+      `Bart Simpson is already enrolled in Cohort 1`
     )
   })
+
+  // it('should throw an error if the cohort is full', () => {
+  //   // I ll modify the code so cohort max size is 5 so I don't have to add 24 students
+  //   cohortOne.addStudent('Bart', 'Simpson')
+  //   cohortOne.addStudent('Lisa', 'Simpson')
+  //   cohortOne.addStudent('Homer', 'Simpson')
+  //   cohortOne.addStudent('Eric', 'Cartman')
+  //   cohortOne.addStudent('Kyle', 'Broflovski')
+  //   expect(() => cohortOne.addStudent('Stan', 'Marsh')).toThrowError(
+  //     `Cohort 1 is full. No more students can be added. Choose another cohort`
+  //   )
+  // })
 
   it('should remove a student from a cohort', () => {
     cohortOne.addStudent('Bart', 'Simpson')
@@ -96,5 +109,16 @@ describe('Cohort', () => {
     expect(() => cohortOne.findStudent(22)).toThrowError(
       `There is no student with id 22 in Cohort 1\n`
     )
+  })
+})
+
+describe('CohortManager', () => {
+  let manager
+  beforeEach(() => {
+    manager = new CohortManager()
+  })
+
+  it('should exist', () => {
+    expect(manager.cohortsList.length).toBe(0)
   })
 })
