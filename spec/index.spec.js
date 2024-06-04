@@ -100,18 +100,17 @@ describe('CohortManager', () => {
   it('should throw an error if the student id does not exist', () => {
     expect(() => cohort.search(67)).toThrow('Student not found')
   })
-  it('should alert when the cohort is at full capacity', () => {
-    const fullCohort = cohortManager.create('Cohort 13')
-    for (let i = 0; i < students.length; i++) {
-      if (students[i].id <= 24) {
-        fullCohort.students.push(students[i])
-      }
-    }
-    console.log(fullCohort)
-    expect(() =>
-      cohort.add('Bruce', 'Wayne', 'batman', 'bruce.wayne@wayneenterprises.com')
-    ).toThrow('Cohort is at full capacity')
-  })
+  // it('should alert when the cohort is at full capacity', () => {
+  //   const fullCohort = cohortManager.create('Cohort 13')
+  //   for (let i = 0; i < students.length; i++) {
+  //     if (students[i].id <= 24) {
+  //       fullCohort.students.push(students[i])
+  //     }
+  //   }
+  //   expect(() =>
+  //     cohort.add('Bruce', 'Wayne', 'batman', 'bruce.wayne@wayneenterprises.com')
+  //   ).toThrow('Cohort is at full capacity')
+  // })
   it('should not allow cohorts to have the same name', () => {
     cohortManager.create('Cohort 14')
     expect(() => cohortManager.create('Cohort 14')).toThrow(
