@@ -1,0 +1,23 @@
+* {
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+body {
+    display: grid;
+    grid-template: 
+    'aside main' 1fr /
+    250px 1fr;
+
+    height: 100vh;
+}
+
+aside {
+    background-color: blue;
+    grid-area: aside;
+}
+
+main {
+    background-color: aqua;
+    grid-area: main;
+}
