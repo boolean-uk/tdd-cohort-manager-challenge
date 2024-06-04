@@ -199,4 +199,11 @@ describe('cohort manager', () => {
       student
     )
   })
+
+  it('throws error if student object is not found', () => {
+    cohortManager.createCohort('1')
+    expect(() => {
+      cohortManager.searchStudentByName('2')
+    }).toThrow(errors.studentNotFound)
+  })
 })
