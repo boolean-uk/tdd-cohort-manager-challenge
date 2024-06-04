@@ -75,13 +75,7 @@ class CohortManager {
   }
 
   removeStudent(cohortName, studentId) {
-    const cohort = this.cohorts.find((element) => {
-      return element.name === cohortName
-    })
-
-    if (!cohort) {
-      throw errors.notFound
-    }
+    const cohort = this.searchCohort(cohortName)
 
     if (
       !cohort.students.find((element) => {
