@@ -121,4 +121,9 @@ describe('CohortManager', () => {
   it('should exist', () => {
     expect(manager.cohortsList.length).toBe(0)
   })
+
+  it('should add a new Cohort with the provided name', () => {
+    manager.createCohort(1)
+    expect(manager.cohortsList.length).toBe(1)
+  })
 })

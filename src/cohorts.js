@@ -10,6 +10,20 @@ class Cohort {
     const cohortFullMsg = `Cohort ${this.name} is full. No more students can be added. Choose another cohort`
     const student = new Student(firstName, lastName)
 
+    if (this.studentsList.length > 0) {
+      const allreadyIn = this.studentsList.find(
+        (std) => std.firstName === firstName && std.lastName === lastName
+      )
+      if (allreadyIn) {
+        process.stdout.write(
+          `${student.firstName} ${student.lastName} is already enrolled in Cohort ${this.name}\n`
+        )
+        throw new Error(
+          `${student.firstName} ${student.lastName} is already enrolled in Cohort ${this.name}`
+        )
+      }
+    }
+
     if (this.studentsList.length === 24) {
       throw new Error(cohortFullMsg)
     } else {

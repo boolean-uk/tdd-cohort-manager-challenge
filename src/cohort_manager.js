@@ -5,6 +5,11 @@ class CohortManager {
   constructor() {
     this.cohortsList = []
   }
+
+  createCohort(name) {
+      const newCohort = new Cohort(name)
+      
+  }
 }
 
 export default CohortManager
