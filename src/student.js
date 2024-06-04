@@ -17,7 +17,7 @@ class Student {
       this.email = studentData.email
       this.id = studentData.id
     } else {
-      process.stdout.write(
+      console.log(
         `There is no student named ${this.firstName} ${this.lastName}\n`
       )
       throw new Error('There is no student with this name or surname')

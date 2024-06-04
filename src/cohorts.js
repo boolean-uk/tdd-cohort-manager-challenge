@@ -6,29 +6,32 @@ class Cohort {
     this.studentsList = []
   }
 
-  addStudent(firstName, lastName) {
-    const cohortFullMsg = `Cohort ${this.name} is full. No more students can be added. Choose another cohort`
-    const student = new Student(firstName, lastName)
-
+  studentExists(firstName, lastName) {
     if (this.studentsList.length > 0) {
       const allreadyIn = this.studentsList.find(
         (std) => std.firstName === firstName && std.lastName === lastName
       )
       if (allreadyIn) {
-        process.stdout.write(
-          `${student.firstName} ${student.lastName} is already enrolled in Cohort ${this.name}\n`
+        console.log(
+          `${firstName} ${lastName} is already enrolled in Cohort ${this.name}\n`
         )
         throw new Error(
-          `${student.firstName} ${student.lastName} is already enrolled in Cohort ${this.name}`
+          `${firstName} ${lastName} is already enrolled in Cohort ${this.name}`
         )
       }
     }
+  }
+
+  addStudent(firstName, lastName) {
+    const cohortFullMsg = `Cohort ${this.name} is full. No more students can be added. Choose another cohort`
+    const student = new Student(firstName, lastName)
+    this.studentExists(student.firstName, student.lastName)
 
     if (this.studentsList.length === 24) {
       throw new Error(cohortFullMsg)
     } else {
       this.studentsList.push(student)
-      process.stdout.write(
+      console.log(
         `${firstName} ${lastName} was succesfully added to Cohort ${this.name}\n`
       )
     }
@@ -40,12 +43,12 @@ class Cohort {
     )
     if (studentToRemove !== -1) {
       this.studentsList.splice(studentToRemove, 1)
-      process.stdout.write(
+      console.log(
         `${firstName} ${lastName} was succesfully removed from Cohort ${this.name}\n`
       )
     } else {
       const errorMsg = `There is no student named ${firstName} ${lastName} in Cohort ${this.name}\n`
-      process.stdout.write(errorMsg)
+      console.log(errorMsg)
       throw new Error(errorMsg)
     }
   }
@@ -53,12 +56,12 @@ class Cohort {
   findStudent(id) {
     const found = this.studentsList.find((std) => std.id === id)
     if (found) {
-      process.stdout.write(`Here is the student with id ${id} \n`)
-      process.stdout.write(JSON.stringify(found, null, 2) + '\n')
+      console.log(`Here is the student with id ${id} \n`)
+      console.log(JSON.stringify(found, null, 2) + '\n')
       return found
     } else {
       const errorMsg = `There is no student with id ${id} in Cohort ${this.name}\n`
-      process.stdout.write(errorMsg)
+      console.log(errorMsg)
       throw new Error(errorMsg)
     }
   }

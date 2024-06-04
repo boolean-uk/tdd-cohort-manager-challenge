@@ -11,7 +11,7 @@ class CohortManager {
     const newCohort = new Cohort(name)
     const allreadyCreated = this.cohortsList.find((co) => co.name === name)
     if (allreadyCreated) {
-      process.stdout.write('A cohort with this name already exists\n')
+      console.log('A cohort with this name already exists\n')
       throw new Error('A cohort with this name already exists\n')
     } else this.cohortsList.push(newCohort)
   }
@@ -21,7 +21,7 @@ class CohortManager {
     if (cohortToRemove !== -1) {
       this.cohortsList.splice(cohortToRemove, 1)
     } else {
-      process.stdout.write('No cohort with this name\n')
+      console.log('No cohort with this name\n')
       throw new Error('No cohort with this name\n')
     }
   }
@@ -29,11 +29,11 @@ class CohortManager {
   findCohort(name) {
     const found = this.cohortsList.find((co) => co.name === name)
     if (found) {
-      process.stdout.write(`You searched for Cohort ${name}\n`)
-      process.stdout.write(JSON.stringify(found, null, 2) + '\n')
+      console.log(`You searched for Cohort ${name}\n`)
+      console.log(JSON.stringify(found, null, 2) + '\n')
       return found
     } else {
-      process.stdout.write('No cohort with this name\n')
+      console.log('No cohort with this name\n')
       throw new Error('No cohort with this name\n')
     }
   }
@@ -41,6 +41,7 @@ class CohortManager {
   addStudentToCohort(stdId, cohort) {
     const studentToAdd = students.find((std) => std.id === stdId)
     const receivingCohort = this.cohortsList.find((co) => co.name === cohort)
+
     if (studentToAdd && receivingCohort) {
       receivingCohort.addStudent(studentToAdd.firstName, studentToAdd.lastName)
     }
@@ -62,15 +63,16 @@ class CohortManager {
 }
 export default CohortManager
 
-// const nm = new CohortManager()
-// nm.createCohort(1)
-// nm.createCohort(2)
+const nm = new CohortManager()
+nm.createCohort(1)
+nm.createCohort(2)
 // // nm.createCohort(2)
 // // // nm.findCohort(1)
-// nm.addStudentToCohort(1, 1)
+nm.addStudentToCohort(1, 1)
 // nm.addStudentToCohort(1, 1)
 // console.log(nm)
 // console.log(nm.cohortsList[0]);
-// nm.removeStudentFromCohort(1, 1)
+nm.removeStudentFromCohort(1, 1)
+nm.removeStudentFromCohort(1, 1)
 
 // console.log(nm)

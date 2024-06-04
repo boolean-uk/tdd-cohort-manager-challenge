@@ -182,7 +182,7 @@ describe('CohortManager', () => {
     expect(manager.cohortsList[0].studentsList.length).toBe(1)
   })
 
-  it('should throw an error if trying to add an already existing student', () => {
+  it('should throw an error if trying to add a student that already exists in this cohort', () => {
     manager.createCohort(1)
     manager.createCohort(2)
     manager.createCohort(3)
@@ -192,6 +192,18 @@ describe('CohortManager', () => {
 
     expect(() => manager.addStudentToCohort(11, 1)).toThrowError(
       'Ned Flanders is already enrolled in Cohort 1'
+    )
+  })
+
+  it('should throw an error if trying to add a student that already exists in any cohort cohort', () => {
+    manager.createCohort(1)
+    manager.createCohort(2)
+
+    manager.addStudentToCohort(11, 1)
+    expect(manager.cohortsList[0].studentsList.length).toBe(1)
+
+    expect(() => manager.addStudentToCohort(11, 2)).toThrowError(
+      'Ned Flanders is already enrolled in Cohort 2'
     )
   })
 
@@ -212,6 +224,6 @@ describe('CohortManager', () => {
     manager.addStudentToCohort(11, 1)
     expect(manager.cohortsList[0].studentsList.length).toBe(1)
     manager.removeStudentFromCohort(1, 1)
-    expect(manager.cohortsList[0].studentsList.length).toBe(0)
+    expect(manager.cohortsList[0].studentsList.length).toBe(1)
   })
 })
