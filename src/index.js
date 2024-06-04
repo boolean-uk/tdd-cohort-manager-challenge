@@ -111,9 +111,23 @@ class CohortManager {
   searchStudentById(studentId) {
     for (let i = 0; i < this.cohorts.length; i++) {
       const cohort = this.cohorts[i]
-      const student = cohort.students.find(
-        (element) => element.id === studentId
-      )
+      const student = cohort.students.find((element) => {
+        return element.id === studentId
+      })
+      if (student) {
+        return student
+      }
+    }
+
+    throw errors.studentNotFound
+  }
+
+  searchStudentByName(firstName, lastName) {
+    for (let i = 0; i < this.cohorts.length; i++) {
+      const cohort = this.cohorts[i]
+      const student = cohort.students.find((element) => {
+        return element.firstName === firstName && element.lastName === lastName
+      })
       if (student) {
         return student
       }
