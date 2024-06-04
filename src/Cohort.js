@@ -8,6 +8,15 @@ export default class Cohort {
   getName() {
     return this.name
   }
+
+  removeStudent(id) {
+    const index = this.students.findIndex(
+      (student) => student.id === parseInt(id)
+    )
+    if (index !== -1) {
+      this.students.splice(index, 1)
+    }
+  }
 }
 const newStudent = [
   {

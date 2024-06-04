@@ -34,4 +34,20 @@ describe('Cohort Manager', () => {
     cohort.removeCohort('test')
     expect(Object.keys(cohort.cohorts).length).toBe(0)
   })
+  it('should remove a student from a specific cohort', function () {
+    let cohort = new Cohort([
+      { id: 1 },
+      { id: 2 },
+      { id: 3 },
+      { id: 4 },
+      { id: 5 },
+      { id: 6 },
+      { id: 7 },
+      { id: 8 },
+      { id: 9 },
+      { id: 10 }
+    ])
+    cohort.removeStudent('1')
+    expect(cohort.students.length).toBe(9)
+  })
 })
