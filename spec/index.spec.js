@@ -83,14 +83,14 @@ describe('Cohort', () => {
   it('should remove student via Id', () => {
     const cohortmanager = new Cohortmanager()
     const cohort12 = cohortmanager.create('cohort12')
-    const Student1 = cohort12.addStudent(
+    cohort12.addStudent(
       'Farshad',
       'Bagdeli',
       'FBagdeli',
       'fbagdeli13@gmail.com'
     )
-    const Student2 = cohort12.addStudent('web', 'dev', 'wb', 'wb@gmail.com')
-    const Student3 = cohort12.addStudent('web2', 'dev2', 'wb2', 'wb@gmail.com2')
+    cohort12.addStudent('web', 'dev', 'wb', 'wb@gmail.com')
+    cohort12.addStudent('web2', 'dev2', 'wb2', 'wb@gmail.com2')
 
     expect(cohortmanager.cohorts.length).toBe(1)
     expect(cohortmanager.cohorts[0].studentsList.length).toBe(3)
@@ -106,9 +106,21 @@ describe('Student', () => {
   let student
 
   beforeEach(() => {
-    student = new Student()
+    student = new Student(
+      1,
+      'Farshad',
+      'Bagdeli',
+      'FBagdeli',
+      'fbagdeli13@gmail.com'
+    )
   })
+  it('should exist', () => {
+    expect(student).toBeInstanceOf(Student)
+  })
+
   it('should have a id, fName, lName, git hub and email', () => {
-    
+    expect(student.fName).toBe('Farshad')
+    expect(student.email).toBe('fbagdeli13@gmail.com')
+    expect(student.id).toBe(1)
   })
 })
