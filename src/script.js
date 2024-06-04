@@ -2,9 +2,10 @@ import CohortManager from "./CohortManager";
 const cm = new CohortManager();
 const cohortUl = document.querySelector("#cohort-list");
 const cohortPanel = document.querySelector("#cohort-panel-section");
-const studentPanel = document.querySelector('#student-panel-section')
+const studentPanel = document.querySelector("#student-panel-section");
 const createCohortButton = document.querySelector("#new-cohort-button");
 const findCohortButton = document.querySelector("#find-cohort-button");
+const findStudentButton = document.querySelector('#find-student-button')
 
 cm.addCohort("Cohort 1");
 cm.addCohort("Cohort 2");
@@ -21,23 +22,40 @@ createCohortButton.addEventListener("click", () => {
   renderCohortList();
 });
 
-findCohortButton.addEventListener('click', () => {
-    const findCohortInput = document.querySelector('#find-cohort-input')
-    try {
-    renderCohortPanel(findCohortInput.value)
-    } catch(error) {
-        const findCohortQuery = document.querySelector('#find-cohort-query')
-        const p = document.createElement('p')
-        p.classList.add('error-message')
-        p.innerText = error
-        findCohortQuery.append(p)
-        setTimeout(() => {
-            findCohortQuery.removeChild(p)
-        }, '2000')
-    }
-    findCohortInput.value = ''
-})
+findCohortButton.addEventListener("click", () => {
+  const findCohortInput = document.querySelector("#find-cohort-input");
+  try {
+    renderCohortPanel(findCohortInput.value);
+  } catch (error) {
+    const findCohortQuery = document.querySelector("#find-cohort-query");
+    const p = document.createElement("p");
+    p.classList.add("error-message");
+    p.innerText = error;
+    findCohortQuery.append(p);
+    setTimeout(() => {
+      findCohortQuery.removeChild(p);
+    }, "2000");
+  }
+  findCohortInput.value = "";
+});
 
+findStudentButton.addEventListener('click', () => {
+    const findStudentInput = document.querySelector('#find-student-input')
+    try {
+        const targetStudent = cm.findStudentById(findStudentInput.value)
+        renderStudentInfo(targetStudent)
+    } catch(error) {
+        const findStudentQuery = document.querySelector("#find-student-query");
+    const p = document.createElement("p");
+    p.classList.add("error-message");
+    p.innerText = error;
+    findStudentQuery.append(p);
+    setTimeout(() => {
+      findStudentQuery.removeChild(p);
+    }, "2000");
+    }
+    findStudentInput.value = "";
+})
 
 function renderCohortList() {
   cohortUl.innerHTML = "";
@@ -97,13 +115,13 @@ function renderCohortPanel(cohortName) {
       renderCohortPanel(cohortName);
     });
     let studentLi = document.createElement("li");
-    const p = document.createElement('p')
+    const p = document.createElement("p");
     p.innerText = `${student.firstName} ${student.lastName}`;
-    p.addEventListener('click', ()=> {
-        renderStudentInfo(student)
-    })
+    p.addEventListener("click", () => {
+      renderStudentInfo(student);
+    });
 
-    studentLi.append(p)
+    studentLi.append(p);
     studentLi.append(button);
     studentUl.append(studentLi);
   });
@@ -158,37 +176,36 @@ function renderCohortPanel(cohortName) {
   });
 }
 
-
 function renderStudentInfo(student) {
-    const studentPanelDiv = document.createElement("div");
-    studentPanelDiv.setAttribute('id', 'student-panel')
+  const studentPanelDiv = document.createElement("div");
+  studentPanelDiv.setAttribute("id", "student-panel");
 
-    studentPanel.innerHTML = ''
-    const h2 = document.createElement("h2");
-    h2.innerText = `${student.firstName} ${student.lastName}`
-    studentPanelDiv.append(h2);
-    
-    const ul = document.createElement('ul')
-    ul.setAttribute('id', 'student-info-list')
-    studentPanelDiv.append(ul)
+  studentPanel.innerHTML = "";
+  const h2 = document.createElement("h2");
+  h2.innerText = `${student.firstName} ${student.lastName}`;
+  studentPanelDiv.append(h2);
 
-    const idLi = document.createElement('li')
-    const idP = document.createElement('p')
-    idP.innerText = `Student ID: ${student.studentId}`
-    idLi.append(idP)
-    ul.append(idLi)
+  const ul = document.createElement("ul");
+  ul.setAttribute("id", "student-info-list");
+  studentPanelDiv.append(ul);
 
-    const emailLi = document.createElement('li')
-    const emailP = document.createElement('p')
-    emailP.innerText = `Email: ${student.email}`
-    emailLi.append(emailP)
-    ul.append(emailLi)
+  const idLi = document.createElement("li");
+  const idP = document.createElement("p");
+  idP.innerText = `Student ID: ${student.studentId}`;
+  idLi.append(idP);
+  ul.append(idLi);
 
-    const githubLi = document.createElement('li')
-    const githubP = document.createElement('p')
-    githubP.innerText = `Github: ${student.githubUsername}`
-    githubLi.append(githubP)
-    ul.append(githubLi)
+  const emailLi = document.createElement("li");
+  const emailP = document.createElement("p");
+  emailP.innerText = `Email: ${student.email}`;
+  emailLi.append(emailP);
+  ul.append(emailLi);
 
-    studentPanel.append(studentPanelDiv)
+  const githubLi = document.createElement("li");
+  const githubP = document.createElement("p");
+  githubP.innerText = `Github: ${student.githubUsername}`;
+  githubLi.append(githubP);
+  ul.append(githubLi);
+
+  studentPanel.append(studentPanelDiv);
 }
