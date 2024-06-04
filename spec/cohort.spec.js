@@ -64,5 +64,14 @@ describe('CohortManager', () => {
       new Error('The boolean-13 cohort is not found!')
     )
   })
+
+  it('should remove a cohort by cohort name', () => {
+    cohortsManager.createCohort('boolean-11')
+    cohortsManager.createCohort('boolean-12')
+
+    cohortsManager.removeCohort('boolean-11')
+
+    expect(cohortsManager.cohorts.length).toBe(1)
+  })
   // ----
 })

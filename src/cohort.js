@@ -8,6 +8,14 @@ export default class CohortsManager {
     this.cohorts.push(newCohort)
   }
 
+  removeCohort(cohortName) {
+    const cohortToRemove = this.findCohort(cohortName)
+
+    this.cohorts = this.cohorts.filter(
+      (cohort) => cohort.name !== cohortToRemove.name
+    )
+  }
+
   findCohort(cohortName) {
     const cohort = this.cohorts.find((cohort) => cohort.name === cohortName)
 
