@@ -61,7 +61,6 @@ describe('Cohort', () => {
 
   it('should throw an error if the cohort is full', () => {
     cohortOne.populateCohort(cohortOne, 24)
-    console.log(cohortOne.studentsList.length)
     expect(() =>
       cohortOne.addStudent('Poopybutthole', 'Boopyputhole')
     ).toThrowError(
