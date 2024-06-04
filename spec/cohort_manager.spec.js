@@ -144,4 +144,13 @@ describe('CohortManager', () => {
     manager.removeCohort(2)
     expect(manager.cohortsList.length).toBe(1)
   })
+
+  it('should throw an error if o-existing cohort is beeing removed', () => {
+    manager.createCohort(1)
+    manager.createCohort(2)
+
+    expect(() => manager.removeCohort(4)).toThrowError(
+      'No cohort with this name\n'
+    )
+  })
 })
