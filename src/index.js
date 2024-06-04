@@ -94,6 +94,18 @@ class CohortManager {
       return element.id !== studentId
     })
   }
+
+  searchCohort(cohortName) {
+    const cohort = this.cohorts.find((element) => {
+      return element.name === cohortName
+    })
+
+    if (!cohort) {
+      throw new Error('Cohort not found')
+    }
+
+    return cohort
+  }
 }
 
 class Cohort {

@@ -145,4 +145,14 @@ describe('cohort manager', () => {
       cohortManager.createCohort('')
     }).toThrow(Error('Cohort name must contain at least 1 character'))
   })
+
+  it('succesfully searches for a cohort and returns the cohort object', () => {
+    cohortManager.createCohort('1')
+    cohortManager.createCohort('2')
+
+    expect(cohortManager.searchCohort('1')).toBeInstanceOf(Cohort)
+    expect(cohortManager.searchCohort('1').name).toBe('1')
+    expect(cohortManager.searchCohort('2')).toBeInstanceOf(Cohort)
+    expect(cohortManager.searchCohort('2').name).toBe('2')
+  })
 })
