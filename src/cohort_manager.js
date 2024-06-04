@@ -1,5 +1,6 @@
 import Student from './student.js'
 import Cohort from './cohorts.js'
+import students from './studentsDB.js'
 
 class CohortManager {
   constructor() {
@@ -35,18 +36,22 @@ class CohortManager {
       process.stdout.write('No cohort with this name\n')
       throw new Error('No cohort with this name\n')
     }
-    }
-    
-    addStudentToCohort(stdId, cohort) {
-        
-    }
-}
+  }
 
+  addStudentToCohort(stdId, cohort) {
+    const studentToAdd = students.find((std) => std.id === stdId)
+      const receivingCohort = this.cohortsList.find((co) => co.name === cohort)
+      
+      
+  }
+}
 export default CohortManager
 
 // const nm = new CohortManager()
 // nm.createCohort(1)
 // nm.createCohort(2)
-// nm.findCohort(1)
+// // nm.findCohort(1)
+// nm.addStudentToCohort(1, 1)
+// nm.addStudentToCohort(1, 1)
 
 // console.log(nm)

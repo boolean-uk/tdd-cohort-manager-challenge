@@ -180,5 +180,9 @@ describe('CohortManager', () => {
 
     manager.addStudentToCohort(11, 1)
     expect(manager.cohortsList[0].studentsList.length).toBe(1)
+
+    expect(() => manager.addStudentToCohort(11, 1)).toThrowError(
+      'Ned Flanders is already enrolled in Cohort 1'
+    )
   })
 })
