@@ -7,9 +7,13 @@ class CohortManager {
   }
 
   createCohort(name) {
-      const newCohort = new Cohort(name)
-      
+    const newCohort = new Cohort(name)
+    this.cohortsList.push(newCohort)
   }
 }
 
 export default CohortManager
+
+const nm = new CohortManager
+nm.createCohort(1)
+console.log(nm);
