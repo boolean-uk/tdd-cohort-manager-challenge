@@ -105,7 +105,7 @@ describe('Cohort', () => {
     cohortOne.addStudent('Kyle', 'Broflovski') // id = 5
 
     expect(() => cohortOne.findStudent(22)).toThrowError(
-      `There is no student with id 22 in Cohort 1\n`
+      `There is no student with id 22`
     )
   })
 })
@@ -238,8 +238,20 @@ describe('CohortManager', () => {
     manager.createCohort(3)
 
     manager.addStudentToCohort(11, 1)
+
     const found = manager.findStudentInAllCohorts(11)
-    expect(found.firstName).toBe('Ned')
-    expect(found.lastName).toBe('Flanders')
+    expect(found.student.firstName).toBe('Ned')
+    expect(found.student.lastName).toBe('Flanders')
+    expect(found.cohortName).toBe(1)
+  })
+
+  it('should throw an error if there is no student with the provided id in any cohort', () => {
+    manager.createCohort(1)
+    manager.createCohort(2)
+    manager.createCohort(3)
+
+    expect(() => manager.findStudentInAllCohorts(22)).toThrowError(
+      'There is no student with id 22'
+    )
   })
 })

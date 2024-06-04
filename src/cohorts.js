@@ -70,7 +70,7 @@ class Cohort {
       console.log(JSON.stringify(found, null, 2) + '\n')
       return found
     } else {
-      const errorMsg = `There is no student with id ${id} in Cohort ${this.name}\n`
+      const errorMsg = `There is no student with id ${id}`
       console.log(errorMsg)
       throw new Error(errorMsg)
     }

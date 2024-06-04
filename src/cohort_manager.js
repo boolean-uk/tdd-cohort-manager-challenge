@@ -65,16 +65,29 @@ class CohortManager {
     }
   }
 
-  findStudentInAllCohorts(stdId) {}
+  findStudentInAllCohorts(stdId) {
+    for (const cohort of this.cohortsList) {
+      const student = cohort.findStudent(stdId)
+      if (student) {
+        return { student, cohortName: cohort.name }
+      }
+    }
+    console.log(`There is no student with id ${stdId} in any  Cohort`)
+    throw new Error(`There is no student with id ${stdId}`)
+  }
 }
 export default CohortManager
 
 // const nm = new CohortManager()
 // nm.createCohort(1)
 // nm.createCohort(2)
+
 // nm.createCohort(2)
 // // // nm.findCohort(1)
+
 // nm.addStudentToCohort(1, 1)
+// nm.findStudentInAllCohorts(1)
+
 // nm.addStudentToCohort(1, 1)
 // console.log(nm)
 // console.log(nm.cohortsList[0]);
