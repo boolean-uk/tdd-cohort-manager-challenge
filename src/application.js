@@ -10,9 +10,11 @@ const addLastNameInput = document.querySelector('#last-name-input')
 const addUsernameInput = document.querySelector('#username-input')
 const addEmailInput = document.querySelector('#email-input')
 const studentsUl = document.querySelector('.students-ul')
+const removeCohortForm = document.querySelector('.remove-cohort-form')
 
 let cohortInput = ''
 let selectedCohort = ''
+let removeCohort = ''
 
 const cohortList = new CohortList()
 
@@ -25,6 +27,7 @@ function handleAddCohort() {
     cohortList.addCohort(cohortName)
     renderCohortSelect()
     renderCohortSelectForm()
+    renderRemoveCohortForm()
   })
 }
 
@@ -112,7 +115,7 @@ function renderStudents() {
   if (foundCohort) {
     foundCohort.students.forEach((student) => {
       const li = document.createElement('li')
-      li.innerText = student.firstName
+      li.innerText = `${student.firstName} ${student.lastName}`
 
       const deleteButton = document.createElement('button')
       deleteButton.innerText = 'Delete'
@@ -131,8 +134,54 @@ function renderStudents() {
   console.log(foundCohort)
 }
 
+function renderRemoveCohortForm() {
+  removeCohortForm.innerHTML = ''
+
+  const label = document.createElement('label')
+  const select = document.createElement('select')
+  const removeButton = document.createElement('button')
+
+  label.innerText = 'Select Cohort'
+  removeButton.innerText = 'Remove'
+
+  const defaultOption = document.createElement('option')
+  defaultOption.innerText = '--Select cohort--'
+  select.append(defaultOption)
+
+  cohortList.cohorts.forEach((cohort) => {
+    const option = document.createElement('option')
+
+    option.innerText = cohort.cohortName
+    select.append(option)
+  })
+
+  removeCohortForm.append(label)
+  removeCohortForm.append(select)
+  removeCohortForm.append(removeButton)
+
+  select.addEventListener('change', () => {
+    removeCohort = select.value
+    console.log(removeCohort)
+    console.log(cohortList.cohorts)
+  })
+}
+
+function handleRemoveCohort() {
+  removeCohortForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    cohortList.removeCohort(removeCohort)
+
+    renderCohortSelect()
+    renderCohortSelectForm()
+    renderRemoveCohortForm()
+  })
+}
+
 renderCohortSelectForm()
 handleAddCohort()
 renderCohortSelect()
 handleAddStudent()
 renderStudents()
+renderRemoveCohortForm()
+handleRemoveCohort()

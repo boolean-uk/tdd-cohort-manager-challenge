@@ -16,7 +16,7 @@ body {
 aside {
     grid-area: aside;
     display: grid;
-    grid-template-rows: min-content min-content;
+    grid-template-rows: repeat(3, min-content);
     gap: 20px;
     padding: 8px;
 }
