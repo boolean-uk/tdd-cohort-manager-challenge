@@ -117,4 +117,28 @@ describe('Extended Criteria', () => {
       cohortManager.searchByStudentID(100)
     }).toThrow()
   })
+
+  it('should fix capacity at 24 students. Adding student is not possible beyond the 24 limit.', () => {
+    const cohort = cohortManager.createCohort('Class of 2023')
+    let student
+    for (let i = 0; i < 24; i++) {
+      student = cohortManager.createStudent(
+        'Jericho',
+        'Cleopatra',
+        'Jeri',
+        'Jeri@cleo.com'
+      )
+      cohortManager.addStudentToCohort(student, cohort)
+    }
+    expect(cohort.students.length).toBe(24)
+    expect(() => {
+      student = cohortManager.createStudent(
+        'Amsterdam',
+        'Schipol',
+        'DAM',
+        'dam@coffee.haus'
+      )
+      cohortManager.addStudentToCohort(student, cohort)
+    }).toThrow()
+  })
 })

@@ -66,6 +66,7 @@ export class Cohort {
   }
 
   addStudent(student) {
+    if (this.students.length >= 24) throw new Error('Cohort is full')
     this.students.push(student)
 
     return student
