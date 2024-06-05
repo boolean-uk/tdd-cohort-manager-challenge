@@ -56,7 +56,7 @@ describe('CohortManager', () => {
     const result = cohortManager.addStudentToCohort(student1, cohort2)
     const cohort = cohortManager.search('Class of 2023')
     expect(cohort.students.length).toBe(1)
-    cohortManager.removeStudentFromCohort('Terrence', 'Class of 2023')
+    cohortManager.removeStudentFromCohort(student1, cohort2)
     expect(cohort.students.length).toBe(0)
   })
 
@@ -181,6 +181,35 @@ describe('Extended Criteria', () => {
     expect(student.cohortID).toBe(cohort1.id)
     expect(() => {
       cohortManager.addStudentToCohort(student, cohort2)
+    }).toThrow()
+  })
+
+  it("A student can't be removed from a cohort if it wasn't present in the first place", () => {
+    const cohort = cohortManager.createCohort('Class of 2023')
+
+    const student1 = cohortManager.createStudent(
+      'Terrence',
+      'Howard',
+      'terry',
+      'terry@how.ard'
+    )
+    const student2 = cohortManager.createStudent(
+      'Jasmine',
+      'Hercules',
+      'terry',
+      'terry@how.ard'
+    )
+    const student3 = cohortManager.createStudent(
+      'Jericho',
+      'Cleopatra',
+      'terry',
+      'terry@how.ard'
+    )
+
+    cohortManager.addStudentToCohort(student1, cohort)
+    cohortManager.addStudentToCohort(student2, cohort)
+    expect(() => {
+      cohortManager.removeStudentFromCohort(student3, cohort)
     }).toThrow()
   })
 })

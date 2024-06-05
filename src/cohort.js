@@ -38,9 +38,12 @@ export default class CohortManager {
     return student
   }
 
-  removeStudentFromCohort(studentFirstName, cohortName) {
-    const targetCohort = this.search(cohortName)
-    targetCohort.removeStudent(studentFirstName)
+  removeStudentFromCohort(student, cohort) {
+    if (student.cohortID !== cohort.id) throw new Error('student not in cohort')
+
+    cohort.removeStudent(student)
+    student.setCohortID(null)
+    return student
   }
 
   createStudent(firstName, lastName, githubUsername, email) {
@@ -90,9 +93,9 @@ export class Cohort {
     return found
   }
 
-  removeStudent(studentFirstName) {
+  removeStudent(target) {
     const updatedStudents = this.students.filter(
-      (student) => student.firstName !== studentFirstName
+      (student) => student.studentID !== target.studentID
     )
     this.students = updatedStudents
   }
