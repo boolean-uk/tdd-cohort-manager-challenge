@@ -153,4 +153,12 @@ describe('Extended Criteria', () => {
       cohortManager.createCohort()
     }).toThrow()
   })
+
+  it("cohorts can't have the same name", () => {
+    const cohortName = 'Class of 2024'
+    const cohort1 = cohortManager.createCohort(cohortName)
+    expect(() => {
+      const cohort2 = cohortManager.createCohort(cohortName)
+    }).toThrow()
+  })
 })

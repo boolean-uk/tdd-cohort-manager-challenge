@@ -2,12 +2,16 @@ export default class CohortManager {
   constructor() {
     this.cohorts = []
     this.students = []
+    this.cohortID = 1
     this.studentID = 1
   }
 
   createCohort(name) {
-    const cohort = new Cohort(name)
+    const found = this.cohorts.find((cohort) => cohort.name === name)
+    if (found) throw new Error("two cohorts can't have the same name")
+    const cohort = new Cohort(this.cohortID, name)
     this.cohorts.push(cohort)
+    this.cohortID++
     return cohort
   }
 
@@ -59,10 +63,11 @@ export default class CohortManager {
 }
 
 export class Cohort {
-  constructor(name) {
-    if (name === null || name.trim().length === 0 || name === undefined)
+  constructor(id, name) {
+    if (name === undefined || name === null || name.trim().length === 0)
       throw new Error('cohort must have a name')
     this.name = name
+    this.id = id
     this.students = []
     this.studentID = 1
   }
