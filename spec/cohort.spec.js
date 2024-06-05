@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
 import CohortManager, { Cohort, Student } from '../src/cohort.js'
 
@@ -41,60 +42,39 @@ describe('CohortManager', () => {
   })
 
   it('should remove student from a specific cohort', () => {
-    cohortManager.createCohort('Class of 2022')
-    cohortManager.createCohort('Class of 2023')
-    cohortManager.createCohort('Class of 2024')
+    const cohort1 = cohortManager.createCohort('Class of 2022')
+    const cohort2 = cohortManager.createCohort('Class of 2023')
+    const cohort3 = cohortManager.createCohort('Class of 2024')
 
-    cohortManager.addStudentToCohort(
-      {
-        firstName: 'Terrence',
-        lastName: 'Howard',
-        githubUsername: 'terry',
-        email: 'terry@how.ard'
-      },
-      'Class of 2023'
+    const student1 = cohortManager.createStudent(
+      'Terrence',
+      'Howard',
+      'terry',
+      'terry@how.ard'
     )
-    cohortManager.addStudentToCohort(
-      {
-        firstName: 'Jasmine',
-        lastName: 'Hercules',
-        githubUsername: 'terry',
-        email: 'terry@how.ard'
-      },
-      'Class of 2023'
-    )
-    cohortManager.addStudentToCohort(
-      {
-        firstName: 'Jericho',
-        lastName: 'Cleopatra',
-        githubUsername: 'terry',
-        email: 'terry@how.ard'
-      },
-      'Class of 2023'
-    )
+
+    const result = cohortManager.addStudentToCohort(student1, cohort2)
     const cohort = cohortManager.search('Class of 2023')
-    expect(cohort.students.length).toBe(3)
+    expect(cohort.students.length).toBe(1)
     cohortManager.removeStudentFromCohort('Terrence', 'Class of 2023')
-    expect(cohort.students.length).toBe(2)
+    expect(cohort.students.length).toBe(0)
   })
 
   it('should add student to a specific cohort', () => {
-    // eslint-disable-next-line no-unused-vars
     const cohort1 = cohortManager.createCohort('Class of 2022')
     const cohort2 = cohortManager.createCohort('Class of 2023')
-    // eslint-disable-next-line no-unused-vars
     const cohort3 = cohortManager.createCohort('Class of 2024')
 
-    const result = cohortManager.addStudentToCohort(
-      {
-        firstName: 'Terrence',
-        lastName: 'Howard',
-        githubUsername: 'terry',
-        email: 'terry@how.ard'
-      },
-      'Class of 2023'
+    const student1 = cohortManager.createStudent(
+      'Terrence',
+      'Howard',
+      'terry',
+      'terry@how.ard'
     )
+
+    const result = cohortManager.addStudentToCohort(student1, cohort2)
     expect(result).toBeInstanceOf(Student)
     expect(cohort2.students.length).toBe(1)
+    expect(result.cohortID).toBe(cohort2.id)
   })
 })

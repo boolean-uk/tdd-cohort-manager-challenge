@@ -2,6 +2,7 @@ export default class CohortManager {
   constructor() {
     this.cohorts = []
     this.students = []
+    this.studentID = 1
   }
 
   createCohort(name) {
@@ -32,16 +33,28 @@ export default class CohortManager {
     return this.cohorts
   }
 
-  addStudentToCohort(studentDetails, cohortName) {
-    const targetCohort = this.search(cohortName)
-    const student = targetCohort.addStudent(studentDetails)
-    this.students.push({ ...student, cohort: cohortName })
+  addStudentToCohort(student, cohort) {
+    cohort.addStudent(student)
+    student.setCohortID(cohort.id)
     return student
   }
 
   removeStudentFromCohort(studentFirstName, cohortName) {
     const targetCohort = this.search(cohortName)
     targetCohort.removeStudent(studentFirstName)
+  }
+
+  createStudent(firstName, lastName, githubUsername, email) {
+    const student = new Student(
+      this.studentID,
+      firstName,
+      lastName,
+      githubUsername,
+      email
+    )
+    this.students.push(student)
+    this.studentID++
+    return student
   }
 }
 
@@ -52,18 +65,9 @@ export class Cohort {
     this.studentID = 1
   }
 
-  addStudent(studentDetails) {
-    if (this.studentID >= 25) throw new Error('Cohort is full')
-
-    const student = new Student(
-      this.studentID,
-      studentDetails.firstName,
-      studentDetails.lastName,
-      studentDetails.githubUsername,
-      studentDetails.email
-    )
+  addStudent(student) {
     this.students.push(student)
-    this.studentID++
+
     return student
   }
 
@@ -91,5 +95,10 @@ export class Student {
     this.lastName = lastName
     this.githubUsername = githubUsername
     this.email = email
+    this.cohortID = null
+  }
+
+  setCohortID(id) {
+    this.cohortID = id
   }
 }
