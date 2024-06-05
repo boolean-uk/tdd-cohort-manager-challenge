@@ -212,4 +212,34 @@ describe('Extended Criteria', () => {
       cohortManager.removeStudentFromCohort(student3, cohort)
     }).toThrow()
   })
+
+  it('Search for students by name (first and last) and return all matching results', () => {
+    const student1 = cohortManager.createStudent(
+      'Terrence',
+      'Howard',
+      'terry',
+      'terry@how.ard'
+    )
+    const student2 = cohortManager.createStudent(
+      'Jasmine',
+      'Hercules',
+      'terry',
+      'terry@how.ard'
+    )
+    const student3 = cohortManager.createStudent(
+      'Jericho',
+      'Cleopatra',
+      'terry',
+      'terry@how.ard'
+    )
+
+    let result = cohortManager.searchStudentByName(
+      'Terrence Hercules Cleopatra'
+    )
+    expect(result.length).toBe(3)
+    result = cohortManager.searchStudentByName('Cleopatra')
+    expect(result.length).toBe(1)
+    result = cohortManager.searchStudentByName('Hercules Cleopatra')
+    expect(result.length).toBe(2)
+  })
 })

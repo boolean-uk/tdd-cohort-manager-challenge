@@ -65,6 +65,15 @@ export default class CohortManager {
 
     return found
   }
+
+  searchStudentByName(name) {
+    const result = this.students.filter(
+      (student) =>
+        name.includes(student.firstName) || name.includes(student.lastName)
+    )
+
+    return result
+  }
 }
 
 export class Cohort {
