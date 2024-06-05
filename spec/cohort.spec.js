@@ -141,4 +141,16 @@ describe('Extended Criteria', () => {
       cohortManager.addStudentToCohort(student, cohort)
     }).toThrow()
   })
+
+  it("cohorts can't exist without a name", () => {
+    expect(() => {
+      cohortManager.createCohort(null)
+    }).toThrow()
+    expect(() => {
+      cohortManager.createCohort('')
+    }).toThrow()
+    expect(() => {
+      cohortManager.createCohort()
+    }).toThrow()
+  })
 })

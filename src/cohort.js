@@ -60,6 +60,8 @@ export default class CohortManager {
 
 export class Cohort {
   constructor(name) {
+    if (name === null || name.trim().length === 0 || name === undefined)
+      throw new Error('cohort must have a name')
     this.name = name
     this.students = []
     this.studentID = 1
