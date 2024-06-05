@@ -77,4 +77,24 @@ describe('CohortManager', () => {
     cohortManager.removeStudentFromCohort('Terrence', 'Class of 2023')
     expect(cohort.students.length).toBe(2)
   })
+
+  it('should add student to a specific cohort', () => {
+    // eslint-disable-next-line no-unused-vars
+    const cohort1 = cohortManager.createCohort('Class of 2022')
+    const cohort2 = cohortManager.createCohort('Class of 2023')
+    // eslint-disable-next-line no-unused-vars
+    const cohort3 = cohortManager.createCohort('Class of 2024')
+
+    const result = cohortManager.addStudentToCohort(
+      {
+        firstName: 'Terrence',
+        lastName: 'Howard',
+        githubUsername: 'terry',
+        email: 'terry@how.ard'
+      },
+      'Class of 2023'
+    )
+    expect(result).toBeInstanceOf(Student)
+    expect(cohort2.students.length).toBe(1)
+  })
 })
