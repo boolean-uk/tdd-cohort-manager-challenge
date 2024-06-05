@@ -181,7 +181,7 @@ describe('cohort manager', () => {
     }).toThrow(errors.studentNotFound)
   })
 
-  it('returns the student object if one is found by name', () => {
+  it('returns an array containing matching student objects if there are any found by name', () => {
     cohortManager.createCohort('1')
     const student = cohortManager.addStudent(
       {
@@ -192,15 +192,15 @@ describe('cohort manager', () => {
       },
       '1'
     )
-    expect(
-      cohortManager.searchStudentByName('Angus', 'Townsley')
-    ).toBeInstanceOf(Student)
-    expect(cohortManager.searchStudentByName('Angus', 'Townsley')).toEqual(
-      student
+    const searchedStudentArr = cohortManager.searchStudentByName(
+      'Angus',
+      'Townsley'
     )
+    expect(searchedStudentArr[0]).toBeInstanceOf(Student)
+    expect(searchedStudentArr[0]).toEqual(student)
   })
 
-  it('throws error if student object is not found', () => {
+  it('throws error if student object is not found by name', () => {
     cohortManager.createCohort('1')
     expect(() => {
       cohortManager.searchStudentByName('2')
