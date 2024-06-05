@@ -78,3 +78,43 @@ describe('CohortManager', () => {
     expect(result.cohortID).toBe(cohort2.id)
   })
 })
+describe('Extended Criteria', () => {
+  let cohortManager
+
+  beforeEach(() => {
+    cohortManager = new CohortManager()
+  })
+
+  it('should search for student by student ID', () => {
+    const cohort = cohortManager.createCohort('Class of 2023')
+
+    const student1 = cohortManager.createStudent(
+      'Terrence',
+      'Howard',
+      'terry',
+      'terry@how.ard'
+    )
+    const student2 = cohortManager.createStudent(
+      'Jasmine',
+      'Hercules',
+      'terry',
+      'terry@how.ard'
+    )
+    const student3 = cohortManager.createStudent(
+      'Jericho',
+      'Cleopatra',
+      'terry',
+      'terry@how.ard'
+    )
+
+    cohortManager.addStudentToCohort(student1, cohort)
+    cohortManager.addStudentToCohort(student2, cohort)
+    cohortManager.addStudentToCohort(student3, cohort)
+
+    const result = cohortManager.searchByStudentID(1)
+    expect(result.studentID).toBe(1)
+    expect(() => {
+      cohortManager.searchByStudentID(100)
+    }).toThrow()
+  })
+})

@@ -18,13 +18,6 @@ export default class CohortManager {
     return found
   }
 
-  searchByStudentID(id) {
-    const found = this.students.find((student) => student.studentID === id)
-    if (!found) throw new Error('student not found')
-
-    return found
-  }
-
   remove(name) {
     const updatedCohortsList = this.cohorts.filter(
       (cohort) => cohort.name !== name
@@ -55,6 +48,13 @@ export default class CohortManager {
     this.students.push(student)
     this.studentID++
     return student
+  }
+
+  searchByStudentID(id) {
+    const found = this.students.find((student) => student.studentID === id)
+    if (!found) throw new Error('student not found')
+
+    return found
   }
 }
 
