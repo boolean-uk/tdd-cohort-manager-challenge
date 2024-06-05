@@ -161,4 +161,26 @@ describe('Extended Criteria', () => {
       const cohort2 = cohortManager.createCohort(cohortName)
     }).toThrow()
   })
+
+  it("The same student can't exist in multiple cohorts", () => {
+    const cohort1 = cohortManager.createCohort('Class of 2024')
+    const cohort2 = cohortManager.createCohort('Class of 2025')
+
+    expect(cohort1.id).toBe(1)
+    expect(cohort2.id).toBe(2)
+
+    let student = cohortManager.createStudent(
+      'Terrence',
+      'Howard',
+      'terry',
+      'terry@how.ard'
+    )
+    expect(student).toBeInstanceOf(Student)
+    student = cohortManager.addStudentToCohort(student, cohort1)
+    expect(cohort1.students.length).toBe(1)
+    expect(student.cohortID).toBe(cohort1.id)
+    expect(() => {
+      cohortManager.addStudentToCohort(student, cohort2)
+    }).toThrow()
+  })
 })

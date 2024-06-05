@@ -31,6 +31,8 @@ export default class CohortManager {
   }
 
   addStudentToCohort(student, cohort) {
+    if (student.cohortID !== null)
+      throw new Error('Student already in a cohort')
     cohort.addStudent(student)
     student.setCohortID(cohort.id)
     return student
