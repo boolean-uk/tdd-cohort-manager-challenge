@@ -1,4 +1,3 @@
-import Student from './student.js'
 import Cohort from './cohorts.js'
 import students from './studentsDB.js'
 
