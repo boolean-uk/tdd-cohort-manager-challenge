@@ -20,11 +20,11 @@ describe("CohortManager", () => {
     })
 
     it("should throw an error if the name isn't a string when creating a cohort", () => {
-        expect(() => cohortManager.createCohort(42)).toThrow("Name must be a string")
+        expect(() => cohortManager.createCohort(42)).toThrowError("Name must be a string")
     })
 
     it("should throw an error if no name value given when creating a cohort", () => {
-        expect(() => cohortManager.createCohort()).toThrow("No value given")
+        expect(() => cohortManager.createCohort()).toThrowError("No value given")
     })
 
     it("should be able to search for a cohort", () => {
@@ -32,7 +32,7 @@ describe("CohortManager", () => {
     })
 
     it("should throw an error if searching for a cohort which doesn't exist", () => {
-        expect(() => cohortManager.search("abc")).toThrow("This cohort doesn't exist")
+        expect(() => cohortManager.search("abc")).toThrowError("This cohort doesn't exist")
     })
 
     it("should be able to remove a cohort", () => {
@@ -41,7 +41,7 @@ describe("CohortManager", () => {
     })
 
     it("should throw an error when trying to remove an cohort which doesn't exist", () => {
-        expect(() => cohortManager.removeCohort("bravo")).toThrow("This cohort doesn't exist")
+        expect(() => cohortManager.removeCohort("bravo")).toThrowError("This cohort doesn't exist")
         expect(cohortManager.cohorts).toEqual([{name: "alpha", students: []}])
     })
 
@@ -51,11 +51,11 @@ describe("CohortManager", () => {
     })
 
     it("should return an error if cohort doesn't exist when trying to add student", () => {
-        expect(() => cohortManager.addStudent("john", studentOne)).toThrow("This cohort doesn't exist")
+        expect(() => cohortManager.addStudent("john", studentOne)).toThrowError("This cohort doesn't exist")
     })
 
     it("student information incorrect when trying to add a student will result in error", () => {
-        expect(() => cohortManager.addStudent("alpha", {})).toThrow("Student object needs an: firstName, lastName, github, email")
+        expect(() => cohortManager.addStudent("alpha", {})).toThrowError("Student object needs an: firstName, lastName, github, email")
     })
 
     it("should remove an student from an cohort", () => {
@@ -65,14 +65,14 @@ describe("CohortManager", () => {
     })
 
     it("error thrown if cohort can't be found", () => {
-        expect(() => cohortManager.removeStudent("bravo", 10)).toThrow("This cohort doesn't exist")
+        expect(() => cohortManager.removeStudent("bravo", 10)).toThrowError("This cohort doesn't exist")
     })
 
     it("error thrown if student doesn't exist", () => {
-        expect(() => cohortManager.removeStudent("alpha", 12)).toThrow("This student doesn't exist in the cohort")
+        expect(() => cohortManager.removeStudent("alpha", 12)).toThrowError("This student doesn't exist in the cohort")
     })
 
     it("throw error if studentId missing", () => {
-        expect(() => cohortManager.removeStudent("alpha")).toThrow("studentId missing")
+        expect(() => cohortManager.removeStudent("alpha")).toThrowError("studentId missing")
     })
 })

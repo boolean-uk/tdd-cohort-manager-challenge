@@ -6,10 +6,10 @@ class CohortManager {
 
   createCohort(name) {
     if (name === undefined) {
-      throw 'No value given'
+      throw new Error('No value given')
     }
     if (typeof name !== 'string') {
-      throw 'Name must be a string'
+      throw new Error('Name must be a string')
     }
     this.cohorts.push({ name: name, students: [] })
   }
@@ -17,7 +17,7 @@ class CohortManager {
   search(cohort) {
     const cohortSearch = this.cohorts.find((c) => c.name === cohort)
     if (cohortSearch === undefined) {
-      throw "This cohort doesn't exist"
+      throw new Error("This cohort doesn't exist")
     }
     return cohortSearch
   }
@@ -30,7 +30,7 @@ class CohortManager {
       }
     })
     if (cohortIndex === undefined) {
-      throw "This cohort doesn't exist"
+      throw new Error("This cohort doesn't exist")
     }
     this.cohorts.splice(cohortIndex, 1)
   }
@@ -43,10 +43,12 @@ class CohortManager {
       }
     })
     if (cohortIndex === undefined) {
-      throw "This cohort doesn't exist"
+      throw new Error("This cohort doesn't exist")
     }
     if (typeof student !== 'object') {
-      throw 'Student object needs an: firstName, lastName, github, email'
+      throw new Error(
+        'Student object needs an: firstName, lastName, github, email'
+      )
     }
     if (
       student.firstName === undefined ||
@@ -54,7 +56,9 @@ class CohortManager {
       student.gitHub === undefined ||
       student.email === undefined
     ) {
-      throw 'Student object needs an: firstName, lastName, github, email'
+      throw new Error(
+        'Student object needs an: firstName, lastName, github, email'
+      )
     }
     student.studentId = this.id
     this.id++
@@ -69,10 +73,10 @@ class CohortManager {
       }
     })
     if (cohortIndex === undefined) {
-      throw "This cohort doesn't exist"
+      throw new Error("This cohort doesn't exist")
     }
     if (studentId === undefined) {
-      throw 'studentId missing'
+      throw new Error('studentId missing')
     }
 
     let studentIndex
@@ -82,7 +86,7 @@ class CohortManager {
       }
     })
     if (studentIndex === undefined) {
-      throw "This student doesn't exist in the cohort"
+      throw new Error("This student doesn't exist in the cohort")
     }
     this.cohorts[cohortIndex].students.splice(studentIndex, 1)
   }
