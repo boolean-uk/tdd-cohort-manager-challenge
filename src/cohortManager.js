@@ -1,63 +1,67 @@
-import Cohort from './cohort.js';
+import Cohort from './Cohort.js';
 
 class CohortManager {
-  constructor() {
-    this.cohorts = [];
-    this.students = [];
-  }
-
-  createCohort(name) {
-    if (!name) {
-      throw new Error('Cohort name is required');
+    constructor() {
+        this.cohorts = [];
     }
-    if (this.cohorts.find(cohort => cohort.name === name)) {
-      throw new Error('Cohort name already exists');
+
+    createCohort(name) {
+        if (!name) {
+            throw new Error('Cohort name is required');
+        }
+        if (this.cohorts.some(cohort => cohort.name === name)) {
+            throw new Error('Cohort name must be unique');
+        }
+        const cohort = new Cohort(name);
+        this.cohorts.push(cohort);
+        return cohort;
     }
-    const cohort = new Cohort(name);
-    this.cohorts.push(cohort);
-  }
 
-  searchCohort(name) {
-    const cohort = this.cohorts.find(cohort => cohort.name === name);
-    if (!cohort) {
-      throw new Error('Cohort not found');
+    searchCohort(name) {
+        return this.cohorts.find(cohort => cohort.name === name);
     }
-    return cohort;
-  }
 
-  addStudentToCohort(cohortName, student) {
-    const cohort = this.searchCohort(cohortName);
-    if (cohort.students.length >= 24) {
-      throw new Error('Cohort is full');
+    addStudentToCohort(cohortName, student) {
+        const cohort = this.searchCohort(cohortName);
+        if (!cohort) {
+            throw new Error('Cohort not found');
+        }
+        cohort.addStudent(student);
     }
-    if (this.students.find(stu => stu.id === student.id)) {
-      throw new Error('Student already in a cohort');
+
+    removeCohort(name) {
+        const index = this.cohorts.findIndex(cohort => cohort.name === name);
+        if (index === -1) {
+            throw new Error('Cohort not found');
+        }
+        this.cohorts.splice(index, 1);
     }
-    cohort.addStudent(student);
-    this.students.push(student);
-  }
 
-  removeCohort(name) {
-    this.cohorts = this.cohorts.filter(cohort => cohort.name !== name);
-  }
-
-  removeStudentFromCohort(cohortName, studentId) {
-    const cohort = this.searchCohort(cohortName);
-    const studentIndex = cohort.students.findIndex(student => student.id === studentId);
-    if (studentIndex === -1) {
-      throw new Error('Student not found in cohort');
+    removeStudentFromCohort(cohortName, studentID) {
+        const cohort = this.searchCohort(cohortName);
+        if (!cohort) {
+            throw new Error('Cohort not found');
+        }
+        cohort.removeStudent(studentID);
     }
-    cohort.students.splice(studentIndex, 1);
-    this.students = this.students.filter(student => student.id !== studentId);
-  }
 
-  searchStudentById(studentId) {
-    return this.students.find(student => student.id === studentId);
-  }
+    searchStudentByID(studentID) {
+        for (const cohort of this.cohorts) {
+            const student = cohort.students.find(student => student.studentID === studentID);
+            if (student) {
+                return student;
+            }
+        }
+        return null;
+    }
 
-  searchStudentsByName(name) {
-    return this.students.filter(student => student.firstName === name || student.lastName === name);
-  }
+    searchStudentsByName(firstName, lastName) {
+        let students = [];
+        for (const cohort of this.cohorts) {
+            students = students.concat(cohort.students.filter(student => student.firstName === firstName && student.lastName === lastName));
+        }
+        return students;
+    }
 }
 
 export default CohortManager;
