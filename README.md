@@ -65,28 +65,9 @@ Use: https://www.resend.com/
 You can run all the test manually whenever you want:
 
 ```sh
-$ npm test
-```
+$ npm test # to run all tests
 
-This will run two sets of tests.
+OR 
 
-### Linter Tests
-
-Using `npm test` will first run a set of tests that make sure your code satisfies specific stylistic rules - make sure you resolve these problems as you go.
-
-You can also run the linter manually whenever you want and autocorrect where it's possible:
-
-```sh
-npx eslint src --fix
-```
-
-### Functional Tests
-The second set of tests that will run are functional. They test the behaviour of the programs you write.
-
-You can also run the tests manually whenever you want
-
-```sh
-npm test # run all the tests
-# or
-npx jasmine spec/path/to/specfile # run a set of tests in a spec file
+$ npx jasmine spec/path/to/specfile # to run a set of tests in a spec file
 ```
