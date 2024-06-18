@@ -5,13 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "jasmine",
-    "prepare": "husky install"
+    "test": "jasmine"
   },
   "author": "boolean-uk",
   "license": "ISC",
   "devDependencies": {
-    "husky": "^7.0.4",
     "jasmine": "^5.1.0"
   }
 }
