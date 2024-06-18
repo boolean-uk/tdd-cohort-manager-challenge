@@ -1,14 +1,14 @@
 {
-  "name": "js-fundamentals",
+  "name": "cohort-manager-challenge",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "npx eslint src && npx jasmine",
+    "test": "eslint src && jasmine",
     "prepare": "husky install"
   },
-  "author": "dearshrewdwit",
+  "author": "boolean-uk",
   "license": "ISC",
   "prettier": "@boolean-uk/boolean-prettier-config",
   "devDependencies": {
