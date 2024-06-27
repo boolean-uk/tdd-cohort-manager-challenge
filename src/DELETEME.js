@@ -2,8 +2,8 @@
 
 let studentIdCounter = 1
 class Student {
-    constructor (firstName , lastName, githubUsername, email) {
-        this.studentId = String(studentIdCounter++)
+    constructor (firstName, lastName, githubUsername, email) {
+        this.studentId = studentIdCounter++
         this.firstName = firstName
         this.lastName = lastName
         this.githubUsername = githubUsername
@@ -46,14 +46,15 @@ class CohortManager {
         const newCohort = new Cohort(this.id, cohortName)
         this.id++
         this.cohorts.push(newCohort)
-        console.log(this.cohorts)
+        // console.log(this.cohorts)
         return newCohort
     }
 
     searchCohort(cohortName) {
-        const findCohort = this.cohorts.find(cohort => cohort.cohortName === cohortName)
-        if (findCohort) {
-            return findCohort
+        const foundCohort = this.cohorts.find(cohort => cohort.cohortName === cohortName)
+        if (foundCohort) {
+            console.log(foundCohort)
+            return foundCohort
         }
         else {
             throw new Error('cohort not found')
@@ -63,9 +64,8 @@ class CohortManager {
     addStudentsToCohort(cohortName, student) {
         const cohort = this.searchCohort(cohortName)
         cohort.addStudent(student)
-        // this.studentId++
-        // console.log(student.lastName)
-        return student
+        // console.log('hey', student.firstName, student.lastName)
+        return student.firstName, student.lastName
     }
 
     removeCohort(cohortName) {
@@ -89,20 +89,20 @@ export default CohortManager
 
 export { Cohort }
 
+export { Student }
+
 const student1 = new Student('mama', 'leye', 'homonoviscoding', 'mama.leye@gmail.com')
 const student2 = new Student('kyle', 'vann', 'kyle', 'kyle.van@gmail.com')
 const cohortManager = new CohortManager()
 const cohort12 = cohortManager.createCohort('cohort 12')
 
-// const cohort12 = new Cohort('cohort 12')
-// cohort12.addStudent(student1)
 
-// cohort1.createCohort('cohort 12')
 cohortManager.createCohort('cohort 13')
 cohortManager.addStudentsToCohort('cohort 12', student1)
 cohortManager.addStudentsToCohort('cohort 12', student2)
 cohortManager.addStudentsToCohort('cohort 13', student1)
+cohortManager.searchCohort('cohort 13')
 
 
-console.log(cohort12.students)
+// console.log(cohort12.students)
 
