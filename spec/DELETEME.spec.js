@@ -80,4 +80,16 @@ describe("CohortManger", () => {
     expect(cohort12.students[0].firstName).toBe('morphil')
     expect(cohort12.students[1].githubUsername).toBe('smthuser')
   })
+
+  it("should remove a cohort given the cohort name", () => {
+    const cohort12 = cohortManager.createCohort('cohort 12')
+    const cohort13 = cohortManager.createCohort('cohort 13')
+
+    expect(cohortManager.cohorts.length).toBe(2)
+    cohortManager.removeCohort('cohort 12')
+
+    expect(cohortManager.cohorts.length).toBe(1)
+
+    expect(cohortManager.cohorts[0].cohortName).toBe('cohort 13')
+  })
 })
