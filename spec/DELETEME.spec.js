@@ -62,4 +62,9 @@ describe("CohortManger", () => {
     expect(cohort13.students[0].firstName).toBe('morphil')
     expect(cohort13.students[0].githubUsername).toBe('morfilbach')
   })
+
+  it("should throw an error if cohort non existant", () => {
+
+    expect(() => cohortManager.searchCohort('cohort').toThrow('cohort not found'))
+  })
 })

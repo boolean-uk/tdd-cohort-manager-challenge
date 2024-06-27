@@ -31,7 +31,7 @@ class Cohort {
             this.students.splice(index, 1)
         }
         else {
-            throw new Error('student not found')
+            throw 'student not found'
         }
     }
 }
@@ -52,13 +52,10 @@ class CohortManager {
 
     searchCohort(cohortName) {
         const foundCohort = this.cohorts.find(cohort => cohort.cohortName === cohortName)
-        if (foundCohort) {
-            console.log(foundCohort)
-            return foundCohort
+        if (!foundCohort) {
+            throw 'cohort not found'
         }
-        else {
-            throw new Error('cohort not found')
-        }
+        return foundCohort
     }
 
     addStudentsToCohort(cohortName, student) {
@@ -101,7 +98,7 @@ cohortManager.createCohort('cohort 13')
 cohortManager.addStudentsToCohort('cohort 12', student1)
 cohortManager.addStudentsToCohort('cohort 12', student2)
 cohortManager.addStudentsToCohort('cohort 13', student1)
-cohortManager.searchCohort('cohort 13')
+// cohortManager.searchCohort('cohort 13')
 
 
 // console.log(cohort12.students)
