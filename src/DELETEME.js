@@ -46,7 +46,7 @@ class CohortManager {
         const newCohort = new Cohort(this.id, cohortName)
         this.id++
         this.cohorts.push(newCohort)
-        console.log(newCohort)
+        console.log(this.cohorts)
         return newCohort
     }
 

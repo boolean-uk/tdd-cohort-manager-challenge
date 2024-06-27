@@ -31,5 +31,7 @@ describe("CohortManger", () => {
     expect(result3).toBeInstanceOf(Cohort)
     expect(result3.id).toBe(2)
     expect(result3.cohortName).toBe('cohort 14')
+
+    expect(cohortManager.cohorts.length).toBe(2)
   })
 })
