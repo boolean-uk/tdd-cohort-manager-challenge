@@ -92,4 +92,27 @@ describe("CohortManger", () => {
 
     expect(cohortManager.cohorts[0].cohortName).toBe('cohort 13')
   })
+
+  it("should throw an error if cohort does not exist", () => {
+    expect(() => cohortManager.removeCohort('non-existent')).toThrow('cohort does not exist')
+  })
+
+  it("should remove a student from a given cohort", () => {
+    const cohort12 = cohortManager.createCohort('cohort 12')
+    const student1 = new Student('morphil', 'bach', 'morfilbach', 'bach@gmail.com')
+    const student2 = new Student('smth', 'smthlastname', 'smthuser', 'smth@gmail.com')
+    cohortManager.addStudentsToCohort('cohort 12', student1)
+
+    cohortManager.addStudentsToCohort('cohort 12', student2)
+
+    expect(cohort12.students.length).toBe(2)
+    expect(cohort12.students).toContain(student1)
+    expect(cohort12.students[0].firstName).toBe('morphil')
+    expect(cohort12.students[1].githubUsername).toBe('smthuser')
+
+    cohortManager.removeStudentFromCohort('cohort 12', student1.studentId)
+
+    expect(cohort12.students.length).toBe(1)
+  })
+
 })

@@ -71,8 +71,9 @@ class CohortManager {
             this.cohorts.splice(cohortToRemove, 1)
         }
         else {
-            throw new Error('cohort does not exist')
+            throw ('cohort does not exist')
         }
+        return `cohort ${cohortName} removed`
     }
 
     removeStudentFromCohort(cohortName, student) {
