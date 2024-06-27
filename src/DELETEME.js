@@ -53,7 +53,7 @@ class CohortManager {
     searchCohort(cohortName) {
         const foundCohort = this.cohorts.find(cohort => cohort.cohortName === cohortName)
         if (!foundCohort) {
-            throw 'cohort not found'
+            throw ('cohort not found')
         }
         return foundCohort
     }
@@ -98,7 +98,7 @@ cohortManager.createCohort('cohort 13')
 cohortManager.addStudentsToCohort('cohort 12', student1)
 cohortManager.addStudentsToCohort('cohort 12', student2)
 cohortManager.addStudentsToCohort('cohort 13', student1)
-// cohortManager.searchCohort('cohort 13')
+// cohortManager.searchCohort('cohort')
 
 
 // console.log(cohort12.students)

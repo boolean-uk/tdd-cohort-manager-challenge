@@ -6,7 +6,7 @@ describe("CohortManger", () => {
 
   beforeEach(() => {
     cohortManager = new CohortManager()
-    student = new Student()
+    student = new Student
   })
 
   it("should exist", () => {
@@ -49,22 +49,35 @@ describe("CohortManger", () => {
     const result1 = cohortManager.searchCohort('cohort 12')
     const result2 = cohortManager.searchCohort('cohort 13')
 
-    expect(cohort12).toBeInstanceOf(Cohort)
+    expect(result1).toBeInstanceOf(Cohort)
     expect(result1.id).toBe(1)
     expect(result1.cohortName).toBe('cohort 12')
     expect(result1.students.length).toBe(1)
     expect(result1.students[0].firstName).toBe('Luca')
 
-    expect(cohort13).toBeInstanceOf(Cohort)
+    expect(result2).toBeInstanceOf(Cohort)
     expect(result2.id).toBe(2)
     expect(result2.cohortName).toBe('cohort 13')
     expect(result2.students.length).toBe(1)
-    expect(cohort13.students[0].firstName).toBe('morphil')
-    expect(cohort13.students[0].githubUsername).toBe('morfilbach')
+    expect(result2.students[0].firstName).toBe('morphil')
+    expect(result2.students[0].githubUsername).toBe('morfilbach')
   })
 
-  it("should throw an error if cohort non existant", () => {
+  it("should throw an error if cohort not found", () => {
+    expect(() => cohortManager.searchCohort('non-existent')).toThrow('cohort not found')
+  })
 
-    expect(() => cohortManager.searchCohort('cohort').toThrow('cohort not found'))
+  it("should add a student to a given cohort", () => {
+    const cohort12 = cohortManager.createCohort('cohort 12')
+    const student1 = new Student('morphil', 'bach', 'morfilbach', 'bach@gmail.com')
+    const student2 = new Student('smth', 'smthlastname', 'smthuser', 'smth@gmail.com')
+    cohortManager.addStudentsToCohort('cohort 12', student1)
+
+    cohortManager.addStudentsToCohort('cohort 12', student2)
+
+    expect(cohort12.students.length).toBe(2)
+    expect(cohort12.students).toContain(student1)
+    expect(cohort12.students[0].firstName).toBe('morphil')
+    expect(cohort12.students[1].githubUsername).toBe('smthuser')
   })
 })
