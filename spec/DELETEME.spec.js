@@ -6,7 +6,7 @@ describe("CohortManger", () => {
 
   beforeEach(() => {
     cohortManager = new CohortManager()
-    student = new Student
+    student = new Student('Test', 'User', 'testuser', 'testuser@example.com')
   })
 
   it("should exist", () => {
@@ -39,7 +39,7 @@ describe("CohortManger", () => {
   })
 
   it("should search a cohort by name", () => {
-    const studentTest = new Student('Luca', 'Terrazzan', 'luca', 'terrazzan@gmail.com')
+    const studentTest = new Student('Luca', 'Terra', 'luca', 'luca@gmail.com')
     const studentTest2 = new Student('morphil', 'bach', 'morfilbach', 'bach@gmail.com')
     const cohort12 = cohortManager.createCohort('cohort 12')
     const cohort13 = cohortManager.createCohort('cohort 13')
@@ -113,6 +113,13 @@ describe("CohortManger", () => {
     cohortManager.removeStudentFromCohort('cohort 12', student1.studentId)
 
     expect(cohort12.students.length).toBe(1)
+  })
+
+  it("should throw an error if student to remove doesn't exist", () => {
+    const cohort12 = cohortManager.createCohort('cohort 12')
+    cohortManager.addStudentsToCohort(student)
+
+    expect(() => cohortManager.removeStudentFromCohort('cohort 12', 3)).toThrow('student not found')
   })
 
 })

@@ -31,7 +31,7 @@ class Cohort {
             this.students.splice(index, 1)
         }
         else {
-            throw 'student not found'
+            throw ('student not found')
         }
     }
 }
@@ -79,6 +79,7 @@ class CohortManager {
     removeStudentFromCohort(cohortName, student) {
         const cohort = this.searchCohort(cohortName)
         cohort.removeStudent(student)
+        return 
     }
 
 }
@@ -89,8 +90,8 @@ export { Cohort }
 
 export { Student }
 
-const student1 = new Student('mama', 'leye', 'homonoviscoding', 'mama.leye@gmail.com')
-const student2 = new Student('kyle', 'vann', 'kyle', 'kyle.van@gmail.com')
+const student1 = new Student('mama', 'lele', 'homonoviscoding', 'mama@gmail.com')
+const student2 = new Student('kyle', 'vann', 'kyle', 'kyle@gmail.com')
 const cohortManager = new CohortManager()
 const cohort12 = cohortManager.createCohort('cohort 12')
 
